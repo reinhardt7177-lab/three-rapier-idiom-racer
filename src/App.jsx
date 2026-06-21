@@ -4,9 +4,18 @@ import { createThreeRapierRacingRuntime } from "./create-three-rapier-runtime.js
 const defaultHud = {
   speed: 0,
   score: 0,
-  time: 80,
-  boost: 0,
-  rank: "3/3",
+  time: "0m",
+  boost: 100,
+  battery: 100,
+  combo: 0,
+  pit: false,
+  speedFeel: 0,
+  boosting: false,
+  stage: 1,
+  stageName: "다운타운",
+  stageProgress: 0,
+  nextStageM: 900,
+  rank: "--",
   lapTime: "0:00.00",
   bestLap: "--:--",
   drift: 0,
@@ -71,24 +80,22 @@ export default function CarRacingPage() {
 
     const onKeyDown = (event) => {
       if (!runtimeRef.current) return;
-      if (quizPromptRef.current && ["1", "2", "3", "4"].includes(event.key)) {
-        event.preventDefault();
-        const result = runtimeRef.current.answerQuiz?.(Number(event.key) - 1);
-        if (result?.answered) {
-          quizPromptRef.current = null;
-          setQuizPrompt(null);
+      if (quizPromptRef.current) {
+        if (["1", "2", "3", "4"].includes(event.key)) {
+          event.preventDefault();
+          runtimeRef.current.answerQuiz?.(Number(event.key) - 1);
         }
         return;
       }
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ steerRight: true });
+        runtimeRef.current.setInput({ steerLeft: true });
       }
       if (event.key === "ArrowRight") {
         event.preventDefault();
         runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ steerLeft: true });
+        runtimeRef.current.setInput({ steerRight: true });
       }
       if (event.key === "ArrowUp") {
         event.preventDefault();
@@ -118,8 +125,8 @@ export default function CarRacingPage() {
 
     const onKeyUp = (event) => {
       if (!runtimeRef.current) return;
-      if (event.key === "ArrowLeft") runtimeRef.current.setInput({ steerRight: false });
-      if (event.key === "ArrowRight") runtimeRef.current.setInput({ steerLeft: false });
+      if (event.key === "ArrowLeft") runtimeRef.current.setInput({ steerLeft: false });
+      if (event.key === "ArrowRight") runtimeRef.current.setInput({ steerRight: false });
       if (event.key === "ArrowUp") runtimeRef.current.setInput({ accel: false });
       if (event.key === "ArrowDown") runtimeRef.current.setInput({ brake: false });
       if (event.key === "Shift" || event.key.toLowerCase() === "x") {
@@ -140,6 +147,8 @@ export default function CarRacingPage() {
   }, []);
 
   const boostRatio = Math.min(1, hud.boost / 100);
+  const batteryPct = Math.round(hud.battery ?? 0);
+  const lowBattery = batteryPct < 25;
 
   const updateJoystick = (event) => {
     runtimeRef.current?.startRace?.();
@@ -153,7 +162,7 @@ export default function CarRacingPage() {
     const y = clampValue(rawY / maxDistance, -1, 1);
 
     setStick({ active: true, x, y });
-    runtimeRef.current?.setInput({ steerAxis: -x });
+    runtimeRef.current?.setInput({ steerAxis: x });
   };
 
   const releaseJoystick = (event) => {
@@ -171,41 +180,91 @@ export default function CarRacingPage() {
           <div ref={mountRef} style={styles.mount} />
           <div style={styles.vignette} />
           <div style={styles.scanline} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+              background: hud.boosting
+                ? "radial-gradient(circle at 50% 50%, transparent 38%, rgba(0,170,255,0.12) 76%, rgba(2,10,28,0.55) 100%)"
+                : "radial-gradient(circle at 50% 52%, transparent 54%, rgba(2,10,28,0.5) 100%)",
+              opacity: hud.boosting
+                ? Math.max(0.45, Math.min(0.7, (hud.speedFeel || 0) * 0.8))
+                : Math.min(0.18, (hud.speedFeel || 0) * 0.3),
+              transition: "opacity 0.2s ease"
+            }}
+          />
 
-          <header style={styles.hud}>
-            <HudCard label="Speed" value={`${hud.speed}`} />
-            <HudCard label="Score" value={`${hud.score}`} />
-            <HudCard label="Lap" value={`${hud.time}`} />
-            <HudCard label="Rank" value={hud.rank || "3/3"} />
-            <HudCard label="Lap Time" value={hud.lapTime || "0:00.00"} />
-            <div style={styles.boostCard}>
-              <span style={styles.hudLabel}>Boost</span>
-              <div style={styles.boostTrack}>
-                <div style={{ ...styles.boostFill, transform: `scaleX(${boostRatio.toFixed(3)})` }} />
+          <div style={styles.hudTop}>
+            <div style={styles.energyCard}>
+              <div style={styles.energyTopRow}>
+                <span style={styles.energyLabel}>⚡ ENERGY</span>
+                <span style={{ ...styles.energyPct, ...(lowBattery ? { color: "#ff7a7a" } : null) }}>{batteryPct}%</span>
               </div>
+              <div style={styles.energyTrack}>
+                <div
+                  style={{
+                    ...styles.energyFill,
+                    width: `${batteryPct}%`,
+                    ...(lowBattery ? { background: "linear-gradient(90deg, #ffb347, #ff3b3b)" } : null)
+                  }}
+                />
+              </div>
+              {lowBattery ? <span style={styles.pitWarn}>PIT IN!</span> : null}
             </div>
-          </header>
-          <MiniMap data={hud.minimap} />
+
+            <div style={styles.speedBlock}>
+              <span style={styles.speedLabel}>SPEED</span>
+              <span style={styles.speedValue}>
+                {hud.speed}
+                <span style={styles.speedUnit}>km/h</span>
+              </span>
+            </div>
+
+            <div style={styles.scoreCard}>
+              <div>
+                <span style={styles.scoreLabel}>SCORE</span>
+                <div style={styles.scoreValue}>{Math.round(hud.score).toLocaleString()}</div>
+              </div>
+              {hud.combo > 1 ? (
+                <div style={styles.comboBox}>
+                  <span style={styles.comboLabel}>COMBO</span>
+                  <span style={styles.comboValue}>×{hud.combo}</span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          <div style={styles.stageBar}>
+            <span style={styles.stageName}>STAGE {hud.stage} · {hud.stageName}</span>
+            <div style={styles.stageTrack}>
+              <div style={{ ...styles.stageFill, width: `${Math.round((hud.stageProgress || 0) * 100)}%` }} />
+            </div>
+            <span style={styles.stageNext}>NEXT {hud.nextStageM}m</span>
+          </div>
 
           {message ? <div style={styles.message}>{message}</div> : null}
           <TrafficLights phase={hud.lights} />
           {errorText ? <div style={styles.error}>{errorText}</div> : null}
           {quizPrompt ? (
-            <QuizCard
-              quiz={quizPrompt}
-              onAnswer={(index) => {
-                const result = runtimeRef.current?.answerQuiz?.(index);
-                if (result?.answered) {
-                  quizPromptRef.current = null;
-                  setQuizPrompt(null);
-                }
-              }}
-            />
+            hud.pit || (quizPrompt.checkpointLabel || "").startsWith("PIT") ? (
+              <PitScreen
+                quiz={quizPrompt}
+                battery={hud.battery}
+                combo={hud.combo}
+                onAnswer={(index) => runtimeRef.current?.answerQuiz?.(index)}
+              />
+            ) : (
+              <QuizCard
+                quiz={quizPrompt}
+                onAnswer={(index) => runtimeRef.current?.answerQuiz?.(index)}
+              />
+            )
           ) : null}
 
           {!gameOver && hud.raceStatus === "idle" ? (
             <div style={styles.startPanel}>
-              <p style={styles.startEyebrow}>2 LAPS · 3 RACERS</p>
+              <p style={styles.startEyebrow}>ENDLESS · 배터리로 질주</p>
               <button
                 type="button"
                 style={styles.startButton}
@@ -347,7 +406,7 @@ function QuizCard({ quiz, onAnswer }) {
         <div style={styles.quizOptions}>
           {quiz.options.map((option, index) => (
             <button
-              key={`${quiz.id}-${option}`}
+              key={`${quiz.id}-opt-${index}`}
               type="button"
               style={styles.quizOption}
               onClick={() => onAnswer(index)}
@@ -357,6 +416,122 @@ function QuizCard({ quiz, onAnswer }) {
             </button>
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function PitBay({ charge }) {
+  const cellMax = 26;
+  const cellH = Math.max(2, (cellMax * charge) / 100);
+  return (
+    <svg
+      viewBox="0 0 320 360"
+      preserveAspectRatio="xMidYMid slice"
+      style={{ width: "100%", height: "100%", display: "block" }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="pitsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0a0420" />
+          <stop offset="1" stopColor="#1a0838" />
+        </linearGradient>
+        <radialGradient id="pitglow" cx="0.5" cy="0.92" r="0.7">
+          <stop offset="0" stopColor="#ff2bd6" stopOpacity="0.32" />
+          <stop offset="1" stopColor="#ff2bd6" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="pitunder" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#00e5ff" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#00e5ff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="320" height="360" fill="url(#pitsky)" />
+      <ellipse cx="160" cy="322" rx="210" ry="120" fill="url(#pitglow)" />
+      <g fill="#0a0e1a">
+        <rect x="10" y="70" width="40" height="90" />
+        <rect x="56" y="40" width="34" height="120" />
+        <rect x="96" y="86" width="34" height="74" />
+        <rect x="190" y="56" width="36" height="104" />
+        <rect x="232" y="34" width="32" height="126" />
+        <rect x="270" y="78" width="36" height="82" />
+      </g>
+      <g fill="#00e5ff" opacity="0.8">
+        <rect x="62" y="52" width="4" height="5" /><rect x="74" y="66" width="4" height="5" /><rect x="62" y="84" width="4" height="5" />
+        <rect x="238" y="46" width="4" height="5" /><rect x="250" y="62" width="4" height="5" /><rect x="238" y="84" width="4" height="5" />
+      </g>
+      <g fill="#ff2bd6" opacity="0.8">
+        <rect x="74" y="52" width="4" height="5" /><rect x="250" y="46" width="4" height="5" /><rect x="280" y="92" width="4" height="5" />
+      </g>
+      <rect x="92" y="20" width="150" height="22" rx="4" fill="#04101e" stroke="#00e5ff" strokeOpacity="0.7" />
+      <text x="167" y="36" textAnchor="middle" fontFamily="Trebuchet MS, sans-serif" fontSize="13" fontWeight="700" fill="#7df9ff" letterSpacing="2">RECHARGE BAY</text>
+      <line x1="0" y1="300" x2="320" y2="300" stroke="#0aa6c8" strokeOpacity="0.4" />
+      <g opacity="0.3">
+        <rect x="60" y="300" width="8" height="50" fill="#ff2bd6" />
+        <rect x="150" y="300" width="7" height="50" fill="#00e5ff" />
+        <rect x="240" y="300" width="8" height="50" fill="#ff2bd6" />
+      </g>
+      <ellipse cx="160" cy="298" rx="92" ry="18" fill="url(#pitunder)" />
+      <path d="M86 268 Q108 244 150 242 L188 242 Q224 246 240 270 L246 286 Q246 296 234 298 L86 298 Q76 296 78 286 Z" fill="#07090f" />
+      <path d="M86 268 Q108 244 150 242 L188 242 Q224 246 240 270" fill="none" stroke="#3df0ff" strokeWidth="2" opacity="0.7" />
+      <rect x="100" y="282" width="120" height="6" rx="3" fill="#ff2bd6" />
+      <rect x="150" y="252" width="20" height="30" rx="3" fill="#04101e" stroke="#00e5ff" />
+      <rect className="pit-scan" x="152" y={252 + (28 - cellH)} width="16" height={cellH} rx="2" fill="#7df9ff" />
+      <circle cx="112" cy="296" r="16" fill="#04070e" stroke="#3df0ff" strokeWidth="2" />
+      <circle cx="208" cy="296" r="16" fill="#04070e" stroke="#3df0ff" strokeWidth="2" />
+      <g stroke="#ff5fc0" strokeWidth="2" fill="none" strokeLinecap="round">
+        <circle cx="52" cy="250" r="7" fill="#05080f" />
+        <path d="M52 257 L52 282 M52 264 L40 274 M52 264 L64 272 M52 282 L44 300 M52 282 L60 300" />
+      </g>
+      <g stroke="#3df0ff" strokeWidth="2" fill="none" strokeLinecap="round">
+        <circle cx="270" cy="246" r="7" fill="#05080f" />
+        <path d="M270 253 L270 278 M270 260 L258 270 M270 260 L282 268 M270 278 L262 296 M270 278 L278 296" />
+      </g>
+      <path className="pit-pulse" d="M278 300 Q304 280 248 268" fill="none" stroke="#19e0ff" strokeWidth="3" />
+      <rect x="272" y="298" width="18" height="12" rx="2" fill="#04101e" stroke="#19e0ff" />
+      <circle className="pit-spark" cx="232" cy="270" r="2" fill="#7df9ff" />
+      <circle className="pit-spark" cx="120" cy="284" r="2" fill="#ff7ad6" />
+    </svg>
+  );
+}
+
+function PitScreen({ quiz, battery, combo, onAnswer }) {
+  const charge = Math.max(0, Math.min(100, Math.round(battery ?? 0)));
+  return (
+    <div className="pit-overlay" style={pit.overlay}>
+      <img src="/img/pit-bay.png" alt="" style={pit.bgImg} />
+      <div style={pit.scrim} />
+      <div style={pit.card}>
+        <div style={pit.header}>
+          <span style={pit.badge}>⚡ RECHARGE</span>
+          <span style={pit.step}>{quiz.checkpointLabel}</span>
+          {combo > 1 ? <span style={pit.combo}>COMBO ×{combo}</span> : null}
+        </div>
+        <div style={pit.batteryRow}>
+          <span style={pit.batteryLabel}>BATTERY</span>
+          <div style={pit.batteryTrack}>
+            <div style={{ ...pit.batteryFill, width: `${charge}%` }} />
+          </div>
+          <span style={pit.batteryPct}>{charge}%</span>
+        </div>
+        <div style={pit.idiom}>
+          <strong style={pit.hanja}>{quiz.hanja}</strong>
+          <span style={pit.korean}>{quiz.korean}</span>
+        </div>
+        <p style={pit.question}>{quiz.question}</p>
+        <div style={pit.options}>
+          {quiz.options.map((option, index) => (
+            <button
+              key={`${quiz.id}-opt-${index}`}
+              type="button"
+              style={pit.option}
+              onClick={() => onAnswer(index)}
+            >
+              <span style={pit.optIndex}>{index + 1}</span>
+              {option}
+            </button>
+          ))}
+        </div>
+        <p style={pit.hint}>정답당 +30 ⚡ 충전 · 1–4 키 또는 터치</p>
       </div>
     </div>
   );
@@ -481,6 +656,98 @@ const styles = {
     fontWeight: 800,
     lineHeight: 1
   },
+  hudTop: {
+    position: "absolute",
+    top: 12,
+    left: 14,
+    right: 14,
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: "10px",
+    pointerEvents: "none"
+  },
+  energyCard: {
+    minWidth: "228px",
+    padding: "8px 12px",
+    borderRadius: "12px",
+    background: "rgba(8,20,42,0.72)",
+    border: "1px solid rgba(0,229,255,0.7)",
+    boxShadow: "0 0 18px rgba(0,229,255,0.18)"
+  },
+  energyTopRow: { display: "flex", alignItems: "center", justifyContent: "space-between" },
+  energyLabel: { color: "#9fd6ff", fontSize: "12px", fontWeight: 900, letterSpacing: "1px" },
+  energyPct: { color: "#d8feff", fontSize: "15px", fontWeight: 900 },
+  energyTrack: {
+    marginTop: "6px",
+    height: "14px",
+    borderRadius: "999px",
+    overflow: "hidden",
+    background: "rgba(255,255,255,0.12)"
+  },
+  energyFill: {
+    height: "100%",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #19e0ff, #7df9ff)",
+    transition: "width 0.2s ease"
+  },
+  pitWarn: {
+    display: "inline-block",
+    marginTop: "4px",
+    color: "#ff7a7a",
+    fontSize: "12px",
+    fontWeight: 900,
+    letterSpacing: "1px"
+  },
+  speedBlock: { display: "grid", justifyItems: "center", paddingTop: "2px" },
+  speedLabel: { color: "#9fd6ff", fontSize: "12px", fontWeight: 800, letterSpacing: "1px" },
+  speedValue: {
+    color: "#ffffff",
+    fontSize: "30px",
+    fontWeight: 900,
+    lineHeight: 1,
+    textShadow: "0 0 12px rgba(0,229,255,0.45)"
+  },
+  speedUnit: { color: "#6f8db0", fontSize: "12px", fontWeight: 700, marginLeft: "5px" },
+  scoreCard: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    padding: "8px 14px",
+    borderRadius: "12px",
+    background: "rgba(10,10,30,0.7)",
+    border: "1px solid rgba(255,43,214,0.5)"
+  },
+  scoreLabel: { color: "#9fd6ff", fontSize: "11px", fontWeight: 800, letterSpacing: "1px" },
+  scoreValue: { color: "#7df9ff", fontSize: "20px", fontWeight: 900, lineHeight: 1.2 },
+  comboBox: { display: "grid", justifyItems: "end" },
+  comboLabel: { color: "#ff9ee0", fontSize: "10px", fontWeight: 800, letterSpacing: "1px" },
+  comboValue: { color: "#ff5fc0", fontSize: "24px", fontWeight: 900, lineHeight: 1 },
+  stageBar: {
+    position: "absolute",
+    top: 70,
+    left: 14,
+    right: 14,
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    pointerEvents: "none"
+  },
+  stageName: { color: "#7df9ff", fontSize: "12px", fontWeight: 900, letterSpacing: "0.5px", whiteSpace: "nowrap" },
+  stageTrack: {
+    flex: 1,
+    height: "7px",
+    borderRadius: "999px",
+    overflow: "hidden",
+    background: "rgba(255,255,255,0.12)"
+  },
+  stageFill: {
+    height: "100%",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #00e5ff, #ff2bd6)",
+    transition: "width 0.2s ease"
+  },
+  stageNext: { color: "#ffd36a", fontSize: "12px", fontWeight: 800, whiteSpace: "nowrap" },
   boostCard: {
     padding: "8px 10px",
     borderRadius: "10px",
@@ -832,6 +1099,124 @@ const styles = {
     background: "linear-gradient(180deg, rgba(31, 128, 83, 0.94), rgba(11, 67, 50, 0.9))",
     fontSize: "15px"
   }
+};
+
+const pit = {
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    zIndex: 20,
+    overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    background: "#03060d"
+  },
+  bgImg: {
+    position: "absolute",
+    inset: 0,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center"
+  },
+  scrim: {
+    position: "absolute",
+    inset: 0,
+    background:
+      "radial-gradient(120% 90% at 30% 60%, rgba(2,6,16,0) 35%, rgba(2,6,16,0.5) 100%), linear-gradient(90deg, rgba(2,6,16,0.05) 0%, rgba(2,6,16,0.32) 42%, rgba(2,6,16,0.9) 100%)"
+  },
+  card: {
+    position: "relative",
+    margin: "0 clamp(16px, 4vw, 48px)",
+    width: "min(440px, 48%)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    padding: "20px 22px",
+    borderRadius: "18px",
+    background: "rgba(6,14,26,0.72)",
+    border: "1px solid rgba(0,229,255,0.45)",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+    backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)"
+  },
+  header: { display: "flex", alignItems: "center", gap: "10px" },
+  badge: {
+    padding: "5px 12px",
+    borderRadius: "999px",
+    background: "linear-gradient(180deg, #00e5ff, #0090c8)",
+    color: "#04121e",
+    fontWeight: 900,
+    fontSize: "13px",
+    letterSpacing: "0.6px"
+  },
+  step: { color: "#9fd6ff", fontWeight: 800, fontSize: "13px" },
+  combo: { marginLeft: "auto", color: "#ff7ad6", fontWeight: 900, fontSize: "14px" },
+  batteryRow: { display: "flex", alignItems: "center", gap: "10px" },
+  batteryLabel: { color: "#7fb6d8", fontSize: "12px", fontWeight: 800, letterSpacing: "0.5px" },
+  batteryTrack: {
+    flex: 1,
+    height: "14px",
+    borderRadius: "999px",
+    background: "rgba(255,255,255,0.1)",
+    overflow: "hidden",
+    border: "1px solid rgba(0,229,255,0.3)"
+  },
+  batteryFill: {
+    height: "100%",
+    borderRadius: "999px",
+    background: "linear-gradient(90deg, #19e0ff, #7df9ff)",
+    transition: "width 0.5s ease-out"
+  },
+  batteryPct: { color: "#d8feff", fontSize: "13px", fontWeight: 900, minWidth: "38px", textAlign: "right" },
+  idiom: {
+    display: "grid",
+    justifyItems: "center",
+    gap: "2px",
+    padding: "10px",
+    borderRadius: "14px",
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(0,229,255,0.25)"
+  },
+  hanja: {
+    color: "#7df9ff",
+    fontSize: "34px",
+    letterSpacing: "4px",
+    lineHeight: 1,
+    textShadow: "0 0 12px rgba(0,229,255,0.6)"
+  },
+  korean: { color: "#ffffff", fontSize: "20px", fontWeight: 900 },
+  question: { margin: "2px 0 0", color: "#cfeaff", fontSize: "14px", fontWeight: 800, textAlign: "center" },
+  options: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" },
+  option: {
+    minHeight: "52px",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    border: "1px solid rgba(120,225,255,0.5)",
+    borderRadius: "12px",
+    padding: "8px 10px",
+    background: "linear-gradient(180deg, rgba(10,40,64,0.95), rgba(6,20,40,0.95))",
+    color: "#f0fbff",
+    fontSize: "13px",
+    fontWeight: 700,
+    textAlign: "left",
+    cursor: "pointer"
+  },
+  optIndex: {
+    flex: "0 0 auto",
+    display: "inline-grid",
+    placeItems: "center",
+    width: "22px",
+    height: "22px",
+    borderRadius: "999px",
+    background: "#00e5ff",
+    color: "#04121e",
+    fontWeight: 900,
+    fontSize: "13px"
+  },
+  hint: { margin: "2px 0 0", color: "#9fd6ff", fontSize: "12px", fontWeight: 700, textAlign: "center" }
 };
 
 
