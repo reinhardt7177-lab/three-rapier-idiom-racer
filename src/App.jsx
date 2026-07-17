@@ -1,1222 +1,553 @@
 import { useEffect, useRef, useState } from "react";
-import { createThreeRapierRacingRuntime } from "./create-three-rapier-runtime.js";
+import { CITY_HALF, CITY_RIVER_PATH, CITY_ROADS } from "./city-map.js";
+import { buildRoadRoute, createDeliveryRuntime, routeLength } from "./create-delivery-runtime.js";
+import { DECALS, DEFAULT_STYLE, DESTINATIONS, MAX_WORKSHOP_LEVEL, MISSIONS, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "./game-data.js";
 
-const defaultHud = {
+const initialHud = {
+  status: "garage",
   speed: 0,
-  score: 0,
-  time: "0m",
+  speedLimit: 200,
   boost: 100,
-  battery: 100,
-  combo: 0,
-  pit: false,
-  speedFeel: 0,
-  boosting: false,
-  stage: 1,
-  stageName: "다운타운",
-  stageProgress: 0,
-  nextStageM: 900,
-  rank: "--",
-  lapTime: "0:00.00",
-  bestLap: "--:--",
-  drift: 0,
-  minimap: null,
-  raceStatus: "idle",
-  lights: 0,
-  winner: ""
+  timeLeft: 0,
+  worldTime: "07:40",
+  score: 0,
+  stars: 0,
+  deliveries: 0,
+  totalDeliveries: 3,
+  x: 0,
+  z: 0,
+  heading: 0,
+  relativeAngle: 0,
+  targetDistance: 0,
+  directDistance: 0,
+  nearTarget: false,
+  navigation: { kind: "straight", label: "경로 계산 중", relativeAngle: 0 },
+  routePoints: [],
+  target: null,
+  district: { name: "센트럴 배송 허브", color: "#247ba0" },
+  mission: null
 };
 
-export default function CarRacingPage() {
+const MAP_HALF = CITY_HALF;
+
+function missionRouteDistance(mission) {
+  let current = { x: 0, z: 0 };
+  return mission.stops.reduce((total, stopId) => {
+    const target = DESTINATIONS[stopId];
+    const distance = routeLength(buildRoadRoute(current.x, current.z, target));
+    current = target;
+    return total + distance;
+  }, 0);
+}
+
+function loadStyle() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("mumu-delivery-style") || "null");
+    if (!saved) return DEFAULT_STYLE;
+    return {
+      paint: PAINTS.find((item) => item.id === saved.paint) || DEFAULT_STYLE.paint,
+      wheel: WHEELS.find((item) => item.id === saved.wheel) || DEFAULT_STYLE.wheel,
+      topper: TOPPERS.find((item) => item.id === saved.topper) || DEFAULT_STYLE.topper,
+      decal: DECALS.find((item) => item.id === saved.decal) || DEFAULT_STYLE.decal,
+      vehicle: VEHICLES.find((item) => item.id === saved.vehicle) || DEFAULT_STYLE.vehicle
+    };
+  } catch {
+    return DEFAULT_STYLE;
+  }
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("mumu-delivery-progress") || "null");
+    if (!saved) return { gold: 0, owned: [VEHICLES[0].id], upgrades: {} };
+    return {
+      gold: Math.max(0, Number(saved.gold) || 0),
+      owned: Array.from(new Set([VEHICLES[0].id, ...(saved.owned || [])])).filter((id) => VEHICLES.some((vehicle) => vehicle.id === id)),
+      upgrades: saved.upgrades && typeof saved.upgrades === "object" ? saved.upgrades : {}
+    };
+  } catch {
+    return { gold: 0, owned: [VEHICLES[0].id], upgrades: {} };
+  }
+}
+
+export default function App() {
   const mountRef = useRef(null);
   const runtimeRef = useRef(null);
-  const gameOverRef = useRef(null);
-  const quizPromptRef = useRef(null);
   const messageTimerRef = useRef(null);
-  const joystickRef = useRef(null);
-
-  const [hud, setHud] = useState(defaultHud);
-  const [message, setMessage] = useState("READY");
-  const [gameOver, setGameOver] = useState(null);
-  const [quizPrompt, setQuizPrompt] = useState(null);
-  const [errorText, setErrorText] = useState("");
-  const [stick, setStick] = useState({ active: false, x: 0, y: 0 });
-
-  useEffect(() => {
-    gameOverRef.current = gameOver;
-  }, [gameOver]);
-
-  useEffect(() => {
-    quizPromptRef.current = quizPrompt;
-  }, [quizPrompt]);
+  const quizTimerRef = useRef(null);
+  const [screen, setScreen] = useState("garage");
+  const [style, setStyle] = useState(loadStyle);
+  const [previewVehicle, setPreviewVehicle] = useState(null);
+  const [progress, setProgress] = useState(loadProgress);
+  const [mission, setMission] = useState(MISSIONS[0]);
+  const [hud, setHud] = useState(initialHud);
+  const [quiz, setQuiz] = useState(null);
+  const [quizResult, setQuizResult] = useState(null);
+  const [result, setResult] = useState(null);
+  const [message, setMessage] = useState("차를 꾸미고 첫 배송을 시작해요!");
+  const [audioOn, setAudioOn] = useState(true);
 
   useEffect(() => {
     if (!mountRef.current) return undefined;
+    runtimeRef.current = createDeliveryRuntime({
+      mount: mountRef.current,
+      initialStyle: style,
+      onHud: setHud,
+      onDelivery: (payload) => {
+        setQuiz(payload);
+        setQuizResult(null);
+      },
+      onFinish: (payload) => {
+        if (payload.reward > 0) setProgress((current) => ({ ...current, gold: current.gold + payload.reward }));
+        setResult(payload);
+        setQuiz(null);
+        setScreen("result");
+      },
+      onMessage: showMessage
+    });
 
-    try {
-      runtimeRef.current = createThreeRapierRacingRuntime({
-        mount: mountRef.current,
-        onHudUpdate: setHud,
-        onMessage: (text) => {
-          setMessage(text);
-          if (messageTimerRef.current) window.clearTimeout(messageTimerRef.current);
-          messageTimerRef.current = window.setTimeout(() => setMessage(""), 650);
-        },
-        onGameOver: (payload) => {
-          gameOverRef.current = payload;
-          setGameOver(payload);
-          quizPromptRef.current = null;
-          setQuizPrompt(null);
-          setMessage(payload.reason);
-        },
-        onQuizPrompt: (payload) => {
-          quizPromptRef.current = payload;
-          setQuizPrompt(payload);
-        }
-      });
-      setErrorText("");
-    } catch (error) {
-      console.error(error);
-      setErrorText("3D runtime init failed");
-    }
-
-    const onKeyDown = (event) => {
-      if (!runtimeRef.current) return;
-      if (quizPromptRef.current) {
-        if (["1", "2", "3", "4"].includes(event.key)) {
-          event.preventDefault();
-          runtimeRef.current.answerQuiz?.(Number(event.key) - 1);
-        }
-        return;
-      }
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ steerLeft: true });
-      }
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ steerRight: true });
-      }
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ accel: true });
-      }
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ brake: true });
-      }
-      if (event.key === "Shift" || event.key.toLowerCase() === "x") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-        runtimeRef.current.setInput({ boost: true });
-      }
-      if (event.key === "Enter" && gameOverRef.current) {
-        event.preventDefault();
-        runtimeRef.current.restart();
-        gameOverRef.current = null;
-        setGameOver(null);
-      } else if (event.key === "Enter") {
-        event.preventDefault();
-        runtimeRef.current.startRace?.();
-      }
+    const keyDown = (event) => {
+      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " "].includes(event.key)) event.preventDefault();
+      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") runtimeRef.current?.setInput({ left: true });
+      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") runtimeRef.current?.setInput({ right: true });
+      if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") runtimeRef.current?.setInput({ accel: true });
+      if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") runtimeRef.current?.setInput({ brake: true });
+      if (event.key === " " || event.key === "Shift") runtimeRef.current?.setInput({ boost: true });
+      if (["1", "2", "3", "4"].includes(event.key)) answerQuiz(Number(event.key) - 1);
     };
-
-    const onKeyUp = (event) => {
-      if (!runtimeRef.current) return;
-      if (event.key === "ArrowLeft") runtimeRef.current.setInput({ steerLeft: false });
-      if (event.key === "ArrowRight") runtimeRef.current.setInput({ steerRight: false });
-      if (event.key === "ArrowUp") runtimeRef.current.setInput({ accel: false });
-      if (event.key === "ArrowDown") runtimeRef.current.setInput({ brake: false });
-      if (event.key === "Shift" || event.key.toLowerCase() === "x") {
-        runtimeRef.current.setInput({ boost: false });
-      }
+    const keyUp = (event) => {
+      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") runtimeRef.current?.setInput({ left: false });
+      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") runtimeRef.current?.setInput({ right: false });
+      if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") runtimeRef.current?.setInput({ accel: false });
+      if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") runtimeRef.current?.setInput({ brake: false });
+      if (event.key === " " || event.key === "Shift") runtimeRef.current?.setInput({ boost: false });
     };
-
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
-
+    const releaseControls = () => runtimeRef.current?.setInput({ left: false, right: false, accel: false, brake: false, boost: false });
+    window.addEventListener("keydown", keyDown, { passive: false });
+    window.addEventListener("keyup", keyUp);
+    window.addEventListener("blur", releaseControls);
     return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("keyup", onKeyUp);
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+      window.removeEventListener("blur", releaseControls);
       if (messageTimerRef.current) window.clearTimeout(messageTimerRef.current);
+      if (quizTimerRef.current) window.clearTimeout(quizTimerRef.current);
       runtimeRef.current?.destroy();
       runtimeRef.current = null;
     };
   }, []);
 
-  const boostRatio = Math.min(1, hud.boost / 100);
-  const batteryPct = Math.round(hud.battery ?? 0);
-  const lowBattery = batteryPct < 25;
-
-  const updateJoystick = (event) => {
-    runtimeRef.current?.startRace?.();
-    const rect = joystickRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const maxDistance = rect.width * 0.34;
-    const rawX = event.clientX - (rect.left + rect.width / 2);
-    const rawY = event.clientY - (rect.top + rect.height / 2);
-    const x = clampValue(rawX / maxDistance, -1, 1);
-    const y = clampValue(rawY / maxDistance, -1, 1);
-
-    setStick({ active: true, x, y });
-    runtimeRef.current?.setInput({ steerAxis: x });
-  };
-
-  const releaseJoystick = (event) => {
-    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
+  useEffect(() => {
+    const displayedVehicle = screen === "garage" && previewVehicle ? previewVehicle : style.vehicle;
+    const upgrades = progress.upgrades[displayedVehicle.id] || { speed: 0, handling: 0 };
+    runtimeRef.current?.setStyle({ ...style, vehicle: displayedVehicle, upgrades });
+    try {
+      localStorage.setItem("mumu-delivery-style", JSON.stringify({
+        paint: style.paint.id,
+        wheel: style.wheel.id,
+        topper: style.topper.id,
+        decal: style.decal.id,
+        vehicle: style.vehicle.id
+      }));
+    } catch {
+      // Customization still works for the current session when storage is unavailable.
     }
-    setStick({ active: false, x: 0, y: 0 });
-    runtimeRef.current?.setInput({ steerAxis: 0 });
+  }, [style, progress.upgrades, screen, previewVehicle]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("mumu-delivery-progress", JSON.stringify(progress));
+    } catch {
+      // Progress remains available for the current session when storage is unavailable.
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    if (!progress.owned.includes(style.vehicle.id)) {
+      setStyle((current) => ({ ...current, vehicle: VEHICLES[0] }));
+    }
+  }, [progress.owned, style.vehicle.id]);
+
+  function showMessage(text) {
+    setMessage(text);
+    if (messageTimerRef.current) window.clearTimeout(messageTimerRef.current);
+    messageTimerRef.current = window.setTimeout(() => setMessage(""), 2200);
+  }
+
+  function startMission() {
+    setPreviewVehicle(null);
+    setResult(null);
+    setQuiz(null);
+    setQuizResult(null);
+    setScreen("playing");
+    runtimeRef.current?.startMission(mission);
+  }
+
+  function answerQuiz(index) {
+    const answer = runtimeRef.current?.answerQuiz(index);
+    if (!answer) return;
+    setQuizResult(answer);
+    if (quizTimerRef.current) window.clearTimeout(quizTimerRef.current);
+    quizTimerRef.current = window.setTimeout(() => {
+      setQuiz(null);
+      setQuizResult(null);
+    }, 900);
+  }
+
+  function returnToGarage() {
+    setPreviewVehicle(null);
+    setScreen("garage");
+    setQuiz(null);
+    setResult(null);
+    runtimeRef.current?.returnToGarage();
+  }
+
+  function selectVehicle(vehicle) {
+    if (progress.owned.includes(vehicle.id)) {
+      setStyle((current) => ({ ...current, vehicle }));
+      return;
+    }
+    if (progress.gold < vehicle.price) {
+      showMessage(`${(vehicle.price - progress.gold).toLocaleString()}G가 더 필요해요`);
+      return;
+    }
+    setProgress((current) => ({ ...current, gold: current.gold - vehicle.price, owned: [...current.owned, vehicle.id] }));
+    setStyle((current) => ({ ...current, vehicle }));
+    showMessage(`${vehicle.name} 구매 완료!`);
+  }
+
+  function upgradeVehicle(type) {
+    const vehicleId = style.vehicle.id;
+    const currentUpgrade = progress.upgrades[vehicleId] || { speed: 0, handling: 0 };
+    const level = currentUpgrade[type] || 0;
+    if (level >= MAX_WORKSHOP_LEVEL) return;
+    const price = workshopPrice(level, type);
+    if (progress.gold < price) {
+      showMessage(`${(price - progress.gold).toLocaleString()}G가 더 필요해요`);
+      return;
+    }
+    setProgress((current) => ({
+      ...current,
+      gold: current.gold - price,
+      upgrades: { ...current.upgrades, [vehicleId]: { ...currentUpgrade, [type]: level + 1 } }
+    }));
+    showMessage(`${type === "speed" ? "속도" : "핸들링"} 튜닝 +1`);
+  }
+
+  const vehicleUpgrades = progress.upgrades[style.vehicle.id] || { speed: 0, handling: 0 };
+  const stats = {
+    speed: Math.min(10, style.wheel.speed + style.vehicle.speed + vehicleUpgrades.speed),
+    accel: Math.min(10, style.wheel.accel + style.vehicle.accel),
+    handling: Math.min(10, style.wheel.handling + style.vehicle.handling + vehicleUpgrades.handling)
   };
 
   return (
-    <main style={styles.page}>
-      <section style={styles.shell}>
-        <div style={styles.frame}>
-          <div ref={mountRef} style={styles.mount} />
-          <div style={styles.vignette} />
-          <div style={styles.scanline} />
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              pointerEvents: "none",
-              background: hud.boosting
-                ? "radial-gradient(circle at 50% 50%, transparent 38%, rgba(0,170,255,0.12) 76%, rgba(2,10,28,0.55) 100%)"
-                : "radial-gradient(circle at 50% 52%, transparent 54%, rgba(2,10,28,0.5) 100%)",
-              opacity: hud.boosting
-                ? Math.max(0.45, Math.min(0.7, (hud.speedFeel || 0) * 0.8))
-                : Math.min(0.18, (hud.speedFeel || 0) * 0.3),
-              transition: "opacity 0.2s ease"
-            }}
+    <main className="app-shell">
+      <div className="game-stage">
+        <div ref={mountRef} className="three-mount" />
+        <div className="sun-wash" />
+
+        <header className="topbar">
+          <div className="brand-lockup">
+            <span className="brand-mark">M</span>
+            <div>
+              <strong>무무 시티익스프레스</strong>
+              <span>CITY EXPRESS RACER</span>
+            </div>
+          </div>
+          <div className="top-actions">
+            <button className="icon-button" type="button" onClick={() => setAudioOn((value) => { runtimeRef.current?.setMuted(value); return !value; })} aria-label="소리 켜기 또는 끄기">
+              {audioOn ? "🔊" : "🔇"}
+            </button>
+            {screen === "playing" ? (
+              <>
+                <button className="garage-mini camera-reset" type="button" onClick={() => runtimeRef.current?.resetCamera()}>시점 원위치</button>
+                <button className="garage-mini" type="button" onClick={returnToGarage}>차고로</button>
+              </>
+            ) : null}
+          </div>
+        </header>
+
+        {screen === "garage" ? (
+          <Garage
+            style={style}
+            setStyle={setStyle}
+            mission={mission}
+            setMission={setMission}
+            stats={stats}
+            progress={progress}
+            previewVehicle={previewVehicle}
+            upgrades={vehicleUpgrades}
+            onSelectVehicle={selectVehicle}
+            onPreviewVehicle={setPreviewVehicle}
+            onUpgrade={upgradeVehicle}
+            onStart={startMission}
           />
+        ) : null}
 
-          <div style={styles.hudTop}>
-            <div style={styles.energyCard}>
-              <div style={styles.energyTopRow}>
-                <span style={styles.energyLabel}>⚡ ENERGY</span>
-                <span style={{ ...styles.energyPct, ...(lowBattery ? { color: "#ff7a7a" } : null) }}>{batteryPct}%</span>
-              </div>
-              <div style={styles.energyTrack}>
-                <div
-                  style={{
-                    ...styles.energyFill,
-                    width: `${batteryPct}%`,
-                    ...(lowBattery ? { background: "linear-gradient(90deg, #ffb347, #ff3b3b)" } : null)
-                  }}
-                />
-              </div>
-              {lowBattery ? <span style={styles.pitWarn}>PIT IN!</span> : null}
-            </div>
+        {screen === "playing" ? (
+          <>
+            <GameHud hud={hud} />
+            <MiniMap hud={hud} />
+            <Controls runtimeRef={runtimeRef} />
+            {message ? <div className="toast-message">{message}</div> : null}
+          </>
+        ) : null}
 
-            <div style={styles.speedBlock}>
-              <span style={styles.speedLabel}>SPEED</span>
-              <span style={styles.speedValue}>
-                {hud.speed}
-                <span style={styles.speedUnit}>km/h</span>
-              </span>
-            </div>
-
-            <div style={styles.scoreCard}>
-              <div>
-                <span style={styles.scoreLabel}>SCORE</span>
-                <div style={styles.scoreValue}>{Math.round(hud.score).toLocaleString()}</div>
-              </div>
-              {hud.combo > 1 ? (
-                <div style={styles.comboBox}>
-                  <span style={styles.comboLabel}>COMBO</span>
-                  <span style={styles.comboValue}>×{hud.combo}</span>
-                </div>
-              ) : null}
-            </div>
-          </div>
-
-          <div style={styles.stageBar}>
-            <span style={styles.stageName}>STAGE {hud.stage} · {hud.stageName}</span>
-            <div style={styles.stageTrack}>
-              <div style={{ ...styles.stageFill, width: `${Math.round((hud.stageProgress || 0) * 100)}%` }} />
-            </div>
-            <span style={styles.stageNext}>NEXT {hud.nextStageM}m</span>
-          </div>
-
-          {message ? <div style={styles.message}>{message}</div> : null}
-          <TrafficLights phase={hud.lights} />
-          {errorText ? <div style={styles.error}>{errorText}</div> : null}
-          {quizPrompt ? (
-            hud.pit || (quizPrompt.checkpointLabel || "").startsWith("PIT") ? (
-              <PitScreen
-                quiz={quizPrompt}
-                battery={hud.battery}
-                combo={hud.combo}
-                onAnswer={(index) => runtimeRef.current?.answerQuiz?.(index)}
-              />
-            ) : (
-              <QuizCard
-                quiz={quizPrompt}
-                onAnswer={(index) => runtimeRef.current?.answerQuiz?.(index)}
-              />
-            )
-          ) : null}
-
-          {!gameOver && hud.raceStatus === "idle" ? (
-            <div style={styles.startPanel}>
-              <p style={styles.startEyebrow}>ENDLESS · 배터리로 질주</p>
-              <button
-                type="button"
-                style={styles.startButton}
-                onClick={() => runtimeRef.current?.startRace?.()}
-              >
-                GAME START
-              </button>
-              <p style={styles.startHint}>초록불이 켜지면 출발</p>
-            </div>
-          ) : null}
-
-          {gameOver ? (
-            <div style={styles.overlay}>
-              <div style={styles.modal}>
-                <p style={styles.modalTop}>{gameOver.title || "RACE FINISH"}</p>
-                <h2 style={styles.modalTitle}>{gameOver.reason}</h2>
-                <p style={styles.modalBody}>Score {gameOver.score}</p>
-                <button
-                  type="button"
-                  style={styles.restartButton}
-                  onClick={() => {
-                    runtimeRef.current?.restart();
-                    gameOverRef.current = null;
-                    quizPromptRef.current = null;
-                    setGameOver(null);
-                    setQuizPrompt(null);
-                  }}
-                >
-                  Restart
-                </button>
-              </div>
-            </div>
-          ) : null}
-
-          <div style={styles.tabletControls}>
-            <div style={styles.joystickCluster}>
-              <div
-                ref={joystickRef}
-                style={styles.joystickBase}
-                role="button"
-                tabIndex={0}
-                aria-label="Steering joystick"
-                onPointerDown={(event) => {
-                  event.preventDefault();
-                  event.currentTarget.setPointerCapture(event.pointerId);
-                  updateJoystick(event);
-                }}
-                onPointerMove={(event) => {
-                  if (event.currentTarget.hasPointerCapture?.(event.pointerId)) updateJoystick(event);
-                }}
-                onPointerUp={releaseJoystick}
-                onPointerCancel={releaseJoystick}
-                onLostPointerCapture={() => {
-                  setStick({ active: false, x: 0, y: 0 });
-                  runtimeRef.current?.setInput({ steerAxis: 0 });
-                }}
-              >
-                <div style={styles.joystickRing} />
-                <div
-                  style={{
-                    ...styles.joystickKnob,
-                    transform: `translate(-50%, -50%) translate(${stick.x * 38}px, ${stick.y * 38}px) scale(${stick.active ? 1.05 : 1})`
-                  }}
-                />
-              </div>
-              <span style={styles.controlHint}>STEER</span>
-            </div>
-
-            <div style={styles.pedalCluster}>
-            <button
-              type="button"
-              style={{ ...styles.controlButton, ...styles.brakeButton }}
-              onPointerDown={() => {
-                runtimeRef.current?.startRace?.();
-                runtimeRef.current?.setInput({ brake: true });
-              }}
-              onPointerUp={() => runtimeRef.current?.setInput({ brake: false })}
-              onPointerLeave={() => runtimeRef.current?.setInput({ brake: false })}
-              onPointerCancel={() => runtimeRef.current?.setInput({ brake: false })}
-            >
-              BRAKE
-            </button>
-            <button
-              type="button"
-              style={{ ...styles.controlButton, ...styles.boostButton }}
-              onPointerDown={() => {
-                runtimeRef.current?.startRace?.();
-                runtimeRef.current?.setInput({ boost: true });
-              }}
-              onPointerUp={() => runtimeRef.current?.setInput({ boost: false })}
-              onPointerLeave={() => runtimeRef.current?.setInput({ boost: false })}
-              onPointerCancel={() => runtimeRef.current?.setInput({ boost: false })}
-            >
-              BOOST
-            </button>
-            <button
-              type="button"
-              style={{ ...styles.controlButton, ...styles.accelButton }}
-              onPointerDown={() => {
-                runtimeRef.current?.startRace?.();
-                runtimeRef.current?.setInput({ accel: true });
-              }}
-              onPointerUp={() => runtimeRef.current?.setInput({ accel: false })}
-              onPointerLeave={() => runtimeRef.current?.setInput({ accel: false })}
-              onPointerCancel={() => runtimeRef.current?.setInput({ accel: false })}
-            >
-              ACCEL
-            </button>
-            </div>
-          </div>
-        </div>
-      </section>
+        {quiz ? <DeliveryQuiz quiz={quiz} result={quizResult} onAnswer={answerQuiz} /> : null}
+        {screen === "result" && result ? (
+          <ResultScreen result={result} onRetry={startMission} onGarage={returnToGarage} />
+        ) : null}
+      </div>
     </main>
   );
 }
 
-function HudCard({ label, value }) {
+function Garage({ style, setStyle, mission, setMission, stats, progress, previewVehicle, upgrades, onSelectVehicle, onPreviewVehicle, onUpgrade, onStart }) {
+  const displayedVehicle = previewVehicle || style.vehicle;
   return (
-    <div style={styles.hudCard}>
-      <span style={styles.hudLabel}>{label}</span>
-      <span style={styles.hudValue}>{value}</span>
-    </div>
-  );
-}
-
-function QuizCard({ quiz, onAnswer }) {
-  return (
-    <div style={styles.quizOverlay}>
-      <div style={styles.quizCard}>
-        <div style={styles.quizTop}>
-          <span style={styles.quizBadge}>{quiz.checkpointLabel}</span>
-          <span style={styles.quizHint}>1-4 키 또는 터치로 선택</span>
-        </div>
-        <p style={styles.quizQuestion}>{quiz.question}</p>
-        <div style={styles.quizIdiom}>
-          <strong style={styles.quizHanja}>{quiz.hanja}</strong>
-          <span style={styles.quizKorean}>{quiz.korean}</span>
-        </div>
-        <div style={styles.quizOptions}>
-          {quiz.options.map((option, index) => (
+    <section className="garage-screen">
+      <div className="garage-copy">
+        <span className="eyebrow">OPEN CITY DELIVERY RACING</span>
+        <h1>도심을 가로질러,<br /><em>하버까지 전력 질주!</em></h1>
+        <p>화물을 배달해 골드를 벌고 실제 퍼포먼스 카를 차례로 해금하세요.</p>
+        <div className="gold-wallet"><span>🪙 보유 골드</span><strong>{progress.gold.toLocaleString()} G</strong></div>
+        <div className="mission-picker" aria-label="배송 미션 선택">
+          {MISSIONS.map((item) => (
             <button
-              key={`${quiz.id}-opt-${index}`}
               type="button"
-              style={styles.quizOption}
-              onClick={() => onAnswer(index)}
+              key={item.id}
+              className={mission.id === item.id ? "mission-chip active" : "mission-chip"}
+              onClick={() => setMission(item)}
             >
-              <span style={styles.quizOptionIndex}>{index + 1}</span>
-              {option}
+              <span>{item.id === "morning" ? "🏔️" : item.id === "festival" ? "🌉" : "🌊"}</span>
+              <span><strong>{item.title}</strong><small>{item.time}초 · 3곳 · 🪙 {item.reward.toLocaleString()}G</small></span>
             </button>
           ))}
         </div>
-      </div>
-    </div>
-  );
-}
-
-function PitBay({ charge }) {
-  const cellMax = 26;
-  const cellH = Math.max(2, (cellMax * charge) / 100);
-  return (
-    <svg
-      viewBox="0 0 320 360"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ width: "100%", height: "100%", display: "block" }}
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="pitsky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#0a0420" />
-          <stop offset="1" stopColor="#1a0838" />
-        </linearGradient>
-        <radialGradient id="pitglow" cx="0.5" cy="0.92" r="0.7">
-          <stop offset="0" stopColor="#ff2bd6" stopOpacity="0.32" />
-          <stop offset="1" stopColor="#ff2bd6" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="pitunder" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#00e5ff" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#00e5ff" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect x="0" y="0" width="320" height="360" fill="url(#pitsky)" />
-      <ellipse cx="160" cy="322" rx="210" ry="120" fill="url(#pitglow)" />
-      <g fill="#0a0e1a">
-        <rect x="10" y="70" width="40" height="90" />
-        <rect x="56" y="40" width="34" height="120" />
-        <rect x="96" y="86" width="34" height="74" />
-        <rect x="190" y="56" width="36" height="104" />
-        <rect x="232" y="34" width="32" height="126" />
-        <rect x="270" y="78" width="36" height="82" />
-      </g>
-      <g fill="#00e5ff" opacity="0.8">
-        <rect x="62" y="52" width="4" height="5" /><rect x="74" y="66" width="4" height="5" /><rect x="62" y="84" width="4" height="5" />
-        <rect x="238" y="46" width="4" height="5" /><rect x="250" y="62" width="4" height="5" /><rect x="238" y="84" width="4" height="5" />
-      </g>
-      <g fill="#ff2bd6" opacity="0.8">
-        <rect x="74" y="52" width="4" height="5" /><rect x="250" y="46" width="4" height="5" /><rect x="280" y="92" width="4" height="5" />
-      </g>
-      <rect x="92" y="20" width="150" height="22" rx="4" fill="#04101e" stroke="#00e5ff" strokeOpacity="0.7" />
-      <text x="167" y="36" textAnchor="middle" fontFamily="Trebuchet MS, sans-serif" fontSize="13" fontWeight="700" fill="#7df9ff" letterSpacing="2">RECHARGE BAY</text>
-      <line x1="0" y1="300" x2="320" y2="300" stroke="#0aa6c8" strokeOpacity="0.4" />
-      <g opacity="0.3">
-        <rect x="60" y="300" width="8" height="50" fill="#ff2bd6" />
-        <rect x="150" y="300" width="7" height="50" fill="#00e5ff" />
-        <rect x="240" y="300" width="8" height="50" fill="#ff2bd6" />
-      </g>
-      <ellipse cx="160" cy="298" rx="92" ry="18" fill="url(#pitunder)" />
-      <path d="M86 268 Q108 244 150 242 L188 242 Q224 246 240 270 L246 286 Q246 296 234 298 L86 298 Q76 296 78 286 Z" fill="#07090f" />
-      <path d="M86 268 Q108 244 150 242 L188 242 Q224 246 240 270" fill="none" stroke="#3df0ff" strokeWidth="2" opacity="0.7" />
-      <rect x="100" y="282" width="120" height="6" rx="3" fill="#ff2bd6" />
-      <rect x="150" y="252" width="20" height="30" rx="3" fill="#04101e" stroke="#00e5ff" />
-      <rect className="pit-scan" x="152" y={252 + (28 - cellH)} width="16" height={cellH} rx="2" fill="#7df9ff" />
-      <circle cx="112" cy="296" r="16" fill="#04070e" stroke="#3df0ff" strokeWidth="2" />
-      <circle cx="208" cy="296" r="16" fill="#04070e" stroke="#3df0ff" strokeWidth="2" />
-      <g stroke="#ff5fc0" strokeWidth="2" fill="none" strokeLinecap="round">
-        <circle cx="52" cy="250" r="7" fill="#05080f" />
-        <path d="M52 257 L52 282 M52 264 L40 274 M52 264 L64 272 M52 282 L44 300 M52 282 L60 300" />
-      </g>
-      <g stroke="#3df0ff" strokeWidth="2" fill="none" strokeLinecap="round">
-        <circle cx="270" cy="246" r="7" fill="#05080f" />
-        <path d="M270 253 L270 278 M270 260 L258 270 M270 260 L282 268 M270 278 L262 296 M270 278 L278 296" />
-      </g>
-      <path className="pit-pulse" d="M278 300 Q304 280 248 268" fill="none" stroke="#19e0ff" strokeWidth="3" />
-      <rect x="272" y="298" width="18" height="12" rx="2" fill="#04101e" stroke="#19e0ff" />
-      <circle className="pit-spark" cx="232" cy="270" r="2" fill="#7df9ff" />
-      <circle className="pit-spark" cx="120" cy="284" r="2" fill="#ff7ad6" />
-    </svg>
-  );
-}
-
-function PitScreen({ quiz, battery, combo, onAnswer }) {
-  const charge = Math.max(0, Math.min(100, Math.round(battery ?? 0)));
-  return (
-    <div className="pit-overlay" style={pit.overlay}>
-      <img src="/img/pit-bay.png" alt="" style={pit.bgImg} />
-      <div style={pit.scrim} />
-      <div style={pit.card}>
-        <div style={pit.header}>
-          <span style={pit.badge}>⚡ RECHARGE</span>
-          <span style={pit.step}>{quiz.checkpointLabel}</span>
-          {combo > 1 ? <span style={pit.combo}>COMBO ×{combo}</span> : null}
-        </div>
-        <div style={pit.batteryRow}>
-          <span style={pit.batteryLabel}>BATTERY</span>
-          <div style={pit.batteryTrack}>
-            <div style={{ ...pit.batteryFill, width: `${charge}%` }} />
+        <div className="mission-route-preview">
+          <span><b>오늘의 배송 순서</b><small>약 {(missionRouteDistance(mission) / 1000).toFixed(1)}km</small></span>
+          <div>
+            {mission.stops.map((stopId, index) => {
+              const stop = DESTINATIONS[stopId];
+              return <span key={stopId}><i>{index + 1}</i>{stop.icon}<strong>{stop.short}</strong>{index < mission.stops.length - 1 ? <em>›</em> : null}</span>;
+            })}
           </div>
-          <span style={pit.batteryPct}>{charge}%</span>
         </div>
-        <div style={pit.idiom}>
-          <strong style={pit.hanja}>{quiz.hanja}</strong>
-          <span style={pit.korean}>{quiz.korean}</span>
+        <button className="start-delivery" type="button" onClick={onStart}>
+          <span>배송 출발</span><b>→</b>
+        </button>
+        <div className="quest-howto" aria-label="퀘스트 해결 순서">
+          <span><b>1</b> 주문 선택</span><em>›</em><span><b>2</b> 차량 위 내비</span><em>›</em><span><b>3</b> 배달 암호</span>
         </div>
-        <p style={pit.question}>{quiz.question}</p>
-        <div style={pit.options}>
-          {quiz.options.map((option, index) => (
-            <button
-              key={`${quiz.id}-opt-${index}`}
-              type="button"
-              style={pit.option}
-              onClick={() => onAnswer(index)}
-            >
-              <span style={pit.optIndex}>{index + 1}</span>
-              {option}
-            </button>
-          ))}
+        <span className="keyboard-help">키보드: 방향키/WASD · 스페이스바 터보 · 왼쪽 마우스 드래그: 시점 회전</span>
+      </div>
+
+      <div className="customizer-card">
+        <div className="customizer-heading">
+          <div><span>MY PERFORMANCE CAR · HOVER TO PREVIEW</span><strong>{displayedVehicle.name}</strong><small>{displayedVehicle.subtitle}</small></div>
+          <span className="car-number">{String(VEHICLES.findIndex((vehicle) => vehicle.id === displayedVehicle.id) + 1).padStart(2, "0")}</span>
         </div>
-        <p style={pit.hint}>정답당 +30 ⚡ 충전 · 1–4 키 또는 터치</p>
+        <div className="vehicle-shop" aria-label="차량 상점">
+          {VEHICLES.map((vehicle) => {
+            const owned = progress.owned.includes(vehicle.id);
+            return (
+              <button
+                type="button"
+                key={vehicle.id}
+                className={style.vehicle.id === vehicle.id ? "vehicle-card selected" : previewVehicle?.id === vehicle.id ? "vehicle-card previewing" : "vehicle-card"}
+                onClick={() => onSelectVehicle(vehicle)}
+                onPointerEnter={() => onPreviewVehicle(vehicle)}
+                onPointerLeave={() => onPreviewVehicle(null)}
+                onFocus={() => onPreviewVehicle(vehicle)}
+                onBlur={() => onPreviewVehicle(null)}
+                title={`${vehicle.name} 3D 미리보기`}
+              >
+                <span style={{ background: vehicle.color }}>{vehicle.icon}</span>
+                <small>{vehicle.name}</small>
+                <b>{owned ? (style.vehicle.id === vehicle.id ? "사용 중" : "보유") : `${vehicle.price.toLocaleString()}G`}</b>
+              </button>
+            );
+          })}
+        </div>
+        <div className="workshop-panel">
+          <span><b>🔧 시티 튜닝숍</b><small>차량별 최대 {MAX_WORKSHOP_LEVEL}단계</small></span>
+          {["speed", "handling"].map((type) => {
+            const level = upgrades[type] || 0;
+            const maxed = level >= MAX_WORKSHOP_LEVEL;
+            return <button type="button" key={type} disabled={maxed} onClick={() => onUpgrade(type)}><span>{type === "speed" ? "⚡ 속도" : "🛞 핸들링"} Lv.{level}</span><b>{maxed ? "MAX" : `${workshopPrice(level, type).toLocaleString()}G`}</b></button>;
+          })}
+        </div>
+        <OptionRow label="페인트" items={PAINTS} selected={style.paint.id} onSelect={(paint) => setStyle({ ...style, paint })} render={(item) => <span className="paint-dot" style={{ background: item.body }} />} />
+        <OptionRow label="바퀴" items={WHEELS} selected={style.wheel.id} onSelect={(wheel) => setStyle({ ...style, wheel })} render={(item) => <span className="wheel-dot" style={{ borderColor: item.color }} />} />
+        <OptionRow label="지붕 장식" items={TOPPERS} selected={style.topper.id} onSelect={(topper) => setStyle({ ...style, topper })} render={(item) => <span className="option-emoji">{item.icon}</span>} />
+        <OptionRow label="스티커" items={DECALS} selected={style.decal.id} onSelect={(decal) => setStyle({ ...style, decal })} render={(item) => <span className="option-emoji">{item.icon}</span>} />
+        <div className="stat-board">
+          <Stat label="최고 속도" value={stats.speed} color="#ff595e" />
+          <Stat label="가속" value={stats.accel} color="#ffca3a" />
+          <Stat label="핸들링" value={stats.handling} color="#44c767" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OptionRow({ label, items, selected, onSelect, render }) {
+  return (
+    <div className="option-row">
+      <span className="option-label">{label}</span>
+      <div className="option-list">
+        {items.map((item) => (
+          <button
+            type="button"
+            key={item.id}
+            className={selected === item.id ? "option-button selected" : "option-button"}
+            onClick={() => onSelect(item)}
+            title={item.name}
+            aria-label={item.name}
+          >
+            {render(item)}
+          </button>
+        ))}
       </div>
     </div>
   );
 }
 
-function TrafficLights({ phase }) {
-  const currentPhase = Number(phase) || 0;
-  const isGreen = currentPhase >= 4;
+function Stat({ label, value, color }) {
   return (
-    <div style={styles.trafficLight} aria-label="Race start lights">
-      {[1, 2, 3].map((light) => (
-        <span
-          key={light}
-          style={{
-            ...styles.lightDot,
-            ...(currentPhase >= light && !isGreen ? styles.redLightOn : styles.lightOff)
-          }}
-        />
-      ))}
-      <span style={{ ...styles.lightDot, ...(isGreen ? styles.greenLightOn : styles.lightOff) }} />
+    <div className="stat-row"><span>{label}</span><div>{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((step) => <i key={step} style={{ background: step <= value ? color : "#dfe7ed" }} />)}</div></div>
+  );
+}
+
+function GameHud({ hud }) {
+  const seconds = Math.max(0, Math.ceil(hud.timeLeft));
+  const urgent = seconds <= 20;
+  const speedRatio = Math.max(0, Math.min(1, hud.speed / Math.max(1, hud.speedLimit ?? 200)));
+  const needleAngle = -128 + speedRatio * 256;
+  return (
+    <div className="hud-layer">
+      <section className="mission-card">
+        <div className="mission-meta"><span className="hud-caption">NOW DELIVERING</span><span className="district-pill" style={{ background: hud.district?.color }}>{hud.district?.name}</span></div>
+        <div className="destination-line"><span>{hud.target?.icon || "📦"}</span><div><strong>{hud.target?.name || "목적지 찾는 중"}</strong><small>{hud.target?.package || "안전하게 운전해요"}</small></div></div>
+        <div className="distance-row"><b>{hud.targetDistance}m</b><span>남음</span></div>
+        <div className="route-progress" aria-label={`배송 진행 ${hud.deliveries}/${hud.totalDeliveries}`}>
+          {Array.from({ length: hud.totalDeliveries }, (_, index) => <i key={index} className={index < hud.deliveries ? "done" : index === hud.deliveries ? "active" : ""} />)}
+        </div>
+      </section>
+
+      <section className="race-stats">
+        <div className="world-time-stat"><small>CITY TIME</small><strong>{hud.worldTime || "--:--"}</strong></div>
+        <div className={urgent ? "time-stat urgent" : "time-stat"}><small>남은 시간</small><strong>{seconds}</strong><span>초</span></div>
+        <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
+        <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
+      </section>
+
+      <section className="speed-meter" aria-label={`현재 속도 ${hud.speed}km/h`}>
+        <div className="tachometer">
+          <i className="tach-needle" style={{ transform: `translateX(-50%) rotate(${needleAngle}deg)` }} />
+          <div className="tach-readout"><strong>{hud.speed}</strong><span>km/h</span></div>
+        </div>
+        <div className="boost-track"><i style={{ width: `${hud.boost}%` }} /></div>
+        <small>NITRO {Math.round(hud.boost)}% · LIMIT {hud.speedLimit ?? 200}km/h</small>
+      </section>
+      {hud.nearTarget ? <div className="delivery-approach">📦 감속 · 배달존 진입</div> : null}
     </div>
   );
 }
 
-function MiniMap({ data }) {
-  const convert = (point) => {
-    if (!point) return { x: 50, y: 50 };
-    return {
-      x: clampValue(50 + (point.x / 260) * 45, 5, 95),
-      y: clampValue(50 + (point.z / 95) * 42, 8, 92)
-    };
-  };
-  const player = convert(data?.player);
-  const rivals = data?.rivals || [];
+function MiniMap({ hud }) {
+  const project = (value) => ((value + MAP_HALF) / (MAP_HALF * 2)) * 164 + 8;
+  const px = project(hud.x);
+  const py = project(hud.z);
+  const tx = hud.target ? project(hud.target.x) : 90;
+  const ty = hud.target ? project(hud.target.z) : 90;
+  const routePoints = (hud.routePoints || []).map((point) => `${project(point.x)},${project(point.z)}`).join(" ");
+  const riverPoints = CITY_RIVER_PATH.map((point) => `${project(point.x)},${project(point.z)}`).join(" ");
   return (
-    <div style={styles.miniMap}>
-      <svg viewBox="0 0 100 100" style={styles.miniMapSvg} aria-label="Mini map">
-        <rect x="2" y="2" width="96" height="96" rx="14" fill="rgba(5,14,29,0.62)" stroke="rgba(179,221,255,0.8)" strokeWidth="2" />
-        <path d="M18 50 C18 18, 82 18, 82 50 C82 82, 18 82, 18 50Z" fill="none" stroke="rgba(226,241,255,0.76)" strokeWidth="4" />
-        <path d="M27 50 C27 28, 73 28, 73 50 C73 72, 27 72, 27 50Z" fill="none" stroke="rgba(83,255,137,0.34)" strokeWidth="2" strokeDasharray="3 3" />
-        {rivals.map((rival, index) => {
-          const p = convert(rival);
-          return <circle key={`${p.x}-${p.y}-${index}`} cx={p.x} cy={p.y} r="3.1" fill={index === 0 ? "#4aa3ff" : "#ff9c32"} stroke="#081323" strokeWidth="1" />;
+    <aside className="minimap-card" aria-label="시티 배송 지도">
+      <div className="map-heading"><strong>시티 배송 지도</strong><span>🏁 3 · ★ {hud.stars}</span></div>
+      <svg viewBox="0 0 180 180" role="img" aria-label="현재 위치와 배송 목적지">
+        <rect x="4" y="4" width="172" height="172" rx="18" fill="#dce9e7" />
+        <ellipse cx="43" cy="47" rx="38" ry="34" fill="#f7fbff" opacity=".8" />
+        <ellipse cx="43" cy="104" rx="35" ry="26" fill="#9a7b69" opacity=".28" />
+        <ellipse cx="140" cy="53" rx="36" ry="34" fill="#c8d8df" opacity=".54" />
+        <ellipse cx="102" cy="146" rx="61" ry="25" fill="#79c7d6" opacity=".45" />
+        <polyline points={riverPoints} fill="none" stroke="#45b7e8" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+        {CITY_ROADS.map((road) => {
+          const points = road.path.map((point) => `${project(point.x)},${project(point.z)}`).join(" ");
+          const width = road.type === "arterial" ? 4.1 : road.type === "collector" ? 3 : 1.8;
+          return <polyline key={road.id} points={points} fill="none" stroke={road.bridge ? "#ffd166" : road.type === "arterial" ? "#506879" : "#81939e"} strokeWidth={road.bridge ? width + 1.4 : width} strokeLinecap="round" strokeLinejoin="round" />;
         })}
-        <polygon points={`${player.x},${player.y - 5} ${player.x - 4},${player.y + 4} ${player.x + 4},${player.y + 4}`} fill="#ff2f35" stroke="#fff4a8" strokeWidth="1" />
+        <g fill="#264653" opacity=".72" fontSize="4.5" fontWeight="900" textAnchor="middle">
+          <text x={project(-188)} y={project(-154)}>웨스트</text><text x={project(-204)} y={project(72)}>마켓</text><text x={project(188)} y={project(-94)}>스카이</text><text x={project(52)} y={project(224)}>하버</text><text x={project(0)} y={project(52)}>센트럴</text>
+        </g>
+        <g textAnchor="middle" fontSize="5.5"><text x={project(-135)} y={project(-145) + 2}>🏔️</text><text x={project(-162)} y={project(72) + 2}>🛠️</text><text x={project(145)} y={project(-88) + 2}>🌨️</text><text x={project(-20)} y={project(208) + 2}>⚓</text></g>
+        {Object.values(DESTINATIONS).map((place) => <text key={place.id} x={project(place.landmarkX)} y={project(place.landmarkZ) + 3} textAnchor="middle" fontSize="7">{place.icon}</text>)}
+        {routePoints ? <polyline points={routePoints} fill="none" stroke="#fff" strokeWidth="4.5" strokeLinejoin="round" strokeLinecap="round" opacity=".9" /> : null}
+        {routePoints ? <polyline points={routePoints} fill="none" stroke={hud.target?.color || "#ff595e"} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round" strokeDasharray="4 2" /> : null}
+        <circle cx={tx} cy={ty} r="9" fill={hud.target?.color || "#ff595e"} className="target-pulse" />
+        <text x={tx} y={ty + 4} textAnchor="middle" fontSize="11">{hud.target?.icon || "📦"}</text>
+        <g transform={`translate(${px} ${py}) rotate(${(-hud.heading * 180) / Math.PI})`}><path d="M0 -8 L6 7 L0 4 L-6 7 Z" fill="#ffffff" stroke="#1d3557" strokeWidth="2" /></g>
       </svg>
-      <span style={styles.miniMapLabel}>MAP</span>
+    </aside>
+  );
+}
+
+function Controls({ runtimeRef }) {
+  const bind = (key) => ({
+    onPointerDown: (event) => { event.currentTarget.setPointerCapture?.(event.pointerId); runtimeRef.current?.setInput({ [key]: true }); },
+    onPointerUp: () => runtimeRef.current?.setInput({ [key]: false }),
+    onPointerCancel: () => runtimeRef.current?.setInput({ [key]: false }),
+    onLostPointerCapture: () => runtimeRef.current?.setInput({ [key]: false })
+  });
+  return (
+    <div className="touch-controls">
+      <div className="steer-controls"><button type="button" {...bind("left")} aria-label="왼쪽">◀</button><button type="button" {...bind("right")} aria-label="오른쪽">▶</button></div>
+      <div className="pedal-controls"><button className="brake" type="button" {...bind("brake")}>BRAKE</button><button className="boost" type="button" {...bind("boost")}>⚡ TURBO</button><button className="accel" type="button" {...bind("accel")}>GO!</button></div>
     </div>
   );
 }
 
-function clampValue(value, min, max) {
-  return Math.max(min, Math.min(max, value));
+function DeliveryQuiz({ quiz, result, onAnswer }) {
+  return (
+    <div className="quiz-overlay">
+      <div className="delivered-scene">
+        <span className="delivery-success">DELIVERY!</span>
+        <span className="place-icon">{quiz.destination.icon}</span>
+        <strong>{quiz.destination.name}</strong>
+        <small>{quiz.package} 도착</small>
+      </div>
+      <section className="quiz-panel">
+        <span className="quiz-label">{quiz.label}</span>
+        <h2>마지막 배송 암호!</h2>
+        <div className="idiom-card"><strong>{quiz.hanja}</strong><span>{quiz.korean}</span></div>
+        <p>{quiz.question}</p>
+        <div className="quiz-options">
+          {quiz.options.map((option, index) => {
+            const stateClass = result ? (index === result.correctIndex ? "correct" : "muted") : "";
+            return <button className={stateClass} type="button" key={option} onClick={() => onAnswer(index)}><b>{index + 1}</b><span>{option}</span></button>;
+          })}
+        </div>
+        {result ? <div className={result.correct ? "answer-feedback correct" : "answer-feedback wrong"}>{result.correct ? "정답! 보너스 10초 획득!" : `정답: ${result.meaning}`}</div> : <small className="quiz-help">숫자 1~4 또는 버튼을 눌러요</small>}
+      </section>
+    </div>
+  );
 }
 
-const styles = {
-  page: {
-    minHeight: "100dvh",
-    display: "grid",
-    placeItems: "center",
-    margin: 0,
-    padding: "10px",
-    overflow: "hidden",
-    background: "radial-gradient(circle at 50% -20%, #4ca9ff 0%, #18498f 34%, #09152a 72%, #040811 100%)",
-    fontFamily: "\"Trebuchet MS\", \"Segoe UI\", sans-serif"
-  },
-  shell: {
-    width: "min(98vw, 1360px, 170dvh)"
-  },
-  frame: {
-    position: "relative",
-    width: "100%",
-    aspectRatio: "16 / 9",
-    overflow: "hidden",
-    borderRadius: "20px",
-    border: "4px solid #9bc9ff",
-    background: "#091727",
-    boxShadow: "0 20px 58px rgba(0,0,0,0.42), inset 0 0 0 4px rgba(22,40,70,0.88)"
-  },
-  mount: { position: "absolute", inset: 0, touchAction: "none" },
-  vignette: {
-    position: "absolute",
-    inset: 0,
-    pointerEvents: "none",
-    background: "radial-gradient(circle at 50% 38%, transparent 36%, rgba(0,0,0,0.25) 100%)"
-  },
-  scanline: {
-    position: "absolute",
-    inset: 0,
-    pointerEvents: "none",
-    background: "repeating-linear-gradient(180deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 4px)",
-    mixBlendMode: "multiply"
-  },
-  hud: {
-    position: "absolute",
-    top: 10,
-    left: 12,
-    width: "min(840px, calc(100% - 178px))",
-    display: "grid",
-    gridTemplateColumns: "repeat(6, minmax(88px, 1fr))",
-    gap: "7px",
-    pointerEvents: "none"
-  },
-  hudCard: {
-    display: "grid",
-    gap: "2px",
-    padding: "7px 9px",
-    borderRadius: "10px",
-    background: "rgba(8, 20, 42, 0.68)",
-    border: "1px solid rgba(157, 206, 255, 0.72)",
-    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)"
-  },
-  hudLabel: {
-    color: "#9fc0e5",
-    fontSize: "11px",
-    textTransform: "uppercase",
-    letterSpacing: "0.7px"
-  },
-  hudValue: {
-    color: "#f2f8ff",
-    fontSize: "18px",
-    fontWeight: 800,
-    lineHeight: 1
-  },
-  hudTop: {
-    position: "absolute",
-    top: 12,
-    left: 14,
-    right: 14,
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    gap: "10px",
-    pointerEvents: "none"
-  },
-  energyCard: {
-    minWidth: "228px",
-    padding: "8px 12px",
-    borderRadius: "12px",
-    background: "rgba(8,20,42,0.72)",
-    border: "1px solid rgba(0,229,255,0.7)",
-    boxShadow: "0 0 18px rgba(0,229,255,0.18)"
-  },
-  energyTopRow: { display: "flex", alignItems: "center", justifyContent: "space-between" },
-  energyLabel: { color: "#9fd6ff", fontSize: "12px", fontWeight: 900, letterSpacing: "1px" },
-  energyPct: { color: "#d8feff", fontSize: "15px", fontWeight: 900 },
-  energyTrack: {
-    marginTop: "6px",
-    height: "14px",
-    borderRadius: "999px",
-    overflow: "hidden",
-    background: "rgba(255,255,255,0.12)"
-  },
-  energyFill: {
-    height: "100%",
-    borderRadius: "999px",
-    background: "linear-gradient(90deg, #19e0ff, #7df9ff)",
-    transition: "width 0.2s ease"
-  },
-  pitWarn: {
-    display: "inline-block",
-    marginTop: "4px",
-    color: "#ff7a7a",
-    fontSize: "12px",
-    fontWeight: 900,
-    letterSpacing: "1px"
-  },
-  speedBlock: { display: "grid", justifyItems: "center", paddingTop: "2px" },
-  speedLabel: { color: "#9fd6ff", fontSize: "12px", fontWeight: 800, letterSpacing: "1px" },
-  speedValue: {
-    color: "#ffffff",
-    fontSize: "30px",
-    fontWeight: 900,
-    lineHeight: 1,
-    textShadow: "0 0 12px rgba(0,229,255,0.45)"
-  },
-  speedUnit: { color: "#6f8db0", fontSize: "12px", fontWeight: 700, marginLeft: "5px" },
-  scoreCard: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    padding: "8px 14px",
-    borderRadius: "12px",
-    background: "rgba(10,10,30,0.7)",
-    border: "1px solid rgba(255,43,214,0.5)"
-  },
-  scoreLabel: { color: "#9fd6ff", fontSize: "11px", fontWeight: 800, letterSpacing: "1px" },
-  scoreValue: { color: "#7df9ff", fontSize: "20px", fontWeight: 900, lineHeight: 1.2 },
-  comboBox: { display: "grid", justifyItems: "end" },
-  comboLabel: { color: "#ff9ee0", fontSize: "10px", fontWeight: 800, letterSpacing: "1px" },
-  comboValue: { color: "#ff5fc0", fontSize: "24px", fontWeight: 900, lineHeight: 1 },
-  stageBar: {
-    position: "absolute",
-    top: 70,
-    left: 14,
-    right: 14,
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    pointerEvents: "none"
-  },
-  stageName: { color: "#7df9ff", fontSize: "12px", fontWeight: 900, letterSpacing: "0.5px", whiteSpace: "nowrap" },
-  stageTrack: {
-    flex: 1,
-    height: "7px",
-    borderRadius: "999px",
-    overflow: "hidden",
-    background: "rgba(255,255,255,0.12)"
-  },
-  stageFill: {
-    height: "100%",
-    borderRadius: "999px",
-    background: "linear-gradient(90deg, #00e5ff, #ff2bd6)",
-    transition: "width 0.2s ease"
-  },
-  stageNext: { color: "#ffd36a", fontSize: "12px", fontWeight: 800, whiteSpace: "nowrap" },
-  boostCard: {
-    padding: "8px 10px",
-    borderRadius: "10px",
-    background: "rgba(8, 20, 42, 0.68)",
-    border: "1px solid rgba(157, 206, 255, 0.72)"
-  },
-  boostTrack: {
-    marginTop: "6px",
-    height: "7px",
-    borderRadius: "999px",
-    overflow: "hidden",
-    background: "rgba(255,255,255,0.14)"
-  },
-  boostFill: {
-    height: "100%",
-    transformOrigin: "left center",
-    background: "linear-gradient(90deg, #8dff9f 0%, #ffe27d 58%, #ff8b63 100%)"
-  },
-  miniMap: {
-    position: "absolute",
-    right: 16,
-    top: 16,
-    width: "132px",
-    height: "132px",
-    borderRadius: "18px",
-    padding: "7px",
-    background: "linear-gradient(180deg, rgba(6,18,36,0.72), rgba(7,13,26,0.58))",
-    border: "1px solid rgba(166,214,255,0.7)",
-    boxShadow: "0 12px 26px rgba(0,0,0,0.24)",
-    pointerEvents: "none"
-  },
-  miniMapSvg: {
-    width: "100%",
-    height: "100%",
-    display: "block"
-  },
-  miniMapLabel: {
-    position: "absolute",
-    left: "12px",
-    bottom: "9px",
-    color: "#bfe5ff",
-    fontSize: "10px",
-    fontWeight: 900,
-    letterSpacing: "1px"
-  },
-  message: {
-    position: "absolute",
-    left: "50%",
-    top: "14%",
-    transform: "translateX(-50%)",
-    padding: "6px 12px",
-    borderRadius: "999px",
-    background: "rgba(12, 24, 43, 0.75)",
-    border: "1px solid rgba(201, 228, 255, 0.56)",
-    color: "#ffe58a",
-    fontSize: "18px",
-    fontWeight: 900,
-    letterSpacing: "0.5px"
-  },
-  trafficLight: {
-    position: "absolute",
-    left: "50%",
-    top: "64px",
-    transform: "translateX(-50%)",
-    display: "flex",
-    gap: "8px",
-    padding: "8px 11px",
-    borderRadius: "999px",
-    background: "linear-gradient(180deg, rgba(9,17,31,0.86), rgba(4,8,16,0.82))",
-    border: "1px solid rgba(220,239,255,0.46)",
-    boxShadow: "0 10px 24px rgba(0,0,0,0.28)",
-    pointerEvents: "none"
-  },
-  lightDot: {
-    width: "18px",
-    height: "18px",
-    borderRadius: "999px",
-    display: "block",
-    boxShadow: "inset 0 0 0 2px rgba(255,255,255,0.12)"
-  },
-  lightOff: {
-    background: "rgba(255,255,255,0.13)"
-  },
-  redLightOn: {
-    background: "radial-gradient(circle at 35% 30%, #ffd0ca 0%, #ff3228 38%, #76100f 100%)",
-    boxShadow: "0 0 18px rgba(255,52,39,0.72)"
-  },
-  greenLightOn: {
-    background: "radial-gradient(circle at 35% 30%, #e6ffd7 0%, #59ff62 36%, #0b7734 100%)",
-    boxShadow: "0 0 22px rgba(78,255,95,0.78)"
-  },
-  startPanel: {
-    position: "absolute",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    display: "grid",
-    justifyItems: "center",
-    gap: "8px",
-    padding: "18px 20px",
-    borderRadius: "18px",
-    background: "linear-gradient(180deg, rgba(9,22,43,0.84), rgba(6,13,25,0.82))",
-    border: "1px solid rgba(183,221,255,0.68)",
-    boxShadow: "0 18px 42px rgba(0,0,0,0.34)"
-  },
-  startEyebrow: {
-    margin: 0,
-    color: "#a9d5ff",
-    fontSize: "12px",
-    fontWeight: 900,
-    letterSpacing: "1.1px"
-  },
-  startButton: {
-    border: 0,
-    borderRadius: "999px",
-    padding: "12px 24px",
-    background: "linear-gradient(180deg, #fff09b 0%, #ffc947 100%)",
-    color: "#172a42",
-    fontSize: "19px",
-    fontWeight: 1000,
-    letterSpacing: "0.8px",
-    boxShadow: "0 12px 24px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.62)",
-    cursor: "pointer"
-  },
-  startHint: {
-    margin: 0,
-    color: "#e8f5ff",
-    fontSize: "12px",
-    fontWeight: 700
-  },
-  error: {
-    position: "absolute",
-    left: 12,
-    right: 12,
-    bottom: 94,
-    padding: "10px 12px",
-    borderRadius: "12px",
-    background: "rgba(92, 16, 24, 0.88)",
-    color: "#ffe6e6",
-    fontWeight: 700
-  },
-  quizOverlay: {
-    position: "absolute",
-    inset: 0,
-    display: "grid",
-    placeItems: "center",
-    padding: "24px",
-    background: "linear-gradient(180deg, rgba(2,8,18,0.36), rgba(2,8,18,0.64))",
-    zIndex: 8
-  },
-  quizCard: {
-    width: "min(92%, 620px)",
-    padding: "20px",
-    borderRadius: "22px",
-    background: "linear-gradient(180deg, rgba(7,24,47,0.96), rgba(5,14,30,0.94))",
-    border: "2px solid rgba(170, 222, 255, 0.86)",
-    boxShadow: "0 24px 58px rgba(0,0,0,0.44), inset 0 0 0 1px rgba(255,255,255,0.08)"
-  },
-  quizTop: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: "12px"
-  },
-  quizBadge: {
-    padding: "5px 10px",
-    borderRadius: "999px",
-    background: "linear-gradient(180deg, #ffe78a, #ffbf3d)",
-    color: "#152642",
-    fontSize: "12px",
-    fontWeight: 1000,
-    letterSpacing: "0.8px"
-  },
-  quizHint: {
-    color: "#a9d6ff",
-    fontSize: "12px",
-    fontWeight: 800
-  },
-  quizQuestion: {
-    margin: "14px 0 0",
-    color: "#e8f7ff",
-    fontSize: "16px",
-    fontWeight: 900,
-    textAlign: "center"
-  },
-  quizIdiom: {
-    marginTop: "10px",
-    display: "grid",
-    placeItems: "center",
-    gap: "4px",
-    padding: "14px",
-    borderRadius: "16px",
-    background: "rgba(255,255,255,0.08)",
-    border: "1px solid rgba(190,229,255,0.36)"
-  },
-  quizHanja: {
-    color: "#fff0a4",
-    fontSize: "34px",
-    letterSpacing: "3px",
-    lineHeight: 1
-  },
-  quizKorean: {
-    color: "#ffffff",
-    fontSize: "22px",
-    fontWeight: 1000
-  },
-  quizOptions: {
-    marginTop: "14px",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "10px"
-  },
-  quizOption: {
-    minHeight: "58px",
-    border: "1px solid rgba(190,225,255,0.68)",
-    borderRadius: "14px",
-    padding: "10px 12px",
-    background: "linear-gradient(180deg, rgba(30,74,118,0.96), rgba(14,35,70,0.96))",
-    color: "#f7fbff",
-    fontSize: "14px",
-    fontWeight: 800,
-    textAlign: "left",
-    cursor: "pointer",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.22)"
-  },
-  quizOptionIndex: {
-    display: "inline-grid",
-    placeItems: "center",
-    width: "24px",
-    height: "24px",
-    marginRight: "8px",
-    borderRadius: "999px",
-    background: "#ffe37d",
-    color: "#17243b",
-    fontWeight: 1000
-  },
-  overlay: {
-    position: "absolute",
-    inset: 0,
-    display: "grid",
-    placeItems: "center",
-    background: "rgba(2, 8, 18, 0.54)"
-  },
-  modal: {
-    width: "min(90%, 340px)",
-    padding: "20px",
-    borderRadius: "16px",
-    background: "linear-gradient(180deg, rgba(8,20,40,0.94), rgba(9,28,56,0.94))",
-    border: "1px solid rgba(165, 212, 255, 0.72)"
-  },
-  modalTop: { margin: 0, color: "#9fd6ff", fontSize: "12px", letterSpacing: "1.2px" },
-  modalTitle: { margin: "8px 0 0", color: "#f5f9ff", fontSize: "24px" },
-  modalBody: { margin: "12px 0 0", color: "#d7eaff", fontSize: "15px" },
-  restartButton: {
-    marginTop: "16px",
-    border: 0,
-    borderRadius: "999px",
-    background: "linear-gradient(180deg, #ffe88e, #ffc95b)",
-    color: "#1f2d45",
-    fontWeight: 800,
-    fontSize: "16px",
-    padding: "10px 16px",
-    cursor: "pointer"
-  },
-  tabletControls: {
-    position: "absolute",
-    left: 28,
-    right: 28,
-    bottom: 18,
-    display: "flex",
-    alignItems: "end",
-    justifyContent: "space-between",
-    pointerEvents: "none",
-    userSelect: "none"
-  },
-  joystickCluster: {
-    display: "grid",
-    placeItems: "center",
-    gap: "6px",
-    pointerEvents: "auto"
-  },
-  joystickBase: {
-    position: "relative",
-    width: "118px",
-    height: "118px",
-    borderRadius: "999px",
-    border: "2px solid rgba(185, 224, 255, 0.82)",
-    background: "radial-gradient(circle at 50% 50%, rgba(69, 139, 205, 0.42) 0%, rgba(9, 23, 45, 0.72) 62%, rgba(4, 10, 22, 0.84) 100%)",
-    boxShadow: "0 12px 26px rgba(0,0,0,0.34), inset 0 0 0 5px rgba(255,255,255,0.05)",
-    touchAction: "none",
-    cursor: "grab"
-  },
-  joystickRing: {
-    position: "absolute",
-    inset: "30px",
-    borderRadius: "999px",
-    border: "1px dashed rgba(220, 241, 255, 0.48)"
-  },
-  joystickKnob: {
-    position: "absolute",
-    left: "50%",
-    top: "50%",
-    width: "56px",
-    height: "56px",
-    borderRadius: "999px",
-    background: "linear-gradient(180deg, #f6fbff 0%, #80b8f4 45%, #24517f 100%)",
-    border: "2px solid rgba(245, 252, 255, 0.92)",
-    boxShadow: "0 8px 18px rgba(0,0,0,0.34), inset 0 -5px 0 rgba(10,24,42,0.22)",
-    transition: "transform 70ms ease-out"
-  },
-  controlHint: {
-    minWidth: "92px",
-    padding: "4px 8px",
-    borderRadius: "999px",
-    background: "rgba(7, 17, 33, 0.62)",
-    border: "1px solid rgba(165, 213, 255, 0.45)",
-    color: "#edf7ff",
-    fontSize: "11px",
-    fontWeight: 900,
-    textAlign: "center",
-    letterSpacing: "0.7px"
-  },
-  pedalCluster: {
-    display: "grid",
-    gridTemplateColumns: "94px 94px",
-    gridTemplateRows: "50px 70px",
-    gap: "9px",
-    pointerEvents: "auto"
-  },
-  controlButton: {
-    borderRadius: "14px",
-    border: "1px solid rgba(211, 236, 255, 0.76)",
-    color: "#f7fbff",
-    fontSize: "12px",
-    fontWeight: 900,
-    letterSpacing: "0.4px",
-    cursor: "pointer",
-    boxShadow: "0 10px 20px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.16)",
-    touchAction: "none"
-  },
-  brakeButton: {
-    background: "linear-gradient(180deg, rgba(86, 29, 39, 0.88), rgba(40, 14, 24, 0.86))"
-  },
-  boostButton: {
-    background: "linear-gradient(180deg, rgba(37, 86, 133, 0.88), rgba(17, 38, 76, 0.86))"
-  },
-  accelButton: {
-    gridColumn: "1 / span 2",
-    background: "linear-gradient(180deg, rgba(31, 128, 83, 0.94), rgba(11, 67, 50, 0.9))",
-    fontSize: "15px"
-  }
-};
-
-const pit = {
-  overlay: {
-    position: "absolute",
-    inset: 0,
-    zIndex: 20,
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    background: "#03060d"
-  },
-  bgImg: {
-    position: "absolute",
-    inset: 0,
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    objectPosition: "center"
-  },
-  scrim: {
-    position: "absolute",
-    inset: 0,
-    background:
-      "radial-gradient(120% 90% at 30% 60%, rgba(2,6,16,0) 35%, rgba(2,6,16,0.5) 100%), linear-gradient(90deg, rgba(2,6,16,0.05) 0%, rgba(2,6,16,0.32) 42%, rgba(2,6,16,0.9) 100%)"
-  },
-  card: {
-    position: "relative",
-    margin: "0 clamp(16px, 4vw, 48px)",
-    width: "min(440px, 48%)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    padding: "20px 22px",
-    borderRadius: "18px",
-    background: "rgba(6,14,26,0.72)",
-    border: "1px solid rgba(0,229,255,0.45)",
-    boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-    backdropFilter: "blur(8px)",
-    WebkitBackdropFilter: "blur(8px)"
-  },
-  header: { display: "flex", alignItems: "center", gap: "10px" },
-  badge: {
-    padding: "5px 12px",
-    borderRadius: "999px",
-    background: "linear-gradient(180deg, #00e5ff, #0090c8)",
-    color: "#04121e",
-    fontWeight: 900,
-    fontSize: "13px",
-    letterSpacing: "0.6px"
-  },
-  step: { color: "#9fd6ff", fontWeight: 800, fontSize: "13px" },
-  combo: { marginLeft: "auto", color: "#ff7ad6", fontWeight: 900, fontSize: "14px" },
-  batteryRow: { display: "flex", alignItems: "center", gap: "10px" },
-  batteryLabel: { color: "#7fb6d8", fontSize: "12px", fontWeight: 800, letterSpacing: "0.5px" },
-  batteryTrack: {
-    flex: 1,
-    height: "14px",
-    borderRadius: "999px",
-    background: "rgba(255,255,255,0.1)",
-    overflow: "hidden",
-    border: "1px solid rgba(0,229,255,0.3)"
-  },
-  batteryFill: {
-    height: "100%",
-    borderRadius: "999px",
-    background: "linear-gradient(90deg, #19e0ff, #7df9ff)",
-    transition: "width 0.5s ease-out"
-  },
-  batteryPct: { color: "#d8feff", fontSize: "13px", fontWeight: 900, minWidth: "38px", textAlign: "right" },
-  idiom: {
-    display: "grid",
-    justifyItems: "center",
-    gap: "2px",
-    padding: "10px",
-    borderRadius: "14px",
-    background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(0,229,255,0.25)"
-  },
-  hanja: {
-    color: "#7df9ff",
-    fontSize: "34px",
-    letterSpacing: "4px",
-    lineHeight: 1,
-    textShadow: "0 0 12px rgba(0,229,255,0.6)"
-  },
-  korean: { color: "#ffffff", fontSize: "20px", fontWeight: 900 },
-  question: { margin: "2px 0 0", color: "#cfeaff", fontSize: "14px", fontWeight: 800, textAlign: "center" },
-  options: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" },
-  option: {
-    minHeight: "52px",
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    border: "1px solid rgba(120,225,255,0.5)",
-    borderRadius: "12px",
-    padding: "8px 10px",
-    background: "linear-gradient(180deg, rgba(10,40,64,0.95), rgba(6,20,40,0.95))",
-    color: "#f0fbff",
-    fontSize: "13px",
-    fontWeight: 700,
-    textAlign: "left",
-    cursor: "pointer"
-  },
-  optIndex: {
-    flex: "0 0 auto",
-    display: "inline-grid",
-    placeItems: "center",
-    width: "22px",
-    height: "22px",
-    borderRadius: "999px",
-    background: "#00e5ff",
-    color: "#04121e",
-    fontWeight: 900,
-    fontSize: "13px"
-  },
-  hint: { margin: "2px 0 0", color: "#9fd6ff", fontSize: "12px", fontWeight: 700, textAlign: "center" }
-};
-
-
+function ResultScreen({ result, onRetry, onGarage }) {
+  const complete = result.reason === "complete";
+  const rating = complete ? (result.stars >= 6 ? 3 : result.stars >= 3 ? 2 : 1) : 1;
+  return (
+    <div className="result-overlay">
+      <section className="result-card">
+        <span className="result-badge">{complete ? "MISSION COMPLETE" : "TIME OVER"}</span>
+        <div className="result-mascot">{complete ? "🚚💨" : "⏰"}</div>
+        <h2>{complete ? "도심 배송 성공!" : "도심 루트를 다시 공략해 봐요!"}</h2>
+        <div className="result-stars">{[1, 2, 3].map((star) => <span key={star} className={star <= rating ? "earned" : ""}>★</span>)}</div>
+        <div className="result-grid"><div><small>최종 점수</small><strong>{Math.round(result.score).toLocaleString()}</strong></div><div><small>배달 완료</small><strong>{result.deliveries}/{result.total}</strong></div><div><small>획득 골드</small><strong>+{(result.reward || 0).toLocaleString()}G</strong></div></div>
+        <div className="result-actions"><button type="button" onClick={onGarage}>차고로</button><button className="primary" type="button" onClick={onRetry}>다시 도전</button></div>
+      </section>
+    </div>
+  );
+}

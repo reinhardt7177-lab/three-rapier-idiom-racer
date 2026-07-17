@@ -1,15 +1,16 @@
 {
-  "name": "three-rapier-idiom-racer",
+  "name": "mumu-color-city-express",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
+    "check": "node scripts/check-data.mjs && vite build",
+    "meshy:vehicles": "node scripts/generate-meshy-vehicles.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
-    "@dimforge/rapier3d-compat": "^0.19.3",
     "@vitejs/plugin-react": "^5.0.4",
     "vite": "^7.2.7",
     "react": "^19.2.4",
