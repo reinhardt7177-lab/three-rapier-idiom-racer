@@ -52,10 +52,12 @@ export const CITY_NODES = {
   techGate: { x: 178, z: -102 }, techNorth: { x: 94, z: -188 }, techEast: { x: 254, z: -68 }, library: { x: 270, z: -150 },
   artsGate: { x: -220, z: 78 }, artsNorth: { x: -276, z: 8 }, artsSquare: { x: -134, z: 112 }, museum: { x: -278, z: 64 },
   riverMarket: { x: -56, z: 238 }, riverGate: { x: 58, z: 232 }, park: { x: 78, z: 252 },
-  obsGate: { x: 212, z: 212 }, observatory: { x: 282, z: 236 }, coast: { x: 104, z: 272 }
+  obsGate: { x: 212, z: 212 }, observatory: { x: 282, z: 236 }, coast: { x: 104, z: 272 },
+  // 점프 램프 발사대(막다른 골목 끝) — 스카이웨이 서쪽 데크를 향한다.
+  jumpLaunch: { x: -276, z: -118 }
 };
 
-const ROAD_WIDTHS = { arterial: 23, collector: 16, local: 10.5, scenic: 13.5 };
+const ROAD_WIDTHS = { arterial: 23, collector: 16, local: 10.5, scenic: 13.5, alley: 7 };
 
 function smoothPath(points, iterations = 4) {
   let path = points.map(([x, z]) => ({ x, z }));
@@ -204,7 +206,18 @@ export const CITY_ROADS = [
   // 시그니처 구간 — 하버 코스탈 루프: 물가를 끼고 도는 연속 코너 (드리프트 무대)
   edge("coast-west", "park", "coast", "scenic", [[92, 266]]),
   edge("coast-link", "coast", "ringS", "scenic", [[52, 284]]),
-  edge("obs-road", "outerSE", "observatory", "scenic", [[280, 230]])
+  edge("obs-road", "outerSE", "observatory", "scenic", [[280, 230]]),
+
+  // 골목 숏컷 — 내비는 안내하지 않지만 아는 사람은 시간을 버는 길 (미니맵 점선)
+  edge("alley-res", "resWest", "resSouth", "alley", [[-248, -180]]),
+  edge("alley-market", "riverMarket", "centerBridgeS", "alley", [[-40, 196]]),
+  // 점프 램프 진입 골목: 끝에서 가속해 스카이웨이 데크로 날아오른다
+  edge("alley-jump", "resWest", "jumpLaunch", "alley", [[-262, -119]])
+];
+
+// 점프 램프: 골목 끝 발사대의 위치·방향. 런타임이 램프 메시와 에어본 판정에 쓴다.
+export const JUMP_RAMPS = [
+  { id: "skyway-jump", x: CITY_NODES.jumpLaunch.x, z: CITY_NODES.jumpLaunch.z, heading: Math.atan2(-1, 0.03), minKmh: 80 }
 ];
 
 export const CITY_TRAFFIC_LOOPS = {

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
-import { CITY_HALF, CITY_NODES, CITY_RIVER_PATH, CITY_ROADS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_SKYLINE_MIN_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, distanceToRiver, isPointOnCityRoad, pathLength, roadBaseHeightAt, terrainHeightAt } from "./city-map.js";
+import { CITY_HALF, CITY_NODES, CITY_RIVER_PATH, CITY_ROADS, JUMP_RAMPS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_SKYLINE_MIN_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, distanceToRiver, isPointOnCityRoad, pathLength, roadBaseHeightAt, terrainHeightAt } from "./city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "./city-layout.js";
 import { DESTINATIONS } from "./game-data.js";
 import { makeQuestion } from "./learning-packs.js";
@@ -637,7 +637,7 @@ function createRoadNetwork(scene) {
     }
 
     // 아스팔트보다 높은 연석 인도를 도로 양쪽에 두르면 도시 골목의 스케일이 살아납니다.
-    if (!elevatedDeck) {
+    if (!elevatedDeck && road.type !== "alley") {
       const sidewalkWidth = 2.3;
       const sidewalkOffset = road.width / 2 + 1.05 + sidewalkWidth / 2;
       for (const side of [-1, 1]) {
@@ -696,14 +696,14 @@ function createRoadNetwork(scene) {
       endInset: endJunction ? endJunction.surfaceRadius + 1.2 : 0
     }));
     // 흰 실선 바깥의 어두운 거터 라인 — 노면에 폭 정보를 한 겹 더 준다.
-    if (!elevatedDeck) {
+    if (!elevatedDeck && road.type !== "alley") {
       const gutterOffset = road.width / 2 - 0.18;
       scene.add(createRoadMarkingMesh(road, [-gutterOffset, gutterOffset], 0.3, gutterMaterial, {
         startInset: startJunction ? startJunction.surfaceRadius + 0.9 : 0,
         endInset: endJunction ? endJunction.surfaceRadius + 0.9 : 0
       }));
     }
-    if (road.type !== "local") {
+    if (road.type !== "local" && road.type !== "alley") {
       scene.add(createRoadMarkingMesh(road, [-0.2, 0.2], 0.12, centerLineMaterial, {
         startInset: startJunction ? startJunction.surfaceRadius + 1.2 : 0,
         endInset: endJunction ? endJunction.surfaceRadius + 1.2 : 0
@@ -711,7 +711,7 @@ function createRoadNetwork(scene) {
     }
 
     // 가로등: 간선·보조 도로의 인도 위에 26m 간격, 좌우 교대로 세운다.
-    if (!elevatedDeck && road.type !== "local") {
+    if (!elevatedDeck && road.type !== "local" && road.type !== "alley") {
       const roadLength = pathLength(road.path);
       const lampLateral = road.width / 2 + 1.05 + 1.15;
       let lampDistance = Math.max(9, surfaceStartInset + 6);
@@ -1266,6 +1266,7 @@ function createCity(scene) {
   createLandmarks(scene);
   createSkyline(scene);
   createClouds(scene);
+  createJumpRamps(scene);
   scene.userData.cityStats = { roads: CITY_ROADS.length, buildings: buildingSpecs.length };
 }
 
@@ -1488,6 +1489,33 @@ function createLandmarks(scene) {
   addLandmarkLabel(scene, park.name, terminalX, terrainHeightAt(terminalX, terminalZ) + 11.5, terminalZ, "#2f9e44");
 
   createTownLife(scene);
+}
+
+function createJumpRamps(scene) {
+  for (const ramp of JUMP_RAMPS) {
+    const group = new THREE.Group();
+    const baseY = terrainHeightAt(ramp.x, ramp.z);
+    group.position.set(ramp.x, baseY, ramp.z);
+    group.rotation.y = ramp.heading;
+    const deckMaterial = makeMaterial(0x2e3d4a, { roughness: 0.6, metalness: 0.3 });
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(7, 0.5, 10), deckMaterial);
+    deck.rotation.x = -0.19;
+    deck.position.set(0, 1.1, 2);
+    deck.castShadow = true;
+    const support = box(6.2, 1.6, 1.1, makeMaterial(0x51606d, { roughness: 0.7 }), 0, 0.8, 6.2);
+    const stripeMaterial = makeMaterial(0xffd137, { roughness: 0.5, emissive: 0xffc928, emissiveIntensity: 0.3 });
+    for (const side of [-1, 1]) {
+      const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.62, 10), stripeMaterial);
+      stripe.rotation.x = -0.19;
+      stripe.position.set(side * 3.5, 1.25, 2);
+      group.add(stripe);
+    }
+    const sign = makeTextSprite("🚀 JUMP! 80km/h+", "#ffffff", "#d64545");
+    sign.position.set(-5.2, 4.2, -4);
+    sign.scale.set(8.5, 2.7, 1);
+    group.add(deck, support, sign);
+    scene.add(group);
+  }
 }
 
 function createTownLife(scene) {
@@ -1942,7 +1970,7 @@ function roadPathToEndpoint(hit, endpointId) {
 }
 
 function roadCost(road) {
-  const classFactor = road.type === "arterial" ? 0.8 : road.type === "collector" ? 0.9 : 1;
+  const classFactor = road.type === "arterial" ? 0.8 : road.type === "collector" ? 0.9 : road.type === "alley" ? 1.9 : 1;
   return pathLength(road.path) * classFactor;
 }
 
@@ -2245,6 +2273,102 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   let pendingQuiz = null;
   let activeGates = [];
   let gateWanted = [];
+  let rivalCar = null;
+  let rivalRace = null;
+
+  function ensureRivalCar() {
+    if (rivalCar) return rivalCar;
+    const group = new THREE.Group();
+    const bodyMaterial = makeMaterial(0xff2e4d, { roughness: 0.3, metalness: 0.18, emissive: 0xff2e4d, emissiveIntensity: 0.12 });
+    const body = roundedBox(2.5, 0.72, 5.4, bodyMaterial, 0.24, 0, 0.78, 0);
+    const cabin = roundedBox(1.9, 0.74, 2.3, makeMaterial(0x101c26, { roughness: 0.12, metalness: 0.5 }), 0.22, 0, 1.38, -0.25);
+    const wing = roundedBox(2.3, 0.13, 0.5, makeMaterial(0x1c2733, { roughness: 0.6 }), 0.05, 0, 1.5, -2.45);
+    const wingPostL = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), -0.7, 1.2, -2.45);
+    const wingPostR = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), 0.7, 1.2, -2.45);
+    group.add(body, cabin, wing, wingPostL, wingPostR);
+    const tireMaterial = makeMaterial(0x14181c, { roughness: 0.8 });
+    const wheels = [];
+    for (const wheelX of [-1.06, 1.06]) {
+      for (const wheelZ of [-1.62, 1.62]) {
+        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.4, 14), tireMaterial);
+        wheel.position.set(wheelX, 0.5, wheelZ);
+        wheel.rotation.z = Math.PI / 2;
+        group.add(wheel);
+        wheels.push(wheel);
+      }
+    }
+    const flag = makeTextSprite("🏁 RIVAL", "#ffffff", "#ff2e4d");
+    flag.position.set(0, 3.1, 0);
+    flag.scale.set(5.5, 1.7, 1);
+    group.add(flag);
+    group.traverse((object) => { if (object.isMesh) object.castShadow = true; });
+    group.visible = false;
+    scene.add(group);
+    rivalCar = { group, wheels };
+    return rivalCar;
+  }
+
+  function startRivalRace(mission) {
+    const car2 = ensureRivalCar();
+    const points = [];
+    const stopMarks = [];
+    let cursor = { x: citySpawn.x, z: citySpawn.z };
+    let accumulated = 0;
+    for (const stopId of mission.stops) {
+      const target = DESTINATIONS[stopId];
+      const leg = buildRoadRoute(cursor.x, cursor.z, target);
+      const legPoints = points.length ? leg.slice(1) : leg;
+      points.push(...legPoints);
+      accumulated += routeLength(leg);
+      stopMarks.push(accumulated);
+      cursor = target;
+    }
+    rivalRace = {
+      points,
+      total: accumulated,
+      stopMarks,
+      nextStop: 0,
+      distance: 0,
+      speed: mission.rival.kmh / WORLD_SPEED_TO_KMH,
+      pauseTimer: 0,
+      finished: false
+    };
+    car2.group.visible = true;
+    car2.group.position.set(citySpawn.x + 3, drivingSurfaceHeightAt(citySpawn.x + 3, citySpawn.z) + 0.05, citySpawn.z);
+  }
+
+  function stopRivalRace() {
+    rivalRace = null;
+    if (rivalCar) rivalCar.group.visible = false;
+  }
+
+  function updateRivalRace(dt) {
+    if (!rivalRace || state.status !== "playing") return;
+    if (rivalRace.pauseTimer > 0) {
+      rivalRace.pauseTimer -= dt;
+      return;
+    }
+    if (!rivalRace.finished) {
+      rivalRace.distance += rivalRace.speed * dt;
+      if (rivalRace.nextStop < rivalRace.stopMarks.length && rivalRace.distance >= rivalRace.stopMarks[rivalRace.nextStop]) {
+        rivalRace.distance = rivalRace.stopMarks[rivalRace.nextStop];
+        rivalRace.nextStop += 1;
+        if (rivalRace.nextStop >= rivalRace.stopMarks.length) {
+          rivalRace.finished = true;
+          onMessage?.("라이벌이 먼저 도착했습니다! 그래도 완주하세요");
+        } else {
+          rivalRace.pauseTimer = 2.6;
+        }
+      }
+    }
+    const spot = pointAlongRoute(rivalRace.points, Math.min(rivalRace.distance, rivalRace.total - 0.2));
+    if (!spot) return;
+    const laneX = spot.x - spot.dirZ * 1.6;
+    const laneZ = spot.z + spot.dirX * 1.6;
+    rivalCar.group.position.set(laneX, drivingSurfaceHeightAt(laneX, laneZ) + 0.05, laneZ);
+    rivalCar.group.rotation.y = Math.atan2(spot.dirX, spot.dirZ);
+    for (const wheel of rivalCar.wheels) wheel.rotation.x += rivalRace.speed * dt / 0.5;
+  }
 
   function clearLearningGates() {
     for (const gate of activeGates) {
@@ -2595,6 +2719,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       gear: (state.gear ?? 0) + 1,
       drifting: Boolean(state.drifting),
       goldEarned: Math.round(state.goldEarned || 0),
+      rivalStatus: rivalRace ? { progress: Math.min(1, rivalRace.distance / Math.max(1, rivalRace.total)), finished: rivalRace.finished } : null,
       bonusStatus: activeMission?.bonus ? {
         ...activeMission.bonus,
         current: activeMission.bonus.type === "noCrash" ? (state.crashCount || 0)
@@ -2630,7 +2755,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     audio.start();
     activeMission = mission;
     gateWanted = Array.isArray(options.wanted) ? options.wanted : [];
-    applyMissionMood(["morning", "festival", "space"][mission.slot ?? 0] || mission.id);
+    applyMissionMood(["morning", "festival", "space", "festival"][mission.slot ?? 0] || mission.id);
     stopIds = [...mission.stops];
     const firstTarget = DESTINATIONS[stopIds[0]];
     const openingRoute = buildRoadRoute(citySpawn.x, citySpawn.z, firstTarget);
@@ -2659,7 +2784,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       coinCount: 0,
       gatePenalty: 0,
       drifting: false,
-      slipAngle: 0
+      slipAngle: 0,
+      airborne: false,
+      vy: 0,
+      rampCooldown: 0
     });
     cameraOrbitYaw = 0;
     cameraOrbitHeight = 4.45;
@@ -2671,6 +2799,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     latestRoute = [];
     resetCoins();
     spawnGatesForLeg(citySpawn.x, citySpawn.z, firstTarget);
+    if (mission.rival) startRivalRace(mission);
+    else stopRivalRace();
     refreshMarkers();
     onMessage?.("출발! 게이트는 정답 차선으로 통과하세요");
     emitHud(true);
@@ -2691,6 +2821,14 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
         : bonus.type === "drift" ? (state.driftTotal || 0) >= bonus.target
         : (state.coinCount || 0) >= bonus.target;
     }
+    let missionReward = reason === "complete" ? activeMission?.reward || 0 : 0;
+    let rivalResult = null;
+    if (activeMission?.rival && rivalRace) {
+      const playerWon = reason === "complete" && !rivalRace.finished;
+      if (!playerWon) missionReward = Math.round(missionReward * 0.25);
+      rivalResult = { playerWon };
+    }
+    stopRivalRace();
     emitHud(true);
     onFinish?.({
       reason,
@@ -2699,9 +2837,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       deliveries: state.deliveryIndex,
       total: stopIds.length,
       timeBonus,
-      reward: reason === "complete" ? activeMission?.reward || 0 : 0,
+      reward: missionReward,
       goldEarned: Math.round(state.goldEarned || 0),
-      bonus: bonus ? { ...bonus, achieved: bonusAchieved } : null
+      bonus: bonus ? { ...bonus, achieved: bonusAchieved } : null,
+      rivalRace: rivalResult
     });
   }
 
@@ -2862,7 +3001,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       const roadHit = closestRoadPoint(state.x, state.z);
       const safeRoadRadius = roadHit ? roadHit.road.width / 2 + 0.9 : 0;
       const offroadDistance = roadHit ? Math.max(0, roadHit.distance - safeRoadRadius) : 0;
-      if (roadHit && offroadDistance > 0) {
+      if (roadHit && offroadDistance > 0 && !state.airborne) {
         const recovery = roadRecoveryPose(state.x, state.z, state.heading);
         if (recovery) {
           const pullStrength = clamp(1.25 + offroadDistance * 0.34, 1.25, 6.5);
@@ -2897,9 +3036,51 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       }
     }
 
+    // 점프 램프: 발사대에 충분한 속도로 진입하면 에어본 상태로 전환.
+    state.rampCooldown = Math.max(0, (state.rampCooldown || 0) - dt);
+    if (!state.airborne && state.rampCooldown <= 0) {
+      for (const ramp of JUMP_RAMPS) {
+        if (Math.hypot(state.x - ramp.x, state.z - ramp.z) > 4.5) continue;
+        const facing = Math.sin(state.heading) * Math.sin(ramp.heading) + Math.cos(state.heading) * Math.cos(ramp.heading);
+        if (facing < 0.55) continue;
+        state.rampCooldown = 2.5;
+        if (state.speed < ramp.minKmh / WORLD_SPEED_TO_KMH) {
+          onMessage?.(`너무 느려요! ${ramp.minKmh}km/h 이상으로 진입하세요`);
+          break;
+        }
+        state.airborne = true;
+        state.vy = state.speed * 0.27;
+        state.airHeight = carGroundHeight + 1.9;
+        audio.gearShift(4);
+        onMessage?.("점프!! 🚀");
+        break;
+      }
+    }
+
     const speedRatio = clamp(Math.abs(state.speed) / maxForward, 0, 1);
     const targetGroundHeight = drivingSurfaceHeightAt(state.x, state.z);
-    carGroundHeight = damp(carGroundHeight, targetGroundHeight, 17, dt);
+    if (state.airborne) {
+      state.vy -= 24 * dt;
+      state.airHeight += state.vy * dt;
+      if (state.vy < 0 && state.airHeight <= targetGroundHeight) {
+        state.airborne = false;
+        carGroundHeight = targetGroundHeight;
+        state.crashShake = 0.16;
+        const landedRoad = closestRoadPoint(state.x, state.z);
+        if (landedRoad?.road?.skyway && landedRoad.distance < landedRoad.road.width / 2 + 1) {
+          state.score += 500;
+          state.goldEarned = (state.goldEarned || 0) + 60;
+          audio.nearMiss();
+          onMessage?.("스카이웨이 점프 성공! +500 · 🪙60");
+        } else {
+          onMessage?.("착지!");
+        }
+      } else {
+        carGroundHeight = state.airHeight;
+      }
+    } else {
+      carGroundHeight = damp(carGroundHeight, targetGroundHeight, 17, dt);
+    }
     car.group.position.set(state.x, carGroundHeight + carGroundOffset(car), state.z);
     // 슬립각: 드리프트 중 차체가 진행 방향보다 더 돌아가 옆으로 흐르는 그림을 만든다.
     car.group.rotation.y += normalizeAngle(state.heading + (state.slipAngle || 0) - car.group.rotation.y) * (1 - Math.exp(-10.5 * dt));
@@ -2908,7 +3089,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const slopeSampleDistance = 3.4;
     const frontHeight = drivingSurfaceHeightAt(state.x + forwardX * slopeSampleDistance, state.z + forwardZ * slopeSampleDistance);
     const rearHeight = drivingSurfaceHeightAt(state.x - forwardX * slopeSampleDistance, state.z - forwardZ * slopeSampleDistance);
-    const targetRoadPitch = clamp(-Math.atan2(frontHeight - rearHeight, slopeSampleDistance * 2), -0.2, 0.2);
+    // 공중에서는 수직 속도에 따라 기수를 들었다 내렸다 한다.
+    const targetRoadPitch = state.airborne
+      ? clamp(-state.vy * 0.045, -0.34, 0.38)
+      : clamp(-Math.atan2(frontHeight - rearHeight, slopeSampleDistance * 2), -0.2, 0.2);
     carRoadPitch = damp(carRoadPitch, targetRoadPitch, 5.5, dt);
     const driveLean = state.brakeAmount > 0.2 ? 0.038 : state.throttleAmount > 0.15 ? -0.02 : 0;
     car.group.rotation.z = damp(car.group.rotation.z, -state.steerAmount * speedRatio * 0.055, 7.2, dt);
@@ -2995,6 +3179,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (state.status !== "playing") audio.stopEngine();
     driftSmoke.update(dt);
     if (scene.userData.cloudLayer) scene.userData.cloudLayer.position.x = Math.sin(elapsed * 0.011) * 40;
+    updateRivalRace(dt);
     messageCooldown = Math.max(0, messageCooldown - dt);
     hudAccumulator += dt;
     applyTimeOfDay(dt);
@@ -3121,6 +3306,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     returnToGarage() {
       state.status = "garage";
       clearLearningGates();
+      stopRivalRace();
       pendingQuiz = null;
       state.speed = 0;
       state.x = citySpawn.x;

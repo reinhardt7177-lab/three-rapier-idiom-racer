@@ -44,7 +44,8 @@ for (let rankIndex = 0; rankIndex < RANKS.length; rankIndex += 1) {
       for (const stop of contract.stops) assert.ok(DESTINATIONS[stop], `${contract.id}의 배송지 ${stop}이 없습니다.`);
       assert.ok(contract.time >= 60 && contract.time <= 480, `${contract.id} 제한시간(${contract.time}s)이 범위를 벗어났습니다.`);
       assert.ok(contract.reward > 0, `${contract.id}에 골드 보상이 없습니다.`);
-      assert.ok(contract.bonus?.reward > 0, `${contract.id}에 보너스 보상이 없습니다.`);
+      if (contract.rival) assert.ok(contract.rival.kmh >= 30 && contract.rival.kmh <= 60, `${contract.id} 라이벌 속도가 비정상입니다.`);
+      else assert.ok(contract.bonus?.reward > 0, `${contract.id}에 보너스 보상이 없습니다.`);
       assert.ok(LEARNING_PACKS.some((pack) => pack.id === contract.packId), `${contract.id} 학습팩이 없습니다.`);
       let cursor = { x: 0, z: 72 };
       for (const stopId of contract.stops) {

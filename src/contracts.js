@@ -76,6 +76,48 @@ function generateContract(seed, slot, rankIndex) {
   };
 }
 
+// 라이벌 매치: 같은 배송을 라이벌 AI와 동시에 뛰어 먼저 끝내는 쪽이 이긴다.
+function generateRivalContract(seed, rankIndex) {
+  const rng = mulberry32(seed * 31337 + rankIndex * 77 + 5);
+  const allStops = Object.keys(DESTINATIONS);
+  const stops = [];
+  while (stops.length < 2) {
+    const candidate = allStops[Math.floor(rng() * allStops.length)];
+    if (!stops.includes(candidate)) stops.push(candidate);
+  }
+  let cursor = { x: 0, z: 72 };
+  let distance = 0;
+  for (const stopId of stops) {
+    const target = DESTINATIONS[stopId];
+    distance += routeLength(buildRoadRoute(cursor.x, cursor.z, target));
+    cursor = target;
+  }
+  const rivalKmh = 34 + rankIndex * 5;
+  const time = Math.max(90, Math.min(420, Math.round((distance / (rivalKmh / WORLD_SPEED_TO_KMH)) * 1.35)));
+  const pack = LEARNING_PACKS[(seed + 1) % LEARNING_PACKS.length];
+  const lastStop = DESTINATIONS[stops[stops.length - 1]];
+  return {
+    id: `rival-${seed}-${rankIndex}`,
+    slot: 3,
+    rival: { kmh: rivalKmh },
+    title: `라이벌 매치 · ${lastStop.short}행`,
+    subtitle: "라이벌 드라이버보다 먼저 모든 배송을 끝내세요! 지면 보상은 4분의 1.",
+    pack,
+    packId: pack.id,
+    stops,
+    time,
+    reward: 500 + rankIndex * 300,
+    distance: Math.round(distance),
+    targetKmh: rivalKmh + 6,
+    bonus: null,
+    color: "#ff2e4d",
+    mathLevel: Math.min(3, 1 + rankIndex)
+  };
+}
+
 export function generateContracts(seed, rankIndex = 0) {
-  return [0, 1, 2].map((slot) => generateContract(seed, slot, rankIndex));
+  return [
+    ...[0, 1, 2].map((slot) => generateContract(seed, slot, rankIndex)),
+    generateRivalContract(seed, rankIndex)
+  ];
 }

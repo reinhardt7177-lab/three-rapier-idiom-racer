@@ -398,11 +398,12 @@ function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, 
               className={mission.id === item.id ? "mission-chip active" : "mission-chip"}
               onClick={() => setMission(item)}
             >
-              <span>{item.pack.icon}</span>
+              <span>{item.rival ? "🏁" : item.pack.icon}</span>
               <span>
                 <strong>{item.title}</strong>
                 <small>
-                  {item.time}초 · {item.stops.length}곳 · 🪙 {item.reward.toLocaleString()}G · {item.bonus.icon} {item.bonus.label} +{item.bonus.reward}G
+                  {item.time}초 · {item.stops.length}곳 · 🪙 {item.reward.toLocaleString()}G
+                  {item.bonus ? ` · ${item.bonus.icon} ${item.bonus.label} +${item.bonus.reward}G` : item.rival ? ` · 라이벌 ${item.rival.kmh}km/h와 대결` : ""}
                 </small>
               </span>
             </button>
@@ -542,6 +543,12 @@ function GameHud({ hud }) {
         <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
         <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
         <div><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
+        {hud.rivalStatus ? (
+          <div className={hud.rivalStatus.finished ? "time-stat urgent" : undefined}>
+            <small>🏁 라이벌</small>
+            <strong>{hud.rivalStatus.finished ? "도착!" : `${Math.round(hud.rivalStatus.progress * 100)}%`}</strong>
+          </div>
+        ) : null}
         {hud.bonusStatus ? (
           <div>
             <small>{hud.bonusStatus.icon} 보너스</small>
@@ -591,7 +598,10 @@ function MiniMap({ hud }) {
         {CITY_ROADS.map((road) => {
           const points = road.path.map((point) => `${project(point.x)},${project(point.z)}`).join(" ");
           const width = road.type === "arterial" ? 4.1 : road.type === "collector" ? 3 : 1.8;
-          return <polyline key={road.id} points={points} fill="none" stroke={road.bridge ? "#ffd166" : road.type === "arterial" ? "#506879" : "#81939e"} strokeWidth={road.bridge ? width + 1.4 : width} strokeLinecap="round" strokeLinejoin="round" />;
+          if (road.type === "alley") {
+            return <polyline key={road.id} points={points} fill="none" stroke="#9fc9dc" strokeWidth="1.4" strokeDasharray="3 2.4" strokeLinecap="round" strokeLinejoin="round" />;
+          }
+          return <polyline key={road.id} points={points} fill="none" stroke={road.skyway ? "#ffb44c" : road.bridge ? "#ffd166" : road.type === "arterial" ? "#506879" : "#81939e"} strokeWidth={road.bridge || road.skyway ? width + 1.4 : width} strokeLinecap="round" strokeLinejoin="round" />;
         })}
         <g fill="#264653" opacity=".72" fontSize="4.5" fontWeight="900" textAnchor="middle">
           <text x={project(-188)} y={project(-154)}>웨스트</text><text x={project(-204)} y={project(72)}>마켓</text><text x={project(188)} y={project(-94)}>스카이</text><text x={project(52)} y={project(224)}>하버</text><text x={project(0)} y={project(52)}>센트럴</text>
@@ -670,6 +680,11 @@ function ResultScreen({ result, onRetry, onGarage }) {
         {result.bonus ? (
           <div className={result.bonus.achieved ? "answer-feedback correct" : "answer-feedback wrong"}>
             {result.bonus.icon} {result.bonus.label} — {result.bonus.achieved ? `성공! +${result.bonus.reward}G` : "다음에 다시 도전!"}
+          </div>
+        ) : null}
+        {result.rivalRace ? (
+          <div className={result.rivalRace.playerWon ? "answer-feedback correct" : "answer-feedback wrong"}>
+            {result.rivalRace.playerWon ? "🏁 라이벌 격파! 풀 보상 획득!" : "🏁 라이벌에게 패배… 보상 25%만 지급"}
           </div>
         ) : null}
         <div className="result-actions"><button type="button" onClick={onGarage}>차고로</button><button className="primary" type="button" onClick={onRetry}>다시 도전</button></div>
