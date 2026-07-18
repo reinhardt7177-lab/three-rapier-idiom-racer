@@ -129,6 +129,25 @@ function makeSkyTexture(mood = "morning") {
   return texture;
 }
 
+function makeLaneArrowTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 128;
+  const context = canvas.getContext("2d");
+  context.clearRect(0, 0, 64, 128);
+  context.fillStyle = "rgba(246,249,251,0.94)";
+  context.fillRect(24, 46, 16, 74);
+  context.beginPath();
+  context.moveTo(32, 6);
+  context.lineTo(8, 52);
+  context.lineTo(56, 52);
+  context.closePath();
+  context.fill();
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
 function makeChevronMaterial(pointLeft) {
   const canvas = document.createElement("canvas");
   canvas.width = 256;
@@ -275,6 +294,37 @@ function createSkyline(scene) {
   createBoxInstances(scene, crownSpecs, skylineGlow, { receiveShadow: false });
   createBoxInstances(scene, windowSpecs, skylineGlow, { receiveShadow: false });
   scene.userData.skylineGlowMaterial = skylineGlow;
+}
+
+function createClouds(scene) {
+  // 로우폴리 구름: 납작한 아이코사히드론 3덩이 = 구름 1개. 전체가 천천히 표류한다.
+  const cloudMaterial = makeMaterial(0xffffff, { roughness: 1, transparent: true, opacity: 0.92, emissive: 0xffffff, emissiveIntensity: 0.18 });
+  const puffGeometry = new THREE.IcosahedronGeometry(1, 0);
+  const specs = [];
+  for (let index = 0; index < 20; index += 1) {
+    const angle = seeded(index + 40, 1) * Math.PI * 2;
+    const radius = 90 + seeded(index + 40, 2) * 300;
+    const x = Math.sin(angle) * radius;
+    const z = Math.cos(angle) * radius;
+    const y = 62 + seeded(index + 40, 3) * 34;
+    const scale = 7 + seeded(index + 40, 4) * 9;
+    specs.push({ x, y, z, width: scale * 1.9, height: scale * 0.62, depth: scale, rotation: angle });
+    specs.push({ x: x + scale * 1.15, y: y - scale * 0.1, z: z + scale * 0.35, width: scale * 1.25, height: scale * 0.5, depth: scale * 0.8, rotation: angle });
+    specs.push({ x: x - scale * 1.05, y: y - scale * 0.14, z: z - scale * 0.3, width: scale * 1.05, height: scale * 0.45, depth: scale * 0.72, rotation: angle });
+  }
+  const mesh = new THREE.InstancedMesh(puffGeometry, cloudMaterial, specs.length);
+  const helper = new THREE.Object3D();
+  specs.forEach((spec, index) => {
+    helper.position.set(spec.x, spec.y, spec.z);
+    helper.scale.set(spec.width, spec.height, spec.depth);
+    helper.rotation.set(0, spec.rotation, 0);
+    helper.updateMatrix();
+    mesh.setMatrixAt(index, helper.matrix);
+  });
+  mesh.castShadow = false;
+  mesh.receiveShadow = false;
+  scene.add(mesh);
+  scene.userData.cloudLayer = mesh;
 }
 
 function createRibbonMesh(path, width, material, y = 0.1) {
@@ -503,8 +553,10 @@ function createRoadNetwork(scene) {
   const junctionShoulderSpecs = [];
   const junctionSurfaceSpecs = [];
   const crosswalkSpecs = [];
+  const laneArrowSpecs = [];
   const shoulderMaterial = makeMaterial(0x50575d, { roughness: 0.98 });
   const sidewalkMaterial = makeMaterial(0xd8dfe3, { roughness: 0.96 });
+  const gutterMaterial = makeMaterial(0x39434b, { roughness: 0.96 });
   const asphaltTexture = makeAsphaltTexture();
   const asphaltMaterial = makeMaterial(0xffffff, { roughness: 0.94 });
   asphaltMaterial.map = asphaltTexture;
@@ -592,12 +644,30 @@ function createRoadNetwork(scene) {
         x: stopX, y: drivingSurfaceHeightAt(stopX, stopZ) + 0.062, z: stopZ,
         width: road.width - 1.7, height: 0.045, depth: 0.5, rotation: Math.atan2(ux, uz)
       });
+      // 정지선 뒤 차선 화살표 데칼 — 간선은 차로별 2개, 지선은 중앙 1개
+      const arrowOffsets = road.type === "arterial" ? [-road.width * 0.245, road.width * 0.245] : [0];
+      const arrowX = crossX + ux * 6.4;
+      const arrowZ = crossZ + uz * 6.4;
+      for (const lateral of arrowOffsets) {
+        laneArrowSpecs.push({
+          x: arrowX - uz * lateral, y: drivingSurfaceHeightAt(arrowX, arrowZ) + 0.066, z: arrowZ + ux * lateral,
+          width: 1.05, height: 1, depth: 2.4, rotation: Math.atan2(-ux, -uz)
+        });
+      }
     }
     const edgeOffset = Math.max(2.1, road.width / 2 - 0.62);
     scene.add(createRoadMarkingMesh(road, [-edgeOffset, edgeOffset], 0.18, edgeLineMaterial, {
       startInset: startJunction ? startJunction.surfaceRadius + 1.2 : 0,
       endInset: endJunction ? endJunction.surfaceRadius + 1.2 : 0
     }));
+    // 흰 실선 바깥의 어두운 거터 라인 — 노면에 폭 정보를 한 겹 더 준다.
+    if (!road.bridge) {
+      const gutterOffset = road.width / 2 - 0.18;
+      scene.add(createRoadMarkingMesh(road, [-gutterOffset, gutterOffset], 0.3, gutterMaterial, {
+        startInset: startJunction ? startJunction.surfaceRadius + 0.9 : 0,
+        endInset: endJunction ? endJunction.surfaceRadius + 0.9 : 0
+      }));
+    }
     if (road.type !== "local") {
       scene.add(createRoadMarkingMesh(road, [-0.2, 0.2], 0.12, centerLineMaterial, {
         startInset: startJunction ? startJunction.surfaceRadius + 1.2 : 0,
@@ -698,6 +768,12 @@ function createRoadNetwork(scene) {
   createBoxInstances(scene, markerSpecs, makeMaterial(0xf6f7f8, { emissive: 0xffffff, emissiveIntensity: 0.16 }));
   createBoxInstances(scene, localMarkerSpecs, makeMaterial(0xf7fbff, { emissive: 0xffffff, emissiveIntensity: 0.08 }));
   createBoxInstances(scene, crosswalkSpecs, makeMaterial(0xf3f6f8, { roughness: 0.8, emissive: 0xffffff, emissiveIntensity: 0.1 }));
+  const laneArrowGeometry = new THREE.PlaneGeometry(1, 1);
+  laneArrowGeometry.rotateX(-Math.PI / 2);
+  const laneArrowMaterial = makeMaterial(0xffffff, { roughness: 0.78, emissive: 0xffffff, emissiveIntensity: 0.1, transparent: true });
+  laneArrowMaterial.map = makeLaneArrowTexture();
+  laneArrowMaterial.depthWrite = false;
+  createBoxInstances(scene, laneArrowSpecs, laneArrowMaterial, { geometry: laneArrowGeometry, castShadow: false });
   createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x8b969e, { roughness: 0.42, metalness: 0.58 }), { castShadow: true });
 }
 
@@ -913,6 +989,10 @@ function createCity(scene) {
   const lotSpecs = [];
   const trunkSpecs = [];
   const crownSpecs = [];
+  const pilasterSpecs = [];
+  const tankSpecs = [];
+  const tankRoofSpecs = [];
+  const billboardSpecs = [];
   const landmarkClearings = buildCityLandmarkClearings(DESTINATIONS);
   const buildingPlans = buildCityBuildingPlans(landmarkClearings);
   const placedBuildings = buildingPlans.map((plan) => ({ x: plan.x, z: plan.z, radius: plan.footprintRadius }));
@@ -984,6 +1064,31 @@ function createCity(scene) {
           color: 0xdde6ea, rotation
         });
       }
+      // 파사드 필라스터: 상업 건물 모서리에 수직 스트립을 세워 밋밋한 슬래브를 깬다.
+      if (!residential) {
+        const pilasterColor = new THREE.Color(color).multiplyScalar(0.82).getHex();
+        for (const side of [-1, 1]) {
+          const edge = rotatePoint(side * (width / 2 - 0.12), 0, rotation);
+          pilasterSpecs.push({
+            x: x + edge.x, y: baseY + height / 2 + 0.25, z: z + edge.z,
+            width: 0.45, height: height - 0.5, depth: depth + 0.22, color: pilasterColor, rotation
+          });
+        }
+      }
+      // 중층 상업 건물 1/3에는 급수탑, 고층 1/3에는 발광 광고판을 올린다.
+      if (!residential && !highRise && height >= 14 && seed % 3 === 1) {
+        const spot = rotatePoint(width * 0.22, depth * 0.18, rotation);
+        tankSpecs.push({ x: x + spot.x, y: baseY + height + 2.15, z: z + spot.z, width: 1.9, height: 2.3, depth: 1.9 });
+        tankRoofSpecs.push({ x: x + spot.x, y: baseY + height + 3.85, z: z + spot.z, width: 2.2, height: 1.1, depth: 2.2 });
+      }
+      if (highRise && seed % 3 === 0) {
+        const spot = rotatePoint(-width * 0.1, depth * 0.16, rotation);
+        billboardSpecs.push({
+          x: x + spot.x, y: baseY + height + 2.5, z: z + spot.z,
+          width: Math.min(5, width * 0.55), height: 2.2, depth: 0.2,
+          color: district.colors[(seed + 1) % district.colors.length], rotation
+        });
+      }
       doorSpecs.push({ x: x + frontNormal.x, y: baseY + 1.55, z: z + frontNormal.z, width: residential ? 1.3 : 1.6, height: 2.7, depth: 0.18, color: residential ? 0xffffff : 0x314a5c, rotation });
       if (residential) balconySpecs.push({ x: x + frontNormal.x * 1.04, y: baseY + 3.1, z: z + frontNormal.z * 1.04, width: width * 0.5, height: 0.18, depth: 0.8, color: 0xffffff, rotation });
       else if (height < 40) {
@@ -1030,9 +1135,21 @@ function createCity(scene) {
     castShadow: true,
     geometry: new THREE.ConeGeometry(1, 1, 9)
   });
+  createBoxInstances(scene, pilasterSpecs, makeMaterial(0xffffff, { roughness: 0.74 }));
+  createBoxInstances(scene, tankSpecs, makeMaterial(0xb5c3cb, { roughness: 0.5, metalness: 0.4 }), {
+    castShadow: true,
+    geometry: new THREE.CylinderGeometry(0.5, 0.5, 1, 10)
+  });
+  createBoxInstances(scene, tankRoofSpecs, makeMaterial(0x8d6a56, { roughness: 0.8 }), {
+    geometry: new THREE.ConeGeometry(0.5, 1, 10)
+  });
+  const billboardMaterial = makeMaterial(0xffffff, { roughness: 0.35, emissive: 0xfff2c8, emissiveIntensity: 0.7 });
+  createBoxInstances(scene, billboardSpecs, billboardMaterial, { receiveShadow: false });
+  scene.userData.billboardMaterial = billboardMaterial;
   createCentralHub(scene);
   createLandmarks(scene);
   createSkyline(scene);
+  createClouds(scene);
   scene.userData.cityStats = { roads: CITY_ROADS.length, buildings: buildingSpecs.length };
 }
 
@@ -1391,7 +1508,7 @@ function createWheelAssembly(radius, width, tireMaterial, rimMaterial, accentMat
   const tire = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, width, 28), tireMaterial);
   tire.rotation.z = Math.PI / 2;
   tire.castShadow = true;
-  const rim = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.64, radius * 0.64, width * 1.03, 18), rimMaterial);
+  const rim = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.72, radius * 0.72, width * 1.03, 18), rimMaterial);
   rim.rotation.z = Math.PI / 2;
   const hub = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.2, radius * 0.2, width * 1.08, 16), accentMaterial);
   hub.rotation.z = Math.PI / 2;
@@ -1543,6 +1660,11 @@ function rebuildVehicleKit(car, style) {
   const trunkLip = roundedBox(width * 0.68, 0.09, 0.26, car.bodyMaterial, 0.045, 0, bodyBottom + 1.02, -length * 0.385);
   const leftSkirt = roundedBox(0.14, 0.16, length * 0.72, car.darkMaterial, 0.04, -halfWidth - 0.035, bodyBottom + 0.08, 0);
   const rightSkirt = roundedBox(0.14, 0.16, length * 0.72, car.darkMaterial, 0.04, halfWidth + 0.035, bodyBottom + 0.08, 0);
+  // 사이드 액센트 스트라이프 — 옆면에 스포티한 라인을 그어 스탠스를 강조
+  const leftStripe = roundedBox(0.05, 0.12, length * 0.6, car.accentMaterial, 0.02, -halfWidth - 0.015, bodyBottom + 0.58, 0.1);
+  const rightStripe = roundedBox(0.05, 0.12, length * 0.6, car.accentMaterial, 0.02, halfWidth + 0.015, bodyBottom + 0.58, 0.1);
+  const splitterAccent = roundedBox(width * 0.62, 0.06, 0.1, car.accentMaterial, 0.02, 0, bodyBottom + 0.14, length / 2 + 0.3);
+  car.vehicleKit.add(leftStripe, rightStripe, splitterAccent);
   car.vehicleKit.add(roofPanel, frontSplitter, rearDiffuser, rearBumper, tailgateBand, trunkLip, leftSkirt, rightSkirt);
 
   car.flames = [];
@@ -1586,8 +1708,8 @@ function rebuildVehicleKit(car, style) {
       wheelAssembly.userData.home = { x, y: wheelY, z, radius: wheel * profile.scale };
       car.vehicleKit.add(wheelAssembly);
       car.wheels.push(wheelAssembly);
-      const arch = new THREE.Mesh(new THREE.TorusGeometry(wheel * 1.12, 0.085, 6, 16, Math.PI), car.darkMaterial);
-      arch.position.set(Math.sign(x) * (halfWidth + 0.02), wheelY, z);
+      const arch = new THREE.Mesh(new THREE.TorusGeometry(wheel * 1.14, 0.115, 6, 16, Math.PI), car.darkMaterial);
+      arch.position.set(Math.sign(x) * (halfWidth + 0.03), wheelY, z);
       arch.rotation.y = Math.PI / 2;
       car.vehicleKit.add(arch);
     }
@@ -2144,6 +2266,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     sunTarget.position.set(state.x, terrainHeightAt(state.x, state.z), state.z);
     renderer.toneMappingExposure = 0.86 + daylight * 0.28 + twilight * 0.1;
     if (scene.userData.cityWindowMaterial) scene.userData.cityWindowMaterial.emissiveIntensity = 0.16 + (1 - daylight) * 1.4;
+    if (scene.userData.billboardMaterial) scene.userData.billboardMaterial.emissiveIntensity = 0.45 + (1 - daylight) * 1.8;
     if (scene.userData.skylineGlowMaterial) scene.userData.skylineGlowMaterial.emissiveIntensity = 0.24 + (1 - daylight) * 1.25;
     for (const material of scene.userData.roadGlowMaterials || []) material.emissiveIntensity = 0.12 + (1 - daylight) * 0.72;
     car.headlightMaterial.emissiveIntensity = 0.55 + (1 - daylight) * 3.4;
@@ -2571,6 +2694,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   function updateWorld(dt, elapsed) {
     if (state.status !== "playing") audio.stopEngine();
     driftSmoke.update(dt);
+    if (scene.userData.cloudLayer) scene.userData.cloudLayer.position.x = Math.sin(elapsed * 0.011) * 40;
     messageCooldown = Math.max(0, messageCooldown - dt);
     hudAccumulator += dt;
     applyTimeOfDay(dt);
