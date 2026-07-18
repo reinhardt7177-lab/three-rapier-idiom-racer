@@ -96,6 +96,7 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [message, setMessage] = useState("차를 꾸미고 첫 배송을 시작해요!");
   const [audioOn, setAudioOn] = useState(true);
+  const [runtimeStatus, setRuntimeStatus] = useState("loading");
   const [isPortrait, setIsPortrait] = useState(() =>
     typeof window !== "undefined" && window.matchMedia("(orientation: portrait)").matches
   );
@@ -110,35 +111,51 @@ export default function App() {
 
   useEffect(() => {
     if (!mountRef.current) return undefined;
-    runtimeRef.current = createDeliveryRuntime({
-      mount: mountRef.current,
-      initialStyle: style,
-      onHud: setHud,
-      onDelivery: (payload) => {
-        setQuiz(payload);
-        setQuizResult(null);
-      },
-      onFinish: (payload) => {
-        const bonusGold = payload.bonus?.achieved ? payload.bonus.reward : 0;
-        const totalGold = (payload.reward || 0) + (payload.goldEarned || 0) + bonusGold;
-        setProgress((current) => ({
-          ...current,
-          gold: current.gold + totalGold,
-          xp: current.xp + Math.round(Math.max(0, payload.score || 0))
-        }));
-        setResult({ ...payload, totalGold, bonusGold });
-        setQuiz(null);
-        setScreen("result");
-      },
-      onQuizOutcome: (packId, key, correct) => {
-        if (!key) return;
-        setProgress((current) => {
-          const wanted = current.wanted.filter((item) => !(item.packId === packId && item.key === key));
-          if (!correct) wanted.unshift({ packId, key });
-          return { ...current, wanted: wanted.slice(0, 24) };
+    let cancelled = false;
+    const initStartedAt = performance.now();
+    const initializationFrame = window.requestAnimationFrame(() => {
+      try {
+        const runtime = createDeliveryRuntime({
+          mount: mountRef.current,
+          initialStyle: style,
+          onHud: setHud,
+          onDelivery: (payload) => {
+            setQuiz(payload);
+            setQuizResult(null);
+          },
+          onFinish: (payload) => {
+            const bonusGold = payload.bonus?.achieved ? payload.bonus.reward : 0;
+            const totalGold = (payload.reward || 0) + (payload.goldEarned || 0) + bonusGold;
+            setProgress((current) => ({
+              ...current,
+              gold: current.gold + totalGold,
+              xp: current.xp + Math.round(Math.max(0, payload.score || 0))
+            }));
+            setResult({ ...payload, totalGold, bonusGold });
+            setQuiz(null);
+            setScreen("result");
+          },
+          onQuizOutcome: (packId, key, correct) => {
+            if (!key) return;
+            setProgress((current) => {
+              const wanted = current.wanted.filter((item) => !(item.packId === packId && item.key === key));
+              if (!correct) wanted.unshift({ packId, key });
+              return { ...current, wanted: wanted.slice(0, 24) };
+            });
+          },
+          onMessage: showMessage
         });
-      },
-      onMessage: showMessage
+        if (cancelled) {
+          runtime.destroy();
+          return;
+        }
+        runtimeRef.current = runtime;
+        setRuntimeStatus("ready");
+        console.info(`[mumu-runtime] ready in ${Math.round(performance.now() - initStartedAt)}ms`);
+      } catch (error) {
+        console.error("[mumu-runtime] initialization failed", error);
+        if (!cancelled) setRuntimeStatus("error");
+      }
     });
 
     const keyDown = (event) => {
@@ -162,6 +179,8 @@ export default function App() {
     window.addEventListener("keyup", keyUp);
     window.addEventListener("blur", releaseControls);
     return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(initializationFrame);
       window.removeEventListener("keydown", keyDown);
       window.removeEventListener("keyup", keyUp);
       window.removeEventListener("blur", releaseControls);
@@ -218,10 +237,19 @@ export default function App() {
   }
 
   function startMission() {
+    if (runtimeStatus === "error") {
+      window.location.reload();
+      return;
+    }
+    if (runtimeStatus !== "ready" || !runtimeRef.current) {
+      showMessage("도시를 불러오는 중이에요. 잠시만 기다려주세요!");
+      return;
+    }
     setPreviewVehicle(null);
     setResult(null);
     setQuiz(null);
     setQuizResult(null);
+    setRuntimeStatus("starting");
     setScreen("playing");
     // 모바일은 전체화면 + 가로 잠금을 시도한다 (브라우저가 거부하면 회전 안내 오버레이가 대신한다).
     if (isTouchDevice && !document.fullscreenElement) {
@@ -229,7 +257,17 @@ export default function App() {
         .then(() => window.screen?.orientation?.lock?.("landscape"))
         .catch(() => {});
     }
-    runtimeRef.current?.startMission(mission, { wanted: progress.wanted });
+    // Paint the driving HUD first so a large route cannot make the button look unresponsive.
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+      try {
+        runtimeRef.current?.startMission(mission, { wanted: progress.wanted });
+        setRuntimeStatus("ready");
+      } catch (error) {
+        console.error("[mumu-runtime] mission start failed", error);
+        setRuntimeStatus("error");
+        setScreen("garage");
+      }
+    }));
   }
 
   function answerQuiz(index) {
@@ -339,6 +377,7 @@ export default function App() {
             onUpgrade={upgradeVehicle}
             onStart={startMission}
             onRefresh={() => refreshContracts()}
+            runtimeStatus={runtimeStatus}
           />
         ) : null}
 
@@ -348,6 +387,12 @@ export default function App() {
             <MiniMap hud={hud} />
             <Controls runtimeRef={runtimeRef} />
             {message ? <div className="toast-message">{message}</div> : null}
+            {runtimeStatus === "starting" ? (
+              <div className="runtime-starting" role="status" aria-live="polite">
+                <span aria-hidden="true" />
+                <strong>배송 경로 준비 중…</strong>
+              </div>
+            ) : null}
           </>
         ) : null}
 
@@ -368,7 +413,7 @@ export default function App() {
   );
 }
 
-function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, progress, previewVehicle, upgrades, onSelectVehicle, onPreviewVehicle, onUpgrade, onStart, onRefresh }) {
+function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, progress, previewVehicle, upgrades, onSelectVehicle, onPreviewVehicle, onUpgrade, onStart, onRefresh, runtimeStatus }) {
   const displayedVehicle = previewVehicle || style.vehicle;
   const nextRankXp = rank.next ? rank.next.xp : null;
   return (
@@ -422,8 +467,17 @@ function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, 
             })}
           </div>
         </div>
-        <button className="start-delivery" type="button" onClick={onStart}>
-          <span>배송 출발</span><b>→</b>
+        <button
+          className="start-delivery"
+          type="button"
+          onClick={onStart}
+          disabled={runtimeStatus === "loading" || runtimeStatus === "starting"}
+          aria-busy={runtimeStatus === "loading" || runtimeStatus === "starting"}
+        >
+          <span>
+            {runtimeStatus === "loading" ? "3D 도시 준비 중…" : runtimeStatus === "error" ? "다시 불러오기" : "배송 출발"}
+          </span>
+          <b>{runtimeStatus === "loading" ? "…" : runtimeStatus === "error" ? "↻" : "→"}</b>
         </button>
         <div className="quest-howto" aria-label="퀘스트 해결 순서">
           <span><b>1</b> 주문 선택</span><em>›</em><span><b>2</b> 차량 위 내비</span><em>›</em><span><b>3</b> 배달 암호</span>
