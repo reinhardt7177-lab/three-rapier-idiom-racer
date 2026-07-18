@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CITY_HALF, CITY_RIVER_PATH, CITY_ROADS } from "./city-map.js";
 import { buildRoadRoute, createDeliveryRuntime, routeLength } from "./create-delivery-runtime.js";
-import { DECALS, DEFAULT_STYLE, DESTINATIONS, MAX_WORKSHOP_LEVEL, MISSIONS, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "./game-data.js";
+import { DECALS, DEFAULT_STYLE, DESTINATIONS, MAX_WORKSHOP_LEVEL, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "./game-data.js";
+import { RANKS, generateContracts, rankForXp } from "./contracts.js";
 
 const initialHud = {
   status: "garage",
@@ -56,17 +57,23 @@ function loadStyle() {
   }
 }
 
+const EMPTY_PROGRESS = { gold: 0, owned: [VEHICLES[0].id], upgrades: {}, xp: 0, wanted: [] };
+
 function loadProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem("mumu-delivery-progress") || "null");
-    if (!saved) return { gold: 0, owned: [VEHICLES[0].id], upgrades: {} };
+    if (!saved) return { ...EMPTY_PROGRESS };
     return {
       gold: Math.max(0, Number(saved.gold) || 0),
       owned: Array.from(new Set([VEHICLES[0].id, ...(saved.owned || [])])).filter((id) => VEHICLES.some((vehicle) => vehicle.id === id)),
-      upgrades: saved.upgrades && typeof saved.upgrades === "object" ? saved.upgrades : {}
+      upgrades: saved.upgrades && typeof saved.upgrades === "object" ? saved.upgrades : {},
+      xp: Math.max(0, Number(saved.xp) || 0),
+      wanted: Array.isArray(saved.wanted)
+        ? saved.wanted.filter((item) => item && item.packId && item.key).slice(0, 24)
+        : []
     };
   } catch {
-    return { gold: 0, owned: [VEHICLES[0].id], upgrades: {} };
+    return { ...EMPTY_PROGRESS };
   }
 }
 
@@ -79,7 +86,10 @@ export default function App() {
   const [style, setStyle] = useState(loadStyle);
   const [previewVehicle, setPreviewVehicle] = useState(null);
   const [progress, setProgress] = useState(loadProgress);
-  const [mission, setMission] = useState(MISSIONS[0]);
+  const rank = rankForXp(progress.xp);
+  const [contractSeed, setContractSeed] = useState(() => Math.floor(Math.random() * 100000));
+  const [contracts, setContracts] = useState(() => generateContracts(contractSeed, rankForXp(loadProgress().xp).index));
+  const [mission, setMission] = useState(() => contracts[0]);
   const [hud, setHud] = useState(initialHud);
   const [quiz, setQuiz] = useState(null);
   const [quizResult, setQuizResult] = useState(null);
@@ -98,10 +108,24 @@ export default function App() {
         setQuizResult(null);
       },
       onFinish: (payload) => {
-        if (payload.reward > 0) setProgress((current) => ({ ...current, gold: current.gold + payload.reward }));
-        setResult(payload);
+        const bonusGold = payload.bonus?.achieved ? payload.bonus.reward : 0;
+        const totalGold = (payload.reward || 0) + (payload.goldEarned || 0) + bonusGold;
+        setProgress((current) => ({
+          ...current,
+          gold: current.gold + totalGold,
+          xp: current.xp + Math.round(Math.max(0, payload.score || 0))
+        }));
+        setResult({ ...payload, totalGold, bonusGold });
         setQuiz(null);
         setScreen("result");
+      },
+      onQuizOutcome: (packId, key, correct) => {
+        if (!key) return;
+        setProgress((current) => {
+          const wanted = current.wanted.filter((item) => !(item.packId === packId && item.key === key));
+          if (!correct) wanted.unshift({ packId, key });
+          return { ...current, wanted: wanted.slice(0, 24) };
+        });
       },
       onMessage: showMessage
     });
@@ -174,13 +198,21 @@ export default function App() {
     messageTimerRef.current = window.setTimeout(() => setMessage(""), 2200);
   }
 
+  function refreshContracts(xp = progress.xp) {
+    const seed = Math.floor(Math.random() * 100000);
+    const board = generateContracts(seed, rankForXp(xp).index);
+    setContractSeed(seed);
+    setContracts(board);
+    setMission(board[0]);
+  }
+
   function startMission() {
     setPreviewVehicle(null);
     setResult(null);
     setQuiz(null);
     setQuizResult(null);
     setScreen("playing");
-    runtimeRef.current?.startMission(mission);
+    runtimeRef.current?.startMission(mission, { wanted: progress.wanted });
   }
 
   function answerQuiz(index) {
@@ -199,12 +231,17 @@ export default function App() {
     setScreen("garage");
     setQuiz(null);
     setResult(null);
+    refreshContracts();
     runtimeRef.current?.returnToGarage();
   }
 
   function selectVehicle(vehicle) {
     if (progress.owned.includes(vehicle.id)) {
       setStyle((current) => ({ ...current, vehicle }));
+      return;
+    }
+    if (rank.index < (vehicle.rankReq || 0)) {
+      showMessage(`${RANKS[vehicle.rankReq].name} 등급부터 구매할 수 있어요`);
       return;
     }
     if (progress.gold < vehicle.price) {
@@ -274,6 +311,8 @@ export default function App() {
             setStyle={setStyle}
             mission={mission}
             setMission={setMission}
+            contracts={contracts}
+            rank={rank}
             stats={stats}
             progress={progress}
             previewVehicle={previewVehicle}
@@ -282,6 +321,7 @@ export default function App() {
             onPreviewVehicle={setPreviewVehicle}
             onUpgrade={upgradeVehicle}
             onStart={startMission}
+            onRefresh={() => refreshContracts()}
           />
         ) : null}
 
@@ -303,27 +343,49 @@ export default function App() {
   );
 }
 
-function Garage({ style, setStyle, mission, setMission, stats, progress, previewVehicle, upgrades, onSelectVehicle, onPreviewVehicle, onUpgrade, onStart }) {
+function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, progress, previewVehicle, upgrades, onSelectVehicle, onPreviewVehicle, onUpgrade, onStart, onRefresh }) {
   const displayedVehicle = previewVehicle || style.vehicle;
+  const nextRankXp = rank.next ? rank.next.xp : null;
   return (
     <section className="garage-screen">
       <div className="garage-copy">
         <span className="eyebrow">OPEN CITY DELIVERY RACING</span>
         <h1>도심을 가로질러,<br /><em>하버까지 전력 질주!</em></h1>
-        <p>화물을 배달해 골드를 벌고 실제 퍼포먼스 카를 차례로 해금하세요.</p>
-        <div className="gold-wallet"><span>🪙 보유 골드</span><strong>{progress.gold.toLocaleString()} G</strong></div>
-        <div className="mission-picker" aria-label="배송 미션 선택">
-          {MISSIONS.map((item) => (
+        <p>계약을 골라 배달하고, 도로 위 학습 게이트를 정답 차선으로 통과하세요.</p>
+        <div className="gold-wallet">
+          <span>🪙 보유 골드</span><strong>{progress.gold.toLocaleString()} G</strong>
+          <span style={{ marginLeft: 12 }}>{rank.icon} {rank.name}</span>
+          <strong style={{ color: rank.color }}>
+            {nextRankXp ? `${progress.xp.toLocaleString()} / ${nextRankXp.toLocaleString()} XP` : `${progress.xp.toLocaleString()} XP`}
+          </strong>
+        </div>
+        {progress.wanted.length ? (
+          <div className="gold-wallet" style={{ marginTop: 6 }}>
+            <span>🚨 수배 문제</span>
+            <strong>{progress.wanted.length}건 — 게이트에서 다시 만나요 (해제 시 보상 1.5배)</strong>
+          </div>
+        ) : null}
+        <div className="mission-picker" aria-label="배송 계약 선택">
+          {contracts.map((item) => (
             <button
               type="button"
               key={item.id}
               className={mission.id === item.id ? "mission-chip active" : "mission-chip"}
               onClick={() => setMission(item)}
             >
-              <span>{item.id === "morning" ? "🏔️" : item.id === "festival" ? "🌉" : "🌊"}</span>
-              <span><strong>{item.title}</strong><small>{item.time}초 · 3곳 · 🪙 {item.reward.toLocaleString()}G</small></span>
+              <span>{item.pack.icon}</span>
+              <span>
+                <strong>{item.title}</strong>
+                <small>
+                  {item.time}초 · {item.stops.length}곳 · 🪙 {item.reward.toLocaleString()}G · {item.bonus.icon} {item.bonus.label} +{item.bonus.reward}G
+                </small>
+              </span>
             </button>
           ))}
+          <button type="button" className="mission-chip" onClick={onRefresh}>
+            <span>🔄</span>
+            <span><strong>새 계약 받기</strong><small>계약 보드를 다시 생성합니다</small></span>
+          </button>
         </div>
         <div className="mission-route-preview">
           <span><b>오늘의 배송 순서</b><small>약 {(missionRouteDistance(mission) / 1000).toFixed(1)}km</small></span>
@@ -351,6 +413,7 @@ function Garage({ style, setStyle, mission, setMission, stats, progress, preview
         <div className="vehicle-shop" aria-label="차량 상점">
           {VEHICLES.map((vehicle) => {
             const owned = progress.owned.includes(vehicle.id);
+            const locked = !owned && rank.index < (vehicle.rankReq || 0);
             return (
               <button
                 type="button"
@@ -363,9 +426,9 @@ function Garage({ style, setStyle, mission, setMission, stats, progress, preview
                 onBlur={() => onPreviewVehicle(null)}
                 title={`${vehicle.name} 3D 미리보기`}
               >
-                <span style={{ background: vehicle.color }}>{vehicle.icon}</span>
+                <span style={{ background: vehicle.color, opacity: locked ? 0.45 : 1 }}>{vehicle.icon}</span>
                 <small>{vehicle.name}</small>
-                <b>{owned ? (style.vehicle.id === vehicle.id ? "사용 중" : "보유") : `${vehicle.price.toLocaleString()}G`}</b>
+                <b>{owned ? (style.vehicle.id === vehicle.id ? "사용 중" : "보유") : locked ? `🔒 ${RANKS[vehicle.rankReq].name}` : `${vehicle.price.toLocaleString()}G`}</b>
               </button>
             );
           })}
@@ -453,6 +516,17 @@ function GameHud({ hud }) {
         <div className={urgent ? "time-stat urgent" : "time-stat"}><small>남은 시간</small><strong>{seconds}</strong><span>초</span></div>
         <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
         <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
+        <div><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
+        {hud.bonusStatus ? (
+          <div>
+            <small>{hud.bonusStatus.icon} 보너스</small>
+            <strong>
+              {hud.bonusStatus.type === "noCrash"
+                ? (hud.bonusStatus.current === 0 ? "무충돌 유지 중" : "실패")
+                : `${hud.bonusStatus.current}/${hud.bonusStatus.target}`}
+            </strong>
+          </div>
+        ) : null}
       </section>
 
       <section className={hud.overdrive ? "speed-meter overdrive" : "speed-meter"} aria-label={`현재 속도 ${hud.speed}km/h`}>
@@ -536,7 +610,7 @@ function DeliveryQuiz({ quiz, result, onAnswer }) {
       <section className="quiz-panel">
         <span className="quiz-label">{quiz.label}</span>
         <h2>마지막 배송 암호!</h2>
-        <div className="idiom-card"><strong>{quiz.hanja}</strong><span>{quiz.korean}</span></div>
+        <div className="idiom-card"><strong>{quiz.hanja}</strong>{quiz.korean ? <span>{quiz.korean}</span> : null}</div>
         <p>{quiz.question}</p>
         <div className="quiz-options">
           {quiz.options.map((option, index) => {
@@ -560,7 +634,16 @@ function ResultScreen({ result, onRetry, onGarage }) {
         <div className="result-mascot">{complete ? "🚚💨" : "⏰"}</div>
         <h2>{complete ? "도심 배송 성공!" : "도심 루트를 다시 공략해 봐요!"}</h2>
         <div className="result-stars">{[1, 2, 3].map((star) => <span key={star} className={star <= rating ? "earned" : ""}>★</span>)}</div>
-        <div className="result-grid"><div><small>최종 점수</small><strong>{Math.round(result.score).toLocaleString()}</strong></div><div><small>배달 완료</small><strong>{result.deliveries}/{result.total}</strong></div><div><small>획득 골드</small><strong>+{(result.reward || 0).toLocaleString()}G</strong></div></div>
+        <div className="result-grid">
+          <div><small>최종 점수 (=XP)</small><strong>{Math.round(result.score).toLocaleString()}</strong></div>
+          <div><small>배달 완료</small><strong>{result.deliveries}/{result.total}</strong></div>
+          <div><small>획득 골드</small><strong>+{(result.totalGold ?? result.reward ?? 0).toLocaleString()}G</strong></div>
+        </div>
+        {result.bonus ? (
+          <div className={result.bonus.achieved ? "answer-feedback correct" : "answer-feedback wrong"}>
+            {result.bonus.icon} {result.bonus.label} — {result.bonus.achieved ? `성공! +${result.bonus.reward}G` : "다음에 다시 도전!"}
+          </div>
+        ) : null}
         <div className="result-actions"><button type="button" onClick={onGarage}>차고로</button><button className="primary" type="button" onClick={onRetry}>다시 도전</button></div>
       </section>
     </div>

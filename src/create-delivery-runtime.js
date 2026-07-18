@@ -3,7 +3,7 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 import { CITY_HALF, CITY_NODES, CITY_RIVER_PATH, CITY_ROADS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_SKYLINE_MIN_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, distanceToRiver, isPointOnCityRoad, pathLength, roadBaseHeightAt, terrainHeightAt } from "./city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "./city-layout.js";
 import { DESTINATIONS } from "./game-data.js";
-import { idiomQuizData } from "./idiom-quiz-data.js";
+import { makeQuestion } from "./learning-packs.js";
 
 const WORLD_HALF = CITY_HALF;
 const DELIVERY_RADIUS = 12;
@@ -94,7 +94,12 @@ function makeTextSprite(text, color = "#ffffff", background = "#25406a") {
   context.lineWidth = 8;
   context.stroke();
   context.fillStyle = color;
-  context.font = "900 55px Arial, sans-serif";
+  let fontSize = 55;
+  context.font = `900 ${fontSize}px Arial, sans-serif`;
+  while (fontSize > 22 && context.measureText(text).width > 470) {
+    fontSize -= 3;
+    context.font = `900 ${fontSize}px Arial, sans-serif`;
+  }
   context.textAlign = "center";
   context.textBaseline = "middle";
   context.fillText(text, 256, 84);
@@ -2010,21 +2015,39 @@ function districtFor(x, z) {
   return { name: "이스트 스카이라인", color: "#5e60ce" };
 }
 
-function makeQuiz(label) {
-  const correct = idiomQuizData[Math.floor(Math.random() * idiomQuizData.length)];
-  const wrongs = shuffle(idiomQuizData.filter((item) => item.korean !== correct.korean)).slice(0, 3);
-  const choices = shuffle([
-    { text: correct.meaning, correct: true },
-    ...wrongs.map((item) => ({ text: item.meaning, correct: false }))
-  ]);
+function pointAlongRoute(route, distance) {
+  let walked = 0;
+  for (let index = 0; index < route.length - 1; index += 1) {
+    const from = route[index];
+    const to = route[index + 1];
+    const segmentLength = Math.hypot(to.x - from.x, to.z - from.z);
+    if (walked + segmentLength >= distance && segmentLength > 0.01) {
+      const t = (distance - walked) / segmentLength;
+      return {
+        x: lerp(from.x, to.x, t),
+        z: lerp(from.z, to.z, t),
+        dirX: (to.x - from.x) / segmentLength,
+        dirZ: (to.z - from.z) / segmentLength
+      };
+    }
+    walked += segmentLength;
+  }
+  return null;
+}
+
+// 보스 퀴즈(최종 배송지 모달): 계약의 학습팩에서 4지선다로 출제한다.
+function makeBossQuiz(label, packId, wanted, mathLevel) {
+  const question = makeQuestion(packId, { choiceCount: 4, wanted, level: mathLevel });
   return {
     label,
-    hanja: correct.hanja,
-    korean: correct.korean,
-    question: "택배 암호! 이 사자성어의 뜻은 무엇일까요?",
-    options: choices.map((choice) => choice.text),
-    correctIndex: choices.findIndex((choice) => choice.correct),
-    meaning: correct.meaning
+    packId: question.packId,
+    quizKey: question.key,
+    hanja: question.headline,
+    korean: "",
+    question: question.prompt,
+    options: question.choices,
+    correctIndex: question.correctIndex,
+    meaning: question.explain
   };
 }
 
@@ -2153,7 +2176,7 @@ function createGameAudio() {
   };
 }
 
-export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, onFinish, onMessage }) {
+export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, onFinish, onMessage, onQuizOutcome }) {
   let disposed = false;
   let animationId = 0;
   let hudAccumulator = 0;
@@ -2163,6 +2186,128 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   let latestRoute = [];
   let style = initialStyle;
   let pendingQuiz = null;
+  let activeGates = [];
+  let gateWanted = [];
+
+  function clearLearningGates() {
+    for (const gate of activeGates) {
+      scene.remove(gate.group);
+      gate.group.traverse((object) => {
+        object.geometry?.dispose?.();
+        if (object.material) {
+          object.material.map?.dispose?.();
+          object.material.dispose?.();
+        }
+      });
+    }
+    activeGates = [];
+  }
+
+  // 학습 게이트: 배송 경로 위에 문제 아치를 세우고, 정답 차선을 "달리면서" 고르게 한다.
+  function spawnGatesForLeg(fromX, fromZ, target) {
+    clearLearningGates();
+    if (!activeMission?.packId || !target) return;
+    const route = buildRoadRoute(fromX, fromZ, target);
+    const total = routeLength(route);
+    if (total < 110) return;
+    const fractions = total > 280 ? [0.4, 0.72] : [0.55];
+    for (const fraction of fractions) {
+      const spot = pointAlongRoute(route, total * fraction);
+      if (!spot) continue;
+      const roadHit = closestRoadPoint(spot.x, spot.z);
+      if (!roadHit || roadHit.road.bridge) continue;
+      const roadWidth = roadHit.road.width;
+      const question = makeQuestion(activeMission.packId, {
+        choiceCount: roadWidth >= 18 ? 3 : 2,
+        wanted: gateWanted,
+        level: activeMission.mathLevel || 1
+      });
+      const laneCount = question.choices.length;
+      const usableWidth = roadWidth - 3;
+      const heading = Math.atan2(spot.dirX, spot.dirZ);
+      const baseY = drivingSurfaceHeightAt(spot.x, spot.z);
+      const group = new THREE.Group();
+      group.position.set(spot.x, baseY, spot.z);
+      group.rotation.y = heading;
+      const postMaterial = makeMaterial(0x2e3d4a, { roughness: 0.5, metalness: 0.4 });
+      for (const side of [-1, 1]) {
+        const post = box(0.34, 7.2, 0.34, postMaterial.clone(), side * (roadWidth / 2 + 0.8), 3.6, 0);
+        group.add(post);
+      }
+      const crossbar = box(roadWidth + 2.2, 0.34, 0.34, postMaterial.clone(), 0, 7.1, 0);
+      group.add(crossbar);
+      const promptSprite = makeTextSprite(`${question.headline} — ${question.prompt}`, "#ffffff", "#1c2733");
+      promptSprite.position.set(0, 8.6, 0);
+      promptSprite.scale.set(Math.max(15, roadWidth * 0.85), 4.4, 1);
+      group.add(promptSprite);
+      const laneSpan = usableWidth / laneCount;
+      const laneColors = ["#ff595e", "#1982c4", "#8ac926"];
+      question.choices.forEach((choice, laneIndex) => {
+        const laneX = (laneIndex - (laneCount - 1) / 2) * laneSpan;
+        const banner = makeTextSprite(choice, "#ffffff", laneColors[laneIndex % laneColors.length]);
+        banner.position.set(laneX, 4.6, 0);
+        banner.scale.set(Math.min(laneSpan * 0.94, 8.6), 2.6, 1);
+        group.add(banner);
+      });
+      scene.add(group);
+      activeGates.push({
+        group,
+        x: spot.x,
+        z: spot.z,
+        dirX: spot.dirX,
+        dirZ: spot.dirZ,
+        laneCount,
+        laneSpan,
+        halfWidth: roadWidth / 2,
+        correctIndex: question.correctIndex,
+        key: question.key,
+        packId: question.packId,
+        explain: question.explain,
+        wanted: gateWanted.some((item) => item.packId === question.packId && item.key === question.key),
+        prevAlong: -999,
+        resolved: false
+      });
+    }
+  }
+
+  function updateLearningGates(dt) {
+    for (const gate of activeGates) {
+      if (gate.resolved) continue;
+      const relX = state.x - gate.x;
+      const relZ = state.z - gate.z;
+      const along = relX * gate.dirX + relZ * gate.dirZ;
+      const lateral = relX * gate.dirZ - relZ * gate.dirX;
+      if (gate.prevAlong < 0 && along >= 0 && Math.abs(lateral) <= gate.halfWidth + 2) {
+        gate.resolved = true;
+        gate.group.visible = false;
+        const laneIndex = clamp(Math.round(lateral / gate.laneSpan + (gate.laneCount - 1) / 2), 0, gate.laneCount - 1);
+        const correct = laneIndex === gate.correctIndex;
+        onQuizOutcome?.(gate.packId, gate.key, correct);
+        if (correct) {
+          const gold = gate.wanted ? 45 : 30;
+          state.goldEarned += gold;
+          state.score += gate.wanted ? 380 : 250;
+          state.timeLeft += 6;
+          state.boost = Math.min(100, state.boost + 25);
+          audio.answer(true);
+          onMessage?.(gate.wanted ? `수배 해제! +6초 · 🪙${gold}` : `게이트 정답! +6초 · 터보 +25 · 🪙${gold}`);
+        } else {
+          state.gatePenalty = 3;
+          state.score = Math.max(0, state.score - 50);
+          audio.answer(false);
+          onMessage?.(`앗, 오답! ${gate.explain}`);
+        }
+      } else if (along > 30) {
+        gate.resolved = true;
+        gate.group.visible = false;
+      }
+      gate.prevAlong = along;
+    }
+    if (state.gatePenalty > 0) {
+      state.gatePenalty -= dt;
+      state.speed = Math.min(state.speed, 13);
+    }
+  }
   let cameraOrbitYaw = 0;
   let cameraOrbitHeight = 4.45;
   let dayPhase = 0.32;
@@ -2392,6 +2537,14 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       speedRatio: clamp(Math.abs(state.speed) / hudMaxSpeed, 0, 1.2),
       gear: (state.gear ?? 0) + 1,
       drifting: Boolean(state.drifting),
+      goldEarned: Math.round(state.goldEarned || 0),
+      bonusStatus: activeMission?.bonus ? {
+        ...activeMission.bonus,
+        current: activeMission.bonus.type === "noCrash" ? (state.crashCount || 0)
+          : activeMission.bonus.type === "nearMiss" ? (state.nearMissCount || 0)
+          : activeMission.bonus.type === "drift" ? Math.round((state.driftTotal || 0) * 10) / 10
+          : (state.coinCount || 0)
+      } : null,
       timeLeft: Math.max(0, state.timeLeft),
       deliveries: state.deliveryIndex,
       totalDeliveries: stopIds.length,
@@ -2415,11 +2568,12 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     });
   }
 
-  function startMission(mission) {
+  function startMission(mission, options = {}) {
     audio.unlock();
     audio.start();
     activeMission = mission;
-    applyMissionMood(mission.id);
+    gateWanted = Array.isArray(options.wanted) ? options.wanted : [];
+    applyMissionMood(["morning", "festival", "space"][mission.slot ?? 0] || mission.id);
     stopIds = [...mission.stops];
     const firstTarget = DESTINATIONS[stopIds[0]];
     const openingRoute = buildRoadRoute(citySpawn.x, citySpawn.z, firstTarget);
@@ -2440,7 +2594,15 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       steerAmount: 0,
       throttleAmount: 0,
       brakeAmount: 0,
-      yawRate: 0
+      yawRate: 0,
+      goldEarned: 0,
+      crashCount: 0,
+      nearMissCount: 0,
+      driftTotal: 0,
+      coinCount: 0,
+      gatePenalty: 0,
+      drifting: false,
+      slipAngle: 0
     });
     cameraOrbitYaw = 0;
     cameraOrbitHeight = 4.45;
@@ -2451,17 +2613,27 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     pendingQuiz = null;
     latestRoute = [];
     resetCoins();
+    spawnGatesForLeg(citySpawn.x, citySpawn.z, firstTarget);
     refreshMarkers();
-    onMessage?.("출발! 첫 번째 배송지를 찾아가세요");
+    onMessage?.("출발! 게이트는 정답 차선으로 통과하세요");
     emitHud(true);
   }
 
   function finishMission(reason = "complete") {
     state.status = "finished";
     state.speed = 0;
+    clearLearningGates();
     refreshMarkers();
     const timeBonus = Math.round(Math.max(0, state.timeLeft) * 8);
     if (reason === "complete") state.score += timeBonus;
+    const bonus = activeMission?.bonus || null;
+    let bonusAchieved = false;
+    if (bonus && reason === "complete") {
+      bonusAchieved = bonus.type === "noCrash" ? (state.crashCount || 0) === 0
+        : bonus.type === "nearMiss" ? (state.nearMissCount || 0) >= bonus.target
+        : bonus.type === "drift" ? (state.driftTotal || 0) >= bonus.target
+        : (state.coinCount || 0) >= bonus.target;
+    }
     emitHud(true);
     onFinish?.({
       reason,
@@ -2470,7 +2642,9 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       deliveries: state.deliveryIndex,
       total: stopIds.length,
       timeBonus,
-      reward: reason === "complete" ? activeMission?.reward || 0 : 0
+      reward: reason === "complete" ? activeMission?.reward || 0 : 0,
+      goldEarned: Math.round(state.goldEarned || 0),
+      bonus: bonus ? { ...bonus, achieved: bonusAchieved } : null
     });
   }
 
@@ -2478,10 +2652,23 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (state.status !== "playing") return;
     const target = currentTarget();
     if (!target) return;
+    const finalStop = state.deliveryIndex >= stopIds.length - 1;
+    audio.delivery();
+    if (!finalStop) {
+      // 중간 배송지는 흐름을 끊지 않는다 — 즉시 전달하고 다음 구간 게이트를 세운다.
+      state.deliveryIndex += 1;
+      state.score += 400;
+      state.goldEarned = (state.goldEarned || 0) + 40;
+      refreshMarkers();
+      const next = currentTarget();
+      onMessage?.(`${target.short} 배송 완료! 🪙40 · 다음: ${next?.short || ""}`);
+      if (next) spawnGatesForLeg(state.x, state.z, next);
+      emitHud(true);
+      return;
+    }
     state.status = "quiz";
     state.speed = 0;
-    audio.delivery();
-    pendingQuiz = makeQuiz(`${state.deliveryIndex + 1}번째 배송 · ${target.short}`);
+    pendingQuiz = makeBossQuiz(`마지막 배송 · ${target.short}`, activeMission?.packId || "idiom", gateWanted, activeMission?.mathLevel || 1);
     refreshMarkers();
     onDelivery?.({ ...pendingQuiz, destination: target, package: target.package });
     emitHud(true);
@@ -2491,9 +2678,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (state.status !== "quiz" || !pendingQuiz) return null;
     const correct = index === pendingQuiz.correctIndex;
     audio.answer(correct);
+    onQuizOutcome?.(pendingQuiz.packId, pendingQuiz.quizKey, correct);
     if (correct) {
       state.score += 600;
-      state.timeLeft += 10;
+      state.goldEarned = (state.goldEarned || 0) + 80;
       state.stars += 1;
     } else {
       state.score = Math.max(0, state.score - 100);
@@ -2501,16 +2689,9 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const result = { correct, correctIndex: pendingQuiz.correctIndex, meaning: pendingQuiz.meaning };
     state.deliveryIndex += 1;
     pendingQuiz = null;
-    if (state.deliveryIndex >= stopIds.length) {
-      window.setTimeout(() => {
-        if (!disposed) finishMission("complete");
-      }, 900);
-    } else {
-      state.status = "playing";
-      refreshMarkers();
-      onMessage?.(correct ? "정답! +10초 · 다음 배송지로 출발!" : "배송 완료! 다음 목적지를 찾아가세요");
-      emitHud(true);
-    }
+    window.setTimeout(() => {
+      if (!disposed) finishMission("complete");
+    }, 900);
     return result;
   }
 
@@ -2598,6 +2779,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       if (Math.abs(state.steerAmount) < 0.25 || currentRatio < 0.34) {
         state.drifting = false;
         state.driftTick = 0;
+        state.driftTotal = (state.driftTotal || 0) + state.driftTime;
         if (state.driftTime > 0.6) {
           state.boost = Math.min(100, state.boost + DRIVE_TUNING.driftBoostReward);
           onMessage?.(`DRIFT +${state.driftScore} · 터보 +${DRIVE_TUNING.driftBoostReward}`);
@@ -2704,6 +2886,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
           state.collisionCooldown = 1.4;
           state.speed *= 0.45;
           state.crashShake = 0.3;
+          state.crashCount = (state.crashCount || 0) + 1;
           audio.crash();
           onMessage?.("쿵! 교통 차량과 충돌");
         }
@@ -2712,6 +2895,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
         state.collisionCooldown <= 0 && Math.abs(state.speed) / maxForward > 0.5
       ) {
         other.nearMissTimer = 1.5;
+        state.nearMissCount = (state.nearMissCount || 0) + 1;
         state.nearCombo = Math.min((state.nearCombo || 0) + 1, 3);
         state.comboTimer = DRIVE_TUNING.comboWindow;
         const multiplier = [1, 1, 1.5, 2][state.nearCombo];
@@ -2731,10 +2915,13 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
         coin.mesh.visible = false;
         state.score += 80;
         state.stars += 1;
+        state.coinCount = (state.coinCount || 0) + 1;
         audio.coin();
         onMessage?.("별 토큰 +80");
       }
     }
+
+    updateLearningGates(dt);
 
     const target = currentTarget();
     if (target) {
@@ -2876,6 +3063,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     },
     returnToGarage() {
       state.status = "garage";
+      clearLearningGates();
+      pendingQuiz = null;
       state.speed = 0;
       state.x = citySpawn.x;
       state.z = citySpawn.z;

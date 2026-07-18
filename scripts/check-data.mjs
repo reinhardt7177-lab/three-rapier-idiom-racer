@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import { CITY_HALF, CITY_NODES, CITY_ROADS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, findRoadSurfaceConflicts, findUnmodeledRoadCrossings, isPointOnCityRoad, terrainHeightAt } from "../src/city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "../src/city-layout.js";
-import { DECALS, DESTINATIONS, MAX_WORKSHOP_LEVEL, MISSIONS, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "../src/game-data.js";
+import { DECALS, DESTINATIONS, MAX_WORKSHOP_LEVEL, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "../src/game-data.js";
 import { idiomQuizData } from "../src/idiom-quiz-data.js";
 import { WORLD_SPEED_TO_KMH, buildRoadRoute, navigationForRoute, routeLength } from "../src/create-delivery-runtime.js";
+import { RANKS, generateContracts, rankForXp } from "../src/contracts.js";
+import { LEARNING_PACKS, makeQuestion } from "../src/learning-packs.js";
 
 
 function assertUnique(items, label) {
@@ -15,7 +17,6 @@ assertUnique(PAINTS, "페인트");
 assertUnique(WHEELS, "바퀴");
 assertUnique(TOPPERS, "지붕 장식");
 assertUnique(DECALS, "스티커");
-assertUnique(MISSIONS, "미션");
 assertUnique(VEHICLES, "차량");
 assert.equal(VEHICLES.length, 5, "구매 가능한 차량은 정확히 5종이어야 합니다.");
 assert.equal(VEHICLES[0].price, 0, "첫 차량은 무료여야 합니다.");
@@ -32,11 +33,44 @@ for (const type of ["speed", "handling"]) {
 assert.ok(terrainHeightAt(0, -220) > terrainHeightAt(0, 220), "북쪽 진입로가 하버 프론트보다 높아야 합니다.");
 assert.ok(CITY_SKYLINE_MAX_RADIUS < CITY_SCENERY_HALF - 8, "외곽 스카이라인은 렌더 지형 경계 안에 있어야 합니다.");
 
-for (const mission of MISSIONS) {
-  assert.equal(mission.stops.length, 3, `${mission.title}은 배송지 3곳이 필요합니다.`);
-  assert.ok(mission.reward > 0, `${mission.title}에 골드 보상이 없습니다.`);
-  for (const stop of mission.stops) assert.ok(DESTINATIONS[stop], `${mission.title}의 배송지 ${stop}이 없습니다.`);
+// 절차 생성 계약 전수 검사: 등급 5단계 × 시드 8개 × 3장 = 120장을 검증한다.
+let contractCount = 0;
+for (let rankIndex = 0; rankIndex < RANKS.length; rankIndex += 1) {
+  for (const seed of [3, 7, 42, 99, 1234, 5678, 24680, 99999]) {
+    for (const contract of generateContracts(seed, rankIndex)) {
+      contractCount += 1;
+      assert.ok(contract.stops.length >= 2 && contract.stops.length <= 3, `${contract.id} 배송지 수가 잘못되었습니다.`);
+      assert.equal(new Set(contract.stops).size, contract.stops.length, `${contract.id} 배송지가 중복되었습니다.`);
+      for (const stop of contract.stops) assert.ok(DESTINATIONS[stop], `${contract.id}의 배송지 ${stop}이 없습니다.`);
+      assert.ok(contract.time >= 60 && contract.time <= 480, `${contract.id} 제한시간(${contract.time}s)이 범위를 벗어났습니다.`);
+      assert.ok(contract.reward > 0, `${contract.id}에 골드 보상이 없습니다.`);
+      assert.ok(contract.bonus?.reward > 0, `${contract.id}에 보너스 보상이 없습니다.`);
+      assert.ok(LEARNING_PACKS.some((pack) => pack.id === contract.packId), `${contract.id} 학습팩이 없습니다.`);
+      let cursor = { x: 0, z: 72 };
+      for (const stopId of contract.stops) {
+        const target = DESTINATIONS[stopId];
+        const route = buildRoadRoute(cursor.x, cursor.z, target);
+        assert.ok(route.length >= 2, `${contract.id}의 ${target.name} 구간에 경로가 없습니다.`);
+        cursor = target;
+      }
+      const requiredKmh = (contract.distance / contract.time) * WORLD_SPEED_TO_KMH;
+      assert.ok(requiredKmh >= 25 && requiredKmh <= 110, `${contract.id} 요구 평균속도(${Math.round(requiredKmh)}km/h)가 비정상입니다.`);
+    }
+  }
 }
+
+// 학습팩 3종 출제 검증: 팩별 40문항이 형식과 정답 인덱스를 지키는지 확인한다.
+for (const pack of LEARNING_PACKS) {
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    const question = makeQuestion(pack.id, { choiceCount: 3, level: 1 + (attempt % 3) });
+    assert.equal(question.packId, pack.id, `${pack.name} 팩 ID가 잘못되었습니다.`);
+    assert.ok(question.headline && question.choices.length >= 2, `${pack.name} 문항 형식이 잘못되었습니다.`);
+    assert.equal(new Set(question.choices).size, question.choices.length, `${pack.name} 보기가 중복되었습니다.`);
+    assert.ok(question.correctIndex >= 0 && question.correctIndex < question.choices.length, `${pack.name} 정답 인덱스가 범위를 벗어났습니다.`);
+  }
+}
+assert.equal(rankForXp(0).index, 0, "XP 0은 루키여야 합니다.");
+assert.equal(rankForXp(999999).index, RANKS.length - 1, "최고 XP는 레전드여야 합니다.");
 
 for (const destination of Object.values(DESTINATIONS)) {
   const node = CITY_NODES[DESTINATION_NODES[destination.id]];
@@ -72,20 +106,6 @@ for (let index = 0; index < buildingPlans.length; index += 1) {
   }
 }
 
-for (const mission of MISSIONS) {
-  let current = CITY_NODES.hub;
-  let missionDistance = 0;
-  for (const stopId of mission.stops) {
-    const target = DESTINATIONS[stopId];
-    const route = buildRoadRoute(current.x, current.z, target);
-    assert.ok(route.length >= 2, `${mission.title}의 ${target.name} 구간에 도로 경로가 없습니다.`);
-    missionDistance += routeLength(route);
-    current = target;
-  }
-  const requiredAverageKmh = missionDistance / mission.time * WORLD_SPEED_TO_KMH;
-  assert.ok(requiredAverageKmh >= 30, `${mission.title}의 제한시간이 시티 레이서 주행에 비해 너무 느슨합니다.`);
-  assert.ok(requiredAverageKmh <= VEHICLES[0].topSpeed * 0.55, `${mission.title}은 기본 차량으로 무리하게 높은 평균 속도를 요구합니다.`);
-}
 
 const routeStarts = [CITY_NODES.hub, CITY_NODES.centerE, CITY_NODES.ringW];
 let bridgeCrossings = 0;
@@ -136,4 +156,4 @@ assert.ok(idiomQuizData.every((item) => item.hanja && item.korean && item.meanin
 assert.equal(VEHICLES.length, 5, "차량 라인업은 5대여야 합니다.");
 assert.ok(VEHICLES.every((vehicle) => vehicle.id && vehicle.name), "차량 데이터에 빈 항목이 있습니다.");
 
-console.log(`데이터 점검 완료: 미션 ${MISSIONS.length}개, 배송지 ${Object.keys(DESTINATIONS).length}곳, 자유형 경로 ${routeStarts.length * Object.keys(DESTINATIONS).length}개, 다리 경로 ${bridgeCrossings}개, 곡선 구간 ${curvedSegments}개, 사자성어 ${idiomQuizData.length}개, 차량 ${VEHICLES.length}대`);
+console.log(`데이터 점검 완료: 생성 계약 ${contractCount}장, 배송지 ${Object.keys(DESTINATIONS).length}곳, 자유형 경로 ${routeStarts.length * Object.keys(DESTINATIONS).length}개, 다리 경로 ${bridgeCrossings}개, 곡선 구간 ${curvedSegments}개, 사자성어 ${idiomQuizData.length}개, 차량 ${VEHICLES.length}대`);

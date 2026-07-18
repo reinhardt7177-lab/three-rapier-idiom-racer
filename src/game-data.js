@@ -29,35 +29,6 @@ export const DECALS = [
   { id: "mumu", name: "무무", icon: "M" }
 ];
 
-export const MISSIONS = [
-  {
-    id: "morning",
-    title: "센트럴 모닝 익스프레스",
-    subtitle: "시티 허브에서 출발해 웨스트 모터스와 하버 터미널까지 화물을 전달해요!",
-    time: 300,
-    reward: 650,
-    color: "#ffb703",
-    stops: ["school", "library", "park"]
-  },
-  {
-    id: "festival",
-    title: "아우터 벨트 긴급 수송",
-    subtitle: "외곽 순환로를 타고 웨스트 마켓과 코스트 타워까지 긴급 화물을 수송해요!",
-    time: 280,
-    reward: 900,
-    color: "#ff4d8d",
-    stops: ["school", "museum", "observatory"]
-  },
-  {
-    id: "space",
-    title: "스카이라인 에너지 작전",
-    subtitle: "이스트 스카이 지구에서 에너지 코어를 하버 프론트와 코스트 타워까지 운반해요!",
-    time: 250,
-    reward: 1250,
-    color: "#7b2cbf",
-    stops: ["library", "museum", "observatory"]
-  }
-];
 
 export const DESTINATIONS = {
   school: { id: "school", name: "웨스트 모터스 차고", short: "모터스", x: -150, z: -236, landmarkX: -115, landmarkZ: -235, color: "#ffb703", icon: "🏁", package: "레이스 파츠 상자" },
@@ -68,11 +39,11 @@ export const DESTINATIONS = {
 };
 
 export const VEHICLES = [
-  { id: "snowbug", name: "현대 아반떼 N", subtitle: "민첩한 전륜구동 스포츠 세단 · 200km/h", price: 0, speed: 0, topSpeed: 200, handling: 2, accel: 2, color: "#9be15d", icon: "N" },
-  { id: "trailfox", name: "BMW M3", subtitle: "균형 잡힌 후륜구동 퍼포먼스 세단 · 225km/h", price: 1600, speed: 2, topSpeed: 225, handling: 3, accel: 3, color: "#ff9f1c", icon: "M" },
-  { id: "snowcat", name: "벤츠 SLK 55 AMG", subtitle: "가볍고 빠른 V8 로드스터 · 250km/h", price: 4200, speed: 3, topSpeed: 250, handling: 4, accel: 3, color: "#00b4d8", icon: "55" },
-  { id: "ridgegt", name: "어울림 스피라 EX", subtitle: "국산 미드십 슈퍼 스포츠 · 275km/h", price: 7800, speed: 5, topSpeed: 275, handling: 4, accel: 5, color: "#7b2cbf", icon: "EX" },
-  { id: "aurora", name: "포르쉐 911 터보 S", subtitle: "도심 고속도로를 지배하는 최종 머신 · 300km/h", price: 13500, speed: 7, topSpeed: 300, handling: 6, accel: 7, color: "#ff4d8d", icon: "911" }
+  { id: "snowbug", name: "현대 아반떼 N", subtitle: "민첩한 전륜구동 스포츠 세단 · 200km/h", price: 0, rankReq: 0, speed: 0, topSpeed: 200, handling: 2, accel: 2, color: "#9be15d", icon: "N" },
+  { id: "trailfox", name: "BMW M3", subtitle: "균형 잡힌 후륜구동 퍼포먼스 세단 · 225km/h", price: 1600, rankReq: 0, speed: 2, topSpeed: 225, handling: 3, accel: 3, color: "#ff9f1c", icon: "M" },
+  { id: "snowcat", name: "벤츠 SLK 55 AMG", subtitle: "가볍고 빠른 V8 로드스터 · 250km/h", price: 4200, rankReq: 1, speed: 3, topSpeed: 250, handling: 4, accel: 3, color: "#00b4d8", icon: "55" },
+  { id: "ridgegt", name: "어울림 스피라 EX", subtitle: "국산 미드십 슈퍼 스포츠 · 275km/h", price: 7800, rankReq: 2, speed: 5, topSpeed: 275, handling: 4, accel: 5, color: "#7b2cbf", icon: "EX" },
+  { id: "aurora", name: "포르쉐 911 터보 S", subtitle: "도심 고속도로를 지배하는 최종 머신 · 300km/h", price: 13500, rankReq: 3, speed: 7, topSpeed: 300, handling: 6, accel: 7, color: "#ff4d8d", icon: "911" }
 ];
 
 export const MAX_WORKSHOP_LEVEL = 5;
