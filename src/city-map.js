@@ -22,6 +22,8 @@ export function terrainHeightAt(x, z) {
   if (Math.abs(x) > CITY_HALF + 20 || Math.abs(z) > CITY_HALF + 20) return naturalHeight;
   const roadHit = closestRoadPoint(x, z);
   if (!roadHit) return naturalHeight;
+  // 고가 본선 아래는 지형을 끌어올리지 않는다 — 흙벽 대신 교각이 받친다.
+  if (roadHit.road.skyway) return naturalHeight;
   const roadHalfWidth = roadHit.road.width / 2;
   const earthworkStart = roadHalfWidth + 1.2;
   const earthworkEnd = roadHalfWidth + (roadHit.road.bridge ? 5.5 : 10.5);
@@ -50,7 +52,7 @@ export const CITY_NODES = {
   techGate: { x: 178, z: -102 }, techNorth: { x: 94, z: -188 }, techEast: { x: 254, z: -68 }, library: { x: 270, z: -150 },
   artsGate: { x: -220, z: 78 }, artsNorth: { x: -276, z: 8 }, artsSquare: { x: -134, z: 112 }, museum: { x: -278, z: 64 },
   riverMarket: { x: -56, z: 238 }, riverGate: { x: 58, z: 232 }, park: { x: 78, z: 252 },
-  obsGate: { x: 212, z: 212 }, observatory: { x: 282, z: 236 }, coast: { x: 142, z: 284 }
+  obsGate: { x: 212, z: 212 }, observatory: { x: 282, z: 236 }, coast: { x: 104, z: 272 }
 };
 
 const ROAD_WIDTHS = { arterial: 23, collector: 16, local: 10.5, scenic: 13.5 };
@@ -78,8 +80,14 @@ function edge(id, a, b, type, controls = [], options = {}) {
   const finish = CITY_NODES[b];
   const points = [[start.x, start.z], ...controls, [finish.x, finish.z]];
   const path = smoothPath(points, options.straight ? 0 : options.smoothing ?? 4);
-  return { id, a, b, type, width: ROAD_WIDTHS[type], bridge: Boolean(options.bridge), path };
+  return { id, a, b, type, width: ROAD_WIDTHS[type], bridge: Boolean(options.bridge), skyway: Boolean(options.skyway), path };
 }
+
+// 스카이웨이: 북·서 외곽 벨트를 지상 +9m 고가 고속도로로 승격한다.
+// 고가 노드 사이 구간은 skyway 플래그(직선 종단면·교각·난간)로, 지상 노드와
+// 만나는 구간은 일반 도로의 경사 제한(16%)이 자연스러운 램프를 만든다.
+export const SKYWAY_ELEVATION = 9;
+const NODE_ELEVATION = { outerSW: SKYWAY_ELEVATION, outerW: SKYWAY_ELEVATION, outerNW: SKYWAY_ELEVATION, outerN: SKYWAY_ELEVATION, outerNE: SKYWAY_ELEVATION };
 
 if (false) {
 const LEGACY_MOUNTAIN_ROADS = [
@@ -162,10 +170,15 @@ export const CITY_ROADS = [
   edge("east-bridge", "eastBridgeN", "eastBridgeS", "arterial", [[166, 124]], { bridge: true, smoothing: 3 }),
   edge("east-bridge-exit", "eastBridgeS", "ringSE", "arterial", [[178, 180]]),
 
-  edge("outer-nw", "outerW", "outerNW", "arterial", [[-306, -86]]), edge("outer-north-west", "outerNW", "outerN", "arterial", [[-154, -276]]),
-  edge("outer-north-east", "outerN", "outerNE", "arterial", [[154, -274]]), edge("outer-ne", "outerNE", "outerE", "arterial", [[306, -92]]),
+  // 스카이웨이 본선(고가 4구간) — 북·서 아크가 오버드라이브 전용 무대가 된다.
+  edge("outer-nw", "outerW", "outerNW", "arterial", [[-306, -86]], { skyway: true }),
+  edge("outer-north-west", "outerNW", "outerN", "arterial", [[-154, -276]], { skyway: true }),
+  edge("outer-north-east", "outerN", "outerNE", "arterial", [[154, -274]], { skyway: true }),
+  edge("outer-west", "outerSW", "outerW", "arterial", [[-306, 128]], { skyway: true }),
+  // 고가 진·출입 램프 구간(지상 노드와 연결, 경사 제한이 램프를 만든다)
+  edge("outer-ne", "outerNE", "outerE", "arterial", [[306, -92]]),
   edge("outer-east", "outerE", "outerSE", "arterial", [[304, 132]]), edge("outer-se", "outerSE", "outerS", "arterial", [[146, 302]]),
-  edge("outer-sw", "outerS", "outerSW", "arterial", [[-146, 304]]), edge("outer-west", "outerSW", "outerW", "arterial", [[-306, 128]]),
+  edge("outer-sw", "outerS", "outerSW", "arterial", [[-146, 304]]),
   edge("outer-n-link", "ringN", "outerN", "collector", [[0, -242]]),
   edge("outer-ne-link", "ringNE", "outerNE", "collector", [[232, -168]]), edge("outer-e-link", "ringE", "outerE", "collector", [[266, 20]]),
   edge("outer-se-link", "ringSE", "outerSE", "collector", [[238, 220]]), edge("outer-s-link", "ringS", "outerS", "collector", [[0, 286]]),
@@ -185,6 +198,12 @@ export const CITY_ROADS = [
 
   edge("market-road", "ringSW", "riverMarket", "scenic", [[-118, 232]]), edge("market-link", "riverMarket", "ringS", "local", [[-22, 256]]),
   edge("park-entry", "ringS", "riverGate", "collector", [[48, 260]]), edge("park-road", "riverGate", "park", "scenic", [[66, 244]]),
+
+  // 시그니처 구간 — 리버사이드 S커브: 강 남안을 따라 S자 3연속 (니어미스 무대)
+  edge("riverside-s", "centerBridgeS", "westBridgeS", "scenic", [[-40, 180], [-90, 150], [-130, 178]]),
+  // 시그니처 구간 — 하버 코스탈 루프: 물가를 끼고 도는 연속 코너 (드리프트 무대)
+  edge("coast-west", "park", "coast", "scenic", [[92, 266]]),
+  edge("coast-link", "coast", "ringS", "scenic", [[52, 284]]),
   edge("obs-road", "outerSE", "observatory", "scenic", [[280, 230]])
 ];
 
@@ -195,11 +214,15 @@ export const CITY_TRAFFIC_LOOPS = {
 
 const roadNodeKey = (point) => `${point.x.toFixed(4)},${point.z.toFixed(4)}`;
 const roadJunctionHeights = new Map();
+const nodeKeyToId = new Map(Object.entries(CITY_NODES).map(([nodeId, point]) => [roadNodeKey(point), nodeId]));
 
 for (const road of CITY_ROADS) {
   for (const point of [road.path[0], road.path.at(-1)]) {
     const key = roadNodeKey(point);
-    if (!roadJunctionHeights.has(key)) roadJunctionHeights.set(key, naturalTerrainHeightAt(point.x, point.z));
+    if (!roadJunctionHeights.has(key)) {
+      const elevation = NODE_ELEVATION[nodeKeyToId.get(key)] || 0;
+      roadJunctionHeights.set(key, naturalTerrainHeightAt(point.x, point.z) + elevation);
+    }
   }
 }
 
@@ -234,7 +257,8 @@ function roadHeightProfile(road) {
     }
     const totalDistance = distances.at(-1);
 
-    if (road.bridge) {
+    if (road.bridge || road.skyway) {
+      // 교량·고가 본선은 지형을 따르지 않고 양 끝 교점 높이를 직선 보간한다.
       profile = distances.map((distance) => {
         const progress = totalDistance > 0 ? distance / totalDistance : 0;
         return original[0] + (original.at(-1) - original[0]) * progress;

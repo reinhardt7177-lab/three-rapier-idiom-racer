@@ -457,7 +457,7 @@ function createRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5
   geometry.setIndex(indices);
   geometry.computeVertexNormals();
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.castShadow = road.bridge;
+  mesh.castShadow = road.bridge || road.skyway;
   mesh.receiveShadow = true;
   return mesh;
 }
@@ -562,6 +562,9 @@ function createRoadNetwork(scene) {
   const laneArrowSpecs = [];
   const lampPostSpecs = [];
   const lampHeadSpecs = [];
+  const pierSpecs = [];
+  const rumbleRedSpecs = [];
+  const rumbleWhiteSpecs = [];
   const shoulderMaterial = makeMaterial(0x50575d, { roughness: 0.98 });
   const sidewalkMaterial = makeMaterial(0xd8dfe3, { roughness: 0.96 });
   const gutterMaterial = makeMaterial(0x39434b, { roughness: 0.96 });
@@ -593,7 +596,8 @@ function createRoadNetwork(scene) {
   for (const road of CITY_ROADS) {
     const startJunction = junctionInfo.get(road.a);
     const endJunction = junctionInfo.get(road.b);
-    const shoulderWidth = road.width + (road.bridge ? 3.2 : 2.5);
+    const elevatedDeck = road.bridge || road.skyway;
+    const shoulderWidth = road.width + (elevatedDeck ? 3.2 : 2.5);
     const circleJoinInset = (junction, radius, halfRoadWidth) => {
       if (!junction) return 0;
       return Math.max(0, Math.sqrt(Math.max(0, radius * radius - halfRoadWidth * halfRoadWidth)) - 0.55);
@@ -603,14 +607,37 @@ function createRoadNetwork(scene) {
     const surfaceStartInset = circleJoinInset(startJunction, startJunction?.surfaceRadius || 0, road.width / 2);
     const surfaceEndInset = circleJoinInset(endJunction, endJunction?.surfaceRadius || 0, road.width / 2);
     scene.add(createRoadDeckMesh(road, shoulderWidth, shoulderMaterial, {
-      lift: 0.2, thickness: road.bridge ? 1.05 : 0.5, startInset: shoulderStartInset, endInset: shoulderEndInset
+      lift: 0.2, thickness: elevatedDeck ? 1.05 : 0.5, startInset: shoulderStartInset, endInset: shoulderEndInset
     }));
-    scene.add(createRoadDeckMesh(road, road.width, road.bridge ? bridgeAsphaltMaterial : asphaltMaterial, {
-      lift: 0.34, thickness: road.bridge ? 0.88 : 0.42, startInset: surfaceStartInset, endInset: surfaceEndInset
+    scene.add(createRoadDeckMesh(road, road.width, elevatedDeck ? bridgeAsphaltMaterial : asphaltMaterial, {
+      lift: 0.34, thickness: elevatedDeck ? 0.88 : 0.42, startInset: surfaceStartInset, endInset: surfaceEndInset
     }));
 
+    // 스카이웨이 교각: 데크 아래를 일정 간격 콘크리트 기둥이 받친다.
+    if (road.skyway) {
+      const roadLengthTotal = pathLength(road.path);
+      for (let pierDistance = 14; pierDistance < roadLengthTotal - 14; pierDistance += 20) {
+        const spot = pointAlongRoute(road.path, pierDistance);
+        if (!spot) continue;
+        const pathPosition = pierDistance / roadLengthTotal * (road.path.length - 1);
+        const deckBottom = roadSurfaceHeight(road, pathPosition, 0.2) - 1.0;
+        const groundHeight = terrainHeightAt(spot.x, spot.z);
+        if (deckBottom - groundHeight < 1.4) continue;
+        pierSpecs.push({
+          x: spot.x, y: (deckBottom + groundHeight) / 2, z: spot.z,
+          width: 1.8, height: deckBottom - groundHeight, depth: 1.8,
+          rotation: Math.atan2(spot.dirX, spot.dirZ)
+        });
+        pierSpecs.push({
+          x: spot.x, y: deckBottom - 0.35, z: spot.z,
+          width: road.width + 1.6, height: 0.7, depth: 1.6,
+          rotation: Math.atan2(spot.dirX, spot.dirZ)
+        });
+      }
+    }
+
     // 아스팔트보다 높은 연석 인도를 도로 양쪽에 두르면 도시 골목의 스케일이 살아납니다.
-    if (!road.bridge) {
+    if (!elevatedDeck) {
       const sidewalkWidth = 2.3;
       const sidewalkOffset = road.width / 2 + 1.05 + sidewalkWidth / 2;
       for (const side of [-1, 1]) {
@@ -626,7 +653,7 @@ function createRoadNetwork(scene) {
 
     // 3거리 이상 교차로 진입부마다 횡단보도를 그려 교차로가 읽히게 합니다.
     for (const [junction, nodeEndIndex] of [[startJunction, 0], [endJunction, 1]]) {
-      if (!junction || junction.degree < 3 || road.bridge) continue;
+      if (!junction || junction.degree < 3 || elevatedDeck) continue;
       const nodePoint = nodeEndIndex === 0 ? road.path[0] : road.path.at(-1);
       const innerPoint = nodeEndIndex === 0 ? road.path[1] : road.path.at(-2);
       const dirX = innerPoint.x - nodePoint.x;
@@ -669,7 +696,7 @@ function createRoadNetwork(scene) {
       endInset: endJunction ? endJunction.surfaceRadius + 1.2 : 0
     }));
     // 흰 실선 바깥의 어두운 거터 라인 — 노면에 폭 정보를 한 겹 더 준다.
-    if (!road.bridge) {
+    if (!elevatedDeck) {
       const gutterOffset = road.width / 2 - 0.18;
       scene.add(createRoadMarkingMesh(road, [-gutterOffset, gutterOffset], 0.3, gutterMaterial, {
         startInset: startJunction ? startJunction.surfaceRadius + 0.9 : 0,
@@ -684,7 +711,7 @@ function createRoadNetwork(scene) {
     }
 
     // 가로등: 간선·보조 도로의 인도 위에 26m 간격, 좌우 교대로 세운다.
-    if (!road.bridge && road.type !== "local") {
+    if (!elevatedDeck && road.type !== "local") {
       const roadLength = pathLength(road.path);
       const lampLateral = road.width / 2 + 1.05 + 1.15;
       let lampDistance = Math.max(9, surfaceStartInset + 6);
@@ -756,7 +783,7 @@ function createRoadNetwork(scene) {
         }
         nextMarkerDistance += 12;
       }
-      if (road.bridge) {
+      if (road.bridge || road.skyway) {
         for (const side of [-1, 1]) {
           const railX = (start.x + end.x) / 2 + nx * side * (road.width / 2 + 1.25);
           const railZ = (start.z + end.z) / 2 + nz * side * (road.width / 2 + 1.25);
@@ -784,7 +811,7 @@ function createRoadNetwork(scene) {
   const chevronRightSpecs = [];
   const placedChevrons = [];
   for (const road of CITY_ROADS) {
-    if (road.bridge) continue;
+    if (road.bridge || road.skyway) continue;
     for (let index = 1; index < road.path.length - 1; index += 1) {
       const before = road.path[index - 1];
       const corner = road.path[index];
@@ -794,6 +821,23 @@ function createRoadNetwork(scene) {
       const turn = normalizeAngle(headingOut - headingIn);
       if (Math.abs(turn) < 0.42) continue;
       if (placedChevrons.some((point) => Math.hypot(point.x - corner.x, point.z - corner.z) < 22)) continue;
+      // 급코너 바깥 연석에 적백 럼블 스트립 — 코너의 리듬이 노면에서 읽힌다.
+      const outsideSign = turn > 0 ? -1 : 1;
+      for (let strip = -7; strip <= 7; strip += 1) {
+        const stripIndex = index + strip;
+        if (stripIndex < 1 || stripIndex >= road.path.length - 1) continue;
+        const stripPoint = road.path[stripIndex];
+        const stripNext = road.path[Math.min(road.path.length - 1, stripIndex + 1)];
+        const stripHeading = Math.atan2(stripNext.x - stripPoint.x, stripNext.z - stripPoint.z);
+        const stripNx = Math.cos(stripHeading) * outsideSign;
+        const stripNz = -Math.sin(stripHeading) * outsideSign;
+        const rumbleX = stripPoint.x + stripNx * (road.width / 2 + 0.55);
+        const rumbleZ = stripPoint.z + stripNz * (road.width / 2 + 0.55);
+        ((strip % 2 + 2) % 2 === 0 ? rumbleRedSpecs : rumbleWhiteSpecs).push({
+          x: rumbleX, y: drivingSurfaceHeightAt(rumbleX, rumbleZ) + 0.14, z: rumbleZ,
+          width: 1.0, height: 0.3, depth: 2.1, rotation: stripHeading
+        });
+      }
       const ux = Math.sin(headingIn);
       const uz = Math.cos(headingIn);
       // 좌회전(+)의 바깥은 오른쪽, 우회전(-)의 바깥은 왼쪽
@@ -830,6 +874,9 @@ function createRoadNetwork(scene) {
   laneArrowMaterial.depthWrite = false;
   createBoxInstances(scene, laneArrowSpecs, laneArrowMaterial, { geometry: laneArrowGeometry, castShadow: false });
   createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x8b969e, { roughness: 0.42, metalness: 0.58 }), { castShadow: true });
+  createBoxInstances(scene, pierSpecs, makeMaterial(0xb9c0c6, { roughness: 0.85 }), { castShadow: true });
+  createBoxInstances(scene, rumbleRedSpecs, makeMaterial(0xd64545, { roughness: 0.7, emissive: 0xd64545, emissiveIntensity: 0.08 }));
+  createBoxInstances(scene, rumbleWhiteSpecs, makeMaterial(0xf2f5f7, { roughness: 0.7, emissive: 0xffffff, emissiveIntensity: 0.08 }));
   createBoxInstances(scene, lampPostSpecs, makeMaterial(0x5b6870, { roughness: 0.55, metalness: 0.4 }), { castShadow: true });
   const lampHeadMaterial = makeMaterial(0xfff4d6, { roughness: 0.3, emissive: 0xffd88a, emissiveIntensity: 0.35 });
   createBoxInstances(scene, lampHeadSpecs, lampHeadMaterial, { receiveShadow: false });
