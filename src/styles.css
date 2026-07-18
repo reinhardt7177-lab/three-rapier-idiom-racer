@@ -374,6 +374,83 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .quiz-options button { min-height: 49px; }
 }
 
+/* 세로로 든 휴대폰: 게임 중에는 회전 안내가 화면을 덮는다 */
+.rotate-overlay {
+  position: absolute; z-index: 90; inset: 0;
+  display: grid; place-content: center; justify-items: center; gap: 10px;
+  color: #fff; background: rgba(4, 12, 20, .94); text-align: center;
+}
+.rotate-overlay strong { font-size: 22px; font-weight: 1000; }
+.rotate-overlay small { color: #9ec0d2; font-size: 13px; font-weight: 800; }
+.rotate-phone { font-size: 64px; animation: rotate-hint 1.6s ease-in-out infinite; }
+@keyframes rotate-hint {
+  0%, 20% { transform: rotate(0); }
+  55%, 80% { transform: rotate(90deg); }
+  100% { transform: rotate(90deg); }
+}
+
+/* 가로 모드 휴대폰(낮은 높이): HUD·컨트롤·차고를 컴팩트하게 재배치 */
+@media (orientation: landscape) and (max-height: 540px) {
+  .topbar { padding: 6px 10px; }
+  .brand-mark { width: 32px; height: 32px; font-size: 19px; }
+  .brand-lockup strong { font-size: 16px; }
+  .brand-lockup div span { display: none; }
+  .icon-button { width: 34px; height: 34px; font-size: 14px; }
+  .garage-mini { padding: 0 10px; font-size: 11px; }
+
+  .mission-card { left: 10px; top: 50px; width: 205px; padding: 8px 10px; }
+  .destination-line > span { font-size: 20px; }
+  .destination-line strong { font-size: 12px; }
+  .distance-row b { font-size: 17px; }
+  .race-stats { right: 10px; top: 48px; gap: 3px; }
+  .race-stats > div { min-width: 56px; height: 44px; padding: 4px 6px; }
+  .race-stats strong { font-size: 14px; }
+  .race-stats .world-time-stat { min-width: 70px; }
+  .race-stats .time-stat { min-width: 62px; }
+
+  .minimap-card { left: 10px; bottom: 10px; width: 108px; padding: 6px; }
+  .speed-meter { right: 10px; bottom: 84px; transform: scale(.68); transform-origin: bottom right; }
+  .delivery-approach { bottom: 84px; font-size: 10px; }
+  .toast-message { top: 16%; font-size: 11px; padding: 7px 13px; }
+
+  .touch-controls { left: 128px; right: 10px; bottom: 12px; }
+  .steer-controls { gap: 8px; }
+  .steer-controls button { width: 56px; height: 56px; font-size: 20px; }
+  .pedal-controls { gap: 6px; }
+  .pedal-controls button { height: 52px; padding: 0 11px; }
+  .pedal-controls .accel { width: 74px; font-size: 15px; }
+
+  .garage-screen { display: flex; gap: 12px; overflow: hidden; padding: 46px 12px 8px; }
+  .garage-copy { flex: 1 1 46%; align-self: stretch; max-width: none; overflow-y: auto; padding-right: 4px; }
+  .garage-copy h1 { margin: 6px 0 4px; font-size: 24px; }
+  .garage-copy > p { margin-bottom: 8px; font-size: 11px; }
+  .eyebrow { padding: 4px 8px; font-size: 9px; }
+  .gold-wallet { margin-bottom: 6px; padding: 5px 8px; gap: 8px; }
+  .mission-picker { gap: 4px; }
+  .mission-chip { padding: 5px 8px; border-radius: 9px; }
+  .mission-chip > span:first-child { font-size: 18px; }
+  .mission-chip strong { font-size: 11px; }
+  .mission-chip small { font-size: 8.5px; }
+  .mission-route-preview { margin-top: 5px; padding: 6px 8px; }
+  .start-delivery { margin-top: 8px; padding: 9px 13px; font-size: 15px; }
+  .quest-howto, .keyboard-help { display: none; }
+  .customizer-card { flex: 1 1 54%; align-self: stretch; width: auto; max-width: 460px; overflow-y: auto; padding: 9px; }
+  .customizer-heading strong { font-size: 16px; }
+  .option-button { width: 32px; height: 32px; }
+  .paint-dot { width: 19px; height: 19px; }
+  .wheel-dot { width: 20px; height: 20px; border-width: 5px; }
+  .option-emoji { font-size: 16px; }
+  .option-row { grid-template-columns: 64px 1fr; padding: 4px 0; }
+  .steer-controls button:active, .pedal-controls button:active { transform: translateY(3px); }
+
+  .quiz-overlay { grid-template-columns: minmax(170px,.55fr) minmax(320px,1fr); gap: 14px; padding: 12px; }
+  .place-icon { margin: 6px 0 2px; font-size: 52px; }
+  .delivered-scene strong { font-size: 19px; }
+  .quiz-panel { padding: 11px; }
+  .quiz-options button { min-height: 40px; }
+  .result-card { transform: scale(.86); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

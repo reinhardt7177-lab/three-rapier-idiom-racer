@@ -96,6 +96,17 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [message, setMessage] = useState("차를 꾸미고 첫 배송을 시작해요!");
   const [audioOn, setAudioOn] = useState(true);
+  const [isPortrait, setIsPortrait] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(orientation: portrait)").matches
+  );
+  const isTouchDevice = typeof navigator !== "undefined" && navigator.maxTouchPoints > 0;
+
+  useEffect(() => {
+    const query = window.matchMedia("(orientation: portrait)");
+    const onOrientationChange = () => setIsPortrait(query.matches);
+    query.addEventListener("change", onOrientationChange);
+    return () => query.removeEventListener("change", onOrientationChange);
+  }, []);
 
   useEffect(() => {
     if (!mountRef.current) return undefined;
@@ -212,6 +223,12 @@ export default function App() {
     setQuiz(null);
     setQuizResult(null);
     setScreen("playing");
+    // 모바일은 전체화면 + 가로 잠금을 시도한다 (브라우저가 거부하면 회전 안내 오버레이가 대신한다).
+    if (isTouchDevice && !document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.()
+        .then(() => window.screen?.orientation?.lock?.("landscape"))
+        .catch(() => {});
+    }
     runtimeRef.current?.startMission(mission, { wanted: progress.wanted });
   }
 
@@ -337,6 +354,14 @@ export default function App() {
         {quiz ? <DeliveryQuiz quiz={quiz} result={quizResult} onAnswer={answerQuiz} /> : null}
         {screen === "result" && result ? (
           <ResultScreen result={result} onRetry={startMission} onGarage={returnToGarage} />
+        ) : null}
+
+        {screen === "playing" && isTouchDevice && isPortrait ? (
+          <div className="rotate-overlay" role="alert">
+            <span className="rotate-phone">📱</span>
+            <strong>가로 모드로 돌려주세요</strong>
+            <small>무무 시티는 가로 화면에서 제일 잘 달려요!</small>
+          </div>
         ) : null}
       </div>
     </main>
@@ -585,7 +610,10 @@ function MiniMap({ hud }) {
 
 function Controls({ runtimeRef }) {
   const bind = (key) => ({
-    onPointerDown: (event) => { event.currentTarget.setPointerCapture?.(event.pointerId); runtimeRef.current?.setInput({ [key]: true }); },
+    onPointerDown: (event) => {
+      try { event.currentTarget.setPointerCapture?.(event.pointerId); } catch { /* 합성 이벤트 등 캡처 불가 시에도 입력은 처리 */ }
+      runtimeRef.current?.setInput({ [key]: true });
+    },
     onPointerUp: () => runtimeRef.current?.setInput({ [key]: false }),
     onPointerCancel: () => runtimeRef.current?.setInput({ [key]: false }),
     onLostPointerCapture: () => runtimeRef.current?.setInput({ [key]: false })
