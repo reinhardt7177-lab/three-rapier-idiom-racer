@@ -1,14 +1,10 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { CITY_HALF, CITY_NODES, CITY_ROADS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, findRoadSurfaceConflicts, findUnmodeledRoadCrossings, isPointOnCityRoad, terrainHeightAt } from "../src/city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "../src/city-layout.js";
 import { DECALS, DESTINATIONS, MAX_WORKSHOP_LEVEL, MISSIONS, PAINTS, TOPPERS, VEHICLES, WHEELS, workshopPrice } from "../src/game-data.js";
 import { idiomQuizData } from "../src/idiom-quiz-data.js";
 import { WORLD_SPEED_TO_KMH, buildRoadRoute, navigationForRoute, routeLength } from "../src/create-delivery-runtime.js";
 
-const ROOT = fileURLToPath(new URL("..", import.meta.url));
 
 function assertUnique(items, label) {
   const ids = items.map((item) => item.id);
@@ -136,17 +132,8 @@ assert.ok(idiomQuizData.length >= 50, "사자성어 문항이 50개보다 적습
 assert.equal(new Set(idiomQuizData.map((item) => item.korean)).size, idiomQuizData.length, "사자성어가 중복되었습니다.");
 assert.ok(idiomQuizData.every((item) => item.hanja && item.korean && item.meaning), "빈 사자성어 문항이 있습니다.");
 
-const assetManifestPath = join(ROOT, "public", "models", "vehicles", "manifest.json");
-const assetManifest = JSON.parse(await readFile(assetManifestPath, "utf8"));
-assert.equal(Object.keys(assetManifest.vehicles || {}).length, VEHICLES.length, "실차 GLB manifest에 5대 차량이 모두 등록되어야 합니다.");
-for (const vehicle of VEHICLES) {
-  const asset = assetManifest.vehicles?.[vehicle.id];
-  assert.ok(asset?.url, `${vehicle.name} GLB 경로가 manifest에 없습니다.`);
-  const glbPath = join(ROOT, "public", asset.url.replace(/^\//, ""));
-  const header = await readFile(glbPath);
-  assert.ok(header.length > 1024 * 1024, `${vehicle.name} GLB 파일 크기가 비정상적으로 작습니다.`);
-  assert.equal(header.subarray(0, 4).toString("ascii"), "glTF", `${vehicle.name}은 GLB 파일이 아닙니다.`);
-  assert.equal(header.readUInt32LE(4), 2, `${vehicle.name} GLB 버전이 2가 아닙니다.`);
-}
+// 차량은 GLB 없이 런타임에서 폴리곤으로 직접 조형하므로, 5대 모두 프로필 데이터만 검증합니다.
+assert.equal(VEHICLES.length, 5, "차량 라인업은 5대여야 합니다.");
+assert.ok(VEHICLES.every((vehicle) => vehicle.id && vehicle.name), "차량 데이터에 빈 항목이 있습니다.");
 
-console.log(`데이터 점검 완료: 미션 ${MISSIONS.length}개, 배송지 ${Object.keys(DESTINATIONS).length}곳, 자유형 경로 ${routeStarts.length * Object.keys(DESTINATIONS).length}개, 다리 경로 ${bridgeCrossings}개, 곡선 구간 ${curvedSegments}개, 사자성어 ${idiomQuizData.length}개, 실차 GLB ${VEHICLES.length}대`);
+console.log(`데이터 점검 완료: 미션 ${MISSIONS.length}개, 배송지 ${Object.keys(DESTINATIONS).length}곳, 자유형 경로 ${routeStarts.length * Object.keys(DESTINATIONS).length}개, 다리 경로 ${bridgeCrossings}개, 곡선 구간 ${curvedSegments}개, 사자성어 ${idiomQuizData.length}개, 차량 ${VEHICLES.length}대`);

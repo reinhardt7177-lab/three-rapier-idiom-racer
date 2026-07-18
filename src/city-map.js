@@ -311,12 +311,12 @@ export const DESTINATION_NODES = {
 };
 
 export const CITY_DISTRICTS = [
-  { id: "residential", name: "웨스트 엔진 지구", x: -194, z: -154, rx: 110, rz: 94, count: 78, colors: [0x73818b, 0x98a8b1, 0x7e9098, 0xb09a89, 0x657c89], minHeight: 7, maxHeight: 17 },
-  { id: "north", name: "노스 게이트", x: -8, z: -142, rx: 132, rz: 96, count: 62, colors: [0x4c7f96, 0x6793a8, 0x8eabb8, 0x5f8490], minHeight: 18, maxHeight: 48 },
-  { id: "tech", name: "이스트 스카이라인", x: 184, z: -94, rx: 112, rz: 108, count: 80, colors: [0x3e7d99, 0x5f92aa, 0x80aabd, 0x5e9388], minHeight: 22, maxHeight: 64 },
-  { id: "arts", name: "웨스트 마켓", x: -198, z: 62, rx: 98, rz: 84, count: 62, colors: [0xa97861, 0x8f8994, 0xbd907b, 0x7390a0, 0xb3a16b], minHeight: 8, maxHeight: 26 },
-  { id: "center", name: "센트럴 레이싱 시티", x: 12, z: 26, rx: 156, rz: 116, count: 110, colors: [0x3c7d99, 0x5f93aa, 0x7f9fac, 0xa88377, 0x649486], minHeight: 24, maxHeight: 70 },
-  { id: "river", name: "하버 프론트", x: 52, z: 218, rx: 198, rz: 72, count: 52, colors: [0x5d9090, 0xa58b70, 0x5b91ab, 0xa7838e], minHeight: 8, maxHeight: 28 }
+  { id: "residential", name: "웨스트 엔진 지구", x: -194, z: -154, rx: 110, rz: 94, count: 78, colors: [0xf2e3cf, 0xe8d5be, 0xd9e2e8, 0xf0d9c4, 0xdce8dc], minHeight: 7, maxHeight: 17 },
+  { id: "north", name: "노스 게이트", x: -8, z: -142, rx: 132, rz: 96, count: 62, colors: [0x9fc4d8, 0xb7d2e0, 0xcfdfe8, 0x8fb4c8], minHeight: 18, maxHeight: 48 },
+  { id: "tech", name: "이스트 스카이라인", x: 184, z: -94, rx: 112, rz: 108, count: 80, colors: [0x86b8d4, 0xa3c9dd, 0xc0d8e5, 0x94c4b8], minHeight: 22, maxHeight: 64 },
+  { id: "arts", name: "웨스트 마켓", x: -198, z: 62, rx: 98, rz: 84, count: 62, colors: [0xe8b48e, 0xd8c8d4, 0xf0c4a4, 0xa8c8dc, 0xe4d49c], minHeight: 8, maxHeight: 26 },
+  { id: "center", name: "센트럴 레이싱 시티", x: 12, z: 26, rx: 156, rz: 116, count: 110, colors: [0x92bcd4, 0xaccce0, 0xc4d4dc, 0xe0b8a4, 0x9cc8b8], minHeight: 24, maxHeight: 70 },
+  { id: "river", name: "하버 프론트", x: 52, z: 218, rx: 198, rz: 72, count: 52, colors: [0xa4ccc8, 0xe0c4a0, 0x9cc4d8, 0xe0b8c0], minHeight: 8, maxHeight: 28 }
 ];
 
 export function closestPointOnSegment(x, z, start, end) {

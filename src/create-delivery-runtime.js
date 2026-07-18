@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { CITY_HALF, CITY_NODES, CITY_RIVER_PATH, CITY_ROADS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_SKYLINE_MIN_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, distanceToRiver, isPointOnCityRoad, pathLength, roadBaseHeightAt, terrainHeightAt } from "./city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "./city-layout.js";
 import { DESTINATIONS } from "./game-data.js";
@@ -298,7 +297,7 @@ function roadSamplesBetween(road, requestedStartInset = 0, requestedEndInset = 0
   return samples;
 }
 
-function createRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5, startInset = 0, endInset = 0 } = {}) {
+function createRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5, startInset = 0, endInset = 0, offset = 0 } = {}) {
   const positions = [];
   const indices = [];
   const uvs = [];
@@ -306,7 +305,7 @@ function createRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5
   let textureDistance = 0;
   for (let index = 0; index < roadSamples.length; index += 1) {
     const sample = roadSamples[index];
-    const point = sample.point;
+    const rawPoint = sample.point;
     const previous = roadSamples[Math.max(0, index - 1)].point;
     const next = roadSamples[Math.min(roadSamples.length - 1, index + 1)].point;
     const dx = next.x - previous.x;
@@ -314,6 +313,8 @@ function createRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5
     const length = Math.hypot(dx, dz) || 1;
     const nx = -dz / length;
     const nz = dx / length;
+    // offset은 도로 중심선에서 법선 방향으로 데크를 평행 이동시킵니다(인도용).
+    const point = { x: rawPoint.x + nx * offset, z: rawPoint.z + nz * offset };
     const topY = roadSurfaceHeight(road, sample.pathPosition, lift);
     const bottomY = topY - thickness;
     if (index > 0) textureDistance += Math.hypot(point.x - previous.x, point.z - previous.z);
@@ -442,7 +443,9 @@ function createRoadNetwork(scene) {
   const bridgeRailSpecs = [];
   const junctionShoulderSpecs = [];
   const junctionSurfaceSpecs = [];
+  const crosswalkSpecs = [];
   const shoulderMaterial = makeMaterial(0x50575d, { roughness: 0.98 });
+  const sidewalkMaterial = makeMaterial(0xd8dfe3, { roughness: 0.96 });
   const asphaltTexture = makeAsphaltTexture();
   const asphaltMaterial = makeMaterial(0xffffff, { roughness: 0.94 });
   asphaltMaterial.map = asphaltTexture;
@@ -486,6 +489,44 @@ function createRoadNetwork(scene) {
     scene.add(createRoadDeckMesh(road, road.width, road.bridge ? bridgeAsphaltMaterial : asphaltMaterial, {
       lift: 0.34, thickness: road.bridge ? 0.88 : 0.42, startInset: surfaceStartInset, endInset: surfaceEndInset
     }));
+
+    // 아스팔트보다 높은 연석 인도를 도로 양쪽에 두르면 도시 골목의 스케일이 살아납니다.
+    if (!road.bridge) {
+      const sidewalkWidth = 2.3;
+      const sidewalkOffset = road.width / 2 + 1.05 + sidewalkWidth / 2;
+      for (const side of [-1, 1]) {
+        scene.add(createRoadDeckMesh(road, sidewalkWidth, sidewalkMaterial, {
+          lift: 0.52,
+          thickness: 0.74,
+          startInset: Math.max(shoulderStartInset + 2.4, 2.4),
+          endInset: Math.max(shoulderEndInset + 2.4, 2.4),
+          offset: side * sidewalkOffset
+        }));
+      }
+    }
+
+    // 3거리 이상 교차로 진입부마다 횡단보도를 그려 교차로가 읽히게 합니다.
+    for (const [junction, nodeEndIndex] of [[startJunction, 0], [endJunction, 1]]) {
+      if (!junction || junction.degree < 3 || road.bridge) continue;
+      const nodePoint = nodeEndIndex === 0 ? road.path[0] : road.path.at(-1);
+      const innerPoint = nodeEndIndex === 0 ? road.path[1] : road.path.at(-2);
+      const dirX = innerPoint.x - nodePoint.x;
+      const dirZ = innerPoint.z - nodePoint.z;
+      const dirLength = Math.hypot(dirX, dirZ) || 1;
+      const ux = dirX / dirLength;
+      const uz = dirZ / dirLength;
+      const crossX = nodePoint.x + ux * (junction.surfaceRadius + 2.2);
+      const crossZ = nodePoint.z + uz * (junction.surfaceRadius + 2.2);
+      const crossY = drivingSurfaceHeightAt(crossX, crossZ) + 0.062;
+      const stripeCount = Math.max(4, Math.floor(road.width / 1.45));
+      for (let stripe = 0; stripe < stripeCount; stripe += 1) {
+        const lateral = (stripe / Math.max(1, stripeCount - 1) - 0.5) * (road.width - 1.7);
+        crosswalkSpecs.push({
+          x: crossX - uz * lateral, y: crossY, z: crossZ + ux * lateral,
+          width: 0.6, height: 0.045, depth: 1.9, rotation: Math.atan2(ux, uz)
+        });
+      }
+    }
     const edgeOffset = Math.max(2.1, road.width / 2 - 0.62);
     scene.add(createRoadMarkingMesh(road, [-edgeOffset, edgeOffset], 0.18, edgeLineMaterial, {
       startInset: startJunction ? startJunction.surfaceRadius + 1.2 : 0,
@@ -551,6 +592,7 @@ function createRoadNetwork(scene) {
   createBoxInstances(scene, junctionSurfaceSpecs, asphaltMaterial, { geometry: junctionGeometry, castShadow: false });
   createBoxInstances(scene, markerSpecs, makeMaterial(0xf6f7f8, { emissive: 0xffffff, emissiveIntensity: 0.16 }));
   createBoxInstances(scene, localMarkerSpecs, makeMaterial(0xf7fbff, { emissive: 0xffffff, emissiveIntensity: 0.08 }));
+  createBoxInstances(scene, crosswalkSpecs, makeMaterial(0xf3f6f8, { roughness: 0.8, emissive: 0xffffff, emissiveIntensity: 0.1 }));
   createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x8b969e, { roughness: 0.42, metalness: 0.58 }), { castShadow: true });
 }
 
@@ -713,7 +755,7 @@ function createCityTraffic(scene) {
       group.add(cargo);
     }
     const wheels = [];
-    for (const wheelX of [-1.08, 1.08]) {
+    for (const wheelX of [-0.92, 0.92]) {
       for (const wheelZ of [-1.35, 1.35]) {
         const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.3, 14), tireMaterial);
         wheel.position.set(wheelX, 0.44, wheelZ);
@@ -784,25 +826,58 @@ function createCity(scene) {
 
       const frontNormal = rotatePoint(0, depth / 2 + 0.08, rotation);
       const windowColor = seed % 3 === 0 ? 0xffe99a : 0x8ee6ff;
+      const unlitColor = 0x33475a;
+      // 창문을 폭에 비례한 규칙적인 그리드로 배치해 슬래브 느낌을 없앱니다.
       const floorCount = residential ? 1 : Math.min(11, Math.max(2, Math.floor(height / 5.2)));
+      const columnCount = residential ? 2 : Math.min(5, Math.max(2, Math.round(width / 3.4)));
+      const columnSpan = width * 0.72;
+      const windowWidth = Math.min(2.0, (columnSpan / columnCount) * 0.68);
       for (let floor = 0; floor < floorCount; floor += 1) {
         const windowY = residential ? 3.2 : 3.4 + floor * ((height - 4.5) / Math.max(1, floorCount - 1));
-        for (const side of [-1, 1]) {
-          const local = rotatePoint(side * width * 0.24, depth / 2 + 0.08, rotation);
-          windowSpecs.push({ x: x + local.x, y: baseY + windowY, z: z + local.z, width: width * 0.22, height: residential ? 1.65 : 1.8, depth: 0.12, color: windowColor, rotation });
-          if (!residential) {
-            const back = rotatePoint(side * width * 0.24, -depth / 2 - 0.08, rotation);
-            windowSpecs.push({ x: x + back.x, y: baseY + windowY, z: z + back.z, width: width * 0.22, height: 1.8, depth: 0.12, color: seed % 4 ? windowColor : 0x334b5a, rotation });
+        for (let column = 0; column < columnCount; column += 1) {
+          const offsetX = (column / Math.max(1, columnCount - 1) - 0.5) * columnSpan;
+          for (const facing of residential ? [1] : [1, -1]) {
+            const lit = seeded(seed * 13 + floor * 7 + column, facing + 8) > 0.3;
+            const local = rotatePoint(offsetX, facing * (depth / 2 + 0.08), rotation);
+            windowSpecs.push({
+              x: x + local.x, y: baseY + windowY, z: z + local.z,
+              width: windowWidth, height: residential ? 1.65 : 1.72, depth: 0.12,
+              color: lit ? windowColor : unlitColor, rotation
+            });
           }
         }
         if (!residential) {
-          for (const side of [-1, 1]) {
-            for (const offset of [-0.24, 0.24]) {
-              const sideWindow = rotatePoint(side * (width / 2 + 0.08), offset * depth, rotation);
-              windowSpecs.push({ x: x + sideWindow.x, y: baseY + windowY, z: z + sideWindow.z, width: 0.12, height: 1.8, depth: depth * 0.22, color: seed % 5 ? windowColor : 0x334b5a, rotation });
+          const rowCount = Math.min(4, Math.max(2, Math.round(depth / 3.6)));
+          const rowSpan = depth * 0.66;
+          for (let row = 0; row < rowCount; row += 1) {
+            const offsetZ = (row / Math.max(1, rowCount - 1) - 0.5) * rowSpan;
+            for (const side of [-1, 1]) {
+              const lit = seeded(seed * 17 + floor * 5 + row, side + 9) > 0.34;
+              const local = rotatePoint(side * (width / 2 + 0.08), offsetZ, rotation);
+              windowSpecs.push({
+                x: x + local.x, y: baseY + windowY, z: z + local.z,
+                width: 0.12, height: 1.72, depth: Math.min(1.9, (rowSpan / rowCount) * 0.68),
+                color: lit ? windowColor : unlitColor, rotation
+              });
             }
           }
         }
+      }
+      // 저층 상가 1층은 통유리 쇼윈도로 처리해 거리에 생기를 줍니다.
+      if (!residential && height < 40) {
+        windowSpecs.push({
+          x: x + frontNormal.x, y: baseY + 1.9, z: z + frontNormal.z,
+          width: width * 0.78, height: 1.5, depth: 0.14, color: 0xbde9f7, rotation
+        });
+      }
+      // 고층 빌딩 옥상에는 설비 구조물을 올려 스카이라인 실루엣을 다양화합니다.
+      if (highRise) {
+        const unit = rotatePoint(width * 0.16, -depth * 0.14, rotation);
+        roofSpecs.push({
+          x: x + unit.x, y: baseY + height + 1.4, z: z + unit.z,
+          width: Math.min(3, width * 0.32), height: 1.7, depth: Math.min(2.6, depth * 0.28),
+          color: 0xdde6ea, rotation
+        });
       }
       doorSpecs.push({ x: x + frontNormal.x, y: baseY + 1.55, z: z + frontNormal.z, width: residential ? 1.3 : 1.6, height: 2.7, depth: 0.18, color: residential ? 0xffffff : 0x314a5c, rotation });
       if (residential) balconySpecs.push({ x: x + frontNormal.x * 1.04, y: baseY + 3.1, z: z + frontNormal.z * 1.04, width: width * 0.5, height: 0.18, depth: 0.8, color: 0xffffff, rotation });
@@ -1231,44 +1306,6 @@ function carGroundOffset(car) {
   return 0.035 - profile.clearance * 0.5 * profile.scale;
 }
 
-function resetWheelRigsToProfile(car) {
-  for (const wheel of car.wheels) {
-    const home = wheel.userData.home;
-    if (!home) continue;
-    wheel.position.set(home.x, home.y, home.z);
-    wheel.scale.setScalar(1);
-    wheel.userData.radius = home.radius;
-  }
-}
-
-function fitWheelRigsToExternalModel(car, modelSize) {
-  const profile = car.profile || getVehicleProfile("snowbug");
-  const radius = Math.min(profile.wheel * 0.88, modelSize.x * 0.17);
-  const axleX = modelSize.x * 0.36;
-  const axleZ = modelSize.z * 0.31;
-  for (const wheel of car.wheels) {
-    const home = wheel.userData.home;
-    if (!home) continue;
-    wheel.position.set(Math.sign(home.x) * axleX, radius, Math.sign(home.z) * axleZ);
-    wheel.scale.setScalar(radius / profile.wheel);
-    wheel.userData.radius = radius * profile.scale;
-  }
-}
-
-function applyExternalVehiclePaint(root, paint) {
-  const targetColor = new THREE.Color(paint.body);
-  root?.traverse?.((object) => {
-    if (!object.isMesh) return;
-    const materials = Array.isArray(object.material) ? object.material : [object.material];
-    for (const material of materials) {
-      if (!material?.color) continue;
-      if (!material.userData.meshyBaseColor) material.userData.meshyBaseColor = material.color.clone();
-      material.color.copy(material.userData.meshyBaseColor).lerp(targetColor, 0.28);
-      material.needsUpdate = true;
-    }
-  });
-}
-
 function getVehicleProfile(vehicleId) {
   return {
     snowbug: { length: 6.85, width: 3.25, roof: 1.92, wheel: 0.62, clearance: 0.09, cabinStart: -1.66, cabinEnd: 1.18, scale: 0.93, kind: "sedan", spoiler: true },
@@ -1415,18 +1452,25 @@ function rebuildVehicleKit(car, style) {
   rearBadge.rotation.x = Math.PI / 2;
   car.vehicleKit.add(plate, rearBadge);
 
-  const axleX = halfWidth + wheel * 0.28;
+  // 바퀴는 펜더 안쪽으로 밀어 넣어 차체 밖으로 튀어나오지 않게 합니다.
+  // 바깥 면이 차체 옆면보다 6cm만 돌출되도록 휠 폭의 절반만큼 안쪽에 축을 둡니다.
+  const wheelWidth = 0.48;
+  const axleX = halfWidth - wheelWidth / 2 + 0.06;
   const wheelY = wheel + clearance * 0.5;
   const axleZ = length * 0.31;
   car.wheels = [];
   for (const x of [-axleX, axleX]) {
     for (const z of [-axleZ, axleZ]) {
-      const wheelAssembly = createWheelAssembly(wheel, 0.48, car.wheelMaterial, car.rimMaterial, car.accentMaterial);
+      const wheelAssembly = createWheelAssembly(wheel, wheelWidth, car.wheelMaterial, car.rimMaterial, car.accentMaterial);
       wheelAssembly.userData.radius = wheel * profile.scale;
       wheelAssembly.position.set(x, wheelY, z);
       wheelAssembly.userData.home = { x, y: wheelY, z, radius: wheel * profile.scale };
       car.vehicleKit.add(wheelAssembly);
       car.wheels.push(wheelAssembly);
+      const arch = new THREE.Mesh(new THREE.TorusGeometry(wheel * 1.12, 0.085, 6, 16, Math.PI), car.darkMaterial);
+      arch.position.set(Math.sign(x) * (halfWidth + 0.02), wheelY, z);
+      arch.rotation.y = Math.PI / 2;
+      car.vehicleKit.add(arch);
     }
   }
 
@@ -1837,111 +1881,6 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   const coins = createCoins(scene);
   const clock = new THREE.Timer();
   clock.connect(document);
-  const vehicleModelLoader = new GLTFLoader();
-  let vehicleAssetRevision = 0;
-  let externalVehicleId = null;
-
-  function setProceduralVehicleVisible(visible) {
-    for (const child of car.vehicleKit.children) child.visible = visible || car.wheels.includes(child);
-    car.topper.visible = visible;
-    if (car.decal) car.decal.visible = visible;
-  }
-
-  function clearExternalVehicle({ showProcedural = true } = {}) {
-    if (car.externalModel) {
-      car.group.remove(car.externalModel);
-      disposeObjectTree(car.externalModel);
-      car.externalModel = null;
-    }
-    externalVehicleId = null;
-    car.externalModelSize = null;
-    resetWheelRigsToProfile(car);
-    setProceduralVehicleVisible(showProcedural);
-  }
-
-  async function loadVehicleAsset(vehicleId) {
-    const revision = ++vehicleAssetRevision;
-    // 메쉬 모델을 매번 지우면 차고에서 다른 차를 미리볼 때 폴백 차체가 보입니다.
-    // 새 GLB가 완전히 준비된 뒤에만 교체해, 항상 Meshy 모델을 유지합니다.
-    if (car.externalModel && externalVehicleId === vehicleId) {
-      setProceduralVehicleVisible(false);
-      applyExternalVehiclePaint(car.externalModel, style.paint);
-      return;
-    }
-
-    try {
-      const response = await fetch("/models/vehicles/manifest.json", { cache: "no-store" });
-      if (!response.ok) {
-        if (!car.externalModel) setProceduralVehicleVisible(true);
-        return;
-      }
-      const manifest = await response.json();
-      const asset = manifest.vehicles?.[vehicleId];
-      if (!asset?.url || revision !== vehicleAssetRevision) {
-        if (!car.externalModel && revision === vehicleAssetRevision) setProceduralVehicleVisible(true);
-        return;
-      }
-      const gltf = await vehicleModelLoader.loadAsync(asset.url);
-      if (revision !== vehicleAssetRevision || disposed) {
-        disposeObjectTree(gltf.scene);
-        return;
-      }
-
-      const container = new THREE.Group();
-      const model = gltf.scene;
-      model.updateMatrixWorld(true);
-      let bounds = new THREE.Box3().setFromObject(model);
-      let size = bounds.getSize(new THREE.Vector3());
-      if (size.x > size.z) {
-        model.rotation.y = Math.PI / 2;
-        model.updateMatrixWorld(true);
-        bounds = new THREE.Box3().setFromObject(model);
-        size = bounds.getSize(new THREE.Vector3());
-      }
-      const profile = car.profile || getVehicleProfile(vehicleId);
-      model.scale.setScalar(profile.length / Math.max(0.1, size.z));
-      model.updateMatrixWorld(true);
-      bounds = new THREE.Box3().setFromObject(model);
-      const fittedSize = bounds.getSize(new THREE.Vector3());
-      const center = bounds.getCenter(new THREE.Vector3());
-      model.position.x -= center.x;
-      model.position.z -= center.z;
-      model.position.y += 0.04 - bounds.min.y;
-      model.traverse((object) => {
-        if (!object.isMesh) return;
-        object.castShadow = true;
-        object.receiveShadow = true;
-        const materials = Array.isArray(object.material) ? object.material : [object.material];
-        for (const material of materials) {
-          if (!material) continue;
-          material.envMapIntensity = 1.15;
-          material.needsUpdate = true;
-        }
-      });
-      container.name = `meshy-${vehicleId}`;
-      container.add(model);
-
-      // 준비 완료된 새 모델로 한 프레임 안에 교체합니다. 기존 메쉬를 먼저 지우지 않습니다.
-      if (car.externalModel) clearExternalVehicle({ showProcedural: false });
-      car.externalModel = container;
-      externalVehicleId = vehicleId;
-      car.externalModelSize = fittedSize;
-      car.group.add(container);
-      setProceduralVehicleVisible(false);
-      fitWheelRigsToExternalModel(car, fittedSize);
-      applyExternalVehiclePaint(container, style.paint);
-      car.group.position.y = carGroundHeight + carGroundOffset(car);
-      onMessage?.(`${asset.name || "실차"} 3D 에셋 적용`);
-    } catch (error) {
-      if (revision === vehicleAssetRevision) {
-        if (!car.externalModel) setProceduralVehicleVisible(true);
-        console.warn("Vehicle asset fallback:", error.message);
-      }
-    }
-  }
-
-  void loadVehicleAsset(style.vehicle?.id || "snowbug");
-
   function currentTarget() {
     return DESTINATIONS[stopIds[state.deliveryIndex]] ?? null;
   }
@@ -2012,10 +1951,6 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     car.rimMaterial.color.set(nextStyle.wheel.color);
     rebuildTopper(car, nextStyle);
     rebuildVehicleKit(car, nextStyle);
-    if (car.externalModel) {
-      setProceduralVehicleVisible(false);
-      applyExternalVehiclePaint(car.externalModel, nextStyle.paint);
-    }
     car.group.position.y = carGroundHeight + carGroundOffset(car);
     if (car.decal) {
       car.decal.material.map?.dispose();
@@ -2028,7 +1963,6 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     car.decal.scale.set(0.62, 0.62, 1);
     car.decal.material.rotation = -Math.PI / 2;
     car.group.add(car.decal);
-    void loadVehicleAsset(nextStyle.vehicle?.id || "snowbug");
   }
 
   function refreshMarkers() {
@@ -2454,7 +2388,6 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     },
     destroy() {
       disposed = true;
-      vehicleAssetRevision += 1;
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       renderer.domElement.removeEventListener("pointerdown", beginCameraDrag);
