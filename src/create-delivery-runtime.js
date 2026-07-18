@@ -301,13 +301,14 @@ function createClouds(scene) {
   const cloudMaterial = makeMaterial(0xffffff, { roughness: 1, transparent: true, opacity: 0.92, emissive: 0xffffff, emissiveIntensity: 0.18 });
   const puffGeometry = new THREE.IcosahedronGeometry(1, 0);
   const specs = [];
-  for (let index = 0; index < 20; index += 1) {
+  for (let index = 0; index < 22; index += 1) {
     const angle = seeded(index + 40, 1) * Math.PI * 2;
-    const radius = 90 + seeded(index + 40, 2) * 300;
+    const radius = 70 + seeded(index + 40, 2) * 260;
     const x = Math.sin(angle) * radius;
     const z = Math.cos(angle) * radius;
-    const y = 62 + seeded(index + 40, 3) * 34;
-    const scale = 7 + seeded(index + 40, 4) * 9;
+    // 스카이라인(최고 ~90) 사이·위로 보이도록 낮게 깔되, 시내 상공에도 몇 점 띄운다.
+    const y = 46 + seeded(index + 40, 3) * 28;
+    const scale = 8 + seeded(index + 40, 4) * 10;
     specs.push({ x, y, z, width: scale * 1.9, height: scale * 0.62, depth: scale, rotation: angle });
     specs.push({ x: x + scale * 1.15, y: y - scale * 0.1, z: z + scale * 0.35, width: scale * 1.25, height: scale * 0.5, depth: scale * 0.8, rotation: angle });
     specs.push({ x: x - scale * 1.05, y: y - scale * 0.14, z: z - scale * 0.3, width: scale * 1.05, height: scale * 0.45, depth: scale * 0.72, rotation: angle });
@@ -554,6 +555,8 @@ function createRoadNetwork(scene) {
   const junctionSurfaceSpecs = [];
   const crosswalkSpecs = [];
   const laneArrowSpecs = [];
+  const lampPostSpecs = [];
+  const lampHeadSpecs = [];
   const shoulderMaterial = makeMaterial(0x50575d, { roughness: 0.98 });
   const sidewalkMaterial = makeMaterial(0xd8dfe3, { roughness: 0.96 });
   const gutterMaterial = makeMaterial(0x39434b, { roughness: 0.96 });
@@ -675,6 +678,53 @@ function createRoadNetwork(scene) {
       }));
     }
 
+    // 가로등: 간선·보조 도로의 인도 위에 26m 간격, 좌우 교대로 세운다.
+    if (!road.bridge && road.type !== "local") {
+      const roadLength = pathLength(road.path);
+      const lampLateral = road.width / 2 + 1.05 + 1.15;
+      let lampDistance = Math.max(9, surfaceStartInset + 6);
+      let lampSide = 1;
+      const lampSample = (distance) => {
+        let walked = 0;
+        for (let segment = 0; segment < road.path.length - 1; segment += 1) {
+          const from = road.path[segment];
+          const to = road.path[segment + 1];
+          const segmentLength = Math.hypot(to.x - from.x, to.z - from.z);
+          if (walked + segmentLength >= distance) {
+            const t = (distance - walked) / Math.max(0.001, segmentLength);
+            return {
+              x: lerp(from.x, to.x, t), z: lerp(from.z, to.z, t),
+              nx: -(to.z - from.z) / Math.max(0.001, segmentLength),
+              nz: (to.x - from.x) / Math.max(0.001, segmentLength),
+              heading: Math.atan2(to.x - from.x, to.z - from.z)
+            };
+          }
+          walked += segmentLength;
+        }
+        return null;
+      };
+      while (lampDistance < roadLength - Math.max(9, surfaceEndInset + 6)) {
+        const spot = lampSample(lampDistance);
+        if (spot) {
+          const lampX = spot.x + spot.nx * lampLateral * lampSide;
+          const lampZ = spot.z + spot.nz * lampLateral * lampSide;
+          const lampBase = terrainHeightAt(lampX, lampZ);
+          lampPostSpecs.push({ x: lampX, y: lampBase + 2.65, z: lampZ, width: 0.15, height: 4.7, depth: 0.15 });
+          const armDir = -lampSide;
+          lampPostSpecs.push({
+            x: lampX + spot.nx * armDir * 0.75, y: lampBase + 4.9, z: lampZ + spot.nz * armDir * 0.75,
+            width: 0.12, height: 0.12, depth: 1.6, rotation: spot.heading + Math.PI / 2
+          });
+          lampHeadSpecs.push({
+            x: lampX + spot.nx * armDir * 1.45, y: lampBase + 4.82, z: lampZ + spot.nz * armDir * 1.45,
+            width: 0.55, height: 0.2, depth: 0.9, rotation: spot.heading
+          });
+        }
+        lampDistance += 26;
+        lampSide *= -1;
+      }
+    }
+
     const roadTotalLength = pathLength(road.path);
     let roadWalked = 0;
     let nextMarkerDistance = Math.max(6, surfaceStartInset + 3.4);
@@ -775,6 +825,10 @@ function createRoadNetwork(scene) {
   laneArrowMaterial.depthWrite = false;
   createBoxInstances(scene, laneArrowSpecs, laneArrowMaterial, { geometry: laneArrowGeometry, castShadow: false });
   createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x8b969e, { roughness: 0.42, metalness: 0.58 }), { castShadow: true });
+  createBoxInstances(scene, lampPostSpecs, makeMaterial(0x5b6870, { roughness: 0.55, metalness: 0.4 }), { castShadow: true });
+  const lampHeadMaterial = makeMaterial(0xfff4d6, { roughness: 0.3, emissive: 0xffd88a, emissiveIntensity: 0.35 });
+  createBoxInstances(scene, lampHeadSpecs, lampHeadMaterial, { receiveShadow: false });
+  scene.userData.streetLampMaterial = lampHeadMaterial;
 }
 
 function seeded(seed, salt = 0) {
@@ -927,7 +981,7 @@ function createCityTraffic(scene) {
     for (let routeIndex = 0; routeIndex < route.count; routeIndex += 1) {
     const group = new THREE.Group();
     const bodyColor = paints[index % paints.length];
-    const body = roundedBox(2.05, 0.68, 4.5, makeMaterial(bodyColor, { roughness: 0.32, metalness: 0.42 }), 0.22, 0, 0.72, 0);
+    const body = roundedBox(2.05, 0.68, 4.5, makeMaterial(bodyColor, { roughness: 0.4, metalness: 0.18 }), 0.22, 0, 0.72, 0);
     const cabin = roundedBox(1.62, 0.72, 2.08, glassMaterial, 0.2, 0, 1.25, -0.22);
     const bumper = roundedBox(2.12, 0.16, 0.26, chromeMaterial, 0.05, 0, 0.48, -2.15);
     group.add(body, cabin, bumper);
@@ -1543,9 +1597,10 @@ function getVehicleProfile(vehicleId) {
 
 function createDeliveryCar(scene, initialStyle) {
   const group = new THREE.Group();
+  // metalness가 높으면 환경맵 없는 씬에서 차체가 검게 죽는다 — 로우폴리엔 낮은 금속성이 맞다.
   const bodyMaterial = makeMaterial(initialStyle.paint.body, {
-    roughness: 0.2,
-    metalness: 0.38,
+    roughness: 0.34,
+    metalness: 0.16,
     emissive: initialStyle.paint.body,
     emissiveIntensity: 0.09
   });
@@ -2267,6 +2322,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     renderer.toneMappingExposure = 0.86 + daylight * 0.28 + twilight * 0.1;
     if (scene.userData.cityWindowMaterial) scene.userData.cityWindowMaterial.emissiveIntensity = 0.16 + (1 - daylight) * 1.4;
     if (scene.userData.billboardMaterial) scene.userData.billboardMaterial.emissiveIntensity = 0.45 + (1 - daylight) * 1.8;
+    if (scene.userData.streetLampMaterial) scene.userData.streetLampMaterial.emissiveIntensity = 0.2 + (1 - daylight) * 2.6;
     if (scene.userData.skylineGlowMaterial) scene.userData.skylineGlowMaterial.emissiveIntensity = 0.24 + (1 - daylight) * 1.25;
     for (const material of scene.userData.roadGlowMaterials || []) material.emissiveIntensity = 0.12 + (1 - daylight) * 0.72;
     car.headlightMaterial.emissiveIntensity = 0.55 + (1 - daylight) * 3.4;
