@@ -257,11 +257,15 @@ function roadHeightProfile(road) {
     }
     const totalDistance = distances.at(-1);
 
-    if (road.bridge || road.skyway) {
-      // 교량·고가 본선은 지형을 따르지 않고 양 끝 교점 높이를 직선 보간한다.
+    // 양 끝 고저차가 6m를 넘으면 스카이웨이 램프다 — 지형 요철을 따르지 않고
+    // 일정한 경사로 오르내려야 끝점 스냅으로 인한 국소 급경사가 생기지 않는다.
+    const endpointDelta = Math.abs(original.at(-1) - original[0]);
+    if (road.bridge || road.skyway || endpointDelta > 6) {
+      // 교량·고가 본선·램프는 양 끝 교점 높이를 완만한 S자(스무스스텝)로 보간한다.
       profile = distances.map((distance) => {
         const progress = totalDistance > 0 ? distance / totalDistance : 0;
-        return original[0] + (original.at(-1) - original[0]) * progress;
+        const eased = road.bridge || road.skyway ? progress : progress * progress * (3 - 2 * progress);
+        return original[0] + (original.at(-1) - original[0]) * eased;
       });
     } else if (profile.length > 2) {
     for (let pass = 0; pass < 7; pass += 1) {
@@ -296,7 +300,9 @@ function roadHeightProfile(road) {
     const requiredGrade = totalDistance > 0 ? Math.abs(original.at(-1) - original[0]) / totalDistance : 0;
     const gradeLimit = Math.max(0.16, requiredGrade + 0.015);
     const lastIndex = profile.length - 1;
-    for (let pass = 0; pass < 4; pass += 1) {
+    // 스카이웨이 램프처럼 고저차가 큰 도로는 4패스로 수렴하지 않아 국소 26% 경사가
+    // 남았다. 패스를 늘려 어느 방향에서 재도 경사 한계 안으로 들어오게 한다.
+    for (let pass = 0; pass < 14; pass += 1) {
       profile[0] = original[0];
       for (let index = 1; index <= lastIndex; index += 1) {
         const maxDelta = gradeLimit * (distances[index] - distances[index - 1]);

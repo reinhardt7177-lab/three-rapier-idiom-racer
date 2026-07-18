@@ -784,10 +784,20 @@ function createRoadNetwork(scene) {
         nextMarkerDistance += 12;
       }
       if (road.bridge || road.skyway) {
-        for (const side of [-1, 1]) {
-          const railX = (start.x + end.x) / 2 + nx * side * (road.width / 2 + 1.25);
-          const railZ = (start.z + end.z) / 2 + nz * side * (road.width / 2 + 1.25);
-          bridgeRailSpecs.push({ x: railX, y: roadSurfaceHeight(road, segmentIndex + 0.5, 1.08), z: railZ, width: 0.38, height: 1.45, depth: length + 0.4, rotation: angle });
+        const midX = (start.x + end.x) / 2;
+        const midZ = (start.z + end.z) / 2;
+        // 램프가 합류하는 3거리 이상 교점 앞에서는 난간을 끊어 진입로를 연다.
+        const nearOpenJunction = [[road.a, startJunction], [road.b, endJunction]].some(([nodeId, junction]) => {
+          if (!junction || junction.degree < 3) return false;
+          const node = CITY_NODES[nodeId];
+          return Math.hypot(midX - node.x, midZ - node.z) < junction.surfaceRadius + 6;
+        });
+        if (!nearOpenJunction) {
+          for (const side of [-1, 1]) {
+            const railX = midX + nx * side * (road.width / 2 + 1.25);
+            const railZ = midZ + nz * side * (road.width / 2 + 1.25);
+            bridgeRailSpecs.push({ x: railX, y: roadSurfaceHeight(road, segmentIndex + 0.5, 1.08), z: railZ, width: 0.38, height: 1.45, depth: length + 0.4, rotation: angle });
+          }
         }
       }
       // 시내 간선에는 가드레일을 두지 않습니다. 난간은 교량 전용 레일로만 처리해
