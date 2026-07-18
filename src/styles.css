@@ -161,6 +161,11 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
 .mission-route-preview { border: 1px solid rgba(174,215,235,.38); border-radius: 6px; background: rgba(4,14,23,.76); }
 .start-delivery { border: 1px solid #ffe06a; border-radius: 6px; color: #111b22; background: linear-gradient(135deg,#ffe35c,#ffad22); box-shadow: 0 0 25px rgba(255,183,34,.24); }
 .start-delivery b { color: #151d22; }
+.start-delivery:disabled { cursor: wait; opacity: .72; transform: none; filter: saturate(.75); box-shadow: none; }
+.runtime-starting { position: absolute; z-index: 30; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: #f6fbff; background: rgba(3,12,20,.76); backdrop-filter: blur(5px); pointer-events: all; }
+.runtime-starting span { width: 38px; height: 38px; border: 4px solid rgba(255,255,255,.22); border-top-color: #ffd33d; border-radius: 50%; animation: runtime-spin .72s linear infinite; }
+.runtime-starting strong { font-size: 17px; letter-spacing: -.02em; }
+@keyframes runtime-spin { to { transform: rotate(360deg); } }
 .quest-howto { color: #9eb6c4; }
 .customizer-card { border: 1px solid rgba(172,216,238,.58); border-radius: 8px; background: linear-gradient(145deg,rgba(8,20,31,.94),rgba(17,38,52,.91)); box-shadow: 0 20px 48px rgba(0,0,0,.45); }
 .customizer-heading span, .customizer-heading small { color: #91adbc; }
