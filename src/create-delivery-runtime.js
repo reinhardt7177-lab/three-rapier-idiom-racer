@@ -9,6 +9,32 @@ const WORLD_HALF = CITY_HALF;
 const DELIVERY_RADIUS = 12;
 export const WORLD_SPEED_TO_KMH = 5;
 
+// 레이싱 손맛 튜닝 수치는 전부 여기로 모은다 (docs/racing-feel-plan.md 참조).
+export const DRIVE_TUNING = {
+  overdriveRatio: 1.15,   // 터보 중 최고속 배율
+  overdriveDecay: 2.6,    // 터보 해제 후 초당 감속 (world u/s²)
+  boostAccel: 14.5,
+  boostDrain: 30,
+  boostRegen: 10,
+  overheatThreshold: 25,  // 이 밑으로 태우면 과열
+  overheatDelay: 2,       // 과열 시 회복 지연(초)
+  fovPunch: 9,            // 터보 시작 순간 FOV 킥
+  fovPunchDecay: 22,
+  gearCount: 4,
+  gearShiftDip: 0.35,     // 변속 순간 가속 감쇠 배율
+  gearShiftTime: 0.12,
+  driftMinRatio: 0.5,     // 드리프트 진입 최소 속도 비율
+  driftSlipAngle: 0.31,   // 시각적 슬립각(rad) ≈ 18°
+  driftYawBonus: 1.32,    // 드리프트 중 조향 배율
+  driftScorePerTick: 40,  // 0.5초당 점수
+  driftBoostReward: 8,    // 성공 종료 시 터보 게이지 환급
+  nearMissRadius: 4.0,   // 중심 간 거리 기준
+  collisionRadius: 2.3,
+  nearMissScore: 60,
+  nearMissBoost: 5,
+  comboWindow: 8
+};
+
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const lerp = (a, b, t) => a + (b - a) * t;
 const damp = (value, target, smoothing, dt) => lerp(value, target, 1 - Math.exp(-smoothing * dt));
@@ -28,7 +54,9 @@ function makeMaterial(color, options = {}) {
     roughness: options.roughness ?? 0.72,
     metalness: options.metalness ?? 0.05,
     emissive: options.emissive ?? 0x000000,
-    emissiveIntensity: options.emissiveIntensity ?? 0
+    emissiveIntensity: options.emissiveIntensity ?? 0,
+    transparent: options.transparent ?? false,
+    opacity: options.opacity ?? 1
   });
 }
 
@@ -99,6 +127,37 @@ function makeSkyTexture(mood = "morning") {
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   return texture;
+}
+
+function makeChevronMaterial(pointLeft) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 144;
+  const context = canvas.getContext("2d");
+  context.fillStyle = "#d64545";
+  context.fillRect(0, 0, 256, 144);
+  context.strokeStyle = "#ffffff";
+  context.lineWidth = 17;
+  context.lineCap = "round";
+  for (let index = 0; index < 3; index += 1) {
+    const centerX = 62 + index * 66;
+    context.beginPath();
+    if (pointLeft) {
+      context.moveTo(centerX + 17, 26);
+      context.lineTo(centerX - 17, 72);
+      context.lineTo(centerX + 17, 118);
+    } else {
+      context.moveTo(centerX - 17, 26);
+      context.lineTo(centerX + 17, 72);
+      context.lineTo(centerX - 17, 118);
+    }
+    context.stroke();
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  const material = makeMaterial(0xffffff, { roughness: 0.5, emissive: 0xffffff, emissiveIntensity: 0.12 });
+  material.map = texture;
+  return material;
 }
 
 function makeAsphaltTexture() {
@@ -178,7 +237,7 @@ function createSkyline(scene) {
   const towerSpecs = [];
   const crownSpecs = [];
   const windowSpecs = [];
-  const skylineColors = [0x3e6171, 0x4c7282, 0x5b7d8b, 0x647985, 0x476a7c];
+  const skylineColors = [0x9fc4d8, 0xb7d2e0, 0xc8d8e0, 0x94b8cc, 0xa8ccc4];
   for (let index = 0; index < 62; index += 1) {
     const angle = (index / 62) * Math.PI * 2 + seeded(index + 20, 1) * 0.045;
     // 외곽 고속 순환로 밖에만 원경 스카이라인을 배치해 도로를 침범하지 않습니다.
@@ -526,6 +585,13 @@ function createRoadNetwork(scene) {
           width: 0.6, height: 0.045, depth: 1.9, rotation: Math.atan2(ux, uz)
         });
       }
+      // 횡단보도 앞 정지선 — 교차로에서 멈출 위치가 그림만으로 읽히게
+      const stopX = crossX + ux * 2.1;
+      const stopZ = crossZ + uz * 2.1;
+      crosswalkSpecs.push({
+        x: stopX, y: drivingSurfaceHeightAt(stopX, stopZ) + 0.062, z: stopZ,
+        width: road.width - 1.7, height: 0.045, depth: 0.5, rotation: Math.atan2(ux, uz)
+      });
     }
     const edgeOffset = Math.max(2.1, road.width / 2 - 0.62);
     scene.add(createRoadMarkingMesh(road, [-edgeOffset, edgeOffset], 0.18, edgeLineMaterial, {
@@ -586,6 +652,45 @@ function createRoadNetwork(scene) {
     junctionShoulderSpecs.push({ x: node.x, y: baseY + 0.11, z: node.z, width: junction.shoulderRadius, height: 0.18, depth: junction.shoulderRadius });
     junctionSurfaceSpecs.push({ x: node.x, y: baseY + 0.31, z: node.z, width: junction.surfaceRadius, height: 0.1, depth: junction.surfaceRadius });
   }
+
+  // 급코너 예고 쉐브론: 도로 폴리라인의 회전각을 분석해 코너 바깥쪽에 자동 배치.
+  const chevronPostSpecs = [];
+  const chevronLeftSpecs = [];
+  const chevronRightSpecs = [];
+  const placedChevrons = [];
+  for (const road of CITY_ROADS) {
+    if (road.bridge) continue;
+    for (let index = 1; index < road.path.length - 1; index += 1) {
+      const before = road.path[index - 1];
+      const corner = road.path[index];
+      const after = road.path[index + 1];
+      const headingIn = Math.atan2(corner.x - before.x, corner.z - before.z);
+      const headingOut = Math.atan2(after.x - corner.x, after.z - corner.z);
+      const turn = normalizeAngle(headingOut - headingIn);
+      if (Math.abs(turn) < 0.42) continue;
+      if (placedChevrons.some((point) => Math.hypot(point.x - corner.x, point.z - corner.z) < 22)) continue;
+      const ux = Math.sin(headingIn);
+      const uz = Math.cos(headingIn);
+      // 좌회전(+)의 바깥은 오른쪽, 우회전(-)의 바깥은 왼쪽
+      const outsideX = turn > 0 ? -uz : uz;
+      const outsideZ = turn > 0 ? ux : -ux;
+      const lateral = road.width / 2 + 4.1;
+      const signX = corner.x - ux * 12 + outsideX * lateral;
+      const signZ = corner.z - uz * 12 + outsideZ * lateral;
+      const roadCheck = closestRoadPoint(signX, signZ);
+      if (roadCheck && roadCheck.distance < roadCheck.road.width / 2 + 3.5) continue;
+      placedChevrons.push({ x: corner.x, z: corner.z });
+      const baseY = terrainHeightAt(signX, signZ);
+      const facing = headingIn + Math.PI;
+      chevronPostSpecs.push({ x: signX, y: baseY + 1.05, z: signZ, width: 0.16, height: 2.1, depth: 0.16 });
+      (turn > 0 ? chevronLeftSpecs : chevronRightSpecs).push({
+        x: signX, y: baseY + 2.35, z: signZ, width: 1.7, height: 0.95, depth: 0.12, rotation: facing
+      });
+    }
+  }
+  createBoxInstances(scene, chevronPostSpecs, makeMaterial(0x77828a, { roughness: 0.6, metalness: 0.35 }), { castShadow: true });
+  createBoxInstances(scene, chevronLeftSpecs, makeChevronMaterial(true), { castShadow: true });
+  createBoxInstances(scene, chevronRightSpecs, makeChevronMaterial(false), { castShadow: true });
 
   const junctionGeometry = new THREE.CylinderGeometry(1, 1, 1, 36);
   createBoxInstances(scene, junctionShoulderSpecs, shoulderMaterial, { geometry: junctionGeometry, castShadow: false });
@@ -896,8 +1001,11 @@ function createCity(scene) {
     if (placedBuildings.some((item) => Math.hypot(x - item.x, z - item.z) < item.radius + 3.8)) continue;
     const treeScale = 0.72 + seeded(index + 900, 3) * 0.5;
     const baseY = terrainHeightAt(x, z);
+    const leafColor = index % 2 ? 0x315f43 : 0x416f4e;
     trunkSpecs.push({ x, y: baseY + 1.2 * treeScale, z, width: 0.65 * treeScale, height: 2.4 * treeScale, depth: 0.65 * treeScale });
-    crownSpecs.push({ x, y: baseY + 3.45 * treeScale, z, width: 2.4 * treeScale, height: 4.5 * treeScale, depth: 2.4 * treeScale, color: index % 2 ? 0x315f43 : 0x416f4e });
+    // 2단 원뿔 수관 — 로우폴리 침엽수 실루엣
+    crownSpecs.push({ x, y: baseY + 3.1 * treeScale, z, width: 2.55 * treeScale, height: 3.3 * treeScale, depth: 2.55 * treeScale, color: leafColor });
+    crownSpecs.push({ x, y: baseY + 5.2 * treeScale, z, width: 1.8 * treeScale, height: 2.6 * treeScale, depth: 1.8 * treeScale, color: index % 2 ? 0x3c6f4e : 0x4b7d58 });
   }
 
   createBoxInstances(scene, lotSpecs, makeMaterial(0xffffff, { roughness: 1 }));
@@ -1322,13 +1430,14 @@ function createDeliveryCar(scene, initialStyle) {
     roughness: 0.2,
     metalness: 0.38,
     emissive: initialStyle.paint.body,
-    emissiveIntensity: 0.055
+    emissiveIntensity: 0.09
   });
   const accentMaterial = makeMaterial(initialStyle.paint.accent, { roughness: 0.32, metalness: 0.34 });
-  const glassMaterial = makeMaterial(0x07131e, { roughness: 0.08, metalness: 0.62, emissive: 0x18374a, emissiveIntensity: 0.16 });
-  const wheelMaterial = makeMaterial(0x111418, { roughness: 0.74 });
+  // 유리는 살짝 투명한 청록 틴트로 — 불투명 검정 캐빈이 차를 통째로 어둡게 만들지 않게 합니다.
+  const glassMaterial = makeMaterial(0x1a3346, { roughness: 0.08, metalness: 0.62, emissive: 0x2c5a74, emissiveIntensity: 0.22, transparent: true, opacity: 0.86 });
+  const wheelMaterial = makeMaterial(0x171c22, { roughness: 0.74 });
   const rimMaterial = makeMaterial(initialStyle.wheel.color, { roughness: 0.2, metalness: 0.82 });
-  const darkMaterial = makeMaterial(0x111820, { roughness: 0.68, metalness: 0.22 });
+  const darkMaterial = makeMaterial(0x1c2733, { roughness: 0.68, metalness: 0.22 });
   const chromeMaterial = makeMaterial(0xcbd5dd, { roughness: 0.16, metalness: 0.92 });
   const headlightMaterial = makeMaterial(0xeaf8ff, { roughness: 0.08, emissive: 0xc9efff, emissiveIntensity: 1.5 });
   const taillightMaterial = makeMaterial(0xff2438, { roughness: 0.15, emissive: 0xff071e, emissiveIntensity: 1.6 });
@@ -1436,6 +1545,7 @@ function rebuildVehicleKit(car, style) {
   const rightSkirt = roundedBox(0.14, 0.16, length * 0.72, car.darkMaterial, 0.04, halfWidth + 0.035, bodyBottom + 0.08, 0);
   car.vehicleKit.add(roofPanel, frontSplitter, rearDiffuser, rearBumper, tailgateBand, trunkLip, leftSkirt, rightSkirt);
 
+  car.flames = [];
   for (const side of [-1, 1]) {
     const headlight = roundedBox(width * 0.25, 0.2, 0.12, car.headlightMaterial, 0.05, side * width * 0.28, bodyBottom + 0.62, length / 2 + 0.05);
     const taillight = roundedBox(width * 0.28, 0.19, 0.12, car.taillightMaterial, 0.05, side * width * 0.27, bodyBottom + 0.68, -length / 2 - 0.03);
@@ -1443,7 +1553,16 @@ function rebuildVehicleKit(car, style) {
     const exhaust = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.44, 14), car.chromeMaterial);
     exhaust.rotation.x = Math.PI / 2;
     exhaust.position.set(side * width * 0.27, bodyBottom + 0.13, -length / 2 - 0.22);
-    car.vehicleKit.add(headlight, taillight, mirror, exhaust);
+    // 터보 전용 배기 화염 — 평소엔 숨겨 두고 부스트 중에만 깜빡인다.
+    const flame = new THREE.Mesh(
+      new THREE.ConeGeometry(0.14, 0.85, 8),
+      makeMaterial(0xffb347, { emissive: 0xff7a1a, emissiveIntensity: 2.4, roughness: 0.3, transparent: true, opacity: 0.92 })
+    );
+    flame.rotation.x = -Math.PI / 2;
+    flame.position.set(side * width * 0.27, bodyBottom + 0.13, -length / 2 - 0.7);
+    flame.visible = false;
+    car.flames.push(flame);
+    car.vehicleKit.add(headlight, taillight, mirror, exhaust, flame);
   }
 
   const plate = roundedBox(width * 0.32, 0.3, 0.08, makeMaterial(0xe7edf1, { roughness: 0.55 }), 0.04, 0, bodyBottom + 0.45, -length / 2 - 0.12);
@@ -1548,8 +1667,11 @@ function createCoins(scene) {
     positions.push(position);
   }
   const material = makeMaterial(0xffd60a, { emissive: 0xffb703, emissiveIntensity: 0.65, metalness: 0.3 });
+  // 납작한 실린더를 세워서 진짜 동전처럼 — 도넛(토러스) 모양 탈피
+  const coinGeometry = new THREE.CylinderGeometry(0.62, 0.62, 0.16, 18);
+  coinGeometry.rotateX(Math.PI / 2);
   return positions.map(([x, z], index) => {
-    const mesh = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.19, 9, 22), material.clone());
+    const mesh = new THREE.Mesh(coinGeometry, material.clone());
     mesh.position.set(x, drivingSurfaceHeightAt(x, z) + 1.6, z);
     mesh.rotation.y = index * 0.7;
     mesh.castShadow = true;
@@ -1729,6 +1851,52 @@ function makeQuiz(label) {
   };
 }
 
+function createDriftSmokePool(scene) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 64;
+  const context = canvas.getContext("2d");
+  const gradient = context.createRadialGradient(32, 32, 4, 32, 32, 30);
+  gradient.addColorStop(0, "rgba(235,240,244,0.85)");
+  gradient.addColorStop(1, "rgba(235,240,244,0)");
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, 64, 64);
+  const texture = new THREE.CanvasTexture(canvas);
+  const pool = [];
+  for (let index = 0; index < 14; index += 1) {
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0, depthWrite: false }));
+    sprite.visible = false;
+    scene.add(sprite);
+    pool.push({ sprite, life: 0 });
+  }
+  let cursor = 0;
+  let spawnAccumulator = 0;
+  return {
+    emit(x, y, z, dt) {
+      spawnAccumulator += dt;
+      if (spawnAccumulator < 0.045) return;
+      spawnAccumulator = 0;
+      const puff = pool[cursor];
+      cursor = (cursor + 1) % pool.length;
+      puff.life = 0.55;
+      puff.sprite.visible = true;
+      puff.sprite.position.set(x + (Math.random() - 0.5) * 0.7, y, z + (Math.random() - 0.5) * 0.7);
+      puff.sprite.scale.setScalar(0.65);
+    },
+    update(dt) {
+      for (const puff of pool) {
+        if (puff.life <= 0) continue;
+        puff.life -= dt;
+        const progress = 1 - Math.max(0, puff.life) / 0.55;
+        puff.sprite.scale.setScalar(0.65 + progress * 1.1);
+        puff.sprite.position.y += dt * 0.9;
+        puff.sprite.material.opacity = 0.5 * (1 - progress);
+        if (puff.life <= 0) puff.sprite.visible = false;
+      }
+    }
+  };
+}
+
 function createGameAudio() {
   let context = null;
   let muted = false;
@@ -1753,15 +1921,58 @@ function createGameAudio() {
     oscillator.start(context.currentTime + delay);
     oscillator.stop(context.currentTime + delay + duration + 0.03);
   }
+  let engineNodes = null;
+  function ensureEngine() {
+    unlock();
+    if (!context || engineNodes) return;
+    const osc1 = context.createOscillator();
+    osc1.type = "sawtooth";
+    const osc2 = context.createOscillator();
+    osc2.type = "square";
+    osc2.detune.value = 7;
+    const filter = context.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 640;
+    const gain = context.createGain();
+    gain.gain.value = 0;
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gain).connect(context.destination);
+    osc1.start();
+    osc2.start();
+    engineNodes = { osc1, osc2, gain, filter };
+  }
+  function setEngine(rpm, gear, boosting, speedRatio) {
+    if (muted) { engineNodes?.gain.gain.setTargetAtTime(0, context?.currentTime || 0, 0.05); return; }
+    ensureEngine();
+    if (!engineNodes || context.state !== "running") return;
+    const now = context.currentTime;
+    let frequency = 52 + gear * 16 + rpm * 88;
+    if (boosting) frequency *= 1.12;
+    engineNodes.osc1.frequency.setTargetAtTime(frequency, now, 0.05);
+    engineNodes.osc2.frequency.setTargetAtTime(frequency * 1.004, now, 0.05);
+    engineNodes.filter.frequency.setTargetAtTime(420 + speedRatio * 2300 + (boosting ? 520 : 0), now, 0.08);
+    const volume = 0.008 + speedRatio * 0.03 + (boosting ? 0.013 : 0);
+    engineNodes.gain.gain.setTargetAtTime(volume, now, 0.1);
+  }
+  function stopEngine() {
+    if (engineNodes && context) engineNodes.gain.gain.setTargetAtTime(0, context.currentTime, 0.12);
+  }
   return {
     unlock,
-    setMuted(value) { muted = value; },
+    setMuted(value) { muted = value; if (value) stopEngine(); },
+    setEngine,
+    stopEngine,
     start() { tone(440, 0.1, "square", 0.04); tone(660, 0.14, "square", 0.05, 0.11); },
     coin() { tone(880, 0.08, "sine", 0.05); tone(1320, 0.1, "sine", 0.04, 0.06); },
     bump() { tone(110, 0.12, "sawtooth", 0.04); },
     delivery() { tone(523, 0.12, "sine", 0.05); tone(659, 0.12, "sine", 0.05, 0.1); tone(784, 0.18, "sine", 0.05, 0.2); },
     answer(correct) { tone(correct ? 988 : 180, correct ? 0.2 : 0.25, correct ? "sine" : "square", 0.05); },
-    dispose() { context?.close?.(); context = null; }
+    gearShift(gear) { tone(240 + gear * 60, 0.07, "square", 0.028); },
+    nearMiss() { tone(1240, 0.09, "sine", 0.045); tone(1560, 0.08, "sine", 0.035, 0.06); },
+    crash() { tone(90, 0.22, "sawtooth", 0.07); tone(60, 0.3, "square", 0.05, 0.05); },
+    drift() { tone(320, 0.1, "sawtooth", 0.02); },
+    dispose() { context?.close?.(); context = null; engineNodes = null; }
   };
 }
 
@@ -1874,6 +2085,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   rebuildTopper(car, style);
   rebuildVehicleKit(car, style);
   const vehicleNavigator = createVehicleNavigator(car);
+  const driftSmoke = createDriftSmokePool(scene);
   car.group.position.y = carGroundHeight + carGroundOffset(car);
   const vehicleFillLight = new THREE.PointLight(0xd7efff, 10, 18, 2);
   vehicleFillLight.position.set(0, 4.2, -5.4);
@@ -1991,10 +2203,16 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const navigation = navigationForRoute(latestRoute, state.heading);
     updateVehicleNavigator(navigation, clock.getElapsed());
     const directDistance = target ? Math.hypot(dx, dz) : 0;
+    const hudMaxSpeed = (style.vehicle?.topSpeed || 200) / WORLD_SPEED_TO_KMH;
     onHud?.({
       ...state,
       speed: Math.round(Math.abs(state.speed) * WORLD_SPEED_TO_KMH),
       speedLimit: style.vehicle?.topSpeed || 200,
+      boosting: input.boost && state.boost > 1 && state.speed > 2,
+      overdrive: state.speed > hudMaxSpeed + 0.5,
+      speedRatio: clamp(Math.abs(state.speed) / hudMaxSpeed, 0, 1.2),
+      gear: (state.gear ?? 0) + 1,
+      drifting: Boolean(state.drifting),
       timeLeft: Math.max(0, state.timeLeft),
       deliveries: state.deliveryIndex,
       totalDeliveries: stopIds.length,
@@ -2131,35 +2349,89 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     state.throttleAmount = damp(state.throttleAmount, input.accel ? 1 : 0, input.accel ? 6.2 : 3.8, dt);
     state.brakeAmount = damp(state.brakeAmount, input.brake ? 1 : 0, input.brake ? 8.5 : 5.2, dt);
 
-    if (state.throttleAmount > 0.01) {
-      const accelerationFade = clamp(1.12 - Math.max(0, state.speed) / Math.max(1, maxForward) * 0.86, 0.22, 1.12);
-      state.speed += (8.8 + accelerationBonus + accelBonus) * state.throttleAmount * accelerationFade * dt;
-    } else {
+    if (state.throttleAmount > 0.01 && state.speed < maxForward) {
+      // 감쇠 바닥 0.34: 최고속 근처에서도 가속이 죽지 않아 0→최고속이 10~12초에 끝난다.
+      const accelerationFade = clamp(1.12 - Math.max(0, state.speed) / Math.max(1, maxForward) * 0.78, 0.34, 1.12);
+      const gearDip = (state.gearShiftTimer || 0) > 0 ? DRIVE_TUNING.gearShiftDip : 1;
+      state.speed = Math.min(maxForward, state.speed + (8.8 + accelerationBonus + accelBonus) * state.throttleAmount * accelerationFade * gearDip * dt);
+    } else if (state.throttleAmount <= 0.01) {
       const rollingDrag = 0.8 + Math.abs(state.speed) * 0.11;
       state.speed = damp(state.speed, 0, rollingDrag, dt);
     }
 
-    if (state.brakeAmount > 0.01) {
+    if (state.brakeAmount > 0.01 && !state.drifting) {
       if (state.speed > 0.35) state.speed -= (17 + Math.abs(state.speed) * 0.24) * state.brakeAmount * dt;
       else state.speed -= 6.7 * state.brakeAmount * dt;
     }
 
+    // 터보 오버드라이브: 최고속도의 벽을 15% 뚫는다. 해제하면 자연 감속으로 복귀.
+    const overdriveMax = maxForward * DRIVE_TUNING.overdriveRatio;
     if (boosting) {
-      state.speed += 14.5 * dt;
-      state.boost = Math.max(0, state.boost - 30 * dt);
+      state.speed += DRIVE_TUNING.boostAccel * dt;
+      state.boost = Math.max(0, state.boost - DRIVE_TUNING.boostDrain * dt);
+      // 잔량 25% 미만까지 쥐어짜면 과열 — 회복이 잠시 멈춘다.
+      if (state.boost < DRIVE_TUNING.overheatThreshold) state.boostCooldown = DRIVE_TUNING.overheatDelay;
+      if (!state.wasBoosting) state.fovPunch = DRIVE_TUNING.fovPunch;
     } else {
-      state.boost = Math.min(100, state.boost + 10 * dt);
+      state.boostCooldown = Math.max(0, (state.boostCooldown || 0) - dt);
+      if (state.boostCooldown <= 0) state.boost = Math.min(100, state.boost + DRIVE_TUNING.boostRegen * dt);
+      if (state.speed > maxForward) state.speed = Math.max(maxForward, state.speed - DRIVE_TUNING.overdriveDecay * dt);
     }
-    // 터보는 차량 고유의 제한 속도를 넘기지 않고, 그 속도까지 더 빠르게 도달하게 합니다.
-    state.speed = clamp(state.speed, maxReverse, maxForward);
+    state.wasBoosting = boosting;
+    state.fovPunch = Math.max(0, (state.fovPunch || 0) - DRIVE_TUNING.fovPunchDecay * dt);
+    state.speed = clamp(state.speed, maxReverse, boosting ? overdriveMax : Math.max(maxForward, state.speed));
     if (Math.abs(state.speed) < 0.08) state.speed = 0;
+
+    // 가상 4단 기어: 속도 구간을 4분할해 RPM이 계단식으로 차오른다.
+    const gearProgress = clamp(Math.max(0, state.speed) / maxForward, 0, 1) * DRIVE_TUNING.gearCount;
+    const gearIndex = Math.min(DRIVE_TUNING.gearCount - 1, Math.floor(gearProgress));
+    if (gearIndex > (state.gear ?? 0)) {
+      state.gearShiftTimer = DRIVE_TUNING.gearShiftTime;
+      audio.gearShift(gearIndex);
+    }
+    state.gear = gearIndex;
+    state.gearShiftTimer = Math.max(0, (state.gearShiftTimer || 0) - dt);
+    const engineRpm = clamp(gearProgress - gearIndex, 0, 1);
+    audio.setEngine(engineRpm, gearIndex, boosting, clamp(Math.abs(state.speed) / maxForward, 0, 1.2));
 
     const steerTarget = (input.left ? 1 : 0) - (input.right ? 1 : 0);
     state.steerAmount = damp(state.steerAmount, steerTarget, steerTarget === 0 ? 5.6 : 8.4, dt);
     const direction = state.speed >= 0 ? 1 : -1;
+
+    // 드리프트: 고속에서 조향 중 브레이크를 잡으면 뒤가 흐른다.
+    // 브레이크는 감속 대신 드리프트 트리거가 되고, 성공 유지 시 점수·터보를 돌려준다.
+    const currentRatio = clamp(Math.abs(state.speed) / maxForward, 0, 1.2);
+    if (!state.drifting && input.brake && Math.abs(state.steerAmount) > 0.55 && currentRatio > DRIVE_TUNING.driftMinRatio && state.speed > 0) {
+      state.drifting = true;
+      state.driftTime = 0;
+      state.driftScore = 0;
+      audio.drift();
+    }
+    if (state.drifting) {
+      state.driftTime += dt;
+      state.speed = Math.max(0, state.speed - 3.2 * dt);
+      const tick = Math.floor(state.driftTime / 0.5);
+      if (tick > (state.driftTick || 0)) {
+        state.driftTick = tick;
+        state.driftScore += DRIVE_TUNING.driftScorePerTick;
+        state.score += DRIVE_TUNING.driftScorePerTick;
+      }
+      if (Math.abs(state.steerAmount) < 0.25 || currentRatio < 0.34) {
+        state.drifting = false;
+        state.driftTick = 0;
+        if (state.driftTime > 0.6) {
+          state.boost = Math.min(100, state.boost + DRIVE_TUNING.driftBoostReward);
+          onMessage?.(`DRIFT +${state.driftScore} · 터보 +${DRIVE_TUNING.driftBoostReward}`);
+        }
+      }
+    }
+    const targetSlip = state.drifting ? Math.sign(state.steerAmount) * DRIVE_TUNING.driftSlipAngle : 0;
+    state.slipAngle = damp(state.slipAngle || 0, targetSlip, state.drifting ? 6.5 : 9.5, dt);
+
     const speedGrip = clamp(1.14 - Math.abs(state.speed) / Math.max(1, maxForward) * 0.58, 0.46, 1.08);
     const steeringAuthority = clamp(Math.abs(state.speed) / 6, 0.14, 1);
-    const targetYawRate = state.steerAmount * direction * (1.38 + handlingBonus) * speedGrip * steeringAuthority;
+    const driftBonus = state.drifting ? DRIVE_TUNING.driftYawBonus : 1;
+    const targetYawRate = state.steerAmount * direction * (1.38 + handlingBonus) * speedGrip * steeringAuthority * driftBonus;
     state.yawRate = damp(state.yawRate, targetYawRate, 8.8, dt);
     state.heading = normalizeAngle(state.heading + state.yawRate * dt);
 
@@ -2211,7 +2483,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const targetGroundHeight = drivingSurfaceHeightAt(state.x, state.z);
     carGroundHeight = damp(carGroundHeight, targetGroundHeight, 17, dt);
     car.group.position.set(state.x, carGroundHeight + carGroundOffset(car), state.z);
-    car.group.rotation.y += normalizeAngle(state.heading - car.group.rotation.y) * (1 - Math.exp(-10.5 * dt));
+    // 슬립각: 드리프트 중 차체가 진행 방향보다 더 돌아가 옆으로 흐르는 그림을 만든다.
+    car.group.rotation.y += normalizeAngle(state.heading + (state.slipAngle || 0) - car.group.rotation.y) * (1 - Math.exp(-10.5 * dt));
     const forwardX = Math.sin(state.heading);
     const forwardZ = Math.cos(state.heading);
     const slopeSampleDistance = 3.4;
@@ -2226,6 +2499,51 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       const radius = Math.max(0.1, wheel.userData.radius || 0.62);
       wheel.rotation.x += state.speed * dt / radius;
     }
+    if (state.drifting) {
+      const rearX = state.x - Math.sin(car.group.rotation.y) * 2.0;
+      const rearZ = state.z - Math.cos(car.group.rotation.y) * 2.0;
+      driftSmoke.emit(rearX, carGroundHeight + 0.55, rearZ, dt);
+    }
+    state.flameTime = (state.flameTime || 0) + dt;
+    for (const flame of car.flames || []) {
+      flame.visible = boosting;
+      if (boosting) {
+        const flicker = 1 + Math.sin(state.flameTime * 42 + flame.position.x * 9) * 0.28;
+        flame.scale.set(flicker, 0.8 + flicker * 0.45, flicker);
+      }
+    }
+
+    // 교통 상호작용: 스치면 NEAR MISS 보너스, 박으면 감속 페널티.
+    state.collisionCooldown = Math.max(0, (state.collisionCooldown || 0) - dt);
+    state.comboTimer = Math.max(0, (state.comboTimer || 0) - dt);
+    if (state.comboTimer <= 0) state.nearCombo = 0;
+    for (const other of scene.userData.cityTraffic || []) {
+      const gap = Math.hypot(other.group.position.x - state.x, other.group.position.z - state.z);
+      other.nearMissTimer = Math.max(0, (other.nearMissTimer || 0) - dt);
+      if (gap < DRIVE_TUNING.collisionRadius) {
+        if (state.collisionCooldown <= 0) {
+          state.collisionCooldown = 1.4;
+          state.speed *= 0.45;
+          state.crashShake = 0.3;
+          audio.crash();
+          onMessage?.("쿵! 교통 차량과 충돌");
+        }
+      } else if (
+        gap < DRIVE_TUNING.nearMissRadius && other.nearMissTimer <= 0 &&
+        state.collisionCooldown <= 0 && Math.abs(state.speed) / maxForward > 0.5
+      ) {
+        other.nearMissTimer = 1.5;
+        state.nearCombo = Math.min((state.nearCombo || 0) + 1, 3);
+        state.comboTimer = DRIVE_TUNING.comboWindow;
+        const multiplier = [1, 1, 1.5, 2][state.nearCombo];
+        const reward = Math.round(DRIVE_TUNING.nearMissScore * multiplier);
+        state.score += reward;
+        state.boost = Math.min(100, state.boost + DRIVE_TUNING.nearMissBoost);
+        audio.nearMiss();
+        onMessage?.(`NEAR MISS +${reward}${multiplier > 1 ? ` ×${multiplier}` : ""}`);
+      }
+    }
+    state.crashShake = Math.max(0, (state.crashShake || 0) - dt * 0.9);
 
     for (const coin of coins) {
       if (coin.collected) continue;
@@ -2251,6 +2569,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   }
 
   function updateWorld(dt, elapsed) {
+    if (state.status !== "playing") audio.stopEngine();
+    driftSmoke.update(dt);
     messageCooldown = Math.max(0, messageCooldown - dt);
     hudAccumulator += dt;
     applyTimeOfDay(dt);
@@ -2304,15 +2624,20 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       return;
     }
     const speedRatio = clamp(Math.abs(state.speed) / 60, 0, 1);
+    const boosting = input.boost && state.boost > 1 && state.speed > 2;
     const groundY = carGroundHeight;
-    const chaseDistance = 10.1 - speedRatio * 0.6;
+    const chaseDistance = 10.1 - speedRatio * 0.6 + (boosting ? 1.2 : 0);
     const chaseAngle = state.heading + Math.PI + cameraOrbitYaw;
     const lookAhead = 6.2 + speedRatio * 12.5;
     const aimX = state.x + Math.sin(state.heading) * lookAhead;
     const aimZ = state.z + Math.cos(state.heading) * lookAhead;
+    // 고속·터보에서 미세 셰이크 — 속도의 긴장을 손끝이 아니라 화면이 전달한다.
+    const shakeStrength = (speedRatio > 0.75 ? (speedRatio - 0.75) * 0.12 : 0) + (boosting ? 0.05 : 0) + (state.crashShake || 0);
+    const shakeX = Math.sin(elapsed * 37.3) * shakeStrength;
+    const shakeY = Math.cos(elapsed * 43.7) * shakeStrength * 0.7;
     cameraDesired.set(
-      state.x + Math.sin(chaseAngle) * chaseDistance,
-      groundY + cameraOrbitHeight + speedRatio * 0.18,
+      state.x + Math.sin(chaseAngle) * chaseDistance + shakeX,
+      groundY + cameraOrbitHeight + speedRatio * 0.18 + shakeY,
       state.z + Math.cos(chaseAngle) * chaseDistance
     );
     cameraAim.set(aimX, drivingSurfaceHeightAt(aimX, aimZ) + 1.42, aimZ);
@@ -2320,7 +2645,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     camera.position.lerp(cameraDesired, 1 - Math.exp(-(obstruction ? 18 : 6.8 - speedRatio * 2.1) * dt));
     cameraLookAt.lerp(cameraAim, 1 - Math.exp(-(8.2 + speedRatio * 2.4) * dt));
     camera.lookAt(cameraLookAt);
-    camera.fov = damp(camera.fov, 50 + speedRatio * 20, 5.8, dt);
+    // 오버스피드(터보로 최고속 초과) 구간은 FOV 상한을 74까지 열어 준다.
+    const vehicleMax = (style.vehicle?.topSpeed || 200) / WORLD_SPEED_TO_KMH;
+    const overRatio = clamp((Math.abs(state.speed) / vehicleMax - 1) / (DRIVE_TUNING.overdriveRatio - 1), 0, 1);
+    camera.fov = damp(camera.fov, 50 + speedRatio * 20 + overRatio * 4 + (state.fovPunch || 0), 5.8, dt);
     camera.updateProjectionMatrix();
   }
 

@@ -423,10 +423,22 @@ function Stat({ label, value, color }) {
 function GameHud({ hud }) {
   const seconds = Math.max(0, Math.ceil(hud.timeLeft));
   const urgent = seconds <= 20;
-  const speedRatio = Math.max(0, Math.min(1, hud.speed / Math.max(1, hud.speedLimit ?? 200)));
-  const needleAngle = -128 + speedRatio * 256;
+  const speedRatio = Math.max(0, Math.min(1.15, hud.speed / Math.max(1, hud.speedLimit ?? 200)));
+  const needleAngle = -128 + Math.min(1, speedRatio) * 256;
+  const rushOpacity = hud.boosting ? 0.5 : Math.max(0, (hud.speedRatio ?? 0) - 0.72) * 0.9;
   return (
     <div className="hud-layer">
+      {rushOpacity > 0.02 ? (
+        <div
+          className="speed-rush"
+          style={{
+            opacity: rushOpacity,
+            background: hud.overdrive
+              ? "radial-gradient(ellipse at center, transparent 46%, rgba(255,110,40,.42) 100%)"
+              : "radial-gradient(ellipse at center, transparent 52%, rgba(120,200,255,.32) 100%)"
+          }}
+        />
+      ) : null}
       <section className="mission-card">
         <div className="mission-meta"><span className="hud-caption">NOW DELIVERING</span><span className="district-pill" style={{ background: hud.district?.color }}>{hud.district?.name}</span></div>
         <div className="destination-line"><span>{hud.target?.icon || "📦"}</span><div><strong>{hud.target?.name || "목적지 찾는 중"}</strong><small>{hud.target?.package || "안전하게 운전해요"}</small></div></div>
@@ -443,13 +455,16 @@ function GameHud({ hud }) {
         <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
       </section>
 
-      <section className="speed-meter" aria-label={`현재 속도 ${hud.speed}km/h`}>
+      <section className={hud.overdrive ? "speed-meter overdrive" : "speed-meter"} aria-label={`현재 속도 ${hud.speed}km/h`}>
         <div className="tachometer">
           <i className="tach-needle" style={{ transform: `translateX(-50%) rotate(${needleAngle}deg)` }} />
-          <div className="tach-readout"><strong>{hud.speed}</strong><span>km/h</span></div>
+          <div className="tach-readout">
+            <strong style={hud.overdrive ? { color: "#ff5d2e" } : undefined}>{hud.speed}</strong>
+            <span>km/h · {hud.gear ?? 1}단{hud.drifting ? " · DRIFT" : ""}</span>
+          </div>
         </div>
-        <div className="boost-track"><i style={{ width: `${hud.boost}%` }} /></div>
-        <small>NITRO {Math.round(hud.boost)}% · LIMIT {hud.speedLimit ?? 200}km/h</small>
+        <div className="boost-track"><i style={{ width: `${hud.boost}%`, background: hud.overdrive ? "#ff5d2e" : undefined }} /></div>
+        <small>{hud.overdrive ? "OVERDRIVE!" : `NITRO ${Math.round(hud.boost)}%`} · LIMIT {hud.speedLimit ?? 200}km/h</small>
       </section>
       {hud.nearTarget ? <div className="delivery-approach">📦 감속 · 배달존 진입</div> : null}
     </div>

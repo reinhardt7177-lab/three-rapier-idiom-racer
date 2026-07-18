@@ -180,6 +180,7 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
 .stat-row > span { color: #aac0cc; }
 
 .hud-layer { position: absolute; z-index: 15; inset: 0; pointer-events: none; }
+.speed-rush { position: absolute; inset: 0; pointer-events: none; transition: opacity .18s ease; }
 .mission-card { position: absolute; left: 22px; top: 78px; width: 270px; padding: 13px 15px; border: 2px solid rgba(255,255,255,.94); border-radius: 20px; background: rgba(247,252,255,.86); box-shadow: 0 12px 32px rgba(28,69,95,.22); backdrop-filter: blur(14px) saturate(1.12); }
 .mission-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .hud-caption { color: #ff6b00; font-size: 9px; font-weight: 1000; letter-spacing: 1.4px; }

@@ -1,5 +1,5 @@
 export const PAINTS = [
-  { id: "metal", name: "메탈 그레이", body: "#5a6573", accent: "#b8c4d0", glow: "#dce8f2" },
+  { id: "metal", name: "메탈 그레이", body: "#8a97a8", accent: "#c8d4e0", glow: "#dce8f2" },
   { id: "mango", name: "망고 번개", body: "#ffb703", accent: "#fb5607", glow: "#fff3b0" },
   { id: "soda", name: "소다 파도", body: "#00b4d8", accent: "#4361ee", glow: "#caf0f8" },
   { id: "berry", name: "베리 팝", body: "#ff4d8d", accent: "#8338ec", glow: "#ffd6e5" },
