@@ -217,6 +217,52 @@ function makeAsphaltTexture() {
   return texture;
 }
 
+function makeRoadSurfaceTextures() {
+  const colorCanvas = document.createElement("canvas");
+  const detailCanvas = document.createElement("canvas");
+  colorCanvas.width = detailCanvas.width = 256;
+  colorCanvas.height = detailCanvas.height = 256;
+  const colorContext = colorCanvas.getContext("2d");
+  const detailContext = detailCanvas.getContext("2d");
+
+  colorContext.fillStyle = "#363d42";
+  colorContext.fillRect(0, 0, 256, 256);
+  detailContext.fillStyle = "#b8b8b8";
+  detailContext.fillRect(0, 0, 256, 256);
+  for (let index = 0; index < 8200; index += 1) {
+    const x = Math.floor(seeded(index + 4100, 5) * 256);
+    const y = Math.floor(seeded(index + 4100, 6) * 256);
+    const grain = 34 + Math.floor(seeded(index + 4100, 2) * 44);
+    const alpha = 0.035 + seeded(index + 4100, 3) * 0.1;
+    const size = seeded(index + 4100, 4) > 0.965 ? 2 : 1;
+    colorContext.fillStyle = `rgba(${grain},${grain + 3},${grain + 5},${alpha})`;
+    colorContext.fillRect(x, y, size, size);
+    const detail = 132 + Math.floor(seeded(index + 5100, 2) * 92);
+    detailContext.fillStyle = `rgb(${detail},${detail},${detail})`;
+    detailContext.fillRect(x, y, size, size);
+  }
+
+  colorContext.strokeStyle = "rgba(18,23,27,.12)";
+  colorContext.lineWidth = 2;
+  for (let index = 0; index < 3; index += 1) {
+    colorContext.beginPath();
+    colorContext.moveTo(seeded(index + 9000, 1) * 256, seeded(index + 9000, 2) * 256);
+    colorContext.quadraticCurveTo(seeded(index + 9000, 3) * 256, seeded(index + 9000, 4) * 256, seeded(index + 9000, 5) * 256, seeded(index + 9000, 6) * 256);
+    colorContext.stroke();
+  }
+
+  const colorMap = new THREE.CanvasTexture(colorCanvas);
+  colorMap.colorSpace = THREE.SRGBColorSpace;
+  const bumpMap = new THREE.CanvasTexture(detailCanvas);
+  for (const texture of [colorMap, bumpMap]) {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(1.25, 1.25);
+    texture.anisotropy = 8;
+  }
+  return { colorMap, bumpMap };
+}
+
 function createBoxInstances(scene, specs, material, { castShadow = false, receiveShadow = true, geometry = null } = {}) {
   if (!specs.length) return null;
   const mesh = new THREE.InstancedMesh(geometry || new THREE.BoxGeometry(1, 1, 1), material, specs.length);
@@ -250,6 +296,7 @@ function disposeObjectTree(root) {
     for (const material of materials) {
       material.map?.dispose?.();
       material.normalMap?.dispose?.();
+      material.bumpMap?.dispose?.();
       material.roughnessMap?.dispose?.();
       material.metalnessMap?.dispose?.();
       material.dispose?.();
@@ -498,6 +545,219 @@ function createRoadMarkingMesh(road, offsets, lineWidth, material, { startInset 
   const mesh = new THREE.Mesh(geometry, material);
   mesh.receiveShadow = true;
   mesh.renderOrder = 2;
+  return mesh;
+}
+
+const smoothRoadCache = new WeakMap();
+
+function getSmoothRoadData(road) {
+  const cached = smoothRoadCache.get(road);
+  if (cached) return cached;
+  const points = road.path.map((point) => new THREE.Vector3(point.x, 0, point.z));
+  const curve = points.length === 2
+    ? new THREE.LineCurve3(points[0], points[1])
+    : new THREE.CatmullRomCurve3(points, false, "centripetal", 0.5);
+  curve.arcLengthDivisions = Math.max(120, Math.ceil(pathLength(road.path) * 2.4));
+  const length = Math.max(0.001, curve.getLength());
+  const originalCumulative = [0];
+  for (let index = 1; index < road.path.length; index += 1) {
+    originalCumulative.push(originalCumulative.at(-1) + Math.hypot(
+      road.path[index].x - road.path[index - 1].x,
+      road.path[index].z - road.path[index - 1].z
+    ));
+  }
+  const data = { curve, length, originalCumulative, originalLength: Math.max(0.001, originalCumulative.at(-1)) };
+  smoothRoadCache.set(road, data);
+  return data;
+}
+
+function pathPositionAtRoadFraction(road, fraction) {
+  const data = getSmoothRoadData(road);
+  const target = clamp(fraction, 0, 1) * data.originalLength;
+  for (let index = 1; index < data.originalCumulative.length; index += 1) {
+    if (data.originalCumulative[index] < target) continue;
+    const segmentLength = Math.max(0.001, data.originalCumulative[index] - data.originalCumulative[index - 1]);
+    return index - 1 + (target - data.originalCumulative[index - 1]) / segmentLength;
+  }
+  return road.path.length - 1;
+}
+
+function smoothRoadSampleAt(road, distance) {
+  const data = getSmoothRoadData(road);
+  const clampedDistance = clamp(distance, 0, data.length);
+  const fraction = clampedDistance / data.length;
+  const point = data.curve.getPointAt(fraction);
+  const tangent = data.curve.getTangentAt(fraction).normalize();
+  return {
+    point: { x: point.x, z: point.z },
+    tangent: { x: tangent.x, z: tangent.z },
+    pathPosition: pathPositionAtRoadFraction(road, fraction),
+    distance: clampedDistance
+  };
+}
+
+function smoothRoadSamplesBetween(road, requestedStartInset = 0, requestedEndInset = 0, spacing = 0.85) {
+  const data = getSmoothRoadData(road);
+  const startInset = clamp(requestedStartInset, 0, data.length * 0.42);
+  const endInset = clamp(requestedEndInset, 0, data.length * 0.42);
+  const finishDistance = Math.max(startInset, data.length - endInset);
+  const segmentCount = Math.max(1, Math.ceil((finishDistance - startInset) / Math.max(0.35, spacing)));
+  const samples = [];
+  for (let index = 0; index <= segmentCount; index += 1) {
+    samples.push(smoothRoadSampleAt(road, lerp(startInset, finishDistance, index / segmentCount)));
+  }
+  return samples;
+}
+
+function createSmoothRoadDeckMesh(road, width, material, { lift = 0.2, thickness = 0.5, startInset = 0, endInset = 0, offset = 0, spacing = 0.85 } = {}) {
+  const positions = [];
+  const indices = [];
+  const uvs = [];
+  const roadSamples = smoothRoadSamplesBetween(road, startInset, endInset, spacing);
+  for (let index = 0; index < roadSamples.length; index += 1) {
+    const sample = roadSamples[index];
+    const nx = -sample.tangent.z;
+    const nz = sample.tangent.x;
+    const pointX = sample.point.x + nx * offset;
+    const pointZ = sample.point.z + nz * offset;
+    const topY = roadSurfaceHeight(road, sample.pathPosition, lift);
+    const bottomY = topY - thickness;
+    const textureV = (sample.distance - roadSamples[0].distance) / 10;
+    positions.push(
+      pointX + nx * width / 2, topY, pointZ + nz * width / 2,
+      pointX - nx * width / 2, topY, pointZ - nz * width / 2,
+      pointX + nx * width / 2, bottomY, pointZ + nz * width / 2,
+      pointX - nx * width / 2, bottomY, pointZ - nz * width / 2
+    );
+    const textureU = Math.max(0.25, width / 10);
+    uvs.push(0, textureV, textureU, textureV, 0, textureV, textureU, textureV);
+    if (index >= roadSamples.length - 1) continue;
+    const current = index * 4;
+    const following = current + 4;
+    indices.push(
+      current, following, current + 1, following, following + 1, current + 1,
+      current + 2, current + 3, following + 2, following + 2, current + 3, following + 3,
+      current, current + 2, following, following, current + 2, following + 2,
+      current + 1, following + 1, current + 3, following + 1, following + 3, current + 3
+    );
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.castShadow = road.bridge || road.skyway;
+  mesh.receiveShadow = true;
+  return mesh;
+}
+
+function createRoadPaintMesh(road, offsets, lineWidth, material, {
+  startInset = 0,
+  endInset = 0,
+  dashLength = 0,
+  gapLength = 0,
+  lift = 0.348,
+  dashOffset = 0
+} = {}) {
+  const positions = [];
+  const indices = [];
+  const samples = smoothRoadSamplesBetween(road, startInset, endInset, 0.72);
+  const dashPeriod = dashLength + gapLength;
+  for (const offset of offsets) {
+    for (let index = 0; index < samples.length - 1; index += 1) {
+      const start = samples[index];
+      const finish = samples[index + 1];
+      const midpoint = (start.distance + finish.distance) / 2 + dashOffset;
+      if (dashPeriod > 0 && ((midpoint % dashPeriod) + dashPeriod) % dashPeriod >= dashLength) continue;
+      const startNx = -start.tangent.z;
+      const startNz = start.tangent.x;
+      const finishNx = -finish.tangent.z;
+      const finishNz = finish.tangent.x;
+      const startX = start.point.x + startNx * offset;
+      const startZ = start.point.z + startNz * offset;
+      const finishX = finish.point.x + finishNx * offset;
+      const finishZ = finish.point.z + finishNz * offset;
+      const startY = roadSurfaceHeight(road, start.pathPosition, lift);
+      const finishY = roadSurfaceHeight(road, finish.pathPosition, lift);
+      const vertex = positions.length / 3;
+      positions.push(
+        startX + startNx * lineWidth / 2, startY, startZ + startNz * lineWidth / 2,
+        startX - startNx * lineWidth / 2, startY, startZ - startNz * lineWidth / 2,
+        finishX + finishNx * lineWidth / 2, finishY, finishZ + finishNz * lineWidth / 2,
+        finishX - finishNx * lineWidth / 2, finishY, finishZ - finishNz * lineWidth / 2
+      );
+      indices.push(vertex, vertex + 2, vertex + 1, vertex + 2, vertex + 3, vertex + 1);
+    }
+  }
+  if (!indices.length) return null;
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.receiveShadow = true;
+  mesh.renderOrder = 3;
+  return mesh;
+}
+
+function junctionApproaches(nodeId, roads) {
+  const node = CITY_NODES[nodeId];
+  return roads.map((road) => {
+    const startsHere = road.a === nodeId;
+    const inner = startsHere ? road.path[Math.min(1, road.path.length - 1)] : road.path[Math.max(0, road.path.length - 2)];
+    const dx = inner.x - node.x;
+    const dz = inner.z - node.z;
+    const length = Math.hypot(dx, dz) || 1;
+    return { road, x: dx / length, z: dz / length };
+  });
+}
+
+function createJunctionSurfaceMesh(nodeId, junction, material, { depth, extra = 0, lift = 0.34 } = {}) {
+  const node = CITY_NODES[nodeId];
+  const approaches = junctionApproaches(nodeId, junction.roads);
+  const resolution = Math.max(72, junction.degree * 18);
+  const minimumHalfWidth = Math.min(...junction.roads.map((road) => road.width / 2 + extra));
+  const coreRadius = Math.max(2.8 + extra, minimumHalfWidth * 0.24);
+  const radii = [];
+  for (let index = 0; index < resolution; index += 1) {
+    const angle = index / resolution * Math.PI * 2;
+    const rayX = Math.cos(angle);
+    const rayZ = Math.sin(angle);
+    let radius = coreRadius;
+    for (const approach of approaches) {
+      const forward = rayX * approach.x + rayZ * approach.z;
+      if (forward <= 0.001) continue;
+      const sideways = Math.abs(rayX * approach.z - rayZ * approach.x);
+      const halfWidth = approach.road.width / 2 + extra;
+      const forwardLimit = depth / forward;
+      const sideLimit = halfWidth / Math.max(0.0001, sideways);
+      radius = Math.max(radius, Math.min(forwardLimit, sideLimit));
+    }
+    radii.push(radius);
+  }
+
+  const positions = [node.x, terrainHeightAt(node.x, node.z) + lift, node.z];
+  const uvs = [node.x / 12, node.z / 12];
+  const indices = [];
+  const topY = terrainHeightAt(node.x, node.z) + lift;
+  for (let index = 0; index < resolution; index += 1) {
+    const angle = index / resolution * Math.PI * 2;
+    positions.push(node.x + Math.cos(angle) * radii[index], topY, node.z + Math.sin(angle) * radii[index]);
+    uvs.push((node.x + Math.cos(angle) * radii[index]) / 12, (node.z + Math.sin(angle) * radii[index]) / 12);
+  }
+  for (let index = 0; index < resolution; index += 1) {
+    const current = index + 1;
+    const next = (index + 1) % resolution + 1;
+    indices.push(0, next, current);
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.receiveShadow = true;
   return mesh;
 }
 
@@ -893,6 +1153,229 @@ function createRoadNetwork(scene) {
   scene.userData.streetLampMaterial = lampHeadMaterial;
 }
 
+function createSmoothRoadNetwork(scene) {
+  const bridgeRailSpecs = [];
+  const pierSpecs = [];
+  const crosswalkSpecs = [];
+  const shoulderMaterial = makeMaterial(0x555c61, { roughness: 0.98 });
+  const sidewalkMaterial = makeMaterial(0xb8bec1, { roughness: 0.94 });
+  const { colorMap: asphaltColorMap, bumpMap: asphaltBumpMap } = makeRoadSurfaceTextures();
+  const asphaltMaterial = makeMaterial(0xffffff, { roughness: 0.9 });
+  asphaltMaterial.map = asphaltColorMap;
+  asphaltMaterial.bumpMap = asphaltBumpMap;
+  asphaltMaterial.bumpScale = 0.045;
+  const bridgeAsphaltMaterial = makeMaterial(0xe2e5e7, { roughness: 0.88 });
+  bridgeAsphaltMaterial.map = asphaltColorMap;
+  bridgeAsphaltMaterial.bumpMap = asphaltBumpMap;
+  bridgeAsphaltMaterial.bumpScale = 0.035;
+
+  const edgeLineMaterial = makeMaterial(0xe7eaeb, { roughness: 0.58 });
+  const laneLineMaterial = makeMaterial(0xe4e7e8, { roughness: 0.56 });
+  const centerLineMaterial = makeMaterial(0xe7b72d, { roughness: 0.54 });
+  const crosswalkMaterial = makeMaterial(0xe3e6e7, { roughness: 0.6 });
+  for (const material of [edgeLineMaterial, laneLineMaterial, centerLineMaterial, crosswalkMaterial]) {
+    material.polygonOffset = true;
+    material.polygonOffsetFactor = -2;
+    material.polygonOffsetUnits = -2;
+  }
+
+  const roadsByNode = new Map();
+  for (const road of CITY_ROADS) {
+    for (const nodeId of [road.a, road.b]) {
+      if (!roadsByNode.has(nodeId)) roadsByNode.set(nodeId, []);
+      roadsByNode.get(nodeId).push(road);
+    }
+  }
+  const junctionInfo = new Map();
+  for (const [nodeId, roads] of roadsByNode) {
+    if (roads.length < 2) continue;
+    const widestRoad = Math.max(...roads.map((road) => road.width));
+    const surfaceDepth = Math.max(8.5, widestRoad * 0.68 + Math.max(0, roads.length - 3) * 0.72);
+    junctionInfo.set(nodeId, {
+      degree: roads.length,
+      roads,
+      surfaceDepth,
+      shoulderDepth: surfaceDepth + 1.35
+    });
+  }
+
+  const addPaint = (mesh) => {
+    if (mesh) scene.add(mesh);
+  };
+
+  for (const road of CITY_ROADS) {
+    const startJunction = junctionInfo.get(road.a);
+    const endJunction = junctionInfo.get(road.b);
+    const elevatedDeck = road.bridge || road.skyway;
+    const shoulderWidth = road.width + (elevatedDeck ? 2.8 : 2.2);
+    const shoulderStartInset = startJunction?.shoulderDepth || 0;
+    const shoulderEndInset = endJunction?.shoulderDepth || 0;
+    const surfaceStartInset = startJunction?.surfaceDepth || 0;
+    const surfaceEndInset = endJunction?.surfaceDepth || 0;
+
+    scene.add(createSmoothRoadDeckMesh(road, shoulderWidth, shoulderMaterial, {
+      lift: 0.2,
+      thickness: elevatedDeck ? 1.05 : 0.46,
+      startInset: shoulderStartInset,
+      endInset: shoulderEndInset
+    }));
+    scene.add(createSmoothRoadDeckMesh(road, road.width, elevatedDeck ? bridgeAsphaltMaterial : asphaltMaterial, {
+      lift: 0.34,
+      thickness: elevatedDeck ? 0.88 : 0.36,
+      startInset: surfaceStartInset,
+      endInset: surfaceEndInset
+    }));
+
+    if (!elevatedDeck && road.type !== "alley") {
+      const sidewalkWidth = road.type === "local" ? 1.75 : 2.2;
+      const sidewalkOffset = road.width / 2 + 0.7 + sidewalkWidth / 2;
+      for (const side of [-1, 1]) {
+        scene.add(createSmoothRoadDeckMesh(road, sidewalkWidth, sidewalkMaterial, {
+          lift: 0.48,
+          thickness: 0.62,
+          startInset: shoulderStartInset + 1.5,
+          endInset: shoulderEndInset + 1.5,
+          offset: side * sidewalkOffset,
+          spacing: 0.7
+        }));
+      }
+    }
+
+    const paintStartInset = surfaceStartInset + (startJunction ? 0.8 : 0);
+    const paintEndInset = surfaceEndInset + (endJunction ? 0.8 : 0);
+    if (road.type !== "local" && road.type !== "alley") {
+      const edgeOffset = Math.max(2, road.width / 2 - 0.54);
+      addPaint(createRoadPaintMesh(road, [-edgeOffset, edgeOffset], 0.14, edgeLineMaterial, {
+        startInset: paintStartInset,
+        endInset: paintEndInset
+      }));
+    }
+    if (road.type === "arterial") {
+      addPaint(createRoadPaintMesh(road, [-road.width * 0.25, road.width * 0.25], 0.14, laneLineMaterial, {
+        startInset: paintStartInset,
+        endInset: paintEndInset,
+        dashLength: 4.2,
+        gapLength: 6.3
+      }));
+    }
+    if (road.type !== "alley") {
+      const centerOffsets = road.type === "local" ? [0] : [-0.17, 0.17];
+      addPaint(createRoadPaintMesh(road, centerOffsets, road.type === "local" ? 0.1 : 0.11, centerLineMaterial, {
+        startInset: paintStartInset,
+        endInset: paintEndInset,
+        dashLength: road.type === "local" ? 3.2 : 0,
+        gapLength: road.type === "local" ? 4.8 : 0
+      }));
+    }
+
+    // Crosswalks are reserved for readable three- and four-way urban junctions.
+    // High-degree hubs are intentionally kept clean until their topology is split.
+    for (const [junction, startsHere] of [[startJunction, true], [endJunction, false]]) {
+      if (!junction || junction.degree < 3 || junction.degree > 4 || elevatedDeck || road.type === "alley" || road.type === "scenic") continue;
+      const data = getSmoothRoadData(road);
+      const fromNodeBase = junction.surfaceDepth + 1.8;
+      for (let stripe = 0; stripe < 6; stripe += 1) {
+        const fromNode = fromNodeBase + stripe * 0.82;
+        const sample = smoothRoadSampleAt(road, startsHere ? fromNode : data.length - fromNode);
+        crosswalkSpecs.push({
+          x: sample.point.x,
+          y: roadSurfaceHeight(road, sample.pathPosition, 0.352),
+          z: sample.point.z,
+          width: Math.max(3.5, road.width - 1.5),
+          height: 0.006,
+          depth: 0.34,
+          rotation: Math.atan2(sample.tangent.x, sample.tangent.z)
+        });
+      }
+      const stopFromNode = fromNodeBase + 5.7;
+      const stopSample = smoothRoadSampleAt(road, startsHere ? stopFromNode : data.length - stopFromNode);
+      crosswalkSpecs.push({
+        x: stopSample.point.x,
+        y: roadSurfaceHeight(road, stopSample.pathPosition, 0.352),
+        z: stopSample.point.z,
+        width: Math.max(3.5, road.width - 1.5),
+        height: 0.006,
+        depth: 0.24,
+        rotation: Math.atan2(stopSample.tangent.x, stopSample.tangent.z)
+      });
+    }
+
+    if (road.skyway) {
+      const data = getSmoothRoadData(road);
+      for (let pierDistance = 16; pierDistance < data.length - 16; pierDistance += 22) {
+        const spot = smoothRoadSampleAt(road, pierDistance);
+        const deckBottom = roadSurfaceHeight(road, spot.pathPosition, 0.2) - 1;
+        const groundHeight = terrainHeightAt(spot.point.x, spot.point.z);
+        if (deckBottom - groundHeight < 1.4) continue;
+        const rotation = Math.atan2(spot.tangent.x, spot.tangent.z);
+        pierSpecs.push({
+          x: spot.point.x,
+          y: (deckBottom + groundHeight) / 2,
+          z: spot.point.z,
+          width: 1.8,
+          height: deckBottom - groundHeight,
+          depth: 1.8,
+          rotation
+        });
+        pierSpecs.push({
+          x: spot.point.x,
+          y: deckBottom - 0.35,
+          z: spot.point.z,
+          width: road.width + 1.5,
+          height: 0.7,
+          depth: 1.7,
+          rotation
+        });
+      }
+    }
+
+    if (elevatedDeck) {
+      const railSamples = smoothRoadSamplesBetween(road, shoulderStartInset + 1, shoulderEndInset + 1, 2.6);
+      for (let index = 0; index < railSamples.length - 1; index += 1) {
+        const start = railSamples[index];
+        const finish = railSamples[index + 1];
+        const midX = (start.point.x + finish.point.x) / 2;
+        const midZ = (start.point.z + finish.point.z) / 2;
+        const dx = finish.point.x - start.point.x;
+        const dz = finish.point.z - start.point.z;
+        const length = Math.hypot(dx, dz) || 1;
+        const nx = -dz / length;
+        const nz = dx / length;
+        const angle = Math.atan2(dx, dz);
+        for (const side of [-1, 1]) {
+          const railX = midX + nx * side * (road.width / 2 + 1.05);
+          const railZ = midZ + nz * side * (road.width / 2 + 1.05);
+          bridgeRailSpecs.push({
+            x: railX,
+            y: roadSurfaceHeight(road, (start.pathPosition + finish.pathPosition) / 2, 1.02),
+            z: railZ,
+            width: 0.24,
+            height: 1.24,
+            depth: length + 0.18,
+            rotation: angle
+          });
+        }
+      }
+    }
+  }
+
+  for (const [nodeId, junction] of junctionInfo) {
+    scene.add(createJunctionSurfaceMesh(nodeId, junction, shoulderMaterial, {
+      depth: junction.shoulderDepth,
+      extra: 1.1,
+      lift: 0.2
+    }));
+    scene.add(createJunctionSurfaceMesh(nodeId, junction, asphaltMaterial, {
+      depth: junction.surfaceDepth,
+      lift: 0.34
+    }));
+  }
+
+  createBoxInstances(scene, crosswalkSpecs, crosswalkMaterial, { castShadow: false });
+  createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x596167, { roughness: 0.45, metalness: 0.52 }), { castShadow: true });
+  createBoxInstances(scene, pierSpecs, makeMaterial(0xa4aaad, { roughness: 0.88 }), { castShadow: true });
+}
+
 function seeded(seed, salt = 0) {
   const value = Math.sin(seed * 91.127 + salt * 17.31) * 43758.5453;
   return value - Math.floor(value);
@@ -1090,7 +1573,7 @@ function createCity(scene) {
   const river = createRibbonMesh(CITY_RIVER_PATH, 24, makeMaterial(0x45b7e8, { roughness: 0.22, metalness: 0.08 }), 0.03);
   river.castShadow = false;
   scene.add(river);
-  createRoadNetwork(scene);
+  createSmoothRoadNetwork(scene);
   createCityTraffic(scene);
   createRegionalScenery(scene);
 
