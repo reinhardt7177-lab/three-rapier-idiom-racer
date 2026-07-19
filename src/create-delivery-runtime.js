@@ -200,14 +200,6 @@ function makeAsphaltTexture() {
     const size = seeded(index + 4100, 4) > 0.94 ? 2 : 1;
     context.fillRect(Math.floor(seeded(index + 4100, 5) * 256), Math.floor(seeded(index + 4100, 6) * 256), size, size);
   }
-  context.strokeStyle = "rgba(24,32,38,.16)";
-  context.lineWidth = 1;
-  for (let index = 0; index < 7; index += 1) {
-    context.beginPath();
-    context.moveTo(seeded(index + 9000, 1) * 256, seeded(index + 9000, 2) * 256);
-    context.quadraticCurveTo(seeded(index + 9000, 3) * 256, seeded(index + 9000, 4) * 256, seeded(index + 9000, 5) * 256, seeded(index + 9000, 6) * 256);
-    context.stroke();
-  }
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.wrapS = THREE.RepeatWrapping;
@@ -240,15 +232,6 @@ function makeRoadSurfaceTextures() {
     const detail = 132 + Math.floor(seeded(index + 5100, 2) * 92);
     detailContext.fillStyle = `rgb(${detail},${detail},${detail})`;
     detailContext.fillRect(x, y, size, size);
-  }
-
-  colorContext.strokeStyle = "rgba(18,23,27,.12)";
-  colorContext.lineWidth = 2;
-  for (let index = 0; index < 3; index += 1) {
-    colorContext.beginPath();
-    colorContext.moveTo(seeded(index + 9000, 1) * 256, seeded(index + 9000, 2) * 256);
-    colorContext.quadraticCurveTo(seeded(index + 9000, 3) * 256, seeded(index + 9000, 4) * 256, seeded(index + 9000, 5) * 256, seeded(index + 9000, 6) * 256);
-    colorContext.stroke();
   }
 
   const colorMap = new THREE.CanvasTexture(colorCanvas);
@@ -1274,8 +1257,10 @@ function createSmoothRoadNetwork(scene) {
       if (!junction || junction.degree < 3 || junction.degree > 4 || elevatedDeck || road.type === "alley" || road.type === "scenic") continue;
       const data = getSmoothRoadData(road);
       const fromNodeBase = junction.surfaceDepth + 1.8;
-      for (let stripe = 0; stripe < 6; stripe += 1) {
-        const fromNode = fromNodeBase + stripe * 0.82;
+      // Four broad bars stay legible at chase-camera distance without turning
+      // every approach into a dense ladder of white lines.
+      for (let stripe = 0; stripe < 4; stripe += 1) {
+        const fromNode = fromNodeBase + stripe * 1.15;
         const sample = smoothRoadSampleAt(road, startsHere ? fromNode : data.length - fromNode);
         crosswalkSpecs.push({
           x: sample.point.x,
@@ -1283,11 +1268,11 @@ function createSmoothRoadNetwork(scene) {
           z: sample.point.z,
           width: Math.max(3.5, road.width - 1.5),
           height: 0.006,
-          depth: 0.34,
+          depth: 0.52,
           rotation: Math.atan2(sample.tangent.x, sample.tangent.z)
         });
       }
-      const stopFromNode = fromNodeBase + 5.7;
+      const stopFromNode = fromNodeBase + 5.55;
       const stopSample = smoothRoadSampleAt(road, startsHere ? stopFromNode : data.length - stopFromNode);
       crosswalkSpecs.push({
         x: stopSample.point.x,

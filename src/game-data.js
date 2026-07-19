@@ -31,11 +31,11 @@ export const DECALS = [
 
 
 export const DESTINATIONS = {
-  school: { id: "school", name: "웨스트 모터스 차고", short: "모터스", x: -150, z: -236, landmarkX: -115, landmarkZ: -235, color: "#ffb703", icon: "🏁", package: "레이스 파츠 상자" },
-  library: { id: "library", name: "이스트 스카이 아카이브", short: "스카이", x: 270, z: -150, landmarkX: 220, landmarkZ: -200, color: "#4361ee", icon: "📦", package: "도심 데이터 모듈" },
-  park: { id: "park", name: "하버 프론트 터미널", short: "하버", x: 78, z: 252, landmarkX: 160, landmarkZ: 250, color: "#38b000", icon: "⚓", package: "익스프레스 화물" },
-  museum: { id: "museum", name: "웨스트 마켓 정비소", short: "마켓", x: -278, z: 64, landmarkX: -260, landmarkZ: 142, color: "#ff4d8d", icon: "🛠️", package: "튜닝 키트" },
-  observatory: { id: "observatory", name: "코스트라인 타워", short: "코스트", x: 282, z: 236, landmarkX: 304, landmarkZ: 266, color: "#7b2cbf", icon: "🏙️", package: "프리미엄 에너지 코어" }
+  school: { id: "school", name: "웨스트 모터스 차고", short: "모터스", x: -150, z: -236, landmarkX: -220, landmarkZ: -306, color: "#ffb703", icon: "🏁", package: "레이스 파츠 상자" },
+  library: { id: "library", name: "이스트 스카이 아카이브", short: "스카이", x: 270, z: -150, landmarkX: 235, landmarkZ: -85, color: "#4361ee", icon: "📦", package: "도심 데이터 모듈" },
+  park: { id: "park", name: "하버 프론트 터미널", short: "하버", x: 78, z: 252, landmarkX: 38, landmarkZ: 232, color: "#38b000", icon: "⚓", package: "익스프레스 화물" },
+  museum: { id: "museum", name: "웨스트 마켓 정비소", short: "마켓", x: -278, z: 64, landmarkX: -243, landmarkZ: -6, color: "#ff4d8d", icon: "🛠️", package: "튜닝 키트" },
+  observatory: { id: "observatory", name: "코스트라인 타워", short: "코스트", x: 282, z: 236, landmarkX: 307, landmarkZ: 306, color: "#7b2cbf", icon: "🏙️", package: "프리미엄 에너지 코어" }
 };
 
 export const VEHICLES = [
