@@ -1,4 +1,4 @@
-import { CITY_DISTRICTS, CITY_HALF, closestRoadPoint, distanceToRiver, terrainHeightAt } from "./city-map.js";
+import { CITY_DISTRICTS, CITY_HALF, CITY_NODES, closestRoadPoint, distanceToRiver, terrainHeightAt } from "./city-map.js";
 
 export function citySeed(seed, salt = 0) {
   const value = Math.sin(seed * 91.127 + salt * 17.31) * 43758.5453;
@@ -8,11 +8,13 @@ export function citySeed(seed, salt = 0) {
 export function buildCityLandmarkClearings(destinations) {
   return [
     ...Object.values(destinations).map((item) => ({ x: item.landmarkX, z: item.landmarkZ, radius: 20 })),
-    { x: 0, z: 72, radius: 98 },
-    { x: -162, z: -180, radius: 20 },
-    { x: -198, z: 62, radius: 20 },
-    { x: 184, z: -94, radius: 22 },
-    { x: 0, z: 248, radius: 22 }
+    // Keep the starting camera, delivery depot and workshop readable even when
+    // the authored hub moves. The old fixed (0, 72) clearing let towers grow
+    // directly behind the City V2 spawn and cover the chase camera.
+    { x: CITY_NODES.hub.x, z: CITY_NODES.hub.z, radius: 82 },
+    { x: CITY_NODES.northWest.x, z: CITY_NODES.northWest.z, radius: 22 },
+    { x: CITY_NODES.eastCivic.x, z: CITY_NODES.eastCivic.z, radius: 22 },
+    { x: CITY_NODES.centerHarbor.x, z: CITY_NODES.centerHarbor.z, radius: 24 }
   ];
 }
 

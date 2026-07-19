@@ -1,3 +1,5 @@
+import { CITY_V2_NODES, CITY_V2_ROAD_SPECS, CITY_V2_TRAFFIC_LOOPS } from "./city-v2-layout.js";
+
 export const CITY_HALF = 330;
 export const CITY_SCENERY_HALF = 450;
 export const CITY_SKYLINE_MIN_RADIUS = 370;
@@ -34,7 +36,7 @@ export function terrainHeightAt(x, z) {
   return roadCenterHeight + (naturalHeight - roadCenterHeight) * easedBlend;
 }
 
-export const CITY_NODES = {
+const LEGACY_CITY_NODES = {
   // Downtown spine and civic square.
   hub: { x: 0, z: 72 }, centerN: { x: 0, z: -50 }, centerS: { x: 0, z: 194 }, centerW: { x: -108, z: 14 }, centerE: { x: 112, z: 14 },
   // Inner belt: deliberately broad and rounded instead of rectangular.
@@ -56,6 +58,8 @@ export const CITY_NODES = {
   // 점프 램프 발사대(막다른 골목 끝) — 스카이웨이 서쪽 데크를 향한다.
   jumpLaunch: { x: -276, z: -118 }
 };
+
+export const CITY_NODES = CITY_V2_NODES;
 
 const ROAD_WIDTHS = { arterial: 23, collector: 16, local: 10.5, scenic: 13.5, alley: 7 };
 
@@ -89,7 +93,7 @@ function edge(id, a, b, type, controls = [], options = {}) {
 // 고가 노드 사이 구간은 skyway 플래그(직선 종단면·교각·난간)로, 지상 노드와
 // 만나는 구간은 일반 도로의 경사 제한(16%)이 자연스러운 램프를 만든다.
 export const SKYWAY_ELEVATION = 9;
-const NODE_ELEVATION = { outerSW: SKYWAY_ELEVATION, outerW: SKYWAY_ELEVATION, outerNW: SKYWAY_ELEVATION, outerN: SKYWAY_ELEVATION, outerNE: SKYWAY_ELEVATION };
+const NODE_ELEVATION = {};
 
 if (false) {
 const LEGACY_MOUNTAIN_ROADS = [
@@ -138,7 +142,7 @@ const LEGACY_MOUNTAIN_ROADS = [
 // City Racer layout: a civic spine, a curved inner belt, three canal bridges,
 // and a full-size outer high-speed loop.  Every delivery branch connects back
 // into this network, so missions always resolve onto an actual road.
-export const CITY_ROADS = [
+const LEGACY_CITY_ROADS = false ? [
   edge("grand-north", "ringN", "centerN", "arterial", [[-8, -132]]),
   edge("grand-civic", "centerN", "hub", "arterial", [[-4, -2], [3, 40]]),
   edge("grand-approach", "hub", "centerBridgeN", "arterial", [[2, 92]]),
@@ -213,17 +217,16 @@ export const CITY_ROADS = [
   edge("alley-market", "riverMarket", "centerBridgeS", "alley", [[-40, 196]]),
   // 점프 램프 진입 골목: 끝에서 가속해 스카이웨이 데크로 날아오른다
   edge("alley-jump", "resWest", "jumpLaunch", "alley", [[-262, -119]])
-];
+] : [];
+
+export const CITY_ROADS = CITY_V2_ROAD_SPECS.map(([id, a, b, type, controls = [], options = {}]) => (
+  edge(id, a, b, type, controls, options)
+));
 
 // 점프 램프: 골목 끝 발사대의 위치·방향. 런타임이 램프 메시와 에어본 판정에 쓴다.
-export const JUMP_RAMPS = [
-  { id: "skyway-jump", x: CITY_NODES.jumpLaunch.x, z: CITY_NODES.jumpLaunch.z, heading: Math.atan2(-1, 0.03), minKmh: 80 }
-];
+export const JUMP_RAMPS = [];
 
-export const CITY_TRAFFIC_LOOPS = {
-  outer: ["outer-nw", "outer-north-west", "outer-north-east", "outer-ne", "outer-east", "outer-se", "outer-sw", "outer-west"],
-  inner: ["inner-nw", "inner-ne", "inner-east", "inner-south-east", "inner-river-east", "inner-river-west", "inner-south-west", "inner-west", "inner-north-west"]
-};
+export const CITY_TRAFFIC_LOOPS = CITY_V2_TRAFFIC_LOOPS;
 
 const roadNodeKey = (point) => `${point.x.toFixed(4)},${point.z.toFixed(4)}`;
 const roadJunctionHeights = new Map();
