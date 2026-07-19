@@ -2145,12 +2145,12 @@ function carGroundOffset(car) {
 
 function getVehicleProfile(vehicleId) {
   return {
-    snowbug: { length: 6.85, width: 3.25, roof: 1.92, wheel: 0.62, clearance: 0.09, cabinStart: -1.66, cabinEnd: 1.18, scale: 0.93, kind: "sedan", spoiler: true },
-    trailfox: { length: 7.2, width: 3.34, roof: 1.88, wheel: 0.66, clearance: 0.09, cabinStart: -1.7, cabinEnd: 1.26, scale: 0.94, kind: "sedan", spoiler: true },
-    snowcat: { length: 6.72, width: 3.27, roof: 1.66, wheel: 0.65, clearance: 0.08, cabinStart: -1.18, cabinEnd: 0.75, scale: 0.95, kind: "roadster" },
-    ridgegt: { length: 7.18, width: 3.45, roof: 1.74, wheel: 0.69, clearance: 0.07, cabinStart: -1.16, cabinEnd: 0.9, scale: 0.96, kind: "super", spoiler: true },
-    aurora: { length: 7.3, width: 3.5, roof: 1.79, wheel: 0.7, clearance: 0.065, cabinStart: -1.32, cabinEnd: 0.96, scale: 0.96, kind: "coupe", spoiler: true, glow: true }
-  }[vehicleId] || { length: 6.85, width: 3.25, roof: 1.92, wheel: 0.62, clearance: 0.09, cabinStart: -1.66, cabinEnd: 1.18, scale: 0.93, kind: "sedan", spoiler: true };
+    snowbug: { length: 6.6, width: 3.08, roof: 1.78, wheel: 0.59, clearance: 0.1, cabinStart: -1.42, cabinEnd: 1.08, scale: 0.96, kind: "sedan", spoiler: "lip" },
+    trailfox: { length: 6.82, width: 3.14, roof: 1.76, wheel: 0.61, clearance: 0.09, cabinStart: -1.46, cabinEnd: 1.12, scale: 0.96, kind: "sedan", spoiler: "lip" },
+    snowcat: { length: 6.34, width: 3.02, roof: 1.56, wheel: 0.61, clearance: 0.085, cabinStart: -1.02, cabinEnd: 0.78, scale: 0.98, kind: "roadster" },
+    ridgegt: { length: 6.76, width: 3.2, roof: 1.58, wheel: 0.64, clearance: 0.075, cabinStart: -1.04, cabinEnd: 0.82, scale: 0.98, kind: "super", spoiler: "wing" },
+    aurora: { length: 6.78, width: 3.2, roof: 1.62, wheel: 0.65, clearance: 0.07, cabinStart: -1.16, cabinEnd: 0.88, scale: 0.98, kind: "coupe", spoiler: "active", glow: true }
+  }[vehicleId] || { length: 6.6, width: 3.08, roof: 1.78, wheel: 0.59, clearance: 0.1, cabinStart: -1.42, cabinEnd: 1.08, scale: 0.96, kind: "sedan", spoiler: "lip" };
 }
 
 function createDeliveryCar(scene, initialStyle) {
@@ -2188,17 +2188,17 @@ function createDeliveryCar(scene, initialStyle) {
 
 function createVehicleNavigator(car) {
   const shape = new THREE.Shape();
-  shape.moveTo(0, 1.45);
-  shape.lineTo(-0.72, 0.22);
-  shape.lineTo(-0.28, 0.22);
-  shape.lineTo(-0.28, -1.08);
-  shape.lineTo(0.28, -1.08);
-  shape.lineTo(0.28, 0.22);
-  shape.lineTo(0.72, 0.22);
+  shape.moveTo(0, 0.92);
+  shape.lineTo(-0.44, 0.15);
+  shape.lineTo(-0.17, 0.15);
+  shape.lineTo(-0.17, -0.68);
+  shape.lineTo(0.17, -0.68);
+  shape.lineTo(0.17, 0.15);
+  shape.lineTo(0.44, 0.15);
   shape.closePath();
   const geometry = new THREE.ShapeGeometry(shape);
   geometry.rotateX(Math.PI / 2);
-  const material = new THREE.MeshBasicMaterial({ color: 0xffbd2e, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthTest: false, depthWrite: false });
+  const material = new THREE.MeshBasicMaterial({ color: 0xffbd2e, transparent: true, opacity: 0.86, side: THREE.DoubleSide, depthTest: false, depthWrite: false });
   const navigator = new THREE.Mesh(geometry, material);
   navigator.name = "vehicle-navigation-arrow";
   navigator.position.set(0, 3.1, 0);
@@ -2232,26 +2232,35 @@ function rebuildVehicleKit(car, style) {
   const { length, width, roof, wheel, clearance } = profile;
   const halfWidth = width / 2;
   const bodyBottom = 0.48 + clearance;
+  // A denser longitudinal profile replaces the old five-section slab. The
+  // extra shoulder sections make the bonnet, fenders and tail read as one car.
   const body = createSectionedCarMesh([
-    { z: -length / 2, lowerY: bodyBottom + 0.12, upperY: bodyBottom + 0.69, lowerWidth: halfWidth * 0.82, upperWidth: halfWidth * 0.72 },
-    { z: -length * 0.38, lowerY: bodyBottom, upperY: bodyBottom + 0.98, lowerWidth: halfWidth, upperWidth: halfWidth * 0.94 },
-    { z: length * 0.28, lowerY: bodyBottom, upperY: bodyBottom + 0.9, lowerWidth: halfWidth, upperWidth: halfWidth * 0.95 },
-    { z: length * 0.43, lowerY: bodyBottom + 0.08, upperY: bodyBottom + 0.72, lowerWidth: halfWidth * 0.96, upperWidth: halfWidth * 0.8 },
-    { z: length / 2, lowerY: bodyBottom + 0.18, upperY: bodyBottom + 0.52, lowerWidth: halfWidth * 0.78, upperWidth: halfWidth * 0.66 }
+    { z: -length / 2, lowerY: bodyBottom + 0.2, upperY: bodyBottom + 0.48, lowerWidth: halfWidth * 0.72, upperWidth: halfWidth * 0.65 },
+    { z: -length * 0.45, lowerY: bodyBottom + 0.08, upperY: bodyBottom + 0.72, lowerWidth: halfWidth * 0.91, upperWidth: halfWidth * 0.84 },
+    { z: -length * 0.34, lowerY: bodyBottom, upperY: bodyBottom + 0.94, lowerWidth: halfWidth, upperWidth: halfWidth * 0.95 },
+    { z: -length * 0.16, lowerY: bodyBottom, upperY: bodyBottom + 1.02, lowerWidth: halfWidth, upperWidth: halfWidth * 0.96 },
+    { z: length * 0.18, lowerY: bodyBottom, upperY: bodyBottom + 0.96, lowerWidth: halfWidth, upperWidth: halfWidth * 0.95 },
+    { z: length * 0.34, lowerY: bodyBottom, upperY: bodyBottom + 0.84, lowerWidth: halfWidth, upperWidth: halfWidth * 0.91 },
+    { z: length * 0.45, lowerY: bodyBottom + 0.1, upperY: bodyBottom + 0.61, lowerWidth: halfWidth * 0.9, upperWidth: halfWidth * 0.74 },
+    { z: length / 2, lowerY: bodyBottom + 0.22, upperY: bodyBottom + 0.4, lowerWidth: halfWidth * 0.66, upperWidth: halfWidth * 0.58 }
   ], car.bodyMaterial);
   car.vehicleKit.add(body);
 
   const cabinRear = profile.cabinStart;
   const cabinFront = profile.cabinEnd;
   const cabin = createSectionedCarMesh([
-    { z: cabinRear, lowerY: bodyBottom + 0.84, upperY: roof * 0.82, lowerWidth: halfWidth * 0.87, upperWidth: halfWidth * 0.7 },
-    { z: cabinRear + 0.5, lowerY: bodyBottom + 0.84, upperY: roof, lowerWidth: halfWidth * 0.86, upperWidth: halfWidth * 0.66 },
-    { z: cabinFront - 0.45, lowerY: bodyBottom + 0.84, upperY: roof + (profile.kind === "wagon" ? 0.05 : 0), lowerWidth: halfWidth * 0.86, upperWidth: halfWidth * 0.67 },
-    { z: cabinFront, lowerY: bodyBottom + 0.82, upperY: bodyBottom + 1.0, lowerWidth: halfWidth * 0.84, upperWidth: halfWidth * 0.76 }
+    { z: cabinRear, lowerY: bodyBottom + 0.79, upperY: bodyBottom + 0.96, lowerWidth: halfWidth * 0.84, upperWidth: halfWidth * 0.74 },
+    { z: cabinRear + 0.3, lowerY: bodyBottom + 0.79, upperY: roof - 0.1, lowerWidth: halfWidth * 0.84, upperWidth: halfWidth * 0.68 },
+    { z: cabinRear + 0.62, lowerY: bodyBottom + 0.79, upperY: roof, lowerWidth: halfWidth * 0.83, upperWidth: halfWidth * 0.65 },
+    { z: cabinFront - 0.55, lowerY: bodyBottom + 0.78, upperY: roof, lowerWidth: halfWidth * 0.83, upperWidth: halfWidth * 0.65 },
+    { z: cabinFront - 0.26, lowerY: bodyBottom + 0.77, upperY: roof - 0.11, lowerWidth: halfWidth * 0.82, upperWidth: halfWidth * 0.68 },
+    { z: cabinFront, lowerY: bodyBottom + 0.74, upperY: bodyBottom + 0.94, lowerWidth: halfWidth * 0.79, upperWidth: halfWidth * 0.71 }
   ], car.glassMaterial);
   car.vehicleKit.add(cabin);
 
-  const rearGlassHeight = Math.max(0.52, roof - (bodyBottom + 1.08));
+  const rearGlassBottom = bodyBottom + 0.82;
+  const rearGlassHeight = Math.max(0.3, roof - rearGlassBottom - 0.08);
+  const rearGlassY = rearGlassBottom + rearGlassHeight / 2;
   const rearGlass = roundedBox(
     width * (profile.kind === "coupe" || profile.kind === "super" ? 0.58 : 0.66),
     rearGlassHeight,
@@ -2259,13 +2268,24 @@ function rebuildVehicleKit(car, style) {
     car.glassMaterial,
     0.08,
     0,
-    bodyBottom + 1.03 + rearGlassHeight / 2,
+    rearGlassY,
     cabinRear - 0.065
   );
-  const rearGlassTrim = roundedBox(width * 0.72, rearGlassHeight + 0.18, 0.075, car.darkMaterial, 0.08, 0, bodyBottom + 1.03 + rearGlassHeight / 2, cabinRear - 0.015);
+  const rearGlassTrim = roundedBox(width * 0.72, rearGlassHeight + 0.13, 0.075, car.darkMaterial, 0.07, 0, rearGlassY, cabinRear - 0.015);
   car.vehicleKit.add(rearGlassTrim, rearGlass);
 
-  const roofPanel = roundedBox(width * 0.58, 0.12, Math.max(0.8, cabinFront - cabinRear - 0.8), car.bodyMaterial, 0.06, 0, roof + 0.02, (cabinFront + cabinRear) / 2);
+  const roofCenterZ = (cabinFront + cabinRear) / 2;
+  const roofDepth = Math.max(0.68, cabinFront - cabinRear - 1.0);
+  const roofPanel = roundedBox(width * 0.54, 0.085, roofDepth, car.glassMaterial, 0.045, 0, roof + 0.012, roofCenterZ);
+  const roofCrossbar = roundedBox(width * 0.64, 0.065, 0.11, car.bodyMaterial, 0.025, 0, roof + 0.038, roofCenterZ + 0.04);
+  const leftRoofRail = roundedBox(0.075, 0.065, roofDepth * 0.94, car.bodyMaterial, 0.025, -width * 0.285, roof + 0.035, roofCenterZ);
+  const rightRoofRail = roundedBox(0.075, 0.065, roofDepth * 0.94, car.bodyMaterial, 0.025, width * 0.285, roof + 0.035, roofCenterZ);
+  const windowBeltY = bodyBottom + 0.82;
+  const pillarHeight = Math.max(0.28, roof - windowBeltY - 0.03);
+  const pillarY = windowBeltY + pillarHeight / 2;
+  const pillarZ = roofCenterZ + 0.03;
+  const leftPillar = roundedBox(0.075, pillarHeight, 0.15, car.bodyMaterial, 0.025, -halfWidth * 0.7, pillarY, pillarZ);
+  const rightPillar = roundedBox(0.075, pillarHeight, 0.15, car.bodyMaterial, 0.025, halfWidth * 0.7, pillarY, pillarZ);
   const frontSplitter = roundedBox(width * 0.86, 0.14, 0.48, car.darkMaterial, 0.05, 0, bodyBottom + 0.04, length / 2 + 0.08);
   const rearDiffuser = roundedBox(width * 0.9, 0.18, 0.42, car.darkMaterial, 0.05, 0, bodyBottom + 0.06, -length / 2 - 0.06);
   const rearBumper = roundedBox(width * 0.9, 0.2, 0.22, car.accentMaterial, 0.07, 0, bodyBottom + 0.33, -length / 2 - 0.1);
@@ -2278,7 +2298,7 @@ function rebuildVehicleKit(car, style) {
   const rightStripe = roundedBox(0.05, 0.12, length * 0.6, car.accentMaterial, 0.02, halfWidth + 0.015, bodyBottom + 0.58, 0.1);
   const splitterAccent = roundedBox(width * 0.62, 0.06, 0.1, car.accentMaterial, 0.02, 0, bodyBottom + 0.14, length / 2 + 0.3);
   car.vehicleKit.add(leftStripe, rightStripe, splitterAccent);
-  car.vehicleKit.add(roofPanel, frontSplitter, rearDiffuser, rearBumper, tailgateBand, trunkLip, leftSkirt, rightSkirt);
+  car.vehicleKit.add(roofPanel, roofCrossbar, leftRoofRail, rightRoofRail, leftPillar, rightPillar, frontSplitter, rearDiffuser, rearBumper, tailgateBand, trunkLip, leftSkirt, rightSkirt);
 
   car.flames = [];
   for (const side of [-1, 1]) {
@@ -2308,8 +2328,8 @@ function rebuildVehicleKit(car, style) {
 
   // 바퀴는 펜더 안쪽으로 밀어 넣어 차체 밖으로 튀어나오지 않게 합니다.
   // 바깥 면이 차체 옆면보다 6cm만 돌출되도록 휠 폭의 절반만큼 안쪽에 축을 둡니다.
-  const wheelWidth = 0.48;
-  const axleX = halfWidth - wheelWidth / 2 + 0.06;
+  const wheelWidth = 0.44;
+  const axleX = halfWidth - 0.09;
   const wheelY = wheel + clearance * 0.5;
   const axleZ = length * 0.31;
   car.wheels = [];
@@ -2321,8 +2341,8 @@ function rebuildVehicleKit(car, style) {
       wheelAssembly.userData.home = { x, y: wheelY, z, radius: wheel * profile.scale };
       car.vehicleKit.add(wheelAssembly);
       car.wheels.push(wheelAssembly);
-      const arch = new THREE.Mesh(new THREE.TorusGeometry(wheel * 1.14, 0.115, 6, 16, Math.PI), car.darkMaterial);
-      arch.position.set(Math.sign(x) * (halfWidth + 0.03), wheelY, z);
+      const arch = new THREE.Mesh(new THREE.TorusGeometry(wheel * 1.12, 0.085, 8, 24, Math.PI), car.darkMaterial);
+      arch.position.set(Math.sign(x) * (halfWidth + 0.025), wheelY, z);
       arch.rotation.y = Math.PI / 2;
       car.vehicleKit.add(arch);
     }
@@ -2333,10 +2353,15 @@ function rebuildVehicleKit(car, style) {
     const rallyBar = roundedBox(width * 0.76, 0.12, 0.18, car.accentMaterial, 0.04, 0, roof + 0.08, cabinRear + 0.2);
     car.vehicleKit.add(hoodVent, rallyBar);
   }
-  if (profile.spoiler) {
-    const wing = roundedBox(width * 0.86, 0.12, 0.42, car.darkMaterial, 0.04, 0, bodyBottom + 1.28, -length * 0.39);
-    const leftPost = roundedBox(0.12, 0.62, 0.16, car.darkMaterial, 0.03, -width * 0.29, bodyBottom + 1.02, -length * 0.39);
-    const rightPost = roundedBox(0.12, 0.62, 0.16, car.darkMaterial, 0.03, width * 0.29, bodyBottom + 1.02, -length * 0.39);
+  if (profile.spoiler === "lip") {
+    const lip = roundedBox(width * 0.72, 0.075, 0.3, car.darkMaterial, 0.035, 0, bodyBottom + 0.98, -length * 0.405);
+    lip.rotation.x = -0.08;
+    car.vehicleKit.add(lip);
+  } else if (profile.spoiler) {
+    const wingWidth = profile.spoiler === "active" ? width * 0.72 : width * 0.82;
+    const wing = roundedBox(wingWidth, 0.1, 0.34, car.darkMaterial, 0.035, 0, bodyBottom + 1.23, -length * 0.395);
+    const leftPost = roundedBox(0.1, 0.38, 0.13, car.darkMaterial, 0.025, -width * 0.26, bodyBottom + 1.03, -length * 0.395);
+    const rightPost = roundedBox(0.1, 0.38, 0.13, car.darkMaterial, 0.025, width * 0.26, bodyBottom + 1.03, -length * 0.395);
     car.vehicleKit.add(wing, leftPost, rightPost);
   }
   if (profile.glow) {
@@ -3160,10 +3185,10 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     vehicleNavigator.visible = isActive;
     if (!isActive) return;
     const profile = car.profile || getVehicleProfile(style.vehicle?.id || "snowbug");
-    vehicleNavigator.position.y = Math.max(2.75, profile.roof + 1.15);
+    vehicleNavigator.position.y = Math.max(2.5, profile.roof + 0.95);
     vehicleNavigator.rotation.y = navigation.relativeAngle;
     const pulse = 0.94 + Math.sin(elapsed * 5.4) * 0.055;
-    vehicleNavigator.scale.setScalar(pulse);
+    vehicleNavigator.scale.setScalar(pulse * 0.72);
   }
 
   function emitHud(force = false) {
