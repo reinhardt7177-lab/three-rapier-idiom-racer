@@ -410,19 +410,19 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   }
   /* 좁은 화면에서 정보 밀도를 낮춘다 — 필수 타일만 남긴다. */
   .hud-optional { display: none !important; }
-  .topbar { padding: 6px 10px; }
+  .topbar { left: 8px; right: 8px; top: 8px; padding: 0; }
   .brand-mark { width: 32px; height: 32px; font-size: 19px; }
   .brand-lockup strong { font-size: 16px; }
   .brand-lockup div span { display: none; }
   .icon-button { width: 34px; height: 34px; font-size: 14px; }
   .garage-mini { padding: 0 10px; font-size: 11px; }
 
-  .mission-card { left: 8px; top: 46px; width: 172px; padding: 6px 9px; }
+  .mission-card { left: 8px; top: 56px; width: 172px; padding: 6px 9px; }
   .mission-card .route-progress { margin-top: 5px; }
   .destination-line > span { font-size: 20px; }
   .destination-line strong { font-size: 12px; }
   .distance-row b { font-size: 17px; }
-  .race-stats { right: 8px; top: 46px; gap: 3px; }
+  .race-stats { right: 8px; top: 56px; gap: 3px; }
   .race-stats > div { min-width: 56px; height: 44px; padding: 4px 6px; }
   .race-stats strong { font-size: 14px; }
   .race-stats .world-time-stat { min-width: 70px; }

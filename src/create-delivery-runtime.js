@@ -404,7 +404,10 @@ function roadSurfaceHeight(road, pathPosition, lift = 0.32) {
 
 function drivingSurfaceHeightAt(x, z) {
   const hit = closestRoadPoint(x, z);
-  if (!hit || hit.distance > hit.road.width / 2 + 2.4) return terrainHeightAt(x, z);
+  // 고가(스카이웨이)는 데크 실폭까지만 데크 높이를 준다 — 넉넉한 여유폭을 그대로 쓰면
+  // 데크 옆 허공에서 차가 공중에 떠 있는 그림이 나온다.
+  const tolerance = hit?.road?.skyway ? 0.7 : 2.4;
+  if (!hit || hit.distance > hit.road.width / 2 + tolerance) return terrainHeightAt(x, z);
   return roadSurfaceHeight(hit.road, hit.segmentIndex + hit.t, 0.32);
 }
 
@@ -859,7 +862,7 @@ function createRoadNetwork(scene) {
     // 스카이웨이 교각: 데크 아래를 일정 간격 콘크리트 기둥이 받친다.
     if (road.skyway) {
       const roadLengthTotal = pathLength(road.path);
-      for (let pierDistance = 14; pierDistance < roadLengthTotal - 14; pierDistance += 20) {
+      for (let pierDistance = 10; pierDistance < roadLengthTotal - 10; pierDistance += 14) {
         const spot = pointAlongRoute(road.path, pierDistance);
         if (!spot) continue;
         const pathPosition = pierDistance / roadLengthTotal * (road.path.length - 1);
