@@ -887,8 +887,8 @@ function createRoadNetwork(scene) {
         scene.add(createRoadDeckMesh(road, sidewalkWidth, sidewalkMaterial, {
           lift: 0.52,
           thickness: 0.74,
-          startInset: Math.max(shoulderStartInset + 2.4, 2.4),
-          endInset: Math.max(shoulderEndInset + 2.4, 2.4),
+          startInset: Math.max(shoulderStartInset + 0.9, 1.1),
+          endInset: Math.max(shoulderEndInset + 0.9, 1.1),
           offset: side * sidewalkOffset
         }));
       }
