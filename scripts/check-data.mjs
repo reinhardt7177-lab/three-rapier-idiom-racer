@@ -47,12 +47,12 @@ for (let rankIndex = 0; rankIndex < RANKS.length; rankIndex += 1) {
   for (const seed of [3, 7, 42, 99, 1234, 5678, 24680, 99999]) {
     for (const contract of generateContracts(seed, rankIndex)) {
       contractCount += 1;
-      assert.ok(contract.stops.length >= 2 && contract.stops.length <= 3, `${contract.id} 배송지 수가 잘못되었습니다.`);
+      assert.ok(contract.stops.length >= 1 && contract.stops.length <= 3, `${contract.id} 배송지 수가 잘못되었습니다.`);
       assert.equal(new Set(contract.stops).size, contract.stops.length, `${contract.id} 배송지가 중복되었습니다.`);
       for (const stop of contract.stops) assert.ok(DESTINATIONS[stop], `${contract.id}의 배송지 ${stop}이 없습니다.`);
       assert.ok(contract.time >= 60 && contract.time <= 480, `${contract.id} 제한시간(${contract.time}s)이 범위를 벗어났습니다.`);
       assert.ok(contract.reward > 0, `${contract.id}에 골드 보상이 없습니다.`);
-      if (contract.rival) assert.ok(contract.rival.kmh >= 30 && contract.rival.kmh <= 60, `${contract.id} 라이벌 속도가 비정상입니다.`);
+      if (contract.race) { assert.equal(contract.race.racers, 3, `${contract.id} 레이서 수가 3이 아닙니다.`); assert.ok(contract.race.kmh >= 30 && contract.race.kmh <= 62, `${contract.id} 레이스 속도가 비정상입니다.`); assert.equal(contract.stops.length, 1, `${contract.id} 레이스는 결승지 1곳이어야 합니다.`); }
       else assert.ok(contract.bonus?.reward > 0, `${contract.id}에 보너스 보상이 없습니다.`);
       assert.ok(LEARNING_PACKS.some((pack) => pack.id === contract.packId), `${contract.id} 학습팩이 없습니다.`);
       let cursor = { x: 0, z: 72 };
@@ -63,7 +63,9 @@ for (let rankIndex = 0; rankIndex < RANKS.length; rankIndex += 1) {
         cursor = target;
       }
       const requiredKmh = (contract.distance / contract.time) * WORLD_SPEED_TO_KMH;
-      assert.ok(requiredKmh >= 25 && requiredKmh <= 110, `${contract.id} 요구 평균속도(${Math.round(requiredKmh)}km/h)가 비정상입니다.`);
+      // 레이스는 상대와 겨루는 모드라 제한시간이 백스톱일 뿐 — 하한 검사는 배달 계약에만 적용한다.
+      if (contract.race) assert.ok(requiredKmh >= 15 && requiredKmh <= 110, `${contract.id} 레이스 백스톱 시간(${Math.round(requiredKmh)}km/h)이 비정상입니다.`);
+      else assert.ok(requiredKmh >= 25 && requiredKmh <= 110, `${contract.id} 요구 평균속도(${Math.round(requiredKmh)}km/h)가 비정상입니다.`);
     }
   }
 }

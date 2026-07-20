@@ -15,11 +15,14 @@ export const CITY_V2_NODES = {
   outerSE: { x: 275, z: 235 }, outerS: { x: 0, z: 310 }, outerSW: { x: -275, z: 235 }, outerW: { x: -305, z: 25 },
 
   school: { x: -150, z: -236 }, library: { x: 270, z: -150 }, museum: { x: -278, z: 64 },
-  park: { x: 78, z: 252 }, observatory: { x: 282, z: 236 }, jumpLaunch: { x: -248, z: -116 }
+  park: { x: 78, z: 252 }, observatory: { x: 282, z: 236 },
+  // 점프 발사대: 서쪽 스카이웨이 데크에서 약 18m 떨어진 골목 끝.
+  jumpLaunch: { x: -282, z: -116 }
 };
 
 const straight = { straight: true };
 const bridge = { bridge: true, straight: true };
+const skyway = { skyway: true };
 
 export const CITY_V2_ROAD_SPECS = [
   // Three long north-south avenues form the readable downtown backbone.
@@ -60,14 +63,15 @@ export const CITY_V2_ROAD_SPECS = [
   ["harbor-promenade-east", "park", "harborEast", "scenic", [[118, 266]]],
 
   // A broad, continuous outer loop provides the 200-300 km/h course.
-  ["outer-north-west", "outerNW", "outerN", "arterial", [[-148, -286]]],
-  ["outer-north-east", "outerN", "outerNE", "arterial", [[148, -286]]],
+  // 서·북 아크 4구간은 +9m 스카이웨이 고가 — 동·남 구간이 진출입 램프가 된다.
+  ["outer-north-west", "outerNW", "outerN", "arterial", [[-148, -286]], skyway],
+  ["outer-north-east", "outerN", "outerNE", "arterial", [[148, -286]], skyway],
   ["outer-east-north", "outerNE", "outerE", "arterial", [[314, -105]]],
   ["outer-east-south", "outerE", "outerSE", "arterial", [[316, 142]]],
   ["outer-south-east", "outerSE", "outerS", "arterial", [[148, 310]]],
   ["outer-south-west", "outerS", "outerSW", "arterial", [[-148, 310]]],
-  ["outer-west-south", "outerSW", "outerW", "arterial", [[-316, 142]]],
-  ["outer-west-north", "outerW", "outerNW", "arterial", [[-316, -106]]],
+  ["outer-west-south", "outerSW", "outerW", "arterial", [[-316, 142]], skyway],
+  ["outer-west-north", "outerW", "outerNW", "arterial", [[-316, -106]], skyway],
 
   // Each outer-loop ramp lands on a junction with an available approach.
   ["link-north-west", "outerNW", "northWest", "collector", [], straight],
@@ -82,7 +86,10 @@ export const CITY_V2_ROAD_SPECS = [
   // Destination access roads terminate outside the through lanes.
   ["school-access", "northWest", "school", "local", [[-156, -220]]],
   ["library-access", "northEast", "library", "local", [[220, -185]]],
-  ["museum-access", "museum", "westCivic", "local", [[-226, 54]]]
+  ["museum-access", "museum", "westCivic", "local", [[-226, 54]]],
+
+  // 점프 골목: 끝에서 가속하면 서쪽 스카이웨이 데크로 날아오른다.
+  ["alley-jump", "midWest", "jumpLaunch", "alley", [[-225, -108]]]
 ];
 
 export const CITY_V2_TRAFFIC_LOOPS = {

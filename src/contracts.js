@@ -76,39 +76,39 @@ function generateContract(seed, slot, rankIndex) {
   };
 }
 
-// 라이벌 매치: 같은 배송을 라이벌 AI와 동시에 뛰어 먼저 끝내는 쪽이 이긴다.
-function generateRivalContract(seed, rankIndex) {
+// 그리드 레이스: AI 레이서 3대와 결승 배송지까지 원웨이 스프린트. 순위가 보상을 정한다.
+function generateRaceContract(seed, rankIndex) {
   const rng = mulberry32(seed * 31337 + rankIndex * 77 + 5);
   const allStops = Object.keys(DESTINATIONS);
-  const stops = [];
-  while (stops.length < 2) {
-    const candidate = allStops[Math.floor(rng() * allStops.length)];
-    if (!stops.includes(candidate)) stops.push(candidate);
-  }
-  let cursor = { x: 0, z: 72 };
+  // 결승선은 허브에서 가장 먼 축에 속하는 배송지 중 하나 — 짧은 스프린트를 피한다.
+  let finish = allStops[Math.floor(rng() * allStops.length)];
   let distance = 0;
-  for (const stopId of stops) {
-    const target = DESTINATIONS[stopId];
-    distance += routeLength(buildRoadRoute(cursor.x, cursor.z, target));
-    cursor = target;
+  for (let attempt = 0; attempt < allStops.length; attempt += 1) {
+    const candidate = allStops[(allStops.indexOf(finish) + attempt) % allStops.length];
+    const candidateDistance = routeLength(buildRoadRoute(0, 20, DESTINATIONS[candidate]));
+    if (candidateDistance > distance) {
+      finish = candidate;
+      distance = candidateDistance;
+    }
+    if (distance > 380) break;
   }
-  const rivalKmh = 34 + rankIndex * 5;
-  const time = Math.max(90, Math.min(420, Math.round((distance / (rivalKmh / WORLD_SPEED_TO_KMH)) * 1.35)));
+  const raceKmh = 36 + rankIndex * 5;
+  const time = Math.max(90, Math.min(420, Math.round((distance / (raceKmh / WORLD_SPEED_TO_KMH)) * 1.6)));
   const pack = LEARNING_PACKS[(seed + 1) % LEARNING_PACKS.length];
-  const lastStop = DESTINATIONS[stops[stops.length - 1]];
+  const finishStop = DESTINATIONS[finish];
   return {
-    id: `rival-${seed}-${rankIndex}`,
+    id: `race-${seed}-${rankIndex}`,
     slot: 3,
-    rival: { kmh: rivalKmh },
-    title: `라이벌 매치 · ${lastStop.short}행`,
-    subtitle: "라이벌 드라이버보다 먼저 모든 배송을 끝내세요! 지면 보상은 4분의 1.",
+    race: { racers: 3, kmh: raceKmh },
+    title: `그리드 레이스 · ${finishStop.short}행`,
+    subtitle: "3-2-1 신호와 함께 레이서 3대와 스프린트! 순위가 보상을 정합니다 (1위 100% · 2위 60% · 3위 35% · 4위 20%).",
     pack,
     packId: pack.id,
-    stops,
+    stops: [finish],
     time,
-    reward: 500 + rankIndex * 300,
+    reward: 600 + rankIndex * 350,
     distance: Math.round(distance),
-    targetKmh: rivalKmh + 6,
+    targetKmh: raceKmh + 8,
     bonus: null,
     color: "#ff2e4d",
     mathLevel: Math.min(3, 1 + rankIndex)
@@ -118,6 +118,6 @@ function generateRivalContract(seed, rankIndex) {
 export function generateContracts(seed, rankIndex = 0) {
   return [
     ...[0, 1, 2].map((slot) => generateContract(seed, slot, rankIndex)),
-    generateRivalContract(seed, rankIndex)
+    generateRaceContract(seed, rankIndex)
   ];
 }

@@ -2766,101 +2766,119 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   let pendingQuiz = null;
   let activeGates = [];
   let gateWanted = [];
-  let rivalCar = null;
-  let rivalRace = null;
+  let racerFleet = null;
+  let gridRace = null;
 
-  function ensureRivalCar() {
-    if (rivalCar) return rivalCar;
-    const group = new THREE.Group();
-    const bodyMaterial = makeMaterial(0xff2e4d, { roughness: 0.3, metalness: 0.18, emissive: 0xff2e4d, emissiveIntensity: 0.12 });
-    const body = roundedBox(2.5, 0.72, 5.4, bodyMaterial, 0.24, 0, 0.78, 0);
-    const cabin = roundedBox(1.9, 0.74, 2.3, makeMaterial(0x101c26, { roughness: 0.12, metalness: 0.5 }), 0.22, 0, 1.38, -0.25);
-    const wing = roundedBox(2.3, 0.13, 0.5, makeMaterial(0x1c2733, { roughness: 0.6 }), 0.05, 0, 1.5, -2.45);
-    const wingPostL = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), -0.7, 1.2, -2.45);
-    const wingPostR = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), 0.7, 1.2, -2.45);
-    group.add(body, cabin, wing, wingPostL, wingPostR);
-    const tireMaterial = makeMaterial(0x14181c, { roughness: 0.8 });
-    const wheels = [];
-    for (const wheelX of [-1.06, 1.06]) {
-      for (const wheelZ of [-1.62, 1.62]) {
-        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.4, 14), tireMaterial);
-        wheel.position.set(wheelX, 0.5, wheelZ);
-        wheel.rotation.z = Math.PI / 2;
-        group.add(wheel);
-        wheels.push(wheel);
-      }
-    }
-    const flag = makeTextSprite("🏁 RIVAL", "#ffffff", "#ff2e4d");
-    flag.position.set(0, 3.1, 0);
-    flag.scale.set(5.5, 1.7, 1);
-    group.add(flag);
-    group.traverse((object) => { if (object.isMesh) object.castShadow = true; });
-    group.visible = false;
-    scene.add(group);
-    rivalCar = { group, wheels };
-    return rivalCar;
-  }
+  const RACER_LIVERIES = [
+    { color: 0xff2e4d, name: "블레이즈", tag: "🏁 R1" },
+    { color: 0x2f7bff, name: "코발트", tag: "🏁 R2" },
+    { color: 0x8a3ffc, name: "바이올렛", tag: "🏁 R3" }
+  ];
 
-  function startRivalRace(mission) {
-    const car2 = ensureRivalCar();
-    const points = [];
-    const stopMarks = [];
-    let cursor = { x: citySpawn.x, z: citySpawn.z };
-    let accumulated = 0;
-    for (const stopId of mission.stops) {
-      const target = DESTINATIONS[stopId];
-      const leg = buildRoadRoute(cursor.x, cursor.z, target);
-      const legPoints = points.length ? leg.slice(1) : leg;
-      points.push(...legPoints);
-      accumulated += routeLength(leg);
-      stopMarks.push(accumulated);
-      cursor = target;
-    }
-    rivalRace = {
-      points,
-      total: accumulated,
-      stopMarks,
-      nextStop: 0,
-      distance: 0,
-      speed: mission.rival.kmh / WORLD_SPEED_TO_KMH,
-      pauseTimer: 0,
-      finished: false
-    };
-    car2.group.visible = true;
-    car2.group.position.set(citySpawn.x + 3, drivingSurfaceHeightAt(citySpawn.x + 3, citySpawn.z) + 0.05, citySpawn.z);
-  }
-
-  function stopRivalRace() {
-    rivalRace = null;
-    if (rivalCar) rivalCar.group.visible = false;
-  }
-
-  function updateRivalRace(dt) {
-    if (!rivalRace || state.status !== "playing") return;
-    if (rivalRace.pauseTimer > 0) {
-      rivalRace.pauseTimer -= dt;
-      return;
-    }
-    if (!rivalRace.finished) {
-      rivalRace.distance += rivalRace.speed * dt;
-      if (rivalRace.nextStop < rivalRace.stopMarks.length && rivalRace.distance >= rivalRace.stopMarks[rivalRace.nextStop]) {
-        rivalRace.distance = rivalRace.stopMarks[rivalRace.nextStop];
-        rivalRace.nextStop += 1;
-        if (rivalRace.nextStop >= rivalRace.stopMarks.length) {
-          rivalRace.finished = true;
-          onMessage?.("라이벌이 먼저 도착했습니다! 그래도 완주하세요");
-        } else {
-          rivalRace.pauseTimer = 2.6;
+  function ensureRacerFleet() {
+    if (racerFleet) return racerFleet;
+    racerFleet = RACER_LIVERIES.map((livery) => {
+      const group = new THREE.Group();
+      const bodyMaterial = makeMaterial(livery.color, { roughness: 0.3, metalness: 0.18, emissive: livery.color, emissiveIntensity: 0.12 });
+      const body = roundedBox(2.5, 0.72, 5.4, bodyMaterial, 0.24, 0, 0.78, 0);
+      const cabin = roundedBox(1.9, 0.74, 2.3, makeMaterial(0x101c26, { roughness: 0.12, metalness: 0.5 }), 0.22, 0, 1.38, -0.25);
+      const wing = roundedBox(2.3, 0.13, 0.5, makeMaterial(0x1c2733, { roughness: 0.6 }), 0.05, 0, 1.5, -2.45);
+      const wingPostL = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), -0.7, 1.2, -2.45);
+      const wingPostR = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), 0.7, 1.2, -2.45);
+      group.add(body, cabin, wing, wingPostL, wingPostR);
+      const tireMaterial = makeMaterial(0x14181c, { roughness: 0.8 });
+      const wheels = [];
+      for (const wheelX of [-1.06, 1.06]) {
+        for (const wheelZ of [-1.62, 1.62]) {
+          const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.4, 14), tireMaterial);
+          wheel.position.set(wheelX, 0.5, wheelZ);
+          wheel.rotation.z = Math.PI / 2;
+          group.add(wheel);
+          wheels.push(wheel);
         }
       }
+      const flag = makeTextSprite(livery.tag, "#ffffff", `#${livery.color.toString(16).padStart(6, "0")}`);
+      flag.position.set(0, 2.55, 0);
+      flag.scale.set(2.6, 0.85, 1);
+      group.add(flag);
+      group.traverse((object) => { if (object.isMesh) object.castShadow = true; });
+      group.visible = false;
+      scene.add(group);
+      return { group, wheels, name: livery.name };
+    });
+    return racerFleet;
+  }
+
+  // 그리드 레이스: 허브에서 결승 배송지까지 AI 레이서 3대와 원웨이 스프린트.
+  function startGridRace(mission) {
+    const fleet = ensureRacerFleet();
+    const target = DESTINATIONS[mission.stops[0]];
+    const route = buildRoadRoute(citySpawn.x, citySpawn.z, target);
+    const total = routeLength(route);
+    const baseSpeed = mission.race.kmh / WORLD_SPEED_TO_KMH;
+    gridRace = {
+      points: route,
+      total,
+      racers: fleet.map((car2, index) => ({
+        car: car2,
+        distance: 0,
+        // 레이서마다 속도 편차 — 한 대는 빠르고 한 대는 느려 순위 다툼이 생긴다.
+        speed: baseSpeed * (1.06 - index * 0.07),
+        finished: false
+      }))
+    };
+    state.raceCountdown = 3.9;
+    // 출발 그리드: 플레이어 좌우·후방에 정렬
+    const gridSlots = [[3.2, -2.5], [-3.2, -2.5], [3.2, -8]];
+    fleet.forEach((car2, index) => {
+      const [dx, dz] = gridSlots[index];
+      const gx = citySpawn.x + dx;
+      const gz = citySpawn.z + dz;
+      car2.group.visible = true;
+      car2.group.position.set(gx, drivingSurfaceHeightAt(gx, gz) + 0.05, gz);
+      car2.group.rotation.y = state.heading;
+    });
+    onMessage?.("그리드 정렬! 3초 후 출발");
+  }
+
+  function stopGridRace() {
+    gridRace = null;
+    if (racerFleet) for (const racer of racerFleet) racer.group.visible = false;
+  }
+
+  function playerRaceProgress() {
+    if (!gridRace) return 0;
+    const remaining = latestRoute.length ? routeLength(latestRoute) : gridRace.total;
+    return clamp(1 - remaining / Math.max(1, gridRace.total), 0, 1);
+  }
+
+  function playerRacePosition() {
+    if (!gridRace) return 1;
+    const mine = playerRaceProgress();
+    return 1 + gridRace.racers.filter((racer) => (racer.finished ? 1 : racer.distance / gridRace.total) > mine).length;
+  }
+
+  function updateGridRace(dt) {
+    if (!gridRace || state.status !== "playing") return;
+    if ((state.raceCountdown || 0) > 0) return;
+    for (const racer of gridRace.racers) {
+      if (!racer.finished) {
+        racer.distance += racer.speed * dt;
+        if (racer.distance >= gridRace.total) {
+          racer.finished = true;
+          racer.distance = gridRace.total;
+          onMessage?.(`${racer.car.name} 결승선 통과!`);
+        }
+      }
+      const spot = pointAlongRoute(gridRace.points, Math.min(racer.distance, gridRace.total - 0.2));
+      if (!spot) continue;
+      const laneSide = gridRace.racers.indexOf(racer) % 2 === 0 ? -1 : 1;
+      const laneX = spot.x - spot.dirZ * 1.9 * laneSide;
+      const laneZ = spot.z + spot.dirX * 1.9 * laneSide;
+      racer.car.group.position.set(laneX, drivingSurfaceHeightAt(laneX, laneZ) + 0.05, laneZ);
+      racer.car.group.rotation.y = Math.atan2(spot.dirX, spot.dirZ);
+      for (const wheel of racer.car.wheels) wheel.rotation.x += racer.speed * dt / 0.5;
     }
-    const spot = pointAlongRoute(rivalRace.points, Math.min(rivalRace.distance, rivalRace.total - 0.2));
-    if (!spot) return;
-    const laneX = spot.x - spot.dirZ * 1.6;
-    const laneZ = spot.z + spot.dirX * 1.6;
-    rivalCar.group.position.set(laneX, drivingSurfaceHeightAt(laneX, laneZ) + 0.05, laneZ);
-    rivalCar.group.rotation.y = Math.atan2(spot.dirX, spot.dirZ);
-    for (const wheel of rivalCar.wheels) wheel.rotation.x += rivalRace.speed * dt / 0.5;
   }
 
   function clearLearningGates() {
@@ -3212,7 +3230,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       gear: (state.gear ?? 0) + 1,
       drifting: Boolean(state.drifting),
       goldEarned: Math.round(state.goldEarned || 0),
-      rivalStatus: rivalRace ? { progress: Math.min(1, rivalRace.distance / Math.max(1, rivalRace.total)), finished: rivalRace.finished } : null,
+      raceStatus: gridRace ? { position: playerRacePosition(), racers: gridRace.racers.length + 1, countdown: Math.max(0, Math.ceil(state.raceCountdown || 0)) } : null,
       bonusStatus: activeMission?.bonus ? {
         ...activeMission.bonus,
         current: activeMission.bonus.type === "noCrash" ? (state.crashCount || 0)
@@ -3248,7 +3266,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     audio.start();
     activeMission = mission;
     gateWanted = Array.isArray(options.wanted) ? options.wanted : [];
-    applyMissionMood(["morning", "festival", "space", "festival"][mission.slot ?? 0] || mission.id);
+    applyMissionMood(["morning", "festival", "space", "space"][mission.slot ?? 0] || mission.id);
     stopIds = [...mission.stops];
     const firstTarget = DESTINATIONS[stopIds[0]];
     const openingRoute = buildRoadRoute(citySpawn.x, citySpawn.z, firstTarget);
@@ -3292,8 +3310,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     latestRoute = [];
     resetCoins();
     spawnGatesForLeg(citySpawn.x, citySpawn.z, firstTarget);
-    if (mission.rival) startRivalRace(mission);
-    else stopRivalRace();
+    if (mission.race) { startGridRace(mission); clearLearningGates(); }
+    else stopGridRace();
     refreshMarkers();
     onMessage?.("출발! 게이트는 정답 차선으로 통과하세요");
     emitHud(true);
@@ -3315,13 +3333,14 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
         : (state.coinCount || 0) >= bonus.target;
     }
     let missionReward = reason === "complete" ? activeMission?.reward || 0 : 0;
-    let rivalResult = null;
-    if (activeMission?.rival && rivalRace) {
-      const playerWon = reason === "complete" && !rivalRace.finished;
-      if (!playerWon) missionReward = Math.round(missionReward * 0.25);
-      rivalResult = { playerWon };
+    let raceResult = null;
+    if (activeMission?.race && gridRace) {
+      const position = reason === "complete" ? playerRacePosition() : 4;
+      const payout = [1, 0.6, 0.35, 0.2][position - 1] ?? 0.2;
+      missionReward = Math.round(missionReward * payout);
+      raceResult = { position, racers: gridRace.racers.length + 1 };
     }
-    stopRivalRace();
+    stopGridRace();
     emitHud(true);
     onFinish?.({
       reason,
@@ -3333,7 +3352,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       reward: missionReward,
       goldEarned: Math.round(state.goldEarned || 0),
       bonus: bonus ? { ...bonus, achieved: bonusAchieved } : null,
-      rivalRace: rivalResult
+      race: raceResult
     });
   }
 
@@ -3343,6 +3362,12 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (!target) return;
     const finalStop = state.deliveryIndex >= stopIds.length - 1;
     audio.delivery();
+    // 레이스 계약은 결승선 = 배송지. 퀴즈 없이 즉시 순위 판정으로 넘어간다.
+    if (finalStop && activeMission?.race) {
+      state.deliveryIndex += 1;
+      finishMission("complete");
+      return;
+    }
     if (!finalStop) {
       // 중간 배송지는 흐름을 끊지 않는다 — 즉시 전달하고 다음 구간 게이트를 세운다.
       state.deliveryIndex += 1;
@@ -3386,6 +3411,17 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
 
   function updateDriving(dt) {
     if (state.status !== "playing") return;
+    // 그리드 레이스 카운트다운: 3-2-1 동안 전 차량 정지, 타이머도 멈춘다.
+    if ((state.raceCountdown || 0) > 0) {
+      const previousTick = Math.ceil(state.raceCountdown);
+      state.raceCountdown = Math.max(0, state.raceCountdown - dt);
+      const tick = Math.ceil(state.raceCountdown);
+      if (tick !== previousTick) onMessage?.(tick > 0 ? `${tick}...` : "GO!! 🏁");
+      state.speed = 0;
+      state.throttleAmount = 0;
+      emitHud();
+      return;
+    }
     const vehicle = style.vehicle || { speed: 0, topSpeed: 200, accel: 0, handling: 0 };
     const upgrades = style.upgrades || { speed: 0, handling: 0 };
     const maxForward = (vehicle.topSpeed || 200) / WORLD_SPEED_TO_KMH;
@@ -3672,7 +3708,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (state.status !== "playing") audio.stopEngine();
     driftSmoke.update(dt);
     if (scene.userData.cloudLayer) scene.userData.cloudLayer.position.x = Math.sin(elapsed * 0.011) * 40;
-    updateRivalRace(dt);
+    updateGridRace(dt);
     messageCooldown = Math.max(0, messageCooldown - dt);
     hudAccumulator += dt;
     applyTimeOfDay(dt);
@@ -3799,7 +3835,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     returnToGarage() {
       state.status = "garage";
       clearLearningGates();
-      stopRivalRace();
+      stopGridRace();
       pendingQuiz = null;
       state.speed = 0;
       state.x = citySpawn.x;

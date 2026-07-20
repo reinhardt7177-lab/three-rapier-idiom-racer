@@ -443,12 +443,12 @@ function Garage({ style, setStyle, mission, setMission, contracts, rank, stats, 
               className={mission.id === item.id ? "mission-chip active" : "mission-chip"}
               onClick={() => setMission(item)}
             >
-              <span>{item.rival ? "🏁" : item.pack.icon}</span>
+              <span>{item.race ? "🏁" : item.pack.icon}</span>
               <span>
                 <strong>{item.title}</strong>
                 <small>
                   {item.time}초 · {item.stops.length}곳 · 🪙 {item.reward.toLocaleString()}G
-                  {item.bonus ? ` · ${item.bonus.icon} ${item.bonus.label} +${item.bonus.reward}G` : item.rival ? ` · 라이벌 ${item.rival.kmh}km/h와 대결` : ""}
+                  {item.bonus ? ` · ${item.bonus.icon} ${item.bonus.label} +${item.bonus.reward}G` : item.race ? ` · 레이서 ${item.race.racers}대와 순위전` : ""}
                 </small>
               </span>
             </button>
@@ -597,10 +597,10 @@ function GameHud({ hud }) {
         <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
         <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
         <div><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
-        {hud.rivalStatus ? (
-          <div className={hud.rivalStatus.finished ? "time-stat urgent" : undefined}>
-            <small>🏁 라이벌</small>
-            <strong>{hud.rivalStatus.finished ? "도착!" : `${Math.round(hud.rivalStatus.progress * 100)}%`}</strong>
+        {hud.raceStatus ? (
+          <div className={hud.raceStatus.countdown > 0 || hud.raceStatus.position === 1 ? undefined : "time-stat urgent"}>
+            <small>{hud.raceStatus.countdown > 0 ? "🚦 출발까지" : "🏁 순위"}</small>
+            <strong>{hud.raceStatus.countdown > 0 ? hud.raceStatus.countdown : `${hud.raceStatus.position}/${hud.raceStatus.racers}`}</strong>
           </div>
         ) : null}
         {hud.bonusStatus ? (
@@ -736,9 +736,9 @@ function ResultScreen({ result, onRetry, onGarage }) {
             {result.bonus.icon} {result.bonus.label} — {result.bonus.achieved ? `성공! +${result.bonus.reward}G` : "다음에 다시 도전!"}
           </div>
         ) : null}
-        {result.rivalRace ? (
-          <div className={result.rivalRace.playerWon ? "answer-feedback correct" : "answer-feedback wrong"}>
-            {result.rivalRace.playerWon ? "🏁 라이벌 격파! 풀 보상 획득!" : "🏁 라이벌에게 패배… 보상 25%만 지급"}
+        {result.race ? (
+          <div className={result.race.position === 1 ? "answer-feedback correct" : "answer-feedback wrong"}>
+            🏁 {result.race.position}위 / {result.race.racers}대 {result.race.position === 1 ? "— 우승! 풀 보상!" : "— 다음엔 포디움 위로!"}
           </div>
         ) : null}
         <div className="result-actions"><button type="button" onClick={onGarage}>차고로</button><button className="primary" type="button" onClick={onRetry}>다시 도전</button></div>

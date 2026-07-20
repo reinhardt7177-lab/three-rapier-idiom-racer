@@ -93,7 +93,7 @@ function edge(id, a, b, type, controls = [], options = {}) {
 // 고가 노드 사이 구간은 skyway 플래그(직선 종단면·교각·난간)로, 지상 노드와
 // 만나는 구간은 일반 도로의 경사 제한(16%)이 자연스러운 램프를 만든다.
 export const SKYWAY_ELEVATION = 9;
-const NODE_ELEVATION = {};
+const NODE_ELEVATION = { outerSW: SKYWAY_ELEVATION, outerW: SKYWAY_ELEVATION, outerNW: SKYWAY_ELEVATION, outerN: SKYWAY_ELEVATION, outerNE: SKYWAY_ELEVATION };
 
 if (false) {
 const LEGACY_MOUNTAIN_ROADS = [
@@ -224,7 +224,9 @@ export const CITY_ROADS = CITY_V2_ROAD_SPECS.map(([id, a, b, type, controls = []
 ));
 
 // 점프 램프: 골목 끝 발사대의 위치·방향. 런타임이 램프 메시와 에어본 판정에 쓴다.
-export const JUMP_RAMPS = [];
+export const JUMP_RAMPS = [
+  { id: "skyway-jump", x: CITY_NODES.jumpLaunch.x, z: CITY_NODES.jumpLaunch.z, heading: Math.atan2(-57, -8), minKmh: 80 }
+];
 
 export const CITY_TRAFFIC_LOOPS = CITY_V2_TRAFFIC_LOOPS;
 
