@@ -1482,7 +1482,11 @@ function updateCityTraffic(scene, dt) {
     const laneOffset = vehicle.lane * Math.max(2.05, Math.min(road?.road.width * 0.24 || 2.8, 4.5));
     const x = sample.x + normalX * laneOffset;
     const z = sample.z + normalZ * laneOffset;
-    vehicle.group.position.set(x, drivingSurfaceHeightAt(x, z) + 0.05, z);
+    // 같은 도로 히트를 재사용해 프레임당 도로 스캔을 절반으로 줄인다.
+    const surfaceY = road && road.distance < road.road.width / 2 + 6
+      ? roadSurfaceHeight(road.road, road.segmentIndex + road.t, 0.32)
+      : drivingSurfaceHeightAt(x, z);
+    vehicle.group.position.set(x, surfaceY + 0.05, z);
     vehicle.group.rotation.y = Math.atan2(sample.dx, sample.dz);
     for (const wheel of vehicle.wheels) wheel.rotation.x += vehicle.speed * dt / 0.42;
   }
@@ -2432,11 +2436,12 @@ function createCoins(scene) {
   coinGeometry.rotateX(Math.PI / 2);
   return positions.map(([x, z], index) => {
     const mesh = new THREE.Mesh(coinGeometry, material.clone());
-    mesh.position.set(x, drivingSurfaceHeightAt(x, z) + 1.6, z);
+    const surfaceY = drivingSurfaceHeightAt(x, z);
+    mesh.position.set(x, surfaceY + 1.6, z);
     mesh.rotation.y = index * 0.7;
     mesh.castShadow = true;
     scene.add(mesh);
-    return { mesh, x, z, collected: false, phase: index * 0.45 };
+    return { mesh, x, z, surfaceY, collected: false, phase: index * 0.45 };
   });
 }
 
@@ -2762,6 +2767,9 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   let activeMission = null;
   let stopIds = [];
   let latestRoute = [];
+  let routeCacheTargetId = null;
+  let routeCacheX = Infinity;
+  let routeCacheZ = Infinity;
   let style = initialStyle;
   let pendingQuiz = null;
   let activeGates = [];
@@ -3215,7 +3223,22 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const target = currentTarget();
     const dx = target ? target.x - state.x : 0;
     const dz = target ? target.z - state.z : 0;
-    latestRoute = state.status === "playing" && target ? buildRoadRoute(state.x, state.z, target, state.heading) : [];
+    // 경로 탐색(다익스트라)은 비싸다 — 목적지가 바뀌었거나 6u 이상 이동했을 때만 재계산.
+    if (state.status === "playing" && target) {
+      const moved = Math.hypot(state.x - routeCacheX, state.z - routeCacheZ);
+      if (target.id !== routeCacheTargetId || moved > 6 || !latestRoute.length) {
+        latestRoute = buildRoadRoute(state.x, state.z, target, state.heading);
+        routeCacheTargetId = target.id;
+        routeCacheX = state.x;
+        routeCacheZ = state.z;
+      } else if (latestRoute.length) {
+        // 재탐색 없이 현재 위치만 경로 시작점에 반영해 내비 표시를 부드럽게 유지한다.
+        latestRoute[0] = { x: state.x, z: state.z };
+      }
+    } else {
+      latestRoute = [];
+      routeCacheTargetId = null;
+    }
     const navigation = navigationForRoute(latestRoute, state.heading);
     updateVehicleNavigator(navigation, clock.getElapsed());
     const directDistance = target ? Math.hypot(dx, dz) : 0;
@@ -3308,6 +3331,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     car.group.rotation.set(0, openingHeading, 0);
     pendingQuiz = null;
     latestRoute = [];
+    routeCacheTargetId = null;
     resetCoins();
     spawnGatesForLeg(citySpawn.x, citySpawn.z, firstTarget);
     if (mission.race) { startGridRace(mission); clearLearningGates(); }
@@ -3716,7 +3740,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     for (const coin of coins) {
       if (coin.collected) continue;
       coin.mesh.rotation.y += dt * 2.4;
-      coin.mesh.position.y = drivingSurfaceHeightAt(coin.x, coin.z) + 1.55 + Math.sin(elapsed * 2.6 + coin.phase) * 0.25;
+      coin.mesh.position.y = coin.surfaceY + 1.55 + Math.sin(elapsed * 2.6 + coin.phase) * 0.25;
     }
     for (const marker of destinationMarkers.values()) {
       marker.userData.ring.rotation.z += dt * 0.45;

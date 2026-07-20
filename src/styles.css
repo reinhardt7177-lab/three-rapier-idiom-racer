@@ -396,6 +396,20 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
 
 /* 가로 모드 휴대폰(낮은 높이): HUD·컨트롤·차고를 컴팩트하게 재배치 */
 @media (orientation: landscape) and (max-height: 540px) {
+  /* 휴대폰에서는 16:9 레터박스 프레임을 버리고 화면을 꽉 채운다. */
+  .app-shell { padding: 0; }
+  .game-stage {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  /* 좁은 화면에서 정보 밀도를 낮춘다 — 필수 타일만 남긴다. */
+  .hud-optional { display: none !important; }
   .topbar { padding: 6px 10px; }
   .brand-mark { width: 32px; height: 32px; font-size: 19px; }
   .brand-lockup strong { font-size: 16px; }
@@ -403,17 +417,19 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .icon-button { width: 34px; height: 34px; font-size: 14px; }
   .garage-mini { padding: 0 10px; font-size: 11px; }
 
-  .mission-card { left: 10px; top: 50px; width: 205px; padding: 8px 10px; }
+  .mission-card { left: 8px; top: 46px; width: 172px; padding: 6px 9px; }
+  .mission-card .route-progress { margin-top: 5px; }
   .destination-line > span { font-size: 20px; }
   .destination-line strong { font-size: 12px; }
   .distance-row b { font-size: 17px; }
-  .race-stats { right: 10px; top: 48px; gap: 3px; }
+  .race-stats { right: 8px; top: 46px; gap: 3px; }
   .race-stats > div { min-width: 56px; height: 44px; padding: 4px 6px; }
   .race-stats strong { font-size: 14px; }
   .race-stats .world-time-stat { min-width: 70px; }
   .race-stats .time-stat { min-width: 62px; }
 
-  .minimap-card { left: 10px; bottom: 10px; width: 108px; padding: 6px; }
+  .minimap-card { left: 8px; bottom: 8px; width: 92px; padding: 5px; }
+  .map-heading { font-size: 8px; margin: 0 2px 3px; }
   .speed-meter { right: 10px; bottom: 84px; transform: scale(.68); transform-origin: bottom right; }
   .delivery-approach { bottom: 84px; font-size: 10px; }
   .toast-message { top: 16%; font-size: 11px; padding: 7px 13px; }

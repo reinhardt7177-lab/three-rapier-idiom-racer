@@ -592,11 +592,11 @@ function GameHud({ hud }) {
       </section>
 
       <section className="race-stats">
-        <div className="world-time-stat"><small>CITY TIME</small><strong>{hud.worldTime || "--:--"}</strong></div>
+        <div className="world-time-stat hud-optional"><small>CITY TIME</small><strong>{hud.worldTime || "--:--"}</strong></div>
         <div className={urgent ? "time-stat urgent" : "time-stat"}><small>남은 시간</small><strong>{seconds}</strong><span>초</span></div>
         <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
-        <div><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
-        <div><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
+        <div className="hud-optional"><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
+        <div className="hud-optional"><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
         {hud.raceStatus ? (
           <div className={hud.raceStatus.countdown > 0 || hud.raceStatus.position === 1 ? undefined : "time-stat urgent"}>
             <small>{hud.raceStatus.countdown > 0 ? "🚦 출발까지" : "🏁 순위"}</small>
