@@ -9,11 +9,13 @@ const playwrightPath = process.argv[2] || "playwright";
 const { chromium } = await import(playwrightPath);
 
 const browser = await chromium.launch({ args: ["--no-sandbox", "--enable-unsafe-swiftshader"] });
-const page = await (await browser.newContext({ viewport: { width: 1280, height: 720 } })).newPage();
+// 소프트웨어 렌더러는 픽셀 수에 비례해 느려지므로 작은 뷰포트로 계측한다(물리는 해상도와 무관).
+const page = await (await browser.newContext({ viewport: { width: 640, height: 360 } })).newPage();
 const pageErrors = [];
 page.on("pageerror", (error) => pageErrors.push(String(error)));
 
-await page.goto("http://localhost:5173", { waitUntil: "networkidle" });
+// 포스트프로세싱은 소프트웨어 렌더러에서 FPS를 크게 떨어뜨리므로 물리 계측은 quality=off로 돈다.
+await page.goto("http://localhost:5173/?quality=off", { waitUntil: "networkidle" });
 await page.waitForTimeout(3500);
 const startButton = page.getByText("배송 출발", { exact: false }).first();
 assert.ok(await startButton.count(), "배송 출발 버튼을 찾지 못했습니다.");
@@ -41,8 +43,9 @@ const gameTime = () => page.evaluate(() => window.__gameTime);
 
 const samples = [];
 await page.keyboard.down("ArrowUp");
-const cruiseWallLimit = Date.now() + 90000;
-while ((await gameTime()) < 15 && Date.now() < cruiseWallLimit) {
+const cruiseWallLimit = Date.now() + 150000;
+// 6초면 최고속에 닿는다. 더 오래 달리면 시작 직선을 벗어나 코너·교통이 터보 계측을 흐린다.
+while ((await gameTime()) < 6 && Date.now() < cruiseWallLimit) {
   samples.push({ t: await gameTime(), kmh: await readKmh() });
   await page.waitForTimeout(60);
 }
@@ -50,7 +53,7 @@ while ((await gameTime()) < 15 && Date.now() < cruiseWallLimit) {
 await page.keyboard.down("Shift");
 const boostSamples = [];
 const boostStart = await gameTime();
-const boostWallLimit = Date.now() + 40000;
+const boostWallLimit = Date.now() + 60000;
 while ((await gameTime()) - boostStart < 4 && Date.now() < boostWallLimit) {
   boostSamples.push({ t: (await gameTime()) - boostStart, kmh: await readKmh() });
   await page.waitForTimeout(60);

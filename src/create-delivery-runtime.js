@@ -1,5 +1,11 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { GTAOPass } from "three/addons/postprocessing/GTAOPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { CITY_HALF, CITY_NODES, CITY_RIVER_PATH, CITY_ROADS, JUMP_RAMPS, CITY_SCENERY_HALF, CITY_SKYLINE_MAX_RADIUS, CITY_SKYLINE_MIN_RADIUS, CITY_TRAFFIC_LOOPS, DESTINATION_NODES, closestRoadPoint, distanceToRiver, isPointOnCityRoad, pathLength, roadBaseHeightAt, terrainHeightAt } from "./city-map.js";
 import { buildCityBuildingPlans, buildCityLandmarkClearings } from "./city-layout.js";
 import { DESTINATIONS } from "./game-data.js";
@@ -1518,7 +1524,7 @@ function createCityTraffic(scene) {
     for (let routeIndex = 0; routeIndex < route.count; routeIndex += 1) {
     const group = new THREE.Group();
     const bodyColor = paints[index % paints.length];
-    const body = roundedBox(2.05, 0.68, 4.5, makeMaterial(bodyColor, { roughness: 0.4, metalness: 0.18 }), 0.22, 0, 0.72, 0);
+    const body = roundedBox(2.05, 0.68, 4.5, makeMaterial(bodyColor, { roughness: 0.28, metalness: 0.55 }), 0.22, 0, 0.72, 0);
     const cabin = roundedBox(1.62, 0.72, 2.08, glassMaterial, 0.2, 0, 1.25, -0.22);
     const bumper = roundedBox(2.12, 0.16, 0.26, chromeMaterial, 0.05, 0, 0.48, -2.15);
     group.add(body, cabin, bumper);
@@ -2160,20 +2166,52 @@ function getVehicleProfile(vehicleId) {
   }[vehicleId] || { length: 6.6, width: 3.08, roof: 1.78, wheel: 0.59, clearance: 0.1, cabinStart: -1.42, cabinEnd: 1.08, scale: 0.96, kind: "sedan", spoiler: "lip" };
 }
 
+// 반사용 하늘 돔: 천정 파랑 → 지평선 크림 → 지면 짙은 초록회색, 그리고 하이라이트용 작은 태양 디스크.
+function createEnvironmentScene() {
+  const envScene = new THREE.Scene();
+  const geometry = new THREE.SphereGeometry(80, 48, 24);
+  const position = geometry.attributes.position;
+  const colors = new Float32Array(position.count * 3);
+  const zenith = new THREE.Color(0x5aa9e6);
+  const horizon = new THREE.Color(0xf1dccb);
+  const ground = new THREE.Color(0x3d4a44);
+  const color = new THREE.Color();
+  for (let index = 0; index < position.count; index += 1) {
+    const height = position.getY(index) / 80;
+    if (height >= 0) color.lerpColors(horizon, zenith, Math.pow(Math.min(1, height * 1.6), 0.7));
+    else color.lerpColors(horizon, ground, Math.min(1, -height * 5));
+    colors[index * 3] = color.r;
+    colors[index * 3 + 1] = color.g;
+    colors[index * 3 + 2] = color.b;
+  }
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  envScene.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide })));
+  const sunMaterial = new THREE.MeshBasicMaterial();
+  sunMaterial.color.setRGB(7, 6.2, 4.8);
+  const sunDisc = new THREE.Mesh(new THREE.SphereGeometry(4, 16, 8), sunMaterial);
+  sunDisc.position.set(-45, 52, -28);
+  envScene.add(sunDisc);
+  return envScene;
+}
+
 function createDeliveryCar(scene, initialStyle) {
   const group = new THREE.Group();
   // metalness가 높으면 환경맵 없는 씬에서 차체가 검게 죽는다 — 로우폴리엔 낮은 금속성이 맞다.
+  // 환경맵이 생겼으니 금속성을 되살린다 — 하늘이 비치는 광택 차체.
   const bodyMaterial = makeMaterial(initialStyle.paint.body, {
-    roughness: 0.34,
-    metalness: 0.16,
+    roughness: 0.3,
+    metalness: 0.5,
     emissive: initialStyle.paint.body,
-    emissiveIntensity: 0.09
+    emissiveIntensity: 0.03
   });
+  bodyMaterial.envMapIntensity = 1.8;
   const accentMaterial = makeMaterial(initialStyle.paint.accent, { roughness: 0.32, metalness: 0.34 });
   // 유리는 살짝 투명한 청록 틴트로 — 불투명 검정 캐빈이 차를 통째로 어둡게 만들지 않게 합니다.
-  const glassMaterial = makeMaterial(0x1a3346, { roughness: 0.08, metalness: 0.62, emissive: 0x2c5a74, emissiveIntensity: 0.22, transparent: true, opacity: 0.86 });
+  const glassMaterial = makeMaterial(0x0f2434, { roughness: 0.04, metalness: 0.35, emissive: 0x1c3d52, emissiveIntensity: 0.12, transparent: true, opacity: 0.82 });
+  glassMaterial.envMapIntensity = 2.2;
   const wheelMaterial = makeMaterial(0x171c22, { roughness: 0.74 });
-  const rimMaterial = makeMaterial(initialStyle.wheel.color, { roughness: 0.2, metalness: 0.82 });
+  const rimMaterial = makeMaterial(initialStyle.wheel.color, { roughness: 0.18, metalness: 0.9 });
+  rimMaterial.envMapIntensity = 2.0;
   const darkMaterial = makeMaterial(0x1c2733, { roughness: 0.68, metalness: 0.22 });
   const chromeMaterial = makeMaterial(0xcbd5dd, { roughness: 0.16, metalness: 0.92 });
   const headlightMaterial = makeMaterial(0xeaf8ff, { roughness: 0.08, emissive: 0xc9efff, emissiveIntensity: 1.5 });
@@ -2762,6 +2800,57 @@ function createGameAudio() {
   };
 }
 
+// 속도 그레이딩 패스: 고속에서 화면 가장자리 방사형 블러 + 비네팅 + 채도/대비.
+// 중심은 선명하게 남겨 조향 정보를 잃지 않는다.
+const SpeedGradeShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uBlur: { value: 0 },
+    uVignette: { value: 1.15 },
+    uSaturation: { value: 1.12 },
+    uContrast: { value: 1.05 },
+    uTint: { value: new THREE.Vector3(1.0, 0.99, 0.97) }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float uBlur;
+    uniform float uVignette;
+    uniform float uSaturation;
+    uniform float uContrast;
+    uniform vec3 uTint;
+    varying vec2 vUv;
+    void main() {
+      vec2 center = vec2(0.5, 0.54);
+      vec2 dir = vUv - center;
+      vec4 color = texture2D(tDiffuse, vUv);
+      if (uBlur > 0.002) {
+        vec4 acc = color;
+        float total = 1.0;
+        for (int i = 1; i <= 8; i++) {
+          float t = float(i) / 8.0;
+          float w = 1.0 - t * 0.55;
+          acc += texture2D(tDiffuse, vUv - dir * t * uBlur * 0.32) * w;
+          total += w;
+        }
+        float edge = smoothstep(0.06, 0.62, length(dir));
+        color = mix(color, acc / total, edge);
+      }
+      float luma = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+      color.rgb = mix(vec3(luma), color.rgb, uSaturation);
+      color.rgb = (color.rgb - 0.5) * uContrast + 0.5;
+      color.rgb *= uTint;
+      float vig = smoothstep(1.05, 0.3, length(dir) * uVignette);
+      color.rgb *= mix(0.72, 1.0, vig);
+      gl_FragColor = color;
+    }`
+};
+
 export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, onFinish, onMessage, onQuizOutcome }) {
   let disposed = false;
   let animationId = 0;
@@ -2790,7 +2879,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (racerFleet) return racerFleet;
     racerFleet = RACER_LIVERIES.map((livery) => {
       const group = new THREE.Group();
-      const bodyMaterial = makeMaterial(livery.color, { roughness: 0.3, metalness: 0.18, emissive: livery.color, emissiveIntensity: 0.12 });
+      const bodyMaterial = makeMaterial(livery.color, { roughness: 0.3, metalness: 0.5, emissive: livery.color, emissiveIntensity: 0.04 });
+      bodyMaterial.envMapIntensity = 1.7;
       const body = roundedBox(2.5, 0.72, 5.4, bodyMaterial, 0.24, 0, 0.78, 0);
       const cabin = roundedBox(1.9, 0.74, 2.3, makeMaterial(0x101c26, { roughness: 0.12, metalness: 0.5 }), 0.22, 0, 1.38, -0.25);
       const wing = roundedBox(2.3, 0.13, 0.5, makeMaterial(0x1c2733, { roughness: 0.6 }), 0.05, 0, 1.5, -2.45);
@@ -3043,8 +3133,14 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.35));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  // 품질 티어: 터치 기기·좁은 화면은 GTAO·고해상도 그림자를 끄고 블러·블룸 강도를 낮춘다.
+  // URL ?quality=low|off 로 강제할 수 있다(off = 포스트프로세싱 전체 생략, 저사양 폰·계측 하니스용).
+  const qualityParam = new URLSearchParams(window.location.search).get("quality");
+  const lowSpecDevice = qualityParam === "low" || qualityParam === "off"
+    || (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0) || window.innerWidth < 900;
+  const postFxEnabled = qualityParam !== "off";
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.type = lowSpecDevice ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.02;
   mount.replaceChildren(renderer.domElement);
@@ -3084,6 +3180,13 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xd89175);
   scene.fog = new THREE.Fog(0xb57f72, 170, 520);
+  // 환경맵: 차체 금속·유리에 하늘·지평선·태양이 비치게 하는 PBR의 핵심.
+  // 스튜디오 룸 환경은 광원 패널 값이 너무 커 차체 전체가 블룸 임계값을 넘어 하얗게 타므로, 씬 하늘과 같은 톤의 그라데이션 돔을 PMREM으로 굽는다.
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const environmentTexture = pmrem.fromScene(createEnvironmentScene(), 0.04).texture;
+  scene.environment = environmentTexture;
+  scene.environmentIntensity = 1;
+  pmrem.dispose();
   const camera = new THREE.PerspectiveCamera(45, 16 / 9, 0.1, 900);
   camera.position.set(citySpawn.x, drivingSurfaceHeightAt(citySpawn.x, citySpawn.z) + 8.5, citySpawn.z - 14);
   const cameraLookAt = new THREE.Vector3(citySpawn.x, drivingSurfaceHeightAt(citySpawn.x, citySpawn.z) + 2.1, citySpawn.z + 4.5);
@@ -3092,12 +3195,33 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   const cameraRayDirection = new THREE.Vector3();
   const cameraRaycaster = new THREE.Raycaster();
 
-  const hemisphere = new THREE.HemisphereLight(0xc7e7ff, 0x25332d, 1.2);
+  // 포스트프로세싱 체인: 렌더 → GTAO(데스크톱) → 블룸 → 속도 그레이딩 → 출력(톤매핑·sRGB)
+  const composer = new EffectComposer(renderer);
+  composer.setPixelRatio(renderer.getPixelRatio());
+  composer.addPass(new RenderPass(scene, camera));
+  let gtaoPass = null;
+  if (!lowSpecDevice) {
+    gtaoPass = new GTAOPass(scene, camera, 960, 540);
+    gtaoPass.output = GTAOPass.OUTPUT.Default;
+    gtaoPass.blendIntensity = 0.7;
+    gtaoPass.updateGtaoMaterial({ radius: 1.1, distanceExponent: 1, thickness: 1, scale: 1, samples: 12, distanceFallOff: 1, screenSpaceRadius: false });
+    composer.addPass(gtaoPass);
+  }
+  const bloomPass = new UnrealBloomPass(new THREE.Vector2(960, 540), lowSpecDevice ? 0.16 : 0.26, 0.42, 1.0);
+  composer.addPass(bloomPass);
+  composer.addPass(new OutputPass());
+  // 그레이딩은 톤매핑 뒤 LDR에서 — HDR 하이라이트를 증폭하지 않는다.
+  const speedGradePass = new ShaderPass(SpeedGradeShader);
+  composer.addPass(speedGradePass);
+
+  const hemisphere = new THREE.HemisphereLight(0xc7e7ff, 0x25332d, 0.95);
   scene.add(hemisphere);
   const sun = new THREE.DirectionalLight(0xfff1c9, 3.35);
   sun.position.set(-45, 72, -28);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(768, 768);
+  sun.shadow.mapSize.set(lowSpecDevice ? 768 : 1536, lowSpecDevice ? 768 : 1536);
+  sun.shadow.bias = -0.0006;
+  sun.shadow.normalBias = 0.02;
   Object.assign(sun.shadow.camera, { left: -90, right: 90, top: 90, bottom: -90, near: 1, far: 180 });
   const sunTarget = new THREE.Object3D();
   scene.add(sunTarget);
@@ -3115,6 +3239,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   const vehicleFillLight = new THREE.PointLight(0xd7efff, 10, 18, 2);
   vehicleFillLight.position.set(0, 4.2, -5.4);
   car.group.add(vehicleFillLight);
+  if (import.meta.env?.DEV) window.__mumuDebug = { scene, car, composer, gtaoPass, bloomPass, speedGradePass, vehicleFillLight, renderer };
   const coins = createCoins(scene);
   const clock = new THREE.Timer();
   clock.connect(document);
@@ -3821,6 +3946,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const width = mount.clientWidth || 960;
     const height = mount.clientHeight || 540;
     renderer.setSize(width, height, false);
+    composer.setSize(width, height);
+    gtaoPass?.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
   }
@@ -3834,7 +3961,13 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     updateWorld(dt, elapsed);
     updateCamera(dt, elapsed);
     emitHud();
-    renderer.render(scene, camera);
+    // 속도 블러: 최고속 45% 이상부터 서서히, 터보 중엔 더 강하게. 저사양은 절반.
+    const blurRatio = clamp(Math.abs(state.speed) / 60, 0, 1.2);
+    const boostingNow = input.boost && state.boost > 1 && state.speed > 2;
+    const blurTarget = clamp((blurRatio - 0.45) / 0.55, 0, 1) * (boostingNow ? 1.0 : 0.6) * (lowSpecDevice ? 0.5 : 1);
+    speedGradePass.uniforms.uBlur.value = damp(speedGradePass.uniforms.uBlur.value, blurTarget, 6, dt);
+    if (postFxEnabled) composer.render();
+    else renderer.render(scene, camera);
     animationId = requestAnimationFrame(loop);
   }
 
@@ -3892,6 +4025,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       renderer.domElement.removeEventListener("pointercancel", endCameraDrag);
       clock.dispose();
       audio.dispose();
+      composer.dispose?.();
+      environmentTexture.dispose();
       scene.traverse((object) => {
         object.geometry?.dispose?.();
         const materials = object.material ? (Array.isArray(object.material) ? object.material : [object.material]) : [];
