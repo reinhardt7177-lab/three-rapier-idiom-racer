@@ -61,6 +61,16 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
 .icon-button { width: 42px; height: 42px; font-size: 18px; }
 .garage-mini { padding: 0 15px; font-weight: 900; }
 
+/* 주행 중 상단바: 브랜드 숨기고 버튼을 얇은 반투명 아이콘으로 */
+.topbar.playing { top: 14px; justify-content: flex-end; }
+.topbar.playing .brand-lockup { display: none; }
+.topbar.playing .top-actions { gap: 6px; }
+.topbar.playing .icon-button, .topbar.playing .garage-mini { height: 34px; border: 1px solid rgba(255,255,255,.3); border-radius: 10px; color: #fff; background: rgba(4,10,16,.42); box-shadow: none; backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.7); font-size: 11px; font-weight: 800; }
+.topbar.playing .icon-button { width: 34px; font-size: 15px; }
+.topbar.playing .garage-mini { padding: 0 11px; }
+.topbar.playing .camera-reset { color: #ffd84f; }
+.topbar.playing .icon-button:hover, .topbar.playing .garage-mini:hover { background: rgba(255,255,255,.16); }
+
 .garage-screen {
   position: absolute;
   z-index: 10;
@@ -184,85 +194,69 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
 .stat-board { border: 1px solid rgba(156,198,218,.25); border-radius: 5px; background: rgba(3,12,20,.66); }
 .stat-row > span { color: #aac0cc; }
 
-.hud-layer { position: absolute; z-index: 15; inset: 0; pointer-events: none; }
+/* ── In-game HUD: Asphalt 9 스타일(얇고 반투명, 텍스트 중심) ── */
+.hud-layer { position: absolute; z-index: 15; inset: 0; color: #fff; font-variant-numeric: tabular-nums; pointer-events: none; }
 .speed-rush { position: absolute; inset: 0; pointer-events: none; transition: opacity .18s ease; }
-.mission-card { position: absolute; left: 22px; top: 78px; width: 270px; padding: 13px 15px; border: 2px solid rgba(255,255,255,.94); border-radius: 20px; background: rgba(247,252,255,.86); box-shadow: 0 12px 32px rgba(28,69,95,.22); backdrop-filter: blur(14px) saturate(1.12); }
-.mission-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.hud-caption { color: #ff6b00; font-size: 9px; font-weight: 1000; letter-spacing: 1.4px; }
-.district-pill { padding: 4px 8px; border-radius: 999px; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.42); font-size: 8px; font-weight: 1000; }
-.destination-line { margin-top: 4px; display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 7px; }
-.destination-line > span { font-size: 28px; }
-.destination-line div { display: grid; }
-.destination-line strong { color: #183d56; font-size: 15px; font-weight: 1000; line-height: 1.1; }
-.destination-line small { color: #6a8799; font-size: 9px; font-weight: 800; }
-.distance-row { margin-top: 8px; display: flex; align-items: baseline; gap: 4px; color: #ff6500; }
-.distance-row b { font-size: 22px; line-height: 1; }
-.distance-row span { font-size: 10px; font-weight: 900; }
-.route-progress { margin-top: 9px; display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; }
-.route-progress i { height: 5px; border-radius: 99px; background: #d9e6ec; }
-.route-progress i.active { background: linear-gradient(90deg,#ff9f1c,#ff5d00); box-shadow: 0 0 0 2px rgba(255,138,0,.13); }
-.route-progress i.done { background: #38b86a; }
-.race-stats { position: absolute; right: 22px; top: 76px; display: flex; gap: 7px; }
-.race-stats > div { min-width: 75px; height: 61px; padding: 7px 10px; display: grid; align-content: center; justify-items: center; border: 2px solid rgba(255,255,255,.94); border-radius: 17px; background: rgba(248,252,255,.84); box-shadow: 0 9px 22px rgba(25,67,94,.18); backdrop-filter: blur(12px); }
-.race-stats small { color: #668397; font-size: 8px; font-weight: 1000; }
-.race-stats strong { color: #173b54; font-size: 20px; line-height: 1; }
-.race-stats .time-stat { display: flex; min-width: 86px; flex-wrap: wrap; align-items: baseline; justify-content: center; column-gap: 3px; }
-.time-stat small { width: 100%; text-align: center; }
-.time-stat span { color: #708a9b; font-size: 9px; font-weight: 900; }
-.race-stats .urgent { background: #ff595e; animation: urgent-pulse .7s ease-in-out infinite alternate; }
-.race-stats .urgent small, .race-stats .urgent strong, .race-stats .urgent span { color: #fff; }
-.speed-meter { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: 150px; padding: 10px 15px 8px; border: 3px solid #fff; border-radius: 24px 24px 17px 17px; background: rgba(24,60,83,.88); color: #fff; text-align: center; box-shadow: 0 10px 25px rgba(18,55,78,.25); }
-.speed-meter strong { font-size: 31px; line-height: 1; }
-.speed-meter > span { margin-left: 4px; color: #b9d7e7; font-size: 9px; font-weight: 900; }
-.boost-track { height: 6px; margin-top: 5px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.2); }
-.boost-track i { height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg,#51f2ff,#ffe66d); }
-.speed-meter small { font-size: 8px; font-weight: 1000; }
 
-/* City-racer cockpit HUD */
-.mission-card { width: 258px; border: 1px solid rgba(169,215,239,.62); border-left: 4px solid #ffc928; border-radius: 7px; background: linear-gradient(110deg,rgba(5,14,23,.92),rgba(15,32,45,.78)); box-shadow: 0 14px 34px rgba(0,0,0,.35); backdrop-filter: blur(9px); }
-.hud-caption { color: #ffc928; letter-spacing: 1.9px; }
-.district-pill { border-radius: 4px; }
-.destination-line strong { color: #f4f9fc; }
-.destination-line small { color: #9ab3c3; }
-.distance-row { color: #ffcf35; }
-.route-progress i { background: rgba(159,192,209,.24); }
-.race-stats { gap: 4px; }
-.race-stats > div { min-width: 72px; height: 54px; padding: 6px 10px; border: 1px solid rgba(173,216,238,.56); border-radius: 6px; background: linear-gradient(180deg,rgba(9,22,34,.9),rgba(17,39,54,.78)); box-shadow: 0 10px 22px rgba(0,0,0,.26); backdrop-filter: blur(9px); }
-.race-stats small { color: #8fabbc; letter-spacing: .5px; }
-.race-stats strong { color: #f3f9fc; font-size: 18px; font-variant-numeric: tabular-nums; }
-.race-stats .world-time-stat { min-width: 91px; border-color: rgba(255,201,40,.74); }
-.world-time-stat strong { color: #ffd84f; font-family: "Consolas","Segoe UI",sans-serif; letter-spacing: 1px; }
-.speed-meter { left: auto; right: 22px; bottom: 103px; width: 148px; padding: 7px 10px 9px; transform: none; border: 1px solid rgba(210,234,246,.62); border-radius: 50% 50% 16px 16px; background: linear-gradient(160deg,rgba(4,10,17,.94),rgba(18,35,48,.88)); box-shadow: 0 16px 36px rgba(0,0,0,.42), inset 0 0 24px rgba(44,137,188,.1); }
-.tachometer { position: relative; width: 124px; height: 104px; margin: 0 auto 3px; overflow: hidden; border-radius: 62px 62px 15px 15px; background: radial-gradient(circle at 50% 78%,#101a23 0 19%,transparent 20%), repeating-conic-gradient(from -128deg at 50% 78%,rgba(255,255,255,.82) 0 1deg,transparent 1deg 15deg), conic-gradient(from -128deg at 50% 78%,#35c9ff 0 45%,#ffce36 45% 72%,#ff4858 72% 78%,transparent 78%); clip-path: polygon(0 0,100% 0,100% 100%,0 100%); }
-.tachometer::after { content: "1  2  3  4  5  6  7  8"; position: absolute; left: 8px; right: 8px; top: 12px; color: rgba(235,246,252,.78); font: 700 8px/1 "Consolas",monospace; letter-spacing: 4px; }
-.tach-needle { position: absolute; z-index: 2; left: 50%; bottom: 22px; width: 3px; height: 49px; border-radius: 3px; background: #ff4b44; box-shadow: 0 0 8px rgba(255,64,50,.7); transform-origin: 50% 100%; transition: transform .1s linear; }
-.tach-readout { position: absolute; z-index: 3; left: 50%; bottom: 4px; transform: translateX(-50%); display: flex; align-items: baseline; gap: 3px; }
-.speed-meter .tach-readout strong { color: #fff; font: 900 26px/1 "Consolas","Segoe UI",sans-serif; text-shadow: 0 0 10px rgba(84,203,255,.4); }
-.speed-meter .tach-readout span { color: #9eb6c4; font-size: 8px; font-weight: 900; }
-.speed-meter .boost-track { height: 5px; margin: 2px 3px 4px; background: rgba(255,255,255,.14); }
-.speed-meter .boost-track i { background: linear-gradient(90deg,#20d6ff,#ffe34c,#ff7a28); box-shadow: 0 0 8px rgba(60,211,255,.55); }
-.speed-meter > small { display: block; color: #b8cfda; font-family: "Consolas",monospace; letter-spacing: 1.1px; }
+/* 좌상단: 남은 시간 + 목적지 */
+.hud-mission { position: absolute; left: 22px; top: 14px; max-width: 250px; padding: 4px 18px 5px 12px; display: grid; gap: 3px; border-left: 2px solid var(--accent, #ffc928); background: linear-gradient(90deg, rgba(4,10,16,.4), rgba(4,10,16,0)); text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 12px rgba(0,0,0,.5); }
+.hud-clock { font: 500 26px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; color: #fff; text-shadow: 0 0 14px rgba(255,255,255,.32), 0 1px 3px rgba(0,0,0,.9); }
+.hud-mission.urgent .hud-clock { color: #ff4757; text-shadow: 0 0 16px rgba(255,71,87,.65), 0 1px 3px rgba(0,0,0,.9); animation: hud-blink .55s ease-in-out infinite alternate; }
+.hud-target { overflow: hidden; font-size: 13px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+.hud-target-meta { color: rgba(255,255,255,.78); font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+
+/* 상단 중앙: 니트로 / 속도 / 플래그 */
+.hud-speed { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); min-width: 196px; padding: 6px 14px 6px; display: grid; justify-items: center; gap: 3px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: rgba(4,10,16,.42); backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.8); }
+.nitro-row { width: 100%; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 8px; }
+.nitro-row span { color: #6fe3ff; font: 700 9.5px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: 1.4px; white-space: nowrap; }
+.nitro-track { height: 3px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.16); }
+.nitro-track i { display: block; height: 100%; border-radius: inherit; background: #6fe3ff; box-shadow: 0 0 8px rgba(111,227,255,.7); transition: width .15s linear; }
+.hud-speed.overdrive .nitro-row span { color: #ff7a28; }
+.hud-speed.overdrive .nitro-track i { background: #ff7a28; box-shadow: 0 0 8px rgba(255,122,40,.7); }
+.speed-row { display: flex; align-items: center; gap: 12px; }
+.tach-readout { display: flex; align-items: baseline; gap: 5px; }
+.tach-readout strong { min-width: 2ch; color: #fff; font: 400 40px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: -.5px; text-align: right; text-shadow: 0 0 16px rgba(255,255,255,.28), 0 1px 3px rgba(0,0,0,.9); }
+.hud-speed.overdrive .tach-readout strong { color: #ffb48a; text-shadow: 0 0 16px rgba(255,122,40,.55), 0 1px 3px rgba(0,0,0,.9); }
+.tach-readout span { color: rgba(255,255,255,.72); font-size: 10px; font-weight: 700; letter-spacing: .8px; }
+.hud-badge { padding: 3px 9px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(255,255,255,.1); font: 600 12px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; white-space: nowrap; }
+.hud-badge.race { border-color: rgba(255,71,87,.6); color: #ffb3ba; }
+.hud-badge.race.lead { border-color: rgba(255,216,79,.7); color: #ffd84f; }
+.hud-flags { min-height: 14px; display: flex; gap: 5px; }
+.hud-flags span { padding: 2px 6px; border: 1px solid rgba(255,255,255,.22); border-radius: 4px; color: rgba(255,255,255,.55); font: 700 8.5px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: 1.2px; }
+.hud-flags .drift { border-color: #ffd84f; color: #ffd84f; background: rgba(255,216,79,.12); }
+.hud-flags .turbo { border-color: #6fe3ff; color: #6fe3ff; background: rgba(111,227,255,.14); }
+.hud-speed.overdrive .hud-flags .turbo { border-color: #ff7a28; color: #ff7a28; background: rgba(255,122,40,.16); }
+
+/* 우상단: 목표 시간 / 점수 / 골드 / 보너스 */
+.hud-goal { position: absolute; right: 22px; top: 58px; display: grid; justify-items: end; gap: 3px; text-align: right; text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 10px rgba(0,0,0,.5); }
+.hud-goal span { color: rgba(255,255,255,.85); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.hud-goal .goal-main { color: #fff; font-size: 13px; font-weight: 800; }
+.hud-goal .goal-main b { font: 500 17px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; }
+.hud-goal .goal-bonus { color: #ffd84f; }
+.hud-goal .goal-bonus.failed { color: #ff4757; }
+
+/* 레이스 출발 카운트다운 */
+.race-countdown { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); color: #fff; font: 600 120px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; text-shadow: 0 0 30px rgba(111,227,255,.8), 0 0 70px rgba(111,227,255,.4), 0 2px 6px rgba(0,0,0,.8); animation: countdown-pop .85s ease-out both; }
+@keyframes countdown-pop { from { transform: translate(-50%,-50%) scale(1.3); opacity: .2; } 30% { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
+@keyframes hud-blink { to { opacity: .55; } }
 .delivery-approach { position: absolute; left: 50%; bottom: 104px; transform: translateX(-50%); padding: 8px 15px; border: 2px solid #fff; border-radius: 999px; color: #fff; background: #2ebd69; box-shadow: 0 6px 0 #178044, 0 12px 24px rgba(16,113,61,.22); font-size: 11px; font-weight: 1000; animation: urgent-pulse .65s ease-in-out infinite alternate; }
 .toast-message { position: absolute; z-index: 25; left: 50%; top: 28%; transform: translateX(-50%); padding: 9px 17px; border: 3px solid #fff; border-radius: 99px; color: #fff; background: #ff7b00; box-shadow: 0 7px 0 rgba(190,70,0,.7); font-size: 13px; font-weight: 1000; animation: toast-in .25s ease-out; }
 
-.minimap-card { position: absolute; z-index: 16; left: 22px; bottom: 20px; width: 174px; padding: 9px; border: 2px solid rgba(255,255,255,.94); border-radius: 22px; background: rgba(248,252,255,.86); box-shadow: 0 11px 30px rgba(26,69,94,.24); backdrop-filter: blur(12px); }
-.map-heading { display: flex; justify-content: space-between; align-items: center; margin: 0 4px 5px; color: #31566e; font-size: 9px; }
-.map-heading span { color: #e69300; font-weight: 1000; }
-.minimap-card svg { width: 100%; display: block; border-radius: 15px; }
+/* 미니맵: 좌하단 원형, 반투명 */
+.minimap-card { position: absolute; z-index: 16; left: 22px; bottom: 20px; width: 120px; height: 120px; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(6,14,22,.55); box-shadow: 0 4px 16px rgba(0,0,0,.3); backdrop-filter: blur(6px); pointer-events: none; }
+.minimap-card svg { width: 100%; height: 100%; display: block; border-radius: 50%; opacity: .9; filter: saturate(.72) contrast(1.08) brightness(.76); }
 .target-pulse { animation: map-pulse .75s ease-in-out infinite alternate; }
-.minimap-card { border: 1px solid rgba(177,219,240,.62); border-radius: 7px; background: rgba(5,14,23,.88); box-shadow: 0 14px 34px rgba(0,0,0,.34); }
-.map-heading { color: #d8e9f2; }
-.minimap-card svg { border-radius: 3px; filter: saturate(.72) contrast(1.08) brightness(.76); }
 
-.touch-controls { position: absolute; z-index: 17; left: 215px; right: 22px; bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none; }
+/* 터치 컨트롤: 글래시 미니멀 버튼 */
+.touch-controls { position: absolute; z-index: 17; left: 158px; right: 22px; bottom: 22px; display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none; }
 .steer-controls, .pedal-controls { display: flex; gap: 10px; pointer-events: auto; }
-.steer-controls button, .pedal-controls button { border: 3px solid #fff; color: #fff; box-shadow: 0 7px 0 rgba(28,67,91,.3); cursor: pointer; touch-action: none; user-select: none; }
-.steer-controls button { width: 70px; height: 70px; border-radius: 8px; background: rgba(9,22,34,.82); backdrop-filter: blur(10px); font-size: 25px; }
-.pedal-controls button { height: 65px; padding: 0 18px; border-radius: 8px; font-size: 11px; font-weight: 1000; }
-.pedal-controls .brake { background: #546e7a; }
-.pedal-controls .boost { background: #4361ee; }
-.pedal-controls .accel { width: 92px; background: #35b85a; font-size: 18px; }
-.steer-controls button:active, .pedal-controls button:active { transform: translateY(5px); box-shadow: 0 2px 0 rgba(28,67,91,.3); }
+.steer-controls button, .pedal-controls button { border: 1px solid rgba(255,255,255,.35); color: #fff; background: rgba(255,255,255,.14); box-shadow: 0 2px 10px rgba(0,0,0,.22); backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.6); cursor: pointer; touch-action: none; user-select: none; transition: background .12s ease, transform .08s ease; }
+.steer-controls button { width: 58px; height: 58px; border-radius: 50%; font-size: 20px; }
+.pedal-controls button { height: 56px; padding: 0 18px; border-radius: 14px; font-family: "Rajdhani","Consolas","Segoe UI",sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; }
+.pedal-controls .brake { background: rgba(120,140,150,.28); }
+.pedal-controls .boost { border-color: rgba(111,227,255,.5); background: rgba(67,140,238,.32); }
+.pedal-controls .accel { width: 96px; border-color: rgba(120,255,160,.5); background: rgba(53,184,90,.34); font-size: 16px; }
+.steer-controls button:active, .pedal-controls button:active { background: rgba(255,255,255,.32); transform: scale(.95); }
 
 .quiz-overlay, .result-overlay { position: absolute; z-index: 50; inset: 0; display: grid; place-items: center; padding: 28px; background: rgba(22,55,78,.63); backdrop-filter: blur(7px); }
 .quiz-overlay { grid-template-columns: minmax(240px,.7fr) minmax(430px,1fr); gap: clamp(20px,5vw,70px); }
@@ -321,14 +315,18 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .mission-route-preview { padding: 6px 8px; }
   .customizer-card { padding: 12px; }
   .option-row { padding: 5px 0; }
-  .mission-card { left: 12px; top: 59px; transform: scale(.83); transform-origin: top left; }
-  .race-stats { right: 12px; top: 59px; transform: scale(.8); transform-origin: top right; }
-  .minimap-card { left: 12px; bottom: 12px; width: 135px; }
-  .touch-controls { left: 160px; right: 12px; bottom: 14px; }
-  .steer-controls button { width: 55px; height: 55px; }
-  .pedal-controls button { height: 52px; padding: 0 12px; }
-  .pedal-controls .accel { width: 72px; }
-  .speed-meter { right: 10px; bottom: 78px; transform: scale(.78); transform-origin: bottom right; }
+  .topbar.playing { top: 10px; right: 12px; }
+  .hud-mission { left: 12px; top: 10px; max-width: 200px; }
+  .hud-clock { font-size: 22px; }
+  .hud-speed { top: 8px; min-width: 164px; padding: 4px 10px 5px; }
+  .tach-readout strong { font-size: 32px; }
+  .hud-goal { right: 12px; top: 50px; }
+  .minimap-card { left: 12px; bottom: 12px; width: 100px; height: 100px; }
+  .touch-controls { left: 124px; right: 12px; bottom: 14px; }
+  .steer-controls button { width: 52px; height: 52px; }
+  .pedal-controls button { height: 50px; padding: 0 12px; }
+  .pedal-controls .accel { width: 76px; }
+  .race-countdown { font-size: 90px; }
   .delivery-approach { bottom: 76px; transform: translateX(-50%) scale(.84); }
   .quiz-overlay { grid-template-columns: .55fr 1fr; gap: 16px; padding: 16px; }
   .place-icon { font-size: 65px; }
@@ -359,16 +357,16 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .customizer-heading, .stat-board { display: none; }
   .option-row { grid-template-columns: 75px 1fr; padding: 5px 0; }
   .option-button { width: 36px; height: 36px; }
-  .mission-card { top: 58px; }
-  .race-stats { top: 58px; }
-  .race-stats > div:nth-child(3) { display: none; }
-  .minimap-card { width: 126px; bottom: 100px; }
+  .topbar.playing { top: 10px; right: 10px; }
+  .hud-mission { left: 10px; top: 10px; max-width: 150px; }
+  .hud-speed { top: 52px; }
+  .hud-goal { right: 10px; top: 54px; }
+  .minimap-card { width: 96px; height: 96px; bottom: 96px; }
   .touch-controls { left: 10px; right: 10px; bottom: 18px; }
-  .steer-controls button { width: 62px; height: 62px; }
+  .steer-controls button { width: 58px; height: 58px; }
   .pedal-controls { gap: 6px; }
-  .pedal-controls button { height: 58px; padding: 0 9px; }
+  .pedal-controls button { height: 56px; padding: 0 9px; }
   .pedal-controls .boost { position: absolute; right: 0; bottom: 68px; height: 42px; }
-  .speed-meter { bottom: 102px; left: auto; right: 12px; transform: scale(.72); transform-origin: bottom right; }
   .quiz-overlay { display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 12px; }
   .delivered-scene { display: flex; align-items: center; gap: 8px; }
   .place-icon { margin: 0; font-size: 40px; }
@@ -416,30 +414,38 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .brand-lockup div span { display: none; }
   .icon-button { width: 34px; height: 34px; font-size: 14px; }
   .garage-mini { padding: 0 10px; font-size: 11px; }
+  .topbar.playing { top: 8px; right: 8px; }
+  .topbar.playing .icon-button, .topbar.playing .garage-mini { height: 30px; font-size: 10px; }
+  .topbar.playing .icon-button { width: 30px; font-size: 13px; }
+  .topbar.playing .garage-mini { padding: 0 8px; }
 
-  .mission-card { left: 8px; top: 56px; width: 172px; padding: 6px 9px; }
-  .mission-card .route-progress { margin-top: 5px; }
-  .destination-line > span { font-size: 20px; }
-  .destination-line strong { font-size: 12px; }
-  .distance-row b { font-size: 17px; }
-  .race-stats { right: 8px; top: 56px; gap: 3px; }
-  .race-stats > div { min-width: 56px; height: 44px; padding: 4px 6px; }
-  .race-stats strong { font-size: 14px; }
-  .race-stats .world-time-stat { min-width: 70px; }
-  .race-stats .time-stat { min-width: 62px; }
+  .hud-mission { left: 8px; top: 8px; max-width: 170px; padding: 3px 12px 4px 8px; gap: 2px; }
+  .hud-clock { font-size: 20px; }
+  .hud-target { font-size: 11px; }
+  .hud-target-meta { font-size: 9px; }
+  .hud-speed { top: 6px; min-width: 150px; padding: 4px 10px 4px; gap: 1px; }
+  .nitro-row span { font-size: 8.5px; }
+  .tach-readout strong { font-size: 30px; }
+  .tach-readout span { font-size: 9px; }
+  .hud-badge { padding: 2px 6px; font-size: 10px; }
+  .hud-flags { min-height: 12px; }
+  .hud-flags span { padding: 1px 5px; font-size: 7.5px; }
+  .hud-goal { right: 8px; top: 44px; gap: 2px; }
+  .hud-goal span { font-size: 10px; }
+  .hud-goal .goal-main { font-size: 11px; }
+  .hud-goal .goal-main b { font-size: 14px; }
+  .race-countdown { font-size: 80px; }
 
-  .minimap-card { left: 8px; bottom: 8px; width: 92px; padding: 5px; }
-  .map-heading { font-size: 8px; margin: 0 2px 3px; }
-  .speed-meter { right: 10px; bottom: 84px; transform: scale(.68); transform-origin: bottom right; }
-  .delivery-approach { bottom: 84px; font-size: 10px; }
+  .minimap-card { left: 8px; bottom: 8px; width: 84px; height: 84px; }
+  .delivery-approach { bottom: 68px; font-size: 10px; }
   .toast-message { top: 16%; font-size: 11px; padding: 7px 13px; }
 
-  .touch-controls { left: 128px; right: 10px; bottom: 12px; }
+  .touch-controls { left: 100px; right: 10px; bottom: 10px; }
   .steer-controls { gap: 8px; }
-  .steer-controls button { width: 56px; height: 56px; font-size: 20px; }
+  .steer-controls button { width: 50px; height: 50px; font-size: 17px; }
   .pedal-controls { gap: 6px; }
-  .pedal-controls button { height: 52px; padding: 0 11px; }
-  .pedal-controls .accel { width: 74px; font-size: 15px; }
+  .pedal-controls button { height: 50px; padding: 0 11px; }
+  .pedal-controls .accel { width: 72px; font-size: 14px; }
 
   .garage-screen { display: flex; gap: 12px; overflow: hidden; padding: 46px 12px 8px; }
   .garage-copy { flex: 1 1 46%; align-self: stretch; max-width: none; overflow-y: auto; padding-right: 4px; }
@@ -462,7 +468,7 @@ button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
   .wheel-dot { width: 20px; height: 20px; border-width: 5px; }
   .option-emoji { font-size: 16px; }
   .option-row { grid-template-columns: 64px 1fr; padding: 4px 0; }
-  .steer-controls button:active, .pedal-controls button:active { transform: translateY(3px); }
+  .steer-controls button:active, .pedal-controls button:active { transform: scale(.94); }
 
   .quiz-overlay { grid-template-columns: minmax(170px,.55fr) minmax(320px,1fr); gap: 14px; padding: 12px; }
   .place-icon { margin: 6px 0 2px; font-size: 52px; }

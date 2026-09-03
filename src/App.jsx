@@ -339,7 +339,7 @@ export default function App() {
         <div ref={mountRef} className="three-mount" />
         <div className="sun-wash" />
 
-        <header className="topbar">
+        <header className={screen === "playing" ? "topbar playing" : "topbar"}>
           <div className="brand-lockup">
             <span className="brand-mark">M</span>
             <div>
@@ -563,12 +563,26 @@ function Stat({ label, value, color }) {
   );
 }
 
+function formatRaceClock(seconds) {
+  const total = Math.max(0, Number(seconds) || 0);
+  const minutes = Math.floor(total / 60);
+  const secs = Math.floor(total % 60);
+  const tenths = Math.floor((total * 10) % 10);
+  return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}.${tenths}`;
+}
+
+function formatLimitClock(seconds) {
+  if (!Number.isFinite(Number(seconds)) || seconds == null) return "--:--";
+  const total = Math.max(0, Math.round(Number(seconds)));
+  return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
+}
+
 function GameHud({ hud }) {
-  const seconds = Math.max(0, Math.ceil(hud.timeLeft));
-  const urgent = seconds <= 20;
-  const speedRatio = Math.max(0, Math.min(1.15, hud.speed / Math.max(1, hud.speedLimit ?? 200)));
-  const needleAngle = -128 + Math.min(1, speedRatio) * 256;
+  const urgent = hud.timeLeft <= 20;
   const rushOpacity = hud.boosting ? 0.5 : Math.max(0, (hud.speedRatio ?? 0) - 0.72) * 0.9;
+  const countdown = hud.raceStatus?.countdown ?? 0;
+  const bonus = hud.bonusStatus;
+  const bonusFailed = bonus?.type === "noCrash" && bonus.current !== 0;
   return (
     <div className="hud-layer">
       {rushOpacity > 0.02 ? (
@@ -582,50 +596,46 @@ function GameHud({ hud }) {
           }}
         />
       ) : null}
-      <section className="mission-card">
-        <div className="mission-meta"><span className="hud-caption">NOW DELIVERING</span><span className="district-pill" style={{ background: hud.district?.color }}>{hud.district?.name}</span></div>
-        <div className="destination-line"><span>{hud.target?.icon || "📦"}</span><div><strong>{hud.target?.name || "목적지 찾는 중"}</strong><small>{hud.target?.package || "안전하게 운전해요"}</small></div></div>
-        <div className="distance-row"><b>{hud.targetDistance}m</b><span>남음</span></div>
-        <div className="route-progress" aria-label={`배송 진행 ${hud.deliveries}/${hud.totalDeliveries}`}>
-          {Array.from({ length: hud.totalDeliveries }, (_, index) => <i key={index} className={index < hud.deliveries ? "done" : index === hud.deliveries ? "active" : ""} />)}
+
+      <section className={urgent ? "hud-mission urgent" : "hud-mission"} style={{ "--accent": hud.target?.color || "#ffc928" }} aria-label={`남은 시간 ${formatRaceClock(hud.timeLeft)}`}>
+        <span className="hud-clock">{formatRaceClock(hud.timeLeft)}</span>
+        <strong className="hud-target">{hud.target?.name || "목적지 찾는 중"}</strong>
+        <small className="hud-target-meta">{hud.target?.icon || "📦"} {hud.target?.package || "안전하게 운전해요"} · {hud.targetDistance}m</small>
+      </section>
+
+      <section className={hud.overdrive ? "hud-speed overdrive" : "hud-speed"} aria-label={`현재 속도 ${hud.speed}km/h`}>
+        <div className="nitro-row">
+          <span>{hud.overdrive ? "OVERDRIVE" : "NITRO"} {Math.round(hud.boost)}%</span>
+          <div className="nitro-track"><i style={{ width: `${Math.max(0, Math.min(100, hud.boost))}%` }} /></div>
+        </div>
+        <div className="speed-row">
+          <div className="tach-readout"><strong>{hud.speed}</strong><span>km/h</span></div>
+          {hud.raceStatus ? (
+            <span className={hud.raceStatus.position === 1 ? "hud-badge race lead" : "hud-badge race"}>🏁 {hud.raceStatus.position}/{hud.raceStatus.racers}</span>
+          ) : (
+            <span className="hud-badge">📦 {hud.deliveries}/{hud.totalDeliveries}</span>
+          )}
+        </div>
+        <div className="hud-flags">
+          <span className="gear">G{hud.gear ?? 1}</span>
+          {hud.drifting ? <span className="drift">DRIFT</span> : null}
+          {hud.boosting ? <span className="turbo">TURBO</span> : null}
         </div>
       </section>
 
-      <section className="race-stats">
-        <div className="world-time-stat hud-optional"><small>CITY TIME</small><strong>{hud.worldTime || "--:--"}</strong></div>
-        <div className={urgent ? "time-stat urgent" : "time-stat"}><small>남은 시간</small><strong>{seconds}</strong><span>초</span></div>
-        <div><small>배달</small><strong>{hud.deliveries}/{hud.totalDeliveries}</strong></div>
-        <div className="hud-optional"><small>점수</small><strong>{Math.round(hud.score).toLocaleString()}</strong></div>
-        <div className="hud-optional"><small>획득 골드</small><strong>🪙{(hud.goldEarned || 0).toLocaleString()}</strong></div>
-        {hud.raceStatus ? (
-          <div className={hud.raceStatus.countdown > 0 || hud.raceStatus.position === 1 ? undefined : "time-stat urgent"}>
-            <small>{hud.raceStatus.countdown > 0 ? "🚦 출발까지" : "🏁 순위"}</small>
-            <strong>{hud.raceStatus.countdown > 0 ? hud.raceStatus.countdown : `${hud.raceStatus.position}/${hud.raceStatus.racers}`}</strong>
-          </div>
-        ) : null}
-        {hud.bonusStatus ? (
-          <div>
-            <small>{hud.bonusStatus.icon} 보너스</small>
-            <strong>
-              {hud.bonusStatus.type === "noCrash"
-                ? (hud.bonusStatus.current === 0 ? "무충돌 유지 중" : "실패")
-                : `${hud.bonusStatus.current}/${hud.bonusStatus.target}`}
-            </strong>
-          </div>
+      <section className="hud-goal">
+        <span className="goal-main">🎯 목표 <b>{formatLimitClock(hud.mission?.time)}</b></span>
+        <span className="hud-optional">점수 {Math.round(hud.score).toLocaleString()}</span>
+        <span className="hud-optional">🪙 {(hud.goldEarned || 0).toLocaleString()}</span>
+        {bonus ? (
+          <span className={bonusFailed ? "goal-bonus failed" : "goal-bonus"}>
+            {bonus.icon} {bonus.label}{" "}
+            {bonus.type === "noCrash" ? (bonus.current === 0 ? "무충돌 유지 중" : "실패") : `${bonus.current}/${bonus.target}`}
+          </span>
         ) : null}
       </section>
 
-      <section className={hud.overdrive ? "speed-meter overdrive" : "speed-meter"} aria-label={`현재 속도 ${hud.speed}km/h`}>
-        <div className="tachometer">
-          <i className="tach-needle" style={{ transform: `translateX(-50%) rotate(${needleAngle}deg)` }} />
-          <div className="tach-readout">
-            <strong style={hud.overdrive ? { color: "#ff5d2e" } : undefined}>{hud.speed}</strong>
-            <span>km/h · {hud.gear ?? 1}단{hud.drifting ? " · DRIFT" : ""}</span>
-          </div>
-        </div>
-        <div className="boost-track"><i style={{ width: `${hud.boost}%`, background: hud.overdrive ? "#ff5d2e" : undefined }} /></div>
-        <small>{hud.overdrive ? "OVERDRIVE!" : `NITRO ${Math.round(hud.boost)}%`} · LIMIT {hud.speedLimit ?? 200}km/h</small>
-      </section>
+      {countdown > 0 ? <div key={countdown} className="race-countdown" aria-live="polite">{countdown}</div> : null}
       {hud.nearTarget ? <div className="delivery-approach">📦 감속 · 배달존 진입</div> : null}
     </div>
   );
@@ -641,7 +651,6 @@ function MiniMap({ hud }) {
   const riverPoints = CITY_RIVER_PATH.map((point) => `${project(point.x)},${project(point.z)}`).join(" ");
   return (
     <aside className="minimap-card" aria-label="시티 배송 지도">
-      <div className="map-heading"><strong>시티 배송 지도</strong><span>🏁 3 · ★ {hud.stars}</span></div>
       <svg viewBox="0 0 180 180" role="img" aria-label="현재 위치와 배송 목적지">
         <rect x="4" y="4" width="172" height="172" rx="18" fill="#dce9e7" />
         <ellipse cx="43" cy="47" rx="38" ry="34" fill="#f7fbff" opacity=".8" />

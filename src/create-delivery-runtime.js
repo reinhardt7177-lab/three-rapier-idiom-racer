@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { buildCarShell, buildWheel } from "./car-body.js";
+import { makeAsphaltTextures, makePaverTexture, createSignboardInstances, createRoadFurniture, createRouteRibbon, createCheckpointRing } from "./city-dressing.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
@@ -65,6 +67,33 @@ function makeMaterial(color, options = {}) {
     opacity: options.opacity ?? 1
   });
 }
+
+// 체이스캠 기본 높이 — 레퍼런스(아스팔트)처럼 낮고 가까운 시점.
+const CHASE_CAMERA_HEIGHT = 4.3;
+
+// 자동차 도장: 클리어코트를 얹은 물리 재질 — 색은 살리고 위에 유리막 광택이 따로 흐른다.
+function makePaintMaterial(color, options = {}) {
+  const material = new THREE.MeshPhysicalMaterial({
+    color,
+    roughness: options.roughness ?? 0.42,
+    metalness: options.metalness ?? 0.18,
+    clearcoat: options.clearcoat ?? 1,
+    clearcoatRoughness: options.clearcoatRoughness ?? 0.06,
+    emissive: options.emissive ?? 0x000000,
+    emissiveIntensity: options.emissiveIntensity ?? 0
+  });
+  material.envMapIntensity = options.envMapIntensity ?? 1.4;
+  return material;
+}
+
+// 틴트 유리: 불투명에 가까운 짙은 남색 + 강한 광택. 캐빈 전체를 한 덩어리로 읽히게 한다.
+function makeGlassMaterial(color = 0x0b1620) {
+  const material = new THREE.MeshPhysicalMaterial({ color, roughness: 0.06, metalness: 0.1, clearcoat: 1, clearcoatRoughness: 0.03 });
+  material.envMapIntensity = 2.4;
+  return material;
+}
+
+const WHEEL_SPOKE_MATERIAL = makeMaterial(0xe3eaef, { roughness: 0.2, metalness: 0.88 });
 
 function box(width, height, depth, material, x = 0, y = 0, z = 0) {
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), material);
@@ -1150,12 +1179,13 @@ function createSmoothRoadNetwork(scene) {
   const pierSpecs = [];
   const crosswalkSpecs = [];
   const shoulderMaterial = makeMaterial(0x555c61, { roughness: 0.98 });
-  const sidewalkMaterial = makeMaterial(0xb8bec1, { roughness: 0.94 });
-  const { colorMap: asphaltColorMap, bumpMap: asphaltBumpMap } = makeRoadSurfaceTextures();
+  const sidewalkMaterial = makeMaterial(0xffffff, { roughness: 0.94 });
+  sidewalkMaterial.map = makePaverTexture();
+  const { colorMap: asphaltColorMap, bumpMap: asphaltBumpMap } = makeAsphaltTextures();
   const asphaltMaterial = makeMaterial(0xffffff, { roughness: 0.9 });
   asphaltMaterial.map = asphaltColorMap;
   asphaltMaterial.bumpMap = asphaltBumpMap;
-  asphaltMaterial.bumpScale = 0.045;
+  asphaltMaterial.bumpScale = 0.06;
   const bridgeAsphaltMaterial = makeMaterial(0xe2e5e7, { roughness: 0.88 });
   bridgeAsphaltMaterial.map = asphaltColorMap;
   bridgeAsphaltMaterial.bumpMap = asphaltBumpMap;
@@ -1368,6 +1398,9 @@ function createSmoothRoadNetwork(scene) {
   createBoxInstances(scene, crosswalkSpecs, crosswalkMaterial, { castShadow: false });
   createBoxInstances(scene, bridgeRailSpecs, makeMaterial(0x596167, { roughness: 0.45, metalness: 0.52 }), { castShadow: true });
   createBoxInstances(scene, pierSpecs, makeMaterial(0xa4aaad, { roughness: 0.88 }), { castShadow: true });
+  scene.userData.roadFurniture = createRoadFurniture(scene, CITY_ROADS, junctionInfo, {
+    smoothRoadSamplesBetween, roadSurfaceHeight, getSmoothRoadData, smoothRoadSampleAt, makeMaterial, createBoxInstances, seeded, terrainHeightAt
+  });
 }
 
 function seeded(seed, salt = 0) {
@@ -1503,7 +1536,9 @@ function updateCityTraffic(scene, dt) {
 
 function createCityTraffic(scene) {
   const paints = [0xd62f3f, 0xf2c14e, 0x2f8fbf, 0x44515c, 0xf0f4f7, 0x38a169, 0x8a4fff];
-  const glassMaterial = makeMaterial(0x182733, { roughness: 0.18, metalness: 0.38 });
+  const glassMaterial = makeGlassMaterial(0x0e1a24);
+  const darkMaterial = makeMaterial(0x1a2129, { roughness: 0.62, metalness: 0.2 });
+  const plateMaterial = makeMaterial(0xf3f6f8, { roughness: 0.5 });
   const tireMaterial = makeMaterial(0x151a1e, { roughness: 0.86 });
   const chromeMaterial = makeMaterial(0xb8c4c9, { roughness: 0.24, metalness: 0.9 });
   const headlightMaterial = makeMaterial(0xe9fbff, { roughness: 0.12, emissive: 0xaeeaff, emissiveIntensity: 0.35 });
@@ -1524,28 +1559,25 @@ function createCityTraffic(scene) {
     for (let routeIndex = 0; routeIndex < route.count; routeIndex += 1) {
     const group = new THREE.Group();
     const bodyColor = paints[index % paints.length];
-    const body = roundedBox(2.05, 0.68, 4.5, makeMaterial(bodyColor, { roughness: 0.28, metalness: 0.55 }), 0.22, 0, 0.72, 0);
-    const cabin = roundedBox(1.62, 0.72, 2.08, glassMaterial, 0.2, 0, 1.25, -0.22);
-    const bumper = roundedBox(2.12, 0.16, 0.26, chromeMaterial, 0.05, 0, 0.48, -2.15);
-    group.add(body, cabin, bumper);
-    if (index % 5 === 0) {
-      const cargo = roundedBox(1.74, 1.2, 1.6, makeMaterial(index % 10 === 0 ? 0xf4f6f7 : bodyColor, { roughness: 0.48 }), 0.16, 0, 1.43, -0.48);
-      group.add(cargo);
-    }
+    const van = index % 5 === 0;
+    const trafficProfile = van
+      ? { length: 4.9, width: 2.15, roof: 2.15, wheel: 0.42, clearance: 0.06, cabinStart: -1.55, cabinEnd: 1.1, kind: "van" }
+      : { length: 4.6, width: 2.08, roof: 1.62, wheel: 0.42, clearance: 0.06, cabinStart: -0.85, cabinEnd: 0.8, kind: index % 3 === 1 ? "coupe" : "sedan" };
+    const body = buildCarShell(trafficProfile, {
+      body: makePaintMaterial(bodyColor, { roughness: 0.4, envMapIntensity: 1.1 }), glass: glassMaterial, dark: darkMaterial,
+      chrome: chromeMaterial, accent: darkMaterial, headlight: headlightMaterial, taillight: taillightMaterial, plate: plateMaterial
+    }, { lightBar: !van });
+    group.add(body);
     const wheels = [];
-    for (const wheelX of [-0.92, 0.92]) {
-      for (const wheelZ of [-1.35, 1.35]) {
-        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.3, 14), tireMaterial);
+    for (const wheelX of [-0.96, 0.96]) {
+      for (const wheelZ of [-1.42, 1.42]) {
+        const wheel = buildWheel(0.42, 0.3, tireMaterial, chromeMaterial, WHEEL_SPOKE_MATERIAL, darkMaterial);
         wheel.position.set(wheelX, 0.44, wheelZ);
         wheel.rotation.z = Math.PI / 2;
         wheel.castShadow = true;
         group.add(wheel);
         wheels.push(wheel);
       }
-    }
-    for (const lightX of [-0.62, 0.62]) {
-      group.add(roundedBox(0.34, 0.16, 0.08, headlightMaterial, 0.03, lightX, 0.84, 2.27));
-      group.add(roundedBox(0.36, 0.14, 0.08, taillightMaterial, 0.03, lightX, 0.84, -2.27));
     }
     group.traverse((object) => { if (object.isMesh) object.castShadow = true; });
     scene.add(group);
@@ -1725,7 +1757,7 @@ function createCity(scene) {
   createBoxInstances(scene, windowSpecs, cityWindowMaterial);
   createBoxInstances(scene, doorSpecs, makeMaterial(0xffffff, { roughness: 0.7 }));
   createBoxInstances(scene, awningSpecs, makeMaterial(0xffffff, { roughness: 0.82 }));
-  createBoxInstances(scene, signSpecs, makeMaterial(0xffffff, { roughness: 0.7, emissive: 0xffffff, emissiveIntensity: 0.12 }));
+  createSignboardInstances(scene, signSpecs, { makeMaterial, createBoxInstances });
   createBoxInstances(scene, balconySpecs, makeMaterial(0xffffff, { roughness: 0.9 }));
   createBoxInstances(scene, trunkSpecs, makeMaterial(0x9c6644));
   createBoxInstances(scene, crownSpecs, makeMaterial(0xffffff, { roughness: 0.94 }), {
@@ -2129,26 +2161,7 @@ function createSectionedCarMesh(sections, material) {
 }
 
 function createWheelAssembly(radius, width, tireMaterial, rimMaterial, accentMaterial) {
-  const assembly = new THREE.Group();
-  const tire = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, width, 28), tireMaterial);
-  tire.rotation.z = Math.PI / 2;
-  tire.castShadow = true;
-  const rim = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.72, radius * 0.72, width * 1.03, 18), rimMaterial);
-  rim.rotation.z = Math.PI / 2;
-  const hub = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.2, radius * 0.2, width * 1.08, 16), accentMaterial);
-  hub.rotation.z = Math.PI / 2;
-  const spokeMaterial = makeMaterial(0xdde5ea, { roughness: 0.22, metalness: 0.86 });
-  const spokeGroup = new THREE.Group();
-  for (let index = 0; index < 6; index += 1) {
-    const angle = (index / 6) * Math.PI * 2;
-    const spoke = roundedBox(width * 1.08, radius * 0.52, radius * 0.085, spokeMaterial, 0.025);
-    spoke.position.set(0, Math.sin(angle) * radius * 0.27, Math.cos(angle) * radius * 0.27);
-    spoke.rotation.x = -angle;
-    spokeGroup.add(spoke);
-  }
-  assembly.add(tire, rim, spokeGroup, hub);
-  assembly.userData.radius = radius;
-  return assembly;
+  return buildWheel(radius, width, tireMaterial, rimMaterial, WHEEL_SPOKE_MATERIAL, accentMaterial);
 }
 
 function carGroundOffset(car) {
@@ -2198,22 +2211,16 @@ function createDeliveryCar(scene, initialStyle) {
   const group = new THREE.Group();
   // metalness가 높으면 환경맵 없는 씬에서 차체가 검게 죽는다 — 로우폴리엔 낮은 금속성이 맞다.
   // 환경맵이 생겼으니 금속성을 되살린다 — 하늘이 비치는 광택 차체.
-  const bodyMaterial = makeMaterial(initialStyle.paint.body, {
-    roughness: 0.3,
-    metalness: 0.5,
-    emissive: initialStyle.paint.body,
-    emissiveIntensity: 0.03
-  });
-  bodyMaterial.envMapIntensity = 1.8;
-  const accentMaterial = makeMaterial(initialStyle.paint.accent, { roughness: 0.32, metalness: 0.34 });
-  // 유리는 살짝 투명한 청록 틴트로 — 불투명 검정 캐빈이 차를 통째로 어둡게 만들지 않게 합니다.
-  const glassMaterial = makeMaterial(0x0f2434, { roughness: 0.04, metalness: 0.35, emissive: 0x1c3d52, emissiveIntensity: 0.12, transparent: true, opacity: 0.82 });
-  glassMaterial.envMapIntensity = 2.2;
-  const wheelMaterial = makeMaterial(0x171c22, { roughness: 0.74 });
-  const rimMaterial = makeMaterial(initialStyle.wheel.color, { roughness: 0.18, metalness: 0.9 });
-  rimMaterial.envMapIntensity = 2.0;
-  const darkMaterial = makeMaterial(0x1c2733, { roughness: 0.68, metalness: 0.22 });
-  const chromeMaterial = makeMaterial(0xcbd5dd, { roughness: 0.16, metalness: 0.92 });
+  const bodyMaterial = makePaintMaterial(initialStyle.paint.body);
+  const accentMaterial = makePaintMaterial(initialStyle.paint.accent, { roughness: 0.36, metalness: 0.3, envMapIntensity: 1.2 });
+  const glassMaterial = makeGlassMaterial();
+  const wheelMaterial = makeMaterial(0x171c22, { roughness: 0.78 });
+  const rimMaterial = makeMaterial(initialStyle.wheel.color, { roughness: 0.2, metalness: 0.88 });
+  rimMaterial.envMapIntensity = 1.8;
+  const darkMaterial = makeMaterial(0x161d24, { roughness: 0.62, metalness: 0.25 });
+  const chromeMaterial = makeMaterial(0xd6dee4, { roughness: 0.14, metalness: 0.94 });
+  chromeMaterial.envMapIntensity = 1.8;
+  const plateMaterial = makeMaterial(0xf3f6f8, { roughness: 0.5 });
   const headlightMaterial = makeMaterial(0xeaf8ff, { roughness: 0.08, emissive: 0xc9efff, emissiveIntensity: 1.5 });
   const taillightMaterial = makeMaterial(0xff2438, { roughness: 0.15, emissive: 0xff071e, emissiveIntensity: 1.6 });
   const vehicleKit = new THREE.Group();
@@ -2227,7 +2234,7 @@ function createDeliveryCar(scene, initialStyle) {
   scene.add(group);
   return {
     group, bodyMaterial, accentMaterial, glassMaterial, wheelMaterial, rimMaterial, darkMaterial,
-    chromeMaterial, headlightMaterial, taillightMaterial, wheels: [], topper, vehicleKit, decal, profile: null
+    chromeMaterial, plateMaterial, headlightMaterial, taillightMaterial, wheels: [], topper, vehicleKit, decal, profile: null
   };
 }
 
@@ -2256,7 +2263,7 @@ function createVehicleNavigator(car) {
 function clearVehicleKit(car) {
   const protectedMaterials = new Set([
     car.bodyMaterial, car.accentMaterial, car.glassMaterial, car.wheelMaterial, car.rimMaterial,
-    car.darkMaterial, car.chromeMaterial, car.headlightMaterial, car.taillightMaterial
+    car.darkMaterial, car.chromeMaterial, car.plateMaterial, car.headlightMaterial, car.taillightMaterial
   ]);
   while (car.vehicleKit.children.length) {
     const child = car.vehicleKit.children[0];
@@ -2277,99 +2284,28 @@ function rebuildVehicleKit(car, style) {
   const { length, width, roof, wheel, clearance } = profile;
   const halfWidth = width / 2;
   const bodyBottom = 0.48 + clearance;
-  // A denser longitudinal profile replaces the old five-section slab. The
-  // extra shoulder sections make the bonnet, fenders and tail read as one car.
-  const body = createSectionedCarMesh([
-    { z: -length / 2, lowerY: bodyBottom + 0.2, upperY: bodyBottom + 0.48, lowerWidth: halfWidth * 0.72, upperWidth: halfWidth * 0.65 },
-    { z: -length * 0.45, lowerY: bodyBottom + 0.08, upperY: bodyBottom + 0.72, lowerWidth: halfWidth * 0.91, upperWidth: halfWidth * 0.84 },
-    { z: -length * 0.34, lowerY: bodyBottom, upperY: bodyBottom + 0.94, lowerWidth: halfWidth, upperWidth: halfWidth * 0.95 },
-    { z: -length * 0.16, lowerY: bodyBottom, upperY: bodyBottom + 1.02, lowerWidth: halfWidth, upperWidth: halfWidth * 0.96 },
-    { z: length * 0.18, lowerY: bodyBottom, upperY: bodyBottom + 0.96, lowerWidth: halfWidth, upperWidth: halfWidth * 0.95 },
-    { z: length * 0.34, lowerY: bodyBottom, upperY: bodyBottom + 0.84, lowerWidth: halfWidth, upperWidth: halfWidth * 0.91 },
-    { z: length * 0.45, lowerY: bodyBottom + 0.1, upperY: bodyBottom + 0.61, lowerWidth: halfWidth * 0.9, upperWidth: halfWidth * 0.74 },
-    { z: length / 2, lowerY: bodyBottom + 0.22, upperY: bodyBottom + 0.4, lowerWidth: halfWidth * 0.66, upperWidth: halfWidth * 0.58 }
-  ], car.bodyMaterial);
-  car.vehicleKit.add(body);
-
   const cabinRear = profile.cabinStart;
   const cabinFront = profile.cabinEnd;
-  const cabin = createSectionedCarMesh([
-    { z: cabinRear, lowerY: bodyBottom + 0.79, upperY: bodyBottom + 0.96, lowerWidth: halfWidth * 0.84, upperWidth: halfWidth * 0.74 },
-    { z: cabinRear + 0.3, lowerY: bodyBottom + 0.79, upperY: roof - 0.1, lowerWidth: halfWidth * 0.84, upperWidth: halfWidth * 0.68 },
-    { z: cabinRear + 0.62, lowerY: bodyBottom + 0.79, upperY: roof, lowerWidth: halfWidth * 0.83, upperWidth: halfWidth * 0.65 },
-    { z: cabinFront - 0.55, lowerY: bodyBottom + 0.78, upperY: roof, lowerWidth: halfWidth * 0.83, upperWidth: halfWidth * 0.65 },
-    { z: cabinFront - 0.26, lowerY: bodyBottom + 0.77, upperY: roof - 0.11, lowerWidth: halfWidth * 0.82, upperWidth: halfWidth * 0.68 },
-    { z: cabinFront, lowerY: bodyBottom + 0.74, upperY: bodyBottom + 0.94, lowerWidth: halfWidth * 0.79, upperWidth: halfWidth * 0.71 }
-  ], car.glassMaterial);
-  car.vehicleKit.add(cabin);
-
-  const rearGlassBottom = bodyBottom + 0.82;
-  const rearGlassHeight = Math.max(0.3, roof - rearGlassBottom - 0.08);
-  const rearGlassY = rearGlassBottom + rearGlassHeight / 2;
-  const rearGlass = roundedBox(
-    width * (profile.kind === "coupe" || profile.kind === "super" ? 0.58 : 0.66),
-    rearGlassHeight,
-    0.115,
-    car.glassMaterial,
-    0.08,
-    0,
-    rearGlassY,
-    cabinRear - 0.065
-  );
-  const rearGlassTrim = roundedBox(width * 0.72, rearGlassHeight + 0.13, 0.075, car.darkMaterial, 0.07, 0, rearGlassY, cabinRear - 0.015);
-  car.vehicleKit.add(rearGlassTrim, rearGlass);
-
-  const roofCenterZ = (cabinFront + cabinRear) / 2;
-  const roofDepth = Math.max(0.68, cabinFront - cabinRear - 1.0);
-  const roofPanel = roundedBox(width * 0.54, 0.085, roofDepth, car.glassMaterial, 0.045, 0, roof + 0.012, roofCenterZ);
-  const roofCrossbar = roundedBox(width * 0.64, 0.065, 0.11, car.bodyMaterial, 0.025, 0, roof + 0.038, roofCenterZ + 0.04);
-  const leftRoofRail = roundedBox(0.075, 0.065, roofDepth * 0.94, car.bodyMaterial, 0.025, -width * 0.285, roof + 0.035, roofCenterZ);
-  const rightRoofRail = roundedBox(0.075, 0.065, roofDepth * 0.94, car.bodyMaterial, 0.025, width * 0.285, roof + 0.035, roofCenterZ);
-  const windowBeltY = bodyBottom + 0.82;
-  const pillarHeight = Math.max(0.28, roof - windowBeltY - 0.03);
-  const pillarY = windowBeltY + pillarHeight / 2;
-  const pillarZ = roofCenterZ + 0.03;
-  const leftPillar = roundedBox(0.075, pillarHeight, 0.15, car.bodyMaterial, 0.025, -halfWidth * 0.7, pillarY, pillarZ);
-  const rightPillar = roundedBox(0.075, pillarHeight, 0.15, car.bodyMaterial, 0.025, halfWidth * 0.7, pillarY, pillarZ);
-  const frontSplitter = roundedBox(width * 0.86, 0.14, 0.48, car.darkMaterial, 0.05, 0, bodyBottom + 0.04, length / 2 + 0.08);
-  const rearDiffuser = roundedBox(width * 0.9, 0.18, 0.42, car.darkMaterial, 0.05, 0, bodyBottom + 0.06, -length / 2 - 0.06);
-  const rearBumper = roundedBox(width * 0.9, 0.2, 0.22, car.accentMaterial, 0.07, 0, bodyBottom + 0.33, -length / 2 - 0.1);
-  const tailgateBand = roundedBox(width * 0.72, 0.14, 0.11, car.chromeMaterial, 0.04, 0, bodyBottom + 0.82, -length / 2 - 0.065);
-  const trunkLip = roundedBox(width * 0.68, 0.09, 0.26, car.bodyMaterial, 0.045, 0, bodyBottom + 1.02, -length * 0.385);
-  const leftSkirt = roundedBox(0.14, 0.16, length * 0.72, car.darkMaterial, 0.04, -halfWidth - 0.035, bodyBottom + 0.08, 0);
-  const rightSkirt = roundedBox(0.14, 0.16, length * 0.72, car.darkMaterial, 0.04, halfWidth + 0.035, bodyBottom + 0.08, 0);
-  // 사이드 액센트 스트라이프 — 옆면에 스포티한 라인을 그어 스탠스를 강조
-  const leftStripe = roundedBox(0.05, 0.12, length * 0.6, car.accentMaterial, 0.02, -halfWidth - 0.015, bodyBottom + 0.58, 0.1);
-  const rightStripe = roundedBox(0.05, 0.12, length * 0.6, car.accentMaterial, 0.02, halfWidth + 0.015, bodyBottom + 0.58, 0.1);
-  const splitterAccent = roundedBox(width * 0.62, 0.06, 0.1, car.accentMaterial, 0.02, 0, bodyBottom + 0.14, length / 2 + 0.3);
-  car.vehicleKit.add(leftStripe, rightStripe, splitterAccent);
-  car.vehicleKit.add(roofPanel, roofCrossbar, leftRoofRail, rightRoofRail, leftPillar, rightPillar, frontSplitter, rearDiffuser, rearBumper, tailgateBand, trunkLip, leftSkirt, rightSkirt);
+  // 로프트 차체 + 틴트 그린하우스 + 필러/라이트/그릴 디테일 — car-body.js 에서 조립한다.
+  const shell = buildCarShell(profile, {
+    body: car.bodyMaterial, glass: car.glassMaterial, dark: car.darkMaterial, chrome: car.chromeMaterial,
+    accent: car.accentMaterial, headlight: car.headlightMaterial, taillight: car.taillightMaterial, plate: car.plateMaterial
+  }, { spoiler: profile.spoiler || null, lightBar: profile.kind !== "roadster" });
+  car.vehicleKit.add(shell);
 
   car.flames = [];
   for (const side of [-1, 1]) {
-    const headlight = roundedBox(width * 0.25, 0.2, 0.12, car.headlightMaterial, 0.05, side * width * 0.28, bodyBottom + 0.62, length / 2 + 0.05);
-    const taillight = roundedBox(width * 0.28, 0.19, 0.12, car.taillightMaterial, 0.05, side * width * 0.27, bodyBottom + 0.68, -length / 2 - 0.03);
-    const mirror = roundedBox(0.33, 0.16, 0.42, car.bodyMaterial, 0.08, side * (halfWidth + 0.17), bodyBottom + 1.15, cabinFront - 0.35);
-    const exhaust = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.44, 14), car.chromeMaterial);
-    exhaust.rotation.x = Math.PI / 2;
-    exhaust.position.set(side * width * 0.27, bodyBottom + 0.13, -length / 2 - 0.22);
     // 터보 전용 배기 화염 — 평소엔 숨겨 두고 부스트 중에만 깜빡인다.
     const flame = new THREE.Mesh(
       new THREE.ConeGeometry(0.14, 0.85, 8),
       makeMaterial(0xffb347, { emissive: 0xff7a1a, emissiveIntensity: 2.4, roughness: 0.3, transparent: true, opacity: 0.92 })
     );
     flame.rotation.x = -Math.PI / 2;
-    flame.position.set(side * width * 0.27, bodyBottom + 0.13, -length / 2 - 0.7);
+    flame.position.set(side * width * 0.26, bodyBottom + 0.12, -length / 2 - 0.66);
     flame.visible = false;
     car.flames.push(flame);
-    car.vehicleKit.add(headlight, taillight, mirror, exhaust, flame);
+    car.vehicleKit.add(flame);
   }
-
-  const plate = roundedBox(width * 0.32, 0.3, 0.08, makeMaterial(0xe7edf1, { roughness: 0.55 }), 0.04, 0, bodyBottom + 0.45, -length / 2 - 0.12);
-  const rearBadge = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.035, 8, 20), car.chromeMaterial);
-  rearBadge.position.set(0, bodyBottom + 0.88, -length / 2 - 0.13);
-  rearBadge.rotation.x = Math.PI / 2;
-  car.vehicleKit.add(plate, rearBadge);
 
   // 바퀴는 펜더 안쪽으로 밀어 넣어 차체 밖으로 튀어나오지 않게 합니다.
   // 바깥 면이 차체 옆면보다 6cm만 돌출되도록 휠 폭의 절반만큼 안쪽에 축을 둡니다.
@@ -2397,17 +2333,6 @@ function rebuildVehicleKit(car, style) {
     const hoodVent = roundedBox(width * 0.34, 0.09, 0.72, car.darkMaterial, 0.04, 0, bodyBottom + 0.98, length * 0.27);
     const rallyBar = roundedBox(width * 0.76, 0.12, 0.18, car.accentMaterial, 0.04, 0, roof + 0.08, cabinRear + 0.2);
     car.vehicleKit.add(hoodVent, rallyBar);
-  }
-  if (profile.spoiler === "lip") {
-    const lip = roundedBox(width * 0.72, 0.075, 0.3, car.darkMaterial, 0.035, 0, bodyBottom + 0.98, -length * 0.405);
-    lip.rotation.x = -0.08;
-    car.vehicleKit.add(lip);
-  } else if (profile.spoiler) {
-    const wingWidth = profile.spoiler === "active" ? width * 0.72 : width * 0.82;
-    const wing = roundedBox(wingWidth, 0.1, 0.34, car.darkMaterial, 0.035, 0, bodyBottom + 1.23, -length * 0.395);
-    const leftPost = roundedBox(0.1, 0.38, 0.13, car.darkMaterial, 0.025, -width * 0.26, bodyBottom + 1.03, -length * 0.395);
-    const rightPost = roundedBox(0.1, 0.38, 0.13, car.darkMaterial, 0.025, width * 0.26, bodyBottom + 1.03, -length * 0.395);
-    car.vehicleKit.add(wing, leftPost, rightPost);
   }
   if (profile.glow) {
     const glowMaterial = makeMaterial(style.paint.glow || 0x72ddf7, { emissive: style.paint.glow || 0x72ddf7, emissiveIntensity: 2.1, roughness: 0.18 });
@@ -2591,7 +2516,7 @@ function normalizeAngle(angle) {
 }
 
 export function navigationForRoute(route, heading) {
-  if (route.length < 2) return { kind: "arrive", label: "배달존에 도착했어요", relativeAngle: 0, waypointDistance: 0 };
+  if (route.length < 2) return { kind: "arrive", label: "배달존에 도착했어요", relativeAngle: 0, waypointDistance: 0, marker: null };
   let walked = 0;
   let waypoint = route.at(-1);
   let waypointIndex = route.length - 1;
@@ -2608,7 +2533,7 @@ export function navigationForRoute(route, heading) {
   const waypointDistance = Math.hypot(dx, dz);
   const relativeAngle = normalizeAngle(Math.atan2(dx, dz) - heading);
   if (Math.abs(relativeAngle) > 2.45) {
-    return { kind: "uturn", label: "안전하게 유턴", relativeAngle, waypointDistance };
+    return { kind: "uturn", label: "안전하게 유턴", relativeAngle, waypointDistance, marker: null };
   }
   let turnDistance = 0;
   for (let index = 1; index < Math.min(route.length - 1, waypointIndex + 8); index += 1) {
@@ -2621,14 +2546,20 @@ export function navigationForRoute(route, heading) {
     const turn = normalizeAngle(outgoing - incoming);
     if (Math.abs(turn) > 0.48 && turnDistance < 85) {
       const left = turn > 0;
-      return { kind: left ? "left" : "right", label: `${Math.max(1, Math.round(turnDistance))}m 후 ${left ? "좌회전" : "우회전"}`, relativeAngle, waypointDistance };
+      // 체크포인트 링은 다음 코너에 세운다 — 코너 진입 방향으로 링을 돌린다.
+      const marker = { x: current.x, z: current.z, heading: incoming, distance: turnDistance };
+      return { kind: left ? "left" : "right", label: `${Math.max(1, Math.round(turnDistance))}m 후 ${left ? "좌회전" : "우회전"}`, relativeAngle, waypointDistance, marker };
     }
   }
+  // 코너가 멀면 60m 앞 경로 위에 링을 둔다 (목적지 40m 안쪽에서는 목적지 마커가 대신한다).
+  const total = routeLength(route);
+  const ahead = pointAlongRoute(route, Math.min(60, total - 1));
+  const marker = ahead && total > 45 ? { x: ahead.x, z: ahead.z, heading: Math.atan2(ahead.dirX, ahead.dirZ), distance: Math.min(60, total - 1) } : null;
   if (Math.abs(relativeAngle) > 0.28) {
     const left = relativeAngle > 0;
-    return { kind: left ? "left" : "right", label: `${left ? "왼쪽" : "오른쪽"} 곡선 따라가기`, relativeAngle, waypointDistance };
+    return { kind: left ? "left" : "right", label: `${left ? "왼쪽" : "오른쪽"} 곡선 따라가기`, relativeAngle, waypointDistance, marker };
   }
-  return { kind: "straight", label: `앞 도로 ${Math.max(1, Math.round(Math.min(60, routeLength(route))))}m`, relativeAngle, waypointDistance };
+  return { kind: "straight", label: `앞 도로 ${Math.max(1, Math.round(Math.min(60, total)))}m`, relativeAngle, waypointDistance, marker };
 }
 
 function districtFor(x, z) {
@@ -2879,19 +2810,20 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     if (racerFleet) return racerFleet;
     racerFleet = RACER_LIVERIES.map((livery) => {
       const group = new THREE.Group();
-      const bodyMaterial = makeMaterial(livery.color, { roughness: 0.3, metalness: 0.5, emissive: livery.color, emissiveIntensity: 0.04 });
-      bodyMaterial.envMapIntensity = 1.7;
-      const body = roundedBox(2.5, 0.72, 5.4, bodyMaterial, 0.24, 0, 0.78, 0);
-      const cabin = roundedBox(1.9, 0.74, 2.3, makeMaterial(0x101c26, { roughness: 0.12, metalness: 0.5 }), 0.22, 0, 1.38, -0.25);
-      const wing = roundedBox(2.3, 0.13, 0.5, makeMaterial(0x1c2733, { roughness: 0.6 }), 0.05, 0, 1.5, -2.45);
-      const wingPostL = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), -0.7, 1.2, -2.45);
-      const wingPostR = box(0.12, 0.5, 0.16, makeMaterial(0x1c2733), 0.7, 1.2, -2.45);
-      group.add(body, cabin, wing, wingPostL, wingPostR);
+      const bodyMaterial = makePaintMaterial(livery.color, { emissive: livery.color, emissiveIntensity: 0.04 });
+      const racerDark = makeMaterial(0x1c2733, { roughness: 0.6 });
+      const shell = buildCarShell(
+        { length: 5.6, width: 2.5, roof: 1.68, wheel: 0.5, clearance: 0.05, cabinStart: -1.0, cabinEnd: 0.85, kind: "coupe" },
+        { body: bodyMaterial, glass: makeGlassMaterial(), dark: racerDark, chrome: makeMaterial(0xd6dee4, { roughness: 0.14, metalness: 0.94 }), accent: racerDark,
+          headlight: makeMaterial(0xeaf8ff, { roughness: 0.08, emissive: 0xc9efff, emissiveIntensity: 1.2 }), taillight: makeMaterial(0xff2438, { roughness: 0.15, emissive: 0xff071e, emissiveIntensity: 1.4 }) },
+        { spoiler: "wing" }
+      );
+      group.add(shell);
       const tireMaterial = makeMaterial(0x14181c, { roughness: 0.8 });
       const wheels = [];
-      for (const wheelX of [-1.06, 1.06]) {
-        for (const wheelZ of [-1.62, 1.62]) {
-          const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.4, 14), tireMaterial);
+      for (const wheelX of [-1.12, 1.12]) {
+        for (const wheelZ of [-1.72, 1.72]) {
+          const wheel = buildWheel(0.5, 0.4, tireMaterial, racerDark, WHEEL_SPOKE_MATERIAL, racerDark);
           wheel.position.set(wheelX, 0.5, wheelZ);
           wheel.rotation.z = Math.PI / 2;
           group.add(wheel);
@@ -3102,7 +3034,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     }
   }
   let cameraOrbitYaw = 0;
-  let cameraOrbitHeight = 4.45;
+  let cameraOrbitHeight = CHASE_CAMERA_HEIGHT;
   let dayPhase = 0.32;
   const citySpawn = CITY_NODES.hub;
   let carGroundHeight = drivingSurfaceHeightAt(citySpawn.x, citySpawn.z);
@@ -3161,7 +3093,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     cameraDragX = event.clientX;
     cameraDragY = event.clientY;
     cameraOrbitYaw = normalizeAngle(cameraOrbitYaw - deltaX * 0.0085);
-    cameraOrbitHeight = clamp(cameraOrbitHeight - deltaY * 0.045, 3.35, 9.5);
+    cameraOrbitHeight = clamp(cameraOrbitHeight - deltaY * 0.045, 2.6, 9.5);
     event.preventDefault();
   }
 
@@ -3235,6 +3167,8 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
   rebuildVehicleKit(car, style);
   const vehicleNavigator = createVehicleNavigator(car);
   const driftSmoke = createDriftSmokePool(scene);
+  const routeRibbon = createRouteRibbon(scene);
+  const checkpointRing = createCheckpointRing(scene);
   car.group.position.y = carGroundHeight + carGroundOffset(car);
   const vehicleFillLight = new THREE.PointLight(0xd7efff, 10, 18, 2);
   vehicleFillLight.position.set(0, 4.2, -5.4);
@@ -3369,6 +3303,13 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     }
     const navigation = navigationForRoute(latestRoute, state.heading);
     updateVehicleNavigator(navigation, clock.getElapsed());
+    routeRibbon.update(state.status === "playing" ? latestRoute : null, drivingSurfaceHeightAt);
+    const marker = state.status === "playing" ? navigation.marker : null;
+    checkpointRing.update({
+      visible: Boolean(marker) && marker.distance > 14,
+      x: marker?.x || 0, z: marker?.z || 0, y: marker ? drivingSurfaceHeightAt(marker.x, marker.z) : 0,
+      heading: marker?.heading || 0, distance: marker?.distance || 0, elapsed: clock.getElapsed()
+    });
     const directDistance = target ? Math.hypot(dx, dz) : 0;
     const hudMaxSpeed = (style.vehicle?.topSpeed || 200) / WORLD_SPEED_TO_KMH;
     onHud?.({
@@ -3452,7 +3393,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       rampCooldown: 0
     });
     cameraOrbitYaw = 0;
-    cameraOrbitHeight = 4.45;
+    cameraOrbitHeight = CHASE_CAMERA_HEIGHT;
     carGroundHeight = drivingSurfaceHeightAt(citySpawn.x, citySpawn.z);
     carRoadPitch = 0;
     car.group.position.set(citySpawn.x, carGroundHeight + carGroundOffset(car), citySpawn.z);
@@ -3865,6 +3806,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     hudAccumulator += dt;
     applyTimeOfDay(dt);
     updateCityTraffic(scene, dt);
+    routeRibbon.animate(dt, state.speed);
     for (const coin of coins) {
       if (coin.collected) continue;
       coin.mesh.rotation.y += dt * 2.4;
@@ -3916,7 +3858,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     const speedRatio = clamp(Math.abs(state.speed) / 60, 0, 1);
     const boosting = input.boost && state.boost > 1 && state.speed > 2;
     const groundY = carGroundHeight;
-    const chaseDistance = 10.1 - speedRatio * 0.6 + (boosting ? 1.2 : 0);
+    const chaseDistance = 11.2 - speedRatio * 0.5 + (boosting ? 1.1 : 0);
     const chaseAngle = state.heading + Math.PI + cameraOrbitYaw;
     const lookAhead = 6.2 + speedRatio * 12.5;
     const aimX = state.x + Math.sin(state.heading) * lookAhead;
@@ -3930,7 +3872,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       groundY + cameraOrbitHeight + speedRatio * 0.18 + shakeY,
       state.z + Math.cos(chaseAngle) * chaseDistance
     );
-    cameraAim.set(aimX, drivingSurfaceHeightAt(aimX, aimZ) + 1.42, aimZ);
+    cameraAim.set(aimX, drivingSurfaceHeightAt(aimX, aimZ) + 1.3, aimZ);
     const obstruction = resolveCameraObstruction();
     camera.position.lerp(cameraDesired, 1 - Math.exp(-(obstruction ? 18 : 6.8 - speedRatio * 2.1) * dt));
     cameraLookAt.lerp(cameraAim, 1 - Math.exp(-(8.2 + speedRatio * 2.4) * dt));
@@ -3938,7 +3880,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     // 오버스피드(터보로 최고속 초과) 구간은 FOV 상한을 74까지 열어 준다.
     const vehicleMax = (style.vehicle?.topSpeed || 200) / WORLD_SPEED_TO_KMH;
     const overRatio = clamp((Math.abs(state.speed) / vehicleMax - 1) / (DRIVE_TUNING.overdriveRatio - 1), 0, 1);
-    camera.fov = damp(camera.fov, 50 + speedRatio * 20 + overRatio * 4 + (state.fovPunch || 0), 5.8, dt);
+    camera.fov = damp(camera.fov, 54 + speedRatio * 18 + overRatio * 4 + (state.fovPunch || 0), 5.8, dt);
     camera.updateProjectionMatrix();
   }
 
@@ -3988,7 +3930,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
     },
     resetCamera() {
       cameraOrbitYaw = 0;
-      cameraOrbitHeight = 4.45;
+      cameraOrbitHeight = CHASE_CAMERA_HEIGHT;
       cameraDragPointerId = null;
       renderer.domElement.classList.remove("camera-dragging");
     },
@@ -4006,7 +3948,7 @@ export function createDeliveryRuntime({ mount, initialStyle, onHud, onDelivery, 
       state.brakeAmount = 0;
       state.yawRate = 0;
       cameraOrbitYaw = 0;
-      cameraOrbitHeight = 4.45;
+      cameraOrbitHeight = CHASE_CAMERA_HEIGHT;
       carGroundHeight = drivingSurfaceHeightAt(citySpawn.x, citySpawn.z);
       carRoadPitch = 0;
       applyMissionMood("morning");
