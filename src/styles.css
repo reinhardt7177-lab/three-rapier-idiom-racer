@@ -1,483 +1,110 @@
-:root {
-  color: #17324d;
-  font-family: "Arial Rounded MT Bold", "Pretendard", "Segoe UI", sans-serif;
-  font-synthesis: none;
+:root { font-family: 'Malgun Gothic', system-ui, sans-serif; color: #e5e6d8; background: #253731; font-synthesis: none; }
+.garage-story { position: absolute; right: 32px; top: 145px; width: 270px; padding: 17px; background: #1b302ded; border: 1px solid #b9b68a66; border-radius: 4px; }
+.garage-story h2 { font-size: 18px; font-weight: 500; margin: 9px 0; }.garage-story p { font-size: 11px; line-height: 1.7; color: #c1cab6; margin: 0 0 14px; }
+.garage-story button { display: block; width: 100%; border: 0; padding: 10px; border-radius: 3px; font-size: 11px; }.story-start { background: #d9c792; color: #22332b; }.garage-test-link { margin-top: 7px; background: transparent; color: #c7d0bd; }
+.story-objective { position: absolute; top: 138px; left: 30px; max-width: 335px; background: #1b302de8; padding: 15px; border-left: 2px solid #d9c792; pointer-events: none; }.story-objective h2 { font-size: 15px; line-height: 1.5; font-weight: 500; margin: 7px 0; }.story-objective small { font-size: 10px; color: #b6c2b1; }
+.story-radio { position: absolute; left: 30px; bottom: 145px; width: min(440px, calc(100% - 355px)); padding: 13px 16px; background: #1b302dea; border-top: 1px solid #b9b68a66; pointer-events: none; }.story-radio span { color: #dfcda1; font-size: 11px; }.story-radio p { margin: 7px 0 0; font-size: 12px; line-height: 1.65; }
+.cinematic .drive-heading,.cinematic .telemetry,.cinematic .driving-audio,.cinematic .driving-controls,.cinematic .drive-help { display: none; }
+.cinematic::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(#12262266, transparent 24%, transparent 48%, #10231bd9); border-block: 22px solid #13251f; }
+.story-cutscene { position: absolute; bottom: 65px; left: max(30px, calc((100% - 720px) / 2)); width: min(720px, calc(100% - 60px)); text-align: center; text-shadow: 0 2px 9px #12231e; }.story-cutscene h2 { font-size: 30px; font-weight: 500; margin: 12px 0; }.story-cutscene p { font-size: 14px; line-height: 1.9; margin: 12px auto 20px; max-width: 580px; }.story-cutscene button { margin: 0 4px 12px; }.story-cutscene small { display: block; font-size: 10px; color: #c7cfbc; line-height: 1.7; }.story-reward { color: #ead3a2; }
+.shot-progress { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; }.shot-progress i { width: 30px; height: 2px; background: #647567; }.shot-progress .active { background: #dbc898; }
+.coast-guide { position: absolute; top: 138px; left: 30px; padding: 14px; width: 325px; background: #1b302deb; border-left: 2px solid #d9c792; display: flex; gap: 8px; pointer-events: none; }.coast-guide h2 { font-size: 14px; font-weight: 500; margin: 5px 0; line-height: 1.6; }.coast-guide p { font-size: 11px; line-height: 1.7; color: #c6d1bf; margin: 6px 0 0; }.coast-guide svg { width: 67px; height: 145px; flex: 0 0 67px; }.coast-guide small { font-size: 9px; }
+.cinematic::before { z-index: 1; }.cinematic .story-cutscene { z-index: 2; }.cinematic .drive-actions { z-index: 3; }.cinematic .drive-message { z-index: 4; }
+@media(max-width:760px) {
+  .coast-mode .drive-actions { left: 12px; right: 12px; justify-content: flex-end; }.coast-mode .drive-actions button { padding: 8px 6px; font-size: 9px; }
+  .coast-guide { left: 12px; top: 198px; width: calc(100% - 144px); padding: 10px; }.coast-guide h2 { font-size: 12px; }.coast-guide p { font-size: 10px; }.coast-guide svg { display: none; }.coast-mode .telemetry { width: 110px; padding: 9px; }.coast-mode .telemetry p,.coast-mode .telemetry small { display: none; }.coast-mode .speed-readout strong { font-size: 32px; }.coast-mode .speed-readout { gap: 5px; }.coast-mode .speed-readout span { font-size: 9px; }.coast-mode .telemetry-label { font-size: 7px; }
+  .garage-story { top: 161px; right: 16px; width: 213px; padding: 12px; }.garage-story h2 { font-size: 15px; }.garage-story p { font-size: 10px; }
+  .story-mode .story-objective { left: 12px; top: 199px; width: calc(100% - 146px); padding: 10px; }.story-objective h2 { font-size: 12px; }.story-objective small { font-size: 9px; }
+  .story-mode .telemetry { width: 110px; padding: 9px; }.story-mode .telemetry p,.story-mode .telemetry small { display: none; }.story-mode .speed-readout strong { font-size: 32px; }.story-mode .speed-readout { gap: 6px; }.story-mode .speed-readout span { font-size: 9px; }.story-mode .telemetry-label { font-size: 7px; }
+  .story-radio { left: 12px; bottom: 124px; width: calc(100% - 24px); padding: 10px 12px; }.story-radio p { font-size: 11px; }.story-cutscene { left: 20px; width: calc(100% - 40px); bottom: 35px; }.story-cutscene h2 { font-size: 23px; }.story-cutscene p { font-size: 12px; }.cinematic::before { border-block-width: 12px; }
 }
-
+.test-drive-button { position: absolute; right: 32px; top: 145px; padding: 13px 18px; border: 1px solid #d6c795; background: #d9c792; color: #22332b; border-radius: 3px; font-size: 12px; }
+.drive-mode { position: relative; width: 100%; height: 100svh; min-height: 420px; overflow: hidden; background: #a8c5cc; }
+.drive-mode button { border: 1px solid #aebcad65; border-radius: 4px; background: #1b302deb; padding: 11px 15px; font-size: 12px; }
+.drive-heading { position: absolute; top: 26px; left: 30px; text-shadow: 0 2px 12px #15292a; pointer-events: none; }
+.drive-heading p:last-child { font-size: 11px; }
+.drive-actions { position: absolute; top: 26px; right: 26px; display: flex; gap: 8px; }
+.driving-audio { position: absolute; right: 26px; top: 79px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 5px 8px; background: #1b302dd9; border-radius: 4px; max-width: calc(100% - 24px); }
+.driving-audio label { display: flex; gap: 7px; align-items: center; font-size: 11px; }.driving-audio input { width: 84px; accent-color: #d9c792; }.driving-audio span { font-size: 10px; width: 100%; }
+.telemetry { position: absolute; bottom: 144px; right: 28px; width: 230px; padding: 18px 22px; background: #192f2ee8; border-left: 2px solid #d6c595; font-variant-numeric: tabular-nums; }
+.telemetry-label { font-size: 9px; letter-spacing: .13em; display: flex; justify-content: space-between; align-items: center; }.telemetry-label b { font-size: 19px; color: #dfcca0; }
+.speed-readout { display: flex; align-items: baseline; gap: 10px; }.speed-readout strong { font-family: system-ui, sans-serif; font-size: 66px; font-weight: 500; letter-spacing: -.06em; }.speed-readout span { font-size: 12px; color: #b8c8be; }
+.speed-track { height: 3px; background: #8b9b8850; }.speed-track i { height: 100%; display: block; background: #d9c590; }
+.telemetry p { display: flex; justify-content: space-between; font-size: 11px; }.telemetry small { font-size: 9px; color: #b8c4b6; }
+.drive-mode .wheel-inspect-toggle { display: block; width: 100%; margin-top: 12px; padding: 8px 4px; font-size: 10px; }
+.wheel-inspect-toggle:disabled { opacity: .5; cursor: default; }
+.wheel-inspection { display: grid; gap: 7px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #d9c79255; font-size: 10px; line-height: 1.5; }
+.wheel-inspection strong { color: #e6d29f; }
+.driving-controls { position: absolute; bottom: 46px; left: 28px; right: 28px; display: flex; justify-content: space-between; gap: 12px; }.driving-controls>div { display: flex; gap: 8px; }
+.driving-controls button { touch-action: none; user-select: none; min-width: 62px; min-height: 58px; }.driving-controls button:active { background: #577368; }.driving-controls .accelerator { background: #d9c792; color: #21332c; min-width: 95px; }
+.drive-help { position: absolute; bottom: 9px; left: 28px; right: 28px; font-size: 10px; text-shadow: 0 1px 4px #142a28; text-align: center; }
+.drive-message { position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%); width: min(90%, 420px); padding: 25px; background: #172f2cf5; border: 1px solid #a8b29670; text-align: center; }.drive-message h2 { font-size: 20px; font-weight: 500; }.drive-message p { font-size: 12px; line-height: 1.7; }
+@media(max-width:760px) {
+  .test-drive-button { top: 165px; right: 16px; font-size: 11px; padding: 10px 12px; }
+  .drive-heading { left: 16px; top: 18px; }.drive-heading h1 { font-size: 20px; }.drive-heading .eyebrow { font-size: 8px; }
+  .drive-actions { right: 12px; top: 102px; gap: 5px; }.drive-actions button { font-size: 10px; padding: 9px; }
+  .driving-audio { right: 12px; top: 145px; padding: 3px 6px; gap: 8px; }.driving-audio button { font-size: 10px; padding: 8px; }.driving-audio label { font-size: 10px; }
+  .telemetry { right: 12px; top: 199px; bottom: auto; width: 155px; padding: 10px; }.speed-readout strong { font-size: 42px; }
+  .drive-mode .telemetry:has(.wheel-inspection) { left: 12px; right: 12px; width: auto; padding: 8px 10px; }
+  .telemetry:has(.wheel-inspection)>:not(.wheel-inspect-toggle):not(.wheel-inspection) { display: none; }
+  .telemetry:has(.wheel-inspection) .wheel-inspect-toggle { margin: 0; padding: 6px; }
+  .wheel-inspection { grid-template-columns: 1fr 1fr; font-size: 9px; gap: 4px 8px; margin-top: 5px; padding-top: 5px; }
+  .wheel-inspection strong { grid-column: 1 / -1; }
+  .driving-controls { left: 10px; right: 10px; bottom: 53px; flex-wrap: wrap; }.driving-controls button { min-width: 54px; min-height: 50px; padding: 9px; font-size: 10px; }.driving-controls>div { gap: 5px; }.driving-controls .accelerator { min-width: 65px; }
+  .drive-help { left: 12px; right: 12px; font-size: 9px; line-height: 1.6; }
+}
 * { box-sizing: border-box; }
-html, body, #root { width: 100%; min-height: 100%; margin: 0; }
-body { overflow: hidden; background: #070d16; }
-button { font: inherit; -webkit-tap-highlight-color: transparent; }
-button:focus-visible { outline: 4px solid #fff; outline-offset: 3px; }
-
-.app-shell {
-  width: 100vw;
-  height: 100dvh;
-  padding: 10px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 35%, #24384c 0%, #0d1722 58%, #060a10 100%);
+[hidden] { display: none !important; }
+body { margin: 0; }
+button { font: inherit; cursor: pointer; color: inherit; }
+button:focus-visible { outline: 2px solid #eadcae; outline-offset: 4px; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.prototype { position: relative; height: 100svh; min-height: 600px; overflow: hidden; }
+.scene { position: absolute; inset: 0; }
+.scene canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.masthead { position: absolute; left: 34px; top: 30px; display: flex; gap: 15px; pointer-events: none; text-shadow: 0 2px 20px #182820; }
+.brand-mark { width: 38px; height: 42px; border: 1px solid #a9b096; display: grid; place-items: center; color: #decba0; font-family: Georgia, serif; font-size: 26px; }
+.eyebrow { font-size: 10px; letter-spacing: .17em; margin: 0 0 10px; color: #c2c9b6; }
+h1 { font-size: 27px; font-weight: 500; letter-spacing: -.045em; margin: 0; }
+.caption { margin: 9px 0 0; font-size: 12px; color: #c1c9b7; }
+.build-note { position: absolute; top: 32px; right: 32px; font-size: 11px; line-height: 1.9; text-align: right; color: #d9dfcc; pointer-events: none; }
+.build-note>span:last-child { display: block; color: #9ead9d; font-size: 10px; }
+.live-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #d9bb70; margin-right: 7px; }
+.scene-label { position: absolute; left: 35px; bottom: 157px; pointer-events: none; }
+.scene-label>span { font-size: 11px; letter-spacing: .15em; color: #eee0b8; }
+.scene-label p { font-size: 11px; color: #adbbaa; margin: 8px 0 0; }
+.toolbar { position: absolute; left: 32px; right: 32px; bottom: 43px; display: flex; justify-content: space-between; gap: 22px; padding: 17px 23px; border: 1px solid #aab49135; border-radius: 5px; background: #182a25e8; backdrop-filter: blur(14px); box-shadow: 0 12px 40px #0b191530; }
+.control-group { display: flex; flex-direction: column; gap: 10px; }
+.control-label { font-size: 10px; color: #a8b59f; }
+.swatches,.button-row { display: flex; gap: 7px; align-items: center; }
+.swatch { border: 2px solid transparent; border-radius: 50%; width: 32px; height: 32px; background: var(--swatch); box-shadow: inset 0 0 0 2px #21322c; }
+.swatch[aria-pressed=true] { border-color: #e3cf9d; }
+.button-row button { padding: 7px 12px; border: 1px solid #97a48d38; background: transparent; border-radius: 3px; font-size: 11px; white-space: nowrap; }
+.button-row button[aria-pressed=true] { color: #efdbac; border-color: #c5b68780; background: #b5a56f15; }
+.button-row button:hover { background: #d0d3b715; }
+footer { position: absolute; bottom: 15px; left: 34px; right: 34px; display: flex; justify-content: space-between; gap: 15px; font-size: 10px; color: #a7b6a5; pointer-events: none; }
+.error { position: absolute; top: 45%; left: 15%; right: 15%; background: #351c1bf0; color: #fff; padding: 30px; line-height: 1.6; }
+.photo-toggle { position: absolute; top: 94px; right: 32px; padding: 9px 15px; border: 1px solid #a8b29770; border-radius: 3px; background: #20332cc9; color: #ece6cc; font-size: 11px; }
+.photo-mode .photo-toggle { top: auto; bottom: 24px; right: 24px; opacity: .8; }
+.environment-panel { position: absolute; right: 32px; bottom: 156px; max-width: calc(100% - 32px); padding: 18px; background: #1c3029f2; border: 1px solid #a8b29760; border-radius: 5px; box-shadow: 0 12px 45px #0b191550; backdrop-filter: blur(12px); }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 25px; margin-bottom: 16px; font-size: 12px; }
+.panel-heading button { background: none; border: 0; color: #bfcab8; padding: 4px; font-size: 11px; }
+.environment-panel .button-row { flex-wrap: wrap; }
+.environment-panel p { margin: 15px 0 0; font-size: 10px; color: #b9c6b3; }
+@media(max-width:760px) {
+  .prototype { min-height: 650px; }
+  .masthead { left: 18px; top: 20px; }.brand-mark { display: none; } h1 { font-size: 24px; }
+  .build-note { top: 22px; right: 16px; font-size: 10px; }.build-note>span:last-child { display: none; }
+  .eyebrow { font-size: 8px; letter-spacing: .08em; }.caption { max-width: 190px; line-height: 1.6; }
+  .toolbar { left: 12px; right: 12px; bottom: 43px; padding: 13px; gap: 14px; flex-wrap: wrap; }
+  .control-group { gap: 7px; }.camera-controls { order: 3; width: 100%; }
+  .scene-label { left: 18px; bottom: 221px; }.button-row button { font-size: 10px; padding: 6px 9px; }
+  footer { left: 16px; right: 16px; bottom: 10px; line-height: 1.5; font-size: 9px; }footer>span:first-child { max-width: 200px; }
+  .photo-toggle { top: 120px; right: 16px; padding: 8px 11px; }
+  .environment-panel { right: 12px; bottom: 224px; padding: 14px; max-width: calc(100% - 24px); }
 }
-
-.game-stage {
-  position: relative;
-  width: min(100%, 1500px, 177.77dvh);
-  aspect-ratio: 16 / 9;
-  max-height: calc(100dvh - 20px);
-  overflow: hidden;
-  border: 2px solid rgba(181,218,239,.72);
-  border-radius: 13px;
-  background: #101922;
-  box-shadow: 0 25px 80px rgba(0,0,0,.58), inset 0 0 0 1px rgba(210,235,249,.13);
-  isolation: isolate;
-}
-
-.three-mount, .sun-wash { position: absolute; inset: 0; }
-.three-mount canvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; user-select: none; }
-.three-mount canvas.camera-dragging { cursor: grabbing; }
-.sun-wash { pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 48%, rgba(2,8,14,.24)); }
-
-.topbar {
-  position: absolute;
-  z-index: 30;
-  left: 22px;
-  right: 22px;
-  top: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.brand-lockup { display: flex; align-items: center; gap: 10px; color: #f2f8fc; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.9); border-radius: 9px; color: #101820; background: linear-gradient(145deg,#ffe04a,#ff9f1c); box-shadow: 0 0 22px rgba(255,173,28,.35); font-size: 25px; font-weight: 1000; }
-.brand-lockup div { display: grid; line-height: 1; }
-.brand-lockup strong { font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: 22px; letter-spacing: .5px; }
-.brand-lockup div span { margin-top: 4px; color: #a9c6d8; font-size: 9px; font-weight: 1000; letter-spacing: 1.6px; }
-.top-actions { display: flex; gap: 8px; pointer-events: auto; }
-.icon-button, .garage-mini { border: 1px solid rgba(207,232,246,.65); border-radius: 8px; background: rgba(7,17,28,.78); color: #f1f8fc; box-shadow: 0 8px 20px rgba(0,0,0,.28); backdrop-filter: blur(10px); cursor: pointer; }
-.camera-reset { padding-inline: 12px; color: #ffd166; font-size: 12px; font-weight: 900; letter-spacing: -.02em; }
-.icon-button { width: 42px; height: 42px; font-size: 18px; }
-.garage-mini { padding: 0 15px; font-weight: 900; }
-
-/* 주행 중 상단바: 브랜드 숨기고 버튼을 얇은 반투명 아이콘으로 */
-.topbar.playing { top: 14px; justify-content: flex-end; }
-.topbar.playing .brand-lockup { display: none; }
-.topbar.playing .top-actions { gap: 6px; }
-.topbar.playing .icon-button, .topbar.playing .garage-mini { height: 34px; border: 1px solid rgba(255,255,255,.3); border-radius: 10px; color: #fff; background: rgba(4,10,16,.42); box-shadow: none; backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.7); font-size: 11px; font-weight: 800; }
-.topbar.playing .icon-button { width: 34px; font-size: 15px; }
-.topbar.playing .garage-mini { padding: 0 11px; }
-.topbar.playing .camera-reset { color: #ffd84f; }
-.topbar.playing .icon-button:hover, .topbar.playing .garage-mini:hover { background: rgba(255,255,255,.16); }
-
-.garage-screen {
-  position: absolute;
-  z-index: 10;
-  inset: 0;
-  display: grid;
-  grid-template-columns: minmax(300px, .9fr) minmax(330px, .75fr);
-  align-items: center;
-  gap: clamp(18px, 7vw, 110px);
-  padding: 82px clamp(24px, 5vw, 74px) 28px;
-  background: linear-gradient(90deg, rgba(231,249,255,.94) 0%, rgba(231,249,255,.8) 31%, rgba(231,249,255,0) 57%, rgba(231,249,255,.42) 100%);
-  pointer-events: none;
-}
-
-.garage-copy { align-self: center; max-width: 520px; pointer-events: auto; }
-.eyebrow { display: inline-block; padding: 7px 12px; border-radius: 999px; color: #fff; background: #ff7b00; box-shadow: 0 4px 0 #d95b00; font-size: 12px; font-weight: 1000; letter-spacing: .5px; }
-.garage-copy h1 { margin: 14px 0 7px; color: #17324d; font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: clamp(34px, 4.2vw, 63px); font-weight: 900; line-height: .98; letter-spacing: -1px; text-shadow: 0 4px 0 #fff; }
-.garage-copy h1 em { color: #ff5d00; font-style: normal; }
-.garage-copy > p { max-width: 430px; margin: 0 0 15px; color: #42657c; font-size: 14px; font-weight: 800; }
-.gold-wallet { width: fit-content; margin-bottom: 10px; padding: 7px 11px; display: flex; align-items: center; gap: 12px; border: 2px solid rgba(255,255,255,.92); border-radius: 13px; color: #fff; background: rgba(26,58,77,.82); box-shadow: 0 6px 16px rgba(25,58,78,.18); }
-.gold-wallet span { color: #d8e8ef; font-size: 10px; font-weight: 900; }
-.gold-wallet strong { color: #ffd166; font-size: 15px; }
-.mission-picker { display: grid; gap: 7px; }
-.mission-chip { width: 100%; display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 5px; padding: 8px 11px; border: 2px solid transparent; border-radius: 15px; color: #3d5f76; background: rgba(255,255,255,.72); text-align: left; cursor: pointer; transition: transform .15s ease, border-color .15s ease; }
-.mission-chip:hover { transform: translateX(4px); }
-.mission-chip.active { border-color: #ff9f1c; background: #fff; box-shadow: 0 7px 18px rgba(65,105,130,.15); }
-.mission-chip > span:first-child { font-size: 25px; }
-.mission-chip > span:last-child { display: grid; }
-.mission-chip strong { color: #21445e; font-size: 13px; font-weight: 1000; }
-.mission-chip small { color: #6b8799; font-size: 10px; font-weight: 800; }
-.mission-route-preview { margin-top: 8px; padding: 9px 11px; border: 2px solid rgba(255,255,255,.88); border-radius: 15px; background: rgba(30,65,86,.76); box-shadow: 0 7px 18px rgba(33,71,94,.16); color: #fff; backdrop-filter: blur(10px); }
-.mission-route-preview > span { display: flex; align-items: center; justify-content: space-between; }
-.mission-route-preview > span b { font-size: 10px; letter-spacing: .2px; }
-.mission-route-preview > span small { color: #ffe08a; font-size: 9px; font-weight: 1000; }
-.mission-route-preview > div { margin-top: 6px; display: flex; align-items: center; gap: 4px; }
-.mission-route-preview > div > span { display: flex; align-items: center; gap: 3px; font-size: 14px; }
-.mission-route-preview i { width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; color: #24465d; background: #fff; font-size: 8px; font-style: normal; font-weight: 1000; }
-.mission-route-preview strong { color: #e8f7ff; font-size: 9px; }
-.mission-route-preview em { margin-left: 2px; color: #ffe08a; font-size: 18px; font-style: normal; }
-.start-delivery { width: 100%; margin-top: 13px; padding: 13px 17px; display: flex; justify-content: space-between; align-items: center; border: 0; border-radius: 16px; color: #fff; background: linear-gradient(135deg,#ff8a00,#ff5d00); box-shadow: 0 7px 0 #c94a00, 0 14px 24px rgba(239,94,0,.2); font-size: 18px; font-weight: 1000; cursor: pointer; }
-.start-delivery:hover { transform: translateY(-2px); }
-.start-delivery b { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: #ff5d00; background: #fff; }
-.quest-howto { margin-top: 13px; display: flex; align-items: center; justify-content: center; gap: 5px; color: #385d73; font-size: 9px; font-weight: 1000; }
-.quest-howto span { display: flex; align-items: center; gap: 3px; white-space: nowrap; }
-.quest-howto b { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #ff7b00; font-size: 8px; }
-.quest-howto em { color: #ff9f1c; font-size: 15px; font-style: normal; }
-.keyboard-help { display: block; margin-top: 5px; color: #617e91; font-size: 9px; font-weight: 800; text-align: center; }
-
-.customizer-card { align-self: center; justify-self: end; width: min(100%, 450px); padding: 13px; border: 3px solid rgba(255,255,255,.96); border-radius: 24px; background: rgba(242,249,252,.91); box-shadow: 0 18px 45px rgba(29,58,76,.25), inset 0 0 0 1px rgba(61,92,112,.12); backdrop-filter: blur(12px); pointer-events: auto; }
-.customizer-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.customizer-heading div { display: grid; }
-.customizer-heading span { color: #7892a4; font-size: 9px; font-weight: 1000; letter-spacing: 1.4px; }
-.customizer-heading strong { color: #1d425c; font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: 21px; font-weight: 900; }
-.customizer-heading small { color: #6c8797; font-size: 9px; font-weight: 800; }
-.car-number { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; color: #fff !important; background: #1d425c; font-size: 15px !important; }
-.vehicle-shop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
-.vehicle-card { min-width: 0; padding: 5px 3px; display: grid; justify-items: center; gap: 2px; border: 2px solid #d7e4ea; border-radius: 13px; color: #35566b; background: rgba(255,255,255,.78); cursor: pointer; }
-.vehicle-card:hover { transform: translateY(-2px); }
-.vehicle-card.selected { border-color: #ff8a00; background: #fff7e9; box-shadow: 0 3px 0 #ffbd70; }
-.vehicle-card.previewing { border-color: #4f91b5; background: #edf8ff; box-shadow: 0 3px 0 #9bc8df; }
-.vehicle-card > span { width: 35px; height: 29px; display: grid; place-items: center; border: 2px solid #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(30,64,84,.18); font-size: 17px; }
-.vehicle-card small { max-width: 100%; overflow: hidden; font-size: 8px; font-weight: 1000; text-overflow: ellipsis; white-space: nowrap; }
-.vehicle-card b { color: #d36a00; font-size: 7px; white-space: nowrap; }
-.workshop-panel { margin: 8px 0 5px; padding: 7px; display: grid; grid-template-columns: 1.15fr 1fr 1fr; align-items: center; gap: 5px; border-radius: 13px; background: #233f50; }
-.workshop-panel > span { display: grid; color: #fff; }
-.workshop-panel > span b { font-size: 9px; }
-.workshop-panel > span small { color: #a9c3d1; font-size: 7px; font-weight: 800; }
-.workshop-panel button { min-width: 0; padding: 5px 6px; display: grid; border: 1px solid rgba(255,255,255,.45); border-radius: 9px; color: #fff; background: #49687a; cursor: pointer; }
-.workshop-panel button:hover { background: #5b7f93; }
-.workshop-panel button:disabled { opacity: .58; cursor: default; }
-.workshop-panel button span { overflow: hidden; font-size: 8px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }
-.workshop-panel button b { color: #ffd166; font-size: 8px; }
-.option-row { display: grid; grid-template-columns: 83px 1fr; align-items: center; gap: 8px; padding: 5px 0; border-top: 1px solid #dbe8ef; }
-.option-label { color: #526f82; font-size: 11px; font-weight: 1000; }
-.option-list { display: flex; gap: 7px; }
-.option-button { width: 39px; height: 39px; display: grid; place-items: center; padding: 0; border: 2px solid transparent; border-radius: 12px; background: #e8f0f4; cursor: pointer; transition: transform .15s ease; }
-.option-button:hover { transform: scale(1.08); }
-.option-button.selected { border-color: #ff7b00; background: #fff; box-shadow: 0 3px 0 #ffbd70; }
-.paint-dot { width: 24px; height: 24px; border: 3px solid rgba(255,255,255,.9); border-radius: 50%; box-shadow: 0 2px 4px rgba(28,66,91,.2); }
-.wheel-dot { width: 25px; height: 25px; border: 7px solid; border-radius: 50%; background: #263238; box-shadow: inset 0 0 0 2px #fff; }
-.option-emoji { font-size: 20px; font-weight: 1000; }
-.stat-board { margin-top: 5px; padding: 7px 10px; display: grid; gap: 4px; border-radius: 14px; background: #e3eef3; }
-.stat-row { display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 8px; }
-.stat-row > span { color: #526f82; font-size: 10px; font-weight: 1000; }
-.stat-row > div { display: grid; grid-template-columns: repeat(10,1fr); gap: 3px; }
-.stat-row i { height: 7px; border-radius: 99px; }
-
-/* Performance garage */
-.garage-screen { background: linear-gradient(90deg,rgba(5,12,20,.96) 0%,rgba(8,20,31,.86) 34%,rgba(8,20,31,.08) 57%,rgba(6,15,24,.8) 100%); }
-.garage-copy h1 { color: #f2f7fa; text-shadow: 0 4px 22px rgba(0,0,0,.7); }
-.garage-copy h1 em { color: #ffd137; }
-.garage-copy > p { color: #a9c1cf; }
-.eyebrow { border-radius: 5px; color: #111b22; background: #ffd137; box-shadow: none; letter-spacing: 1px; }
-.gold-wallet { border: 1px solid rgba(181,220,239,.52); border-radius: 6px; background: rgba(4,14,23,.78); }
-.mission-chip { border: 1px solid rgba(142,185,207,.25); border-radius: 6px; color: #bcd0db; background: rgba(16,33,46,.76); }
-.mission-chip.active { border-color: #ffd137; background: linear-gradient(90deg,rgba(255,209,55,.2),rgba(18,36,49,.92)); box-shadow: 0 0 22px rgba(255,193,36,.12); }
-.mission-chip strong { color: #f1f7fa; }
-.mission-chip small { color: #93aebd; }
-.mission-route-preview { border: 1px solid rgba(174,215,235,.38); border-radius: 6px; background: rgba(4,14,23,.76); }
-.start-delivery { border: 1px solid #ffe06a; border-radius: 6px; color: #111b22; background: linear-gradient(135deg,#ffe35c,#ffad22); box-shadow: 0 0 25px rgba(255,183,34,.24); }
-.start-delivery b { color: #151d22; }
-.start-delivery:disabled { cursor: wait; opacity: .72; transform: none; filter: saturate(.75); box-shadow: none; }
-.runtime-starting { position: absolute; z-index: 30; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; color: #f6fbff; background: rgba(3,12,20,.76); backdrop-filter: blur(5px); pointer-events: all; }
-.runtime-starting span { width: 38px; height: 38px; border: 4px solid rgba(255,255,255,.22); border-top-color: #ffd33d; border-radius: 50%; animation: runtime-spin .72s linear infinite; }
-.runtime-starting strong { font-size: 17px; letter-spacing: -.02em; }
-@keyframes runtime-spin { to { transform: rotate(360deg); } }
-.quest-howto { color: #9eb6c4; }
-.customizer-card { border: 1px solid rgba(172,216,238,.58); border-radius: 8px; background: linear-gradient(145deg,rgba(8,20,31,.94),rgba(17,38,52,.91)); box-shadow: 0 20px 48px rgba(0,0,0,.45); }
-.customizer-heading span, .customizer-heading small { color: #91adbc; }
-.customizer-heading strong { color: #f1f7fa; }
-.vehicle-card { border: 1px solid rgba(149,192,213,.28); border-radius: 5px; color: #bcd0db; background: rgba(4,14,23,.68); }
-.vehicle-card.selected { border-color: #ffd137; color: #f6f9fb; background: rgba(255,200,36,.14); box-shadow: inset 0 -2px 0 #ffd137; }
-.vehicle-card.previewing { border-color: #55d7ff; background: rgba(42,178,222,.13); box-shadow: inset 0 -2px 0 #55d7ff; }
-.vehicle-card > span { border: 1px solid rgba(255,255,255,.45); border-radius: 4px; }
-.vehicle-card b { color: #ffd65a; }
-.workshop-panel { border: 1px solid rgba(164,206,226,.3); border-radius: 5px; background: rgba(3,12,20,.72); }
-.workshop-panel button { border-radius: 4px; background: #233f50; }
-.option-row { border-top-color: rgba(154,196,216,.2); }
-.option-label { color: #abc1cc; }
-.option-button { border-radius: 5px; background: rgba(27,50,64,.88); }
-.option-button.selected { border-color: #ffd137; background: rgba(255,255,255,.92); box-shadow: 0 0 14px rgba(255,199,36,.22); }
-.stat-board { border: 1px solid rgba(156,198,218,.25); border-radius: 5px; background: rgba(3,12,20,.66); }
-.stat-row > span { color: #aac0cc; }
-
-/* ── In-game HUD: Asphalt 9 스타일(얇고 반투명, 텍스트 중심) ── */
-.hud-layer { position: absolute; z-index: 15; inset: 0; color: #fff; font-variant-numeric: tabular-nums; pointer-events: none; }
-.speed-rush { position: absolute; inset: 0; pointer-events: none; transition: opacity .18s ease; }
-
-/* 좌상단: 남은 시간 + 목적지 */
-.hud-mission { position: absolute; left: 22px; top: 14px; max-width: 250px; padding: 4px 18px 5px 12px; display: grid; gap: 3px; border-left: 2px solid var(--accent, #ffc928); background: linear-gradient(90deg, rgba(4,10,16,.4), rgba(4,10,16,0)); text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 12px rgba(0,0,0,.5); }
-.hud-clock { font: 500 26px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; color: #fff; text-shadow: 0 0 14px rgba(255,255,255,.32), 0 1px 3px rgba(0,0,0,.9); }
-.hud-mission.urgent .hud-clock { color: #ff4757; text-shadow: 0 0 16px rgba(255,71,87,.65), 0 1px 3px rgba(0,0,0,.9); animation: hud-blink .55s ease-in-out infinite alternate; }
-.hud-target { overflow: hidden; font-size: 13px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
-.hud-target-meta { color: rgba(255,255,255,.78); font-size: 10.5px; font-weight: 700; white-space: nowrap; }
-
-/* 상단 중앙: 니트로 / 속도 / 플래그 */
-.hud-speed { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); min-width: 196px; padding: 6px 14px 6px; display: grid; justify-items: center; gap: 3px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: rgba(4,10,16,.42); backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.8); }
-.nitro-row { width: 100%; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 8px; }
-.nitro-row span { color: #6fe3ff; font: 700 9.5px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: 1.4px; white-space: nowrap; }
-.nitro-track { height: 3px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.16); }
-.nitro-track i { display: block; height: 100%; border-radius: inherit; background: #6fe3ff; box-shadow: 0 0 8px rgba(111,227,255,.7); transition: width .15s linear; }
-.hud-speed.overdrive .nitro-row span { color: #ff7a28; }
-.hud-speed.overdrive .nitro-track i { background: #ff7a28; box-shadow: 0 0 8px rgba(255,122,40,.7); }
-.speed-row { display: flex; align-items: center; gap: 12px; }
-.tach-readout { display: flex; align-items: baseline; gap: 5px; }
-.tach-readout strong { min-width: 2ch; color: #fff; font: 400 40px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: -.5px; text-align: right; text-shadow: 0 0 16px rgba(255,255,255,.28), 0 1px 3px rgba(0,0,0,.9); }
-.hud-speed.overdrive .tach-readout strong { color: #ffb48a; text-shadow: 0 0 16px rgba(255,122,40,.55), 0 1px 3px rgba(0,0,0,.9); }
-.tach-readout span { color: rgba(255,255,255,.72); font-size: 10px; font-weight: 700; letter-spacing: .8px; }
-.hud-badge { padding: 3px 9px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(255,255,255,.1); font: 600 12px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; white-space: nowrap; }
-.hud-badge.race { border-color: rgba(255,71,87,.6); color: #ffb3ba; }
-.hud-badge.race.lead { border-color: rgba(255,216,79,.7); color: #ffd84f; }
-.hud-flags { min-height: 14px; display: flex; gap: 5px; }
-.hud-flags span { padding: 2px 6px; border: 1px solid rgba(255,255,255,.22); border-radius: 4px; color: rgba(255,255,255,.55); font: 700 8.5px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: 1.2px; }
-.hud-flags .drift { border-color: #ffd84f; color: #ffd84f; background: rgba(255,216,79,.12); }
-.hud-flags .turbo { border-color: #6fe3ff; color: #6fe3ff; background: rgba(111,227,255,.14); }
-.hud-speed.overdrive .hud-flags .turbo { border-color: #ff7a28; color: #ff7a28; background: rgba(255,122,40,.16); }
-
-/* 우상단: 목표 시간 / 점수 / 골드 / 보너스 */
-.hud-goal { position: absolute; right: 22px; top: 58px; display: grid; justify-items: end; gap: 3px; text-align: right; text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 10px rgba(0,0,0,.5); }
-.hud-goal span { color: rgba(255,255,255,.85); font-size: 11px; font-weight: 700; white-space: nowrap; }
-.hud-goal .goal-main { color: #fff; font-size: 13px; font-weight: 800; }
-.hud-goal .goal-main b { font: 500 17px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; letter-spacing: .5px; }
-.hud-goal .goal-bonus { color: #ffd84f; }
-.hud-goal .goal-bonus.failed { color: #ff4757; }
-
-/* 레이스 출발 카운트다운 */
-.race-countdown { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); color: #fff; font: 600 120px/1 "Rajdhani","Consolas","Segoe UI",sans-serif; text-shadow: 0 0 30px rgba(111,227,255,.8), 0 0 70px rgba(111,227,255,.4), 0 2px 6px rgba(0,0,0,.8); animation: countdown-pop .85s ease-out both; }
-@keyframes countdown-pop { from { transform: translate(-50%,-50%) scale(1.3); opacity: .2; } 30% { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
-@keyframes hud-blink { to { opacity: .55; } }
-.delivery-approach { position: absolute; left: 50%; bottom: 104px; transform: translateX(-50%); padding: 8px 15px; border: 2px solid #fff; border-radius: 999px; color: #fff; background: #2ebd69; box-shadow: 0 6px 0 #178044, 0 12px 24px rgba(16,113,61,.22); font-size: 11px; font-weight: 1000; animation: urgent-pulse .65s ease-in-out infinite alternate; }
-.toast-message { position: absolute; z-index: 25; left: 50%; top: 28%; transform: translateX(-50%); padding: 9px 17px; border: 3px solid #fff; border-radius: 99px; color: #fff; background: #ff7b00; box-shadow: 0 7px 0 rgba(190,70,0,.7); font-size: 13px; font-weight: 1000; animation: toast-in .25s ease-out; }
-
-/* 미니맵: 좌하단 원형, 반투명 */
-.minimap-card { position: absolute; z-index: 16; left: 22px; bottom: 20px; width: 120px; height: 120px; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(6,14,22,.55); box-shadow: 0 4px 16px rgba(0,0,0,.3); backdrop-filter: blur(6px); pointer-events: none; }
-.minimap-card svg { width: 100%; height: 100%; display: block; border-radius: 50%; opacity: .9; filter: saturate(.72) contrast(1.08) brightness(.76); }
-.target-pulse { animation: map-pulse .75s ease-in-out infinite alternate; }
-
-/* 터치 컨트롤: 글래시 미니멀 버튼 */
-.touch-controls { position: absolute; z-index: 17; left: 158px; right: 22px; bottom: 22px; display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none; }
-.steer-controls, .pedal-controls { display: flex; gap: 10px; pointer-events: auto; }
-.steer-controls button, .pedal-controls button { border: 1px solid rgba(255,255,255,.35); color: #fff; background: rgba(255,255,255,.14); box-shadow: 0 2px 10px rgba(0,0,0,.22); backdrop-filter: blur(8px); text-shadow: 0 1px 2px rgba(0,0,0,.6); cursor: pointer; touch-action: none; user-select: none; transition: background .12s ease, transform .08s ease; }
-.steer-controls button { width: 58px; height: 58px; border-radius: 50%; font-size: 20px; }
-.pedal-controls button { height: 56px; padding: 0 18px; border-radius: 14px; font-family: "Rajdhani","Consolas","Segoe UI",sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; }
-.pedal-controls .brake { background: rgba(120,140,150,.28); }
-.pedal-controls .boost { border-color: rgba(111,227,255,.5); background: rgba(67,140,238,.32); }
-.pedal-controls .accel { width: 96px; border-color: rgba(120,255,160,.5); background: rgba(53,184,90,.34); font-size: 16px; }
-.steer-controls button:active, .pedal-controls button:active { background: rgba(255,255,255,.32); transform: scale(.95); }
-
-.quiz-overlay, .result-overlay { position: absolute; z-index: 50; inset: 0; display: grid; place-items: center; padding: 28px; background: rgba(22,55,78,.63); backdrop-filter: blur(7px); }
-.quiz-overlay { grid-template-columns: minmax(240px,.7fr) minmax(430px,1fr); gap: clamp(20px,5vw,70px); }
-.delivered-scene { display: grid; justify-items: center; color: #fff; text-align: center; text-shadow: 0 3px 0 rgba(31,65,87,.35); }
-.delivery-success { padding: 6px 13px; border-radius: 99px; color: #1c4159; background: #ffe66d; box-shadow: 0 5px 0 #e9a800; font-size: 11px; font-weight: 1000; letter-spacing: 1.6px; }
-.place-icon { margin: 16px 0 3px; font-size: clamp(70px,9vw,120px); filter: drop-shadow(0 13px 0 rgba(30,63,84,.17)); }
-.delivered-scene strong { font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: 31px; font-weight: 900; }
-.delivered-scene small { color: #d8efff; font-weight: 900; }
-.quiz-panel { width: min(100%,650px); padding: 24px; border: 4px solid #fff; border-radius: 28px; background: #f8fcff; box-shadow: 0 22px 60px rgba(17,45,64,.3); }
-.quiz-label { color: #ff6b00; font-size: 10px; font-weight: 1000; letter-spacing: 1px; }
-.quiz-panel h2 { margin: 3px 0 10px; color: #1c4159; font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: 25px; font-weight: 900; }
-.idiom-card { padding: 13px; display: grid; place-items: center; border-radius: 18px; background: linear-gradient(135deg,#4361ee,#6c56d9); color: #fff; }
-.idiom-card strong { font-size: 34px; letter-spacing: 5px; }
-.idiom-card span { color: #dfe7ff; font-size: 15px; font-weight: 1000; }
-.quiz-panel > p { margin: 11px 0; color: #46657a; font-size: 13px; font-weight: 900; text-align: center; }
-.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-.quiz-options button { min-height: 62px; padding: 9px 11px; display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 7px; border: 2px solid #c9dce7; border-radius: 15px; color: #315269; background: #fff; text-align: left; cursor: pointer; }
-.quiz-options button:hover { border-color: #4361ee; background: #eef1ff; }
-.quiz-options button b { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #4361ee; }
-.quiz-options button span { font-size: 11px; font-weight: 900; }
-.quiz-options button.correct { border-color: #44c767; background: #e9ffe9; }
-.quiz-options button.correct b { background: #35b85a; }
-.quiz-options button.muted { opacity: .38; }
-.quiz-help { display: block; margin-top: 9px; color: #7892a4; font-size: 9px; font-weight: 900; text-align: center; }
-.answer-feedback { margin-top: 10px; padding: 9px; border-radius: 12px; color: #fff; font-size: 12px; font-weight: 1000; text-align: center; }
-.answer-feedback.correct { background: #35b85a; }
-.answer-feedback.wrong { background: #ff595e; }
-
-.result-card { width: min(94%,610px); padding: 28px; border: 4px solid #fff; border-radius: 30px; background: #f8fcff; box-shadow: 0 25px 70px rgba(16,45,64,.32); text-align: center; }
-.result-badge { padding: 6px 12px; border-radius: 99px; color: #fff; background: #4361ee; font-size: 10px; font-weight: 1000; letter-spacing: 1.3px; }
-.result-mascot { margin-top: 13px; font-size: 65px; }
-.result-card h2 { margin: 5px 0; color: #173b54; font-family: "Arial Rounded MT Bold", "Pretendard", sans-serif; font-size: 30px; font-weight: 900; }
-.result-stars { font-size: 38px; letter-spacing: 5px; color: #dce6eb; }
-.result-stars .earned { color: #ffca3a; text-shadow: 0 3px 0 #e69700; }
-.result-grid { margin: 15px 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-.result-grid div { padding: 10px; display: grid; border-radius: 15px; background: #eaf3f7; }
-.result-grid small { color: #718b9c; font-size: 9px; font-weight: 900; }
-.result-grid strong { color: #1d425c; font-size: 22px; }
-.result-actions { display: flex; justify-content: center; gap: 9px; }
-.result-actions button { padding: 11px 20px; border: 2px solid #c9dce7; border-radius: 14px; color: #34566d; background: #fff; font-weight: 1000; cursor: pointer; }
-.result-actions .primary { border-color: #ff7b00; color: #fff; background: #ff7b00; }
-
-@keyframes toast-in { from { opacity: 0; transform: translate(-50%,-8px) scale(.9); } }
-@keyframes map-pulse { to { r: 13px; opacity: .55; } }
-@keyframes urgent-pulse { to { transform: scale(1.06); } }
-
-@media (max-width: 900px) {
-  .game-stage { border-radius: 20px; }
-  .brand-lockup div { display: none; }
-  .brand-mark { width: 37px; height: 37px; }
-  .garage-screen { grid-template-columns: minmax(260px,1fr) minmax(280px,.85fr); gap: 18px; padding: 62px 18px 15px; }
-  .garage-copy h1 { font-size: 34px; }
-  .garage-copy > p, .keyboard-help { display: none; }
-  .mission-picker { gap: 4px; }
-  .mission-chip { padding: 5px 8px; }
-  .mission-route-preview { padding: 6px 8px; }
-  .customizer-card { padding: 12px; }
-  .option-row { padding: 5px 0; }
-  .topbar.playing { top: 10px; right: 12px; }
-  .hud-mission { left: 12px; top: 10px; max-width: 200px; }
-  .hud-clock { font-size: 22px; }
-  .hud-speed { top: 8px; min-width: 164px; padding: 4px 10px 5px; }
-  .tach-readout strong { font-size: 32px; }
-  .hud-goal { right: 12px; top: 50px; }
-  .minimap-card { left: 12px; bottom: 12px; width: 100px; height: 100px; }
-  .touch-controls { left: 124px; right: 12px; bottom: 14px; }
-  .steer-controls button { width: 52px; height: 52px; }
-  .pedal-controls button { height: 50px; padding: 0 12px; }
-  .pedal-controls .accel { width: 76px; }
-  .race-countdown { font-size: 90px; }
-  .delivery-approach { bottom: 76px; transform: translateX(-50%) scale(.84); }
-  .quiz-overlay { grid-template-columns: .55fr 1fr; gap: 16px; padding: 16px; }
-  .place-icon { font-size: 65px; }
-  .quiz-panel { padding: 15px; }
-  .quiz-panel h2 { font-size: 19px; }
-  .idiom-card { padding: 8px; }
-  .idiom-card strong { font-size: 27px; }
-  .quiz-options button { min-height: 51px; }
-}
-
-@media (max-width: 700px) and (orientation: portrait) {
-  .app-shell { padding: 0; align-items: stretch; }
-  .game-stage { width: 100vw; height: 100dvh; max-height: none; aspect-ratio: auto; border: 0; border-radius: 0; }
-  .topbar { top: 10px; left: 10px; right: 10px; }
-  .garage-screen { display: flex; flex-direction: column; justify-content: flex-end; gap: 9px; padding: 60px 12px 13px; overflow-y: auto; background: linear-gradient(180deg,rgba(5,13,21,.16),rgba(6,16,25,.82) 40%,rgba(5,13,21,.98)); }
-  .garage-copy { width: 100%; }
-  .garage-copy h1 { margin: 5px 0; font-size: 29px; }
-  .garage-copy h1 br { display: none; }
-  .eyebrow { padding: 4px 9px; font-size: 9px; }
-  .mission-picker { grid-template-columns: repeat(3,1fr); }
-  .mission-chip { display: grid; grid-template-columns: 1fr; justify-items: center; padding: 6px 4px; text-align: center; }
-  .mission-chip > span:first-child { font-size: 20px; }
-  .mission-chip small { display: none; }
-  .mission-route-preview { display: none; }
-  .quest-howto { display: none; }
-  .start-delivery { margin-top: 7px; padding: 10px 13px; }
-  .customizer-card { justify-self: auto; width: 100%; padding: 10px 12px; border-radius: 19px; }
-  .customizer-heading, .stat-board { display: none; }
-  .option-row { grid-template-columns: 75px 1fr; padding: 5px 0; }
-  .option-button { width: 36px; height: 36px; }
-  .topbar.playing { top: 10px; right: 10px; }
-  .hud-mission { left: 10px; top: 10px; max-width: 150px; }
-  .hud-speed { top: 52px; }
-  .hud-goal { right: 10px; top: 54px; }
-  .minimap-card { width: 96px; height: 96px; bottom: 96px; }
-  .touch-controls { left: 10px; right: 10px; bottom: 18px; }
-  .steer-controls button { width: 58px; height: 58px; }
-  .pedal-controls { gap: 6px; }
-  .pedal-controls button { height: 56px; padding: 0 9px; }
-  .pedal-controls .boost { position: absolute; right: 0; bottom: 68px; height: 42px; }
-  .quiz-overlay { display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 12px; }
-  .delivered-scene { display: flex; align-items: center; gap: 8px; }
-  .place-icon { margin: 0; font-size: 40px; }
-  .delivered-scene strong { font-size: 19px; }
-  .delivered-scene small { display: none; }
-  .quiz-panel { padding: 13px; }
-  .quiz-options { grid-template-columns: 1fr; gap: 6px; }
-  .quiz-options button { min-height: 49px; }
-}
-
-/* 세로로 든 휴대폰: 게임 중에는 회전 안내가 화면을 덮는다 */
-.rotate-overlay {
-  position: absolute; z-index: 90; inset: 0;
-  display: grid; place-content: center; justify-items: center; gap: 10px;
-  color: #fff; background: rgba(4, 12, 20, .94); text-align: center;
-}
-.rotate-overlay strong { font-size: 22px; font-weight: 1000; }
-.rotate-overlay small { color: #9ec0d2; font-size: 13px; font-weight: 800; }
-.rotate-phone { font-size: 64px; animation: rotate-hint 1.6s ease-in-out infinite; }
-@keyframes rotate-hint {
-  0%, 20% { transform: rotate(0); }
-  55%, 80% { transform: rotate(90deg); }
-  100% { transform: rotate(90deg); }
-}
-
-/* 가로 모드 휴대폰(낮은 높이): HUD·컨트롤·차고를 컴팩트하게 재배치 */
-@media (orientation: landscape) and (max-height: 540px) {
-  /* 휴대폰에서는 16:9 레터박스 프레임을 버리고 화면을 꽉 채운다. */
-  .app-shell { padding: 0; }
-  .game-stage {
-    width: 100%;
-    height: 100dvh;
-    max-height: none;
-    aspect-ratio: auto;
-    border: 0;
-    border-radius: 0;
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
-  /* 좁은 화면에서 정보 밀도를 낮춘다 — 필수 타일만 남긴다. */
-  .hud-optional { display: none !important; }
-  .topbar { left: 8px; right: 8px; top: 8px; padding: 0; }
-  .brand-mark { width: 32px; height: 32px; font-size: 19px; }
-  .brand-lockup strong { font-size: 16px; }
-  .brand-lockup div span { display: none; }
-  .icon-button { width: 34px; height: 34px; font-size: 14px; }
-  .garage-mini { padding: 0 10px; font-size: 11px; }
-  .topbar.playing { top: 8px; right: 8px; }
-  .topbar.playing .icon-button, .topbar.playing .garage-mini { height: 30px; font-size: 10px; }
-  .topbar.playing .icon-button { width: 30px; font-size: 13px; }
-  .topbar.playing .garage-mini { padding: 0 8px; }
-
-  .hud-mission { left: 8px; top: 8px; max-width: 170px; padding: 3px 12px 4px 8px; gap: 2px; }
-  .hud-clock { font-size: 20px; }
-  .hud-target { font-size: 11px; }
-  .hud-target-meta { font-size: 9px; }
-  .hud-speed { top: 6px; min-width: 150px; padding: 4px 10px 4px; gap: 1px; }
-  .nitro-row span { font-size: 8.5px; }
-  .tach-readout strong { font-size: 30px; }
-  .tach-readout span { font-size: 9px; }
-  .hud-badge { padding: 2px 6px; font-size: 10px; }
-  .hud-flags { min-height: 12px; }
-  .hud-flags span { padding: 1px 5px; font-size: 7.5px; }
-  .hud-goal { right: 8px; top: 44px; gap: 2px; }
-  .hud-goal span { font-size: 10px; }
-  .hud-goal .goal-main { font-size: 11px; }
-  .hud-goal .goal-main b { font-size: 14px; }
-  .race-countdown { font-size: 80px; }
-
-  .minimap-card { left: 8px; bottom: 8px; width: 84px; height: 84px; }
-  .delivery-approach { bottom: 68px; font-size: 10px; }
-  .toast-message { top: 16%; font-size: 11px; padding: 7px 13px; }
-
-  .touch-controls { left: 100px; right: 10px; bottom: 10px; }
-  .steer-controls { gap: 8px; }
-  .steer-controls button { width: 50px; height: 50px; font-size: 17px; }
-  .pedal-controls { gap: 6px; }
-  .pedal-controls button { height: 50px; padding: 0 11px; }
-  .pedal-controls .accel { width: 72px; font-size: 14px; }
-
-  .garage-screen { display: flex; gap: 12px; overflow: hidden; padding: 46px 12px 8px; }
-  .garage-copy { flex: 1 1 46%; align-self: stretch; max-width: none; overflow-y: auto; padding-right: 4px; }
-  .garage-copy h1 { margin: 6px 0 4px; font-size: 24px; }
-  .garage-copy > p { margin-bottom: 8px; font-size: 11px; }
-  .eyebrow { padding: 4px 8px; font-size: 9px; }
-  .gold-wallet { margin-bottom: 6px; padding: 5px 8px; gap: 8px; }
-  .mission-picker { gap: 4px; }
-  .mission-chip { padding: 5px 8px; border-radius: 9px; }
-  .mission-chip > span:first-child { font-size: 18px; }
-  .mission-chip strong { font-size: 11px; }
-  .mission-chip small { font-size: 8.5px; }
-  .mission-route-preview { margin-top: 5px; padding: 6px 8px; }
-  .start-delivery { margin-top: 8px; padding: 9px 13px; font-size: 15px; }
-  .quest-howto, .keyboard-help { display: none; }
-  .customizer-card { flex: 1 1 54%; align-self: stretch; width: auto; max-width: 460px; overflow-y: auto; padding: 9px; }
-  .customizer-heading strong { font-size: 16px; }
-  .option-button { width: 32px; height: 32px; }
-  .paint-dot { width: 19px; height: 19px; }
-  .wheel-dot { width: 20px; height: 20px; border-width: 5px; }
-  .option-emoji { font-size: 16px; }
-  .option-row { grid-template-columns: 64px 1fr; padding: 4px 0; }
-  .steer-controls button:active, .pedal-controls button:active { transform: scale(.94); }
-
-  .quiz-overlay { grid-template-columns: minmax(170px,.55fr) minmax(320px,1fr); gap: 14px; padding: 12px; }
-  .place-icon { margin: 6px 0 2px; font-size: 52px; }
-  .delivered-scene strong { font-size: 19px; }
-  .quiz-panel { padding: 11px; }
-  .quiz-options button { min-height: 40px; }
-  .result-card { transform: scale(.86); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+@media(max-height:600px) and (min-width:700px) {
+  .prototype { min-height: 420px; }.toolbar { padding: 10px 18px; bottom: 30px; }
+  .masthead { top: 18px; }.caption { display: none; }.scene-label { display: none; }
+  footer { bottom: 7px; }.environment-panel { bottom: 125px; }
 }
