@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-09-05T17:09:35.633Z",
+  "errors": [],
+  "failures": [],
+  "fast": {
+    "speed": 200.6876953125,
+    "z": -478.54852294921875,
+    "x": 0.000002519326926631038,
+    "time": 8.27500000000017
+  },
+  "stopped": {
+    "speed": 0.15645373463632864,
+    "z": -346.399169921875,
+    "x": 0.000003367719727975782,
+    "time": 12.974999999999904
+  },
+  "reverse": {
+    "speed": 18.251212692260744,
+    "z": -349.6037902832031,
+    "x": 0.000003427808223932516,
+    "time": 14.241666666666498
+  },
+  "turned": {
+    "speed": 29.18455932203877,
+    "z": -716.9841918945312,
+    "x": -2.2388994693756104,
+    "time": 1.083333333333332
+  },
+  "steeringChecks": [
+    {
+      "input": "KeyD",
+      "speed": 29.18455932203877,
+      "z": -716.9841918945312,
+      "x": -2.2388994693756104,
+      "time": 1.083333333333332
+    },
+    {
+      "input": "KeyA",
+      "speed": 28.962528129799946,
+      "z": -717.0213012695312,
+      "x": 2.182347059249878,
+      "time": 1.0749999999999986
+    },
+    {
+      "input": "ArrowLeft",
+      "speed": 30.06068970908271,
+      "z": -716.8410034179688,
+      "x": 2.474271774291992,
+      "time": 1.1166666666666651
+    },
+    {
+      "input": "ArrowRight",
+      "speed": 28.28498177021697,
+      "z": -717.1348876953125,
+      "x": -2.0184221267700195,
+      "time": 1.0499999999999987
+    },
+    {
+      "input": "왼쪽 조향",
+      "speed": 29.18509980249397,
+      "z": -716.9828491210938,
+      "x": 2.2373719215393066,
+      "time": 1.083333333333332
+    },
+    {
+      "input": "오른쪽 조향",
+      "speed": 28.738769708652065,
+      "z": -717.0575561523438,
+      "x": -2.12518048286438,
+      "time": 1.0666666666666653
+    }
+  ],
+  "checks": [
+    "200+ real physics km/h",
+    "brake",
+    "reverse",
+    "A/D and arrows: screen-correct left/right",
+    "pointer buttons: screen-correct left/right",
+    "reset",
+    "pause freezes simulation",
+    "blur clears controls",
+    "mobile pointer throttle",
+    "garage return preserves paint",
+    "reentry has one canvas"
+  ],
+  "note": "Rear camera looking +Z: screen-right is world -X at spawn. Headless software rendering, not a hardware FPS benchmark."
+}

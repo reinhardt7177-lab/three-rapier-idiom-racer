@@ -1,0 +1,53 @@
+/* Driving HUD owns the edges. Garage styling and procedural scene stay intact. */
+.journey-scene { position: absolute; z-index: 2; right: 24px; bottom: 24px; width: min(410px, calc(100% - 48px)); max-height: calc(100svh - 110px); overflow-y: auto; padding: 22px; border: 1px solid #a9a582; border-left: 3px solid #cbb985; background: #1a302bec; box-shadow: 0 16px 50px #0d211b55; border-radius: 4px; }
+.journey-scene h2 { font-size: 25px; font-weight: 500; line-height: 1.4; margin: 10px 0; color: #eee6c9; }
+.journey-scene p { font-size: 14px; line-height: 1.8; color: #d5ddcc; }.journey-scene p>span { display: block; color: #bca87b; font-size: 11px; margin-bottom: 6px; }
+.journey-scene button { width: 100%; min-height: 48px; background: #d9c792; color: #263a30; font-size: 14px; margin-top: 10px; }
+.journey-scene small { display: block; margin-top: 10px; font-size: 11px; line-height: 1.7; color: #bdcbb9; }.journey-log { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px 0; border-block: 1px solid #b8bc9033; font-size: 12px; color: #dfd0a5; }
+@media (orientation: portrait) { .journey-scene { right: 16px; bottom: 16px; width: calc(100% - 32px); padding: 16px; max-height: 44svh; }.journey-scene h2 { font-size: 21px; }.journey-scene p { font-size: 13px; margin: 8px 0; } }
+@media (max-height: 500px) and (orientation: landscape) { .journey-scene { right: 16px; bottom: 12px; padding: 14px; max-height: calc(100svh - 90px); width: 350px; }.journey-scene h2 { font-size: 20px; }.journey-scene p { font-size: 12px; margin: 8px 0; } }
+.driving-shell { --edge: 16px; --control: 72px; min-height: 360px; }
+.driving-shell .driving-route { position: absolute; left: max(var(--edge), env(safe-area-inset-left)); top: max(12px, env(safe-area-inset-top)); right: calc(var(--edge) + 72px); pointer-events: none; text-shadow: 0 1px 5px #10221c; }
+.driving-route h1 { font-size: 12px; line-height: 1.4; letter-spacing: .05em; font-weight: 400; color: #e0e5d6; margin: 0 0 5px; }
+.driving-route p { display: inline-block; max-width: 100%; font-size: 15px; line-height: 1.4; font-weight: 500; margin: 0; padding: 6px 10px; border-left: 2px solid #d9c792; background: #19302bd9; border-radius: 0 4px 4px 0; }
+.driving-shell .pause-trigger { position: absolute; right: max(var(--edge), env(safe-area-inset-right)); top: max(12px, env(safe-area-inset-top)); width: 52px; min-height: 52px; padding: 5px; display: grid; justify-items: center; align-content: center; gap: 2px; }
+.pause-trigger>span:first-child { font-size: 19px; line-height: 1; }.pause-trigger>span:last-child { font-size: 11px; }
+.driving-shell .telemetry { top: auto; right: auto; bottom: calc(max(16px, env(safe-area-inset-bottom)) + var(--control) + 14px); left: max(var(--edge), env(safe-area-inset-left)); width: auto; padding: 6px 10px; display: flex; align-items: baseline; gap: 7px; border-left: 2px solid #d9c792; border-radius: 0 4px 4px 0; pointer-events: none; }
+.driving-shell[data-touch="false"] .telemetry { bottom: max(16px, env(safe-area-inset-bottom)); }
+.driving-shell .telemetry strong { font-size: 30px; line-height: 1; letter-spacing: -.04em; font-weight: 500; }
+.driving-shell .telemetry span { font-size: 11px; color: #c2cec4; }.driving-shell .telemetry b { font-size: 16px; color: #ead59e; margin-left: 4px; }
+.driving-shell .driving-controls { left: max(var(--edge), env(safe-area-inset-left)); right: max(var(--edge), env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); gap: 12px; flex-wrap: nowrap; pointer-events: none; }
+.driving-shell .driving-controls>div { gap: 8px; pointer-events: auto; position: relative; }
+.driving-shell .driving-controls button { width: var(--control); min-width: var(--control); height: var(--control); min-height: var(--control); padding: 6px; font-size: 15px; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.driving-controls .steering-pad button { font-size: 25px; }.driving-controls .pedal-pad button>span { display: block; font-size: 11px; margin-top: 4px; }
+.driving-shell .driving-controls .accelerator { min-width: var(--control); background: #d9c792; color: #23372c; }
+.driving-shell .driving-controls .handbrake { position: absolute; bottom: calc(var(--control) + 12px); right: 0; width: 52px; height: 52px; min-width: 52px; min-height: 52px; padding: 2px; white-space: nowrap; font-size: 10px; line-height: 1.4; }
+.driving-shell .driving-controls button:active { border-color: #eedba3; background: #5d7969; color: white; }
+.driving-menu { position: fixed; margin: auto; width: min(760px, calc(100% - 32px)); max-height: calc(100svh - 32px); padding: 24px; border: 1px solid #a8af87; border-radius: 8px; color: #e5e6d8; background: #192e29; box-shadow: 0 20px 80px #07191280; overflow-y: auto; overscroll-behavior: contain; }
+.driving-menu::backdrop { background: #0b191bd1; }
+.driving-menu header { position: sticky; top: 0; z-index: 1; padding-block: 8px; background: #192e29; display: flex; align-items: center; justify-content: space-between; gap: 14px; }.driving-menu h2 { font-size: 23px; font-weight: 500; margin: 4px 0; }.driving-menu h3 { font-size: 15px; color: #e2cfa1; font-weight: 500; margin: 20px 0 10px; }
+.driving-menu p { font-size: 13px; line-height: 1.7; color: #c9d3c7; }.driving-menu .pause-note { padding-bottom: 12px; border-bottom: 1px solid #92a88b40; }
+.driving-shell .driving-menu button { min-height: 44px; padding: 10px 12px; font-size: 13px; }
+.driving-shell .driving-menu .resume-primary { background: #d9c792; color: #21362b; min-width: 100px; flex-shrink: 0; }
+.menu-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }.menu-columns>section { min-width: 0; }
+.menu-buttons { display: grid; gap: 8px; }.menu-field { display: grid; gap: 8px; margin: 14px 0 8px; font-size: 13px; }
+.menu-field select { background: #253e34; color: #f0eddd; font: inherit; width: 100%; min-height: 44px; padding: 8px; border: 1px solid #a8b79b; border-radius: 4px; }.menu-field input { min-height: 44px; width: 100%; accent-color: #d9c792; }
+.driving-menu .setting-hint { font-size: 12px; }.menu-road-map { width: 100%; height: 140px; background: #12251f; border-radius: 5px; }.driving-menu details { font-size: 13px; margin-top: 18px; }.driving-menu summary { cursor: pointer; min-height: 44px; padding: 10px 0; }
+.reset-confirm { border: 1px solid #d9bb70; padding: 10px; margin-top: 12px; }.reset-confirm button+button { margin-left: 8px; }
+.driving-shell .inspection-card { position: absolute; left: 16px; right: 16px; top: 90px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; background: #19302bea; border: 1px solid #c3b57c; }
+.inspection-card>div { display: grid; gap: 5px; font-size: 13px; }.inspection-card small { font-size: 11px; }.driving-shell .inspection-card button { min-height: 44px; }
+.driving-shell.cinematic .driving-route { display: none; }.driving-shell.cinematic .pause-trigger { z-index: 4; }.driving-shell.cinematic .telemetry { display: none; }
+@media (min-width: 900px) { .driving-shell { --edge: 24px; --control: 80px; } }
+@media (max-width: 500px) {
+  .driving-shell { --edge: 12px; --control: 64px; }
+  .driving-route h1 { font-size: 11px; }.driving-route p { font-size: 12px; padding: 6px 8px; }
+  .driving-shell .driving-route { right: 78px; }.driving-shell .driving-controls>div { gap: 6px; }
+  .driving-shell .telemetry strong { font-size: 26px; }.driving-shell .telemetry { padding: 6px 8px; }
+  .menu-columns { grid-template-columns: 1fr; gap: 0; }.driving-menu { padding: 16px; }.driving-menu h2 { font-size: 18px; }.driving-menu header { gap: 8px; }
+  .driving-shell .inspection-card { top: 88px; left: 12px; right: 12px; padding: 8px; gap: 8px; }.inspection-card>div { font-size: 11px; }.inspection-card small { display: none; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .driving-shell { --control: 64px; --edge: 12px; }
+  .driving-route h1 { display: none; }.driving-route p { font-size: 12px; }
+  .driving-shell .inspection-card { top: 72px; }.driving-menu { max-height: calc(100svh - 16px); padding: 16px; }
+}
