@@ -1,7 +1,9 @@
+const BASE_URL = (process.env.GARAGE_BASE_URL || 'http://127.0.0.1:5173').replace(/\/$/, '');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const { recoverDrive, resetDrive, exitDrive, touchOn } = require('./drive-ui.cjs');
 (async () => {
   const { tourWaypoints, COAST_PADS } = await import('../src/driving/coastRoute.js');
   const { steeringLimit } = await import('../src/driving/steering.js');
@@ -11,8 +13,8 @@ const path = require('node:path');
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); }); page.on('requestfailed', r => failures.push(r.url()));
-    page.on('request', r => { if (/^https?:/.test(r.url()) && !r.url().startsWith('http://127.0.0.1:5173')) external.push(r.url()); });
-    await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+    page.on('request', r => { if (/^https?:/.test(r.url()) && !r.url().startsWith(BASE_URL)) external.push(r.url()); });
+    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: '해안도로 드라이브 →' }).click();
     await page.waitForFunction(() => +document.querySelector('[data-time]')?.dataset.time > 1, null, { timeout: 60000 });
     async function shot(name) { if (shots.has(name)) return; await page.screenshot({ path: path.join(output, name + '.jpg'), type: 'jpeg', quality: 70 }); shots.add(name); }
@@ -61,11 +63,11 @@ const path = require('node:path');
     }
     await input([]); assert.equal(stoppedAtLookout, true); assert.equal(returned, true, 'actual browser round trip');
     await shot('returned');
-    await page.getByRole('button', { name: '도로 복귀 · C' }).click(); await page.waitForTimeout(1200); assert.equal((await read()).contacts, 4);
-    await page.getByRole('button', { name: '시작점 복귀 · R' }).click(); await page.waitForTimeout(600); assert.equal((await read()).lookout, false);
-    await page.setViewportSize({ width: 390, height: 844 }); await page.waitForTimeout(500); await shot('mobile');
+    await recoverDrive(page); await page.waitForTimeout(1200); assert.equal((await read()).contacts, 4);
+    await resetDrive(page); await page.waitForTimeout(600); assert.equal((await read()).lookout, false);
+    await page.setViewportSize({ width: 390, height: 844 }); await page.waitForTimeout(500); await touchOn(page); await shot('mobile');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)); assert.equal(await page.locator('canvas').count(), 1);
-    await page.getByRole('button', { name: '차고로 돌아가기', exact: true }).click(); await page.getByRole('heading', { name: '항구 정비소' }).waitFor();
+    await exitDrive(page); await page.getByRole('heading', { name: '항구 정비소' }).waitFor();
     assert.deepEqual(errors, []); assert.deepEqual(failures, []); assert.deepEqual(external, []);
     const report = { checkedAt: new Date().toISOString(), wallSeconds: (Date.now() - began) / 1000, errors, failures, external, maxDrawCalls: maxCalls, shots: [...shots], checks: ['actual keyboard harbor-corners-fork-lookout-turnaround-return', 'stopped visit and return recognition', 'road recovery contacts', 'reset clears trip', 'mobile controls/layout', 'one canvas and garage return'], note: 'Headless Chrome software GPU; no player autopilot, no traffic AI, no performance guarantee for other devices.' };
     await fs.writeFile(path.join(output, 'verification.json'), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2));

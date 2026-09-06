@@ -1,6 +1,7 @@
 :root { font-family: 'Malgun Gothic', system-ui, sans-serif; color: #e5e6d8; background: #253731; font-synthesis: none; }
 .garage-story { position: absolute; right: 32px; top: 145px; width: 270px; padding: 17px; background: #1b302ded; border: 1px solid #b9b68a66; border-radius: 4px; }
 .garage-story h2 { font-size: 18px; font-weight: 500; margin: 9px 0; }.garage-story p { font-size: 11px; line-height: 1.7; color: #c1cab6; margin: 0 0 14px; }
+.garage-story .story-start { min-height: 48px; font-size: 12px; }
 .garage-story button { display: block; width: 100%; border: 0; padding: 10px; border-radius: 3px; font-size: 11px; }.story-start { background: #d9c792; color: #22332b; }.garage-test-link { margin-top: 7px; background: transparent; color: #c7d0bd; }
 .story-objective { position: absolute; top: 138px; left: 30px; max-width: 335px; background: #1b302de8; padding: 15px; border-left: 2px solid #d9c792; pointer-events: none; }.story-objective h2 { font-size: 15px; line-height: 1.5; font-weight: 500; margin: 7px 0; }.story-objective small { font-size: 10px; color: #b6c2b1; }
 .story-radio { position: absolute; left: 30px; bottom: 145px; width: min(440px, calc(100% - 355px)); padding: 13px 16px; background: #1b302dea; border-top: 1px solid #b9b68a66; pointer-events: none; }.story-radio span { color: #dfcda1; font-size: 11px; }.story-radio p { margin: 7px 0 0; font-size: 12px; line-height: 1.65; }
@@ -13,7 +14,7 @@
 @media(max-width:760px) {
   .coast-mode .drive-actions { left: 12px; right: 12px; justify-content: flex-end; }.coast-mode .drive-actions button { padding: 8px 6px; font-size: 9px; }
   .coast-guide { left: 12px; top: 198px; width: calc(100% - 144px); padding: 10px; }.coast-guide h2 { font-size: 12px; }.coast-guide p { font-size: 10px; }.coast-guide svg { display: none; }.coast-mode .telemetry { width: 110px; padding: 9px; }.coast-mode .telemetry p,.coast-mode .telemetry small { display: none; }.coast-mode .speed-readout strong { font-size: 32px; }.coast-mode .speed-readout { gap: 5px; }.coast-mode .speed-readout span { font-size: 9px; }.coast-mode .telemetry-label { font-size: 7px; }
-  .garage-story { top: 161px; right: 16px; width: 213px; padding: 12px; }.garage-story h2 { font-size: 15px; }.garage-story p { font-size: 10px; }
+  .garage-story { top: 161px; right: 16px; width: 213px; padding: 12px; max-height: 235px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #cbb985 #233b32; }.garage-story h2 { font-size: 15px; }.garage-story p { font-size: 10px; }
   .story-mode .story-objective { left: 12px; top: 199px; width: calc(100% - 146px); padding: 10px; }.story-objective h2 { font-size: 12px; }.story-objective small { font-size: 9px; }
   .story-mode .telemetry { width: 110px; padding: 9px; }.story-mode .telemetry p,.story-mode .telemetry small { display: none; }.story-mode .speed-readout strong { font-size: 32px; }.story-mode .speed-readout { gap: 6px; }.story-mode .speed-readout span { font-size: 9px; }.story-mode .telemetry-label { font-size: 7px; }
   .story-radio { left: 12px; bottom: 124px; width: calc(100% - 24px); padding: 10px 12px; }.story-radio p { font-size: 11px; }.story-cutscene { left: 20px; width: calc(100% - 40px); bottom: 35px; }.story-cutscene h2 { font-size: 23px; }.story-cutscene p { font-size: 12px; }.cinematic::before { border-block-width: 12px; }

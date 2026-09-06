@@ -1,7 +1,9 @@
+const BASE_URL = (process.env.GARAGE_BASE_URL || 'http://127.0.0.1:5173').replace(/\/$/, '');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const { inspectDrive, exitDrive, touchOn } = require('./drive-ui.cjs');
 (async () => {
   const output = path.resolve('artifacts/steering-redesign'); await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath: process.env.GARAGE_BROWSER_PATH, args: ['--enable-unsafe-swiftshader'] });
@@ -10,12 +12,12 @@ const path = require('node:path');
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     page.on('requestfailed', r => failures.push(r.url()));
-    await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: '해안도로 드라이브 →' }).click();
     await page.waitForFunction(() => +document.querySelector('[data-time]')?.dataset.time > 1, null, { timeout: 60000 });
     const read = () => page.locator('[data-time]').evaluate(e => ({ x: +e.dataset.x, z: +e.dataset.z, speed: +e.dataset.speed, yaw: +e.dataset.heading, contacts: +e.dataset.contacts }));
     const angles = () => page.locator('[data-left-angle]').evaluate(e => ({ left: +e.dataset.leftAngle, right: +e.dataset.rightAngle }));
-    await page.getByRole('button', { name: '정차 후 바퀴 점검', exact: true }).click();
+    await inspectDrive(page);
     const start = await read();
     for (const [code, sign] of [['KeyA', 1], ['KeyD', -1]]) {
       await page.keyboard.down(code); await page.waitForTimeout(600);
@@ -39,7 +41,7 @@ const path = require('node:path');
     }
     await page.keyboard.press('KeyR'); await page.waitForTimeout(700);
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.getByRole('button', { name: '정차 후 바퀴 점검', exact: true }).click();
+    await page.waitForTimeout(400); await touchOn(page); await inspectDrive(page);
     const left = page.getByRole('button', { name: '왼쪽 조향', exact: true }); const rect = await left.boundingBox();
     await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2); await page.mouse.down(); await page.waitForTimeout(600);
     assert.ok((await angles()).left > 30);
@@ -47,7 +49,7 @@ const path = require('node:path');
     await page.mouse.up(); await page.waitForTimeout(650); assert.ok(Math.abs((await angles()).left) < .1);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.getByRole('button', { name: '점검 닫고 주행', exact: true }).click();
-    await page.getByRole('button', { name: '차고로 돌아가기', exact: true }).click();
+    await exitDrive(page);
     await page.getByRole('heading', { name: '항구 정비소' }).waitFor(); assert.equal(await page.locator('canvas').count(), 1);
     assert.deepEqual(errors, []); assert.deepEqual(failures, []);
     const report = { checkedAt: new Date().toISOString(), results, errors, failures, checks: ['real keyboard left/right', 'inside tyre turns further', 'automatic rack centring', 'inspection prevents acceleration', 'normal driving resumes', 'mobile touch steering/release/layout', 'garage return'], note: 'Software GPU browser check, not a physical-device frame-rate claim.' };

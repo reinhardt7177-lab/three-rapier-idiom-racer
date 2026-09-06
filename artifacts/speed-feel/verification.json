@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-09-05T17:10:01.901Z",
+  "highSpeed": {
+    "speed": 225.49858703613282,
+    "distance": 10.31694024181744,
+    "fov": 62.59648926092935
+  },
+  "idleRms": 0.006375358882291163,
+  "fastRms": 0.027247104971860323,
+  "pausedRms": 0,
+  "zeroRms": 0,
+  "mutedRms": 0,
+  "errors": [],
+  "checks": [
+    "no audio before gesture",
+    "real audio signal grows with speed",
+    "pause/zero volume/mute silence",
+    "sound toggle reuses graph",
+    "garage exit closes audio",
+    "reentry silent",
+    "desktop/mobile screenshots",
+    "high speed camera distance bounded"
+  ],
+  "note": "Audio waveform validated, not subjective listening or real-device loudness/FPS certification."
+}

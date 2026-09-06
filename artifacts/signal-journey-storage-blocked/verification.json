@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-06T02:22:28.406Z",
+  "blockedStorage": true,
+  "wallSeconds": 207.166,
+  "journeySeconds": 195.67499999998637,
+  "errors": [],
+  "failures": [],
+  "external": [],
+  "maxDrawCalls": 216,
+  "shots": [
+    "harbor",
+    "first-corner",
+    "fork-approach",
+    "signal",
+    "signal-portrait",
+    "returned",
+    "garage-record",
+    "mobile-briefing",
+    "mobile-drive"
+  ],
+  "checks": [
+    "briefing locks input",
+    "real keyboard outbound gates and 2-second stop",
+    "signal scene pause and portrait",
+    "return gates and grounded stop",
+    "denied storage: completion remains in current visit, reload does not falsely restore",
+    "replay/reset/recovery do not grant progress",
+    "mobile briefing and drive layout",
+    "one canvas and garage return"
+  ],
+  "note": "Headless Chrome software GPU; no player autopilot, no traffic AI, no performance guarantee for other devices."
+}

@@ -13,17 +13,22 @@ import { newStory, startStory, advanceIntro, updateStory, storyHint, saveStory, 
 import { createCoastWorld } from './coastWorld.js';
 import { COAST_START, coastStatus, nearestRoad, offsetPoint } from './coastRoute.js';
 import { applyWheelPose } from './steering.js';
+import { createDriveInput, graphicsBudget, compactCamera, viewLayout } from './hudSettings.js';
+import { newJourney, continueJourney, updateJourney, interruptJourney, journeyHint, journeyLocked, saveJourney, SIGNAL_STATION } from './journey.js';
+import { createSignalStation } from './signalStation.js';
 
 export async function createDriving(host, onStats, color, signal, options = {}) {
   await initPhysics();
   if (signal.aborted) return null;
   const sim = createVehiclePhysics({ harbor: true, coast: !!options.coast, ...(options.coast ? { start: COAST_START } : options.story ? { start: STORY_START } : {}) });
   let story = options.story ? newStory() : null;
+  let journey = options.journey ? newJourney() : null;
   let excursion = { lookout: false, returned: false };
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' }); }
   catch (error) { sim.dispose(); throw error; }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  let quality = options.quality === 'light' ? 'light' : 'standard';
+  renderer.setPixelRatio(graphicsBudget(quality, host.clientWidth, host.clientHeight, devicePixelRatio).ratio);
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
   renderer.domElement.tabIndex = 0;
@@ -62,29 +67,35 @@ export async function createDriving(host, onStats, color, signal, options = {}) 
   }
   scene.traverse(o => { if (o.isMesh) o.receiveShadow = true; });
   const gt = createGT(); gt.setColor(color); gt.paint.roughness = .42; gt.paint.clearcoat = .45; gt.root.rotation.y = 0; scene.add(gt.root);
-  const keys = new Set(), touches = new Set();
+  const station = options.coast ? createSignalStation() : null;
+  if (station) scene.add(station.root);
+  const input = createDriveInput();
   let frame, alive = true, paused = false, inspection = false, last = performance.now(), accumulator = 0, publish = 0, cameraSnap = true;
   let current = sim.snapshot(), previous = current;
   const pos = new THREE.Vector3(), currentPos = new THREE.Vector3(), q = new THREE.Quaternion(), oldQ = new THREE.Quaternion(), forward = new THREE.Vector3(), sunOffset = new THREE.Vector3(-20, 35, 12);
   let cameraMetrics = { distance: 0, fov: camera.fov };
-  const locked = () => !!story && story.phase !== 'drive';
+  const locked = () => (!!story && story.phase !== 'drive') || journeyLocked(journey);
   const report = () => {
     current.inspection = inspection;
+    current.layout = viewLayout(host.clientWidth, host.clientHeight);
+    current.quality = quality; current.pixelRatio = renderer.getPixelRatio(); current.shadowSize = sun.shadow.mapSize.x;
+    current.journey = journey ? { ...journey, ...journeyHint(journey, current) } : null;
     if (options.coast) excursion = coastStatus(current, excursion);
     onStats({ ...current, paused, coast: options.coast ? excursion : null, story: story ? { ...story, ...storyHint(story, current), distance: Math.round(Math.hypot(current.position.x - STORY_STOP.x, current.position.z - STORY_STOP.z)) } : null, cameraDistance: cameraMetrics.distance, cameraFov: cameraMetrics.fov, audio: audio.status(), sector: options.coast ? excursion.area : current.position.z >= HARBOR_SECTOR.start && current.position.z <= HARBOR_SECTOR.end ? '항만대로 · 공도' : '해안도로 · 계측 구간', drawCalls: renderer.info.render.calls });
   };
-  const has = (...codes) => codes.some(c => keys.has(c) || touches.has(c));
-  function clearInput() { keys.clear(); touches.clear(); }
+  const has = (...codes) => input.has(...codes);
+  function clearInput() { input.clear(); }
   function setInspection(value) {
-    if (value && (current.kmh >= 1 || paused || locked())) return;
-    inspection = !!value; clearInput(); cameraSnap = true; report();
+    if (value && (current.kmh >= 1 || locked())) return;
+    inspection = !!value; paused = false; clearInput(); accumulator = 0; last = performance.now(); cameraSnap = true; audio.setPaused(locked()); report();
     renderer.domElement.focus({ preventScroll: true });
   }
   function setPaused(value) { paused = value; clearInput(); audio.setPaused(value || locked()); last = performance.now(); accumulator = 0; report(); if (!paused) renderer.domElement.focus({ preventScroll: true }); }
-  function reset() { inspection = false; clearInput(); sim.reset(); current = previous = sim.snapshot(); if (story) story = newStory(); excursion = { lookout: false, returned: false }; accumulator = 0; cameraSnap = true; audio.update(current, 0); audio.setPaused(paused || locked()); report(); renderer.domElement.focus({ preventScroll: true }); }
+  function reset() { inspection = false; clearInput(); sim.reset(); current = previous = sim.snapshot(); if (story) story = newStory(); if (journey) journey = newJourney(); excursion = { lookout: false, returned: false }; accumulator = 0; cameraSnap = true; audio.update(current, 0); audio.setPaused(paused || locked()); report(); renderer.domElement.focus({ preventScroll: true }); }
   function recoverRoad() {
-    if (!options.coast) return;
+    if (!options.coast || locked()) return;
     inspection = false;
+    journey = interruptJourney(journey);
     const near = nearestRoad(current.position), q = current.rotation;
     const fx = 2 * (q.x * q.z + q.w * q.y), fz = 1 - 2 * (q.x * q.x + q.y * q.y);
     const direction = fx * near.tx + fz * near.tz >= 0 ? 1 : -1;
@@ -93,20 +104,31 @@ export async function createDriving(host, onStats, color, signal, options = {}) 
     current = previous = sim.snapshot(); accumulator = 0; cameraSnap = true; audio.update(current, 0); report(); renderer.domElement.focus({ preventScroll: true });
   }
   function skipIntro() { if (!story || story.phase !== 'intro' || paused) return; story = startStory(story); clearInput(); accumulator = 0; last = performance.now(); cameraSnap = true; audio.setPaused(false); report(); renderer.domElement.focus({ preventScroll: true }); }
+  function advanceJourney() { if (!journey || paused) return; journey = continueJourney(journey); clearInput(); accumulator = 0; last = performance.now(); cameraSnap = true; audio.setPaused(locked()); report(); renderer.domElement.focus({ preventScroll: true }); }
   const handled = ['KeyW', 'KeyS', 'KeyA', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'KeyB', 'KeyR', 'KeyC', 'Escape'];
   function keydown(event) {
-    if (!handled.includes(event.code) || event.target.closest?.('button,input,textarea')) return;
+    if (!handled.includes(event.code) || event.target.closest?.('button,input,textarea,select,dialog')) return;
     event.preventDefault();
     if (event.code === 'Escape' && !event.repeat) { setPaused(!paused); return; }
     if (event.code === 'KeyR' && !event.repeat) { reset(); return; }
     if (event.code === 'KeyC' && !event.repeat) { recoverRoad(); return; }
-    if (!paused && !locked()) keys.add(event.code);
+    if (!paused && !locked()) input.key(event.code, true);
   }
-  const keyup = e => keys.delete(e.code);
+  const keyup = e => input.key(e.code, false);
   const blur = () => setPaused(true);
   const visibility = () => { if (document.hidden) { setPaused(true); cancelAnimationFrame(frame); } else if (alive) { last = performance.now(); frame = requestAnimationFrame(render); } };
   window.addEventListener('keydown', keydown); window.addEventListener('keyup', keyup); window.addEventListener('blur', blur); document.addEventListener('visibilitychange', visibility);
-  function resize() { const { width, height } = host.getBoundingClientRect(); if (width && height) { renderer.setSize(width, height, false); camera.aspect = width / height; camera.fov = width < 700 ? 65 : 57; camera.updateProjectionMatrix(); } }
+  let lastSize = null;
+  function resize() {
+    const { width, height } = host.getBoundingClientRect();
+    if (!width || !height) return;
+    const budget = graphicsBudget(quality, width, height, devicePixelRatio);
+    renderer.setPixelRatio(budget.ratio); renderer.setSize(width, height, false);
+    camera.aspect = width / height; camera.fov = compactCamera(width, height) ? 65 : 57; camera.updateProjectionMatrix(); cameraSnap = true;
+    if (sun.shadow.mapSize.x !== budget.shadowSize) { sun.shadow.map?.dispose(); sun.shadow.map = null; sun.shadow.mapSize.set(budget.shadowSize, budget.shadowSize); sun.shadow.needsUpdate = true; }
+    if (lastSize && (Math.abs(lastSize.width - width) > 20 || Math.abs(lastSize.height - height) > 100)) setPaused(true);
+    lastSize = { width, height };
+  }
   const observer = new ResizeObserver(resize); observer.observe(host); resize();
   function render(now) {
     if (!alive) return;
@@ -121,6 +143,14 @@ export async function createDriving(host, onStats, color, signal, options = {}) 
         previous = current;
         current = sim.step({ throttle: inspection ? 0 : +has('KeyW', 'ArrowUp'), reverse: inspection ? 0 : +has('KeyS', 'ArrowDown'), steer: +has('KeyD', 'ArrowRight') - +has('KeyA', 'ArrowLeft'), brake: inspection ? 1 : +has('KeyB'), handbrake: !inspection && has('Space') });
         accumulator -= STEP;
+        if (journey && !inspection) {
+          const phase = journey.phase;
+          journey = updateJourney(journey, previous, current, STEP);
+          if (journey.phase !== phase && journeyLocked(journey)) {
+            if (journey.phase === 'complete') { try { journey.saved = saveJourney(window.localStorage); } catch { journey.saved = false; } }
+            clearInput(); accumulator = 0; audio.setPaused(true); cameraSnap = true; break;
+          }
+        }
         if (story) {
           story = updateStory(story, previous, current, STEP);
           if (story.phase === 'complete') {
@@ -143,8 +173,16 @@ export async function createDriving(host, onStats, color, signal, options = {}) 
     if (inspection && !locked()) {
       const offset = new THREE.Vector3(-6, 3.6, 7.5).applyQuaternion(oldQ);
       camera.position.copy(pos).add(offset); camera.lookAt(pos.x, pos.y + .4, pos.z);
-      camera.fov = host.clientWidth < 700 ? 64 : 42; camera.updateProjectionMatrix();
+      camera.fov = compactCamera(host.clientWidth, host.clientHeight) ? 64 : 42; camera.updateProjectionMatrix();
       cameraMetrics = { distance: offset.length(), fov: camera.fov }; cameraSnap = true;
+    } else if (journeyLocked(journey)) {
+      // Only a fully stopped car enters the arrival shot; never seize a driving camera.
+      const atSignal = journey.phase === 'signal';
+      const target = atSignal ? new THREE.Vector3((pos.x + SIGNAL_STATION.x) / 2, 2.2, (pos.z + SIGNAL_STATION.z) / 2) : pos.clone().add(new THREE.Vector3(0, .7, 0));
+      const portrait = host.clientWidth < host.clientHeight;
+      camera.position.copy(target).add(atSignal ? new THREE.Vector3(-28, 24, -36).multiplyScalar(portrait ? 1.35 : 1) : new THREE.Vector3(-11, 5.8, -13));
+      // Reserve the lower portrait area for text, not the subject of the shot.
+      camera.lookAt(target.x, target.y - (portrait ? 6 : 0), target.z); camera.fov = portrait ? 65 : 50; camera.updateProjectionMatrix(); cameraSnap = true;
     } else if (locked()) {
       const shot = story.phase === 'complete' ? 1 : Math.min(2, Math.floor(story.introTime / 5));
       const moving = !motionQuery.matches && options.motion !== false;
@@ -153,27 +191,30 @@ export async function createDriving(host, onStats, color, signal, options = {}) 
       // Arrival is filmed from the road side: the sea-side shelter roof must not occlude the GT.
       const offset = story.phase === 'complete' ? [6, 4.2, 7] : offsets[shot];
       camera.position.copy(pos).add(new THREE.Vector3(...offset));
-      camera.lookAt(pos.x, pos.y + .5, pos.z); camera.fov = host.clientWidth < 700 ? 65 : 50; camera.updateProjectionMatrix();
+      camera.lookAt(pos.x, pos.y + .5, pos.z); camera.fov = compactCamera(host.clientWidth, host.clientHeight) ? 65 : 50; camera.updateProjectionMatrix();
       cameraSnap = true;
-    } else { cameraMetrics = chase.update(pos, forward, current.kmh, dt, { compact: host.clientWidth < 700, snap: cameraSnap, motion: !motionQuery.matches }); cameraSnap = false; }
+    } else { cameraMetrics = chase.update(pos, forward, current.kmh, dt, { compact: compactCamera(host.clientWidth, host.clientHeight), snap: cameraSnap, motion: !motionQuery.matches && options.motion !== false }); cameraSnap = false; }
     publicRoad?.setDestination(story?.phase === 'drive');
     audio.update(current, inspection ? 0 : +has('KeyW', 'ArrowUp'));
-    harborSector.update(paused ? 0 : dt, !motionQuery.matches);
+    harborSector.update(paused ? 0 : dt, !motionQuery.matches && options.motion !== false);
+    station?.setConfirmed(journey?.phase === 'signal' || journey?.phase === 'return' || journey?.phase === 'complete');
     sun.position.copy(pos).add(sunOffset); sun.target.position.copy(pos);
     renderer.render(scene, camera);
     publish += dt; if (publish >= .1) { publish = 0; report(); }
     frame = requestAnimationFrame(render);
   }
   audio.setPaused(locked()); renderer.domElement.focus({ preventScroll: true }); frame = requestAnimationFrame(render);
-  return { reset, setPaused, skipIntro, recoverRoad, setInspection,
-    async setSound(enabled) { await audio.setEnabled(enabled); if (alive) { report(); renderer.domElement.focus({ preventScroll: true }); } },
+  return { reset, setPaused, skipIntro, recoverRoad, setInspection, advanceJourney,
+    clearInput,
+    setQuality(value) { quality = value === 'light' ? 'light' : 'standard'; resize(); report(); },
+    async setSound(enabled) { await audio.setEnabled(enabled); if (alive) { report(); if (!paused) renderer.domElement.focus({ preventScroll: true }); } },
     setVolume(value) { audio.setVolume(value); report(); },
-    setInput(code, down) { if (!paused && !locked() && down) touches.add(code); else touches.delete(code); },
+    setInput(code, down, pointerId = code) { input.pointer(pointerId, code, !paused && !locked() && down); },
     dispose() {
       alive = false; cancelAnimationFrame(frame); clearInput(); audio.dispose(); observer.disconnect();
       window.removeEventListener('keydown', keydown); window.removeEventListener('keyup', keyup); window.removeEventListener('blur', blur); document.removeEventListener('visibilitychange', visibility);
       const geometry = new Set(), materials = new Set(); scene.traverse(o => { if (o.geometry) geometry.add(o.geometry); if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => materials.add(m)); });
-      geometry.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); details?.texture.dispose(); harborSector.dispose(); publicRoad?.dispose(); environment.dispose(); renderer.dispose(); renderer.domElement.remove(); sim.dispose();
+      geometry.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); details?.texture.dispose(); harborSector.dispose(); publicRoad?.dispose(); station?.dispose(); environment.dispose(); renderer.dispose(); renderer.domElement.remove(); sim.dispose();
     },
   };
 }

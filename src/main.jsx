@@ -4,6 +4,7 @@ import "./styles.css";
 import { createGarage } from './garage/createGarage.js';
 import { DEFAULT_PREFERENCES, PAINT_COLORS, loadPreferences, savePreferences } from './garage/preferences.js';
 import { loadStory } from './driving/story.js';
+import { loadJourney } from './driving/journey.js';
 
 function initialPreferences() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -13,7 +14,7 @@ function initialPreferences() {
 
 const DrivingMode = lazy(() => import('./driving/DrivingMode.jsx'));
 
-function GaragePrototype({ onDrive }) {
+function GaragePrototype({ onDrive, journeyComplete = false }) {
   const host = useRef(null), garage = useRef(null);
   const [error, setError] = useState('');
   const [preferences, setPreferences] = useState(initialPreferences);
@@ -24,6 +25,7 @@ function GaragePrototype({ onDrive }) {
   const [view, setView] = useState('garage');
   const [stats, setStats] = useState(null);
   const [firstCallComplete] = useState(() => { try { return loadStory(window.localStorage); } catch { return false; } });
+  const [signalComplete] = useState(() => { try { return journeyComplete || loadJourney(window.localStorage); } catch { return journeyComplete; } });
   useEffect(() => {
     try { garage.current = createGarage(host.current, setStats, initial.current); }
     catch (e) { console.error(e); setError('3D 화면을 시작하지 못했습니다. WebGL을 지원하는 브라우저에서 다시 열어 주세요.'); }
@@ -53,10 +55,12 @@ function GaragePrototype({ onDrive }) {
       <aside className="build-note" hidden={photoMode}><span className="live-dot" />자체 제작 차고<span>외부 모델·텍스처 0개</span></aside>
       <button className="photo-toggle" aria-pressed={photoMode} disabled={!!error} onClick={() => { setPhotoMode(!photoMode); setEnvironmentOpen(false); }}>{photoMode ? '차고로 돌아가기 · Esc' : '포토 모드'}</button>
       <section className="garage-story" hidden={photoMode} aria-label="이야기 의뢰">
-        <span className="eyebrow">{firstCallComplete ? '초대장 도착 · 프롤로그 완료' : 'PROLOGUE / 01'}</span>
-        <h2>{firstCallComplete ? '해안 주행 클럽의 초대' : '첫 번째 호출'}</h2>
-        <p>{firstCallComplete ? '첫 만남을 마쳤습니다. 다음 장은 제작 예정입니다.' : '항구 라디오에서 연락이 왔습니다. 방파제 쉼터로 첫 시운전을 떠나세요.'}</p>
-        <button className="story-start" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'coast', motion: preferences.motion })}>해안도로 드라이브 →</button>
+        <span className="eyebrow">{signalComplete ? 'WORKSHOP LOG / 운행 기록 01' : 'COASTAL STORY / 01'}</span>
+        <h2>{signalComplete ? '첫 해안 운행을 마쳤습니다' : '돌아오는 불빛'}</h2>
+        <p>{signalComplete ? '바람곶 신호 확인 · 항구 귀환 완료. 다시 켜진 불빛의 이야기가 정비 일지에 남았습니다.' : '옛 신호소에 다시 불이 들어왔습니다. 해안길을 따라 확인하고, 정비소로 돌아오세요. 약 3–5분.'}</p>
+        {firstCallComplete && <p>프롤로그 기록 · 해안 주행 클럽의 초대</p>}
+        <button className="story-start" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'journey', motion: preferences.motion })}>{signalComplete ? '해안 운행 다시 시작 →' : '돌아오는 불빛 시작 →'}</button>
+        <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'coast', motion: preferences.motion })}>해안도로 드라이브 →</button>
         <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'story', motion: preferences.motion })}>{firstCallComplete ? '프롤로그 다시 보기 →' : '첫 번째 호출 시작 →'}</button>
         <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'test' })}>GT 테스트 주행 →</button>
       </section>
@@ -90,7 +94,8 @@ function GaragePrototype({ onDrive }) {
 
 function App() {
   const [drive, setDrive] = useState(null);
-  return drive ? <Suspense fallback={<div className="drive-message">주행 모듈 준비 중…</div>}><DrivingMode {...drive} onExit={() => setDrive(null)} /></Suspense> : <GaragePrototype onDrive={setDrive} />;
+  const [journeyComplete, setJourneyComplete] = useState(false);
+  return drive ? <Suspense fallback={<div className="drive-message">주행 모듈 준비 중…</div>}><DrivingMode {...drive} onExit={result => { if (result?.journeyComplete) setJourneyComplete(true); setDrive(null); }} /></Suspense> : <GaragePrototype onDrive={setDrive} journeyComplete={journeyComplete} />;
 }
 
 createRoot(document.getElementById("root")).render(
