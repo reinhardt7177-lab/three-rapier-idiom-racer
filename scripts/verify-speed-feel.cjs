@@ -5,7 +5,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { openMenu, resume, exitDrive, touchOn } = require('./drive-ui.cjs');
 (async () => {
-  const output = path.resolve('artifacts/speed-feel'); await fs.mkdir(output, { recursive: true });
+  const output = path.resolve(process.env.GARAGE_ARTIFACT_ROOT || 'artifacts','speed-feel'); await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath: process.env.GARAGE_BROWSER_PATH, args: ['--enable-unsafe-swiftshader'] });
   const errors = [];
   try {

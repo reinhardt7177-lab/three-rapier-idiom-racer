@@ -45,6 +45,34 @@ test('completion storage is scoped, validated, and failures do not throw', () =>
   m.set(JOURNEY_KEY, '{bad'); assert.equal(loadJourney(storage), false);
   assert.equal(saveJourney({ setItem() { throw Error('blocked'); } }), false); assert.equal(loadJourney(null), false);
 });
+test('journey storage preserves other-version and route-tagged records and refuses unreadable storage', () => {
+  for (const changed of [{ version: 2 }, { version: 0 }, { route: 'future-route' }]) {
+    const raw = JSON.stringify({ version: 1, signalRunComplete: true, ...changed, progress: ['keep'] });
+    let stored = raw, writes = 0;
+    const storage = { getItem: () => stored, setItem(key, value) { stored = value; writes++; } };
+    assert.equal(loadJourney(storage), false);
+    assert.equal(saveJourney(storage), false);
+    assert.equal(stored, raw);
+    assert.equal(writes, 0);
+  }
+  let writes = 0;
+  const unreadable = { getItem() { throw Error('read denied'); }, setItem() { writes++; } };
+  assert.equal(saveJourney(unreadable), false);
+  assert.equal(writes, 0);
+});
+test('journey save success requires read-back and preserves an existing completed record without rewriting', () => {
+  const silent = { getItem: () => null, setItem() {} };
+  assert.equal(saveJourney(silent), false);
+  let reads = 0;
+  const unreadableAfterWrite = { getItem() { if (reads++) throw Error('read-back denied'); return null; }, setItem() {} };
+  assert.equal(saveJourney(unreadableAfterWrite), false);
+  const raw = JSON.stringify({ version: 1, signalRunComplete: true, note: 'keep' });
+  let writes = 0;
+  const completed = { getItem: () => raw, setItem() { writes++; throw Error('write denied'); } };
+  assert.equal(saveJourney(completed), true);
+  assert.equal(writes, 0);
+  assert.equal(completed.getItem(JOURNEY_KEY), raw);
+});
 test('signal station platform clears road shoulders and the drivable turnaround', () => {
   for (let x = -7.7; x <= 7.7; x += .7) for (let z = -6.7; z <= 6.7; z += .7) {
     const p = { x: SIGNAL_STATION.x + x, z: SIGNAL_STATION.z + z }, near = nearestRoad(p);

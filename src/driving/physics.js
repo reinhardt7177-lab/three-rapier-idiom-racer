@@ -3,6 +3,7 @@ import { harborWallColliders, harborPavementColliders } from './harborSectorSpec
 import { COAST_SURFACES, COAST_BARRIERS } from './coastRoute.js';
 import { GT_SPEC } from '../vehicleSpec.js';
 import { steeringLimit, updateSteering, wheelSteering } from './steering.js';
+import { createArcadeAction } from './arcadeAction.js';
 
 let ready;
 export function initPhysics() { return ready ||= RAPIER.init(); }
@@ -17,7 +18,9 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 export function forwardOf(q) { return { x: 2 * (q.x * q.z + q.w * q.y), y: 2 * (q.y * q.z - q.w * q.x), z: 1 - 2 * (q.x * q.x + q.y * q.y) }; }
 
 // Metres, seconds, kilograms. Rendering never writes the dynamic body's transform.
-export function createVehiclePhysics({ barriers = true, harbor = false, coast = false, start = { x: 0, y: .8, z: -720 } } = {}) {
+export function createVehiclePhysics({ barriers = true, harbor = false, coast = false, arcade = false, start = { x: 0, y: .8, z: -720 } } = {}) {
+  const actionController=arcade?createArcadeAction():null;
+  let action=arcade?{charge:100,grip:1,drifting:false,active:false,power:0}:null;
   const world = new RAPIER.World({ x: 0, y: -9.81, z: 0 });
   world.timestep = STEP; world.numSolverIterations = 8;
   if (coast) {
@@ -47,7 +50,7 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     controller.setWheelFrictionSlip(i, 2.3);
     controller.setWheelSideFrictionStiffness(i, 1);
   }
-  let steer = 0, steerInput = 0, peakKmh = 0, elapsed = 0, brake = 0, drifting = false;
+  let steer = 0, steerInput = 0, peakKmh = 0, elapsed = 0, brake = 0, drifting = false, drive = 0, handbrake = false;
   // Populate scene queries before the first wheel cast.
   world.step();
   function snapshot() {
@@ -55,9 +58,10 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     const speed = v.x * f.x + v.y * f.y + v.z * f.z;
     const kmh = Math.hypot(v.x, v.z) * 3.6;
     const contacts = connections.reduce((n, _, i) => n + Number(controller.wheelIsInContact(i)), 0);
-    return { position: { ...p }, rotation: { ...q }, velocity: { ...v }, speed, kmh, peakKmh, elapsed, steer, steerInput, steeringLimit: steeringLimit(Math.abs(speed)), brake, drifting, contacts,
+    return { position: { ...p }, rotation: { ...q }, velocity: { ...v }, angularVelocity: { ...body.angvel() }, speed, kmh, peakKmh, elapsed, steer, steerInput, steeringLimit: steeringLimit(Math.abs(speed)), brake, drifting, drive, handbrake, contacts,
+      action:action?{...action}:null,
       gear: speed < -.25 ? 'R' : kmh < 1 ? 'N' : String(Math.min(6, 1 + Math.floor(kmh / 42))),
-      wheels: connections.map((c, i) => ({ y: VEHICLE.modelOffset + c.y - (controller.wheelSuspensionLength(i) ?? .34), steering: controller.wheelSteering(i) || 0, rotation: controller.wheelRotation(i) || 0 })),
+      wheels: connections.map((c, i) => ({ y: VEHICLE.modelOffset + c.y - (controller.wheelSuspensionLength(i) ?? .34), steering: controller.wheelSteering(i) || 0, rotation: controller.wheelRotation(i) || 0, contact: !!controller.wheelIsInContact(i), point: controller.wheelIsInContact(i) ? { ...controller.wheelContactPoint(i) } : null, normal: controller.wheelIsInContact(i) ? { ...controller.wheelContactNormal(i) } : null })),
     };
   }
   function step(input = {}) {
@@ -65,27 +69,28 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     const speed = v.x * f.x + v.y * f.y + v.z * f.z, abs = Math.abs(speed);
     const throttle = clamp(Number(input.throttle) || 0, 0, 1), reverse = clamp(Number(input.reverse) || 0, 0, 1);
     brake = clamp(Number(input.brake) || 0, 0, 1);
-    let drive = 0;
+    drive = 0; handbrake = !!input.handbrake;
     // S/down is brake while travelling forward, then reverse at walking speed.
     if (throttle && speed < -.5) brake = Math.max(brake, throttle);
     else if (reverse && speed > .5) brake = Math.max(brake, reverse);
     else if (!brake) drive = throttle - reverse;
-    const cap = drive >= 0 ? VEHICLE.maxKmh / 3.6 : VEHICLE.reverseKmh / 3.6;
+    if(actionController)action=actionController.step({speed,lateral:v.x*f.z-v.z*f.x,contacts:connections.reduce((n,_,i)=>n+Number(controller.wheelIsInContact(i)),0),throttle,brake,reverse,handbrake,boost:input.boost},STEP);
+    const cap = drive >= 0 ? (action?.active?280:VEHICLE.maxKmh) / 3.6 : VEHICLE.reverseKmh / 3.6;
     const taper = clamp((cap - abs) / (drive >= 0 ? 8 : 2), 0, 1);
-    const force = drive * (drive >= 0 ? 12500 / (1 + abs * .012) : 5000) * taper;
+    const force = (drive * (drive >= 0 ? 12500 / (1 + abs * .012) : 5000)+(action?.power||0)*7000) * taper;
     // Smooth the rack input before applying the current speed envelope: accelerating
     // cannot leave a stale low-speed angle on the tyres. No artificial yaw impulse.
     steerInput = updateSteering(steerInput, input.steer, STEP);
     steer = steerInput * steeringLimit(abs);
     const angles = wheelSteering(steer);
-    drifting = !!input.handbrake && abs > 3;
+    drifting = action? action.drifting : !!input.handbrake && abs > 3;
     for (let i = 0; i < 4; i++) {
       const front = i % 2 === 1;
       controller.setWheelSteering(i, angles[i]);
       controller.setWheelEngineForce(i, force / 4);
       controller.setWheelBrake(i, brake * 14000 * STEP / 4 + (!front && input.handbrake ? 2200 * STEP : 0) + (drive === 0 && abs < .2 ? 5 : 0));
-      controller.setWheelFrictionSlip(i, !front && drifting ? .7 : 2.3);
-      controller.setWheelSideFrictionStiffness(i, !front && drifting ? .3 : 1);
+      controller.setWheelFrictionSlip(i, !front && action ? 2.3*action.grip : !front && drifting ? .7 : 2.3);
+      controller.setWheelSideFrictionStiffness(i, !front && action ? action.grip : !front && drifting ? .3 : 1);
     }
     body.resetForces(true);
     const drag = .42 * abs * abs + (abs > .2 ? 150 : 0);
@@ -96,9 +101,10 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     return state;
   }
   function reset(position = start, yaw = 0) {
+    if(actionController){actionController.reset();action={charge:100,grip:1,drifting:false,active:false,power:0};}
     body.setTranslation(position, true); body.setRotation({ x: 0, y: Math.sin(yaw / 2), z: 0, w: Math.cos(yaw / 2) }, true);
     body.setLinvel({ x: 0, y: 0, z: 0 }, true); body.setAngvel({ x: 0, y: 0, z: 0 }, true); body.resetForces(true); body.resetTorques(true);
-    steer = 0; steerInput = 0; peakKmh = 0; elapsed = 0; brake = 0; drifting = false;
+    steer = 0; steerInput = 0; peakKmh = 0; elapsed = 0; brake = 0; drifting = false; drive = 0; handbrake = false;
     for (let i = 0; i < 4; i++) { controller.setWheelEngineForce(i, 0); controller.setWheelBrake(i, 0); controller.setWheelSteering(i, 0); controller.setWheelFrictionSlip(i, 2.3); controller.setWheelSideFrictionStiffness(i, 1); }
     world.step();
   }

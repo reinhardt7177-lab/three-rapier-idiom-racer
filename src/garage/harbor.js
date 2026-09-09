@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import { box, rod, mesh, canvasMap, randomSeed, concreteMap } from './procedural.js';
+import { BEACH } from '../scenery/beachPalette.js';
 
 export function createHarbor() {
   const root = new THREE.Group(); root.name = 'harbor-exterior';
-  const steel = new THREE.MeshStandardMaterial({ color: '#3d514a', roughness: .8, metalness: .35 });
-  const stone = new THREE.MeshStandardMaterial({ color: '#778476', map: concreteMap(), roughness: .96 });
-  const rust = new THREE.MeshStandardMaterial({ color: '#947352', roughness: .77, metalness: .35 });
+  const steel = new THREE.MeshStandardMaterial({ color: BEACH.steel, roughness: .8, metalness: .25 });
+  const stone = new THREE.MeshStandardMaterial({ color: BEACH.ivory, map: concreteMap(), roughness: .96 });
+  const rust = new THREE.MeshStandardMaterial({ color: BEACH.coral, roughness: .77, metalness: .2 });
   const rope = new THREE.MeshStandardMaterial({ color: '#9c936f', roughness: 1 });
   const rng = randomSeed(281);
   box(root, [10, .52, 5.8], stone, [2, -.29, -7.6]);
@@ -20,14 +21,14 @@ export function createHarbor() {
     mesh(root, new THREE.TubeGeometry(curve, 10, .024, 4, false), rope);
   }
   const waterTexture = canvasMap((ctx, size) => {
-    ctx.fillStyle = '#467b82'; ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = BEACH.sea; ctx.fillRect(0, 0, size, size);
     for (let i = 0; i < 1800; i++) {
       ctx.fillStyle = `rgba(178,210,189,${rng() * .12})`;
       ctx.fillRect(rng() * size, rng() * size, rng() * 45 + 4, .5 + rng());
     }
   });
   waterTexture.wrapS = waterTexture.wrapT = THREE.RepeatWrapping; waterTexture.repeat.set(5, 6);
-  const water = mesh(root, new THREE.PlaneGeometry(90, 70), new THREE.MeshStandardMaterial({ map: waterTexture, color: '#a0c4c0', roughness: .38, metalness: .15 }), 0, -.38, -44.5);
+  const water = mesh(root, new THREE.PlaneGeometry(160, 110), new THREE.MeshStandardMaterial({ map: waterTexture, roughness: .55, metalness: 0 }), 0, -.38, -64.5);
   water.rotation.x = -Math.PI / 2; water.castShadow = false;
   // A small distant quay carries the crane; it is scenery, not a traversable map.
   box(root, [4, .48, 5.6], stone, [-4.8, -.28, -10.5]);
@@ -44,7 +45,7 @@ export function createHarbor() {
   const hook = mesh(crane, new THREE.TorusGeometry(.14, .035, 6, 12, Math.PI * 1.5), rust, -3.4, 3.46, 0);
   hook.rotation.z = .6;
   box(crane, [1.3, .85, 1], steel, [.2, 6.6, 0]);
-  const containerColors = ['#69765b', '#77604d', '#4b7370'];
+  const containerColors = [BEACH.mint, BEACH.coral, BEACH.blue];
   for (let i = 0; i < 3; i++) {
     const mat = new THREE.MeshStandardMaterial({ color: containerColors[i], roughness: .82, metalness: .2 });
     const x = -6.1 + i * 1.25, z = -7.5;
@@ -56,7 +57,7 @@ export function createHarbor() {
 
 export function createShutter(parent, steel, edge) {
   const group = new THREE.Group(); group.name = 'working-shutter'; group.userData.dynamic = true; parent.add(group);
-  const slatMaterial = new THREE.MeshStandardMaterial({ color: '#53675d', metalness: .48, roughness: .65 });
+  const slatMaterial = new THREE.MeshStandardMaterial({ color: BEACH.mint, metalness: .28, roughness: .65 });
   const width = 3.68, center = 3.25, top = 3.37, z = -4.27;
   for (const x of [1.33, 5.17]) {
     box(group, [.2, 3.65, .42], steel, [x, 1.78, z]);

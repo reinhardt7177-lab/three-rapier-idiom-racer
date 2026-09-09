@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "check": "node --test scripts/preferences.test.mjs scripts/hud.test.mjs scripts/vehicle.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs scripts/story.test.mjs scripts/coast.test.mjs scripts/journey.test.mjs scripts/social.test.mjs && npm run build",
+    "check": "node --test scripts/preferences.test.mjs scripts/hud.test.mjs scripts/vehicle.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs scripts/story.test.mjs scripts/coast.test.mjs scripts/journey.test.mjs scripts/social.test.mjs scripts/gt-design.test.mjs scripts/sprint.test.mjs scripts/beach.test.mjs scripts/feedback.test.mjs scripts/campaign.test.mjs scripts/race-safety.test.mjs scripts/render-resources.test.mjs scripts/ghost.test.mjs scripts/arcade.test.mjs scripts/rival.test.mjs scripts/duel-readout.test.mjs && npm run build",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {

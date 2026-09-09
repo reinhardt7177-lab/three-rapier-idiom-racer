@@ -5,7 +5,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { openMenu, resume, resetDrive, inspectDrive, exitDrive } = require('./drive-ui.cjs');
 (async () => {
-  const output = path.resolve('artifacts/tablet-hud'); await fs.mkdir(output, { recursive: true });
+  const output = path.resolve(process.env.GARAGE_ARTIFACT_ROOT || 'artifacts','tablet-hud'); await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath: process.env.GARAGE_BROWSER_PATH, args: ['--enable-unsafe-swiftshader'] });
   const errors = [], failures = [], layouts = [], checks = [];
   let page;
@@ -19,17 +19,27 @@ const { openMenu, resume, resetDrive, inspectDrive, exitDrive } = require('./dri
     const screenshot = name => page.screenshot({ path: path.join(output,name+'.jpg'), type:'jpeg',quality:72,scale:'css' });
     assert.equal((await read()).quality,'light'); assert.equal((await read()).shadow,1024); assert.ok((await read()).ratio <= 1);
     for (const [width,height] of [[1280,800],[800,1280],[1024,600],[600,960],[390,844],[640,400]]) {
-      await page.setViewportSize({width,height}); await page.waitForTimeout(400); await resume(page); await page.waitForTimeout(350);
+      await page.setViewportSize({width,height});
+      // Wait for the WebGL resize (not only the browser viewport). A delayed
+      // ResizeObserver correctly opens the safety pause, even after 400ms.
+      await page.waitForFunction(({width,height})=>{const c=document.querySelector('canvas');return c&&Math.abs(c.clientWidth-width)<2&&Math.abs(c.clientHeight-height)<2;},{width,height});
+      await page.waitForTimeout(250);await resume(page);
+      await page.getByRole('button',{name:'주행 사운드 켜기',exact:true}).waitFor({state:'visible'});
       const layout = await page.evaluate(() => {
         const zone = {left:innerWidth*.25,right:innerWidth*.75,top:innerHeight*.24,bottom:innerHeight*.8};
         const overlaps = [...document.querySelectorAll('[data-driving-overlay]')].filter(e=>{
           const b=e.getBoundingClientRect(); return b.width && b.height && getComputedStyle(e).display!=='none' && b.left<zone.right && b.right>zone.left && b.top<zone.bottom && b.bottom>zone.top;
         }).map(e=>e.className);
-        const buttons=[...document.querySelectorAll('.driving-controls button,.pause-trigger')].filter(e=>e.getBoundingClientRect().width).map(e=>{const b=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent,w:b.width,h:b.height,left:b.left,right:b.right,bottom:b.bottom};});
+        const buttons=[...document.querySelectorAll('.driving-controls button,.pause-trigger,.sound-trigger')].filter(e=>e.getBoundingClientRect().width).map(e=>{const b=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent,w:b.width,h:b.height,left:b.left,right:b.right,top:b.top,bottom:b.bottom};});
         return {width:innerWidth,height:innerHeight,layout:document.querySelector('.driving-shell').dataset.layout,overlaps,buttons,overflow:document.documentElement.scrollWidth>innerWidth};
       });
       assert.deepEqual(layout.overlaps,[],'protected road corridor'); assert.equal(layout.overflow,false);
       assert.ok(layout.buttons.every(b=>b.w>=48 && b.h>=48 && b.left>=0 && b.right<=width && b.bottom<=height),'touch targets contained and large');
+      assert.equal(layout.buttons.filter(b=>b.label==='주행 사운드 켜기').length,1,'sound control included in every touch layout');
+      for (let i=0;i<layout.buttons.length;i++) for(let j=i+1;j<layout.buttons.length;j++) {
+        const a=layout.buttons[i],b=layout.buttons[j];
+        assert.ok(!(a.left<b.right && a.right>b.left && a.top<b.bottom && a.bottom>b.top),`touch controls overlap: ${a.label} / ${b.label}`);
+      }
       assert.equal(await page.getByLabel('그래픽 품질',{exact:true}).count(),0,'settings absent while driving');
       layouts.push(layout); await screenshot(`${width}x${height}`);
     }

@@ -3,19 +3,20 @@ import { Reflector } from 'three/addons/objects/Reflector.js';
 import { box, mesh, rod, randomSeed, concreteMap, labelMap } from './procedural.js';
 import { createShutter } from './harbor.js';
 import { addWorkshopDetails } from './workshopDetails.js';
+import { BEACH } from '../scenery/beachPalette.js';
 
 export function createWorkshop() {
   const root = new THREE.Group(); root.name = 'harbor-workshop';
   const rng = randomSeed(92);
-  const steel = new THREE.MeshStandardMaterial({ color: '#26332f', metalness: .6, roughness: .6 });
-  const edge = new THREE.MeshStandardMaterial({ color: '#6c7060', metalness: .3, roughness: .7 });
-  const timber = new THREE.MeshStandardMaterial({ color: '#887050', roughness: .84 });
-  const rust = new THREE.MeshStandardMaterial({ color: '#946442', metalness: .45, roughness: .76 });
+  const steel = new THREE.MeshStandardMaterial({ color: BEACH.steel, metalness: .35, roughness: .65 });
+  const edge = new THREE.MeshStandardMaterial({ color: BEACH.ivory, metalness: .12, roughness: .7 });
+  const timber = new THREE.MeshStandardMaterial({ color: '#c4a67d', roughness: .84 });
+  const rust = new THREE.MeshStandardMaterial({ color: BEACH.coral, metalness: .2, roughness: .76 });
   const rubber = new THREE.MeshStandardMaterial({ color: '#1c2221', roughness: .95 });
   const yellow = new THREE.MeshStandardMaterial({ color: '#c9b36b', roughness: .8 });
   const floorTexture = concreteMap();
-  const floorMaterial = new THREE.MeshStandardMaterial({ map: floorTexture, color: '#a4aaa0', roughness: .82 });
-  const mortar = new THREE.MeshStandardMaterial({ color: '#323b34', roughness: 1 });
+  const floorMaterial = new THREE.MeshStandardMaterial({ map: floorTexture, color: '#bfc1b5', roughness: .82 });
+  const mortar = new THREE.MeshStandardMaterial({ color: '#aaa99a', roughness: 1 });
 
   box(root, [13.4, .46, 10.3], steel, [0, -.27, 0]);
   const tileMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(.976, .045, .976), floorMaterial, 130);
@@ -33,14 +34,14 @@ export function createWorkshop() {
   box(root, [1.08, 3.7, .22], mortar, [5.76, 1.82, -4.65]);
   box(root, [.22, 3.7, 9.45], mortar, [-6.4, 1.82, -.1]);
   const brickGeo = new THREE.BoxGeometry(.55, .22, .32);
-  const brickMat = new THREE.MeshStandardMaterial({ color: '#697971', roughness: .91 });
+  const brickMat = new THREE.MeshStandardMaterial({ color: '#dfd6bd', roughness: .91 });
   const bricks = new THREE.InstancedMesh(brickGeo, brickMat, 1600);
   let count = 0;
   const addBrick = (x, y, z, angle) => {
     dummy.position.set(x, y, z); dummy.rotation.set(0, angle, 0);
     dummy.scale.set(.93 + rng() * .1, .92 + rng() * .1, .92 + rng() * .14); dummy.updateMatrix();
     bricks.setMatrixAt(count, dummy.matrix);
-    bricks.setColorAt(count++, new THREE.Color().setHSL(.13 + rng() * .035, .09 + rng() * .09, .23 + rng() * .14));
+    bricks.setColorAt(count++, new THREE.Color().setHSL(.12 + rng() * .025, .12 + rng() * .06, .5 + rng() * .22));
   };
   for (let row = 0; row < 16; row++) {
     for (let col = 0; col < 23; col++) {
@@ -88,7 +89,7 @@ export function createWorkshop() {
     const handle = box(root, [.085, .15, .035], i % 3 ? steel : rust, [x, 1.8, -3.93]);
     handle.rotation.z = -.08 + rng() * .16;
   }
-  const redBox = new THREE.MeshStandardMaterial({ color: '#844633', roughness: .6, metalness: .36 });
+  const redBox = new THREE.MeshStandardMaterial({ color: '#de806d', roughness: .6, metalness: .25 });
   box(root, [1.2, .77, .85], redBox, [-3.8, .4, -3.27]);
   for (let i = 0; i < 4; i++) {
     box(root, [1.1, .014, .025], darkMaterial(), [-3.8, .17 + i * .165, -2.825]);

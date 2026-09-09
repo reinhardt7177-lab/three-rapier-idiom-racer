@@ -5,13 +5,16 @@ import { createHarborSector } from './harborSector.js';
 import { createPublicRoad } from './publicRoad.js';
 import { createRoadDetails } from './roadDetails.js';
 import { COAST_ROADS, COAST_PADS, COAST_BARRIERS, ribbonData, padData, offsetPoint, nearestRoad, FORK } from './coastRoute.js';
+import { BEACH } from '../scenery/beachPalette.js';
+import { createPalms, addBeachUmbrella } from '../scenery/beachScenery.js';
+import { coastPalmLayout, beachPropClear } from './beachLayout.js';
 
 export function createCoastWorld() {
   const root = new THREE.Group(); root.name = 'coastal-public-road-network';
   const textures = [], rng = randomSeed(9626);
   const mat = (color, roughness = .9, metalness = 0) => new THREE.MeshStandardMaterial({ color, roughness, metalness });
-  const stone = mat('#8e9582'), cream = mat('#d0c5a3'), steel = mat('#33483f', .65, .45), copper = mat('#8e664e', .7, .3), green = mat('#657563');
-  const land = mat('#566953'), white = mat('#e5dec3'), yellow = mat('#cdb575'), shoulder = mat('#8d9180'), asphalt = mat('#515a53');
+  const stone = mat(BEACH.stone), cream = mat(BEACH.ivory), steel = mat(BEACH.steel, .65, .3), copper = mat('#b58b61', .7, .3), green = mat(BEACH.leaf);
+  const land = mat(BEACH.grass), sand = mat(BEACH.sand), white = mat(BEACH.white), yellow = mat(BEACH.yellow), shoulder = mat(BEACH.shoulder), asphalt = mat(BEACH.asphalt);
   const generated = createRoadDetails(); asphalt.map = generated.texture; asphalt.map.repeat.set(1, 1);
   // The old straight detail meshes are not part of this curved scene.
   generated.root.traverse(o => { o.geometry?.dispose(); if (o.material) o.material.dispose(); });
@@ -22,12 +25,16 @@ export function createCoastWorld() {
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(data.vertices, 3)); g.setAttribute('uv', new THREE.BufferAttribute(data.uv, 2)); g.setIndex(new THREE.BufferAttribute(data.indices, 1)); g.computeVertexNormals();
     const m = mesh(root, g, material); m.name = name; m.castShadow = false; return m;
   }
-  const seaMap = canvasMap((ctx, s) => { ctx.fillStyle = '#4c8078'; ctx.fillRect(0, 0, s, s); for (let i = 0; i < 320; i++) { ctx.fillStyle = '#c0cdae12'; ctx.fillRect(rng() * s, rng() * s, 8 + rng() * 55, .6); } });
+  const seaMap = canvasMap((ctx, s) => { ctx.fillStyle = BEACH.sea; ctx.fillRect(0, 0, s, s); for (let i = 0; i < 320; i++) { ctx.fillStyle = '#c6f5e833'; ctx.fillRect(rng() * s, rng() * s, 8 + rng() * 55, .6); } });
   seaMap.wrapS = seaMap.wrapT = THREE.RepeatWrapping; seaMap.repeat.set(80, 80); textures.push(seaMap);
-  const water = mesh(root, new THREE.PlaneGeometry(2800, 2800), new THREE.MeshStandardMaterial({ map: seaMap, roughness: .4, metalness: .12 }), -350, -.2, -100); water.rotation.x = -Math.PI / 2; water.castShadow = false;
+  const water = mesh(root, new THREE.PlaneGeometry(2800, 2800), new THREE.MeshStandardMaterial({ map: seaMap, roughness: .55, metalness: 0 }), -350, -.2, -100); water.rotation.x = -Math.PI / 2; water.castShadow = false;
   for (const [id, points] of Object.entries(COAST_ROADS)) {
     // Inland terrain is a shaped ribbon, not the old enormous flat runway.
     surface(ribbonData(points, p => -(id === 'harbor' && p.s < 420 ? 150 : 75), p => p.halfWidth + 17, -.06), land, 'coastal-land');
+    if (id === 'harbor') {
+      surface(ribbonData(points, p => p.halfWidth + 5.6, p => p.halfWidth + 52, -.035), sand, 'beach-sand');
+      surface(ribbonData(points, p => p.halfWidth + 52, p => p.halfWidth + 54, -.14), mat(BEACH.foam), 'shoreline');
+    }
     surface(ribbonData(points, p => -p.halfWidth - 2.5, p => p.halfWidth + 2.5), shoulder, 'physical-road-shoulder');
     surface(ribbonData(points, p => -p.halfWidth, p => p.halfWidth, .012), asphalt, 'asphalt-ribbon');
     const paintPoints = points.filter(p => !(id !== 'harbor' && p.s < 40) && !COAST_PADS.some(pad => Math.hypot(p.x - pad.x, p.z - pad.z) < pad.radius - 6));
@@ -85,7 +92,7 @@ export function createCoastWorld() {
       const d = side * (p.halfWidth + 9 + rng() * 16), q = offsetPoint(p, d), near = nearestRoad(q);
       if (near.distance < near.halfWidth + 7 || Math.hypot(q.x - FORK.x, q.z - FORK.z) < 48 || COAST_PADS.some(pad => Math.hypot(q.x - pad.x, q.z - pad.z) < pad.radius + 8)) continue;
       rocks.push([q.x, -.1, q.z, 2 + rng() * 4, 1 + rng() * 2, 2 + rng() * 3, rng() * 6]);
-      if (side < 0 && i % 12 === 0) { trunks.push([q.x, 1.9, q.z, 1, 1, 1, 0]); crowns.push([q.x, 4.4, q.z, 1.1 + rng(), 1.1, 1.1 + rng(), rng() * 6]); }
+      if (side < 0 && i % 12 === 0 && p.id === 'rest') { trunks.push([q.x, 1.9, q.z, 1, 1, 1, 0]); crowns.push([q.x, 4.4, q.z, 1.1 + rng(), 1.1, 1.1 + rng(), rng() * 6]); }
     }
   }
   function instances(geometry, material, entries) {
@@ -98,6 +105,12 @@ export function createCoastWorld() {
   instances(new THREE.IcosahedronGeometry(2, 0), green, crowns);
   const leaves = crowns.flatMap(p => [[p[0] + 1.2, p[1] - .7, p[2] + .7, p[3] * .64, .8, p[5] * .64, p[6]], [p[0] - 1.1, p[1] - .4, p[2] - .5, p[3] * .7, .75, p[5] * .7, p[6]]]);
   instances(new THREE.IcosahedronGeometry(2, 0), mat('#526b54'), leaves);
+  root.add(createPalms(coastPalmLayout()));
+  const umbrellaColors = [mat(BEACH.coral), mat(BEACH.mint)];
+  for (let z = -718, i = 0; z < -410; z += 46, i++) {
+    const q = { x: -35 - i % 2 * 8, z };
+    if (beachPropClear(q, 3)) addBeachUmbrella(root, q.x, q.z, umbrellaColors[i % 2], { ivory: cream });
+  }
   // Human-scale lookout: tiled viewing deck, brass rail, benches and a small beacon.
   const pad = COAST_PADS[0], deckX = pad.x - 11, deckZ = pad.z + 34;
   box(root, [25, .6, 9], stone, [deckX, -.2, deckZ]);

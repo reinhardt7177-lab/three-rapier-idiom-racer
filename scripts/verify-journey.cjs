@@ -9,7 +9,7 @@ const { recoverDrive, resetDrive, exitDrive, touchOn, openMenu, resume } = requi
   const { JOURNEY_HOME } = await import('../src/driving/journey.js');
   const { steeringLimit } = await import('../src/driving/steering.js');
   const blockedStorage = process.env.JOURNEY_BLOCK_STORAGE === '1';
-  const output = path.resolve(blockedStorage ? 'artifacts/signal-journey-storage-blocked' : 'artifacts/signal-journey'); await fs.mkdir(output, { recursive: true });
+  const output = path.resolve(process.env.GARAGE_ARTIFACT_ROOT || 'artifacts',blockedStorage ? 'signal-journey-storage-blocked' : 'signal-journey'); await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ headless: true, executablePath: process.env.GARAGE_BROWSER_PATH, args: ['--enable-unsafe-swiftshader'] });
   const errors = [], failures = [], external = [], shots = new Set();
   try {

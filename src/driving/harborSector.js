@@ -2,18 +2,20 @@ import * as THREE from 'three';
 import { box, rod, mesh, canvasMap, concreteMap, randomSeed } from '../garage/procedural.js';
 import { batchStaticMeshes } from '../garage/batchStatic.js';
 import { HARBOR_SECTOR } from './harborSectorSpec.js';
+import { BEACH } from '../scenery/beachPalette.js';
+import { addDecoFront } from '../scenery/beachScenery.js';
 
 export function createHarborSector() {
   const root = new THREE.Group(); root.name = 'harbor-road-art-slice';
   const textures = [], rng = randomSeed(70925), { start, end, wallX } = HARBOR_SECTOR;
   const material = (color, roughness = .88, metalness = 0) => new THREE.MeshStandardMaterial({ color, roughness, metalness });
-  const masonry = ['#69756a', '#7c8574', '#929580', '#636f65'].map(c => material(c));
-  const cream = material('#c5bea0'), steel = material('#263e39', .55, .45), rust = material('#9a6546', .65, .35);
-  const teal = material('#3c665f', .7, .18), roof = material('#43544b', .8, .28), wood = material('#776e56');
-  const tire = material('#252e2a'), glass = material('#354f50', .28, .28);
+  const masonry = ['#d9d4bc', '#e7dfc7', '#c9ceba', '#dddcc7'].map(c => material(c));
+  const cream = material(BEACH.ivory), steel = material(BEACH.steel, .65, .25), rust = material(BEACH.coral, .8, .12);
+  const teal = material(BEACH.mint, .8, .08), roof = material('#c2d3ce', .8, .18), wood = material('#b39873');
+  const tire = material('#252e2a'), glass = material(BEACH.glass, .32, .18);
   const lamp = new THREE.MeshStandardMaterial({ color: '#ffeac0', emissive: '#ffe1a2', emissiveIntensity: 1.2, roughness: .5 });
   const concrete = concreteMap(); textures.push(concrete);
-  const pavement = material('#a4a38e'); pavement.map = concrete;
+  const pavement = material('#e9ded0'); pavement.map = concrete;
   const transform = new THREE.Object3D();
   function instances(geometry, mat, entries, shadow = true) {
     const m = new THREE.InstancedMesh(geometry, mat, entries.length);
@@ -51,11 +53,11 @@ export function createHarborSector() {
   instances(new THREE.BoxGeometry(1.12, 1.24, .4), steel, pillars);
   // Sea is visible immediately beyond the quay, not hidden under the old 102 m pad.
   const waterMap = canvasMap((ctx, s) => {
-    ctx.fillStyle = '#4c807a'; ctx.fillRect(0, 0, s, s);
+    ctx.fillStyle = BEACH.sea; ctx.fillRect(0, 0, s, s);
     for (let i = 0; i < 280; i++) { ctx.strokeStyle = `rgba(191,218,188,${.025 + rng() * .05})`; ctx.beginPath(); const x = rng() * s, y = rng() * s; ctx.moveTo(x, y); ctx.lineTo(x + 12 + rng() * 65, y + rng() * 2); ctx.stroke(); }
   });
   waterMap.wrapS = waterMap.wrapT = THREE.RepeatWrapping; waterMap.repeat.set(24, 20); textures.push(waterMap);
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(500, end - start), new THREE.MeshStandardMaterial({ map: waterMap, color: '#94afa3', roughness: .38, metalness: .18 }));
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(500, end - start), new THREE.MeshStandardMaterial({ map: waterMap, roughness: .55, metalness: 0 }));
   water.rotation.x = -Math.PI / 2; water.position.set(-266, -.17, (start + end) / 2); water.receiveShadow = true; root.add(water);
   box(root, [1.3, 1.5, end - start], masonry[0], [-15.6, -.6, (start + end) / 2]);
 
@@ -73,6 +75,7 @@ export function createHarborSector() {
   // Small warehouse fronts sit outside the collision wall; road sight lines stay clear.
   for (let n = 0; n < 7; n++) {
     const building = new THREE.Group(), z = start + 24 + n * 52, height = n % 3 === 0 ? 7.5 : 6.4; root.add(building);
+    if (n > 0) { addDecoFront(building, { z, index: n }, { ivory: cream, steel, glass, coral: rust }, textures); batchStaticMeshes(building); continue; }
     box(building, [14, height, 28], masonry[(n + 1) % 4], [23.4, height / 2, z]);
     box(building, [.24, .55, 28.3], cream, [16.3, .36, z]);
     box(building, [.24, .27, 28.5], cream, [16.25, height - .12, z]);
