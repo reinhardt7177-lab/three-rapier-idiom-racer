@@ -5,7 +5,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 (async () => {
-  const output = path.resolve('artifacts/garage-evolution');
+  const output = path.resolve(process.env.GARAGE_ARTIFACT_ROOT || 'artifacts','garage-evolution');
   await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({
     headless: true,

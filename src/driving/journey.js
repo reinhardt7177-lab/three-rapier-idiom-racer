@@ -49,9 +49,25 @@ export function journeyHint(j, snapshot) {
   if (j.gate < 2) return { objective: j.gate === 0 ? '항만대로 출발 · 전망대 방향' : '해안 굽잇길 · 코너 진입 전 감속', speaker: '서진 · 정비소', text: '바다 쪽 난간을 따라가. 굽잇길부터 차로가 줄어드니 속도를 낮춰. 40–60km/h로도 충분해.' };
   return { objective: j.gate === 2 ? '갈림길 우회전 · 바람곶 신호소' : `전망대 회차장 · 2초 정차 ${Math.min(2, j.hold).toFixed(1)}/2`, speaker: '유나 · 항구 라디오', text: '오른쪽 길 끝, 석재 신호소가 보여? 회차장 안에 완전히 멈추면 오래된 불빛의 이야기를 들려줄게.' };
 }
-export function loadJourney(storage) {
-  try { const d = JSON.parse(storage?.getItem(JOURNEY_KEY) || 'null'); return d?.version === 1 && d?.signalRunComplete === true; } catch { return false; }
+function readJourneyStorage(storage) {
+  try {
+    const raw = storage.getItem(JOURNEY_KEY);
+    if (raw == null) return { complete: false, writable: true };
+    let value;
+    try { value = JSON.parse(raw); } catch { return { complete: false, writable: true }; }
+    // This legacy journey schema has no route field; preserve route-tagged or other-version records.
+    const incompatible = value && typeof value === 'object' &&
+      ((value.version !== undefined && value.version !== 1) || value.route !== undefined);
+    return { complete: !incompatible && value?.version === 1 && value?.signalRunComplete === true, writable: !incompatible };
+  } catch { return { complete: false, writable: false }; }
 }
+export function loadJourney(storage) { return readJourneyStorage(storage).complete; }
 export function saveJourney(storage) {
-  try { storage.setItem(JOURNEY_KEY, JSON.stringify({ version: 1, signalRunComplete: true })); return true; } catch { return false; }
+  const stored = readJourneyStorage(storage);
+  if (!stored.writable) return false;
+  if (stored.complete) return true;
+  try {
+    storage.setItem(JOURNEY_KEY, JSON.stringify({ version: 1, signalRunComplete: true }));
+    return loadJourney(storage);
+  } catch { return false; }
 }

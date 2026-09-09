@@ -6,6 +6,9 @@ import { createWorkshop } from './workshop.js';
 import { createHarbor } from './harbor.js';
 import { batchStaticMeshes } from './batchStatic.js';
 import { normalizePreferences } from './preferences.js';
+import { BEACH } from '../scenery/beachPalette.js';
+import { createBeachSky, createPalms } from '../scenery/beachScenery.js';
+import { createSceneDisposer } from '../rendering/sceneResources.js';
 
 export function createGarage(host, onStats, initialPreferences = {}) {
   const initial = normalizePreferences(initialPreferences);
@@ -16,8 +19,9 @@ export function createGarage(host, onStats, initialPreferences = {}) {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.domElement.setAttribute('aria-label', '코드로 제작한 항구 차고 3D 시안');
   host.appendChild(renderer.domElement);
-  const scene = new THREE.Scene(); scene.background = new THREE.Color('#253731');
-  scene.fog = new THREE.Fog('#253731', 33, 100);
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(BEACH.horizon);
+  scene.fog = new THREE.Fog(BEACH.horizon, 60, 150);
+  const sky = createBeachSky(100); scene.add(sky);
   const pmrem = new THREE.PMREMGenerator(renderer);
   const room = new RoomEnvironment(); const environment = pmrem.fromScene(room, .04);
   scene.environment = environment.texture; scene.environmentIntensity = .55; room.dispose(); pmrem.dispose();
@@ -28,18 +32,19 @@ export function createGarage(host, onStats, initialPreferences = {}) {
   controls.minPolarAngle = .4; controls.maxPolarAngle = Math.PI / 2 - .08;
   controls.minAzimuthAngle = -.45; controls.maxAzimuthAngle = 1.45;
 
-  const ambient = new THREE.HemisphereLight('#cedbcc', '#414135', 1.4); scene.add(ambient);
-  const sun = new THREE.DirectionalLight('#ffe0ae', 4.2); sun.position.set(3.8, 7.5, -2.7);
+  const ambient = new THREE.HemisphereLight('#dff3ff', '#b9b191', 1.3); scene.add(ambient);
+  const sun = new THREE.DirectionalLight('#fff0d9', 2.7); sun.position.set(3.8, 7.5, -2.7);
   sun.target.position.set(-1, 0, 1); scene.add(sun, sun.target);
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
   Object.assign(sun.shadow.camera, { left: -11, right: 11, top: 10, bottom: -10, near: .1, far: 32 });
   sun.shadow.normalBias = .025; sun.shadow.bias = -.00012;
   const fill = new THREE.DirectionalLight('#a5caca', 1.0); fill.position.set(4, 4, 7); scene.add(fill);
 
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: '#233a32', roughness: 1 }));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: BEACH.sand, roughness: 1 }));
   floor.rotation.x = -Math.PI / 2; floor.position.y = -.52; floor.receiveShadow = true; scene.add(floor);
   const workshop = createWorkshop(); batchStaticMeshes(workshop.root); scene.add(workshop.root);
   const harbor = createHarbor(); batchStaticMeshes(harbor.root); scene.add(harbor.root);
+  scene.add(createPalms([{ x: -9.5, z: -5.5, height: 7, yaw: .6 }, { x: 9.8, z: -9, height: 8, yaw: 2.9 }]));
   const gt = createGT(); gt.root.position.set(-.1, -.04, .65); scene.add(gt.root);
 
   let targetView = null, motionEnabled = initial.motion, currentView = 'garage';
@@ -81,7 +86,7 @@ export function createGarage(host, onStats, initialPreferences = {}) {
     }
     workshop.shutter.update(dt, !motionEnabled);
     if (motionEnabled) { workshop.details.update(dt); harbor.update(dt); }
-    controls.update(); renderer.render(scene, camera); frames++;
+    controls.update(); sky.position.copy(camera.position); renderer.render(scene, camera); frames++;
     if (frames === 1) statsStart = now;
     if (frames >= 8 && now - statsStart > 1000) {
       onStats?.({ fps: Math.round(frames * 1000 / (now - statsStart)), calls: renderer.info.render.calls });
@@ -96,16 +101,17 @@ export function createGarage(host, onStats, initialPreferences = {}) {
   document.addEventListener('visibilitychange', onVisibility);
 
   function setWarm(enabled) {
-    sun.color.set(enabled ? '#ffe0ae' : '#e4f0ff'); sun.intensity = enabled ? 4.2 : 3;
-    ambient.intensity = enabled ? 1.4 : 1.9;
-    workshop.lamps.forEach(lamp => { lamp.intensity = enabled ? 16 : 0; });
-    workshop.lampMaterial.emissiveIntensity = enabled ? 2 : .1;
+    sun.color.set(enabled ? '#fff0d9' : '#edf5ff'); sun.intensity = enabled ? 2.7 : 2.3;
+    ambient.intensity = enabled ? 1.3 : 1.5;
+    workshop.lamps.forEach(lamp => { lamp.intensity = enabled ? 9 : 0; });
+    workshop.lampMaterial.emissiveIntensity = enabled ? 1.1 : .1;
   }
   gt.setColor(initial.color); workshop.puddle.visible = initial.wet;
   setWarm(initial.warm); workshop.shutter.setOpen(initial.shutterOpen, true);
   controls.enableDamping = motionEnabled;
   frame = requestAnimationFrame(render);
 
+  const disposeResources = createSceneDisposer(scene, { renderTargets: [workshop.puddle.getRenderTarget(), environment] });
   return {
     setColor: gt.setColor,
     setView,
@@ -114,17 +120,9 @@ export function createGarage(host, onStats, initialPreferences = {}) {
     setShutterOpen: enabled => { workshop.shutter.setOpen(enabled, !motionEnabled); },
     setMotion: enabled => { motionEnabled = enabled; controls.enableDamping = enabled; if (!enabled && targetView) setView(currentView || 'garage', true); },
     dispose: () => {
+      if (!active) return;
       active = false; cancelAnimationFrame(frame); document.removeEventListener('visibilitychange', onVisibility); observer.disconnect(); controls.removeEventListener('start', cancelView); controls.dispose();
-      const geometries = new Set(), materials = new Set(), textures = new Set();
-      scene.traverse(object => {
-        if (object.geometry) geometries.add(object.geometry);
-        if (object.material) for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
-          materials.add(material);
-          for (const value of Object.values(material)) if (value?.isTexture) textures.add(value);
-        }
-      });
-      geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose());
-      workshop.puddle.getRenderTarget().dispose(); environment.dispose();
+      disposeResources();
       renderer.dispose(); renderer.domElement.remove();
     },
   };

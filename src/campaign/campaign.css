@@ -1,0 +1,37 @@
+.campaign-board { width: min(900px, calc(100vw - 32px)); max-height: calc(100svh - 32px); margin: auto; padding: 0; overflow: auto; overscroll-behavior: contain; background: #f4f0e4; color: #21444b; border: 1px solid #739a9b; border-radius: 12px; box-shadow: 0 25px 90px #132f4380; }
+.campaign-board::backdrop { background: #123139a6; }
+.campaign-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 22px 26px; border-bottom: 1px solid #cbd6ce; }
+.campaign-heading span,.chapter-number { font-size: 10px; letter-spacing: .13em; color: #397078; }
+.campaign-heading h2 { margin: 7px 0 0; font-size: 26px; font-weight: 650; }
+.campaign-board button { min-height: 48px; min-width: 48px; padding: 10px 17px; border: 1px solid #708f90; border-radius: 5px; background: #fffaf1; color: #23474b; }
+.campaign-board button:focus-visible,.campaign-board select:focus-visible { outline: 3px solid #0d767b; outline-offset: 3px; }
+.campaign-content { display: grid; grid-template-columns: 1.15fr 1fr; }
+.campaign-current { padding: 24px 26px; }
+.campaign-current h3 { font-size: 26px; margin: 9px 0 16px; letter-spacing: -.035em; }
+.campaign-current p { font-size: 13px; line-height: 1.8; }
+.campaign-current blockquote { margin: 18px 0; border-left: 3px solid #b8654c; padding: 8px 14px; color: #435a5b; font-size: 14px; line-height: 1.8; }
+.campaign-current cite { display: block; font-style: normal; margin-top: 7px; font-size: 11px; color: #66777a; }
+.campaign-current dl { font-size: 12px; }
+.campaign-current dl>div { display: grid; grid-template-columns: 65px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px solid #d8ded7; line-height: 1.6; }
+.campaign-current dt { color: #66787a; }.campaign-current dd { margin: 0; }
+.campaign-board .campaign-honesty { font-size: 11px; color: #526c70; line-height: 1.7; }
+.campaign-difficulty { display: grid; gap: 7px; font-size: 12px; margin: 18px 0 12px; }
+.campaign-difficulty select { min-height: 48px; width: 100%; font: inherit; color: #23474b; background: #fffdf7; border: 1px solid #7b9996; padding: 10px; border-radius: 4px; }
+.campaign-board .chapter-launch { width: 100%; background: #245f67; color: #fff6df; border: 0; font-weight: 700; }
+.campaign-license { border-left: 3px solid #2a7773; padding: 10px 12px; background: #e1ece4; }
+.campaign-board .campaign-save-warning { color: #85451f; font-size: 12px; }
+.campaign-chapters { padding: 24px; background: #e7e9dc; border-left: 1px solid #cbd6ce; }
+.campaign-chapters>p:first-child { margin-top: 0; font-size: 11px; letter-spacing: .08em; }
+.campaign-chapters ol { list-style: none; padding: 0; margin: 0; }
+.campaign-chapters li { display: flex; gap: 13px; padding: 15px 0; border-bottom: 1px solid #c8d1c8; }
+.campaign-chapters li>span { font-size: 21px; color: #6c8987; font-variant-numeric: tabular-nums; }
+.campaign-chapters li[aria-current] { color: #15575d; }.campaign-chapters li[aria-current]>span { color: #a85c45; }
+.campaign-chapters h3 { margin: 0; font-size: 14px; }.campaign-chapters li p { margin: 7px 0; font-size: 11px; line-height: 1.6; }.campaign-chapters small { font-size: 10px; color: #526b67; }
+.garage-story .campaign-entry { background: #2b6871; color: #fff4d9; min-height: 48px; margin-bottom: 9px; text-align: left; font-size: 13px; border: 1px solid #c9d8c081; }
+.campaign-entry span { display: block; font-size: 10px; font-weight: normal; margin-top: 6px; color: #d7e7dc; }
+.garage-story .license-card { border-left: 2px solid #d6c086; padding: 7px 10px; margin-bottom: 10px; color: #f0dfaa; }
+.prototype .garage-story { max-height: max(100px, calc(100svh - 315px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.drive-mode .chapter-result-note { background: #2d615330; padding: 8px 12px; border-left: 2px solid #d6c086; }
+@media (max-width: 760px) { .prototype .garage-story { max-height: min(235px, calc(100svh - 180px)); } }
+@media (max-width: 650px) { .campaign-board { width: calc(100vw - 20px); max-height: calc(100svh - 20px); }.campaign-content { grid-template-columns: 1fr; }.campaign-heading,.campaign-current,.campaign-chapters { padding: 18px; }.campaign-current h3 { font-size: 23px; }.campaign-chapters { border-left: 0; border-top: 1px solid #cbd6ce; } }
+@media (max-height: 460px) and (min-width: 651px) { .campaign-heading { padding: 12px 22px; }.campaign-heading h2 { font-size: 21px; } }

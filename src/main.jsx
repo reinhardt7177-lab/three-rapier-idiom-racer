@@ -5,6 +5,10 @@ import { createGarage } from './garage/createGarage.js';
 import { DEFAULT_PREFERENCES, PAINT_COLORS, loadPreferences, savePreferences } from './garage/preferences.js';
 import { loadStory } from './driving/story.js';
 import { loadJourney } from './driving/journey.js';
+import { loadSprint, formatTime } from './driving/sprint.js';
+import { loadCampaign, newCampaign } from './campaign/campaign.js';
+import { CampaignBoard } from './campaign/CampaignBoard.jsx';
+import { DrivingBoundary, DrivingLoading } from './DrivingBoundary.jsx';
 
 function initialPreferences() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -12,9 +16,9 @@ function initialPreferences() {
   catch { return { ...DEFAULT_PREFERENCES, motion: !reduced }; }
 }
 
-const DrivingMode = lazy(() => import('./driving/DrivingMode.jsx'));
+const loadDrivingMode = () => import('./driving/DrivingMode.jsx');
 
-function GaragePrototype({ onDrive, journeyComplete = false }) {
+function GaragePrototype({ onDrive, journeyComplete = false, campaignProfile, campaignSaved }) {
   const host = useRef(null), garage = useRef(null);
   const [error, setError] = useState('');
   const [preferences, setPreferences] = useState(initialPreferences);
@@ -22,10 +26,13 @@ function GaragePrototype({ onDrive, journeyComplete = false }) {
   const [saved, setSaved] = useState(true);
   const [photoMode, setPhotoMode] = useState(false);
   const [environmentOpen, setEnvironmentOpen] = useState(false);
+  const [chapterOpen, setChapterOpen] = useState(false);
+  const chapterEntry = useRef(null);
   const [view, setView] = useState('garage');
   const [stats, setStats] = useState(null);
   const [firstCallComplete] = useState(() => { try { return loadStory(window.localStorage); } catch { return false; } });
   const [signalComplete] = useState(() => { try { return journeyComplete || loadJourney(window.localStorage); } catch { return journeyComplete; } });
+  const [sprintBest] = useState(()=>{try{return loadSprint(window.localStorage);}catch{return null;}});
   useEffect(() => {
     try { garage.current = createGarage(host.current, setStats, initial.current); }
     catch (e) { console.error(e); setError('3D 화면을 시작하지 못했습니다. WebGL을 지원하는 브라우저에서 다시 열어 주세요.'); }
@@ -55,15 +62,20 @@ function GaragePrototype({ onDrive, journeyComplete = false }) {
       <aside className="build-note" hidden={photoMode}><span className="live-dot" />자체 제작 차고<span>외부 모델·텍스처 0개</span></aside>
       <button className="photo-toggle" aria-pressed={photoMode} disabled={!!error} onClick={() => { setPhotoMode(!photoMode); setEnvironmentOpen(false); }}>{photoMode ? '차고로 돌아가기 · Esc' : '포토 모드'}</button>
       <section className="garage-story" hidden={photoMode} aria-label="이야기 의뢰">
+        <button ref={chapterEntry} className="campaign-entry" aria-label="챕터 선택 →" disabled={!!error} onClick={() => setChapterOpen(true)}>챕터 선택 →<span>HORIZON CLUB · 1장 플레이 가능</span></button>
+        {campaignProfile.license && <p className="license-card">라이선스 01 · 해안 클럽 드라이버<br />{formatTime(campaignProfile.chapterOne.time)} · {campaignProfile.chapterOne.difficulty === 'relaxed' ? '여유롭게' : '표준'}{campaignSaved === false ? ' · 이번 방문 기록' : ''}</p>}
         <span className="eyebrow">{signalComplete ? 'WORKSHOP LOG / 운행 기록 01' : 'COASTAL STORY / 01'}</span>
         <h2>{signalComplete ? '첫 해안 운행을 마쳤습니다' : '돌아오는 불빛'}</h2>
         <p>{signalComplete ? '바람곶 신호 확인 · 항구 귀환 완료. 다시 켜진 불빛의 이야기가 정비 일지에 남았습니다.' : '옛 신호소에 다시 불이 들어왔습니다. 해안길을 따라 확인하고, 정비소로 돌아오세요. 약 3–5분.'}</p>
         {firstCallComplete && <p>프롤로그 기록 · 해안 주행 클럽의 초대</p>}
         <button className="story-start" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'journey', motion: preferences.motion })}>{signalComplete ? '해안 운행 다시 시작 →' : '돌아오는 불빛 시작 →'}</button>
+        <button className="sprint-entry" disabled={!!error} onClick={()=>onDrive({color:preferences.color,scenario:'sprint',motion:preferences.motion})}>해안 스프린트 →<span>{sprintBest?`개인 최고 ${formatTime(sprintBest.time)}`:'3구간 계측 · 개인 기록 도전'}</span></button>
+        <button className="sprint-entry" disabled={!!error} onClick={()=>onDrive({color:preferences.color,scenario:'duel',motion:preferences.motion})}>해안 라이벌 대결 →<span>코랄 GT · 니트로 · 비접촉 레이스</span></button>
         <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'coast', motion: preferences.motion })}>해안도로 드라이브 →</button>
         <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'story', motion: preferences.motion })}>{firstCallComplete ? '프롤로그 다시 보기 →' : '첫 번째 호출 시작 →'}</button>
-        <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'test' })}>GT 테스트 주행 →</button>
+        <button className="garage-test-link" disabled={!!error} onClick={() => onDrive({ color: preferences.color, scenario: 'test', motion: preferences.motion })}>GT 테스트 주행 →</button>
       </section>
+      {chapterOpen && <CampaignBoard profile={campaignProfile} saved={campaignSaved} onClose={() => { setChapterOpen(false); chapterEntry.current?.focus(); }} onStart={chapterDifficulty => onDrive({ color: preferences.color, scenario: 'chapter', motion: preferences.motion, chapterDifficulty, campaignProfile, campaignSaved })} />}
       {error && <div className="error" role="alert">{error}</div>}
       <div className="scene-label" hidden={photoMode}><span>01 / COASTLINE GT</span><p>{PAINT_COLORS.find(([hex]) => hex === preferences.color)?.[1]} · 코드로 빚은 첫 번째 자동차</p></div>
       <section className="toolbar" aria-label="차고 시안 설정" hidden={photoMode}>
@@ -94,8 +106,13 @@ function GaragePrototype({ onDrive, journeyComplete = false }) {
 
 function App() {
   const [drive, setDrive] = useState(null);
+  const [DrivingMode, setDrivingMode] = useState(() => lazy(loadDrivingMode));
   const [journeyComplete, setJourneyComplete] = useState(false);
-  return drive ? <Suspense fallback={<div className="drive-message">주행 모듈 준비 중…</div>}><DrivingMode {...drive} onExit={result => { if (result?.journeyComplete) setJourneyComplete(true); setDrive(null); }} /></Suspense> : <GaragePrototype onDrive={setDrive} journeyComplete={journeyComplete} />;
+  const [campaignProfile, setCampaignProfile] = useState(() => { try { return loadCampaign(window.localStorage); } catch { return newCampaign(); } });
+  const [campaignSaved, setCampaignSaved] = useState(true);
+  const returnToGarage = () => setDrive(null);
+  const enterDrive = config => { setDrivingMode(lazy(loadDrivingMode)); setDrive(config); };
+  return drive ? <DrivingBoundary onGarage={returnToGarage}><Suspense fallback={<DrivingLoading onGarage={returnToGarage} />}><DrivingMode {...drive} onExit={result => { if (result?.journeyComplete) setJourneyComplete(true); if (result?.campaignProfile) { setCampaignProfile(result.campaignProfile); setCampaignSaved(result.campaignSaved); } setDrive(null); }} /></Suspense></DrivingBoundary> : <GaragePrototype onDrive={enterDrive} journeyComplete={journeyComplete} campaignProfile={campaignProfile} campaignSaved={campaignSaved} />;
 }
 
 createRoot(document.getElementById("root")).render(

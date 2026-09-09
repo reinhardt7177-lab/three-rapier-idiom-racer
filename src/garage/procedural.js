@@ -17,16 +17,16 @@ export function canvasMap(draw, size = 512, color = true) {
 export function concreteMap() {
   const rng = randomSeed(431);
   return canvasMap((ctx, size) => {
-    ctx.fillStyle = '#727870'; ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#c9ccc6'; ctx.fillRect(0, 0, size, size);
     for (let i = 0; i < 32000; i++) {
-      const v = 75 + Math.floor(rng() * 90);
+      const v = 155 + Math.floor(rng() * 75);
       ctx.fillStyle = `rgba(${v},${v + 3},${v},${rng() * .2})`;
       ctx.fillRect(rng() * size, rng() * size, 1 + rng() * 3, 1 + rng() * 3);
     }
     for (let i = 0; i < 50; i++) {
       const x = rng() * size, y = rng() * size;
       const grad = ctx.createRadialGradient(x, y, 0, x, y, 15 + rng() * 65);
-      grad.addColorStop(0, 'rgba(36,44,39,.12)'); grad.addColorStop(1, 'rgba(36,44,39,0)');
+      grad.addColorStop(0, 'rgba(80,90,83,.09)'); grad.addColorStop(1, 'rgba(80,90,83,0)');
       ctx.fillStyle = grad; ctx.fillRect(0, 0, size, size);
     }
   });
