@@ -1,0 +1,22 @@
+{
+  progress: 6842.211776361137,
+  maximumAcceleration: 91.89411163330078,
+  maximumTilt: 1.7248424293900921,
+  rmsTilt: 0.07448274890042,
+  releaseSteps: 115
+}
+✔ real-map mountain seams do not restore the previous large vertical and orientation impulses (9613.2849ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (49.4787ms)
+✔ grip changes the actual constant-input corner trajectory (121.6108ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (51.8501ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (31.6618ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (134.3634ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.7318ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11980.9054

@@ -1,0 +1,264 @@
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (954.0752ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (76.39ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (18.3533ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (1.7246ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (2285.456ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (138.0463ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (62.309ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (3891.8667ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.764893459599719,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 203.6446075439453,
+      y: 0.5410054922103882,
+      z: -1.5953369140625
+    },
+    finish: 106.8,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5934172868728638,
+      targetLane: 1.5934172868728638,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.47613525390625,
+      y: 0.5660059452056885,
+      z: -1.6205452680587769
+    },
+    finish: 114.76666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6205452680587769,
+      targetLane: 1.6205452680587769,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 193.05332946777344,
+      y: 0.551005482673645,
+      z: -1.814759612083435
+    },
+    finish: 111.2,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.8138165473937988,
+      targetLane: 1.8138165473937988,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 212.4888458251953,
+      y: 0.5610054731369019,
+      z: -0.5379095673561096
+    },
+    finish: 93.66666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.5388641357421875,
+      targetLane: 0.5388641357421875,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.951802247702199,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.66781616210938,
+      y: 0.5360054969787598,
+      z: -2.120835542678833
+    },
+    finish: 88.35,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.1223175525665283,
+      targetLane: 2.1223175525665283,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (28238.0721ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (25695.5262ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (5.0311ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (3.9483ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (2.2317ms)
+✔ typing and Space on menu buttons remain native UI actions (0.9822ms)
+✔ focus or layout clearing releases every control and requires a fresh press (1.0086ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.8875ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (2236.2997ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (587.4872ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (13.7413ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (3.5417ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (48.5248ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (3.0755ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (7.3641ms)
+{"kmh":20,"oldRadius":6.418,"newRadius":5.18}
+{"kmh":40,"oldRadius":13.989,"newRadius":9.627}
+{"kmh":60,"oldRadius":23.014,"newRadius":20.444}
+✔ Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear (4.7239ms)
+✔ rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded (1.4858ms)
+✔ measured 20/40/60 km/h turns improve over baseline without yaw or position writes (1117.6293ms)
+✔ 230 km/h full steering remains grounded and upright without rotating the body directly (459.2259ms)
+✔ reversing changes yaw response but not the actual front-wheel steering direction (102.5744ms)
+✔ wheel roll follows forward/reverse distance with the correct +X axle sign (503.1226ms)
+✔ wheel suspension, steering and unwrapped spin interpolate on the same clock as the body (113.4676ms)
+✔ reset clears steering, handbrake state and rear grip immediately (55.2626ms)
+✔ responsive road steering improves brief input while retaining high-speed and full-lock limits (4.2126ms)
+✔ road rear drive and front-biased braking produce physical axle pitch (110.4428ms)
+✔ right/left bends follow world heading, including the circular route seam (13.1954ms)
+✔ bend detection uses metres and survives a fourfold change in point density (6.4915ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (31.9168ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (43.8272ms)
+✔ isolated heading errors never become a persistent corner warning (0.7549ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (22.082ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (4.4768ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (71.4661ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (13.5279ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (7.3446ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (9.7234ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (2.1803ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (788.856ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92923.1756

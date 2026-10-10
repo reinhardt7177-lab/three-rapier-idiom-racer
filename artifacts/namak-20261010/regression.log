@@ -1,0 +1,73 @@
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (69.9759ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (5.1191ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (5.683ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (4.2099ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (4.5378ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (1.0051ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (1.4717ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.1343ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (1.3083ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.1929ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.6949ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.501ms)
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (2.3543ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (0.4288ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (0.2216ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (0.2873ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (0.4146ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (4.9967ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.0746ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (0.7613ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.4452ms)
+✔ typing and Space on menu buttons remain native UI actions (0.1538ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.2248ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.2856ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (303.2904ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (151.077ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (2.8325ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (0.9931ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (8.1583ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (0.4581ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (1.5833ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (16.2551ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (3.6149ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (1.5001ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (1.9831ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (0.4925ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (128.1295ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2292.6789

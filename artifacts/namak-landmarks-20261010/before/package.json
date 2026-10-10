@@ -1,0 +1,22 @@
+{
+  "name": "mumu-open-circuit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "check": "npm run check:rebuild",
+    "check:race": "node --test --test-concurrency=1 scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/fleet-eight.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/rebuild-race.test.mjs",
+    "check:rebuild": "node --test --test-concurrency=1 scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.20.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "three": "^0.184.0",
+    "vite": "^7.2.7"
+  }
+}

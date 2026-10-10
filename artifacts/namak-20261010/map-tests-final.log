@@ -1,0 +1,502 @@
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (393.4154ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (31.3086ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (47.6936ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (46.5987ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (26.3826ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (1.8938ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (7.8826ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (1.0999ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (4.52ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (1.8029ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (2.429ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (2.2958ms)
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (12.4454ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (3.4995ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (1.4969ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (2.7922ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (2.9291ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (6.3318ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (63.7195ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (32.7715ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (1894.5479ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.764893459599719,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 203.6446075439453,
+      y: 0.5410054922103882,
+      z: -1.5953369140625
+    },
+    finish: 106.8,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5934172868728638,
+      targetLane: 1.5934172868728638,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.47613525390625,
+      y: 0.5660059452056885,
+      z: -1.6205452680587769
+    },
+    finish: 114.76666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6205452680587769,
+      targetLane: 1.6205452680587769,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 193.05332946777344,
+      y: 0.551005482673645,
+      z: -1.814759612083435
+    },
+    finish: 111.2,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.8138165473937988,
+      targetLane: 1.8138165473937988,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 212.4888458251953,
+      y: 0.5610054731369019,
+      z: -0.5379095673561096
+    },
+    finish: 93.66666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.5388641357421875,
+      targetLane: 0.5388641357421875,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.951802247702199,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.66781616210938,
+      y: 0.5360054969787598,
+      z: -2.120835542678833
+    },
+    finish: 88.35,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.1223175525665283,
+      targetLane: 2.1223175525665283,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (27191.5399ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (24216.0557ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (12.6448ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (3.4896ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (2.6355ms)
+✔ typing and Space on menu buttons remain native UI actions (1.0043ms)
+✔ focus or layout clearing releases every control and requires a fresh press (1.0478ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.9699ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (3251.0628ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (1138.411ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (15.7296ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (3.3241ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (92.3369ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (3.4264ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (42.3261ms)
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (34.1223ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (5.5191ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (79.7362ms)
+✔ a committed passing lane is reserved against a second closing rival (2.6961ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (10.7609ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (9.5385ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (2.5003ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (5.7658ms)
+✔ a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward (11.8282ms)
+✔ a passing rival re-plans when a stationary car occupies its lane again on a closed circuit (5.2185ms)
+✔ a re-blocked passing rival holds its approach gap if the alternate lane is occupied (3.2601ms)
+✔ a lane-centred rival can leave a stopped rear bumper behind but yields to a moving rear car (3.2682ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 260.4583333333333,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 260.23333333333335,
+      index: 28,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 213.88333333333333,
+      index: 52,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 226.99166666666667,
+      index: 47,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6842,
+      finish: 227.67499999999998,
+      index: 44,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 260.45,
+      index: 26,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 212.70833333333334,
+      index: 56,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (221.6444ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (1172.1706ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (755.0504ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (544.3759ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (570.1288ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (532.332ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (483.2726ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (517.6844ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (415.3026ms)
+✔ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (87708.4068ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (333.849ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (75.9794ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (6.3182ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (6.8646ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (2.1189ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (3029.905ms)
+ℹ tests 64
+ℹ suites 0
+ℹ pass 64
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176404.6625

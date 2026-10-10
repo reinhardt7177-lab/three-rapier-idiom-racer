@@ -1,0 +1,239 @@
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (86.7295ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (9.3685ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (8.2707ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (6.8135ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (7.3971ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (0.7485ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (2.4896ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.199ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (2.3378ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.8933ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.8966ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.7851ms)
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (4.6071ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (0.8739ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (0.446ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (0.578ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (0.5946ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (5.7013ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (21.3231ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (4.107ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (452.4205ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.411258579904229,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4892409831296014,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    finish: 91.35833333333333,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.2,
+      targetLane: 2.2,
+      passes: 0,
+      attempts: 0,
+      aborts: 0,
+      age: 91.3583333333521
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.943746666123691,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    finish: 99.275,
+    plan: {
+      mode: 'changing',
+      reason: 'occupied',
+      homeLane: -2.2,
+      targetLane: 2.2,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 3.0166666666666586
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2921.3363865187603,
+    maxDeviation: 4.965481552883048,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    finish: null,
+    plan: {
+      mode: 'passing',
+      reason: 'overtake',
+      homeLane: 2.2,
+      targetLane: -2.2,
+      passes: 0,
+      attempts: 1,
+      aborts: 0,
+      age: 234.78333333328413
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 6.33717231484022,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    finish: 92.4,
+    plan: {
+      mode: 'returning',
+      reason: 'return',
+      homeLane: -2.2,
+      targetLane: -2.2,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0.30833333333333346
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.729463844757984,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    finish: 97.13333333333333,
+    plan: {
+      mode: 'passing',
+      reason: 'overtake',
+      homeLane: 2.2,
+      targetLane: -2.2,
+      passes: 0,
+      attempts: 1,
+      aborts: 0,
+      age: 89.4166666666839
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (3675.3671ms)
+✖ five planned rivals finish Namak while the player stays stopped on the starting grid (8135.2744ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.3224ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.0013ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.4273ms)
+✔ typing and Space on menu buttons remain native UI actions (0.1311ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.1614ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.1375ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (438.9627ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (220.4331ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (3.406ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (0.6523ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (11.9031ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (0.7189ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (2.0785ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (21.8469ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (5.2363ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (1.7083ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (2.5553ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (0.6508ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (171.1392ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 41
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16370.5973
+
+✖ failing tests:
+
+test at scripts\namak.test.mjs:86:1
+✖ five planned rivals finish Namak while the player stays stopped on the starting grid (8135.2744ms)
+  AssertionError [ERR_ASSERTION]: porsche911 stalled at 2921.3m
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak.test.mjs:118:40)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

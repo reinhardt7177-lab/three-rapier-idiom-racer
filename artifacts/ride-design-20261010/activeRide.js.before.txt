@@ -1,0 +1,36 @@
+import {Vector3,Quaternion,Matrix4} from 'three';
+
+// Physical grounded arcade constraint: independent tyre springs cannot excite
+// chassis rebound. Contact/grip, wheel travel and collision yaw stay physical.
+export function createActiveRide(body,controller,radius){
+ const up=new Vector3(0,1,0),normal=new Vector3(),forward=new Vector3(),right=new Vector3(),q=new Quaternion(),basis=new Matrix4();
+ let locked=false;
+ const release=()=>{if(locked)body.setEnabledRotations(true,true,true,true);locked=false;};
+ return {reset(){release();up.set(0,1,0);},update(dt,beforeVelocity){
+  const indices=[0,1,2,3].filter(i=>controller.wheelIsInContact(i));
+  const rotation=body.rotation(),bodyUp=1-2*(rotation.x**2+rotation.z**2);
+  if(indices.length<3||bodyUp<.6){release();return false;}
+  normal.set(0,0,0);
+  for(const i of indices){const n=controller.wheelContactNormal(i);normal.add(new Vector3(n.x,n.y,n.z));}
+  normal.normalize();if(normal.y<.6){release();return false;}
+  const currentVelocity=body.linvel(),roadRate=-(normal.x*currentVelocity.x+normal.z*currentVelocity.z)/normal.y;
+  if(beforeVelocity.y-roadRate>4){release();return false;}
+  if(!locked)up.copy(normal);else up.lerp(normal,1-Math.exp(-dt/.10)).normalize();
+  q.set(rotation.x,rotation.y,rotation.z,rotation.w);
+  forward.set(0,0,1).applyQuaternion(q);forward.addScaledVector(up,-forward.dot(up)).normalize();
+  right.crossVectors(up,forward).normalize();forward.crossVectors(right,up).normalize();
+  q.setFromRotationMatrix(basis.makeBasis(right,up,forward));
+  body.setEnabledRotations(false,true,false,true);locked=true;body.setRotation(q,true);
+  body.setAngvel({x:0,y:body.angvel().y,z:0},true);
+  const velocity=body.linvel(),position=body.translation();
+  // One critically damped support with slope feed-forward. No unsupported glue
+  // or cosmetic transform correction; world gravity resumes on a jump.
+  let plane=0;for(const i of indices){const p=controller.wheelContactPoint(i);plane+=normal.x*p.x+normal.y*p.y+normal.z*p.z;}
+  const ground=(plane/indices.length-normal.x*position.x-normal.z*position.z)/normal.y;
+  const target=ground+(radius+.34-.1-9.81/144)/normal.y;
+  const omega=18,error=position.y-target,relative=beforeVelocity.y-roadRate;
+  const decay=Math.exp(-omega*dt),nextRelative=(relative-omega*(relative+omega*error)*dt)*decay;
+  body.setLinvel({x:velocity.x,y:roadRate+nextRelative+9.81*dt,z:velocity.z},true);
+  return true;
+ }};
+}

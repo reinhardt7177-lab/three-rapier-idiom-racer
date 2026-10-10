@@ -26,7 +26,7 @@ export function createTireFeedback() {
     clock += Math.min(.1, dt); material.uniforms.time.value = clock; root.visible = clock - newest < LIFE;
     let dirty = false;
     state.wheels.forEach((w, i) => {
-      if (!signals.grounded || signals.wheelSlip[i] < .2 || state.speed < 3 || !w.contact || !w.point || !w.normal || w.normal.y < .8) { last[i] = null; return; }
+      if (!signals.grounded || signals.wheelSlip[i] < .2 || Math.abs(state.speed) < 3 || !w.contact || !w.point || !w.normal || w.normal.y < .8) { last[i] = null; return; }
       const p = w.point, old = last[i];
       if (!old) { last[i] = { ...p }; return; }
       const dx = p.x - old.x, dz = p.z - old.z, distance = Math.hypot(dx, dz);

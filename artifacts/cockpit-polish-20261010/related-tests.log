@@ -1,0 +1,81 @@
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (1308.9191ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (10.7948ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (15.573ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (136.7148ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (203.4724ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (6.2289ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (3.4257ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.5176ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (10.0014ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.7248ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.9396ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.6367ms)
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (54.3301ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (0.8788ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (0.4781ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (0.5517ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (1.1048ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (30.5399ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (49.245ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.5269ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.8751ms)
+✔ typing and Space on menu buttons remain native UI actions (0.4292ms)
+✔ focus or layout clearing releases every control and requires a fresh press (30.0055ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.592ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (1497.6812ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (435.3305ms)
+✔ driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height (65.5263ms)
+✔ driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery (5.9391ms)
+✔ V switches view once per press without changing pedals or stealing editable/button keys (0.7917ms)
+✔ one local looping track respects pause, mute, volume, restart, garage stop and disposal (1.3593ms)
+✔ blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal (0.6629ms)
+✔ packaged music is real audio and sharper bends retain lower target speeds (19.9487ms)
+Rival speed A/B [
+  {
+    profile: 'classic',
+    max: 138.07923431396486,
+    metres: 850.8593139648438
+  },
+  {
+    profile: 'race',
+    max: 185.05221405029297,
+    metres: 1059.82470703125
+  }
+]
+✔ faster rival pedals produce higher real speed while all tyres stay on a flat straight (1870.7731ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26133.4775

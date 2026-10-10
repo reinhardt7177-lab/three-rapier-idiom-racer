@@ -1,0 +1,31 @@
+✔ another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper (2.6017ms)
+✖ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (326.8711ms)
+✔ additional steering stays upright at highway speed and releasing input recentres the wheels (302.2522ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2918.4836
+
+✖ failing tests:
+
+test at scripts\steering-turn.test.mjs:49:1
+✖ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (326.8711ms)
+  AssertionError [ERR_ASSERTION]: compare at matching road speed
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-turn.test.mjs:58:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
