@@ -11,6 +11,11 @@ const curves = {
   ],
   lookout: [[[-150, 155], [-150, 230], [-260, 285], [-310, 285]]],
   rest: [[[-150, 155], [-150, 220], [-50, 285], [30, 285]]],
+  lighthouse: [
+    [[-310, 285], [-380, 285], [-440, 305], [-450, 380]],
+    [[-450, 380], [-460, 455], [-355, 465], [-370, 530]],
+    [[-370, 530], [-385, 595], [-500, 630], [-560, 620]],
+  ],
 };
 const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 export function sampleCurves(segments, id) {
@@ -32,31 +37,59 @@ export function sampleCurves(segments, id) {
   return points;
 }
 export const COAST_ROADS = Object.fromEntries(Object.entries(curves).map(([id, c]) => [id, sampleCurves(c, id)]));
+// Both ends remain level: the old signal-station court and the new summit pad.
+// Use distance along the actual road, so the grade does not depend on sampling.
+const mountainLength = COAST_ROADS.lighthouse.at(-1).s;
+for (const p of COAST_ROADS.lighthouse) {
+  const t = Math.max(0, Math.min(1, (p.s - 40) / (mountainLength - 80)));
+  p.y = 24 * t * t * (3 - 2 * t);
+}
+export const LIGHTHOUSE_STOP = Object.freeze({ ...COAST_ROADS.lighthouse.at(-1), radius: 27, label: '바람등대 정상 쉼터' });
+const beachAnchor = COAST_ROADS.harbor.reduce((a,b) => Math.abs(b.s-500)<Math.abs(a.s-500)?b:a);
+export const BEACH_STOP = Object.freeze({ ...offsetPoint(beachAnchor,22), radius:22, tx:beachAnchor.tx, tz:beachAnchor.tz, id:'beach', label:'선셋 비치 쉼터' });
+const cityAnchor = COAST_ROADS.harbor.reduce((a, b) => Math.abs(b.s - 940) < Math.abs(a.s - 940) ? b : a);
+export const CITY_PLAZA = Object.freeze({ ...offsetPoint(cityAnchor, -22), radius: 22, tx: cityAnchor.tx, tz: cityAnchor.tz, id: 'city', label: '코스트 타운 광장' });
+// Keep the procedural coastal vegetation outside the authored town blocks.
+export function inCityDistrict(position) {
+  const near = nearestRoad(position);
+  return near.distance < 90 && ((near.id === 'harbor' && near.s >= 885) || (near.id === 'rest' && near.s < 115));
+}
 export const COAST_PADS = [
   { ...COAST_ROADS.lookout.at(-1), radius: 27, label: '바람곶 전망대' },
   { ...COAST_ROADS.rest.at(-1), radius: 25, label: '솔숲 회차 쉼터' },
   { x: 0, z: -820, radius: 24, tx: 0, tz: -1, id: 'home', label: '항구 회차장' },
+  BEACH_STOP,
+  CITY_PLAZA,
+  LIGHTHOUSE_STOP,
 ];
-export function offsetPoint(p, d) { return { x: p.x - p.tz * d, z: p.z + p.tx * d }; }
+export function offsetPoint(p, d) { return { x: p.x - p.tz * d, z: p.z + p.tx * d, ...(p.y === undefined ? {} : { y: p.y }) }; }
 export function nearestRoad(position, roads = COAST_ROADS) {
   let best = null;
   for (const [id, points] of Object.entries(roads)) for (let i = 0; i < points.length - 1; i++) {
     const a = points[i], b = points[i + 1], dx = b.x - a.x, dz = b.z - a.z, l2 = dx * dx + dz * dz;
     const t = Math.max(0, Math.min(1, ((position.x - a.x) * dx + (position.z - a.z) * dz) / l2));
     const x = a.x + dx * t, z = a.z + dz * t, d = Math.hypot(position.x - x, position.z - z);
-    if (!best || d < best.distance) best = { x, z, tx: dx / Math.sqrt(l2), tz: dz / Math.sqrt(l2), halfWidth: a.halfWidth + (b.halfWidth - a.halfWidth) * t, s: a.s + (b.s - a.s) * t, id, index: i, distance: d };
+    if (!best || d < best.distance) best = { x, z, ...(a.y === undefined ? {} : { y: a.y + ((b.y ?? a.y) - a.y) * t }), tx: dx / Math.sqrt(l2), tz: dz / Math.sqrt(l2), halfWidth: a.halfWidth + (b.halfWidth - a.halfWidth) * t, s: a.s + (b.s - a.s) * t, id, index: i, distance: d };
   }
   return best;
+}
+export function roadRecoveryPose(snapshot) {
+  const near = nearestRoad(snapshot.position), q = snapshot.rotation;
+  const fx = 2 * (q.x * q.z + q.w * q.y), fz = 1 - 2 * (q.x * q.x + q.y * q.y);
+  const direction = fx * near.tx + fz * near.tz >= 0 ? 1 : -1;
+  const p = offsetPoint(near, direction * 3.5);
+  return { position: { x: p.x, y: (p.y ?? 0) + .8, z: p.z }, yaw: Math.atan2(near.tx * direction, near.tz * direction) };
 }
 export function ribbonData(points, left = p => -p.halfWidth, right = p => p.halfWidth, y = 0) {
   const vertices = [], indices = [], uv = [];
   points.forEach((p, i) => {
-    for (const d of [left(p), right(p)]) { const q = offsetPoint(p, d); vertices.push(q.x, y, q.z); uv.push(d / 6, p.s / 6); }
+    for (const d of [left(p), right(p)]) { const q = offsetPoint(p, d); vertices.push(q.x, (p.y ?? 0) + y, q.z); uv.push(d / 6, p.s / 6); }
     if (i < points.length - 1) { const n = i * 2; indices.push(n, n + 1, n + 2, n + 1, n + 3, n + 2); }
   });
   return { vertices: new Float32Array(vertices), indices: new Uint32Array(indices), uv: new Float32Array(uv) };
 }
 export function padData(pad, extra = 0, y = 0) {
+  y += pad.y ?? 0;
   const vertices = [pad.x, y, pad.z], indices = [], uv = [0, 0];
   for (let i = 0; i <= 64; i++) { const a = i * Math.PI / 32, x = Math.cos(a) * (pad.radius + extra), z = Math.sin(a) * (pad.radius + extra); vertices.push(pad.x + x, y, pad.z + z); uv.push(x / 6, z / 6); if (i < 64) indices.push(0, i + 2, i + 1); }
   return { vertices: new Float32Array(vertices), indices: new Uint32Array(indices), uv: new Float32Array(uv) };
@@ -66,7 +99,10 @@ function makeBarriers() {
   const entries = [];
   function segment(a, b) {
     const x = (a.x + b.x) / 2, z = (a.z + b.z) / 2;
-    entries.push({ x, y: .55, z, hx: .22, hy: .55, hz: distance(a, b) / 2 + .08, yaw: Math.atan2(b.x - a.x, b.z - a.z) });
+    const length = distance(a, b), yaw = Math.atan2(b.x - a.x, b.z - a.z);
+    const groundY = ((a.y ?? 0) + (b.y ?? 0)) / 2, dy = (b.y ?? 0) - (a.y ?? 0), slope = Math.atan2(dy, length);
+    const rotation = { x: -Math.cos(yaw / 2) * Math.sin(slope / 2), y: Math.sin(yaw / 2) * Math.cos(slope / 2), z: Math.sin(yaw / 2) * Math.sin(slope / 2), w: Math.cos(yaw / 2) * Math.cos(slope / 2) };
+    entries.push({ x, y: groundY + .55, z, hx: .22, hy: .55, hz: Math.hypot(length, dy) / 2 + .08, yaw, ...(a.y === undefined ? {} : { groundY, slope, rotation }) });
   }
   for (const points of Object.values(COAST_ROADS)) for (const side of [-1, 1]) for (let i = 0; i < points.length - 1; i++) {
     const a = points[i], b = points[i + 1];
@@ -82,7 +118,7 @@ function makeBarriers() {
   }
   for (const pad of COAST_PADS) for (let i = 0; i < 64; i++) {
     const a = i * Math.PI / 32, b = (i + 1) * Math.PI / 32, r = pad.radius;
-    const pa = { x: pad.x + Math.cos(a) * r, z: pad.z + Math.sin(a) * r }, pb = { x: pad.x + Math.cos(b) * r, z: pad.z + Math.sin(b) * r };
+    const pa = { x: pad.x + Math.cos(a) * r, z: pad.z + Math.sin(a) * r, ...(pad.y === undefined ? {} : { y: pad.y }) }, pb = { x: pad.x + Math.cos(b) * r, z: pad.z + Math.sin(b) * r, ...(pad.y === undefined ? {} : { y: pad.y }) };
     const near = nearestRoad({ x: (pa.x + pb.x) / 2, z: (pa.z + pb.z) / 2 });
     if (near.distance < near.halfWidth + 3) continue; // Open entry throat, not a sealed circle.
     segment(pa, pb);
@@ -95,18 +131,19 @@ export function coastStatus(snapshot, visit = { lookout: false, returned: false 
   const stopped = snapshot.kmh < 4 && snapshot.contacts >= 3;
   const lookout = visit.lookout || (distance(p, COAST_PADS[0]) < 22 && stopped);
   const returned = visit.returned || (lookout && distance(p, COAST_START) < 20 && stopped);
-  const area = distance(p, COAST_PADS[0]) < 32 ? '바람곶 전망대' : distance(p, COAST_PADS[1]) < 30 ? '솔숲 회차 쉼터' : distance(p, FORK) < 65 ? '해안 갈림길' : near.id === 'harbor' && near.s < 430 ? '항만대로' : '바람곶 해안길';
-  return { lookout, returned, area, road: near.id, offRoad: near.distance > near.halfWidth + 3 && !COAST_PADS.some(pad => distance(pad, p) < pad.radius), distance: Math.round(distance(p, lookout ? COAST_START : COAST_PADS[0])) };
+  const inGarage = p.x >= 10 && p.x <= 59 && p.z > -769 && p.z < -696;
+  const area = inGarage ? '항구 정비소 · 01' : distance(p, BEACH_STOP) < 28 ? '선셋 비치 쉼터 · 02' : distance(p, CITY_PLAZA) < 27 ? '코스트 타운 광장 · 03' : distance(p, LIGHTHOUSE_STOP) < 32 ? '바람등대 정상 · 04' : distance(p, COAST_PADS[0]) < 32 ? '바람곶 전망대' : distance(p, COAST_PADS[1]) < 30 ? '솔숲 회차 쉼터' : distance(p, FORK) < 65 ? '해안 갈림길 · 03' : near.id === 'lighthouse' ? '등대 산길 · 04' : near.id === 'harbor' && near.s < 330 ? '항만대로' : near.id === 'harbor' && near.s < 885 ? '해변 대로 · 02' : inCityDistrict(p) ? '코스트 타운 · 03' : '바람곶 해안길';
+  return { lookout, returned, area, road: near.id, offRoad: !inGarage && near.distance > near.halfWidth + 3 && !COAST_PADS.some(pad => distance(pad, p) < pad.radius), distance: Math.round(distance(p, lookout ? COAST_START : COAST_PADS[0])) };
 }
 // A test driver follows these lane-centre samples using normal forces/steering.
 // The game itself has no autopilot. Endpoint arc uses the real paved turning area.
 export function tourWaypoints(branch = 'lookout') {
-  const path = [...COAST_ROADS.harbor.filter(p => p.z >= -720), ...COAST_ROADS[branch].slice(1)];
+  const path = [...COAST_ROADS.harbor.filter(p => p.z >= -720), ...(branch === 'lighthouse' ? COAST_ROADS.lookout.slice(1) : []), ...COAST_ROADS[branch].slice(1)];
   const end = path.at(-1), forward = { x: end.tx, z: end.tz }, right = { x: -end.tz, z: end.tx };
-  const out = path.map(p => ({ ...offsetPoint(p, 3.5), speed: p.s < 330 && p.id === 'harbor' ? 65 : 44 }));
+  const out = path.map(p => ({ ...offsetPoint(p, 3.5), speed: p.id === 'lighthouse' ? 32 : p.s < 330 && p.id === 'harbor' ? 65 : 44 }));
   // Arc is inside a 25+ m plaza. Approach widens progressively, never clips a rail.
   for (let i = Math.max(0, out.length - 10); i < out.length; i++) out[i] = { ...offsetPoint(path[i], 3.5 + 5.5 * (i - (out.length - 10)) / 9), speed: 22 };
-  for (let i = 1; i <= 32; i++) { const a = i * Math.PI / 32; out.push({ x: end.x + right.x * 9 * Math.cos(a) + forward.x * 9 * Math.sin(a), z: end.z + right.z * 9 * Math.cos(a) + forward.z * 9 * Math.sin(a), speed: 20 }); }
-  const back = path.slice().reverse().map((p, i) => ({ ...offsetPoint(p, -(i < 10 ? 9 - 5.5 * i / 9 : 3.5)), speed: i < 15 ? 22 : 44 }));
+  for (let i = 1; i <= 32; i++) { const a = i * Math.PI / 32; out.push({ x: end.x + right.x * 9 * Math.cos(a) + forward.x * 9 * Math.sin(a), z: end.z + right.z * 9 * Math.cos(a) + forward.z * 9 * Math.sin(a), ...(end.y === undefined ? {} : { y: end.y }), speed: 20 }); }
+  const back = path.slice().reverse().map((p, i) => ({ ...offsetPoint(p, -(i < 10 ? 9 - 5.5 * i / 9 : 3.5)), speed: i < 15 ? 22 : p.id === 'lighthouse' ? 30 : 44 }));
   return [...out, ...back.slice(1)];
 }

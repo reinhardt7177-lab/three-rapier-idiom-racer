@@ -5,7 +5,7 @@ const rotate = (v, q) => {
   const tx = 2 * (q.y * v.z - q.z * v.y), ty = 2 * (q.z * v.x - q.x * v.z), tz = 2 * (q.x * v.y - q.y * v.x);
   return { x: v.x + q.w * tx + q.y * tz - q.z * ty, y: v.y + q.w * ty + q.z * tx - q.x * tz, z: v.z + q.w * tz + q.x * ty - q.y * tx };
 };
-export const emptySignals = () => ({ acceleration: 0, push: 0, braking: 0, scrub: 0, slipAngle: 0, sliding: false, wheelSlip: [0, 0, 0, 0], grounded: false });
+export const emptySignals = () => ({ acceleration: 0, push: 0, braking: 0, scrub: 0, slipAngle: 0, sliding: false, launchSpin: 0, wheelSlip: [0, 0, 0, 0], grounded: false });
 
 export function createDrivingSignals() {
   let result = emptySignals(), enter = 0, leave = 0;
@@ -23,14 +23,22 @@ export function createDrivingSignals() {
     const acceleration = result.acceleration + (rawAcceleration - result.acceleration) * (1 - Math.exp(-dt / .12));
     const forwardSpeed = dot(v, f), lateralSpeed = dot(v, right), speed = Math.abs(forwardSpeed);
     const slipAngle = Math.atan2(Math.abs(lateralSpeed), Math.max(speed, 2));
-    const wheelSlip = current.wheels.map(w => {
-      if (!grounded || !w.contact || !w.point || !w.normal || w.normal.y < .75 || speed < 3) return 0;
+    const launchSpin = grounded ? clamp(current.launch?.spin || 0) : 0;
+    const wheelSlip = current.wheels.map((w, i) => {
+      const launchSlip = i % 2 === 0 ? launchSpin : 0;
+      if (!grounded || !w.contact || !w.point || !w.normal || w.normal.y < .75) return 0;
+      if (speed < 3) return launchSlip;
       const r = { x: w.point.x - p.x, y: w.point.y - p.y, z: w.point.z - p.z };
       const velocity = { x: v.x + omega.y * r.z - omega.z * r.y, y: v.y + omega.z * r.x - omega.x * r.z, z: v.z + omega.x * r.y - omega.y * r.x };
       const lateral = rotate({ x: Math.cos(w.steering), y: 0, z: -Math.sin(w.steering) }, q);
       const rolling = rotate({ x: Math.sin(w.steering), y: 0, z: Math.cos(w.steering) }, q);
       const side = Math.abs(dot(velocity, lateral)), along = Math.abs(dot(velocity, rolling));
-      return clamp((Math.atan2(side, Math.max(along, 2)) - .045) / .22) * clamp((side - .55) / 2.5);
+      const lateralSlip=clamp((Math.atan2(side, Math.max(along, 2)) - .045) / .22) * clamp((side - .55) / 2.5);
+      // Raycast wheel spin is kinematic. Show braking scrub from measured
+      // deceleration, and rear lock from the actual applied handbrake at speed.
+      const stoppingSlip=current.brake>.5?clamp(-acceleration*Math.sign(forwardSpeed)/9)*.85:0;
+      const rearLock=current.handbrake&&i%2===0?clamp((speed-3)/7)*.9:0;
+      return Math.max(launchSlip,lateralSlip,stoppingSlip,rearLock);
     });
     const candidate = grounded && forwardSpeed > 6 && slipAngle > .14 && Math.abs(lateralSpeed) > 1.2;
     enter = candidate ? enter + dt : 0;
@@ -43,8 +51,8 @@ export function createDrivingSignals() {
     const braking = grounded && speed > 1 && (current.brake > .05 || current.handbrake)
       ? clamp(-acceleration * Math.sign(forwardSpeed) / 9) : 0;
     const targetScrub = grounded ? Math.max(...wheelSlip) : 0;
-    const scrub = grounded && speed > 3 ? result.scrub + (targetScrub - result.scrub) * (1 - Math.exp(-dt / .065)) : 0;
-    return result = { acceleration, push, braking, scrub, slipAngle, sliding, wheelSlip, grounded };
+    const scrub = grounded && (speed > 3 || launchSpin > 0) ? result.scrub + (targetScrub - result.scrub) * (1 - Math.exp(-dt / .065)) : 0;
+    return result = { acceleration, push, braking, scrub, slipAngle, sliding, launchSpin, wheelSlip, grounded };
   }
   return { update, reset, snapshot: () => result };
 }
