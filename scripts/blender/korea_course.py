@@ -198,7 +198,21 @@ def build(kind):
             x=-650+i*220;z=1000+random.uniform(100,800);h=random.uniform(200,370)
             bpy.ops.mesh.primitive_cone_add(vertices=12,radius1=random.uniform(170,300),radius2=30,depth=h,location=(x,-z,h/2-10));ob=bpy.context.object;bpy.context.view_layer.update()
             vs=[ob.matrix_world@v.co for v in ob.data.vertices];mesh('JirisanRidge',[(v.x,v.z,-v.y) for v in vs],[tuple(f.vertices) for f in ob.data.polygons],'Stone');bpy.data.objects.remove(ob,do_unlink=True)
-        p=max(points,key=lambda p:p['y']);x,z=p['x']-45,p['z']+35
+        p=max(points,key=lambda p:p['y'])
+        # A fixed world offset can overlap another part of the return loop.
+        # Check the whole route against the widest authored roof and deck,
+        # retaining 15m from each footprint to the centerline (11m road half).
+        def footprint_clear(cx,cz,w,d):
+            return min(math.hypot(max(abs(q['x']-cx)-w/2,0),max(abs(q['z']-cz)-d/2,0)) for q in points)>=15
+        location=None
+        for offset in [55,75,95,115,135,155]:
+            for side in [-1,1]:
+                cx,cz=p['x']+p['dz']*side*offset,p['z']-p['dx']*side*offset
+                if footprint_clear(cx,cz,40,24) and footprint_clear(cx+15,cz-30,25,18):
+                    location=(cx,cz);break
+            if location:break
+        if location is None:raise RuntimeError('No clear rest-area footprint outside the full racing loop')
+        x,z=location
         box('SeongsamjaeRestArea',x,p['y']+4,z,36,8,20,'Facade');box('RestAreaRoof',x,p['y']+8.3,z,40,.7,24,'Roof')
         box('ViewDeck',x+15,p['y']-1,z-30,25,.8,18,'Concrete')
         sign(max(range(n),key=lambda i:points[i]['y']),'성삼재 휴게소 / 노고단 방향')

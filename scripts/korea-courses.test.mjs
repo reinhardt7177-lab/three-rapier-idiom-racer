@@ -32,6 +32,16 @@ for(const id of ['yeosu','seongsamjae']){
   assert.equal(road.castShadow,true,'landmark setup must not modify the whole world');assert.equal(road.receiveShadow,true);
   assert.equal(roads,1,'one connected asphalt collider, with no internal chunk boundaries');assert.ok(signs>=4);createSceneDisposer(scene)();
  });
+ test(`${id}: visual buildings and roofs do not occupy the racing corridor`,async()=>{
+  const bin=read(`public/assets/rebuild/${id}.glb`),{route}=koreaData(id);
+  const {scene}=await new GLTFLoader().parseAsync(bin.buffer.slice(bin.byteOffset,bin.byteOffset+bin.byteLength),'');scene.updateMatrixWorld(true);
+  const buildings=[];scene.traverse(o=>{if(!o.isMesh)return;const materials=Array.isArray(o.material)?o.material:[o.material];if(materials.some(m=>/^(Facade|Roof)(\.|$)/.test(m.name))){materials.forEach(m=>m.side=THREE.DoubleSide);buildings.push(o);}});
+  const ray=new THREE.Raycaster();ray.far=12;
+  try {for(let i=0;i<route.points.length;i++)for(const lane of [-7,0,7]){
+   const p=route.points[i];ray.set(new THREE.Vector3(p.x+p.dz*lane,p.y+.05,p.z-p.dx*lane),new THREE.Vector3(0,1,0));
+   assert.equal(ray.intersectObjects(buildings,false).length,0,`visual building occupies route ${i} lane ${lane}`);
+  }}finally{createSceneDisposer(scene)();}
+ });
  test(`${id}: all route points form a closed, finite circuit without gaps`,()=>{
   const {route}=koreaData(id);assert.equal(route.closed,true);assert.ok(route.width>=16);
   let length=0;
