@@ -1,5 +1,5 @@
 {
-  "status": "stage1-criteria-passed",
+  "status": "stage2-championship-performance-gate-stop",
   "staticAttempts": 3,
   "staticLatestPassed": 6,
   "colabExecuted": true,
@@ -10,7 +10,7 @@
   "garageFourViewports": true,
   "fullHudFourViewports": true,
   "performanceGate": "short stationary browser samples recorded; previous large delay not reproduced, whole-course visual/flow audit remains",
-  "stage2Started": false,
+  "stage2Started": true,
   "committed": true,
   "pushed": true,
   "browserTimeouts": 3,
@@ -36,18 +36,16 @@
     "build": true
   },
   "currentFullCheck": {
-    "executed": true,
-    "tests": 232,
-    "pass": 232,
-    "fail": 0,
-    "build": true,
-    "seconds": 166.40990710258484,
-    "buildSeconds": 3.21,
-    "code": 0,
+    "file": "artifacts/championship-20261011/full-check-7.json",
+    "tests": 238,
+    "passed": 238,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 189.09265422821045,
+    "buildSeconds": 3.23,
     "compute": "CPU / Rapier WASM",
-    "sourceFilesMatched": 119,
-    "sourceMismatches": 0,
-    "log": "full-check-5.log"
+    "localHashCount": 123,
+    "mismatches": []
   },
   "currentTargetedCheck": {
     "tests": 10,
@@ -81,5 +79,30 @@
     "gradeDown": 17.5871128487,
     "hairpin": true,
     "summitRoadOverlapFixed": true
-  }
+  },
+  "complete": false,
+  "championship": {
+    "functionalFlowVerified": true,
+    "threeRoundsFinished": true,
+    "browserPlayer": {
+      "rank": 4,
+      "points": 9,
+      "totalSeconds": 339.90833333333336
+    },
+    "performanceGatePassed": false
+  },
+  "stop": {
+    "userCondition": "기존 코스 성능이 나빠지면 멈추고 보고",
+    "observed": "Namak p95 16.9 → 33.6ms; >50ms 0 → 8",
+    "causeEstablished": false
+  },
+  "next": "기존 남악 성능을 동일 조건에서 재현·수정한 후 확장 재개",
+  "remainingStage2": [
+    "championship performance gate",
+    "medal unlocks",
+    "rival personalities with no AI teleport",
+    "another course night and performance cost"
+  ],
+  "report": "docs/KOREA_RELEASE_GATE_20261011.md",
+  "championshipImplementationCommit": "6238068"
 }
