@@ -47,6 +47,7 @@ import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from './nightPr
 import {createPauseRendering} from './renderTiming.js';
 import {createRacePreparation,createRaceStartBoundary} from './racePreparation.js';
 import {createRenderProfile,classifyDraw} from './renderProfile.js';
+import {createFrozenComparison,createFrozenTreadTrial} from './frozenComparison.js';
 import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from './koreaPresentation.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
@@ -108,7 +109,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const presentation=namak?createNamakPresentation(assets.world,assets.cars):null;
   const landmarks=assets.landmarks?createNamakLandmarks(assets.landmarks):null;
   const surfaces=polishWorldSurfaces(assets.world,{namak}),colors=namak?applyNamakColors(assets.world):applyKoreaPalette(assets.world,track.id);
-  const scenery=batchWorldScenery(assets.world),frameMetrics=createFrameMetrics(),pauseRendering=createPauseRendering();
+  const scenery=batchWorldScenery(assets.world),frameMetrics=createFrameMetrics(import.meta.env.DEV&&new URLSearchParams(window.location.search).has('qaFrozen')?360:240),pauseRendering=createPauseRendering();
   const preparation=createRacePreparation({onChange:()=>{if(alive)publish();}});
   const raceBoundary=createRaceStartBoundary();
   // Collision heights are recovered geometry, not a flat substitute under hills.
@@ -150,6 +151,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   let qaDriver=false;
   const profile=import.meta.env.DEV&&new URLSearchParams(window.location.search).has('qaProfile')?createRenderProfile(renderer,{classify:o=>classifyDraw(o,{world:assets.world,vehicles:cars.map(c=>c.view.root),sky})}):null;
   const drawScene=label=>profile?profile.render(scene,camera,label):renderer.render(scene,camera);
+  const frozenEnabled=import.meta.env.DEV&&!!profile&&new URLSearchParams(window.location.search).has('qaFrozen');
+  let frozenComparison=null,frozenTread=null,frozenSetupMs=0;
   function publish(){
     pauseRendering.invalidate();
     const ordered=[...cars].sort((a,b)=>(b.finish!==null)-(a.finish!==null)||(a.finish!==null&&b.finish!==null?a.finish-b.finish:b.progress-a.progress||a.slot-b.slot));
@@ -165,6 +168,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     state.music=music.status();state.cameraMode=cameraMode;state.cockpit=cockpit.status();
     state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,lighting,atmosphere,colors,pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
     if(profile)state.rendering.profile=profile.snapshot();
+    if(frozenEnabled){const frozenState=frozenComparison?.snapshot();state.rendering.frozen={...frozenState,results:frozenState?.status==='running'?[]:frozenState?.results,detail:frozenTread?.snapshot(),setupMs:frozenSetupMs};}
     state.loading=assets.loading;
     state.preparation={...preparation.snapshot(),busy:preparation.busy()||raceBoundary.pending(),frameBoundary:raceBoundary.snapshot()};
     state.finishOrder=ordered.map(c=>({name:c.name,time:c.finish,finished:c.finish!==null}));
@@ -174,6 +178,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     window.__mumuRebuild=state;onState(state);
   }
   function setGarage(id=selected){
+    frozenComparison?.cancel();frozenComparison=null;frozenTread=null;
     raceBoundary.cancel();
     preparation.cancel();
     rivalPlanner.reset();
@@ -190,6 +195,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   function startRace(){
     if(!presentationGuard.canDrive()||preparation.busy()||raceBoundary.pending())return;
     return preparation.run({setup(){
+    frozenComparison?.cancel();frozenComparison=null;frozenTread=null;
     rivalPlanner=planRivals();overtakes.reset();nitroBonus={amount:0,age:100};
     clearGhost();raceLaps=laps;lapStart=0;lapTimes=[];playerLap=1;showGhost();ghostRecorder=createGhostRecorder(selected);
     frameMetrics.reset();
@@ -315,6 +321,15 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   }
   function render(now){
     if(!alive)return;
+    if(frozenEnabled&&paused&&mode==='race'){
+      if(!frozenComparison){
+        const setupStart=performance.now();
+        frozenTread=createFrozenTreadTrial(cars.map(c=>c.view),camera,host.clientHeight);
+        frozenComparison=createFrozenComparison({apply:mode=>frozenTread.apply(mode),reset:()=>frameMetrics.reset(),measure:()=>({frames:frameMetrics.snapshot(),profile:profile.snapshot(),camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray()},cars:cars.map(c=>({position:c.view.root.position.toArray(),quaternion:c.view.root.quaternion.toArray()})),elapsed})});
+        frozenComparison.start();frozenSetupMs=performance.now()-setupStart;last=now;
+      }
+      if(frozenComparison.active())pauseRendering.invalidate();
+    }else if(frozenComparison?.active()){frozenComparison.cancel();frameMetrics.reset();}
     if(preparation.blocked()||!pauseRendering.draw(paused)){last=now;frame=requestAnimationFrame(render);return;}
     if(mode==='race'){
       const boundary=raceBoundary.enter(now,performance.now());
@@ -325,8 +340,9 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
     if(mode==='race'&&!paused){const physicsStart=performance.now();clock.advance(rawDt,updateStep);physicsMs=performance.now()-physicsStart;}
     presentScene(now,dt);
-    const renderStart=performance.now();renderer.info.reset();drawScene(mode);const renderMs=performance.now()-renderStart;frames++;
-    if(!paused)frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
+    const renderStart=performance.now();renderer.info.reset();drawScene(frozenComparison?.active()?frozenComparison.label():mode);const renderMs=performance.now()-renderStart;frames++;
+    if(!paused||frozenComparison?.active())frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
+    if(frozenComparison?.active()){const before=frozenComparison.label();frozenComparison.record(now);if(before!==frozenComparison.label())publish();}
     if(now-fpsStart>1000){fps=Math.round(frames*1000/(now-fpsStart));frames=0;fpsStart=now;}
     if(now-reportTime>100){publish();reportTime=now;}
     frame=requestAnimationFrame(render);
@@ -346,7 +362,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   setGarage();frame=requestAnimationFrame(render);
   return {qa:import.meta.env.DEV?{driver(value){qaDriver=!!value;drivingInput.clear();publish();}}:undefined,presentation:next=>presentationGuard.update(next),select:setGarage,start:startRace,assist:()=>{assist=!assist;saveAssist(storage(),assist);if(cars[0]?.player)cars[0].sim.setRecoveryAssist(assist);publish();},laps:n=>{if(mode!=='garage'||!LAP_OPTIONS.includes(n))return;laps=raceLaps=n;saveLaps(storage(),n);best=bestRecord(storage(),track.id,n);publish();},difficulty:id=>{if(mode!=='garage')return;difficulty=difficultyById(id);saveDifficulty(storage(),difficulty.id);publish();},garage:()=>setGarage(),pause:()=>pause(!paused),sound:toggleSound,camera:toggleCamera,music:toggleMusic,musicTrack:id=>{Promise.resolve(music.select(id)).then(()=>{if(alive)publish();});publish();},musicVolume:value=>{music.setVolume(value);publish();},recover:()=>{if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result)recover();},input(code,value,source='touch'){if(!value)drivingInput.release(code,source);else if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result&&presentationGuard.canDrive())drivingInput.press(code,source);},dispose(){
     if(!alive)return;alive=false;raceBoundary.cancel();preparation.cancel();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();window.removeEventListener('keydown',keydown);window.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);
-    profile?.dispose();night?.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());raceContacts.dispose();world.free();
+    frozenComparison?.cancel();profile?.dispose();night?.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());raceContacts.dispose();world.free();
     createSceneDisposer(scene,{renderTargets:[environment,outdoorEnvironment]})();display?.dispose();cars.forEach(c=>c.view.dispose());clearGhost();renderer.dispose();renderer.domElement.remove();delete window.__mumuRebuild;
   }};
 }

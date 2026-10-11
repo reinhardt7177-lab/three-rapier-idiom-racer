@@ -3,7 +3,7 @@
   "deadline": "2026-10-11T19:15:00+09:00",
   "baseCommit": "8c5bb8b",
   "branch": "codex/korea-circuits-progression-20261011",
-  "status": "stopped-after-namak-wheel-lod-regression",
+  "status": "frozen-diagnostic-validated-performance-unresolved",
   "completed": [
     "actual official photos and satellite reference captures",
     "course-specific first palette and night sky",
@@ -18,23 +18,25 @@
     "18 physical championship finishes; Namak browser 6 finishes/result/garage/restart/keyboard release; four viewport HUD/menu",
     "paired baseline/current Namak sustained cost evidence; resolution and frozen-transform trials recorded, unproven trial excluded; 137 source hashes unchanged",
     "DEV draw classification and asynchronous actual GPU timer;251 full tests/build on Colab CPU,138 hashes matched;4 viewport HUD/menu,input release and6 browser finishes",
-    "wheel tread screen-spaceLOD trial24focusedtests passed;179200tri removed but p95worse; excluded and138hashes restored/build8.29s"
+    "wheel tread screen-spaceLOD trial24focusedtests passed;179200tri removed but p95worse; excluded and138hashes restored/build8.29s",
+    "DEV fixed-sceneABA1080frames;geometry179200tri/20drawlower butp95unchanged;255fulltests/build actualColabCPU139hashmatched;4sizesHUD6/menu10,inputrelease",
+    "Namak realbrowser6finishes83.5167–86.4333s/player84.4583silver;resultgarageRestart/QAoff;productDEVdiagnosticsabsent"
   ],
   "next": [
-    "on explicit resumption: full-frame timeline with controlled host/GPU/cache and same camera/AI positions",
-    "diagnose prior Seongsamjae1000ms gaps; preserve all bad frames",
-    "after performance gate: Blender Yeosu bridge/reflections and Seongsamjae forest/ridges"
+    "separate ghost transparentdraw and host/GPUwait with fixedscene;no geometryexpansion",
+    "diagnose priorSeongsamjae1000msgaps",
+    "after performancegate:BlenderYeosubridge/reflections+Seongsamjaeforest/ridges"
   ],
   "stopReason": "Matched Namak product wheel-LOD trial p95 rose33.4→50ms; trial excluded/restored138hashes; user stop criterion triggered; automation6PAUSED",
   "heartbeatId": "6",
   "baselineServerPid": 29552,
   "check": {
-    "passed": 251,
+    "passed": 255,
     "failed": 0,
     "skipped": 0,
-    "inputHashes": 138,
-    "seconds": 203.72396159172058
+    "inputHashes": 139,
+    "seconds": 203.3314380645752
   },
-  "lastObservation": "baselineA/Bp9533.5/33.4ms vs trialB50ms; trial source excluded; no new full Colab check claimed",
-  "lastUpdatedAt": "2026-10-11T06:02:14.621Z"
+  "lastObservation": "fixedposes+physics0;full/trim/fullp9533.5/33.4/33.4ms;rejectedLODnotrestored;automation6remainsPAUSED",
+  "lastUpdatedAt": "2026-10-11T06:26:50.882Z"
 }

@@ -1,4 +1,52 @@
 import {createRenderProfile,classifyDraw} from '../src/rebuild/renderProfile.js';
+import * as THREE from 'three';
+import {createFrozenComparison,createFrozenTreadTrial} from '../src/rebuild/frozenComparison.js';
+
+test('frozen renderer comparison captures all three A/B/A phases and always restores full geometry',()=>{
+ const modes=[],snapshots=[];let resets=0,cost=0;
+ const c=createFrozenComparison({framesPerPhase:3,apply:m=>modes.push(m),reset:()=>resets++,measure:()=>({cost:++cost})});
+ c.start();c.start();assert.equal(resets,1);
+ const times=[0,16,32,232,248,264,280,296,312];
+ for(let i=0;i<9;i++){assert.equal(c.active(),true);c.record(times[i]);snapshots.push(c.snapshot());}
+ assert.equal(c.active(),false);assert.equal(c.snapshot().status,'complete');
+ assert.deepEqual(modes,['full','tread','full','full']);assert.equal(resets,3);
+ assert.deepEqual(c.snapshot().results.map(r=>[r.phase,r.frames,r.complete,r.measurement.cost]),[['full-before',3,true,1],['tread-only',3,true,2],['full-after',3,true,3]]);
+ c.record();assert.equal(c.snapshot().results.length,3);
+ assert.equal(c.snapshot().intervals.length,8);assert.ok(c.snapshot().intervals.some(i=>i.phase==='tread-only'&&i.gapMs===200),'Phase reset cannot erase a slow transition interval');
+ assert.equal(c.snapshot().transitions.length,4);
+});
+
+test('cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set',()=>{
+ const modes=[],c=createFrozenComparison({framesPerPhase:3,apply:m=>modes.push(m),reset:()=>{},measure:()=>({raw:[1,50,200]})});
+ c.start();for(let i=0;i<4;i++)c.record();c.cancel();
+ assert.equal(c.active(),false);assert.equal(modes.at(-1),'full');
+ assert.deepEqual(c.snapshot().results.map(r=>[r.phase,r.frames,r.complete]),[['full-before',3,true],['tread-only',1,false]]);
+ c.start();c.record();assert.equal(c.snapshot().results.length,2);
+});
+
+test('frozen tread A/B changes only distant rival accents and restores authored visibility and resources',()=>{
+ const material=new THREE.MeshStandardMaterial();material.name='Tread grooves';
+ const geometry=new THREE.SphereGeometry(.35,12,8),views=[];
+ for(let i=0;i<2;i++){
+  const root=new THREE.Group(),wheel=new THREE.Group(),tread=new THREE.Mesh(geometry,material),tyre=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial());
+  root.add(wheel);wheel.add(tread,tyre);const hidden=tread.clone();hidden.visible=false;wheel.add(hidden);views.push({root,wheel,tread,tyre,hidden});
+ }
+ const camera=new THREE.PerspectiveCamera(60,16/9,.1,1000);camera.position.z=100;
+ const before=views.map(v=>({root:v.root.position.toArray(),rotation:v.wheel.quaternion.toArray()}));
+ const trial=createFrozenTreadTrial(views,camera,720);assert.equal(trial.snapshot().eligible,1);
+ trial.apply('tread');assert.equal(views[0].tread.visible,true);assert.equal(views[1].tread.visible,false);
+ for(const v of views){assert.equal(v.tyre.visible,true);assert.equal(v.hidden.visible,false);assert.equal(v.tread.geometry,geometry);assert.equal(v.tread.material,material);}
+ assert.deepEqual(views.map(v=>({root:v.root.position.toArray(),rotation:v.wheel.quaternion.toArray()})),before);
+ trial.apply('full');assert.ok(views.every(v=>v.tread.visible&&!v.hidden.visible));
+});
+
+test('frozen tyre projection leaves close and behind-camera accents intact',()=>{
+ const roots=[new THREE.Group(),new THREE.Group()],mat=new THREE.MeshStandardMaterial();mat.name='Tread grooves';
+ roots.forEach(r=>r.add(new THREE.Mesh(new THREE.SphereGeometry(.35,8,4),mat)));
+ const camera=new THREE.PerspectiveCamera(60,16/9,.1,1000);camera.position.z=3;
+ assert.equal(createFrozenTreadTrial(roots.map(root=>({root})),camera,720).snapshot().eligible,0);
+ camera.position.z=-3;assert.equal(createFrozenTreadTrial(roots.map(root=>({root})),camera,720).snapshot().eligible,0);
+});
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRenderTiming,createPauseRendering,createFrameEvidence} from '../src/rebuild/renderTiming.js';
