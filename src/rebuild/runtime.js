@@ -45,6 +45,7 @@ import {applyNamakColors,outdoorAtmosphere,tintNamakSky} from './namakColors.js'
 import {createNamakLandmarks} from './namakLandmarks.js';
 import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from './nightPresentation.js';
 import {createPauseRendering} from './renderTiming.js';
+import {createRacePreparation,createRaceStartBoundary} from './racePreparation.js';
 import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from './koreaPresentation.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
@@ -107,6 +108,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const landmarks=assets.landmarks?createNamakLandmarks(assets.landmarks):null;
   const surfaces=polishWorldSurfaces(assets.world,{namak}),colors=namak?applyNamakColors(assets.world):applyKoreaPalette(assets.world,track.id);
   const scenery=batchWorldScenery(assets.world),frameMetrics=createFrameMetrics(),pauseRendering=createPauseRendering();
+  const preparation=createRacePreparation({onChange:()=>{if(alive)publish();}});
+  const raceBoundary=createRaceStartBoundary();
   // Collision heights are recovered geometry, not a flat substitute under hills.
   const ray=new THREE.Raycaster(),route=assets.roads;
   const roadClear=createOvertakeRoadCheck(world,route,asphalt),storage=()=>{try{return window.localStorage;}catch{return null;}};
@@ -159,6 +162,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     state.music=music.status();state.cameraMode=cameraMode;state.cockpit=cockpit.status();
     state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,lighting,atmosphere,colors,pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
     state.loading=assets.loading;
+    state.preparation={...preparation.snapshot(),busy:preparation.busy()||raceBoundary.pending(),frameBoundary:raceBoundary.snapshot()};
     state.finishOrder=ordered.map(c=>({name:c.name,time:c.finish,finished:c.finish!==null}));
     if(import.meta.env.DEV)state.qaDriver=qaDriver;
     state.vfx={tireSmoke:smoke.stats(),exhaust:exhaust.stats(),trails:trails.stats(),feedback:latestFeedback};
@@ -166,6 +170,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     window.__mumuRebuild=state;onState(state);
   }
   function setGarage(id=selected){
+    raceBoundary.cancel();
+    preparation.cancel();
     rivalPlanner.reset();
     frameMetrics.reset();
     selected=id;mode='garage';paused=false;pauseReason='';result=null;drivingInput.clear();audio.setPaused(true);audio.setVehicle(id);music.stop();
@@ -178,7 +184,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     sun.position.set(4,8,3);sun.target.position.set(0,0,0);publish();
   }
   function startRace(){
-    if(!presentationGuard.canDrive())return;
+    if(!presentationGuard.canDrive()||preparation.busy()||raceBoundary.pending())return;
+    return preparation.run({setup(){
     rivalPlanner=planRivals();overtakes.reset();nitroBonus={amount:0,age:100};
     clearGhost();raceLaps=laps;lapStart=0;lapTimes=[];playerLap=1;showGhost();ghostRecorder=createGhostRecorder(selected);
     frameMetrics.reset();
@@ -196,6 +203,14 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     }
     for(let i=0;i<120;i++){cars.forEach(c=>c.sim.step({brake:1},false));stepVehicleWorld(world);cars.forEach(c=>{c.state=c.previous=c.sim.finishStep();});}
     signals.reset();smoke.clear();exhaust.clear();trails.clear();sparks.clear();raceContacts.clear();latestFeedback={};cameraImpact=0;audio.setPaused(true);renderer.domElement.focus({preventScroll:true});last=performance.now();publish();
+    },compile(){presentScene(performance.now(),0);return renderer.compileAsync(scene,camera);},draw(){renderer.info.reset();renderer.render(scene,camera);},ready(){
+      clock.reset();frameMetrics.reset();drivingInput.clear();last=performance.now();fpsStart=last;frames=0;
+      raceBoundary.begin(last);
+      // The pending callback may carry a timestamp from before the warm draw.
+      // Request a fresh frame so preparation time cannot enter the race clock.
+      cancelAnimationFrame(frame);frame=requestAnimationFrame(render);
+      if(document.hidden||!document.hasFocus())pause(true,'focus');
+    }});
   }
   function recover(car=cars[0],reason='manual'){
     if(!car)return;
@@ -213,7 +228,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     if(car.player){drivingInput.clear();audio.reset();cameraSnap=true;signals.reset();smoke.clear();exhaust.clear();trails.clear();cameraImpact=0;latestFeedback={};}
     return true;
   }
-  function pause(value,reason='manual'){if(mode!=='race'||(!value&&!presentationGuard.canDrive()))return;paused=value;pauseReason=value?reason:'';drivingInput.clear();clock.reset();last=performance.now();fpsStart=last;frames=0;frameMetrics.reset();audio.setPaused(value||countdown>0||!!result);music.setPaused(value||!!result);publish();if(!value){renderer.domElement.focus({preventScroll:true});music.resume();if(soundWanted&&audio.status().state!=='running')audio.setEnabled(true).then(()=>{if(alive)publish();});}}
+  function pause(value,reason='manual'){if(preparation.blocked()||mode!=='race'||(!value&&!presentationGuard.canDrive()))return;paused=value;pauseReason=value?reason:'';drivingInput.clear();clock.reset();last=performance.now();fpsStart=last;frames=0;frameMetrics.reset();audio.setPaused(value||countdown>0||!!result);music.setPaused(value||!!result);publish();if(!value){renderer.domElement.focus({preventScroll:true});music.resume();if(soundWanted&&audio.status().state!=='running')audio.setEnabled(true).then(()=>{if(alive)publish();});}}
   const presentationGuard=createPresentationGuard({clear:()=>drivingInput.clear(),pause:reason=>pause(true,reason)});
   function toggleSound(){soundWanted=!soundWanted;audio.setEnabled(soundWanted).then(()=>{if(alive)publish();});music.setMaster(soundWanted);publish();}
   function toggleCamera(){if(mode!=='race')return;cameraMode=cameraMode==='chase'?'first-person':'chase';cameraSnap=true;if(!paused)renderer.domElement.focus({preventScroll:true});publish();}
@@ -270,13 +285,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       result={place,time:cars[0].finish,difficulty:difficulty.id,laps:raceLaps,lapTimes,bestLap:Math.min(...lapTimes),improved:record.improved,previous:record.previous?.time??null,medal:medalFor(cars[0].finish,medalTimes(track.id,raceLaps)),ghostSaved};drivingInput.clear();music.setPaused(true);}
     const p=cars[0],feedback=signals.update(p.previous,p.state,STEP);latestFeedback=feedback;smoke.update(p.state,feedback,STEP);exhaust.update(p.state,p.exhaustPoints,STEP,{enabled:!result});trails.update(p.state,feedback,STEP);audio.update(p.state,feedback);audio.setPaused(!running||!!result);
   }
-  function render(now){
-    if(!alive)return;
-    if(!pauseRendering.draw(paused)){last=now;frame=requestAnimationFrame(render);return;}
-    const workStart=performance.now();let physicsMs=0;
-    const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
+  function presentScene(now,dt){
     if(mode==='race'){
-      if(!paused){const physicsStart=performance.now();clock.advance(rawDt,updateStep);physicsMs=performance.now()-physicsStart;}
       cars.forEach(c=>poseVehicle(c.view,c.state,.6,c.previous,paused?1:clock.alpha()));
       if(ghostView){
         const pose=countdown<=0&&!result?ghostPose(ghost,elapsed+(paused?0:clock.alpha()*STEP)):null;
@@ -298,6 +308,19 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     night?.update(cars[0]?.state,cars[0]?.index??0,mode==='race',camera.position);
     presentation?.update(camera);
     landmarks?.update(camera,assets.world.visible);
+  }
+  function render(now){
+    if(!alive)return;
+    if(preparation.blocked()||!pauseRendering.draw(paused)){last=now;frame=requestAnimationFrame(render);return;}
+    if(mode==='race'){
+      const boundary=raceBoundary.enter(now,performance.now());
+      if(!boundary.accepted){frame=requestAnimationFrame(render);return;}
+      if(boundary.first){last=now;fpsStart=now;frames=0;}
+    }
+    const workStart=performance.now();let physicsMs=0;
+    const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
+    if(mode==='race'&&!paused){const physicsStart=performance.now();clock.advance(rawDt,updateStep);physicsMs=performance.now()-physicsStart;}
+    presentScene(now,dt);
     const renderStart=performance.now();renderer.info.reset();renderer.render(scene,camera);const renderMs=performance.now()-renderStart;frames++;
     if(!paused)frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
     if(now-fpsStart>1000){fps=Math.round(frames*1000/(now-fpsStart));frames=0;fpsStart=now;}
@@ -311,14 +334,14 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   let previousLayout=null;
   function resize(){pauseRendering.invalidate();const {width,height}=host.getBoundingClientRect();if(!width||!height)return;const layout=raceLayout(width,height);if(previousLayout!==null&&layout!==previousLayout&&mode==='race')pause(true,'layout');previousLayout=layout;renderer.setSize(width,height,false);camera.aspect=width/height;if(mode==='garage')fitGarageCamera();camera.updateProjectionMatrix();smoke.setViewport(height*renderer.getPixelRatio());}
   const observer=new ResizeObserver(resize);observer.observe(host);resize();
-  const keyActions={input:drivingInput,inRace:()=>mode==='race',canDrive:()=>!paused&&!result&&presentationGuard.canDrive(),pause:()=>pause(!paused),recover:()=>recover(),restart:()=>{if(!result)startRace();},mute:toggleSound,camera:toggleCamera};
+  const keyActions={input:drivingInput,inRace:()=>mode==='race',canDrive:()=>!preparation.blocked()&&!raceBoundary.pending()&&!paused&&!result&&presentationGuard.canDrive(),pause:()=>pause(!paused),recover:()=>recover(),restart:()=>{if(!result)startRace();},mute:toggleSound,camera:toggleCamera};
   const keydown=e=>handleRaceKeyDown(e,keyActions);
   const keyup=e=>drivingInput.release(e.code),blur=()=>pause(true,'focus');
   function visibility(){if(document.hidden){pause(true,'focus');cancelAnimationFrame(frame);}else if(alive){last=performance.now();cancelAnimationFrame(frame);frame=requestAnimationFrame(render);}}
   window.addEventListener('keydown',keydown);window.addEventListener('keyup',keyup);window.addEventListener('blur',blur);document.addEventListener('visibilitychange',visibility);
   setGarage();frame=requestAnimationFrame(render);
-  return {qa:import.meta.env.DEV?{driver(value){qaDriver=!!value;drivingInput.clear();publish();}}:undefined,presentation:next=>presentationGuard.update(next),select:setGarage,start:startRace,assist:()=>{assist=!assist;saveAssist(storage(),assist);if(cars[0]?.player)cars[0].sim.setRecoveryAssist(assist);publish();},laps:n=>{if(mode!=='garage'||!LAP_OPTIONS.includes(n))return;laps=raceLaps=n;saveLaps(storage(),n);best=bestRecord(storage(),track.id,n);publish();},difficulty:id=>{if(mode!=='garage')return;difficulty=difficultyById(id);saveDifficulty(storage(),difficulty.id);publish();},garage:()=>setGarage(),pause:()=>pause(!paused),sound:toggleSound,camera:toggleCamera,music:toggleMusic,musicTrack:id=>{Promise.resolve(music.select(id)).then(()=>{if(alive)publish();});publish();},musicVolume:value=>{music.setVolume(value);publish();},recover:()=>{if(mode==='race'&&!paused&&!result)recover();},input(code,value,source='touch'){if(!value)drivingInput.release(code,source);else if(mode==='race'&&!paused&&!result&&presentationGuard.canDrive())drivingInput.press(code,source);},dispose(){
-    if(!alive)return;alive=false;cancelAnimationFrame(frame);observer.disconnect();controls.dispose();window.removeEventListener('keydown',keydown);window.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);
+  return {qa:import.meta.env.DEV?{driver(value){qaDriver=!!value;drivingInput.clear();publish();}}:undefined,presentation:next=>presentationGuard.update(next),select:setGarage,start:startRace,assist:()=>{assist=!assist;saveAssist(storage(),assist);if(cars[0]?.player)cars[0].sim.setRecoveryAssist(assist);publish();},laps:n=>{if(mode!=='garage'||!LAP_OPTIONS.includes(n))return;laps=raceLaps=n;saveLaps(storage(),n);best=bestRecord(storage(),track.id,n);publish();},difficulty:id=>{if(mode!=='garage')return;difficulty=difficultyById(id);saveDifficulty(storage(),difficulty.id);publish();},garage:()=>setGarage(),pause:()=>pause(!paused),sound:toggleSound,camera:toggleCamera,music:toggleMusic,musicTrack:id=>{Promise.resolve(music.select(id)).then(()=>{if(alive)publish();});publish();},musicVolume:value=>{music.setVolume(value);publish();},recover:()=>{if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result)recover();},input(code,value,source='touch'){if(!value)drivingInput.release(code,source);else if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result&&presentationGuard.canDrive())drivingInput.press(code,source);},dispose(){
+    if(!alive)return;alive=false;raceBoundary.cancel();preparation.cancel();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();window.removeEventListener('keydown',keydown);window.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);
     night?.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());raceContacts.dispose();world.free();
     createSceneDisposer(scene,{renderTargets:[environment,outdoorEnvironment]})();display?.dispose();cars.forEach(c=>c.view.dispose());clearGhost();renderer.dispose();renderer.domElement.remove();delete window.__mumuRebuild;
   }};

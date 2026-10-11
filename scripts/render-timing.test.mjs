@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRenderTiming,createPauseRendering,createFrameEvidence} from '../src/rebuild/renderTiming.js';
 import {createFrameMetrics} from '../src/rebuild/worldRendering.js';
+import {createRacePreparation,createRaceStartBoundary} from '../src/rebuild/racePreparation.js';
 
 test('slow frame intervals remain visible when CPU submission is short',()=>{
  const frames=createFrameMetrics(),info={calls:868,triangles:1_279_323};
@@ -58,4 +59,40 @@ test('rolling frame averages cannot erase session slow gap evidence',()=>{
  frames.record(1017,info,{workMs:2});frames.record(1034,info,{workMs:2});
  const s=frames.snapshot();assert.equal(s.over50Ms,0);assert.equal(s.evidence.slowIntervals,1);
  assert.equal(s.evidence.spikes[0].gapMs,1000);assert.equal(s.evidence.spikes[0].previous.cpu.workMs,3);
+});
+
+test('race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock',async()=>{
+ let resolve,clockStarts=0,draws=0,setups=0,time=0;
+ const gate=createRacePreparation({now:()=>time,yieldTurn:async()=>{}});
+ const task={setup(){setups++;time+=5;},compile:()=>new Promise(r=>resolve=r),draw(){draws++;time+=40;},ready(){clockStarts++;}};
+ const running=gate.run(task);await Promise.resolve();assert.equal(gate.blocked(),true);
+ assert.equal(await gate.run(task),false);assert.equal(setups,1);assert.equal(draws,0);assert.equal(clockStarts,0);
+ time+=5000;resolve();assert.equal(await running,true);assert.equal(clockStarts,1);assert.equal(draws,1);
+ assert.deepEqual(gate.snapshot(),{phase:'ready',busy:false,error:null,setupMs:5,compileMs:5000,drawMs:40,totalMs:5045});
+});
+
+test('garage/disposal cancellation prevents a pending preparation from drawing stale objects',async()=>{
+ let resolve,draws=0,starts=0;
+ const gate=createRacePreparation({yieldTurn:async()=>{}});
+ const running=gate.run({setup(){},compile:()=>new Promise(r=>resolve=r),draw(){draws++;},ready(){starts++;}});
+ await Promise.resolve();gate.cancel();resolve();assert.equal(await running,false);
+ assert.equal(draws,0);assert.equal(starts,0);assert.equal(gate.blocked(),false);
+});
+
+test('preparation errors keep driving blocked, expose the cause, and permit a clean retry',async()=>{
+ let starts=0;const gate=createRacePreparation({yieldTurn:async()=>{}});
+ const task={setup(){},compile:async()=>{throw new Error('shader preparation failed');},draw(){throw new Error('must not draw');},ready(){starts++;}};
+ assert.equal(await gate.run(task),false);assert.equal(gate.blocked(),true);assert.equal(starts,0);
+ assert.equal(gate.snapshot().error,'shader preparation failed');
+ assert.equal(await gate.run({...task,compile:async()=>{},draw(){}}),true);
+ assert.equal(starts,1);assert.equal(gate.blocked(),false);assert.equal(gate.snapshot().error,null);
+});
+
+test('preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps',()=>{
+ const gate=createRaceStartBoundary();gate.begin(1500);
+ assert.equal(gate.enter(1000,1510).accepted,false);assert.equal(gate.enter(1499,1520).accepted,false);
+ assert.equal(gate.pending(),true);assert.deepEqual(gate.enter(1516,1530),{accepted:true,first:true});
+ assert.deepEqual(gate.snapshot(),{pending:false,readyAtMs:1500,firstFrameWaitMs:30,skippedFrames:2});
+ assert.deepEqual(gate.enter(2516,2530),{accepted:true,first:false});
+ assert.equal(gate.snapshot().firstFrameWaitMs,30);gate.cancel();assert.equal(gate.pending(),false);
 });

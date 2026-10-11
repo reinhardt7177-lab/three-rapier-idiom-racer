@@ -3,7 +3,7 @@
   "deadline": "2026-10-11T19:15:00+09:00",
   "baseCommit": "8c5bb8b",
   "branch": "codex/korea-circuits-progression-20261011",
-  "status": "first-render-diagnosis",
+  "status": "namak-sustained-load-diagnosis",
   "completed": [
     "actual official photos and satellite reference captures",
     "course-specific first palette and night sky",
@@ -12,22 +12,26 @@
     "4 viewport race/menu clipping and overlap checks",
     "before/after resource and frame records",
     "bounded lifetime frame-gap evidence with both endpoint focus/CPU; cold first render stalls confirmed",
-    "243 regression tests + build on Colab CPU; 136 hashes matched; 4 viewport HUD/menu and keyboard release"
+    "243 regression tests + build on Colab CPU; 136 hashes matched; 4 viewport HUD/menu and keyboard release",
+    "race world compile/warm draw before clock; stale timestamp boundary fixed; preparation costs preserved",
+    "247 full regression tests + build on actual Colab CPU; 137 local hashes matched",
+    "18 physical championship finishes; Namak browser 6 finishes/result/garage/restart/keyboard release; four viewport HUD/menu"
   ],
   "next": [
-    "fix first world render preparation before race clock starts; renderer stalls 4.89s/5.86s confirmed, exact GPU preparation stage unverified",
-    "diagnose Namak sustained frame load and later 1000ms gaps; new geometry remains held",
+    "diagnose Namak sustained p95 33.3ms at same start conditions; distinguish render work and scheduling",
+    "diagnose prior Seongsamjae 1000ms gaps with per-endpoint evidence; new geometry remains held",
     "after performance gate: Blender Yeosu bridge/reflections and Seongsamjae forest/ridges"
   ],
   "stopReason": "New geometry held pending Namak intermittent delay and Seongsamjae 1000ms frame-gap diagnosis",
   "heartbeatId": "6",
   "baselineServerPid": 29552,
   "check": {
-    "passed": 243,
+    "passed": 247,
     "failed": 0,
     "skipped": 0,
-    "inputHashes": 136,
-    "seconds": 203.90545868873596
+    "inputHashes": 137,
+    "seconds": 204.1484875679016
   },
-  "lastObservation": "Namak 6116.7ms interval follows 5859.7ms render; Seongsamjae 5216.7ms follows 4889.3ms render, both visible/focused"
+  "lastObservation": "Prepared Namak mean18.6121/p95 33.3ms; mountain mean16.6671/p95 16.8ms; preparation gate dropped seconds0 in both; Namak browser six cars finished83.52–86.43s",
+  "lastUpdatedAt": "2026-10-11T05:16:13.976Z"
 }

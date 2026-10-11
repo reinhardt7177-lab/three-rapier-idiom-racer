@@ -119,6 +119,8 @@ function App(){
       })}<button className="recover-button" aria-label="도로로 복귀" disabled={stats.paused||!!stats.result} onClick={()=>runtime.current.recover()}>복귀</button></div>
     </>}
     {qaEnabled&&<button className="qa-driver" disabled={!ready} aria-pressed={!!stats.qaDriver} onClick={()=>runtime.current.qa.driver(!stats.qaDriver)}>검수용 자동 페달 · {stats.qaDriver?'켜짐':'꺼짐'}</button>}
+    {stats.preparation?.busy&&ready&&<div className="loading-shade"><section role="status"><span className="kicker">MUMU CIRCUIT</span><h2>출발 준비 중입니다.</h2><p>잠시만 기다려주세요.</p></section></div>}
+    {stats.preparation?.phase==='failed'&&<div className="loading-shade"><section role="alert"><h2>출발 준비가 중단됐습니다.</h2><p>다시 준비하거나 차고로 돌아가주세요.</p><button className="primary" onClick={()=>runtime.current.start()}>다시 준비</button><button onClick={()=>runtime.current.garage()}>차고로 돌아가기</button></section></div>}
     {!ready&&!error&&<div className="loading-shade"><section role="status"><span className="kicker">MUMU CIRCUIT</span><h2>{track.name}로 향합니다.</h2><p>{load.message}</p><div className="course-meter"><i style={{width:`${load.progress*100}%`}}/></div></section></div>}
     {error&&<div className="loading-shade"><section role="alert"><h2>출발 준비가 중단됐습니다.</h2><p>{error}</p><button className="primary" onClick={()=>location.reload()}>다시 시도</button></section></div>}
   </main></div>
