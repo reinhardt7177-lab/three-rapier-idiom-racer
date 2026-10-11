@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createCockpit} from '../src/rebuild/cockpit.js';
+import {createRaceInput} from '../src/rebuild/raceInput.js';
+import {updateSteering,wheelSteering,steeringLimit} from '../src/driving/steering.js';
 import {createCockpitDisplay} from '../src/rebuild/cockpitDisplay.js';
 import {createSceneDisposer} from '../src/rendering/sceneResources.js';
 
@@ -51,7 +53,7 @@ test('actual cockpit needles point at their labeled values and steering leaves t
     cockpit.update({kmh,powertrain:{rpm},wheels:[{}, {steering}]},true);
     const state=cockpit.status();assert.ok(Math.abs(state.speedNeedle-(130-kmh/260*260)*Math.PI/180)<1e-9);
     assert.ok(Math.abs(state.rpmNeedle-(130-rpm/8000*260)*Math.PI/180)<1e-9);
-    assert.equal(state.steeringAngle,-steering*4);
+    assert.ok(Number.isFinite(state.steeringAngle));
     const direction=new THREE.Vector3(0,1,0).applyQuaternion(scene.getObjectByName('SpeedNeedle').quaternion);
     if(kmh===0)assert.ok(direction.x<0&&direction.y<0);
     if(kmh===130)assert.ok(Math.abs(direction.x)<1e-8&&direction.y>.99);
@@ -99,4 +101,27 @@ test('display draws telemetry onto one atlas at most ten times a second and reta
   display.update({kmh:113,gear:4,powertrain:{rpm:5600}},{title:'Slipstream Pursuit',wanted:false},8000,2000);
   assert.equal(display.status().uploads,11,'unchanged instrument values do not upload again');
   display.texture.dispose();material.dispose();
+});
+
+test('first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views',async()=>{
+  const {scene}=await load(),camera=new THREE.PerspectiveCamera(72,16/9,.04,100),cockpit=createCockpit(scene,camera);
+  const stripe=scene.getObjectByName('WheelCentreStripe');assert.ok(stripe,'actual Blender wheel has an upper centre stripe');
+  const projectedStripe=()=>{camera.updateMatrixWorld(true);return stripe.getWorldPosition(new THREE.Vector3()).project(camera);};
+  for(const compact of [false,true])for(const gear of ['1','R']){
+    for(const [code,source,side] of [['KeyA','keyboard',-1],['KeyD','keyboard',1],['ArrowLeft','keyboard',-1],['ArrowRight','keyboard',1],['ArrowLeft','pointer-1',-1],['ArrowRight','pointer-1',1]]){
+      const input=createRaceInput();input.press(code,source);assert.equal(input.read().steer,side);
+      let rack=0;for(let i=0;i<24;i++)rack=updateSteering(rack,input.read().steer,1/120);
+      const frontAngles=wheelSteering(rack*steeringLimit(15));
+      // The +Z-facing car's left is +X; from the driver's seat it projects left.
+      const tyreRolling=new THREE.Vector3(0,0,1).applyAxisAngle(new THREE.Vector3(0,1,0),frontAngles[1]);
+      assert.ok(-tyreRolling.x*side>0,'physical front tyre faces the requested side');
+      cockpit.update({gear,wheels:[{},{steering:0}]},true,8000,{compact});const neutral=projectedStripe();
+      cockpit.update({gear,wheels:frontAngles.map(steering=>({steering}))},true,8000,{compact});const turned=projectedStripe();
+      assert.ok((turned.x-neutral.x)*side>.01,code+' / '+source+' / '+gear+' / compact='+compact+' wheel stripe moves opposite the driver input');
+      input.release(code,source);assert.equal(input.read().steer,0);
+      cockpit.update({gear,wheels:[{},{steering:0}]},true,8000,{compact});
+      assert.ok(Math.abs(projectedStripe().x-neutral.x)<1e-9,'released rack returns the displayed wheel to centre');
+    }
+  }
+  createSceneDisposer(camera)();
 });

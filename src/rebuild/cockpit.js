@@ -22,7 +22,9 @@ export function createCockpit(root,camera) {
     root.visible=fill.visible=visible;
     // Small landscape windows need a smaller dashboard and more visible road.
     root.position.set(0,compact?-.12:0,compact?-.32:0);
-    wheel.rotation.z=-(vehicle?.wheels?.[1]?.steering||0)*4;
+    // Positive front-wheel yaw is a left turn; +Z rotation moves the
+    // camera-space wheel's upper stripe left from the driver's seat.
+    wheel.rotation.z=(vehicle?.wheels?.[1]?.steering||0)*4;
     // The right gauge is physically labeled 0..8 (thousands of RPM).
     speed.rotation.z=angle(clamp(vehicle?.kmh,260)/260);
     rpm.rotation.z=angle(clamp(vehicle?.powertrain?.rpm,8000)/8000);
