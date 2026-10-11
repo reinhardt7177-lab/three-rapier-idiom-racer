@@ -1,5 +1,19 @@
 // CPU submission time is distinct from the interval between animation frames.
 // These values do not measure GPU execution or React's later DOM commit.
+// A frame interval includes the PREVIOUS callback's work. Keep both endpoints
+// rather than attributing a long wait to the callback that runs after it.
+export function createFrameEvidence(capacity=24){
+ let previous=null,totalIntervals=0,slowIntervals=0;const spikes=[];
+ return {reset(){previous=null;totalIntervals=slowIntervals=0;spikes.length=0;},record(now,cost,context){
+  const current={atMs:now,cpu:cost?{...cost}:null,context:context?{...context}:null};
+  if(previous!==null&&now>previous.atMs){
+   totalIntervals++;const gapMs=now-previous.atMs;
+   if(gapMs>50){slowIntervals++;spikes.push({gapMs,previous,current});if(spikes.length>capacity)spikes.shift();}
+  }
+  previous=current;
+ },snapshot(){return {totalIntervals,slowIntervals,retained:spikes.length,evicted:slowIntervals-spikes.length,spikes:spikes.map(s=>({gapMs:s.gapMs,previous:{...s.previous,cpu:s.previous.cpu?{...s.previous.cpu}:null,context:s.previous.context?{...s.previous.context}:null},current:{...s.current,cpu:s.current.cpu?{...s.current.cpu}:null,context:s.current.context?{...s.current.context}:null}}))};}};
+}
+
 export function createRenderTiming(capacity=240){
  const samples=[];
  return {reset(){samples.length=0;},record(cost){

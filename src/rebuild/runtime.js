@@ -157,7 +157,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     state.audio={...audio.status(),wanted:soundWanted};
     state.difficulty=difficulty.id;state.assist=assist;state.nitroBonus=nitroBonus;if(player){state.surface=player.state.surface;state.draft=player.state.draft;}
     state.music=music.status();state.cameraMode=cameraMode;state.cockpit=cockpit.status();
-    state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,lighting,atmosphere,colors,pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
+    state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,lighting,atmosphere,colors,pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
     state.loading=assets.loading;
     state.finishOrder=ordered.map(c=>({name:c.name,time:c.finish,finished:c.finish!==null}));
     if(import.meta.env.DEV)state.qaDriver=qaDriver;
@@ -299,7 +299,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     presentation?.update(camera);
     landmarks?.update(camera,assets.world.visible);
     const renderStart=performance.now();renderer.info.reset();renderer.render(scene,camera);const renderMs=performance.now()-renderStart;frames++;
-    if(!paused)frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs});
+    if(!paused)frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
     if(now-fpsStart>1000){fps=Math.round(frames*1000/(now-fpsStart));frames=0;fpsStart=now;}
     if(now-reportTime>100){publish();reportTime=now;}
     frame=requestAnimationFrame(render);
