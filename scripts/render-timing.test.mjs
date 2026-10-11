@@ -1,3 +1,4 @@
+import {createRenderProfile,classifyDraw} from '../src/rebuild/renderProfile.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRenderTiming,createPauseRendering,createFrameEvidence} from '../src/rebuild/renderTiming.js';
@@ -95,4 +96,34 @@ test('preparation timestamp boundary retains wait costs and cannot admit stale a
  assert.deepEqual(gate.snapshot(),{pending:false,readyAtMs:1500,firstFrameWaitMs:30,skippedFrames:2});
  assert.deepEqual(gate.enter(2516,2530),{accepted:true,first:false});
  assert.equal(gate.snapshot().firstFrameWaitMs,30);gate.cancel();assert.equal(gate.pending(),false);
+});
+
+function profileFixture(gpuSupported=false){
+ let time=0,available=false,disjoint=false,deleted=0;const ext={TIME_ELAPSED_EXT:1,GPU_DISJOINT_EXT:2};
+ const gl={QUERY_RESULT_AVAILABLE:3,QUERY_RESULT:4,CURRENT_QUERY:5,getExtension:()=>gpuSupported?ext:null,getParameter:()=>disjoint,getQuery:()=>null,createQuery:()=>({}),beginQuery(){},endQuery(){},getQueryParameter:(q,p)=>p===3?available:2_500_000,deleteQuery(){deleted++;}};
+ const camera={},shadow={},vehicle={},road={},renderer={getContext:()=>gl,info:{render:{calls:0,triangles:0}},renderBufferDirect(c,s,g,m,o){time+=2;this.info.render.calls++;this.info.render.triangles+=3;return o;},render(){time++;this.renderBufferDirect(camera,null,null,null,vehicle);this.renderBufferDirect(shadow,null,null,null,road);time++;return 7;}};
+ return {renderer,camera,now:()=>time,vehicle,road,setAvailable:v=>available=v,setDisjoint:v=>disjoint=v,deleted:()=>deleted};
+}
+test('draw profile counts main/shadow deltas while leaving render results and hooks intact',()=>{
+ const f=profileFixture(),original=f.renderer.renderBufferDirect,p=createRenderProfile(f.renderer,{now:f.now,classify:o=>o===f.vehicle?'vehicle':'road',every:2});
+ assert.equal(p.render({},f.camera),7);assert.equal(f.renderer.renderBufferDirect,original);let s=p.snapshot();
+ assert.equal(s.gpu.supported,false);assert.equal(s.records[0].calls,2);assert.equal(s.records[0].triangles,6);assert.equal(s.records[0].drawCpuMs,4);assert.equal(s.records[0].otherCpuMs,2);
+ assert.equal(s.records[0].unattributedCalls,0);assert.deepEqual(s.records[0].buckets.map(b=>b.pass),['main','shadow']);
+ p.render({},f.camera);assert.equal(p.snapshot().records.length,1);s.records[0].buckets[0].calls=999;assert.equal(p.snapshot().records[0].buckets[0].calls,1);p.dispose();
+});
+test('GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries',()=>{
+ const f=profileFixture(true),p=createRenderProfile(f.renderer,{now:f.now,every:1});p.render({},f.camera);assert.equal(p.snapshot().gpu.samples.length,0);
+ f.setAvailable(true);p.render({},f.camera);assert.equal(p.snapshot().gpu.samples[0].ms,2.5);assert.equal(f.deleted(),1);
+ f.setAvailable(false);f.setDisjoint(true);p.render({},f.camera);assert.equal(p.snapshot().gpu.invalid,1);assert.equal(p.snapshot().gpu.pending,0);
+ f.setDisjoint(false);for(let i=0;i<6;i++)p.render({},f.camera);assert.equal(p.snapshot().gpu.pending,4);assert.ok(p.snapshot().gpu.skipped>=2);p.dispose();assert.equal(f.deleted(),6);
+});
+test('render failure preserves the original exception, restores the hook and deletes the GPU query',()=>{
+ const f=profileFixture(true),original=f.renderer.renderBufferDirect,p=createRenderProfile(f.renderer,{now:f.now,every:1});f.renderer.render=()=>{throw new Error('draw failed');};
+ assert.throws(()=>p.render({},f.camera),/draw failed/);assert.equal(f.renderer.renderBufferDirect,original);assert.equal(p.snapshot().records[0].completed,false);assert.equal(p.snapshot().gpu.pending,0);assert.equal(f.deleted(),1);p.dispose();
+});
+test('draw categories use actual scene ancestry and keep parked cars separate from world meshes',()=>{
+ const world={},vehicle={},parked={name:'Namak_Parked_supra_80',parent:world},sky={};
+ assert.equal(classifyDraw({name:'Road_Asphalt_1',parent:world},{world}),'road');
+ assert.equal(classifyDraw({material:{name:'Namak_Leaf'},parent:world},{world}),'vegetation');
+ assert.equal(classifyDraw({parent:parked},{world}),'parked');assert.equal(classifyDraw({parent:vehicle},{world,vehicles:[vehicle]}),'vehicle');assert.equal(classifyDraw(sky,{world,sky}),'sky');
 });

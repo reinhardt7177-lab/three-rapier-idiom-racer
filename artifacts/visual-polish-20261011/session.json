@@ -3,7 +3,7 @@
   "deadline": "2026-10-11T19:15:00+09:00",
   "baseCommit": "8c5bb8b",
   "branch": "codex/korea-circuits-progression-20261011",
-  "status": "namak-sustained-load-diagnosis",
+  "status": "namak-draw-cost-measured",
   "completed": [
     "actual official photos and satellite reference captures",
     "course-specific first palette and night sky",
@@ -16,23 +16,24 @@
     "race world compile/warm draw before clock; stale timestamp boundary fixed; preparation costs preserved",
     "247 full regression tests + build on actual Colab CPU; 137 local hashes matched",
     "18 physical championship finishes; Namak browser 6 finishes/result/garage/restart/keyboard release; four viewport HUD/menu",
-    "paired baseline/current Namak sustained cost evidence; resolution and frozen-transform trials recorded, unproven trial excluded; 137 source hashes unchanged"
+    "paired baseline/current Namak sustained cost evidence; resolution and frozen-transform trials recorded, unproven trial excluded; 137 source hashes unchanged",
+    "DEV draw classification and asynchronous actual GPU timer;251 full tests/build on Colab CPU,138 hashes matched;4 viewport HUD/menu,input release and6 browser finishes"
   ],
   "next": [
-    "separate world/vehicle/shadow draw and CPU costs; inspect GPU timer support; maintain same Namak start conditions",
-    "diagnose prior Seongsamjae 1000ms gaps with per-endpoint evidence; new geometry remains held",
+    "vehicle rigid-body/material draw consolidation preserving wheel rig, geometry attributes and same Namak start; paired product frames and GPU costs",
+    "diagnose prior Seongsamjae1000ms gaps; new geometry held",
     "after performance gate: Blender Yeosu bridge/reflections and Seongsamjae forest/ridges"
   ],
   "stopReason": "New geometry held pending Namak intermittent delay and Seongsamjae 1000ms frame-gap diagnosis",
   "heartbeatId": "6",
   "baselineServerPid": 29552,
   "check": {
-    "passed": 247,
+    "passed": 251,
     "failed": 0,
     "skipped": 0,
-    "inputHashes": 137,
-    "seconds": 204.1484875679016
+    "inputHashes": 138,
+    "seconds": 203.72396159172058
   },
-  "lastObservation": "Baseline p95 33.4ms/current33.5ms at868calls1,279,323tri;960x540 p9533.4ms; static-transform trial did not resolve gate and was excluded",
-  "lastUpdatedAt": "2026-10-11T05:29:20.749Z"
+  "lastObservation": "Namak868calls/1,279,323tri: mainvehicle284calls868,076tri;16DEVsampleCPUmean15.8125/GPU11.1732max17.0211ms; not product improvement gate",
+  "lastUpdatedAt": "2026-10-11T05:43:01.428Z"
 }

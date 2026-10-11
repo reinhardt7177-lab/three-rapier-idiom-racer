@@ -46,6 +46,7 @@ import {createNamakLandmarks} from './namakLandmarks.js';
 import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from './nightPresentation.js';
 import {createPauseRendering} from './renderTiming.js';
 import {createRacePreparation,createRaceStartBoundary} from './racePreparation.js';
+import {createRenderProfile,classifyDraw} from './renderProfile.js';
 import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from './koreaPresentation.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
@@ -147,6 +148,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   // Visible development QA drives the real player through pedals, with no
   // position, timer, lap or progress changes. Disabled in production builds.
   let qaDriver=false;
+  const profile=import.meta.env.DEV&&new URLSearchParams(window.location.search).has('qaProfile')?createRenderProfile(renderer,{classify:o=>classifyDraw(o,{world:assets.world,vehicles:cars.map(c=>c.view.root),sky})}):null;
+  const drawScene=label=>profile?profile.render(scene,camera,label):renderer.render(scene,camera);
   function publish(){
     pauseRendering.invalidate();
     const ordered=[...cars].sort((a,b)=>(b.finish!==null)-(a.finish!==null)||(a.finish!==null&&b.finish!==null?a.finish-b.finish:b.progress-a.progress||a.slot-b.slot));
@@ -161,6 +164,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     state.difficulty=difficulty.id;state.assist=assist;state.nitroBonus=nitroBonus;if(player){state.surface=player.state.surface;state.draft=player.state.draft;}
     state.music=music.status();state.cameraMode=cameraMode;state.cockpit=cockpit.status();
     state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,lighting,atmosphere,colors,pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
+    if(profile)state.rendering.profile=profile.snapshot();
     state.loading=assets.loading;
     state.preparation={...preparation.snapshot(),busy:preparation.busy()||raceBoundary.pending(),frameBoundary:raceBoundary.snapshot()};
     state.finishOrder=ordered.map(c=>({name:c.name,time:c.finish,finished:c.finish!==null}));
@@ -203,7 +207,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     }
     for(let i=0;i<120;i++){cars.forEach(c=>c.sim.step({brake:1},false));stepVehicleWorld(world);cars.forEach(c=>{c.state=c.previous=c.sim.finishStep();});}
     signals.reset();smoke.clear();exhaust.clear();trails.clear();sparks.clear();raceContacts.clear();latestFeedback={};cameraImpact=0;audio.setPaused(true);renderer.domElement.focus({preventScroll:true});last=performance.now();publish();
-    },compile(){presentScene(performance.now(),0);return renderer.compileAsync(scene,camera);},draw(){renderer.info.reset();renderer.render(scene,camera);},ready(){
+    },compile(){presentScene(performance.now(),0);return renderer.compileAsync(scene,camera);},draw(){renderer.info.reset();drawScene('preparation');},ready(){
       clock.reset();frameMetrics.reset();drivingInput.clear();last=performance.now();fpsStart=last;frames=0;
       raceBoundary.begin(last);
       // The pending callback may carry a timestamp from before the warm draw.
@@ -321,7 +325,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
     if(mode==='race'&&!paused){const physicsStart=performance.now();clock.advance(rawDt,updateStep);physicsMs=performance.now()-physicsStart;}
     presentScene(now,dt);
-    const renderStart=performance.now();renderer.info.reset();renderer.render(scene,camera);const renderMs=performance.now()-renderStart;frames++;
+    const renderStart=performance.now();renderer.info.reset();drawScene(mode);const renderMs=performance.now()-renderStart;frames++;
     if(!paused)frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
     if(now-fpsStart>1000){fps=Math.round(frames*1000/(now-fpsStart));frames=0;fpsStart=now;}
     if(now-reportTime>100){publish();reportTime=now;}
@@ -342,7 +346,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   setGarage();frame=requestAnimationFrame(render);
   return {qa:import.meta.env.DEV?{driver(value){qaDriver=!!value;drivingInput.clear();publish();}}:undefined,presentation:next=>presentationGuard.update(next),select:setGarage,start:startRace,assist:()=>{assist=!assist;saveAssist(storage(),assist);if(cars[0]?.player)cars[0].sim.setRecoveryAssist(assist);publish();},laps:n=>{if(mode!=='garage'||!LAP_OPTIONS.includes(n))return;laps=raceLaps=n;saveLaps(storage(),n);best=bestRecord(storage(),track.id,n);publish();},difficulty:id=>{if(mode!=='garage')return;difficulty=difficultyById(id);saveDifficulty(storage(),difficulty.id);publish();},garage:()=>setGarage(),pause:()=>pause(!paused),sound:toggleSound,camera:toggleCamera,music:toggleMusic,musicTrack:id=>{Promise.resolve(music.select(id)).then(()=>{if(alive)publish();});publish();},musicVolume:value=>{music.setVolume(value);publish();},recover:()=>{if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result)recover();},input(code,value,source='touch'){if(!value)drivingInput.release(code,source);else if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result&&presentationGuard.canDrive())drivingInput.press(code,source);},dispose(){
     if(!alive)return;alive=false;raceBoundary.cancel();preparation.cancel();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();window.removeEventListener('keydown',keydown);window.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);
-    night?.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());raceContacts.dispose();world.free();
+    profile?.dispose();night?.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());raceContacts.dispose();world.free();
     createSceneDisposer(scene,{renderTargets:[environment,outdoorEnvironment]})();display?.dispose();cars.forEach(c=>c.view.dispose());clearGhost();renderer.dispose();renderer.domElement.remove();delete window.__mumuRebuild;
   }};
 }
