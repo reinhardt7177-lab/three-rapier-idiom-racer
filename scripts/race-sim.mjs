@@ -41,11 +41,11 @@ export function buildWorld(parts){
  return {world,asphalt,surfaceMap};
 }
 
-export async function runRace({trackId='coastal',difficultyId='normal',player='supra',playerProfile=null,maxSeconds=420,data=null,trace=null,laps=1}={}){
+export async function runRace({trackId='coastal',difficultyId='normal',player='supra',playerProfile=null,maxSeconds=420,data=null,trace=null,laps=1,personalities=true}={}){
  await initPhysics();
  const {track,route,parts}=data??loadTrack(trackId),{world,asphalt,surfaceMap}=buildWorld(parts);
  const difficulty=difficultyById(difficultyId),startIndex=25;
- const planner=createRivalPlanner(route,{roadClear:createOvertakeRoadCheck(world,route,asphalt),speedProfile:difficulty.profile,nitro:difficulty.nitro});
+ const planner=createRivalPlanner(route,{roadClear:createOvertakeRoadCheck(world,route,asphalt),speedProfile:difficulty.profile,nitro:difficulty.nitro,personalities});
  const cars=[];
  try{
   for(let i=0;i<6;i++){
@@ -53,7 +53,7 @@ export async function runRace({trackId='coastal',difficultyId='normal',player='s
    const pose=routePose(route,index,lane);
    const sim=createVehiclePhysics({sharedWorld:world,arcade:true,launchEnabled:false,progressiveAcceleration:true,start:pose.position,spec:VEHICLES.find(v=>v.id===id),raceTuning:i===0?playerRaceTuning(id):RACE_TUNING[id],steeringSensitivity:i===0?PLAYER_STEERING_SENSITIVITY:1,surface:surfaceMap.surface,nitro:i===0?RACE_NITRO:difficulty.rivalNitro??RACE_NITRO});
    sim.reset(pose.position,pose.yaw,{stepWorld:false});
-   cars.push({id,sim,index,lane,player:i===0,pace:i===0?1:difficultyPace(difficulty,i-1),finish:null,progress:route.points[index].distance-route.points[startIndex].distance,distance:route.points[index].distance,state:sim.snapshot(),scrape:false,draft:0,draftSeconds:0,scrapeSeconds:0,offroadSeconds:0,boostSeconds:0,lowest:Infinity});
+   cars.push({id,name:i===0?'YOU':['NOVA','RAVEN','BLAZE','MIST','LUNA'][i-1],sim,index,lane,player:i===0,pace:i===0?1:difficultyPace(difficulty,i-1),finish:null,progress:route.points[index].distance-route.points[startIndex].distance,distance:route.points[index].distance,state:sim.snapshot(),scrape:false,draft:0,draftSeconds:0,scrapeSeconds:0,offroadSeconds:0,boostSeconds:0,lowest:Infinity});
   }
   for(let i=0;i<120;i++){cars.forEach(c=>c.sim.step({brake:1},false));stepVehicleWorld(world);cars.forEach(c=>c.state=c.sim.finishStep());}
   let steps=0;

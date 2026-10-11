@@ -1,3 +1,4 @@
+import {personalityByName,personalitySpeedProfile} from './rivalPersonalities.js';
 import {aiInput,curveSpeeds} from './course.js';
 import {RACE_TUNING,RACE_GRID_LANE} from './vehicleDynamics.js';
 
@@ -21,10 +22,10 @@ function easyRoad(route,car){
 
 // The planner only supplies steering/pedals. Rapier owns every car transform.
 // One shared planner arbitrates five rivals before the single world step.
-export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false}={}){
+export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false,personalities=false}={}){
   const plans=new Map();
   function record(car){
-    if(!plans.has(car))plans.set(car,{home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,cooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});
+    if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,cooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
     return plans.get(car);
   }
   function mergeClear(car,target,cars,committed=null){
@@ -69,7 +70,7 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     if(['changing','returning','aborting'].includes(plan.mode)){
       if(Math.abs(own.lane-plan.target)<.45){
         if(plan.mode==='changing'){plan.mode='passing';plan.reason='overtake';}
-        else {if(plan.mode==='returning')plan.passes++;plan.mode='follow';plan.lead=null;plan.cooldown=3;plan.reason='following';}
+        else {if(plan.mode==='returning')plan.passes++;plan.mode='follow';plan.lead=null;plan.cooldown=plan.style?.returnCooldown??3;plan.reason='following';}
         plan.age=0;return;
       }
       const trafficClear=mergeClear(car,plan.target,cars,plan.mode==='changing'?plan:null),roadAvailable=pavement(car,own.lane,plan.target);
@@ -128,10 +129,10 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       .filter(s=>s.along>0&&s.along<Math.max(25,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3)
       .sort((a,b)=>a.along-b.along)[0];
     plan.reason='following';
-    if(!lead||lead.v*3.6>=(speedProfile?.maxSpeed??138)*(car.pace??1)-8)return;
+    if(!lead||lead.v*3.6>=(plan.profile?.maxSpeed??138)*(car.pace??1)-8)return;
     // Following already matches the lead's speed. Compare available road pace,
     // otherwise a faster rival can never start passing a moving slow player.
-    if(lead.v>1&&(speedProfile?curveSpeeds(route,speedProfile)[car.index]*(car.pace??1)-lead.v*3.6<12:own.v<lead.v+2))return;
+    if(lead.v>1&&(speedProfile?curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-lead.v*3.6<(plan.style?.passGap??12):own.v<lead.v+2))return;
     // Hold the approach gap for a stopped lead instead of creeping so close
     // that there is no room left to steer around it.
     if(lead.v<1&&lead.along<16)plan.stop=true;
@@ -157,18 +158,18 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
         const changing=['changing','returning','aborting'].includes(plan.mode);
         const target=plan.stop?local(route,car).lane:plan.target;
         const input=aiInput(route,car.state,car.index,target,car.pace??1,cars.filter(c=>c!==car).map(c=>c.state),{
-          lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile,
+          lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile:plan.profile,
           speedLimit:plan.stop?0:changing?plan.changeSpeed:Infinity,stop:plan.stop,waitingForTraffic:plan.stop,
         });
         if(plan.stop)input.throttle=0;
         // Same nitro rules as the player: spent only while settled on a clear
         // straight with plenty of permitted speed left, never during a merge.
-        else if(nitro&&!changing&&input.throttle&&!input.waitingForTraffic&&input.targetKmh-car.state.kmh>30)input.boost=true;
+        else if(nitro&&!changing&&input.throttle&&!input.waitingForTraffic&&input.targetKmh-car.state.kmh>(plan.style?.boostGap??30))input.boost=true;
         inputs.set(car,input);
       }
       return inputs;
     },
-    snapshot(car){const p=plans.get(car);return p?{mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age}:null;},
+    snapshot(car){const p=plans.get(car);return p?{personality:p.style?.name??null,style:p.style?.label??null,mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age}:null;},
     reset(car,lane=car?.lane){if(!car){plans.clear();return;}const old=plans.get(car);plans.delete(car);const p=record(car);p.home=p.target=lane;p.cooldown=2;p.passes=old?.passes??0;p.attempts=old?.attempts??0;p.aborts=old?.aborts??0;},
   };
 }

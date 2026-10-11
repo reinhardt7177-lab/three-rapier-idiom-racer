@@ -140,7 +140,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     ghostView.root.traverse(o=>{if(!o.isMesh)return;o.castShadow=o.receiveShadow=false;o.renderOrder=2;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.transparent=true;m.opacity=.36;m.depthWrite=false;m.needsUpdate=true;}});
     ghostView.root.visible=false;scene.add(ghostView.root);
   }
-  const planRivals=()=>createRivalPlanner(route,{roadClear,speedProfile:difficulty.profile,nitro:difficulty.nitro});
+  const planRivals=()=>createRivalPlanner(route,{roadClear,speedProfile:difficulty.profile,nitro:difficulty.nitro,personalities:true});
   let rivalPlanner=planRivals();
   function spawn(index,lane=0,spec=null){
     const pose=routePose(route,index,lane);
@@ -181,7 +181,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     pauseRendering.invalidate();
     const ordered=[...cars].sort((a,b)=>(b.finish!==null)-(a.finish!==null)||(a.finish!==null&&b.finish!==null?a.finish-b.finish:b.progress-a.progress||a.slot-b.slot));
     const player=cars[0];
-    const state={mode,selected,paused,countdown:Math.max(0,Math.ceil(countdown)),elapsed,result,kmh:Math.round(player?.state.kmh||0),gear:player?.state.gear||'N',place:Math.max(1,ordered.findIndex(c=>c.player)+1),progress:Math.min(1,Math.max(0,(player?.progress||0)/(route.length*raceLaps))),region:player?route.points[player.index].region:'GARAGE',nitro:(player?.state.action?.charge??100)/100,standings:ordered.map(c=>({name:c.name,progress:c.progress,finished:c.finish!==null})),fps,colliderCount,contacts:player?.state.contacts??0,position:player?.state.position,ai:cars.slice(1).map(c=>({position:c.state.position,kmh:c.state.kmh,progress:c.progress,contacts:c.state.contacts})),cameraDistance:player?camera.position.distanceTo(new THREE.Vector3().copy(player.state.position)):0};
+    const state={mode,selected,paused,countdown:Math.max(0,Math.ceil(countdown)),elapsed,result,kmh:Math.round(player?.state.kmh||0),gear:player?.state.gear||'N',place:Math.max(1,ordered.findIndex(c=>c.player)+1),progress:Math.min(1,Math.max(0,(player?.progress||0)/(route.length*raceLaps))),region:player?route.points[player.index].region:'GARAGE',nitro:(player?.state.action?.charge??100)/100,standings:ordered.map(c=>({name:c.name,progress:c.progress,finished:c.finish!==null,personality:rivalPlanner.snapshot(c)?.style})),fps,colliderCount,contacts:player?.state.contacts??0,position:player?.state.position,ai:cars.slice(1).map(c=>({position:c.state.position,kmh:c.state.kmh,progress:c.progress,contacts:c.state.contacts})),cameraDistance:player?camera.position.distanceTo(new THREE.Vector3().copy(player.state.position)):0};
     if(player){state.redline=RACE_TUNING[selected].redline;state.rpm=Math.round(player.state.powertrain?.rpm||850);state.shifting=player.state.powertrain?.shifting||false;state.mass=player.state.mass;state.steeringSensitivity=player.state.steeringSensitivity;state.steeringLimit=player.state.steeringLimit;state.steer=player.state.steer;state.wheels=player.state.wheels;state.impact=player.impact;state.rotation=player.state.rotation;state.angularVelocity=player.state.angularVelocity;state.recovery=player.recovery;state.ride=player.state.ride;state.velocity=player.state.velocity;}
     if(player){state.guidance=routeGuidance(route,player.index,player.progress,route.length*raceLaps);state.lap=lapInfo(player.progress,route.length,raceLaps).lap;state.lapTimes=lapTimes;}
     state.laps=mode==='race'?raceLaps:laps;state.lapOptions=LAP_OPTIONS;state.best=best;state.medals=medalTimes(track.id,state.laps);state.ghost=ghost?{vehicle:ghost.vehicle,time:ghost.time}:null;
@@ -252,7 +252,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     }});
   }
   function recover(car=cars[0],reason='manual'){
-    if(!car)return;
+    if(!car||!car.player)return false;
     const traffic=cars.filter(c=>c!==car).map(c=>c.state);
     // Search backwards only: recovery must never grant a position advantage.
     const found=findRecoveryPose(route,car.index,[car.lane,-car.lane,0],traffic,(index,lane)=>spawn(index,lane,car.view.spec));
@@ -262,7 +262,6 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     car.index=recoveryIndex;car.routeDistance=route.points[recoveryIndex].distance;
     car.sim.reset(pose.position,pose.yaw,{stepWorld:false,rotation:pose.rotation,preserveCharge:true});car.state=car.previous=car.sim.snapshot();car.stuck=car.waited=0;
     car.recoveryWatch.reset();car.recovery={count:car.recovery.count+1,reason,age:0};
-    if(!car.player)rivalPlanner.reset(car,recoveryLane);
     car.impact={count:0,intensity:0,deltaV:0,age:100};
     if(car.player){drivingInput.clear();audio.reset();cameraSnap=true;signals.reset();smoke.clear();exhaust.clear();trails.clear();cameraImpact=0;latestFeedback={};}
     return true;
@@ -291,7 +290,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     for(const c of cars){
       c.state=c.sim.finishStep();c.scrape=running&&touchingWall(world,c.sim.colliders,surfaceMap.isWall);const nearest=nearestRoute(route,c.state.position,c.index);c.index=nearest.index;
       c.recovery.age+=STEP;
-      const recoveryReason=running&&c.finish===null?c.recoveryWatch.update(c.state,nearest.point.y,STEP,nearest.distance):null;
+      const recoveryReason=running&&c.player&&c.finish===null?c.recoveryWatch.update(c.state,nearest.point.y,STEP,nearest.distance):null;
       // Inverted, underground or outside-wall motion must not collect race progress.
       const q=c.state.rotation,upright=1-2*(q.x*q.x+q.z*q.z)>.25;
       if(running&&c.finish===null&&upright&&(!bounded||nearest.distance<=route.width/2+1)&&c.state.position.y>=nearest.point.y-6)c.progress+=forwardProgress(c.routeDistance,nearest.point.distance,route.length);
@@ -303,13 +302,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
         c.finishLane=(c.state.position.x-nearest.point.x)*nearest.point.dz-(c.state.position.z-nearest.point.z)*nearest.point.dx;
         if(!c.player)rivalPlanner.reset(c,c.finishLane);
       }
-      if(!c.player&&running&&c.finish===null){
-        c.stuck=(c.state.kmh<8&&!c.waitingForTraffic)||nearest.distance>22||c.state.position.y<nearest.point.y-6?c.stuck+STEP:0;
-        // Waiting for traffic is legitimate, but never for longer than this.
-        c.waited=c.state.kmh<8?(c.waited||0)+STEP:0;
-        // A failed search (no clear space) retries after two seconds, not every step.
-        if((c.stuck>5||c.waited>15)&&!recover(c,c.stuck>5?'stuck':'blocked')){c.stuck=Math.min(c.stuck,3);c.waited=Math.min(c.waited,13);}
-      }
+
     }
     nitroBonus.age+=STEP;
     if(running&&cars[0].finish===null){
