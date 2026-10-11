@@ -1,5 +1,5 @@
 {
-  "status": "stage1-validation-resumed",
+  "status": "stage1-criteria-passed",
   "staticAttempts": 3,
   "staticLatestPassed": 6,
   "colabExecuted": true,
@@ -11,8 +11,8 @@
   "fullHudFourViewports": true,
   "performanceGate": "short stationary browser samples recorded; previous large delay not reproduced, whole-course visual/flow audit remains",
   "stage2Started": false,
-  "committed": false,
-  "pushed": false,
+  "committed": true,
+  "pushed": true,
   "browserTimeouts": 3,
   "stopReason": null,
   "browserPipeClosures": 1,
@@ -37,16 +37,17 @@
   },
   "currentFullCheck": {
     "executed": true,
-    "tests": 230,
-    "pass": 230,
+    "tests": 232,
+    "pass": 232,
     "fail": 0,
     "build": true,
-    "seconds": 168.42120695114136,
+    "seconds": 166.40990710258484,
+    "buildSeconds": 3.21,
     "code": 0,
     "compute": "CPU / Rapier WASM",
-    "sourceFilesMatched": 118,
+    "sourceFilesMatched": 119,
     "sourceMismatches": 0,
-    "log": "full-check-4.log"
+    "log": "full-check-5.log"
   },
   "currentTargetedCheck": {
     "tests": 10,
@@ -68,10 +69,17 @@
     "resumeThrottle": 0
   },
   "colabConnected": true,
-  "stage1Complete": false,
-  "remainingStage1": [
-    "mountain maximum-grade/hairpin visual review",
-    "direct public map-image reference review"
-  ],
-  "nightCurveScreenshot": true
+  "stage1Complete": true,
+  "remainingStage1": [],
+  "nightCurveScreenshot": true,
+  "latestImplementationCommit": "1706de4",
+  "mapImageReferencesVerified": true,
+  "criticalViews": {
+    "static": true,
+    "runtimeDrive": false,
+    "gradeUp": 9.9121903257,
+    "gradeDown": 17.5871128487,
+    "hairpin": true,
+    "summitRoadOverlapFixed": true
+  }
 }
