@@ -1,6 +1,30 @@
 import {createRenderProfile,classifyDraw} from '../src/rebuild/renderProfile.js';
 import * as THREE from 'three';
-import {createFrozenComparison,createFrozenTreadTrial} from '../src/rebuild/frozenComparison.js';
+import {createFrozenComparison,createFrozenTreadTrial,createFrozenGhostTrial} from '../src/rebuild/frozenComparison.js';
+
+test('ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials',()=>{
+ const ghost=new THREE.Group(),geo=new THREE.BoxGeometry(),eligible=new THREE.MeshStandardMaterial({transparent:true,opacity:.36,side:THREE.DoubleSide,depthWrite:false});
+ const single=eligible.clone();single.forceSinglePass=true;
+ const opaque=new THREE.MeshStandardMaterial({side:THREE.DoubleSide});
+ const front=eligible.clone();front.side=THREE.FrontSide;
+ ghost.add(new THREE.Mesh(geo,eligible),new THREE.Mesh(geo,eligible),new THREE.Mesh(geo,single),new THREE.Mesh(geo,opaque),new THREE.Mesh(geo,front));
+ ghost.position.set(4,1,2);const trial=createFrozenGhostTrial(ghost);
+ assert.equal(trial.snapshot().eligibleMaterials,1);assert.equal(trial.snapshot().eligibleMeshes,2);
+ const make=()=>createFrozenComparison({framesPerPhase:2,middleMode:'ghost-single-pass',middlePhase:'ghost-single-pass',apply:m=>trial.apply(m),reset:()=>{},measure:()=>({single:eligible.forceSinglePass})});
+ const c=make();c.start();c.record(0);c.record(16);assert.equal(eligible.forceSinglePass,true);
+ c.record(32);c.record(48);assert.equal(eligible.forceSinglePass,false);c.record(64);c.record(80);
+ assert.deepEqual(c.snapshot().results.map(r=>[r.phase,r.measurement.single]),[['full-before',false],['ghost-single-pass',true],['full-after',false]]);
+ const cancelled=make();cancelled.start();cancelled.record(0);cancelled.record(16);cancelled.cancel();assert.equal(eligible.forceSinglePass,false);
+ assert.equal(single.forceSinglePass,true);assert.equal(opaque.forceSinglePass,false);assert.equal(front.forceSinglePass,false);
+ assert.equal(eligible.opacity,.36);assert.equal(eligible.depthWrite,false);assert.equal(eligible.side,THREE.DoubleSide);
+ assert.deepEqual(ghost.position.toArray(),[4,1,2]);assert.ok(ghost.children.every(o=>o.geometry===geo&&o.visible));
+ geo.dispose();for(const m of [eligible,single,opaque,front])m.dispose();
+});
+
+test('missing or hidden ghost is reported rather than treated as a successful cost reduction',()=>{
+ const absent=createFrozenGhostTrial(null);absent.apply('ghost-single-pass');absent.apply('full');assert.equal(absent.snapshot().present,false);
+ const hidden=new THREE.Group();hidden.visible=false;assert.equal(createFrozenGhostTrial(hidden).snapshot().visible,false);
+});
 
 test('frozen renderer comparison captures all three A/B/A phases and always restores full geometry',()=>{
  const modes=[],snapshots=[];let resets=0,cost=0;

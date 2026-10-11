@@ -47,7 +47,7 @@ import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from './nightPr
 import {createPauseRendering} from './renderTiming.js';
 import {createRacePreparation,createRaceStartBoundary} from './racePreparation.js';
 import {createRenderProfile,classifyDraw} from './renderProfile.js';
-import {createFrozenComparison,createFrozenTreadTrial} from './frozenComparison.js';
+import {createFrozenComparison,createFrozenTreadTrial,createFrozenGhostTrial} from './frozenComparison.js';
 import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from './koreaPresentation.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
@@ -152,6 +152,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const profile=import.meta.env.DEV&&new URLSearchParams(window.location.search).has('qaProfile')?createRenderProfile(renderer,{classify:o=>classifyDraw(o,{world:assets.world,vehicles:cars.map(c=>c.view.root),sky})}):null;
   const drawScene=label=>profile?profile.render(scene,camera,label):renderer.render(scene,camera);
   const frozenEnabled=import.meta.env.DEV&&!!profile&&new URLSearchParams(window.location.search).has('qaFrozen');
+  const frozenGhostEnabled=frozenEnabled&&new URLSearchParams(window.location.search).has('qaFrozenGhost');
   let frozenComparison=null,frozenTread=null,frozenSetupMs=0;
   function publish(){
     pauseRendering.invalidate();
@@ -324,8 +325,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     if(frozenEnabled&&paused&&mode==='race'){
       if(!frozenComparison){
         const setupStart=performance.now();
-        frozenTread=createFrozenTreadTrial(cars.map(c=>c.view),camera,host.clientHeight);
-        frozenComparison=createFrozenComparison({apply:mode=>frozenTread.apply(mode),reset:()=>frameMetrics.reset(),measure:()=>({frames:frameMetrics.snapshot(),profile:profile.snapshot(),camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray()},cars:cars.map(c=>({position:c.view.root.position.toArray(),quaternion:c.view.root.quaternion.toArray()})),elapsed})});
+        frozenTread=frozenGhostEnabled?createFrozenGhostTrial(ghostView?.root):createFrozenTreadTrial(cars.map(c=>c.view),camera,host.clientHeight);
+        frozenComparison=createFrozenComparison({middleMode:frozenGhostEnabled?'ghost-single-pass':'tread',middlePhase:frozenGhostEnabled?'ghost-single-pass':'tread-only',apply:mode=>frozenTread.apply(mode),reset:()=>frameMetrics.reset(),measure:()=>({frames:frameMetrics.snapshot(),profile:profile.snapshot(),camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray()},cars:cars.map(c=>({position:c.view.root.position.toArray(),quaternion:c.view.root.quaternion.toArray()})),ghost:ghostView?{position:ghostView.root.position.toArray(),quaternion:ghostView.root.quaternion.toArray(),visible:ghostView.root.visible}:null,elapsed})});
         frozenComparison.start();frozenSetupMs=performance.now()-setupStart;last=now;
       }
       if(frozenComparison.active())pauseRendering.invalidate();

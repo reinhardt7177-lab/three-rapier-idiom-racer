@@ -3,7 +3,7 @@
   "deadline": "2026-10-11T19:15:00+09:00",
   "baseCommit": "8c5bb8b",
   "branch": "codex/korea-circuits-progression-20261011",
-  "status": "frozen-diagnostic-validated-performance-unresolved",
+  "status": "ghost-diagnostic-validated-performance-unresolved",
   "completed": [
     "actual official photos and satellite reference captures",
     "course-specific first palette and night sky",
@@ -20,10 +20,11 @@
     "DEV draw classification and asynchronous actual GPU timer;251 full tests/build on Colab CPU,138 hashes matched;4 viewport HUD/menu,input release and6 browser finishes",
     "wheel tread screen-spaceLOD trial24focusedtests passed;179200tri removed but p95worse; excluded and138hashes restored/build8.29s",
     "DEV fixed-sceneABA1080frames;geometry179200tri/20drawlower butp95unchanged;255fulltests/build actualColabCPU139hashmatched;4sizesHUD6/menu10,inputrelease",
-    "Namak realbrowser6finishes83.5167–86.4333s/player84.4583silver;resultgarageRestart/QAoff;productDEVdiagnosticsabsent"
+    "Namak realbrowser6finishes83.5167–86.4333s/player84.4583silver;resultgarageRestart/QAoff;productDEVdiagnosticsabsent",
+    "DEV ghost single-pass ABA twice47draw/146010tri reduced;repeatp95notimproved;notadopted;257fulltests/build actualColabCPU200.503s139hashesmatched;4sizesHUD6/menu10,inputrelease,garage,error0"
   ],
   "next": [
-    "separate ghost transparentdraw and host/GPUwait with fixedscene;no geometryexpansion",
+    "separate host/browser callbackwait and CPU render submission;no content/geometryexpansion",
     "diagnose priorSeongsamjae1000msgaps",
     "after performancegate:BlenderYeosubridge/reflections+Seongsamjaeforest/ridges"
   ],
@@ -31,12 +32,12 @@
   "heartbeatId": "6",
   "baselineServerPid": 29552,
   "check": {
-    "passed": 255,
+    "passed": 257,
     "failed": 0,
     "skipped": 0,
     "inputHashes": 139,
-    "seconds": 203.3314380645752
+    "seconds": 200.50298404693604
   },
-  "lastObservation": "fixedposes+physics0;full/trim/fullp9533.5/33.4/33.4ms;rejectedLODnotrestored;automation6remainsPAUSED",
-  "lastUpdatedAt": "2026-10-11T06:26:50.882Z"
+  "lastObservation": "ghost full/single/full2times:962/915/962draw;p95first50.1/33.4/49.9ms,second50/49.9/49.9ms;productunchanged;automation6remainsPAUSED",
+  "lastUpdatedAt": "2026-10-11T06:50:42.8631351Z"
 }

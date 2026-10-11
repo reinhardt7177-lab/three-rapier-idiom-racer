@@ -2,8 +2,8 @@ import * as THREE from 'three';
 
 // Diagnostic A/B/A uses one frozen scene. It never advances physics, moves cars,
 // changes race progress, exports an asset or runs in production.
-export function createFrozenComparison({apply,reset,measure,framesPerPhase=360,now=()=>performance.now()}){
- const phases=['full-before','tread-only','full-after'];
+export function createFrozenComparison({apply,reset,measure,framesPerPhase=360,middleMode='tread',middlePhase='tread-only',now=()=>performance.now()}){
+ const phases=['full-before',middlePhase,'full-after'];
  let phase=0,frames=0,status='idle',previous=null;const results=[],intervals=[],transitions=[];
  const capture=complete=>results.push({phase:phases[phase],frames,complete,measurement:measure()});
  return {start(){if(status!=='idle')return;const start=now();status='running';apply('full');reset();transitions.push({to:phases[0],cpuMs:now()-start});},
@@ -12,10 +12,25 @@ export function createFrozenComparison({apply,reset,measure,framesPerPhase=360,n
   if(++frames<framesPerPhase)return;const start=now();
   capture(true);frames=0;
   if(++phase===phases.length){status='complete';apply('full');transitions.push({to:'complete',cpuMs:now()-start});return;}
-  apply(phase===1?'tread':'full');reset();transitions.push({to:phases[phase],cpuMs:now()-start});
+  apply(phase===1?middleMode:'full');reset();transitions.push({to:phases[phase],cpuMs:now()-start});
  },cancel(){if(status==='running'&&frames)capture(false);status='cancelled';apply('full');},
  active:()=>status==='running',label:()=>phases[phase]??'complete',
  snapshot:()=>({status,framesPerPhase,phase:phases[phase]??'complete',frames,results:results.map(r=>({...r})),transitions:transitions.map(t=>({...t})),intervals:status==='running'?[]:intervals.map(i=>({...i}))})};
+}
+
+// Changes only the ghost's transparent double-sided draw policy, at phase
+// boundaries. The original material flags survive completion and cancellation.
+export function createFrozenGhostTrial(root){
+ const originals=new Map();let eligibleMeshes=0,triangles=0;
+ root?.traverse(o=>{
+  if(!o.isMesh)return;
+  const materials=Array.isArray(o.material)?o.material:[o.material];
+  const eligible=materials.filter(m=>m.transparent&&m.side===THREE.DoubleSide&&!m.forceSinglePass);
+  for(const m of eligible)if(!originals.has(m))originals.set(m,m.forceSinglePass);
+  if(eligible.length){eligibleMeshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}
+ });
+ return {apply(mode){for(const [m,original] of originals)m.forceSinglePass=mode==='ghost-single-pass'?true:original;},
+  snapshot:()=>({kind:'ghost-single-pass',present:!!root,visible:root?.visible??false,eligibleMaterials:originals.size,eligibleMeshes,triangles})};
 }
 
 // Rejected production LOD is exercised here ONLY at phase transitions. This
