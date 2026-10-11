@@ -425,3 +425,20 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 @container game (max-width:700px) or (max-height:550px){.difficulty-selector{margin-bottom:6px;gap:3px}.difficulty-selector button{min-height:30px;font-size:10px;letter-spacing:0}}
 @container game (max-width:460px){.difficulty-selector{margin-bottom:3px;gap:2px}.difficulty-selector button{font-size:9px;padding:0 1px;min-height:24px}.garage-launch>small{display:none}}
 @container game (max-height:550px){.pit-actions{gap:6px}}
+.launch-modes{display:flex;gap:6px}
+.garage-launch .launch-modes>button{flex:1;min-width:0;min-height:44px;padding:8px 5px;font-size:11px;background:#142235;border:1px solid #63809266;border-radius:4px;white-space:nowrap}
+.garage-launch .launch-modes>.primary{background:#c9eaff;color:#142032;display:block}
+.series-table{font-size:12px;color:#ccdeec;min-width:0}
+.series-table>div{display:flex;justify-content:space-between;gap:8px;padding:5px 8px;border-bottom:1px solid #ffffff16;white-space:nowrap}
+.series-table>div:first-child{font-size:10px;white-space:normal}
+.series-table .you{background:#c9eaff;color:#142032}
+.race-menu.series-result{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 16px;width:min(640px,calc(100cqw - 24px));padding:16px}
+.series-result>.series-table{grid-column:2;grid-row:1/span 5}
+.series-result>.kicker,.series-result>h2,.series-result>.result-time,.series-result>.record-note,.series-result>.medal-targets{grid-column:1;margin:0}
+.series-result>h2{font-size:24px}
+.series-result>.series-advance{grid-column:1;grid-row:6;margin:0}
+.series-result>.series-exit{grid-column:2;grid-row:6}
+.series-result>button{margin:0;min-height:44px;padding:8px}
+.series-result>p.series-advance{font-size:11px;align-self:center}
+.qa-driver{position:absolute;top:8px;left:50%;transform:translateX(-50%);padding:8px;background:#9c4c14;color:white;border:1px solid #ffbc82;z-index:4;font-size:10px}
+@container game (max-width:700px){.series-table{font-size:10px}.series-result>h2{font-size:20px}.series-result>.kicker{font-size:8px;letter-spacing:1px}.garage-launch .launch-modes>button{font-size:10px;padding:6px 2px}}
