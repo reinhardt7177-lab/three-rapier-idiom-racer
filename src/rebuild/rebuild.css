@@ -456,3 +456,9 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .quality-options small{display:block;line-height:1.7;font-size:11px;white-space:normal}
 .graphics-settings>p{font-size:11px;margin:16px 0 0;color:#b3c8d8}
 @container game (max-width:700px) or (max-height:550px){.environment-settings-button{top:8px;right:115px;min-height:36px;padding:5px 8px;font-size:10px}.graphics-settings{padding:14px}.graphics-settings header{margin-bottom:10px}.quality-options button{padding:10px 8px}.quality-options strong{font-size:16px;margin-bottom:4px}.quality-options small{font-size:10px}.graphics-settings header h2{font-size:20px}}
+
+/* Medal progress uses existing garage and result rows. */
+.track-selector a[aria-disabled="true"]{opacity:.56}.vehicle-selector .vehicle-locked{opacity:.55}.vehicle-selector .vehicle-locked small{color:#a7c3db}.progression-summary{color:#9bcdea;font-size:11px;letter-spacing:.03em}.unlock-note{display:block;color:#9cdef2;margin-top:5px;font-size:11px}
+
+.progression-summary{display:inline-block;margin-top:2px}.vehicle-selector .vehicle-locked small{display:block}
+@media(max-height:600px){.progression-summary{font-size:10px}.vehicle-selector .vehicle-locked small{font-size:9px;line-height:11px}}
