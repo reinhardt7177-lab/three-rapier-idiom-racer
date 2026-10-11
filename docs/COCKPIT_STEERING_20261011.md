@@ -21,7 +21,14 @@
 
 브라우저 두 번째 레이스도 81.34초·3위로 완주하고 차고 복귀했으며, 오류 로그 0건이다. **이번 전체 회귀:** 실제 Colab CPU에서 `npm run check` 293시험/실패0/빌드까지 exitCode0, 933.80초. Colab 빌드는 3.31초이며 로컬과 같은 `index-DNRevSdF.js`를 만들었다. 맑음 라이벌24레이스144대 + 비14레이스84대, 합계38레이스228대 모두 유효한 완주 시간을 기록했다. 검사 후 원격159입력 해시와 현재 로컬159입력 해시 모두 불일치0이다. 이 결과를 다시 내려받아 `colab-verified/`와 `local-input-verification.json`, `race-summary.json`에 보존했다. GPU 계산이 아니다.
 
-운영 배포 결과는 정식 주소 확인 후 별도 기록한다.
+## GitHub와 정식 배포
+
+- 수정 소스 `bcfbd9e8cdd8a51b17b58c4c603a52acbd03c527`를 같은 작업 브랜치에 커밋·푸시하고 원격 SHA 일치를 확인했다. main은 기존 `2b79f251`이며 PR·병합은 하지 않았다.
+- Vercel의 정확한 커밋 Preview → 정상 Redeploy/Production으로 배포했다. 정식 배포 `dpl_7W3SGt7Awr7jKZfWBy8VXzxHQEsU`, 생성20:02:00 KST/빌드13초/Production Ready/정식 도메인 할당을 직접 확인했다. 브랜치 자동 배포 차단은 유지했다.
+- [수정된 정식 여수 게임](https://mumu-racing.vercel.app/?track=yeosu&v=bcfbd9e). 실제 GET한 메인 JS/CSS는 각각244,525/29,870바이트이며 현재 로컬 빌드와 바이트·SHA-256 모두 일치했다.
+- 정식 차고→레이스→실제 V 키로1인칭 전환→ESC 메뉴→차고 복귀를 확인했다. 개별 A/D 키 사건 이후 입력0과 중앙 핸들, 브라우저 오류0을 확인했다. 연속 키 자동화 `pressSequentially`는 canvas에서 도구 시간 제한으로 실패했으며, 이를 장시간 키를 누르는 실제 조향 검수로 보고하지 않았다. 입력 고착은 관측되지 않았다.
+- 운영 환경에서 새 전체 레이스/네 크기/성능 A/B를 반복했다고 주장하지 않는다. 위 실제 Colab/로컬 브라우저 검수는 운영과 같은 제품 입력이며, 공개 빌드 바이트 비교로 수정 소스 전달을 확인했다.
+- 운영 증거: `deployment.json`, `production-assets.json`, `production-cockpit.json/png`, `production-garage.json`, `vercel-production-dom.txt/png`.
 
 ## 검수 도구 실패 기록
 
