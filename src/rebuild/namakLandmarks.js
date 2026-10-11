@@ -9,7 +9,9 @@ export function createNamakLandmarks(overlay){
       o.userData.dynamic=true;
       signs.push({root:o,position:o.getWorldPosition(new THREE.Vector3())});
     }
-    if(o.isMesh){
+    let signMesh=false;
+    for(let parent=o;parent;parent=parent.parent){if(parent.userData.namak_sign){signMesh=true;break;}if(parent===overlay)break;}
+    if(o.isMesh&&signMesh){
       o.castShadow=false;o.receiveShadow=false;
       // Flat reflective lettering stays readable in direct sun without a
       // transparent sprite or a HUD marker obscuring the racing line.

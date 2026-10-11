@@ -8,6 +8,7 @@ import {polishVehicleMaterial} from './surfacePolish.js';
 
 import {VEHICLES} from './fleet.js';
 import {TRACKS} from './tracks.js';
+import {browserLoadingMetrics} from './loadingMetrics.js';
 export {VEHICLES} from './fleet.js';
 
 export async function loadRebuildAssets(onProgress=()=>{},track=TRACKS[0]) {
@@ -44,6 +45,7 @@ export async function loadRebuildAssets(onProgress=()=>{},track=TRACKS[0]) {
   const response=await fetch(`${import.meta.env.BASE_URL}assets/rebuild/${track.route}`);
   if(!response.ok)throw new Error('도로 데이터를 불러오지 못했습니다.');
   result.roads=await response.json();
+  if(track.landmarksInWorld)result.landmarks=result.world;
   if(track.id==='namak'){
     onProgress('남악 지명·도로 안내판',.97);
     const signs=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/rebuild/namak-landmarks.glb`);
@@ -52,6 +54,7 @@ export async function loadRebuildAssets(onProgress=()=>{},track=TRACKS[0]) {
     result.landmarks=signs.scene;result.world.add(result.landmarks);
   }
   onProgress('출발 준비 완료',1);
+  result.loading=browserLoadingMetrics();
   return result;
   } catch(error) {createSceneDisposer(owned)();throw error;}
   finally {decoder.dispose();}

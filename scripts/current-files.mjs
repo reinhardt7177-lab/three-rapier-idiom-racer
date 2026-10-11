@@ -20,6 +20,8 @@ function walkImports(file){
 }
 walkImports(path.join(root,'src/rebuild/main.jsx'));
 tests.forEach(t=>walkImports(path.join(root,t)));
+// The repeated race matrix is a separate developer entry point.
+walkImports(path.join(root,'scripts/korea-matrix.mjs'));
 const removals=[];
 function files(dir){
  if(!fs.existsSync(dir))return [];
@@ -34,14 +36,17 @@ function remove(file,reason){
 }
 function prune(dir,reason,preserve=()=>false){files(dir).forEach(f=>{if(!preserve(f))remove(f,reason);});}
 prune(path.join(root,'src'),'unreachable-source',f=>keep.has(f));
-prune(path.join(root,'scripts'),'obsolete-tool-or-test',f=>keep.has(f)||['current-files.mjs','cleanup-current.ps1','remove-empty-folders.ps1','export_fleet_eight.py','web_meshes.py','export_environment.py','build_cockpit.py','build_namak.py','preview_namak.py','build_namak_landmarks.py'].includes(path.basename(f)));
-prune(path.join(root,'assets-sources'),'obsolete-asset-source',f=>(f.includes(`${path.sep}vehicles-v6${path.sep}`)||f.includes(`${path.sep}cockpit-v1${path.sep}`)||f.includes(`${path.sep}namak${path.sep}`))&&f.endsWith('.blend')||['world.blend','garage.blend'].includes(path.basename(f))&&f.includes(`${path.sep}rebuilt-unity${path.sep}`));
+prune(path.join(root,'scripts'),'obsolete-tool-or-test',f=>keep.has(f)||['current-files.mjs','cleanup-current.ps1','remove-empty-folders.ps1','export_fleet_eight.py','web_meshes.py','export_environment.py','build_cockpit.py','build_namak.py','preview_namak.py','build_namak_landmarks.py','build_yeosu.py','build_seongsamjae.py','korea_course.py','korea-courses.test.mjs'].includes(path.basename(f)));
+prune(path.join(root,'assets-sources'),'obsolete-asset-source',f=>(f.includes(`${path.sep}vehicles-v6${path.sep}`)||f.includes(`${path.sep}cockpit-v1${path.sep}`)||f.includes(`${path.sep}namak${path.sep}`)||f.includes(`${path.sep}yeosu${path.sep}`)||f.includes(`${path.sep}seongsamjae${path.sep}`))&&f.endsWith('.blend')||['world.blend','garage.blend'].includes(path.basename(f))&&f.includes(`${path.sep}rebuilt-unity${path.sep}`));
 prune(path.join(root,'public'),'unused-runtime-asset',f=>f.includes(`${path.sep}assets${path.sep}rebuild${path.sep}`)&&!f.endsWith(`${path.sep}routes.json`)||['seven-mile-horizon.mp3','slipstream-pursuit.mp3'].some(n=>f===path.join(root,'public/assets/audio',n)));
-prune(path.join(root,'artifacts'),'obsolete-evidence-or-backup',f=>f.includes(`${path.sep}steering-turn-20261010${path.sep}`)||f.includes(`${path.sep}vehicle-polish-v6-20261009${path.sep}`)&&!f.includes(`${path.sep}previous-web-cars${path.sep}`)||['colliders.bin','colliders.json'].includes(path.basename(f))&&f.includes(`${path.sep}unity-recovery${path.sep}`)||f.includes(`${path.sep}cleanup-performance-20261010${path.sep}`)||f.includes(`${path.sep}race-experience-20261010${path.sep}`)||f.includes(`${path.sep}music-selection-20261010${path.sep}`)||f.includes(`${path.sep}landscape-20261010${path.sep}`)||f.includes(`${path.sep}cockpit-polish-20261010${path.sep}`)||f.includes(`${path.sep}namak-20261010${path.sep}`)||f.includes(`${path.sep}namak-polish-20261010${path.sep}`)||f.includes(`${path.sep}namak-color-20261010${path.sep}`)||f.includes(`${path.sep}namak-landmarks-20261010${path.sep}`));
+prune(path.join(root,'artifacts'),'obsolete-evidence-or-backup',f=>f.includes(`${path.sep}korea-circuits-20261011${path.sep}`)||f.includes(`${path.sep}wall-recovery-20261011${path.sep}`)||f.includes(`${path.sep}steering-turn-20261010${path.sep}`)||f.includes(`${path.sep}vehicle-polish-v6-20261009${path.sep}`)&&!f.includes(`${path.sep}previous-web-cars${path.sep}`)||['colliders.bin','colliders.json'].includes(path.basename(f))&&f.includes(`${path.sep}unity-recovery${path.sep}`)||f.includes(`${path.sep}cleanup-performance-20261010${path.sep}`)||f.includes(`${path.sep}race-experience-20261010${path.sep}`)||f.includes(`${path.sep}music-selection-20261010${path.sep}`)||f.includes(`${path.sep}landscape-20261010${path.sep}`)||f.includes(`${path.sep}cockpit-polish-20261010${path.sep}`)||f.includes(`${path.sep}namak-20261010${path.sep}`)||f.includes(`${path.sep}namak-polish-20261010${path.sep}`)||f.includes(`${path.sep}namak-color-20261010${path.sep}`)||f.includes(`${path.sep}namak-landmarks-20261010${path.sep}`));
 // Current implementation/validation records are useful developer files.
 const docs=new Set(['NEXT_STEPS.md','VEHICLE_POLISH_V6.md','BLENDER_THREE_REBUILD.md','FLEET_EIGHT_AND_STABLE_RIDE.md','RACE_CONTROLS.md','RACE_DYNAMICS.md','RENDER_POLISH.md','RIDE_QUALITY.md','RIDE_AND_VFX.md','RIDE_REPAIR.md','OPEN_SOURCE.md','CLEANUP_PERFORMANCE_20261010.md','RACE_EXPERIENCE_20261010.md','MUSIC_SELECTION_20261010.md','LANDSCAPE_20261010.md','COCKPIT_POLISH_20261010.md','NAMAK_CITY_20261010.md','NAMAK_POLISH_20261010.md','NAMAK_LANDMARKS_20261010.md']);
 docs.add('PROJECT_LOCATION_20261010.md');
 docs.add('STEERING_TURN_20261010.md');
+docs.add('WALL_RECOVERY_20261011.md');
+docs.add('KOREA_CIRCUITS_20261011.md');
+docs.add('RACE_CHALLENGE_20261011.md');
 prune(path.join(root,'docs'),'obsolete-project-document',f=>docs.has(path.basename(f))||f.includes(`${path.sep}licenses${path.sep}`));
 prune(path.join(workspace,'tools'),'obsolete-unity-and-portable-tools');
 prune(path.join(workspace,'backups'),'obsolete-code-backup');

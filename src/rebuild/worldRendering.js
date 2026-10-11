@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createRenderTiming} from './renderTiming.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 function eligible(o){
@@ -118,13 +119,13 @@ export function batchWorldScenery(root,{cellSize=128,maxVertices=60000}={}){
 }
 
 export function createFrameMetrics(capacity=240){
- const samples=[];let previous=null;
- return {reset(){samples.length=0;previous=null;},record(now,info){
-  if(previous!==null&&now>previous){samples.push({ms:now-previous,calls:info.calls,triangles:info.triangles});if(samples.length>capacity)samples.shift();}
+ const samples=[],cpu=createRenderTiming(capacity);let previous=null,hasCosts=false;
+ return {reset(){samples.length=0;previous=null;hasCosts=false;cpu.reset();},record(now,info,cost){
+  if(previous!==null&&now>previous){samples.push({ms:now-previous,calls:info.calls,triangles:info.triangles});if(samples.length>capacity)samples.shift();cpu.record(cost);if(cost)hasCosts=true;}
   previous=now;
  },snapshot(){
   if(!samples.length)return {samples:0};
   const times=samples.map(s=>s.ms).sort((a,b)=>a-b),mean=samples.reduce((n,s)=>n+s.ms,0)/samples.length;
-  return {samples:samples.length,meanMs:mean,p95Ms:times[Math.ceil(times.length*.95)-1],maxMs:times.at(-1),over50Ms:samples.filter(s=>s.ms>50).length,calls:samples.at(-1).calls,triangles:samples.at(-1).triangles};
+  return {samples:samples.length,meanMs:mean,p95Ms:times[Math.ceil(times.length*.95)-1],maxMs:times.at(-1),over50Ms:samples.filter(s=>s.ms>50).length,calls:samples.at(-1).calls,triangles:samples.at(-1).triangles,...(hasCosts?{cpu:cpu.snapshot()}: {})};
  }};
 }

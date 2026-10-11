@@ -1,0 +1,55 @@
+{ id: 'supra', side: -1, maxOffset: 10.64593505859375 }
+{ id: 'supra', side: 1, maxOffset: 10.645939826965332 }
+{ id: 'slk', side: -1, maxOffset: 10.677392959594727 }
+{ id: 'slk', side: 1, maxOffset: 10.677389144897461 }
+{ id: 'mustang', side: -1, maxOffset: 10.604549407958984 }
+{ id: 'mustang', side: 1, maxOffset: 10.604555130004883 }
+{ id: 'porsche911', side: -1, maxOffset: 10.605432510375977 }
+{ id: 'porsche911', side: 1, maxOffset: 10.605437278747559 }
+{ id: 'gtr', side: -1, maxOffset: 10.599272727966309 }
+{ id: 'gtr', side: 1, maxOffset: 10.599276542663574 }
+{ id: 'rx7', side: -1, maxOffset: 10.616661071777344 }
+{ id: 'rx7', side: 1, maxOffset: 10.616663932800293 }
+{ id: 'm3', side: -1, maxOffset: 10.604820251464844 }
+{ id: 'm3', side: 1, maxOffset: 10.604825973510742 }
+{ id: 'huracan', side: -1, maxOffset: 10.605022430419922 }
+{ id: 'huracan', side: 1, maxOffset: 10.605027198791504 }
+{
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  maxDeviation: 4.936848311552224,
+  seconds: 109.95,
+  contacts: 4
+}
+✖ sealed Namak wall shells block both directions and every route seam without filling the asphalt (91.4694ms)
+✔ eight physical cars remain inside either wall after a 230km/h lateral impact (634.9509ms)
+✔ an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not (1.0081ms)
+✔ sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward (74.5933ms)
+✔ C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields (0.4071ms)
+✔ a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery (2195.3807ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4822.4285
+
+✖ failing tests:
+
+test at scripts\wall-recovery.test.mjs:37:1
+✖ sealed Namak wall shells block both directions and every route seam without filling the asphalt (91.4694ms)
+  AssertionError [ERR_ASSERTION]: missing barrier at 0, side -1
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/wall-recovery.test.mjs:44:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

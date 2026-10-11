@@ -15,10 +15,11 @@ export function handleRaceKeyDown(event,actions){
  if(!actions.inRace()||!handled.has(event.code)||event.target.closest?.('input,textarea,select,[contenteditable="true"]'))return;
  // ESC must work even when clicking the menu left its button focused.
  if(event.code==='Escape'){event.preventDefault();if(!event.repeat)actions.pause();return;}
+ // Recovery remains available after touching a pedal left its button focused.
+ if(event.code==='KeyC'){event.preventDefault();if(!event.repeat&&actions.canDrive())actions.recover();return;}
  // Preserve Space/Enter and navigation semantics on menu buttons.
  if(event.target.closest?.('button'))return;
  event.preventDefault();
- if(event.code==='KeyC'){if(!event.repeat&&actions.canDrive())actions.recover();return;}
  if(event.code==='KeyR'){if(!event.repeat)actions.restart();return;}
  if(event.code==='KeyM'){if(!event.repeat)actions.mute();return;}
  if(event.code==='KeyV'){if(!event.repeat)actions.camera?.();return;}

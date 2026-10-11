@@ -20,8 +20,9 @@ const COLLIDERS={coastal:'unity-recovery',namak:'namak-20261010'};
 export function loadTrack(id){
  const track=TRACKS.find(t=>t.id===id);
  const route=JSON.parse(fs.readFileSync(new URL(`../public/assets/rebuild/${track.route}`,import.meta.url)));
- const binary=fs.readFileSync(new URL(`../artifacts/${COLLIDERS[id]}/colliders.bin`,import.meta.url));
- const manifest=JSON.parse(fs.readFileSync(new URL(`../artifacts/${COLLIDERS[id]}/colliders.json`,import.meta.url)));
+ const fixture=track.collisionFixture??COLLIDERS[id];
+ const binary=fs.readFileSync(new URL(`../artifacts/${fixture}/colliders.bin`,import.meta.url));
+ const manifest=JSON.parse(fs.readFileSync(new URL(`../artifacts/${fixture}/colliders.json`,import.meta.url)));
  const parts=manifest.map(part=>{
   const vertices=new Float32Array(part.vertices),indices=new Uint32Array(part.indices);
   for(let i=0;i<vertices.length;i++)vertices[i]=binary.readFloatLE(part.offset+i*4);

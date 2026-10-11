@@ -13,6 +13,8 @@ Blender 차량 8종을 선택하고 플레이어 1대 + AI 5대가 **해안 월�
 
 ## 현재 유지하는 파일
 
+[남악 벽 충돌·자동 복귀](docs/WALL_RECOVERY_20261011.md): 벽 충돌체에 두께를 주고, 벽 밖 이탈 시 도로로 자동 복귀합니다. 수동 복귀는 `C` 또는 화면의 복귀 버튼입니다.
+
 [남악 시티 트랙](docs/NAMAK_CITY_20261010.md): 항공·거리 사진을 참고한 도청대로·상가·아파트·영산강 수변·공원 순환 코스. 실제 도시 전체의 측량 복제는 아닙니다. 원본은 `assets-sources/namak/namak.blend`, 재생성은 `scripts/blender/build_namak.py`, 전체 미리보기는 `scripts/blender/preview_namak.py`입니다.
 
 [남악 도로 주변·조향 개선](docs/NAMAK_POLISH_20261010.md): 정류장·상가 쇼윈도·보도 포장·화단·주차 차량과 재질·조명을 보강했습니다. 터치 브레이크는 오래 눌러도 후진하지 않습니다.

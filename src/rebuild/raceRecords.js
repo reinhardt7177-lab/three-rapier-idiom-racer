@@ -12,11 +12,19 @@ const ONE_LAP=Object.freeze({
 });
 // Later laps start rolling, so they are a few seconds quicker than the first.
 const ROLLING_GAIN=Object.freeze({coastal:8,namak:4.5});
+// Actual standing-start 1/3-lap six-car Rapier runs, not extrapolated lap gains.
+// Gold/ silver/ bronze beat the hard/ normal/ easy median rival respectively.
+// Evidence: artifacts/korea-circuits-20261011/matrix.json (Colab CPU).
+const KOREA_MEDALS=Object.freeze({
+ yeosu:Object.freeze({1:Object.freeze({gold:79,silver:81,bronze:89}),3:Object.freeze({gold:225,silver:237,bronze:252})}),
+ seongsamjae:Object.freeze({1:Object.freeze({gold:157,silver:167,bronze:170}),3:Object.freeze({gold:457,silver:490,bronze:499})}),
+});
 export const MEDALS=Object.freeze([
  Object.freeze({id:'gold',label:'금메달'}),Object.freeze({id:'silver',label:'은메달'}),Object.freeze({id:'bronze',label:'동메달'}),
 ]);
 
 export function medalTimes(trackId,laps=1){
+ if(KOREA_MEDALS[trackId])return KOREA_MEDALS[trackId][laps]?{...KOREA_MEDALS[trackId][laps]}:null;
  const base=ONE_LAP[trackId];if(!base)return null;
  const gain=(ROLLING_GAIN[trackId]??0)*(Math.max(1,laps)-1);
  return Object.fromEntries(Object.entries(base).map(([k,v])=>[k,v*Math.max(1,laps)-gain]));

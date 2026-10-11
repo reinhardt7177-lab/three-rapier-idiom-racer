@@ -16,14 +16,15 @@ export function roadRecoveryPose(point,normal,yaw,spec){
  return {position:new Vector3(point.x,point.y,point.z).addScaledVector(up,height),rotation};
 }
 
-export function createRecoveryWatch(){
- let overturned=0,fallen=0;
- return {reset(){overturned=fallen=0;},update(state,roadY,dt){
+export function createRecoveryWatch({roadHalfWidth=Infinity}={}){
+ let overturned=0,fallen=0,offtrack=0;
+ return {reset(){overturned=fallen=offtrack=0;},update(state,roadY,dt,roadDistance=0){
   if(!(dt>0&&dt<=.1))return null;
   const q=state.rotation,up=1-2*(q.x*q.x+q.z*q.z);
   overturned=up<.25?overturned+dt:0;
   fallen=state.position.y<roadY-6?fallen+dt:0;
-  if(overturned>=1.5||fallen>=.5){overturned=fallen=0;return up<.25?'overturned':'fallen';}
+  offtrack=roadDistance>roadHalfWidth+1?offtrack+dt:0;
+  if(overturned>=1.5||fallen>=.5||offtrack>=1){const reason=up<.25?'overturned':fallen>=.5?'fallen':'offtrack';overturned=fallen=offtrack=0;return reason;}
   return null;
  }};
 }
@@ -43,4 +44,16 @@ export function recoveryProgressChange(from,to,length){
  if(delta>length/2)delta-=length;
  if(delta<-length/2)delta+=length;
  return Math.min(0,delta);
+}
+
+export function findRecoveryPose(route,index,lanes,traffic,spawn){
+ const steps=Math.min(route.points.length-1,Math.max(32,Math.ceil(180*route.points.length/route.length)));
+ for(let back=0;back<=steps;back+=2){
+  const candidateIndex=(index-back+route.points.length)%route.points.length;
+  for(const lane of lanes){
+   const pose=spawn(candidateIndex,lane);
+   if(recoverySpaceClear(pose.position,traffic))return {pose,index:candidateIndex,lane};
+  }
+ }
+ return null;
 }
