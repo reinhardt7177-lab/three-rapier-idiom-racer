@@ -45,11 +45,12 @@ import {applyNamakColors,outdoorAtmosphere,tintNamakSky} from './namakColors.js'
 import {createNamakLandmarks} from './namakLandmarks.js';
 import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from './nightPresentation.js';
 import {createPauseRendering} from './renderTiming.js';
+import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from './koreaPresentation.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
   await initPhysics();
   const assets=await loadRebuildAssets(onLoading,track);
-  const namak=track.id==='namak',bounded=namak||track.bounded,lighting=track.night?NIGHT_LIGHTING:outdoorLighting(namak),atmosphere=track.night?NIGHT_ATMOSPHERE:outdoorAtmosphere(namak);
+  const namak=track.id==='namak',mountain=track.id==='seongsamjae',bounded=namak||track.bounded,lighting=track.night?NIGHT_LIGHTING:mountain?MOUNTAIN_LIGHTING:outdoorLighting(namak),atmosphere=track.night?NIGHT_ATMOSPHERE:mountain?MOUNTAIN_ATMOSPHERE:outdoorAtmosphere(namak);
   const all=new THREE.Group();all.add(assets.world,assets.garage,assets.cockpit,...Object.values(assets.cars));
   if(signal.aborted){createSceneDisposer(all)();return null;}
   let renderer;
@@ -104,7 +105,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   if(namak)for(const {collider,name} of createNamakBarriers(world,assets.roads)){surfaceMap.add(collider.handle,name);colliderCount++;}
   const presentation=namak?createNamakPresentation(assets.world,assets.cars):null;
   const landmarks=assets.landmarks?createNamakLandmarks(assets.landmarks):null;
-  const surfaces=polishWorldSurfaces(assets.world,{namak}),colors=namak?applyNamakColors(assets.world):null;
+  const surfaces=polishWorldSurfaces(assets.world,{namak}),colors=namak?applyNamakColors(assets.world):applyKoreaPalette(assets.world,track.id);
   const scenery=batchWorldScenery(assets.world),frameMetrics=createFrameMetrics(),pauseRendering=createPauseRendering();
   // Collision heights are recovered geometry, not a flat substitute under hills.
   const ray=new THREE.Raycaster(),route=assets.roads;
@@ -294,7 +295,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     }else {controls.update();garageBackdrop.update(camera);}
     music.update(dt);
     if(sky.visible)sky.position.copy(camera.position);
-    night?.update(cars[0]?.state,cars[0]?.index??0,mode==='race');
+    night?.update(cars[0]?.state,cars[0]?.index??0,mode==='race',camera.position);
     presentation?.update(camera);
     landmarks?.update(camera,assets.world.visible);
     const renderStart=performance.now();renderer.info.reset();renderer.render(scene,camera);const renderMs=performance.now()-renderStart;frames++;

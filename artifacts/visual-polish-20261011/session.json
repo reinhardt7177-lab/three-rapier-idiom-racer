@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-10-11T13:15:00+09:00",
+  "deadline": "2026-10-11T19:15:00+09:00",
+  "baseCommit": "8c5bb8b",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "status": "performance-diagnosis",
+  "completed": [
+    "actual official photos and satellite reference captures",
+    "course-specific first palette and night sky",
+    "241 regression tests + build on Colab CPU; 136 input hashes matched",
+    "18 physical championship finishes",
+    "4 viewport race/menu clipping and overlap checks",
+    "before/after resource and frame records"
+  ],
+  "next": [
+    "reproduce large frame gaps while recording per-frame visibility/focus and CPU/GPU scheduling; graphics expansion held",
+    "after performance gate: Blender bridge lights/water reflection streaks, night sky horizon",
+    "after performance gate: Blender forest density, canopy variants and natural layered ridges"
+  ],
+  "stopReason": "New geometry held pending Namak intermittent delay and Seongsamjae 1000ms frame-gap diagnosis",
+  "heartbeatId": "6",
+  "baselineServerPid": 29552,
+  "check": {
+    "passed": 241,
+    "failed": 0,
+    "skipped": 0,
+    "inputHashes": 136
+  }
+}
