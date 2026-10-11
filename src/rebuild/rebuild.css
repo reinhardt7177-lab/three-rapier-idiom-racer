@@ -209,7 +209,7 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .vehicle-selector button{min-width:0;gap:9px;padding:12px 10px;min-height:61px}
 .vehicle-selector strong{font-size:13px;line-height:1.2}
 .vehicle-selector small{font-size:7px;letter-spacing:.6px}
-.garage-heading{top:122px}
+.garage-heading{top:151px}
 .garage-heading h1{font-size:32px}
 .race-clock{padding:9px 12px;background:#0a172ab8;border-radius:3px}
 .race-route{padding:10px 12px;background:#0a172a99;border-radius:3px}
@@ -442,3 +442,17 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .series-result>p.series-advance{font-size:11px;align-self:center}
 .qa-driver{position:absolute;top:8px;left:50%;transform:translateX(-50%);padding:8px;background:#9c4c14;color:white;border:1px solid #ffbc82;z-index:4;font-size:10px}
 @container game (max-width:700px){.series-table{font-size:10px}.series-result>h2{font-size:20px}.series-result>.kicker{font-size:8px;letter-spacing:1px}.garage-launch .launch-modes>button{font-size:10px;padding:6px 2px}}
+.qa-performance{position:absolute;bottom:6px;left:260px;z-index:20;display:flex;gap:4px;font-size:9px;background:#101827}.qa-performance button{font-size:9px}
+.environment-settings-button{position:absolute;right:166px;top:26px;min-height:44px;padding:8px 12px;background:#142235cc;border:1px solid #63809266;border-radius:4px;color:#d9eaff;font-size:11px;z-index:3}
+.settings-shade{z-index:30}
+.graphics-settings{width:min(620px,calc(100cqw - 24px));max-height:calc(100cqh - 24px);overflow:auto;padding:22px}
+.graphics-settings header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.graphics-settings header h2{font-size:24px;margin:5px 0}
+.graphics-settings header>button{width:auto;min-width:60px;margin:0}
+.quality-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.quality-options button{margin:0;padding:16px 10px;text-align:left;min-width:0;background:#182a3e;border:1px solid #63809266}
+.quality-options button[aria-pressed=true]{background:#c9eaff;color:#142032}
+.quality-options strong{display:block;font-size:19px;margin-bottom:10px}
+.quality-options small{display:block;line-height:1.7;font-size:11px;white-space:normal}
+.graphics-settings>p{font-size:11px;margin:16px 0 0;color:#b3c8d8}
+@container game (max-width:700px) or (max-height:550px){.environment-settings-button{top:8px;right:115px;min-height:36px;padding:5px 8px;font-size:10px}.graphics-settings{padding:14px}.graphics-settings header{margin-bottom:10px}.quality-options button{padding:10px 8px}.quality-options strong{font-size:16px;margin-bottom:4px}.quality-options small{font-size:10px}.graphics-settings header h2{font-size:20px}}

@@ -26,9 +26,9 @@ export function createNamakPresentation(world,cars){
     });
     root.position.set(p.x,.14-floor,p.z);root.rotation.y=p.yaw;world.add(root);return root;
   });
-  return {stats:{parkedCars:parked.length,visibleParkedCars:0},update(camera){
+  return {stats:{parkedCars:parked.length,visibleParkedCars:0},update(camera,distance=160){
     let visible=0;
-    for(const root of parked){root.visible=world.visible&&root.position.distanceToSquared(camera.position)<160**2;if(root.visible)visible++;}
+    for(const root of parked){root.visible=world.visible&&root.position.distanceToSquared(camera.position)<Math.min(160,distance)**2;if(root.visible)visible++;}
     this.stats.visibleParkedCars=visible;
   }};
 }

@@ -9,6 +9,7 @@ import {DIFFICULTIES,difficultyById} from './raceDifficulty.js';
 import {MEDALS} from './raceRecords.js';
 import {newChampionship,loadSeries,saveSeries,clearSeries,commitRound,roundTrack,seriesTable,seriesBest,submitSeriesBest} from './championship.js';
 import {ChampionshipTable} from './ChampionshipTable.jsx';
+import {GraphicsSettings} from './GraphicsSettings.jsx';
 import './rebuild.css';
 
 const time=value=>`${Math.floor(value/60).toString().padStart(2,'0')}:${(value%60).toFixed(2).padStart(5,'0')}`;
@@ -47,6 +48,7 @@ function App(){
   const host=useRef(),runtime=useRef(),viewport=useRef();
   const [presentation,setPresentation]=useState(()=>landscapePresentation(innerWidth,innerHeight,matchMedia('(pointer: coarse)').matches));
   const [fullscreen,setFullscreen]=useState(false),[displayMessage,setDisplayMessage]=useState('');
+  const [settingsOpen,setSettingsOpen]=useState(false);
   const [stats,setStats]=useState({mode:'garage',selected:'supra'}),[ready,setReady]=useState(false),[load,setLoad]=useState({message:'차고 준비 중',progress:0}),[error,setError]=useState('');
   const [series,setSeries]=useState(()=>loadSeries(browserStorage('sessionStorage'))),[seriesRecord,setSeriesRecord]=useState(null);
   useEffect(()=>{
@@ -58,7 +60,7 @@ function App(){
   },[]);
   useEffect(()=>{
     const pointer=matchMedia('(pointer: coarse)');
-    const measure=()=>{const {width,height}=viewport.current.getBoundingClientRect();setPresentation(landscapePresentation(width,height,pointer.matches));};
+    const measure=()=>{if(!viewport.current)return;const {width,height}=viewport.current.getBoundingClientRect();setPresentation(landscapePresentation(width,height,pointer.matches));};
     const observer=new ResizeObserver(measure);observer.observe(viewport.current);pointer.addEventListener('change',measure);measure();
     const changed=()=>{setFullscreen(!!document.fullscreenElement);measure();};
     document.addEventListener('fullscreenchange',changed);
@@ -92,15 +94,16 @@ function App(){
   return <div className="game-viewport" ref={viewport} data-orientation={presentation.orientation} data-rotation-required={presentation.blocked}>
   <div className="landscape-stage"><main inert={presentation.blocked||undefined} className={`rebuild-app ${garage?'garage-screen':'race-screen'} ${stats.cameraMode==='first-person'?'camera-first-person':''}`} data-engine="threejs" data-vehicle={vehicle.id} data-mode={stats.mode} data-ready={ready} data-telemetry={JSON.stringify(stats)}>
     <div className="rebuild-canvas" ref={host}/>
-    {garage?<>
+    {garage?<><div inert={settingsOpen||undefined}>
       <header className="rebuild-brand"><span className="brand-emblem">M</span><div><p>MUMU CIRCUIT</p><span>{track.label} / SEASON 01</span></div></header>
       <nav className="track-selector" aria-label="코스 선택">{TRACKS.map(t=><a key={t.id} href={trackLink(t,location.search)} onClick={e=>{if(series){e.preventDefault();setDisplayMessage('시리즈를 나가려면 시리즈 종료를 선택하세요.');}}} aria-current={t.id===track.id?'page':undefined}>{t.name}<small>{t.kilometres} KM</small></a>)}</nav>
       <button className="fullscreen-button" onClick={expand}>{fullscreen?'전체 화면 종료':'전체 화면'}</button>
+      <button className="environment-settings-button" disabled={!ready} onClick={()=>setSettingsOpen(true)}>그래픽 설정 · {stats.quality==='low'?'낮음':stats.quality==='medium'?'보통':'높음'}</button>
       <div className="garage-heading"><span className="kicker">{series?'JEONNAM CHAMPIONSHIP':'YOUR GARAGE / 08 CARS'}</span><h1>{series?`ROUND ${Math.min(3,series.rounds.length+1)} / 3`:'시동을 걸 시간.'}</h1>{series?<ChampionshipTable series={series}/>:<p>여덟 대의 개성. 다섯 명의 라이벌.<br/>{track.description}</p>}</div>
       <section className="vehicle-heading" aria-live="polite"><span className="kicker">{vehicle.label}</span><h2>{vehicle.name}</h2><p>드래그로 둘러보기 · 휠로 확대</p></section>
       <nav className="vehicle-selector" aria-label="차량 선택">{VEHICLES.map((v,i)=><button key={v.id} aria-pressed={v.id===stats.selected} disabled={!ready||!!series} onClick={()=>runtime.current.select(v.id)}><span className="car-number">0{i+1}</span><span><strong>{v.name}</strong><small>{v.label}</small></span><i style={{background:v.color}}/></button>)}</nav>
       <div className="garage-launch"><span>{track.label} <b>{track.kilometres} KM</b></span><div className="difficulty-selector" role="group" aria-label="라이벌 난이도">{DIFFICULTIES.map(d=><button key={d.id} aria-pressed={d.id===difficulty.id} title={d.description} disabled={!ready||!!series} onClick={()=>runtime.current.difficulty(d.id)}>{d.label}</button>)}</div><div className="difficulty-selector lap-selector" role="group" aria-label="랩 수">{(stats.lapOptions||[1,3]).map(n=><button key={n} aria-pressed={n===(stats.laps||1)} disabled={!ready||!!series} onClick={()=>runtime.current.laps(n)}>{n} LAP{n>1?'S':''}</button>)}</div><div className="launch-modes"><button className="primary" disabled={!ready||!!series&&!roundTrack(series)} onClick={launchRace}>{series?`ROUND ${series.rounds.length+1}`:'싱글 레이스'} →</button><button disabled={!ready} onClick={series?exitChampionship:startChampionship}>{series?'시리즈 종료':'챔피언십'}</button></div><small className="best-record">{series?<>시리즈 BEST <b>{championshipBest?`${championshipBest.points}점 · ${time(championshipBest.time)}`:"아직 기록 없음"}</b></>:stats.best?<>BEST <b>{time(stats.best.time)}</b> <Medal id={stats.best.medal}/></>:stats.medals?<>금메달 목표 {time(stats.medals.gold)}</>:null}<br/>맨 뒤 6번 그리드 출발 · {difficulty.description}</small></div>
-    </>:<>
+    </div>{settingsOpen&&<GraphicsSettings quality={stats.quality} onChange={id=>runtime.current.quality(id)} onClose={()=>setSettingsOpen(false)}/>}</>:<>
       <header className="race-top"><div className="position-card"><span>POSITION</span><strong>{stats.place}<small>/ 6</small></strong></div><CourseGuide guide={stats.guidance} region={stats.region} progress={stats.progress} lap={stats.lap} laps={stats.laps}/><div className="race-clock"><span>RACE TIME</span><strong>{time(stats.elapsed||0)}</strong><button onClick={()=>runtime.current.pause()}>메뉴 <kbd>ESC</kbd></button></div></header>
       <aside className="race-standings" aria-label="레이스 순위">{stats.standings?.map((s,i)=><div key={s.name} className={s.name==='YOU'?'you':''}><span>{i+1}</span><strong>{s.name}</strong>{s.finished&&<small>FINISH</small>}</div>)}{stats.ghost&&<div className="ghost-row"><span>◌</span><strong>GHOST</strong><small>{time(stats.ghost.time)}</small></div>}</aside>
       <div className={`speed-card ${stats.shifting?'gear-shifting':''}`}><span>{stats.gear} <small>GEAR</small></span><strong>{stats.kmh}<small>KM/H</small></strong><div className={`rpm-meter ${(stats.rpm||0)>(stats.redline||6500)-700?'redline':''}`} aria-label={`엔진 ${stats.rpm||850} RPM`}><i style={{width:`${Math.min(100,(stats.rpm||850)/(stats.redline||6500)*100)}%`}}/></div><small className="rpm-label">{(stats.rpm||850).toLocaleString()} RPM</small><div className={`nitro-meter ${stats.draft>.25?'drafting':''}`}><i style={{width:`${(stats.nitro||0)*100}%`}}/></div><small className={stats.nitroBonus?.age<1.6?'nitro-gain':stats.draft>.25?'nitro-draft':''}>{stats.nitroBonus?.age<1.6?`추월 +${stats.nitroBonus.amount} NITRO`:stats.draft>.25?'SLIPSTREAM':<>NITRO <kbd>SPACE</kbd></>}</small></div>
@@ -119,6 +122,7 @@ function App(){
       })}<button className="recover-button" aria-label="도로로 복귀" disabled={stats.paused||!!stats.result} onClick={()=>runtime.current.recover()}>복귀</button></div>
     </>}
     {qaEnabled&&<button className="qa-driver" disabled={!ready} aria-pressed={!!stats.qaDriver} onClick={()=>runtime.current.qa.driver(!stats.qaDriver)}>검수용 자동 페달 · {stats.qaDriver?'켜짐':'꺼짐'}</button>}
+    {import.meta.env.DEV&&new URLSearchParams(location.search).has('qaPerf')&&<div className="qa-performance" aria-label="성능 비교"><button disabled={!ready||stats.performanceTrial?.status==='running'} onClick={()=>runtime.current.qa.performance('ghost')}>고스트 A/B/A</button><button disabled={!ready||stats.performanceTrial?.status==='running'} onClick={()=>runtime.current.qa.performance('material')}>재질 A/B/A</button><button disabled={!ready||stats.performanceTrial?.status==='running'} onClick={()=>runtime.current.qa.performance('instrumentation')}>계측 A/B/A</button><button disabled={!ready||stats.performanceTrial?.status==='running'} onClick={()=>runtime.current.qa.performance('acceptance')}>30초 제품 기준 측정</button><span>{stats.performanceTrial?.status} · {stats.performanceTrial?.label}</span></div>}
     {stats.preparation?.busy&&ready&&<div className="loading-shade"><section role="status"><span className="kicker">MUMU CIRCUIT</span><h2>출발 준비 중입니다.</h2><p>잠시만 기다려주세요.</p></section></div>}
     {stats.preparation?.phase==='failed'&&<div className="loading-shade"><section role="alert"><h2>출발 준비가 중단됐습니다.</h2><p>다시 준비하거나 차고로 돌아가주세요.</p><button className="primary" onClick={()=>runtime.current.start()}>다시 준비</button><button onClick={()=>runtime.current.garage()}>차고로 돌아가기</button></section></div>}
     {!ready&&!error&&<div className="loading-shade"><section role="status"><span className="kicker">MUMU CIRCUIT</span><h2>{track.name}로 향합니다.</h2><p>{load.message}</p><div className="course-meter"><i style={{width:`${load.progress*100}%`}}/></div></section></div>}
