@@ -15,6 +15,7 @@ export function applyKoreaPalette(root,trackId){
  root.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){
   if(seen.has(m))continue;seen.add(m);
   if(palette[m.name]){m.color.set(palette[m.name]);materials++;}
+  if(trackId==='yeosu'&&m.name==='Water'){m.roughness=.24;m.metalness=.65;}
   if(trackId==='yeosu'&&['Pink','Cyan','Window'].includes(m.name)){
    // Preserve authored linear emission; avoid ACES turning saturated lamps
    // into pale highlights. This does not add bloom or a reflection pass.
@@ -26,7 +27,7 @@ export function applyKoreaPalette(root,trackId){
 
 export function createNightSky(){
  const material=new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,toneMapped:false,
-  uniforms:{zenith:{value:new THREE.Color('#050b27')},horizon:{value:new THREE.Color('#322443')},low:{value:new THREE.Color('#0a2138')}},
+  uniforms:{zenith:{value:new THREE.Color('#050b27')},horizon:{value:new THREE.Color('#0b1c38')},low:{value:new THREE.Color('#0a2138')}},
   vertexShader:'varying vec3 skyDirection;void main(){skyDirection=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
   fragmentShader:`varying vec3 skyDirection;uniform vec3 zenith;uniform vec3 horizon;uniform vec3 low;
    void main(){float h=normalize(skyDirection).y;vec3 c=mix(horizon,zenith,smoothstep(0.0,.65,h));

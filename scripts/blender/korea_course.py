@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2]
 def build(kind):
     night=kind=='yeosu';random.seed(20261011)
     out=ROOT/'public/assets/rebuild';src=ROOT/'assets-sources'/kind
-    proof=ROOT/'artifacts/korea-circuits-20261011'/kind
+    proof=ROOT/('artifacts/yeosu-map-traffic-20261012' if night else 'artifacts/korea-circuits-20261011')/kind
     for p in [out,src,proof]:p.mkdir(parents=True,exist_ok=True)
     bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
     bpy.context.preferences.filepaths.save_version=0
@@ -54,6 +54,10 @@ def build(kind):
         a,b,c,d=[controls[(i+j)%len(controls)] for j in [-1,0,1,2]]
         for j in range(500):
             t=j/500;raw.append(tuple(.5*((2*b[k])+(-a[k]+c[k])*t+(2*a[k]-5*b[k]+4*c[k]-d[k])*t*t+(-a[k]+3*b[k]-3*c[k]+d[k])*t**3) for k in range(3)))
+    map_data=None
+    if night:
+        from yeosu_map_geometry import mapped_route
+        raw,map_data=mapped_route()
     lengths=[0]
     for i in range(len(raw)):lengths.append(lengths[-1]+math.dist(raw[i],raw[(i+1)%len(raw)]))
     length=lengths[-1];n=math.ceil(length/2);points=[];cursor=0
@@ -62,16 +66,25 @@ def build(kind):
         while lengths[cursor+1]<dist:cursor+=1
         f=(dist-lengths[cursor])/(lengths[cursor+1]-lengths[cursor]);a=raw[cursor];b=raw[(cursor+1)%len(raw)]
         x,y,z=[a[k]+f*(b[k]-a[k]) for k in range(3)]
-        if night:region='이순신광장·해양공원' if z<100 else '거북선대교' if x>900 else '오동도 방향 스위퍼' if z>650 else '돌산대교'
+        if night:
+            from yeosu_map_geometry import source_at
+            source=map_data['rawOwners'][cursor];region=source['name']
+            if source['wayId']==64707298:region='돌산대교'
         else:region='화엄사 아래 출발' if z<100 and x>-300 else '성삼재 휴게소·노고단 전망' if y>135 else '지리산 연속 헤어핀' if x>0 else '구례 숲길 하산'
-        points.append(dict(x=x,y=y+.025,z=z,distance=dist,region=region))
+        points.append(dict(x=x,y=y+.025,z=z,distance=dist,region=region,**({'wayId':source['wayId'],'roadWidth':22 if source['bridge'] else 18} if night else {})))
     # Keep the grid on a level straight, with enough preceding space for 6 cars.
-    start=min(range(n),key=lambda i:math.hypot(points[i]['x']-180,points[i]['z']))
+    start=min(range(n),key=lambda i:math.hypot(points[i]['x']-(-140 if night else 180),points[i]['z']))
     points=points[start-25:]+points[:start-25]
     for i,p in enumerate(points):
         a,b=points[i-1],points[(i+1)%n];dx,dz=b['x']-a['x'],b['z']-a['z'];norm=math.hypot(dx,dz)
         p.update(dx=dx/norm,dz=dz/norm,distance=i*length/n)
+    if night:
+        widths=[p['roadWidth'] for p in points]
+        for i,p in enumerate(points):p['roadWidth']=sum(widths[(i+k)%n] for k in range(-10,11))/21
     route=dict(id=kind,name='YEOSU NIGHT SEA' if night else 'JIRISAN SEONGSAMJAE',closed=True,width=22,length=length,startIndex=25,referenceMode='photo-inspired racing corridor, not surveyed geography',points=points)
+    if night:
+        from yeosu_map_geometry import source_distance
+        route.update(revision='osm-20261012',referenceMode='OSM road coordinates; race width, direction and bridge height adapted',mapSource=dict(origin=map_data['origin'],sha256=map_data['sourceSha256'],copyright=map_data['copyright'],license=map_data['license'],ways=[w['id'] for w in map_data['ways']],originalLength=map_data['originalLength'],maximumPlanarDeviation=max(source_distance(map_data,p['x'],p['z']) for p in points)))
     (out/(kind+'-route.json')).write_text(json.dumps(route,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
     def strip(name,lo,hi,dy,mat,collider=False):
         # Asphalt is one welded surface: separate collision chunks can miss
@@ -86,8 +99,10 @@ def build(kind):
                     # triangle boundaries where Float32 ray intersections miss.
                     # The road remains one welded mesh with the same corridor.
                     q=points[(begin+k+1)%n];dx,dz=p['dx']+q['dx'],p['dz']+q['dz'];norm=math.hypot(dx,dz)
-                    p=dict(x=(p['x']+q['x'])/2,y=(p['y']+q['y'])/2,z=(p['z']+q['z'])/2,dx=dx/norm,dz=dz/norm)
-                for off in [lo,hi]:vs.append((p['x']+p['dz']*off,p['y']+dy,p['z']-p['dx']*off))
+                    p=dict(x=(p['x']+q['x'])/2,y=(p['y']+q['y'])/2,z=(p['z']+q['z'])/2,dx=dx/norm,dz=dz/norm,roadWidth=(p.get('roadWidth',22)+q.get('roadWidth',22))/2)
+                for off in [lo,hi]:
+                    off*=p.get('roadWidth',22)/22
+                    vs.append((p['x']+p['dz']*off,p['y']+dy,p['z']-p['dx']*off))
                 if k:a=(k-1)*2;faces.append((a+2,a+3,a+1,a))
             mesh(name+'_'+str(begin),vs,faces,mat,collider,batch=not collider)
     strip('Road_Asphalt',-11,11,0,'Asphalt',True)
@@ -99,7 +114,8 @@ def build(kind):
             vs=[];faces=[];count=min(64,n-begin)
             for k in range(count+1):
                 p=points[(begin+k)%n]
-                for off in [side*11.85-.25,side*11.85+.25]:
+                half=p.get('roadWidth',22)/2
+                for off in [side*(half+.85)-.25,side*(half+.85)+.25]:
                     for h in [-.2,1.1]:vs.append((p['x']+p['dz']*off,p['y']+h,p['z']-p['dx']*off))
                 if k:
                     a=(k-1)*4;b=k*4
@@ -174,7 +190,7 @@ def build(kind):
     for label,index in regions.items():sign(index+80,label)
     if night:
         # The two bridges cross the channel on separate sides of the race loop.
-        for label,target,mat in [('거북선대교',(1010,350),'Cyan'),('돌산대교',(-250,330),'Pink')]:
+        for label,target,mat in [('거북선대교',(980,535),'Cyan'),('돌산대교',(-290,890),'Pink')]:
             idx=min(range(n),key=lambda i:math.hypot(points[i]['x']-target[0],points[i]['z']-target[1]));p=points[idx];sign(idx-90,label)
             for delta in [-90,90]:
                 t=points[(idx+int(delta/2))%n]
@@ -187,12 +203,39 @@ def build(kind):
                         beam('StayCable',(x,t['y']+44,z),(q['x']+q['dz']*side*13,q['y']+1.6,q['z']-q['dx']*side*13),.11,mat)
             # Stylized emissive broken water reflections; no extra render pass.
             for j in range(28):box('BridgeReflection',p['x']+random.uniform(-120,120),-4.97,p['z']+random.uniform(-70,70),random.uniform(2,8),.003,random.uniform(3,12),mat)
-        for i in range(80):
+        for i in range(0):
             x=30+i*10;z=-35-random.uniform(15,50);h=random.uniform(7,20)
             box('HarborBuildings',x,h/2+8,z,8,h,12,'Facade')
             for floor in range(2,int(h),3):
                 for dx in [-2,2]:box('HarborWindow',x+dx,floor+8,z+6.02,1.3,1.5,.03,'Window')
-        box('YiSunSinPlaza',180,7.8,-100,100,.5,70,'Concrete');box('MonumentPlinth',180,10,-100,5,4,5,'Stone');box('Monument',180,14,-100,1.2,5,1.2,'Concrete')
+        # Projected harbor footprint and landmark coordinates share OSM origin.
+        mapped=json.loads((src/'map/mapped-scenery.json').read_text(encoding='utf-8'))
+        def corridor_clear(coords):
+            cx=sum(p[0] for p in coords)/len(coords);cz=sum(p[1] for p in coords)/len(coords)
+            radius=max(math.hypot(p[0]-cx,p[1]-cz) for p in coords)
+            return min(math.hypot(p['x']-cx,p['z']-cz) for p in points)>radius+18
+        authored=0
+        for item in mapped:
+            coords=item['points']
+            if item['kind']=='coastline':
+                for a,b in zip(coords,coords[1:]):
+                    if math.dist(a,b)<160:beam('MappedQuay',(a[0],2,a[1]),(b[0],2,b[1]),.6,'Concrete')
+                continue
+            if authored>=360 or len(coords)<4 or not corridor_clear(coords):continue
+            cx=sum(p[0] for p in coords)/len(coords);cz=sum(p[1] for p in coords)/len(coords)
+            if min(math.hypot(p['x']-cx,p['z']-cz) for p in points)>190:continue
+            try:levels=max(1,min(10,int(float(item['levels']))))
+            except ValueError:levels=3
+            h=levels*3.2;polygon=coords[:-1] if coords[0]==coords[-1] else coords;v=len(polygon)
+            vs=[(x,y,z) for y in [2,2+h] for x,z in polygon]
+            faces=[tuple(range(v-1,-1,-1)),tuple(range(v,2*v))]+[(i,(i+1)%v,(i+1)%v+v,i+v) for i in range(v)]
+            mesh('MappedHarbor_'+str(item['wayId']),vs,faces,'Facade')
+            for j,(a,b) in enumerate(zip(polygon,polygon[1:]+polygon[:1])):
+                if math.dist(a,b)<3:continue
+                yaw=math.atan2(b[0]-a[0],b[1]-a[1])
+                for floor in range(levels):box('WarmHarborWindow',(a[0]+b[0])/2,3.8+floor*3.2,(a[1]+b[1])/2,1.4,1.25,.1,'Window',yaw)
+            authored+=1
+        box('YiSunSinPlaza',-32,7.8,-40,38,.5,30,'Concrete');box('MonumentPlinth',-32,10,-40,4,4,4,'Stone');box('Monument',-32,14,-40,1.2,5,1.2,'Concrete')
     else:
         for i in range(12):
             x=-650+i*220;z=1000+random.uniform(100,800);h=random.uniform(200,370)

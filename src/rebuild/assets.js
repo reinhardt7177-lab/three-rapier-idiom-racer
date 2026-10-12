@@ -5,6 +5,7 @@ import { batchStaticMeshes } from '../garage/batchStatic.js';
 import { createSceneDisposer } from '../rendering/sceneResources.js';
 import {modelPosition} from './vehiclePose.js';
 import {polishVehicleMaterial} from './surfacePolish.js';
+import {createBodyMotion} from './bodyMotion.js';
 
 import {VEHICLES} from './fleet.js';
 import {TRACKS} from './tracks.js';
@@ -111,7 +112,16 @@ export function createVehicleView(template,id,{vivid=false}={}) {
   let wheelRadius;
   root.traverse(o=>{if(o.userData.vehicle_rig_version===2)wheelRadius=o.userData.wheel_radius;});
   const spec={length:size.z,track:Math.abs(wheels[0].center.x-wheels[2].center.x),wheelbase:Math.abs(wheels[0].center.z-wheels[1].center.z),...(wheelRadius?{wheelRadius}:{})};
-  return {root,wheels,floorOffset,spec,dispose(){materials.forEach(m=>m.dispose());}};
+  // A separate visual pivot owns only the static chassis meshes. Preserve the
+  // original world transforms while excluding every wheel/steering/suspension
+  // descendant, including calipers and tyres batched below their rig nodes.
+  const body=new THREE.Group();body.name='Visual_Chassis_Motion';
+  body.position.y=Math.max(.45,Math.min(.9,wheels.reduce((s,w)=>s+w.baseY,0)/wheels.length+.35));root.add(body);
+  const chassis=[];
+  root.traverse(o=>{if(!o.isMesh)return;for(let p=o;p&&p!==root;p=p.parent)if(/^(Wheel_|Steering_|Suspension_)/.test(p.name))return;chassis.push(o);});
+  root.updateMatrixWorld(true);for(const o of chassis)body.attach(o);
+  const motion=createBodyMotion();
+  return {root,body,motion,wheels,floorOffset,spec,dispose(){materials.forEach(m=>m.dispose());}};
 }
 
 export function poseVehicle(view,state,modelOffset=.6,previous=state,alpha=1) {

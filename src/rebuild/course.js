@@ -67,17 +67,19 @@ export function aiInput(route,state,index,lane,pace=1,traffic=[],options={}) {
   if(Math.abs(angle)>.65)speed=Math.min(speed,42);
   const f={x:Math.sin(yaw),z:Math.cos(yaw)};
   let trafficLimited=false,hold=false;
+  const followGap=Math.max(6,options.trafficGap??6);
   for(const other of traffic){
+    if(Math.abs(other.position.y-state.position.y)>3)continue;
     const dx=other.position.x-state.position.x,dz=other.position.z-state.position.z;
     const along=dx*f.x+dz*f.z,lateral=Math.abs(dx*f.z-dz*f.x);
     const ownSpeed=Math.max(0,state.speed??state.kmh/3.6);
     const leadSpeed=Math.max(0,other.velocity?other.velocity.x*f.x+other.velocity.z*f.z:other.kmh/3.6);
-    const closing=Math.max(0,ownSpeed-leadSpeed),lookAhead=Math.max(16,6+closing*.5+closing*closing/12);
+    const closing=Math.max(0,ownSpeed-leadSpeed),lookAhead=Math.max(followGap+10,6+closing*.5+closing*closing/12);
     if(along>0&&along<lookAhead&&lateral<2.2){
-      const gap=Math.max(0,along-6);
+      const gap=Math.max(0,along-followGap);
       const safe=Math.min(Math.sqrt(leadSpeed*leadSpeed+12*gap),leadSpeed+gap/.9)*3.6;
       if(safe<speed){speed=safe;trafficLimited=true;}
-      if(along<=6.2&&leadSpeed<.5){speed=0;hold=true;trafficLimited=true;}
+      if(along<=followGap+.2&&leadSpeed<.5){speed=0;hold=true;trafficLimited=true;}
     }
   }
   return {targetKmh:speed,steer:clamp(-angle*1.5/Math.max(.08,state.steeringLimit),-1,1),throttle:!hold&&state.kmh<speed?1:0,brake:hold||options.stop?1:state.kmh>speed+(trafficLimited?1:5)?.65:0,waitingForTraffic:(trafficLimited||options.waitingForTraffic)&&speed<8};

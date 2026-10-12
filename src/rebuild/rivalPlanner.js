@@ -147,18 +147,22 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
   }
   return {
-    update(cars,dt){
+    update(cars,dt,traffic=[]){
       if(!(dt>0&&dt<=.1))return new Map();
       const inputs=new Map(),active=cars.filter(c=>!c.player&&(c.finish==null));
+      const participants=traffic.length?[...cars,...traffic]:cars;
       // Front cars commit first; ties use stable race order, never randomness.
       active.sort((a,b)=>(b.progress??0)-(a.progress??0));
       for(const car of active){
         const plan=record(car);plan.age+=dt;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.timer-=dt;
-        if(plan.timer<=0){plan.timer=.2;decide(car,cars,plan);}
+        if(plan.timer<=0){plan.timer=.2;decide(car,participants,plan);}
         const changing=['changing','returning','aborting'].includes(plan.mode);
         const target=plan.stop?local(route,car).lane:plan.target;
-        const input=aiInput(route,car.state,car.index,target,car.pace??1,cars.filter(c=>c!==car).map(c=>c.state),{
+        const input=aiInput(route,car.state,car.index,target,car.pace??1,participants.filter(c=>c!==car).map(c=>c.state),{
           lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile:plan.profile,
+          // Keep the approach outside the 9m crossing guard. Closing to the
+          // former 6m following gap made every later passing request too close.
+          trafficGap:changing?6:12,
           speedLimit:plan.stop?0:changing?plan.changeSpeed:Infinity,stop:plan.stop,waitingForTraffic:plan.stop,
         });
         if(plan.stop)input.throttle=0;

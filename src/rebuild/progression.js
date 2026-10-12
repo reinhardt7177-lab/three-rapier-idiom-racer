@@ -1,4 +1,4 @@
-import {bestRecord,medalFor,medalTimes,LAP_OPTIONS} from './raceRecords.js';
+import {earnedRecord,medalFor,medalTimes,LAP_OPTIONS} from './raceRecords.js';
 import {TRACKS} from './tracks.js';
 import {VEHICLES} from './fleet.js';
 
@@ -9,8 +9,8 @@ export const TRACK_MEDALS=Object.freeze({seongsamjae:1});
 export function progressFromRecords(storage){
  const medals=[];
  for(const track of TRACKS)for(const laps of LAP_OPTIONS){
-  const record=bestRecord(storage,track.id,laps);
-  const medal=record&&record.time>=0?medalFor(record.time,medalTimes(track.id,laps)):null;
+  const record=earnedRecord(storage,track.id,laps);
+  const medal=record&&record.time>=0?(record.medal||medalFor(record.time,medalTimes(track.id,laps))):null;
   if(medal)medals.push({track:track.id,laps,medal,time:record.time});
  }
  const count=medals.length;

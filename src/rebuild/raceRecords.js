@@ -1,5 +1,6 @@
 // Personal bests, medal targets and the lap-count preference. Storage is a
 // per-browser convenience: every read/write tolerates blocked or full storage.
+import {TRACKS} from './tracks.js';
 export const LAP_OPTIONS=Object.freeze([1,3]);
 export const DEFAULT_LAPS=1;
 
@@ -35,13 +36,19 @@ export function medalFor(time,targets){
 }
 
 const RECORDS_KEY='mumu.circuit.records.v1',LAPS_KEY='mumu.circuit.laps.v1';
-export const recordKey=(trackId,laps)=>`${trackId}:${laps}`;
+export const recordKey=(trackId,laps)=>`${trackId}:${laps}${TRACKS.find(t=>t.id===trackId)?.revision?':'+TRACKS.find(t=>t.id===trackId).revision:''}`;
 function read(storage){
  try{const value=JSON.parse(storage?.getItem(RECORDS_KEY)||'{}');return value&&typeof value==='object'?value:{};}catch{return {};}
 }
 export function bestRecord(storage,trackId,laps){
  const entry=read(storage)[recordKey(trackId,laps)];
  return entry&&Number.isFinite(entry.time)?entry:null;
+}
+// Legacy medals still contribute to unlocks, while their shorter course times
+// can never become the new road course best or its replay ghost.
+export function earnedRecord(storage,trackId,laps){
+ const current=bestRecord(storage,trackId,laps),legacy=read(storage)[`${trackId}:${laps}`];
+ return current?.medal?current:legacy?.medal?legacy:current;
 }
 // Returns {improved, previous, best}. A slower run never overwrites a record.
 export function submitRecord(storage,trackId,laps,entry){

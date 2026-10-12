@@ -464,3 +464,64 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 @media(max-height:600px){.progression-summary{font-size:10px}.vehicle-selector .vehicle-locked small{font-size:9px;line-height:11px}}
 
 .weather-options{display:flex;align-items:center;gap:10px;margin-top:18px}.weather-options>span{font-size:12px;margin-right:auto}.weather-options button{margin:0;width:auto;min-width:100px;padding:10px 16px;background:#182a3e;border:1px solid #63809266}.weather-options button[aria-pressed=true]{background:#c9eaff;color:#142032}@container game (max-width:700px) or (max-height:550px){.weather-options{margin-top:10px}.weather-options button{padding:7px 10px}}
+
+.race-mode-button{display:flex;align-items:center;justify-content:space-between;gap:4px;width:100%;min-height:44px;margin-bottom:8px;padding:8px;border:1px solid #8dc9f688;border-radius:4px;background:#1b3044;color:#e6f3fb;font-size:11px;font-weight:700}
+.race-mode-button>span{font-size:9px;color:#bfe3ff}
+.race-menu.race-setup{width:min(550px,calc(100cqw - 24px));padding:24px}
+.race-setup header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.race-setup header h2{margin:6px 0 0}
+.race-setup header button{width:auto;min-width:64px;min-height:44px;margin:0;padding:8px 12px}
+.race-mode-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.race-mode-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+.race-mode-options button{margin:0;min-height:80px;padding:14px;text-align:left}
+.race-mode-options button[aria-pressed=true]{background:#c9eaff;color:#142032;border-color:#c9eaff}
+.race-mode-options strong{font-size:19px;display:block;margin-bottom:8px}
+.race-mode-options small{display:block;font-size:11px;line-height:1.5}
+.duel-opponent{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;font-size:12px}
+.duel-opponent select{min-width:0;min-height:44px;flex:1;max-width:320px;padding:8px 10px;color:#e6f3fb;border:1px solid #8dc9f688;border-radius:4px;background:#1b3044;font:inherit}
+.race-setup .duel-opponent-car{color:#bfe3ff;font-weight:700;margin-bottom:0}
+.race-standings>.duel-gap{display:flex;flex-direction:column;gap:3px;margin-top:6px;border-left:2px solid #c9eaff;background:#0c1725bd}
+.duel-gap span{font-size:9px;color:#bfe3ff}.duel-gap strong{font-size:14px}
+.race-menu .duel-result-opponent{color:#d8ebf8}
+@container game (max-width:700px) or (max-height:550px){
+ .race-mode-button{font-size:10px;margin-bottom:6px;padding:6px}.race-mode-button>span{font-size:8px}
+ .race-menu.race-setup{padding:14px 18px}.race-setup header{margin-bottom:10px}.race-setup header h2{font-size:21px}
+ .race-mode-options button{padding:10px;min-height:65px}.race-mode-options strong{font-size:16px;margin-bottom:4px}.race-mode-options small{font-size:10px}
+ .duel-opponent{margin-top:10px;font-size:11px}.race-setup>p{font-size:10px;line-height:1.5;margin:6px 0}
+ .duel-gap strong{font-size:11px}
+}
+
+.race-menu.online-lobby{width:min(640px,calc(100cqw - 24px));padding:24px}
+.online-lobby header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.online-lobby header h2{margin:6px 0 0}
+.online-lobby header button{width:auto;min-width:64px;min-height:44px;margin:0;padding:8px}
+.online-lobby .online-status{color:#d6ecff;display:flex;justify-content:space-between;gap:10px;margin:6px 0 12px}
+.online-status>span{color:#8c9fad;white-space:nowrap}
+.online-create{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end}
+.online-create>.primary{grid-column:1/-1;margin:0}
+.online-create button{margin:0;min-height:44px;padding:10px 16px}
+.online-lobby label{display:flex;flex-direction:column;gap:4px;font-size:11px;color:#afcbdc;min-width:0}
+.online-lobby input{min-width:0;min-height:44px;width:100%;padding:9px 10px;color:#ecf7ff;background:#1b3044;border:1px solid #6a9abd77;border-radius:3px;font:inherit}
+.online-players{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.online-players>div{background:#1b3044;border-left:2px solid #c9eaff;padding:10px;display:grid;gap:4px}
+.online-players span,.online-players small{font-size:10px;color:#afcbdc}
+.online-players strong{font-size:15px}
+.online-invite{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:5px 8px;margin-bottom:12px}
+.online-invite button{width:auto;margin:0;min-height:44px;padding:10px;font-size:11px}
+.online-invite>small{grid-column:1/-1;color:#9bcdea;font-size:10px;overflow-wrap:anywhere}
+.online-actions{display:flex;align-items:center;gap:8px}
+.online-actions button{min-height:44px;min-width:0;margin:0;padding:10px 8px;font-size:12px}
+.online-actions button[aria-pressed=true]{background:#c9eaff;color:#142032}
+.online-actions p{flex:1;margin:0;font-size:11px;line-height:1.5}
+.online-lobby .online-help{display:block;color:#7c91a6;font-size:10px;line-height:1.6;margin-top:12px}
+@container game (max-width:700px) or (max-height:550px){
+ .race-menu.online-lobby{padding:12px 16px}.online-lobby header{margin-bottom:6px}.online-lobby header h2{font-size:21px}
+ .online-lobby .kicker{font-size:8px;letter-spacing:1px}.online-lobby .online-status{font-size:10px;line-height:1.4;margin:4px 0 6px}
+ .online-players{gap:6px;margin-bottom:6px}.online-players>div{padding:6px;gap:1px}.online-players span,.online-players small{font-size:8px}.online-players strong{font-size:11px}
+ .online-invite{margin-bottom:6px}.online-invite>small{display:none}.online-lobby label{font-size:9px;gap:2px}.online-actions button{font-size:10px}
+ .online-lobby:has(.online-players) .online-help{display:none}.online-lobby .online-help{font-size:9px;line-height:1.5;margin-top:8px}
+ .race-mode-options button{padding:8px}.race-mode-options strong{font-size:14px}
+}
+/* Attribution is an actual source link, shown without covering racing sight. */
+.map-attribution{position:absolute;left:36px;top:76px;pointer-events:auto;font-size:8.5px;line-height:1.35;color:#a6bbc9;text-decoration:underline;max-width:calc(100% - 72px);}
+@container game (max-height:550px){.map-attribution{left:16px;top:110px;}}

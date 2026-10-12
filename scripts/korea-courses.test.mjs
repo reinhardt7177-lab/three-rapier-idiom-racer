@@ -8,10 +8,12 @@ import {initPhysics} from '../src/driving/physics.js';
 import {recoveredCollider} from '../src/rebuild/worldCollision.js';
 import {createSceneDisposer} from '../src/rendering/sceneResources.js';
 import {createNamakLandmarks} from '../src/rebuild/namakLandmarks.js';
+import {TRACKS} from '../src/rebuild/tracks.js';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url));
 export function koreaData(id){
  const route=JSON.parse(read(`public/assets/rebuild/${id}-route.json`));
- const bin=read(`artifacts/korea-circuits-20261011/${id}/colliders.bin`),manifest=JSON.parse(read(`artifacts/korea-circuits-20261011/${id}/colliders.json`));
+ const fixture=TRACKS.find(t=>t.id===id).collisionFixture;
+ const bin=read(`artifacts/${fixture}/colliders.bin`),manifest=JSON.parse(read(`artifacts/${fixture}/colliders.json`));
  const parts=manifest.map(p=>{
   const vertices=new Float32Array(p.vertices),indices=new Uint32Array(p.indices);
   for(let i=0;i<vertices.length;i++)vertices[i]=bin.readFloatLE(p.offset+i*4);
