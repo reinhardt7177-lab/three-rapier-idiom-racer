@@ -1,0 +1,59 @@
+{
+  "updatedUtc": "2026-10-12T06:31:50.805584+00:00",
+  "task": "Two humans online 1:1 and accessible public playtest deployment",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "gameSourceCommit": "9917d9c3479875402d12f30119d1bca3359260f8",
+  "regression": {
+    "total": 347,
+    "passed": 344,
+    "failed": 3,
+    "seconds": 1315.84,
+    "baselineFailuresUnchanged": true,
+    "sourceHashes196Match": true,
+    "physics9Unchanged": true,
+    "oldEvidence10Restored": true
+  },
+  "implementation": "completed; AI one-on-one retained as practice",
+  "localOnline": "Two actual WebRTC clients completed, matching authoritative times; shared pause/rematch/input release and preparing-stage disconnect tested",
+  "publicDeployment": {
+    "url": "https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227",
+    "buildCommit": "e36e227f2c4a5ef21b097bda71dbf2c3a1ad7504",
+    "sourceCommit": "9917d9c3479875402d12f30119d1bca3359260f8",
+    "sourceBranch": "codex/korea-circuits-progression-20261011",
+    "buildBranch": "gh-pages",
+    "status": "built",
+    "httpsEnforced": true,
+    "workflowRun": 38210676463,
+    "workflowConclusion": "success",
+    "viteSeconds": 4.1,
+    "builtFiles": 33,
+    "builtBytes": 71612852,
+    "publicAssets": "6 actual 200 GETs, bytes and hashes match local build",
+    "browser": "Garage loaded; authored cars/map visible; online room and correct subpath invite created",
+    "onlinePublicPair": "Two actual public IAB tabs connected=true; ready/start shared world, racing, participants2/AI0; brief host movement1kmh, input released. No public full lap or separate device test.",
+    "browserControlLimitation": "The last additional GAS/garage action was not executed: tab13 was no longer owned by browser session. Earlier captures retained."
+  },
+  "vercel": {
+    "previewReady": true,
+    "productionReady": true,
+    "access": "all tested Vercel domains resolve to 127.0.0.1 and refuse connections on this PC"
+  },
+  "remaining": [
+    "known coastal physical failures",
+    "Yeosu traffic and medals",
+    "online results four-size capture still limited to667",
+    "real separate devices/networks and long-session performance"
+  ],
+  "mainMerged": false,
+  "pullRequestCreated": false,
+  "privateFilesPreserved": true,
+  "phases": {
+    "implementation": "complete",
+    "localOnlineMatches": "complete",
+    "fullRegression": "347/344pass/3baselinefail; release gate remains failed",
+    "build": "passed",
+    "github": "source9917d9c pushed; gh-pages e36e227 compiled build pushed",
+    "publicPlaytest": "GitHub Pages accessible with exact asset matches and real two-client connection/start",
+    "documentation": "complete report and final regression evidence"
+  }
+}

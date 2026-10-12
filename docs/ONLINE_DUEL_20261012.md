@@ -4,7 +4,7 @@
 
 사용자가 선택한 **두 사람이 온라인으로 대결**하는 모드를 구현했다. 차고에서 온라인 1:1 → 방 만들기 → 초대 링크 전달 → 두 사람 준비 → 출발 순서다. 먼저 만들었던 AI 1:1은 연습 모드로 남겼다. 기존 6대 레이스와 챔피언십은 별도 모드다.
 
-최신 요청에 따라 같은 `codex/korea-circuits-progression-20261011` 브랜치를 GitHub에 올리고 Vercel에 배포한다. 기존 해안 회귀 실패와 미완료 여수 교통·메달 검증 때문에 이번 공개는 **테스트 Preview**로 분류한다. main 커밋·병합·PR 생성은 하지 않는다. 배포 주소와 최종 전체 검사 결과는 아래 배포 기록에 추가한다.
+게임 소스를 같은 `codex/korea-circuits-progression-20261011` 브랜치에 올렸다. 사용자 검수 요청으로 Vercel Production에도 연결했으나 이 PC에서 Vercel 주소 접속이 거부됐다. 현재 접속을 확인한 배포는 [GitHub Pages 테스트 게임](https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227)이다. 기존 해안 회귀 실패와 미완료 여수 교통·메달 검증 때문에 출시 통과로 판정하지 않는다. main 커밋·병합·PR 생성은 하지 않았다.
 
 ## 구현
 
@@ -76,4 +76,32 @@ AI 연습의 같은 단일 클라이언트 남악 낮음 30초 A/B/A는 6대 A1 
 
 ## 최종 검사와 배포 기록
 
-최종 전체 회귀가 진행 중이다. 결과, GitHub 커밋, 공개 테스트 배포 주소, 빌드 전달 확인을 실제 완료 후 기록한다.
+게임 소스 `9917d9c3479875402d12f30119d1bca3359260f8`를 GitHub 작업 브랜치에 푸시하고 원격 SHA 일치를 확인했다. main은 `2b79f25105875e3e4ab78834990753d96ad81163` 그대로다. 74개 파일 약27.85MB의 명시적 목록만 올렸고, 비밀키·환경 파일·전송 ZIP/base64·변경 전 사본은 제외했다. 모든 새 파일은100MiB 이하이며 검사에 필요한 실제 여수 충돌 fixture와 출처 OSM을 포함했다.
+
+- [테스트 배포·남악](https://mumu-racing-7he7efji7-reinhardt7177-labs-projects.vercel.app/?track=namak)
+- [같은 배포의 브랜치 주소](https://mumu-racing-git-codex-korea-db69ed-reinhardt7177-labs-projects.vercel.app/?track=namak)
+- [GitHub 소스 커밋](https://github.com/reinhardt7177-lab/three-rapier-idiom-racer/commit/9917d9c3479875402d12f30119d1bca3359260f8)
+
+Vercel `dpl_HmYqXCzHTg7zYEBrP3BGWSUeySNH`, 2026-10-12 14:42:32 KST 생성, Preview/Ready, 표시 빌드15초·실제 Vite3.16초다. 대시보드의 소스 커밋과 도메인 할당을 확인하고 캡처했다. Vercel 빌드의 `index-l1SFkpXS.js` 이름과278.27kB가 로컬 빌드와 같았다. **공개 파일을 GET하여 바이트를 비교한 검증은 아니다.**
+
+이 PC에서 두 새 Preview 도메인과 기존 Production 도메인이127.0.0.1로 해석되어 PowerShell과 실제 브라우저 모두 연결이 거부됐다. web 조회 도구도 접근하지 못했다. 호스트 파일의 해당 도메인 항목과 WinHTTP 프록시는 없었고 외부 DNS 지정 조회도127.0.0.1이었다. 이 결과만으로 ISP 차단이나 보안 프로그램 하나를 원인이라고 단정하지 않는다. DNS나 인증/배포 보호 설정을 바꾸어 우회하지 않았다. Ready는 서버 빌드 완료의 증거이며 접속 성공의 증거가 아니다.
+
+사용자 직접 검수 요청으로 같은9917d9c를 Vercel의 일반 Redeploy → Production으로 빌드했다. `dpl_DPVovh71tUWW5d4UqdryM5DxWwcE`, 2026-10-12 14:55:36 KST 생성, Production/Ready, 표시20초·빌드 로그17초·Vite4.89초, 기존 `mumu-racing.vercel.app` 할당을 확인했다. 강제 Promote를 쓰지 않았다. 이 주소도 이 PC에서는 연결 거부였으며 공개 경기 검수 완료로 보고하지 않는다.
+
+최종 로컬 빌드 성공6.62초, dist71,612,577바이트. 모션 최종 빌드 대비 초기 JS/CSS3,916,516→3,948,455바이트(+31,939), 같은 Node gzipSync1,384,066→1,394,372바이트(+10,306)다. 접속 때만 받는 PeerJS 청크117,074바이트/gzip31,655바이트가 별도로 생겼다. GLB·8종 차량 초기 읽기 비용은 별도며 이것은 콜드 네트워크 용량 측정이 아니다. Three/Rapier 큰 청크 경고는 남아 있다.
+
+최종 전체 `npm run check`: **347시험/344통과/3실패**, 로컬 CPU1315.84초다. 실패는 기존 모션 작업과 같은 해안 비 보통1랩 노면 아래 값, 해안 맑음 보통1랩 노면 아래 값, 해안 쉬움3랩 SLK미완주다. 기준을 바꾸지 않았다. 검사 중 덮어쓰는 기존 증거10파일은 원래 해시로 복원했고 이번 실행 결과는 `final-test-evidence/`에 따로 보존했다. 입력196파일은 최종 소스 해시와 모두 일치했다. `&& npm run build`는 실패 때문에 실행되지 않아 별도 동일 소스 빌드6.62초 통과를 기록했다. 전체 검사 통과로 표현하지 않는다.
+
+## 접속 불가 후 GitHub Pages 배포
+
+GitHub Pages 도메인은 실제185.199.*.153 주소로 해석되고 연결됐다. 새 소스 브랜치나 main 변경 없이, 현재 게임을 `/three-rapier-idiom-racer/` 경로로 빌드했다. Vite4.10초, 정적33파일/71,612,852바이트이며 모두100MiB 이하이다. 컴파일된 게임만 새 `gh-pages` 배포 브랜치에 푸시했다. 이 브랜치는 소스 작업용 브랜치가 아니다.
+
+- 공개 주소: [현재 테스트 게임](https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227)
+- 정적 빌드 커밋: `e36e227f2c4a5ef21b097bda71dbf2c3a1ad7504`, 원본 게임 소스9917d9c.
+- Pages 상태 built, source=`gh-pages:/`, HTTPS enforced=true.
+- [Pages 배포 실행](https://github.com/reinhardt7177-lab/three-rapier-idiom-racer/actions/runs/38210676463): completed/success, 같은 빌드 커밋을 확인했다. Pages 생성 요청은409 이미 활성화됨을 반환했으며 재생성하지 않고 현재 설정과 빌드 결과를 읽어 확인했다.
+- 실제 공개 GET6개: HTML·메인JS·CSS·온라인 청크·남악 경로·남악GLB 모두200, 로컬 Pages 빌드와 바이트·SHA-256이 일치했다. 남악GLB19,885,452바이트도 전체 비교했다.
+- 실제 공개 브라우저에서 남악 차고와 차량 모델 로딩 완료, 모드 선택·온라인 대기실·방 생성·초대 링크의 올바른 하위 경로를 확인했다. 브라우저 도구 첫 방 생성 클릭은 시간 제한으로 끊겨 결과를 재확인한 뒤 정상 생성했다.
+- 같은 공개 주소의 두 IAB 탭이 실제 WebRTC로 연결됐다. 두 쪽 connected=true/lobby, RTT약1.9/2.1ms를 관측하고 준비→공유 출발, participants=2/AI0/racing을 확인했다. 창 변화로 열린 공유 일시정지 후 재개했고 짧은 키 입력 뒤 방장 속도1km/h·위치 갱신·입력 해제를 관측했다. 마지막 추가 GAS/복귀 검수는 브라우저 제어 세션이 종료되어 실행하지 못했다. 공개 빌드 전체 완주·두 실제 기기·장시간 키 입력을 확인한 것으로 보고하지 않는다.
+
+자료는 `regression-final.json`, `full-check.log`, `full-check-summary.json`, `pages-build.log`, `pages-build-files.json`, `pages-public-assets.json`, `pages-live-garage.png`, `public-dns-evidence.json`, Vercel 두 환경의 캡처에 남겼다. GitHub Pages 설정은 [공식 Pages API](https://docs.github.com/en/rest/pages/pages#create-a-github-pages-site)를 확인했다. 호스팅 도메인이 달라지면 브라우저의 기존 기록 저장소도 별도이므로 Vercel 기록을 삭제한 것으로 해석하지 않는다.
