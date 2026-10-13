@@ -65,6 +65,8 @@ import {createNamakVisuals} from './namakVisuals.js';
 import {createYeosuVisuals} from './yeosuVisuals.js';
 import {createSeongsamjaeVisuals} from './seongsamjaeVisuals.js';
 import {freezeStaticWorld} from './staticWorld.js';
+import {loadRoadscape,createRoadscape} from './roadscape.js';
+import {browserLoadingMetrics} from './loadingMetrics.js';
 import {createDaylightSky} from './daylightSky.js';
 
 export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0]) {
@@ -72,6 +74,9 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const assets=await loadRebuildAssets(onLoading,track);
   const namak=track.id==='namak',mountain=track.id==='seongsamjae',bounded=namak||track.bounded,lighting=track.night?NIGHT_LIGHTING:mountain?MOUNTAIN_LIGHTING:outdoorLighting(namak),atmosphere=track.night?NIGHT_ATMOSPHERE:mountain?MOUNTAIN_ATMOSPHERE:outdoorAtmosphere(namak);
   const all=new THREE.Group();all.add(assets.world,assets.garage,assets.cockpit,...Object.values(assets.cars));
+  if(signal.aborted){createSceneDisposer(all)();return null;}
+  try {if(track.roadscape)onLoading?.(`${track.name} · 도로 주변 풍경`,.99);assets.roadscape=await loadRoadscape(track);if(assets.roadscape)all.add(assets.roadscape);assets.loading=browserLoadingMetrics();}
+  catch(error){createSceneDisposer(all)();throw error;}
   if(signal.aborted){createSceneDisposer(all)();return null;}
   let renderer;
   try {renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});}
@@ -138,6 +143,10 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const daylight=track.night?null:createDaylightSky(sky,track.id,quality);
   const mapVisuals=({coastal:createCoastalVisuals,namak:createNamakVisuals,yeosu:createYeosuVisuals,seongsamjae:createSeongsamjaeVisuals})[track.id]?.(scene,assets.world,assets.roads,{quality});
   const decorationQuality=createDecorationQuality(assets.world);
+  // Attach after collision, palette, batching and legacy decoration discovery.
+  // The extension owns its authored materials and visual-only distance budget.
+  if(assets.roadscape)assets.world.add(assets.roadscape);
+  const roadscape=createRoadscape(assets.roadscape,{quality});
   const staticWorld=freezeStaticWorld(assets.world);
   let currentWeatherLighting={lighting,atmosphere};
   const dryRoadRoughness=new Map();for(const road of roads)for(const m of Array.isArray(road.material)?road.material:[road.material])if('roughness' in m)dryRoadRoughness.set(m,m.roughness);
@@ -146,6 +155,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     if(sun.shadow.mapSize.x!==quality.shadowSize){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(quality.shadowSize,quality.shadowSize);}
     sun.castShadow=quality.shadows&&(mode!=='race'||!track.night);decorationQuality.set(quality.decorationDistance);
     mapVisuals?.setQuality(quality);
+    roadscape?.setQuality(quality);
     daylight?.setQuality(quality);
     rain.setBudget(quality.rainParticles);resize();
   }
@@ -237,7 +247,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     state.music=music.status();state.cameraMode=cameraMode;state.cockpit=cockpit.status();
     state.quality=quality.id;state.progression=progression;state.weather=mode==='race'?raceWeather:weather;
     state.traffic=roadTraffic?.snapshot()??{count:0,vehicles:[]};
-    state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,mapVisuals:mapVisuals?.stats,staticWorld:staticWorld.stats,lighting:currentWeatherLighting.lighting,atmosphere:currentWeatherLighting.atmosphere,colors,decoration:decorationQuality.status(),pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
+    state.rendering={...frameMetrics.snapshot(),pageVisible:document.visibilityState==='visible',pageFocused:document.hasFocus(),pauseRendering:{...pauseRendering.stats},scenery,surfaces,presentation:presentation?.stats,landmarks:landmarks?.stats,night:night?.stats,mapVisuals:mapVisuals?.stats,roadscape:roadscape?.stats,staticWorld:staticWorld.stats,lighting:currentWeatherLighting.lighting,atmosphere:currentWeatherLighting.atmosphere,colors,decoration:decorationQuality.status(),pixelRatio:renderer.getPixelRatio(),width:host.clientWidth,height:host.clientHeight};
     if(profile)state.rendering.profile=profile.snapshot();
     if(frozenEnabled){const frozenState=frozenComparison?.snapshot();state.rendering.frozen={...frozenState,results:frozenState?.status==='running'?[]:frozenState?.results,detail:frozenTread?.snapshot(),setupMs:frozenSetupMs};}
     state.loading=assets.loading;
@@ -431,6 +441,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     landmarks?.update(camera,assets.world.visible);
     if(mode==='race')decorationQuality.update(camera);
     mapVisuals?.update(camera,mode==='race'&&!paused&&!result?dt:0,elapsed,mode==='race');
+    roadscape?.update(camera,dt,elapsed,mode==='race');
     daylight?.update(mode==='race'&&!paused&&!result?dt:0,elapsed);
   }
   function render(now){
@@ -497,7 +508,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   }
   return {online:onlineAction,qa:import.meta.env.DEV?{performance:performanceStart,driver(value){qaDriver=!!value;drivingInput.clear();publish();}}:undefined,raceSetup:chooseRaceSetup,quality:id=>{if(mode!=='garage')return;quality=qualityById(id);saveQuality(storage(),quality.id);applyQuality();publish();},weather:id=>{if(mode!=='garage')return;weather=weatherById(id).id;saveWeather(storage(),weather);refreshBest();publish();},presentation:next=>presentationGuard.update(next),select:setGarage,start:startRace,assist:()=>{if(raceSetup.mode==='online')return;assist=!assist;saveAssist(storage(),assist);if(cars[0]?.player)cars[0].sim.setRecoveryAssist(assist);publish();},laps:n=>{if(mode!=='garage'||!LAP_OPTIONS.includes(n))return;laps=raceLaps=n;saveLaps(storage(),n);refreshBest();publish();},difficulty:id=>{if(mode!=='garage')return;difficulty=difficultyById(id);saveDifficulty(storage(),difficulty.id);refreshBest();publish();},garage:returnGarage,pause:()=>pause(!paused),sound:toggleSound,camera:toggleCamera,music:toggleMusic,musicTrack:id=>{Promise.resolve(music.select(id)).then(()=>{if(alive)publish();});publish();},musicVolume:value=>{music.setVolume(value);publish();},recover:()=>{if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result)recover();},input(code,value,source='touch'){if(!value)drivingInput.release(code,source);else if(!preparation.blocked()&&!raceBoundary.pending()&&mode==='race'&&!paused&&!result&&presentationGuard.canDrive())drivingInput.press(code,source);},dispose(){
     if(!alive)return;alive=false;raceBoundary.cancel();preparation.cancel();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();window.removeEventListener('keydown',keydown);window.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);
-    online.dispose();frozenComparison?.cancel();profile?.dispose();night?.dispose();daylight?.dispose();mapVisuals?.dispose();staticWorld.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());clearTraffic();raceContacts.dispose();world.free();
+    online.dispose();frozenComparison?.cancel();profile?.dispose();night?.dispose();daylight?.dispose();mapVisuals?.dispose();roadscape?.dispose();staticWorld.dispose();audio.dispose();music.dispose();cars.forEach(c=>c.sim.dispose());clearTraffic();raceContacts.dispose();world.free();
     createSceneDisposer(scene,{renderTargets:[environment,outdoorEnvironment]})();display?.dispose();cars.forEach(c=>c.view.dispose());clearGhost();renderer.dispose();renderer.domElement.remove();delete window.__mumuRebuild;
   }};
 }
