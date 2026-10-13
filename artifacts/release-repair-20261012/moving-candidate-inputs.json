@@ -1,0 +1,24 @@
+{
+  "execution": "Isolated candidate. Game sources unchanged while the first full regression runs.",
+  "changedBehavior": "Only re-plan a slower moving lead during passing; ordinary safety/road checks remain.",
+  "source": [
+    {
+      "path": "../../src/rebuild/rivalPlanner.js",
+      "sha256": "9d6174266e99096fd13e3204c272daf8e342f411dcc84ac2dd622b560e2b1894"
+    },
+    {
+      "path": "../../scripts/race-sim.mjs",
+      "sha256": "91bc31f24f5ad12b456220b3c67498c154767368a92d1baf5d32b142e0cb57ce"
+    }
+  ],
+  "candidate": [
+    {
+      "path": "planner-moving-lead.mjs",
+      "sha256": "6420272a2424c21ab9d81fdad1a4ded9ff18c8b559d9da25fa6a8aab2b87f7a7"
+    },
+    {
+      "path": "sim-moving-lead.mjs",
+      "sha256": "9dc18a83cc6e483f611884bbe7177877442def78d664b74755005ce7afb3fd8b"
+    }
+  ]
+}

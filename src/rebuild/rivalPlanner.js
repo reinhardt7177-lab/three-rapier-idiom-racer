@@ -85,6 +85,12 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
         // the lanes would only block every car behind.
         if(plan.mode==='changing'&&(Math.abs(own.lane-plan.home)<1.1||!roadAvailable)&&mergeClear(car,plan.home,cars)&&pavement(car,own.lane,plan.home)){
           plan.mode='aborting';plan.target=plan.home;plan.aborts++;plan.reason='yield';plan.age=0;
+        }else if(plan.mode==='changing'&&!trafficClear&&roadAvailable&&pavement(car,own.lane,own.lane)&&cars.some(c=>c!==car&&local(route,car,c).along<0&&local(route,car,c).v>own.v&&!mergeClear(car,plan.target,[car,c],plan))&&mergeClear(car,plan.target,cars.filter(c=>c===car||local(route,car,c).along>=0),plan)){
+          // A faster rear car owns the rest of this crossing. Yield laterally
+          // by holding the current paved track, not by stopping in its path.
+          // Front/cut-in conflicts still fail the separate forward prediction.
+          // aiInput retains normal braking for traffic on the held track.
+          plan.mode='passing';plan.target=own.lane;plan.reason='yield-rear';plan.age=0;
         }else if(speedProfile&&!trafficClear&&roadAvailable&&own.v<1&&cars.some(c=>{
           if(c===car)return false;const other=local(route,car,c);
           return other.along<0&&other.along>-8&&Math.abs(other.lane-own.lane)<2.6&&Math.abs(other.v)<1;

@@ -68,6 +68,19 @@ test('the original lead loses its committed exemption when it moves into the cro
  const input=planner.update([car,lead],STEP).get(car);
  assert.equal(planner.snapshot(car).reason,'occupied');assert.equal(input.throttle,0);assert.equal(input.brake,1);
 });
+
+test('a committed crossing yields to closing rear traffic without braking across its path',()=>{
+ const car=fake(100,-2.2,25),lead=fake(130,-2.2,10,true);
+ const planner=createRivalPlanner(straight,{roadClear:free,speedProfile:RIVAL_RACE_PROFILE});
+ planner.update([car,lead],STEP);assert.equal(planner.snapshot(car).mode,'changing');
+ car.state.position.x=.3;car.state.position.z=115;car.index=23;
+ const rear=fake(90,2.2,45,true);
+ advance(planner,[car,lead,rear],.25);
+ const input=planner.update([car,lead,rear],STEP).get(car);
+ assert.equal(planner.snapshot(car).mode,'passing');assert.equal(planner.snapshot(car).reason,'yield-rear');
+ assert.equal(planner.snapshot(car).targetLane,.3);assert.equal(input.brake,0);assert.equal(input.throttle,1);
+ assert.equal(car.state.position.z,115,'pedal planning cannot move the chassis');
+});
 test('a blocked return holds its current track and moves forward instead of parking across traffic',()=>{
  const car=fake(),lead=fake(115,-2.2,0,true),planner=createRivalPlanner(straight,{roadClear:free});planner.update([car,lead],STEP);
  car.state.position.x=2.2;advance(planner,[car,lead],.25);
