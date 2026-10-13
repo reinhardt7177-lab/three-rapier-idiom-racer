@@ -15,9 +15,11 @@ const ONE_LAP=Object.freeze({
 const ROLLING_GAIN=Object.freeze({coastal:8,namak:4.5});
 // Actual standing-start 1/3-lap six-car Rapier runs, not extrapolated lap gains.
 // Gold/ silver/ bronze beat the hard/ normal/ easy median rival respectively.
-// Evidence: artifacts/korea-circuits-20261011/matrix.json (Colab CPU).
+// Yeosu: artifacts/release-repair-20261012/yeosu-medal-calibration.json
+// (local CPU, current 8.90 km course with six civilian cars).
+// Seongsamjae: artifacts/korea-circuits-20261011/matrix.json (Colab CPU).
 const KOREA_MEDALS=Object.freeze({
- yeosu:Object.freeze({1:Object.freeze({gold:79,silver:81,bronze:89}),3:Object.freeze({gold:225,silver:237,bronze:252})}),
+ yeosu:Object.freeze({1:Object.freeze({gold:287,silver:289,bronze:294}),3:Object.freeze({gold:833,silver:857,bronze:867})}),
  seongsamjae:Object.freeze({1:Object.freeze({gold:157,silver:167,bronze:170}),3:Object.freeze({gold:457,silver:490,bronze:499})}),
 });
 export const MEDALS=Object.freeze([
@@ -40,9 +42,15 @@ export const recordKey=(trackId,laps)=>`${trackId}:${laps}${TRACKS.find(t=>t.id=
 function read(storage){
  try{const value=JSON.parse(storage?.getItem(RECORDS_KEY)||'{}');return value&&typeof value==='object'?value:{};}catch{return {};}
 }
+function currentRecord(entry,trackId,laps){
+ if(!entry||!Number.isFinite(entry.time))return null;
+ // Old short-course targets cached null badges on valid new-course records.
+ // Re-evaluate those badges on read, without rewriting the saved run.
+ return trackId==='yeosu'?{...entry,medal:medalFor(entry.time,medalTimes(trackId,laps))}:entry;
+}
 export function bestRecord(storage,trackId,laps){
  const entry=read(storage)[recordKey(trackId,laps)];
- return entry&&Number.isFinite(entry.time)?entry:null;
+ return currentRecord(entry,trackId,laps);
 }
 // Legacy medals still contribute to unlocks, while their shorter course times
 // can never become the new road course best or its replay ghost.
@@ -52,7 +60,7 @@ export function earnedRecord(storage,trackId,laps){
 }
 // Returns {improved, previous, best}. A slower run never overwrites a record.
 export function submitRecord(storage,trackId,laps,entry){
- const all=read(storage),key=recordKey(trackId,laps),previous=all[key]&&Number.isFinite(all[key].time)?all[key]:null;
+ const all=read(storage),key=recordKey(trackId,laps),previous=currentRecord(all[key],trackId,laps);
  const improved=Number.isFinite(entry.time)&&(!previous||entry.time<previous.time);
  const best=improved?{...entry,medal:medalFor(entry.time,medalTimes(trackId,laps))}:previous;
  if(improved){all[key]=best;try{storage?.setItem(RECORDS_KEY,JSON.stringify(all));}catch{}}

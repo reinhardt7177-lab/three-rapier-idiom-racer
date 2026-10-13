@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.boundingBox: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'GAS', exact: true })[22m
+
+    at D:\racing\three-rapier-idiom-racer\artifacts\graphics-parallel-20261013\game-flow.mjs:29:204 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'GAS', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.12.0

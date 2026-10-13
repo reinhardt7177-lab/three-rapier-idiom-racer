@@ -1,0 +1,16 @@
+Command: node --test scripts/namak-visuals.test.mjs
+Runtime: local Windows Node v24.12.0
+
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (181.5288ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (33.8137ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (3.7775ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (5.4106ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (13.371ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 410.341

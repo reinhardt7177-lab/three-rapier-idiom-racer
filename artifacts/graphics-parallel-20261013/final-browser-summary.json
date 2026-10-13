@@ -1,0 +1,381 @@
+{
+  "execution": "Isolated actual headless Edge app and Rapier. Complete flow first run; strengthened UI measurements and native pointer proof in separate subsequent runs. No real phone claim.",
+  "completeFlow": "actual-flow-fixed.json",
+  "strengthenedUi": "actual-flow-final-failure.json",
+  "pointer": "pointer-final.json",
+  "retainedHelperFailure": "Expected GAS at desktop width although it is responsive and hidden there. Raw timeout/failure remains. Pointer was then verified at 844x390.",
+  "finish": {
+    "raceMode": "grid",
+    "outcome": null,
+    "opponent": null,
+    "unlocked": [
+      {
+        "id": "rx7",
+        "name": "Mazda RX-7",
+        "required": 1,
+        "unlocked": true,
+        "kind": "cars"
+      },
+      {
+        "id": "seongsamjae",
+        "name": "지리산 성삼재",
+        "required": 1,
+        "unlocked": true,
+        "kind": "tracks"
+      }
+    ],
+    "place": 6,
+    "time": 86.14166666668129,
+    "difficulty": "normal",
+    "laps": 1,
+    "lapTimes": [
+      86.14166666668129
+    ],
+    "bestLap": 86.14166666668129,
+    "improved": true,
+    "previous": null,
+    "medal": "bronze",
+    "ghostSaved": true
+  },
+  "finishOrder": [
+    {
+      "name": "RAVEN",
+      "time": 80.10000000000981,
+      "finished": true
+    },
+    {
+      "name": "MIST",
+      "time": 80.25833333334327,
+      "finished": true
+    },
+    {
+      "name": "BLAZE",
+      "time": 80.68333333334361,
+      "finished": true
+    },
+    {
+      "name": "LUNA",
+      "time": 80.80000000001037,
+      "finished": true
+    },
+    {
+      "name": "NOVA",
+      "time": 82.57500000001178,
+      "finished": true
+    },
+    {
+      "name": "YOU",
+      "time": 86.14166666668129,
+      "finished": true
+    }
+  ],
+  "recovery": {
+    "count": 0,
+    "reason": "",
+    "age": 189.19999999996662
+  },
+  "ui": [
+    {
+      "stage": "garage",
+      "width": 1280,
+      "height": 720,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".garage-heading",
+        ".vehicle-heading",
+        ".garage-launch"
+      ]
+    },
+    {
+      "stage": "garage",
+      "width": 1024,
+      "height": 768,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".garage-heading",
+        ".vehicle-heading",
+        ".garage-launch"
+      ]
+    },
+    {
+      "stage": "garage",
+      "width": 844,
+      "height": 390,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".vehicle-heading",
+        ".garage-launch"
+      ]
+    },
+    {
+      "stage": "garage",
+      "width": 667,
+      "height": 375,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".vehicle-heading",
+        ".garage-launch"
+      ]
+    },
+    {
+      "stage": "race",
+      "width": 1280,
+      "height": 720,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings"
+      ]
+    },
+    {
+      "stage": "race",
+      "width": 1024,
+      "height": 768,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings"
+      ]
+    },
+    {
+      "stage": "race",
+      "width": 844,
+      "height": 390,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    },
+    {
+      "stage": "race",
+      "width": 667,
+      "height": 375,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    },
+    {
+      "stage": "result",
+      "width": 1280,
+      "height": 720,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu"
+      ]
+    },
+    {
+      "stage": "result",
+      "width": 1024,
+      "height": 768,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu"
+      ]
+    },
+    {
+      "stage": "result",
+      "width": 844,
+      "height": 390,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    },
+    {
+      "stage": "result",
+      "width": 667,
+      "height": 375,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    },
+    {
+      "stage": "menu",
+      "width": 1280,
+      "height": 720,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu"
+      ]
+    },
+    {
+      "stage": "menu",
+      "width": 1024,
+      "height": 768,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu"
+      ]
+    },
+    {
+      "stage": "menu",
+      "width": 844,
+      "height": 390,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    },
+    {
+      "stage": "menu",
+      "width": 667,
+      "height": 375,
+      "clipped": 0,
+      "clippedControls": 0,
+      "overlaps": 0,
+      "panels": [
+        ".position-card",
+        ".race-route",
+        ".race-clock",
+        ".speed-card",
+        ".race-standings",
+        ".race-menu",
+        ".touch-controls"
+      ]
+    }
+  ],
+  "pointerStates": [
+    {
+      "phase": "pointer-held",
+      "input": {
+        "throttle": 1,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "paused": false,
+      "mode": "race"
+    },
+    {
+      "phase": "pointer-plus-keyboard",
+      "input": {
+        "throttle": 1,
+        "brake": 0,
+        "reverse": 0,
+        "steer": -1,
+        "handbrake": false,
+        "boost": false
+      },
+      "paused": false,
+      "mode": "race"
+    },
+    {
+      "phase": "pause-cancelled",
+      "input": {
+        "throttle": 0,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "paused": true,
+      "mode": "race"
+    },
+    {
+      "phase": "garage",
+      "input": {
+        "throttle": 0,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "paused": false,
+      "mode": "garage"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+const dir='artifacts/graphics-parallel-20261013',sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const inputs=JSON.parse(fs.readFileSync('artifacts/release-repair-20261012/graphics-check-inputs.json')),start=JSON.parse(fs.readFileSync(dir+'/start.json'));
+const changed=inputs.filter(r=>sha(r.path)!==r.sha256);assert.equal(changed.length,0,'all source/model/route/fixture inputs from the full check remain exact');
+const assets=start.assets.map(r=>({...r,unchanged:sha(r.path)===r.sha256}));assert.ok(assets.every(r=>r.unchanged));
+const protect=['src/driving/physics.js','src/driving/steering.js','src/rebuild/activeRide.js','src/rebuild/vehicleDynamics.js'];
+const physics=protect.map(path=>({path,sha256:sha(path),unchanged:sha(path)===start.files.find(r=>r.path===path).sha256}));assert.ok(physics.every(r=>r.unchanged));
+const branch=execFileSync('git',['branch','--show-current'],{encoding:'utf8'}).trim(),main=execFileSync('git',['rev-parse','main'],{encoding:'utf8'}).trim();assert.equal(branch,'codex/korea-circuits-progression-20261011');assert.equal(main,'bc012ae836e5b536d80bc35463295ee2d1b690c4');
+const report={recorded:new Date().toISOString(),sourceInputs:inputs.length,changed,assets,physics,branch,main,publication:'No PR/main merge/deployment in this task; branch push recorded after final commit.'};
+fs.writeFileSync(dir+'/final-audit.json',JSON.stringify(report,null,2));console.log(JSON.stringify({inputs:inputs.length,changed:0,unchangedAssets:assets.length,unchangedPhysics:physics.length,branch,main},null,2));

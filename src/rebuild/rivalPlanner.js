@@ -64,7 +64,7 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     return true;
   }
   function pavement(car,from,to){return roadClear({index:car.index,fromLane:from,toLane:to,state:car.state,dimensions:dimensions(car)});}
-  function decide(car,cars,plan){
+  function decide(car,cars,plan,trafficEnabled=false){
     const own=local(route,car);plan.stop=false;
     if(car.state.contacts<3||car.state.ride?.locked===false){plan.reason='airborne';return;}
     if(['changing','returning','aborting'].includes(plan.mode)){
@@ -108,17 +108,19 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       return;
     }
     if(plan.mode==='passing'){
-      // A closed circuit can bring a previously passed stationary car back
-      // ahead. Re-plan before the front brake guard consumes the steering gap.
-      const stopped=cars.filter(c=>c!==car&&Math.abs(c.state.position.y-car.state.position.y)<3)
+      // A pass can meet another slow moving car before the first lead is behind.
+      // Re-plan it with the same road, closing-traffic and speed-advantage proof.
+      const blocker=cars.filter(c=>c!==car&&Math.abs(c.state.position.y-car.state.position.y)<3)
         .map(c=>({car:c,...local(route,car,c)}))
-        .filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&Math.abs(s.v)<1)
+        .filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&(Math.abs(s.v)<1||(trafficEnabled&&speedProfile&&s.v>1&&curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-s.v*3.6>=(plan.style?.passGap??12))))
         .sort((a,b)=>a.along-b.along)[0];
-      if(stopped){
-        plan.stop=stopped.along<16+Math.max(0,own.v)*.5+Math.max(0,own.v)**2/12;plan.reason='stopped-ahead';
-        const target=own.lane<0?RACE_GRID_LANE:-RACE_GRID_LANE;
-        if(stopped.along>=9&&easyRoad(route,car)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
-          plan.mode='changing';plan.target=target;plan.lead=stopped.car;plan.leadLane=stopped.lane;
+      if(blocker){
+        plan.stop=Math.abs(blocker.v)<1&&blocker.along<16+Math.max(0,own.v)*.5+Math.max(0,own.v)**2/12;plan.reason=Math.abs(blocker.v)<1?'stopped-ahead':'slow-ahead';
+        // A rear yield can hold a partial crossing. Pick the side away from the
+        // obstruction rather than treating that partial position as a full lane.
+        const target=(trafficEnabled?blocker.lane:own.lane)<0?RACE_GRID_LANE:-RACE_GRID_LANE;
+        if(blocker.along>=9&&easyRoad(route,car)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
+          plan.mode='changing';plan.target=target;plan.lead=blocker.car;plan.leadLane=blocker.lane;
           plan.age=0;plan.stop=false;plan.reason='overtake';plan.attempts++;
           plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
         }
@@ -161,14 +163,14 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       active.sort((a,b)=>(b.progress??0)-(a.progress??0));
       for(const car of active){
         const plan=record(car);plan.age+=dt;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.timer-=dt;
-        if(plan.timer<=0){plan.timer=.2;decide(car,participants,plan);}
+        if(plan.timer<=0){plan.timer=.2;decide(car,participants,plan,traffic.length>0);}
         const changing=['changing','returning','aborting'].includes(plan.mode);
         const target=plan.stop?local(route,car).lane:plan.target;
         const input=aiInput(route,car.state,car.index,target,car.pace??1,participants.filter(c=>c!==car).map(c=>c.state),{
           lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile:plan.profile,
           // Keep the approach outside the 9m crossing guard. Closing to the
           // former 6m following gap made every later passing request too close.
-          trafficGap:changing?6:12,
+          trafficGap:changing?6:12,restoreFollowGap:traffic.length>0&&!changing,
           speedLimit:plan.stop?0:changing?plan.changeSpeed:Infinity,stop:plan.stop,waitingForTraffic:plan.stop,
         });
         if(plan.stop)input.throttle=0;

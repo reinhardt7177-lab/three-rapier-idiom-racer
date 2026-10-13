@@ -1,0 +1,13 @@
+{
+  "provenance": "Exact numeric fields preserved from inspect-candidate.mjs tool output before authored-box fast path. This run was not a browser/GPU frame test.",
+  "extractionMs": 5565.6376999999975,
+  "constructionMs": 6748.4378,
+  "lights": {"bridge": 8, "road": 298, "water": 61},
+  "seaReplacements": 1,
+  "roadMaskBytes": 85593,
+  "highAddedDraws": 2,
+  "highAddedTriangles": 208,
+  "lowAddedDraws": 1,
+  "lowAddedTriangles": 16,
+  "note": "This earlier slow source-topology implementation was replaced; host workload also varied, so this is not a controlled speedup ratio. No failed frame samples were removed."
+}

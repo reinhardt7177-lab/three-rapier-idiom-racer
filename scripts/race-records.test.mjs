@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {LAP_OPTIONS,DEFAULT_LAPS,medalTimes,medalFor,bestRecord,submitRecord,loadLaps,saveLaps,lapInfo} from '../src/rebuild/raceRecords.js';
+import {LAP_OPTIONS,DEFAULT_LAPS,medalTimes,medalFor,bestRecord,earnedRecord,recordKey,submitRecord,loadLaps,saveLaps,lapInfo} from '../src/rebuild/raceRecords.js';
 import {createGhostRecorder,ghostPose,loadGhost,saveGhost} from '../src/rebuild/raceGhost.js';
 import {routeGuidance} from '../src/rebuild/routeGuidance.js';
 import {TRACKS} from '../src/rebuild/tracks.js';
@@ -40,6 +40,19 @@ test('corrupt or blocked storage never breaks the result screen',()=>{
  assert.doesNotThrow(()=>submitRecord(blocked,'namak',1,{time:90}));
  assert.equal(loadLaps(blocked),DEFAULT_LAPS);assert.doesNotThrow(()=>saveLaps(blocked,3));
  const l=memory();saveLaps(l,3);assert.equal(loadLaps(l),3);saveLaps(l,7);assert.equal(loadLaps(l),3,'invalid lap counts are ignored');
+});
+
+test('new-course saved badges are recalculated without deleting times or legacy medals',()=>{
+ const s=memory(),key=recordKey('yeosu',1),time=medalTimes('yeosu',1).silver-.25;
+ const raw=JSON.stringify({[key]:{time,vehicle:'gtr',medal:null,savedAt:'preserved'},'yeosu:1':{time:80,vehicle:'supra',medal:'silver'}});
+ s.setItem('mumu.circuit.records.v1',raw);
+ const best=bestRecord(s,'yeosu',1);assert.equal(best.time,time);assert.equal(best.vehicle,'gtr');assert.equal(best.savedAt,'preserved');assert.equal(best.medal,'silver');
+ assert.equal(earnedRecord(s,'yeosu',1).time,time);
+ const slower=submitRecord(s,'yeosu',1,{time:time+30,vehicle:'supra'});
+ assert.equal(slower.improved,false);assert.equal(slower.previous.medal,'silver');assert.equal(slower.best.medal,'silver');
+ assert.equal(s.getItem('mumu.circuit.records.v1'),raw,'reading or losing cannot overwrite saved data');
+ const legacyOnly={getItem:()=>JSON.stringify({'yeosu:1':{time:80,medal:'silver'}})};
+ assert.equal(bestRecord(legacyOnly,'yeosu',1),null);assert.equal(earnedRecord(legacyOnly,'yeosu',1).medal,'silver');
 });
 
 test('lap number and in-lap distance follow race progress, including the grid offset',()=>{

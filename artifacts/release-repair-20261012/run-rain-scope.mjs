@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {spawn} from 'node:child_process';
+import crypto from 'node:crypto';
+const dir='artifacts/release-repair-20261012',report='artifacts/content-resume-20261011/rain-races.json',before=fs.readFileSync(report),started=performance.now();
+const inputs=['src/rebuild/rivalPlanner.js','src/rebuild/course.js','scripts/rain-race.test.mjs'].map(path=>({path,sha256:crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex')}));
+const log=fs.openSync(`${dir}/traffic-scoped-rain.log`,'w');
+const child=spawn(process.execPath,['--test','--test-name-pattern=yeosu rain .* 3 laps','scripts/rain-race.test.mjs'],{stdio:['ignore',log,log],windowsHide:true});
+const exitCode=await new Promise((resolve,reject)=>{child.on('exit',resolve);child.on('error',reject);});fs.closeSync(log);
+const result=JSON.parse(fs.readFileSync(report,'utf8').replace(/^\uFEFF/,''));fs.writeFileSync(`${dir}/traffic-scoped-rain.json`,JSON.stringify({execution:'Local Windows CPU / Rapier WASM',exitCode,seconds:(performance.now()-started)/1000,inputs,results:result.results},null,2));fs.writeFileSync(report,before);
+console.log(JSON.stringify({exitCode,results:result.results.map(r=>({difficulty:r.difficulty,laps:r.laps,finish:r.cars.map(c=>c.finish),lowest:Math.min(...r.cars.map(c=>c.lowest))}))},null,2));process.exitCode=exitCode;

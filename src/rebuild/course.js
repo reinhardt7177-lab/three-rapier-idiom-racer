@@ -77,7 +77,10 @@ export function aiInput(route,state,index,lane,pace=1,traffic=[],options={}) {
     const closing=Math.max(0,ownSpeed-leadSpeed),lookAhead=Math.max(followGap+10,6+closing*.5+closing*closing/12);
     if(along>0&&along<lookAhead&&lateral<2.2){
       const gap=Math.max(0,along-followGap);
-      const safe=Math.min(Math.sqrt(leadSpeed*leadSpeed+12*gap),leadSpeed+gap/.9)*3.6;
+      // A moving lead cannot restore a short gap if we only match its speed.
+      // Civilian-traffic planning opts into recovering the existing clearance.
+      const followSpeed=Math.max(0,leadSpeed+(options.restoreFollowGap?along-followGap:gap)/.9);
+      const safe=Math.min(Math.sqrt(leadSpeed*leadSpeed+12*gap),followSpeed)*3.6;
       if(safe<speed){speed=safe;trafficLimited=true;}
       if(along<=followGap+.2&&leadSpeed<.5){speed=0;hold=true;trafficLimited=true;}
     }
