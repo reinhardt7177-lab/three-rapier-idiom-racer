@@ -21,8 +21,46 @@ export function polishVehicleMaterial(m,{vivid=false}={}){
     }
   }
   if(/Glass/.test(m.name)){
-    m.roughness=.14;m.metalness=.02;
-    if('clearcoat' in m){m.clearcoat=.65;m.clearcoatRoughness=.12;}
+    // Windows stay dark enough to read as glazing. Lamp/mirror inserts now
+    // have independent authored materials; no transmission sorting/pass.
+    m.roughness=.20;m.metalness=.02;m.envMapIntensity=.48;
+    if('clearcoat' in m){m.clearcoat=.35;m.clearcoatRoughness=.18;}
+  }
+  if(/Finish_LampPolymer/.test(m.name)){m.roughness=.08;m.envMapIntensity=.75;}
+  if(/Finish_MirrorSilver/.test(m.name)){m.roughness=.1;m.metalness=.95;}
+  if(/Finish_(MachinedAlloy|WheelGraphite)/.test(m.name))m.envMapIntensity=.8;
+  if(/Finish_TwoToneAlloy/.test(m.name)&&!m.userData.alloyFinish){
+    m.envMapIntensity=.8;m.userData.alloyFinish=true;
+    const compile=m.onBeforeCompile,key=m.customProgramCacheKey();
+    m.onBeforeCompile=function(shader,renderer){
+      compile.call(this,shader,renderer);
+      shader.fragmentShader=shader.fragmentShader.replace('#include <metalnessmap_fragment>',`#include <metalnessmap_fragment>
+        #ifdef USE_COLOR
+          float alloyCut=smoothstep(.15,.40,dot(vColor.rgb,vec3(.2126,.7152,.0722)));
+          metalnessFactor=mix(.82,.92,alloyCut);
+          roughnessFactor=mix(.31,.22,alloyCut);
+        #endif`);
+    };
+    m.customProgramCacheKey=()=>`${key}-alloy-finish-v1`;m.needsUpdate=true;
+  }
+  if(/Brake rotor/.test(m.name)){m.metalness=.78;m.roughness=.43;}
+  if(/Finish_CarbonWeave/.test(m.name)&&!m.userData.carbonFinish){
+    m.userData.carbonFinish=true;
+    const compile=m.onBeforeCompile,key=m.customProgramCacheKey();
+    m.onBeforeCompile=function(shader,renderer){
+      compile.call(this,shader,renderer);
+      shader.vertexShader='varying vec3 finishPosition;\n'+shader.vertexShader;
+      shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nfinishPosition=position;');
+      shader.fragmentShader='varying vec3 finishPosition;\n'+shader.fragmentShader;
+      // Millimetre-scale weave fades once below one pixel. fwidth avoids
+      // shimmering under motion; no texture, lights or extra render pass.
+      shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+        vec2 weaveUV=(finishPosition.xz+finishPosition.xy*.35)*210.0;
+        float weaveFade=1.0-smoothstep(.35,1.0,max(fwidth(weaveUV.x),fwidth(weaveUV.y)));
+        float weave=sin(weaveUV.x*3.14159)*sin(weaveUV.y*3.14159);
+        diffuseColor.rgb*=1.0+weave*.14*weaveFade;`);
+    };
+    m.customProgramCacheKey=()=>`${key}-carbon-finish-v1`;m.needsUpdate=true;
   }
 }
 

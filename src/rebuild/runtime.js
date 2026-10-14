@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import RAPIER from '@dimforge/rapier3d-compat';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import {createVehicleStudio,addVehicleReflectionGround} from './vehicleStudio.js';
 import {Sky} from 'three/addons/objects/Sky.js';
 import { loadRebuildAssets,createVehicleView,poseVehicle,VEHICLES } from './assets.js';
 import { createVehiclePhysics,initPhysics,STEP,stepVehicleWorld } from '../driving/physics.js';
@@ -89,14 +89,16 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
   const scene=new THREE.Scene();scene.add(all);scene.background=new THREE.Color('#090e18');
   const night=track.night?createNightPresentation(scene,assets.roads):null;
   Object.values(assets.cars).forEach(c=>c.visible=false);
-  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.035);
+  const pmrem=new THREE.PMREMGenerator(renderer),room=createVehicleStudio(),environment=pmrem.fromScene(room,.035);
   const sky=new Sky();sky.scale.setScalar(1000);
   sky.material.uniforms.turbidity.value=atmosphere.turbidity;sky.material.uniforms.rayleigh.value=atmosphere.rayleigh;
   sky.material.uniforms.mieCoefficient.value=atmosphere.mieCoefficient;
   if(namak)tintNamakSky(sky);
   sky.material.uniforms.sunPosition.value.set(-25,45,20).normalize();
   const outdoorScene=new THREE.Scene();outdoorScene.add(sky);
+  const clearReflectionGround=addVehicleReflectionGround(outdoorScene);
   const outdoorEnvironment=pmrem.fromScene(outdoorScene,.04);
+  clearReflectionGround();
   scene.add(sky);sky.visible=false;
   scene.environment=environment.texture;scene.environmentIntensity=1.15;pmrem.dispose();room.dispose();
   const ambient=new THREE.HemisphereLight('#dbeeff','#6c5942',1.25);scene.add(ambient);
