@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-14T03:39:36.730Z",
+  "browser": "User Chrome extension profile",
+  "official": {
+    "url": "https://racing.mumuworld.com/",
+    "result": "ERR_CONNECTION_REFUSED",
+    "gameLoaded": false
+  },
+  "worker": {
+    "url": "https://mumu-circuit.reinhardt7177.workers.dev/?track=namak&v=4359d7d",
+    "garageLoaded": true,
+    "controlsEnabled": true
+  },
+  "settings": {
+    "attempt": "Open chrome://settings/security",
+    "result": "Rejected by browser URL security policy; no workaround attempted",
+    "userActionRequired": "Read current secure DNS status and whether managed"
+  },
+  "googleDohPage": {
+    "url": "https://dns.google/resolve?name=racing.mumuworld.com&type=A",
+    "result": "ERR_CONNECTION_REFUSED"
+  },
+  "modifiedBrowserSettings": false
+}

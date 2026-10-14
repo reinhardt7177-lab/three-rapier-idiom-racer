@@ -1,5 +1,7 @@
 # 공식 게임 주소 연결 정리·접속 검증 · 2026-10-14
 
+> **후속 정정: 사용자 Chrome 접속은 미해결이다.** 사용자 오류 신고 후 실제 Chrome에서 연결 거부를 재현했다. 이 문서의 성공은 Codex 내장 브라우저·원격 공개 파일 검사의 결과이며 사용자 Chrome의 성공을 의미하지 않는다. 현재 완료 판정과 다음 조치는 [Chrome 접속 조사](CHROME_ACCESS_20261014.md)를 따른다.
+
 **[racing.mumuworld.com](https://racing.mumuworld.com/?track=namak&v=4359d7d)에서 최신 게임의 차고와 실제 주행을 확인했다.** 사용자의 ‘Wrangler로’ 요청에 따라 기존 CLI 인증으로 처리했다. 별도의 Cloudflare 로그인이나 권한 확대는 하지 않았다.
 
 ## 변경 및 현재 상태
