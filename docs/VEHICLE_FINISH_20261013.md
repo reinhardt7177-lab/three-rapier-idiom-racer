@@ -158,3 +158,10 @@ package 등록은 기존 HEAD + 차량 시험만으로 작성하므로 해당 �
 
 운영 배포는 이번 요청에 포함되지 않았다. 로컬 검사본과 GitHub 브랜치 반영,
 운영 `racing.mumuworld.com`의 버전은 별도로 보고한다.
+
+차량 구현·원본·검증 기록은 같은 `codex/korea-circuits-progression-20261011`
+브랜치의 **8a79d5d**로 커밋/푸시했으며 원격 해시 일치를 확인했다.
+main은 `bc012ae`로 유지했다. 별도 남악 작업의5개 tracked dirty 파일과
+untracked 자산은 남겼다. PR 생성/병합·운영 배포는 하지 않았다.
+[로컬 게임 검증본](http://127.0.0.1:5301/?track=namak&vehicle-polish=20261014)과
+[8종 전후 비교](http://127.0.0.1:5301/artifacts/vehicle-finish-20261013/comparison.html)를 확인할 수 있다.
