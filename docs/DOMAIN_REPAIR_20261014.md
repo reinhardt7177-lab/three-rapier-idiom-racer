@@ -1,5 +1,7 @@
 # 공식 게임 주소 연결 정리·접속 검증 · 2026-10-14
 
+> **최신 호스팅 상태:** 사용자 요청으로 Worker를 완전히 삭제한 뒤 검증 배포본으로 재생성했다. 활성 버전은 `d63542c0-5ae9-478d-93c8-1d74fec2cba0` / 100%다. 공식 주소의 사용자 Chrome 접속은 여전히 실패한다. [재생성·새 검증·남은 원인](CLOUDFLARE_RECREATE_20261014.md)을 따른다.
+
 > **후속 정정: 사용자 Chrome 접속은 미해결이다.** 사용자 오류 신고 후 실제 Chrome에서 연결 거부를 재현했다. 이 문서의 성공은 Codex 내장 브라우저·원격 공개 파일 검사의 결과이며 사용자 Chrome의 성공을 의미하지 않는다. 현재 완료 판정과 다음 조치는 [Chrome 접속 조사](CHROME_ACCESS_20261014.md)를 따른다.
 
 **[racing.mumuworld.com](https://racing.mumuworld.com/?track=namak&v=4359d7d)에서 최신 게임의 차고와 실제 주행을 확인했다.** 사용자의 ‘Wrangler로’ 요청에 따라 기존 CLI 인증으로 처리했다. 별도의 Cloudflare 로그인이나 권한 확대는 하지 않았다.
