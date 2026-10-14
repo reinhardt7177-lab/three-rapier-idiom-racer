@@ -1,5 +1,9 @@
 # 현재 우선순위 · 2026-10-14
 
+**Vercel 운영 이전·사용자 Chrome 공식 주소 접속 완료:** 사용자 요청으로 GitHub/기존 `mumu-racing`을 유지하고 최신 커밋 `1ef0c24`의 Production `7W4e1KMBeYcMChDVETFnYpZ1Mubf`(Ready/15초)에 `racing.mumuworld.com`을 연결했다. Cloudflare DNS는 Vercel 지정 CNAME/DNS only이며 게임용 Worker `mumu-circuit`은 일반 Wrangler delete로 삭제했다. 공개 LF 빌드34/34파일 바이트·SHA 일치/78,686,282B·4코스HTML200·없는모델/옛Worker404. 실제 사용자Chrome공식주소 차고→키보드67km/h→1인칭→메뉴입력차단→차고복귀·오류0/정밀도경고1,Worker삭제후재로딩확인. 루트Wrangler설정은사본보존후제거했다. Vercel승격의Lint/TypeCheck우회는사용자가이빌드에한해승인했다. 터미널DNS127.0.0.1과최초줄바꿈불일치/도구실패는보존;원인확정이나전체재검증주장없음. 다음은공식주소에서사용자실제운전·두기기1:1과다음배포의검사연결이다. [공식 게임](https://racing.mumuworld.com/?track=namak) · [변경·검증·실패·한계](VERCEL_CUTOVER_20261014.md).
+
+아래 Cloudflare 호스팅·Chrome 접속 실패 문단은 이전 이력이다. 현재 호스팅/접속 판정은 위 Vercel 이전 결과를 따른다.
+
 **Wrangler 서비스 삭제·재생성 완료, 조직 관리 Chrome 공식 주소 접속 미해결(P0):** 사용자 요청으로 복구본35파일/78,686,994B·사본해시·dry-run·다른서비스의존0을 확인한 뒤 `mumu-circuit`을 일반 delete로 삭제했다. 도메인목록0을 확인하고35파일모두신규업로드·공식도메인재등록, 신규버전 `d63542c0-5ae9-478d-93c8-1d74fec2cba0`/100%·배포이력1개다. 재생성후 공식공개35/35바이트/SHA일치·4코스HTML200·없는모델404·원격Cloudflare/GoogleDNS정상. 그러나 DNS캐시초기화후이PC는여전히127.0.0.1을반환하고 실제Chrome공식주소도연결거부다. 같은Chrome새기본Worker차고는로딩·오류/경고0/0. 사용자가 조직관리로DNS설정변경불가를확인했다. 다음최우선은관리자가이hostname의DNS/웹정책로그와허용가능여부를확인하고,승인조치후사용자Chrome공식주소를재검증하는것이다. 로컬원본·별도남악·main보존/PR없음. [삭제·재생성·새수치·현재한계](CLOUDFLARE_RECREATE_20261014.md) · [전달용점검요청서](NETWORK_ADMIN_REQUEST_20261014.md).
 
 **정정·사용자 Chrome 공식 주소 접속 미해결(P0):** 실제 사용자 Chrome에서 `racing.mumuworld.com` 연결 거부를 재현했다. Windows·Node OS 조회와 1.1.1.1/8.8.8.8 직접 DNS 질의 모두127.0.0.1/TTL3600을 반환하지만, 같은 Chrome의 기본 Worker 주소는 차량 차고까지 로딩된다. 내장 브라우저/원격 성공을 사용자 Chrome 성공으로 확대했던 보고를 정정한다. 통신망·로컬 보안·관리 정책 중 응답 출처는 아직 미확정이다. 자동 제어의 Chrome 내부 설정 접근이 URL 보안 정책으로 거부되어, 사용자에게 보안 DNS 상태·관리 여부 확인을 요청했다. 설정/hosts/보호 우회와 새 서버 변경 없이 증거를 보존했다. 다음 최우선은 그 상태 확인과 사용자 Chrome 공식 hostname에서 실제 차고→출발→복귀 검증이다. [실제 재현·수치·현재 차단·다음 조치](CHROME_ACCESS_20261014.md).

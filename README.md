@@ -6,7 +6,8 @@ Blender 차량 8종으로 6대 레이스·AI 1:1 연습·온라인 친구 1:1을
 
 **온라인 1:1 친구 대전:** 차고의 대전 모드에서 온라인 1:1을 선택하고 방을 만든 뒤 초대 링크를 친구에게 전달합니다. 두 사람이 준비하면 방장이 출발합니다. 실제 차량 충돌·공유 일시정지·결과·재경기를 지원합니다. 방장의 창을 열어두세요. 일부 네트워크는 TURN 없이 연결할 수 없어 별도 검수가 필요합니다. AI 1:1 연습도 선택할 수 있습니다. [구현·검증·알려진 문제](docs/ONLINE_DUEL_20261012.md). 현재 새 개발본은 출시 결함을 남긴 테스트 Preview 공개 대상입니다.
 
-- [현재 온라인 1:1 테스트 게임·GitHub Pages](https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227): 소스9917d9c/정적빌드e36e227, 실제 접속·차량/남악 로딩·공개 파일 해시를 확인했습니다. Vercel도두 환경Ready이지만 이 PC에서 연결 거부가 발생해 이 접속 주소를 제공합니다. 전체347시험 중344통과·기존 해안3실패인 사용자 검수용 빌드입니다.
+- [공식 게임 · racing.mumuworld.com](https://racing.mumuworld.com/?track=namak): 2026-10-14 최신 커밋 `1ef0c24`를 Vercel 운영 배포로 연결했습니다. Cloudflare는 DNS만 담당하며 게임용 Worker와 기본 Workers 주소는 삭제했습니다. 실제 사용자 Chrome에서 차고·주행·1인칭·메뉴·차고 복귀를 확인했습니다. [연결 설정·파일 검증·남은 한계](docs/VERCEL_CUTOVER_20261014.md).
+- [이전 온라인 1:1 테스트 빌드·GitHub Pages](https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227): 소스9917d9c/정적빌드e36e227인 이전 검수본입니다. 공식 최신 주소는 위 링크입니다.
 
 ## 실행과 검증
 
