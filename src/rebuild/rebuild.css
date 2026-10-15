@@ -509,6 +509,17 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .online-invite{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:5px 8px;margin-bottom:12px}
 .online-invite button{width:auto;margin:0;min-height:44px;padding:10px;font-size:11px}
 .online-invite>small{grid-column:1/-1;color:#9bcdea;font-size:10px;overflow-wrap:anywhere}
+.online-invite-buttons{display:flex;gap:6px}
+.menu-shade.online-qr-overlay{position:fixed;z-index:50}
+.online-qr-overlay .online-qr-view{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}
+.online-qr-content{display:grid;grid-template-columns:224px minmax(0,1fr);align-items:center;gap:24px}
+.online-qr-code{display:grid;place-items:center;min-height:224px}
+.online-qr-image{display:block;width:224px;height:224px;max-width:100%;background:#fff;flex-shrink:0}
+.online-qr-instructions{min-width:0;display:grid;gap:10px}
+.online-qr-instructions>strong{font-size:19px;line-height:1.5;color:#ecf7ff}
+.online-lobby .online-qr-instructions>p{margin:0;color:#c0d5e4;font-size:12px;line-height:1.6}
+.online-qr-instructions>small{font-size:11px;color:#9bcdea;line-height:1.6}
+.online-qr-instructions>button{min-height:44px;margin:0;padding:10px;font-size:11px}
 .online-actions{display:flex;align-items:center;gap:8px}
 .online-actions button{min-height:44px;min-width:0;margin:0;padding:10px 8px;font-size:12px}
 .online-actions button[aria-pressed=true]{background:#c9eaff;color:#142032}
@@ -519,8 +530,19 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
  .online-lobby .kicker{font-size:8px;letter-spacing:1px}.online-lobby .online-status{font-size:10px;line-height:1.4;margin:4px 0 6px}
  .online-players{gap:6px;margin-bottom:6px}.online-players>div{padding:6px;gap:1px}.online-players span,.online-players small{font-size:8px}.online-players strong{font-size:11px}
  .online-invite{margin-bottom:6px}.online-invite>small{display:none}.online-lobby label{font-size:9px;gap:2px}.online-actions button{font-size:10px}
+ .online-qr-content{grid-template-columns:192px minmax(0,1fr);gap:16px}.online-qr-code{min-height:192px}.online-qr-image{width:192px;height:192px}
+ .online-qr-instructions{gap:6px}.online-qr-instructions>strong{font-size:16px}.online-lobby .online-qr-instructions>p,.online-qr-instructions>small{font-size:10px}
  .online-lobby:has(.online-players) .online-help{display:none}.online-lobby .online-help{font-size:9px;line-height:1.5;margin-top:8px}
  .race-mode-options button{padding:8px}.race-mode-options strong{font-size:14px}
+}
+@media (max-height:550px){
+ .online-qr-overlay .online-qr-view{padding:12px 16px}.online-qr-view header{margin-bottom:6px}.online-qr-view header h2{font-size:21px}
+ .online-qr-view .kicker{font-size:8px;letter-spacing:1px}.online-qr-view .online-qr-content{grid-template-columns:192px minmax(0,1fr);gap:16px}
+ .online-qr-view .online-qr-code{min-height:192px}.online-qr-view .online-qr-image{width:192px;height:192px}
+ .online-qr-view .online-qr-instructions{gap:6px}.online-qr-view .online-qr-instructions>strong{font-size:16px}.online-qr-view .online-qr-instructions>p,.online-qr-view .online-qr-instructions>small{font-size:10px}
+}
+@media (max-width:430px) and (min-height:551px){
+ .online-qr-content{grid-template-columns:minmax(0,1fr);gap:12px}.online-qr-instructions>strong br{display:none}.online-qr-instructions{text-align:center}
 }
 /* Attribution is an actual source link, shown without covering racing sight. */
 .map-attribution{position:absolute;left:36px;top:76px;pointer-events:auto;font-size:8.5px;line-height:1.35;color:#a6bbc9;text-decoration:underline;max-width:calc(100% - 72px);}
