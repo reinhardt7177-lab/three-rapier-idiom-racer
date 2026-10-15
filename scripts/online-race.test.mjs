@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {EventEmitter} from 'node:events';
 import {setTimeout as delay} from 'node:timers/promises';
-import {ONLINE_VERSION,sanitizeOnlineInput,createRemoteInput,onlineRoster,packOnlineCar,validOnlineFrame,inviteLink,trackSignature} from '../src/rebuild/onlineProtocol.js';
+import {ONLINE_VERSION,ONLINE_TIMEOUTS,sanitizeOnlineInput,createRemoteInput,onlineRoster,packOnlineCar,validOnlineFrame,inviteLink,trackSignature} from '../src/rebuild/onlineProtocol.js';
 import {initPhysics,createVehiclePhysics} from '../src/driving/physics.js';
 import {createOnlineRace} from '../src/rebuild/onlineRace.js';
 import {normalizeRaceSetup} from '../src/rebuild/raceMode.js';
@@ -110,4 +110,70 @@ test('a compact actual Rapier snapshot is valid, preserves exact finish times an
 test('malformed frame transforms, incomplete wheels and impossible quaternions are rejected',()=>{
  assert.equal(validOnlineFrame({version:ONLINE_VERSION,runId:'x',sequence:1,elapsed:1,countdown:0,paused:false,cars:[]}),false);
  assert.equal(validOnlineFrame({version:999}),false);
+});
+
+function manualTimers(){
+ let id=0;const timeouts=new Map(),intervals=new Map();
+ return {setTimeout(fn,ms){const key=++id;timeouts.set(key,{fn,ms});return key;},clearTimeout:key=>timeouts.delete(key),setInterval(fn){const key=++id;intervals.set(key,fn);return key;},clearInterval:key=>intervals.delete(key),fire(ms){for(const [key,t] of [...timeouts])if(t.ms===ms){timeouts.delete(key);t.fn();}},interval(){for(const fn of [...intervals.values()])fn();},pending:()=>timeouts.size+intervals.size};
+}
+async function begin(p){p.host.ready(true);p.guest.ready(true);await tick();assert.equal(p.host.start({laps:1,weather:'clear'}),true);await tick();p.host.prepared();p.guest.prepared();await tick();}
+const hostWire=p=>p.factory.registry.get(p.host.status().room).links[0];
+const inject=(wire,message)=>wire.emit('data',{version:ONLINE_VERSION,...message});
+
+test('an open data channel without hello cannot occupy a room indefinitely',async()=>{
+ const timers=manualTimers(),factory=peers(),host=createOnlineRace({track,peerFactory:factory,timers});let peer;
+ try{await host.host('supra');await tick();peer=await factory();await tick();peer.connect(host.status().room);await tick();timers.fire(ONLINE_TIMEOUTS.handshake);assert.equal(host.status().phase,'error');assert.match(host.status().error,/참가 확인/);}finally{peer?.destroy();host.close();assert.equal(timers.pending(),0);}
+});
+test('preparation times out even while the remote peer keeps answering pings',async()=>{
+ const timers=manualTimers(),p=await pair({host:{timers}});
+ try{p.host.ready(true);p.guest.ready(true);await tick();p.host.start({laps:1,weather:'clear'});await tick();p.host.prepared();timers.interval();await tick();timers.fire(ONLINE_TIMEOUTS.prepare);assert.equal(p.host.status().phase,'error');assert.equal(p.guest.status().phase,'error');}finally{p.close();assert.equal(timers.pending(),0);}
+});
+test('successful ready barrier cancels the preparation deadline and starts each side once',async()=>{
+ const timers=manualTimers();let go=0;const p=await pair({host:{timers,onGo:()=>go++}});
+ try{await begin(p);timers.fire(ONLINE_TIMEOUTS.prepare);assert.equal(p.host.status().phase,'racing');assert.equal(go,1);inject(hostWire(p),{type:'prepared',runId:p.host.status().runId});assert.equal(go,1);}finally{p.close();}
+});
+test('a preparation exception or rejected async task aborts both clients without starting',async()=>{
+ for(const callback of [()=>{throw Error('compile failed');},()=>Promise.reject(Error('compile failed')),()=>Promise.resolve(false)]){
+  let go=0;const p=await pair({host:{onPrepare:callback,onGo:()=>go++}});
+  try{p.host.ready(true);p.guest.ready(true);await tick();p.host.start({laps:1,weather:'clear'});await tick();assert.equal(p.host.status().phase,'error');assert.equal(p.guest.status().phase,'error');assert.equal(go,0);}finally{p.close();}
+ }
+});
+test('a congested control channel cannot silently start only one player',async()=>{
+ let go=0;const p=await pair({host:{onGo:()=>go++}});
+ try{p.host.ready(true);p.guest.ready(true);await tick();p.host.start({laps:1,weather:'clear'});await tick();p.host.prepared();hostWire(p).bufferSize=5;p.guest.prepared();await tick();assert.equal(p.host.status().phase,'error');assert.equal(p.guest.status().phase,'error');assert.equal(go,0);}finally{p.close();}
+});
+test('previous-race pause, lobby and recovery controls cannot affect a rematch',async()=>{
+ let pauses=0,recoveries=0;const p=await pair({host:{onPause:()=>pauses++,onChange:s=>{if(s.requestRecovery)recoveries++;}}});
+ try{await begin(p);const oldRun=p.host.status().runId;p.host.lobby();await tick();await begin(p);assert.notEqual(p.host.status().runId,oldRun);
+  for(const type of ['pause-request','lobby-request','recover'])inject(hostWire(p),{type,runId:oldRun,paused:true});
+  assert.equal(p.host.status().phase,'racing');assert.equal(pauses,0);assert.equal(recoveries,0);
+  p.guest.recover();await tick();assert.equal(recoveries,1);
+ }finally{p.close();}
+});
+test('guest ignores old host controls and go before its renderer is prepared',async()=>{
+ let go=0;const p=await pair({guest:{onGo:()=>go++}});
+ try{p.host.ready(true);p.guest.ready(true);await tick();p.host.start({laps:1,weather:'clear'});await tick();const wire=hostWire(p).other,runId=p.host.status().runId;
+  inject(wire,{type:'go',runId});assert.equal(go,0);assert.equal(p.guest.status().phase,'preparing');p.host.prepared();p.guest.prepared();await tick();assert.equal(go,1);
+  inject(wire,{type:'lobby',runId:'previous'});assert.equal(p.guest.status().phase,'racing');
+ }finally{p.close();}
+});
+test('pause rejects held guest pedals; resume requires a newer sequence instead of replaying a queued input',async()=>{
+ const p=await pair();try{await begin(p);p.guest.input({throttle:1},true);await tick();p.host.pause(true);await tick();
+  const wire=hostWire(p),runId=p.host.status().runId;inject(wire,{type:'input',runId,sequence:100,input:{throttle:1}});assert.equal(p.host.remoteInput.read().throttle,0);
+  p.host.pause(false);await tick();inject(wire,{type:'input',runId,sequence:1,input:{throttle:1}});assert.equal(p.host.remoteInput.read().throttle,0);
+  p.guest.input({throttle:.4},true);await tick();assert.equal(p.host.remoteInput.read().throttle,.4);
+ }finally{p.close();}
+});
+test('invalid race config and missing room values never strand players in preparation',async()=>{
+ const p=await pair();try{p.host.ready(true);p.guest.ready(true);await tick();for(const next of [null,{}, {laps:2,weather:'clear'}, {laps:1,weather:'snow'}])assert.equal(p.host.start(next),false);assert.equal(p.host.status().phase,'lobby');}finally{p.close();}
+ const guest=createOnlineRace({track,peerFactory:peers()});try{await guest.join(null,'supra');assert.equal(guest.status().phase,'error');}finally{guest.close();}
+});
+test('the unchanged eight-second response watchdog aborts instead of assigning a fictitious victory',async()=>{
+ let time=0,disconnects=0;const timers=manualTimers(),p=await pair({host:{timers,now:()=>time,onDisconnect:()=>disconnects++}});
+ try{await begin(p);time=ONLINE_TIMEOUTS.silence+1;timers.interval();assert.equal(p.host.status().phase,'error');assert.equal(disconnects,1);assert.equal(p.host.remoteInput.read().throttle,0);}finally{p.close();assert.equal(timers.pending(),0);}
+});
+test('a late peer factory result cannot resurrect a timed-out connection or leak its room',async()=>{
+ const timers=manualTimers(),factory=peers();let resolvePeer;
+ const host=createOnlineRace({track,timers,peerFactory:()=>new Promise(resolve=>{resolvePeer=resolve;})});
+ try{const pending=host.host('supra'),room=host.status().room;timers.fire(ONLINE_TIMEOUTS.connect);assert.equal(host.status().phase,'error');const late=await factory(room);resolvePeer(late);await pending;await tick();assert.equal(host.status().phase,'error');assert.equal(factory.registry.has(room),false);}finally{host.close();}
 });

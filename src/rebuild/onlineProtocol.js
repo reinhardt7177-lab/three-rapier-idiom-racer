@@ -1,7 +1,9 @@
 import {VEHICLES} from './fleet.js';
-export const ONLINE_VERSION=1;
+export const ONLINE_VERSION=2;
 export const ONLINE_STEP_MS=50;
 export const INPUT_EXPIRY_MS=350;
+export const ONLINE_TIMEOUTS=Object.freeze({connect:20000,handshake:10000,prepare:30000,silence:8000});
+export const validOnlineConfig=value=>!!value&&[1,3].includes(value.laps)&&['clear','rain'].includes(value.weather);
 export const ZERO_ONLINE_INPUT=Object.freeze({throttle:0,brake:0,reverse:0,steer:0,handbrake:false,boost:false});
 const finite=(n,limit=1e6)=>Number.isFinite(n)&&Math.abs(n)<=limit;
 const vec=(v,keys)=>v&&keys.every(k=>finite(v[k]));
@@ -14,7 +16,7 @@ export function sanitizeOnlineInput(value){
 }
 export function createRemoteInput(now=()=>performance.now()){
  let sequence=-1,at=-Infinity,input={...ZERO_ONLINE_INPUT};
- return {receive(message){if(!Number.isSafeInteger(message?.sequence)||message.sequence<=sequence)return false;sequence=message.sequence;at=now();input=sanitizeOnlineInput(message.input);return true;},read(){return now()-at>INPUT_EXPIRY_MS?{...ZERO_ONLINE_INPUT,brake:.35}:{...input};},clear(){sequence=-1;at=-Infinity;input={...ZERO_ONLINE_INPUT};}};
+ return {receive(message){if(!Number.isSafeInteger(message?.sequence)||message.sequence<0||message.sequence<=sequence)return false;sequence=message.sequence;at=now();input=sanitizeOnlineInput(message.input);return true;},read(){return now()-at>INPUT_EXPIRY_MS?{...ZERO_ONLINE_INPUT,brake:.35}:{...input};},clear({resetSequence=false}={}){if(resetSequence)sequence=-1;at=-Infinity;input={...ZERO_ONLINE_INPUT};}};
 }
 export function onlineRoster(hostVehicle,guestVehicle,role='host'){
  if(!validVehicle(hostVehicle)||!validVehicle(guestVehicle))throw Error('Unknown online vehicle');

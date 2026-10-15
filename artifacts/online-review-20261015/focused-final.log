@@ -1,0 +1,38 @@
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (3.0592ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (3.0902ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (0.9019ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (0.4464ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (0.9045ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (0.5866ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (1.3933ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (0.5089ms)
+✔ online is a real selectable mode; host and guest each see themselves first on distinct grid slots (3.0817ms)
+✔ online pedals clamp unsafe values and stale or reordered packets cannot leave throttle held (0.502ms)
+✔ invites preserve the chosen course and discard developer QA flags (0.3933ms)
+✔ a room requires two real peers ready and prepared before either race starts (110.3192ms)
+✔ the guest sends pedals, while shared pause/resume clears them and a rematch resets both ready flags (152.4492ms)
+✔ a third player is rejected without replacing either participant, and disconnect never invents a finish (91.775ms)
+✔ a different track revision cannot join the room (44.4933ms)
+✔ online personal bests are isolated from AI practice and medals (1.096ms)
+✔ losing the broker socket preserves an established real data channel and its ready/start flow (107.7087ms)
+✔ a compact actual Rapier snapshot is valid, preserves exact finish times and never mutates physics (177.147ms)
+✔ malformed frame transforms, incomplete wheels and impossible quaternions are rejected (0.3808ms)
+✔ an open data channel without hello cannot occupy a room indefinitely (53.6147ms)
+✔ preparation times out even while the remote peer keeps answering pings (91.5895ms)
+✔ successful ready barrier cancels the preparation deadline and starts each side once (92.9102ms)
+✔ a preparation exception or rejected async task aborts both clients without starting (231.7325ms)
+✔ a congested control channel cannot silently start only one player (92.8441ms)
+✔ previous-race pause, lobby and recovery controls cannot affect a rematch (171.0545ms)
+✔ guest ignores old host controls and go before its renderer is prepared (126.1921ms)
+✔ pause rejects held guest pedals; resume requires a newer sequence instead of replaying a queued input (182.5202ms)
+✔ invalid race config and missing room values never strand players in preparation (62.3887ms)
+✔ the unchanged eight-second response watchdog aborts instead of assigning a fictitious victory (91.5857ms)
+✔ a late peer factory result cannot resurrect a timed-out connection or leak its room (16.5438ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3242.6854
