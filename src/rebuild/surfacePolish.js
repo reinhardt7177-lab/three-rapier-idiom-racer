@@ -3,8 +3,10 @@ import * as THREE from 'three';
 const vividPaintMaterials=new WeakSet();
 export function polishVehicleMaterial(m,{vivid=false}={}){
   if(/Exterior_NewPaint/.test(m.name)){
-    m.roughness=.26;m.metalness=.34;
-    if('clearcoat' in m){m.clearcoat=.8;m.clearcoatRoughness=.16;}
+    // A rougher coloured base under a smoother dielectric coat reads as paint
+    // rather than coloured chrome. No extra map, uniform or render pass.
+    m.roughness=.30;m.metalness=.27;
+    if('clearcoat' in m){m.clearcoat=.95;m.clearcoatRoughness=.12;}
     if(vivid&&!vividPaintMaterials.has(m)){
       vividPaintMaterials.add(m);
       const compile=m.onBeforeCompile,cacheKey=m.customProgramCacheKey();
@@ -23,7 +25,7 @@ export function polishVehicleMaterial(m,{vivid=false}={}){
   if(/Glass/.test(m.name)){
     // Windows stay dark enough to read as glazing. Lamp/mirror inserts now
     // have independent authored materials; no transmission sorting/pass.
-    m.roughness=.20;m.metalness=.02;m.envMapIntensity=.48;
+    m.roughness=.16;m.metalness=0;m.envMapIntensity=.48;
     if('clearcoat' in m){m.clearcoat=.35;m.clearcoatRoughness=.18;}
   }
   if(/Finish_LampPolymer/.test(m.name)){m.roughness=.08;m.envMapIntensity=.75;}

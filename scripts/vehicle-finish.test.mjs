@@ -53,3 +53,30 @@ test('one-draw alloy retains cut-face and graphite shading through vertex colour
  assert.match(shader.fragmentShader,/#ifdef USE_COLOR/);assert.match(shader.fragmentShader,/vColor.rgb/);assert.match(shader.fragmentShader,/metalnessFactor=mix\(\.82,\.92,alloyCut\)/);assert.match(shader.fragmentShader,/roughnessFactor=mix\(\.31,\.22,alloyCut\)/);
  assert.equal(Object.keys(shader.uniforms).length,0);assert.equal(material.transparent,false);material.dispose();
 });
+
+test('reference polish completes three authored passes with unchanged rig and mechanical geometry',()=>{
+ const dir=new URL('../artifacts/vehicle-polish-3pass-20261015/',import.meta.url);
+ const final=JSON.parse(fs.readFileSync(new URL('pass3-blender.json',dir)));
+ assert.equal(final.length,VEHICLES.length);
+ for(const v of VEHICLES){
+  const {g}=read(v.id),rig=g.nodes.find(n=>n.name==='Chassis_Rig'),row=final.find(r=>r.id===v.id);
+  assert.equal(rig.extras.reference_polish_pass,3);
+  assert.deepEqual(row.rigAfter,row.rigBefore);
+  assert.ok(Object.keys(row.mechanicalGeometry).length>=4,'Tyre/wheel geometry must be explicitly checked in Blender');
+  assert.equal(g.images?.length??0,0);
+ }
+ assert.equal(read('supra').g.nodes.find(n=>n.name==='Chassis_Rig').extras.reference_projector_count,12);
+ // Source hash audits live in the task evidence, not in a permanent art test:
+ // independent handling work may legitimately change the physics module.
+});
+
+test('paint clearcoat, opaque glazing and matte tyres retain different optical responses',()=>{
+ const authored=read('supra').g.materials.find(m=>m.name==='Rubber').pbrMetallicRoughness;
+ const paint=new THREE.MeshPhysicalMaterial({name:'supra_Exterior_NewPaint'}),glass=new THREE.MeshPhysicalMaterial({name:'Detail_Glass_Tinted'}),rubber=new THREE.MeshPhysicalMaterial({name:'Rubber',roughness:authored.roughnessFactor,metalness:authored.metallicFactor??1});
+ for(const m of [paint,glass,rubber])polishVehicleMaterial(m);
+ assert.ok(paint.clearcoat>.9&&paint.clearcoatRoughness<paint.roughness);
+ assert.ok(paint.metalness<.3,'Coloured base must not read as chrome');
+ assert.ok(glass.roughness<paint.roughness&&glass.metalness===0);
+ assert.ok(rubber.roughness>.8&&rubber.metalness===0);
+ for(const m of [paint,glass,rubber]){assert.equal(m.transmission,0);assert.equal(m.transparent,false);m.dispose();}
+});

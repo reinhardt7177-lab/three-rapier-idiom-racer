@@ -10,9 +10,9 @@ export function createVehicleStudio(){
   const mesh=new THREE.Mesh(geometry,material);mesh.name=name;mesh.position.fromArray(position);mesh.scale.set(size[0],size[1],1);mesh.lookAt(...target);scene.add(mesh);
  }
  panel('dark-ground',[0,-1,0],[50,50],'#111923',1);
- panel('left-softbox',[-6,3,0],[8,1.6],'#e8f0ff',3.8);
+ panel('left-softbox',[-6,4.5,0],[8,1.1],'#e8f0ff',3.2);
  panel('right-rim',[6,2.8,-1],[9,.7],'#d2e4ff',2.7);
- panel('ceiling-strip',[0,7,0],[3.2,11],'#f7f3eb',3.2);
+ panel('ceiling-strip',[0,7,0],[2.1,11],'#f7f3eb',2.6);
  panel('rear-strip',[0,3,-7],[10,.7],'#b6d2f0',2.4);
  panel('front-bounce',[0,2,8],[9,4],'#7f8b95',.6);
  scene.dispose=()=>{for(const resource of owned)resource.dispose();owned.clear();};

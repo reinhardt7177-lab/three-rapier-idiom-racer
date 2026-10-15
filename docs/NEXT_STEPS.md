@@ -1,5 +1,7 @@
 # 현재 우선순위 · 2026-10-14
 
+**차량 실차 레퍼런스 3회 마감 검증 중 (2026-10-15):** 8종의 도장·유리·고무·휠 미세 디테일, 수프라 6렌즈/검은 미러, 우라칸 전면 테이퍼를 반영했다. 수프라 전면 재성형 후보는 램프 결함으로 제외하고 정렬을 복구했다. 최종 관련36/36·실제 남악6대86.1417초/AI복귀0, 8종GLB합계+48,292B·primitive434유지. 다른 조향/AI/남악 변경은 보존하고 차량만 담은 분리 검증본의 전체 검사·성능을 진행한다. 배포/PR/main 병합 없음. [변경·사진 출처·실패·검증 한계](VEHICLE_REFERENCE_3PASS_20261015.md).
+
 **Vercel 운영 이전·사용자 Chrome 공식 주소 접속 완료:** 사용자 요청으로 GitHub/기존 `mumu-racing`을 유지하고 최신 커밋 `1ef0c24`의 Production `7W4e1KMBeYcMChDVETFnYpZ1Mubf`(Ready/15초)에 `racing.mumuworld.com`을 연결했다. Cloudflare DNS는 Vercel 지정 CNAME/DNS only이며 게임용 Worker `mumu-circuit`은 일반 Wrangler delete로 삭제했다. 공개 LF 빌드34/34파일 바이트·SHA 일치/78,686,282B·4코스HTML200·없는모델/옛Worker404. 실제 사용자Chrome공식주소 차고→키보드67km/h→1인칭→메뉴입력차단→차고복귀·오류0/정밀도경고1,Worker삭제후재로딩확인. 루트Wrangler설정은사본보존후제거했다. Vercel승격의Lint/TypeCheck우회는사용자가이빌드에한해승인했다. 터미널DNS127.0.0.1과최초줄바꿈불일치/도구실패는보존;원인확정이나전체재검증주장없음. 다음은공식주소에서사용자실제운전·두기기1:1과다음배포의검사연결이다. [공식 게임](https://racing.mumuworld.com/?track=namak) · [변경·검증·실패·한계](VERCEL_CUTOVER_20261014.md).
 
 아래 Cloudflare 호스팅·Chrome 접속 실패 문단은 이전 이력이다. 현재 호스팅/접속 판정은 위 Vercel 이전 결과를 따른다.

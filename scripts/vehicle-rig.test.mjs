@@ -40,7 +40,10 @@ for(const {id} of VEHICLES)test(`${id}: authored pivots survive batching, wheel 
   const paint=[];view.root.traverse(o=>{if(o.isMesh&&o.material.name?.includes('NewPaint'))paint.push(o.material);});
   assert.ok(paint.length>0);
   paint.forEach(m=>{
-   assert.equal(m.metalness,.34);assert.equal(m.roughness,.26);assert.equal(m.clearcoat,.8);assert.equal(m.clearcoatRoughness,.16);
+   // The coating is authored in Blender and intentionally evolves with the
+   // visual pass. Check the export/runtime contract rather than old art values.
+   const pbr=authored.pbrMetallicRoughness,coat=authored.extensions.KHR_materials_clearcoat;
+   for(const [actual,expected] of [[m.metalness,pbr.metallicFactor],[m.roughness,pbr.roughnessFactor],[m.clearcoat,coat.clearcoatFactor],[m.clearcoatRoughness,coat.clearcoatRoughnessFactor]])assert.ok(Math.abs(actual-expected)<1e-6,'Runtime coating must match authored export within float precision');
    assert.ok(m.color.equals(new THREE.Color().fromArray(authored.pbrMetallicRoughness.baseColorFactor)),'Polish preserves each authored vehicle colour');
   });
   root.traverse(o=>{if(o.isMesh&&o.material.name?.includes('NewPaint')){
