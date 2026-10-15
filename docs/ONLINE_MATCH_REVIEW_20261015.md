@@ -41,6 +41,8 @@
 
 이미 지운 검증 빌드를 제공하던 과거 preview 서버5개를 종료했고 주 개발 서버5191은 유지했다. 삭제 목록·용량과 보존 항목은 `artifacts/online-review-20261015/cleanup-regular-result-first.json`, `cleanup-regular-result.json`, `cleanup-regular-plan*.json`에 있다. 오래된 문서의 before/임시 preview 링크는 삭제된 복제본을 가리킬 수 있으며 현재 자료 위치와 구분한다.
 
+배포 뒤 이번 작업의 before4파일·검수 HTML/모니터2파일을 마감 정리하려던 별도 명령도 자동 승인 검토가 거부했다(상세 사유 없음). 이6파일도 삭제하지 않았고 다른 도구로 우회하지 않았다. `cleanup-final-blocked.json`에 기록했다. 따라서 **4,365개를 삭제했지만 모든 연결/이번 임시 검수 사본까지 삭제 완료라고 주장하지 않는다.**
+
 ## 미검증과 출시 한계
 
 1. 서로 다른 실제 기기·통신망, 강한 NAT/회사망, 장시간 고지연/패킷 손실 운전은 미검증이다. 같은 PC 두 창의 성공을 이 범위로 확대하지 않는다.
@@ -74,7 +76,26 @@
 
 ### 반영·운영 배포
 
-삭제는 `78d9885`, 이미 진행했던 운전감·라이벌·남악 변경은 `9d18466`으로 분리했다. 온라인 수정과 이번 근거를 같은 작업 브랜치에 반영하고 검증한 커밋을 기존 Vercel `mumu-racing`/`racing.mumuworld.com`으로 배포한다. 실제 결과는 배포 후 이 절에 추가한다.
+삭제는 `78d9885`, 이미 진행했던 운전감·라이벌·남악 변경은 `9d18466`, 온라인 수정과 이번 근거는 **`34d38f651b7f6e698c42dd94696ee67768e0d7f6`**으로 분리해 같은 작업 브랜치에 푸시했다. 기존 차량8종 3회 폴리싱 `e350533`도 포함한다. 원격 소스 SHA 일치를 확인했으며 main은 `bc012ae836e5b536d80bc35463295ee2d1b690c4` 그대로다. PR·main 병합은 하지 않았다.
+
+| 배포 항목 | 실제 결과 |
+| --- | --- |
+| 공식 주소 | [racing.mumuworld.com · 남악](https://racing.mumuworld.com/?track=namak) |
+| Vercel 프로젝트/환경 | 기존 `mumu-racing` / Production |
+| 배포 ID | `dpl_749Xa6fwwzzZ1XJPdaWNm6v97X5X` |
+| 상태/소스 | READY / 위 `34d38f6` 정확한 Git 커밋 |
+| API 기준 빌드 구간 | 16.076초 |
+| 도메인 할당 | `racing.mumuworld.com`, aliasError=null |
+| 공개 파일 | 35개 모두HTTP200. **33개 바이트/SHA 동일**, HTML26B·남악표식JSON336B의 CR 차이만 제외하면 나머지2개도 정확히 동일 |
+| 실제 정적 파일 합계 | 80,080,246B (로컬80,080,608B와362B 줄바꿈 차이) |
+| 4코스 HTML/없는 모델 | 모두200 / 404 |
+| 공식 실제 두 창 | 수프라/GT-R 방 생성·초대 참가·양쪽 준비·동시 출발·직접키보드46km/h·공유정지/재개·대기실/차고복귀·방나가기 |
+| 운영 입력 차단 | 주행 중 공유정지30.83초·45km/h에서 W+D700ms 후 두 표시 동일 |
+| 운영 브라우저 콘솔 | 두 창 합계 오류0·경고0 |
+
+보안 설정·DNS·배포 보호를 변경하거나 승격 검사를 우회하는 옵션은 쓰지 않았다. 공개 파일은 로컬 일반 HTTPS 요청으로 검사했으며, 줄바꿈 두 차이도 원래 바이트와 SHA를 `public-verification.json`에 보존했다. JS/CSS·GLB·음악은 바이트 그대로 일치한다. 운영 전체 한 바퀴를 새로 달린 것은 아니며, 완주·재경기 결과는 위 최종 로컬 소스의 실제 WebRTC 검수와 구분한다.
+
+`production-pair.json`, `production-drive-and-pause.json`, `production-smoke-final.json`, `production-online-lobby.png`, `deployment.json`이 운영 근거다. Vercel 자체 runtime log/drain 관측을 새로 설정한 것은 아니며 위 오류0은 브라우저 콘솔 범위다. 원본 실패 로그의 공백은 변경하지 않아 전체 artifact diff-check에 공백 경고가 있었고 코드·문서 범위 diff-check는 통과했다.
 
 ## 공식 참고
 
