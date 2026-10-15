@@ -1,0 +1,20 @@
+✔ slow frame intervals remain visible when CPU submission is short (3.0023ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (3.8835ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (1.1319ms)
+✔ frame and CPU measurements reset together after a pause (4.1134ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (0.8894ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.686ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (55.4649ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (8.2638ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (2.9261ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (2.9153ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (1.2917ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (340.4815ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 984.4561

@@ -1,0 +1,197 @@
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (4108.3157ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (101.9101ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (68.9042ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (1.9335ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (3563.9844ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (204.1746ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (27.3454ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (5305.3875ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.764893459599719,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 203.6446075439453,
+      y: 0.5410054922103882,
+      z: -1.5953369140625
+    },
+    finish: 106.8,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5934172868728638,
+      targetLane: 1.5934172868728638,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.47613525390625,
+      y: 0.5660059452056885,
+      z: -1.6205452680587769
+    },
+    finish: 114.76666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6205452680587769,
+      targetLane: 1.6205452680587769,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 193.05332946777344,
+      y: 0.551005482673645,
+      z: -1.814759612083435
+    },
+    finish: 111.2,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.8138165473937988,
+      targetLane: 1.8138165473937988,
+      passes: 0,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 212.4888458251953,
+      y: 0.5610054731369019,
+      z: -0.5379095673561096
+    },
+    finish: 93.66666666666667,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.5388641357421875,
+      targetLane: 0.5388641357421875,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.951802247702199,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.66781616210938,
+      y: 0.5360054969787598,
+      z: -2.120835542678833
+    },
+    finish: 88.35,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.1223175525665283,
+      targetLane: 2.1223175525665283,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (28155.0956ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (21789.7963ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79792.48

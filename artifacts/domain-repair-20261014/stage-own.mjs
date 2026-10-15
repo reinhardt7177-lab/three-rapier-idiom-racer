@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8'});
+const target='docs/NEXT_STEPS.md',section=fs.readFileSync('artifacts/domain-repair-20261014/next-section.md','utf8').trimEnd()+'\n\n';
+const header='# 현재 우선순위 · 2026-10-14\n\n';
+const baseline=git('show','HEAD:'+target),current=fs.readFileSync(target,'utf8').replace(/\r\n/g,'\n');
+if(!baseline.startsWith(header)||!current.startsWith(header))throw Error('Unexpected priority document header');
+if(current.includes(section.trimEnd()))throw Error('Own section already applied; stop');
+fs.writeFileSync(target,header+section+current.slice(header.length));
+const staged=header+section+baseline.slice(header.length),blob=execFileSync('git',['hash-object','-w','--stdin'],{input:staged,encoding:'utf8'}).trim();
+git('update-index','--cacheinfo','100644',blob,target);
+console.log('Staged own priority section; preserved unrelated working-tree paragraph.');

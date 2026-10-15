@@ -1,0 +1,52 @@
+{
+  "status": "stopped_after_four_incomplete_six_car_race_checks",
+  "reason": "User stop rule; latest traffic race 4/6 within 420s; remaining cars still moving",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "head": "12784fa085e8485f6fc51d761976f74c989fd8bd",
+  "engine": "Three.js / Rapier",
+  "compute": "Local Windows CPU after user authorized no Colab connection",
+  "track": {
+    "metres": 8902.28892711853,
+    "planarDeviationMetres": 5.24003485185291,
+    "osmWays": 45
+  },
+  "shortTests": {
+    "pass": 13,
+    "fail": 0,
+    "milliseconds": 6873.4355
+  },
+  "build": {
+    "passed": true,
+    "seconds": 7.0,
+    "largeChunkWarning": true
+  },
+  "fullCheck": "not run",
+  "assetBytes": {
+    "mappedCourseBefore": 3794805,
+    "mappedCourseAfter": 10514905,
+    "courseIncrease": 6720100,
+    "runtimeGlbAndRouteAfter": 15997169,
+    "runtimeGlbAndRouteBefore": 9277069,
+    "coldNetworkMeasurement": false
+  },
+  "performance": "Only 240-frame stationary current-scene sample; no full fixed A/B",
+  "ui": "Garage controls 23, 4 sizes, clipped/overlap 0; other screens incomplete",
+  "raceEvidence": [
+    "smoke-1.json",
+    "smoke-2.json",
+    "smoke-3.json",
+    "smoke-4.json"
+  ],
+  "pending": [
+    "Traffic passing and long following",
+    "New map medal targets",
+    "Difficulty/lap matrix and faster-rival A/B",
+    "All npm check regressions",
+    "Browser complete races/input/UI",
+    "30s A/B frames and cold loading",
+    "Real coastline landmass and further scenery"
+  ],
+  "push": false,
+  "deploy": false,
+  "unexpectedEdits": 0
+}

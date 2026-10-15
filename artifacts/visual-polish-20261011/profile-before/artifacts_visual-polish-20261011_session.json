@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-10-11T13:15:00+09:00",
+  "deadline": "2026-10-11T19:15:00+09:00",
+  "baseCommit": "8c5bb8b",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "status": "namak-sustained-load-diagnosis",
+  "completed": [
+    "actual official photos and satellite reference captures",
+    "course-specific first palette and night sky",
+    "241 regression tests + build on Colab CPU; 136 input hashes matched",
+    "18 physical championship finishes",
+    "4 viewport race/menu clipping and overlap checks",
+    "before/after resource and frame records",
+    "bounded lifetime frame-gap evidence with both endpoint focus/CPU; cold first render stalls confirmed",
+    "243 regression tests + build on Colab CPU; 136 hashes matched; 4 viewport HUD/menu and keyboard release",
+    "race world compile/warm draw before clock; stale timestamp boundary fixed; preparation costs preserved",
+    "247 full regression tests + build on actual Colab CPU; 137 local hashes matched",
+    "18 physical championship finishes; Namak browser 6 finishes/result/garage/restart/keyboard release; four viewport HUD/menu",
+    "paired baseline/current Namak sustained cost evidence; resolution and frozen-transform trials recorded, unproven trial excluded; 137 source hashes unchanged"
+  ],
+  "next": [
+    "separate world/vehicle/shadow draw and CPU costs; inspect GPU timer support; maintain same Namak start conditions",
+    "diagnose prior Seongsamjae 1000ms gaps with per-endpoint evidence; new geometry remains held",
+    "after performance gate: Blender Yeosu bridge/reflections and Seongsamjae forest/ridges"
+  ],
+  "stopReason": "New geometry held pending Namak intermittent delay and Seongsamjae 1000ms frame-gap diagnosis",
+  "heartbeatId": "6",
+  "baselineServerPid": 29552,
+  "check": {
+    "passed": 247,
+    "failed": 0,
+    "skipped": 0,
+    "inputHashes": 137,
+    "seconds": 204.1484875679016
+  },
+  "lastObservation": "Baseline p95 33.4ms/current33.5ms at868calls1,279,323tri;960x540 p9533.4ms; static-transform trial did not resolve gate and was excluded",
+  "lastUpdatedAt": "2026-10-11T05:29:20.749Z"
+}

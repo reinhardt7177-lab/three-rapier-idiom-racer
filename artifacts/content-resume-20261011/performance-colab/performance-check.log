@@ -1,0 +1,2191 @@
+
+> mumu-open-circuit@0.1.0 check
+> npm run check:rebuild
+
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=1 scripts/performance-comparison.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+TAP version 13
+# Subtest: six physical cars finish all three championship rounds and earn only finish-based points
+ok 1 - six physical cars finish all three championship rounds and earn only finish-based points
+  ---
+  duration_ms: 23424.292912
+  ...
+# Subtest: three real course rounds advance once and award 10/6/4/3/2/1
+ok 2 - three real course rounds advance once and award 10/6/4/3/2/1
+  ---
+  duration_ms: 3.070961
+  ...
+# Subtest: partial, duplicate, unknown and invalid finishes cannot create championship points
+ok 3 - partial, duplicate, unknown and invalid finishes cannot create championship points
+  ---
+  duration_ms: 0.473337
+  ...
+# Subtest: rounds remain immutable and points ties use wins then real total finish time
+ok 4 - rounds remain immutable and points ties use wins then real total finish time
+  ---
+  duration_ms: 1.174384
+  ...
+# Subtest: series checkpoint resumes its next course and corrupted data is rejected
+ok 5 - series checkpoint resumes its next course and corrupted data is rejected
+  ---
+  duration_ms: 0.846046
+  ...
+# Subtest: best series uses points before time and tolerates blocked storage
+ok 6 - best series uses points before time and tolerates blocked storage
+  ---
+  duration_ms: 1.018388
+  ...
+# Subtest: opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open
+ok 7 - opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open
+  ---
+  duration_ms: 96.135799
+  ...
+# Subtest: Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget
+ok 8 - Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget
+  ---
+  duration_ms: 6.909428
+  ...
+# Subtest: actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged
+ok 9 - actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged
+  ---
+  duration_ms: 12.025132
+  ...
+# Subtest: camera-mounted hidden interior and its fill light release through scene disposal exactly once
+ok 10 - camera-mounted hidden interior and its fill light release through scene disposal exactly once
+  ---
+  duration_ms: 6.111086
+  ...
+# Subtest: digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads
+ok 11 - digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads
+  ---
+  duration_ms: 4.936807
+  ...
+# Subtest: display draws telemetry onto one atlas at most ten times a second and retains the latest value
+ok 12 - display draws telemetry onto one atlas at most ten times a second and retains the latest value
+  ---
+  duration_ms: 1.033355
+  ...
+# coastal easy median rival finish 208.35 YOU:2/207.15s scrape 0s off 0s nitro 0s | slk:6/218.87s scrape 0.66s off 0s nitro 0s | mustang:4/208.35s scrape 0.03s off 0s nitro 0s | porsche911:5/215.35s scrape 0s off 0s nitro 0s | gtr:1/203.63s scrape 0.55s off 0s nitro 0s | rx7:3/207.92s scrape 0.12s off 0s nitro 0s
+# coastal normal median rival finish 205.17 YOU:4/209.06s scrape 0s off 0s nitro 0s | slk:6/217.13s scrape 0s off 0s nitro 0s | mustang:1/205.03s scrape 0s off 0s nitro 0s | porsche911:2/205.05s scrape 0s off 0s nitro 0s | gtr:3/205.17s scrape 0s off 0s nitro 0s | rx7:5/209.17s scrape 0s off 0s nitro 0s
+# coastal hard median rival finish 196.99 YOU:6/214.68s scrape 0s off 0s nitro 0s | slk:5/201.9s scrape 0s off 0s nitro 17.11s | mustang:3/196.99s scrape 0s off 0s nitro 17.97s | porsche911:1/194.2s scrape 0s off 0s nitro 20.4s | gtr:2/194.42s scrape 0s off 0s nitro 17.24s | rx7:4/201.36s scrape 0s off 0s nitro 16.74s
+# namak easy median rival finish 90.70 YOU:2/88.97s scrape 0s off 0s nitro 0s | slk:4/90.7s scrape 0s off 0s nitro 0s | mustang:1/88.85s scrape 0s off 0s nitro 0s | porsche911:5/90.82s scrape 0s off 0s nitro 0s | gtr:6/90.94s scrape 0s off 0s nitro 0s | rx7:3/90.47s scrape 0s off 0s nitro 0s
+# namak normal median rival finish 85.97 YOU:3/84.69s scrape 0s off 0s nitro 0s | slk:5/86.91s scrape 0s off 0s nitro 0s | mustang:1/84.15s scrape 0s off 0s nitro 0s | porsche911:6/87.04s scrape 0s off 0s nitro 0s | gtr:2/84.31s scrape 0s off 0s nitro 0s | rx7:4/85.97s scrape 0s off 0s nitro 0s
+# namak hard median rival finish 79.58 YOU:4/83.91s scrape 0s off 0s nitro 0s | slk:6/87.79s scrape 0s off 0s nitro 10.28s | mustang:3/79.58s scrape 0s off 0s nitro 9.83s | porsche911:2/79.42s scrape 0s off 0s nitro 14.96s | gtr:1/78.71s scrape 0s off 0s nitro 11.29s | rx7:5/84.21s scrape 0s off 0s nitro 4.84s
+# Subtest: the player starts from the back of a full grid; rivals keep their order ahead
+ok 13 - the player starts from the back of a full grid; rivals keep their order ahead
+  ---
+  duration_ms: 2.137313
+  ...
+# Subtest: easy keeps the previous rival calibration; harder levels are strictly quicker
+ok 14 - easy keeps the previous rival calibration; harder levels are strictly quicker
+  ---
+  duration_ms: 0.356827
+  ...
+# Subtest: difficulty preference survives reloads and blocked storage never breaks the garage
+ok 15 - difficulty preference survives reloads and blocked storage never breaks the garage
+  ---
+  duration_ms: 0.434193
+  ...
+# Subtest: every exported racing road is asphalt and the open ground around it is slower
+ok 16 - every exported racing road is asphalt and the open ground around it is slower
+  ---
+  duration_ms: 89.465543
+  ...
+# Subtest: grass and paving slow a coasting car; asphalt behaves exactly as before
+ok 17 - grass and paving slow a coasting car; asphalt behaves exactly as before
+  ---
+  duration_ms: 256.265616
+  ...
+# Subtest: wall scraping costs speed, and a parked car pressed to a wall never creeps
+ok 18 - wall scraping costs speed, and a parked car pressed to a wall never creeps
+  ---
+  duration_ms: 63.912684
+  ...
+# Subtest: wall contact is reported for barriers, not for the road a car is resting on
+ok 19 - wall contact is reported for barriers, not for the road a car is resting on
+  ---
+  duration_ms: 22.209529
+  ...
+# Subtest: fast rivals see a hairpin early enough to brake; the previous profile is unchanged
+ok 20 - fast rivals see a hairpin early enough to brake; the previous profile is unchanged
+  ---
+  duration_ms: 2.241872
+  ...
+# Subtest: only nitro-enabled rivals boost, and never while merging or held behind traffic
+ok 21 - only nitro-enabled rivals boost, and never while merging or held behind traffic
+  ---
+  duration_ms: 2.981141
+  ...
+# Subtest: coastal: every difficulty finishes from a back-of-grid start without falls, and harder is faster
+ok 22 - coastal: every difficulty finishes from a back-of-grid start without falls, and harder is faster
+  ---
+  duration_ms: 55711.406459
+  ...
+# Subtest: namak: every difficulty finishes from a back-of-grid start without falls, and harder is faster
+ok 23 - namak: every difficulty finishes from a back-of-grid start without falls, and harder is faster
+  ---
+  duration_ms: 16182.839498
+  ...
+# Subtest: eight original voices have distinct spectra and pitch follows actual RPM, not road speed
+ok 24 - eight original voices have distinct spectra and pitch follows actual RPM, not road speed
+  ---
+  duration_ms: 2.490892
+  ...
+# Subtest: voice changes reset response, pause holds RPM, and recovery clears stale shift history
+ok 25 - voice changes reset response, pause holds RPM, and recovery clears stale shift history
+  ---
+  duration_ms: 0.703489
+  ...
+# Subtest: vehicle pedal response, shift interruption and engine braking really reach the drivetrain
+ok 26 - vehicle pedal response, shift interruption and engine braking really reach the drivetrain
+  ---
+  duration_ms: 1.27682
+  ...
+# Subtest: Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources
+ok 27 - Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources
+  ---
+  duration_ms: 2.977153
+  ...
+# [
+#   {
+#     id: 'supra',
+#     time100: 4.025,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.6687438964843864
+#   },
+#   {
+#     id: 'slk',
+#     time100: 4.916666666666667,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.6158447265625
+#   },
+#   {
+#     id: 'mustang',
+#     time100: 4.183333333333334,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.6285339355468835
+#   },
+#   {
+#     id: 'porsche911',
+#     time100: 3.8833333333333333,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.941973876953128
+#   },
+#   {
+#     id: 'gtr',
+#     time100: 4,
+#     shifts: 1,
+#     peakTilt: 0,
+#     coastLoss: 2.8290344238281193
+#   },
+#   {
+#     id: 'rx7',
+#     time100: 3.6416666666666666,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.9134094238281136
+#   },
+#   {
+#     id: 'm3',
+#     time100: 4.233333333333333,
+#     shifts: 2,
+#     peakTilt: 0,
+#     coastLoss: 2.583599853515622
+#   },
+#   {
+#     id: 'huracan',
+#     time100: 3.125,
+#     shifts: 1,
+#     peakTilt: 0,
+#     coastLoss: 3.776660156250003
+#   }
+# ]
+# Subtest: eight tuned vehicles accelerate, change gears and coast with stable supported chassis
+ok 28 - eight tuned vehicles accelerate, change gears and coast with stable supported chassis
+  ---
+  duration_ms: 463.502253
+  ...
+# Subtest: RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart
+ok 29 - RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart
+  ---
+  duration_ms: 2.561356
+  ...
+# Subtest: launch smoke uses only the rear contact patches below drift speed and stops in the air
+ok 30 - launch smoke uses only the rear contact patches below drift speed and stops in the air
+  ---
+  duration_ms: 9.03516
+  ...
+# Subtest: smoke follows actual wheel contacts, stays bounded and clears on reset or quality change
+ok 31 - smoke follows actual wheel contacts, stays bounded and clears on reset or quality change
+  ---
+  duration_ms: 30.71277
+  ...
+# Subtest: same-speed acceleration and braking produce distinct bounded camera response at every frame rate
+ok 32 - same-speed acceleration and braking produce distinct bounded camera response at every frame rate
+  ---
+  duration_ms: 13.562708
+  ...
+# Subtest: audio load and boost are distinct at identical road speed
+ok 33 - audio load and boost are distinct at identical road speed
+  ---
+  duration_ms: 0.273643
+  ...
+# Subtest: stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration
+ok 34 - stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration
+  ---
+  duration_ms: 0.667788
+  ...
+# Subtest: actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis
+ok 35 - actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis
+  ---
+  duration_ms: 2.450654
+  ...
+# {"push":1,"braking":1,"scrub":0.9999999028585778}
+# Subtest: real Rapier drive/brake/corner signals do not change the simulation trajectory
+ok 36 - real Rapier drive/brake/corner signals do not change the simulation trajectory
+  ---
+  duration_ms: 297.051849
+  ...
+# Subtest: tire trails have a bounded pool, fade, and never bridge reset/airborne gaps
+ok 37 - tire trails have a bounded pool, fade, and never bridge reset/airborne gaps
+  ---
+  duration_ms: 16.945351
+  ...
+# Subtest: load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag
+ok 38 - load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag
+  ---
+  duration_ms: 0.761349
+  ...
+# Subtest: pending audio resume cannot undo mute or reopen a disposed graph
+ok 39 - pending audio resume cannot undo mute or reopen a disposed graph
+  ---
+  duration_ms: 1.752102
+  ...
+# {
+#   id: 'supra',
+#   groundedHeave: 4.76837158203125e-7,
+#   rolling: 844.8607788085938,
+#   distance: 844.7932281494141
+# }
+# {
+#   id: 'slk',
+#   groundedHeave: 4.76837158203125e-7,
+#   rolling: 765.2173974609376,
+#   distance: 765.1571350097656
+# }
+# {
+#   id: 'mustang',
+#   groundedHeave: 0,
+#   rolling: 840.7089739372468,
+#   distance: 840.6544036865234
+# }
+# {
+#   id: 'porsche911',
+#   groundedHeave: 4.76837158203125e-7,
+#   rolling: 854.0896362304687,
+#   distance: 854.0217132568359
+# }
+# {
+#   id: 'gtr',
+#   groundedHeave: 4.76837158203125e-7,
+#   rolling: 861.81134765625,
+#   distance: 861.7566528320312
+# }
+# {
+#   id: 'rx7',
+#   groundedHeave: 4.172325134277344e-7,
+#   rolling: 876.3626989746094,
+#   distance: 876.2820434570312
+# }
+# {
+#   id: 'm3',
+#   groundedHeave: 0,
+#   rolling: 816.6609045410156,
+#   distance: 816.5952758789062
+# }
+# {
+#   id: 'huracan',
+#   groundedHeave: 4.76837158203125e-7,
+#   rolling: 974.0006103515624,
+#   distance: 973.9185791015625
+# }
+# Subtest: eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints
+ok 40 - eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints
+  ---
+  duration_ms: 10.701619
+  ...
+# Subtest: GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 41 - GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 295.725108
+  ...
+# Subtest: SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 42 - SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 186.13178
+  ...
+# Subtest: Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 43 - Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 137.605832
+  ...
+# Subtest: Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 44 - Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 124.268803
+  ...
+# Subtest: Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 45 - Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 139.530669
+  ...
+# Subtest: Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 46 - Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 125.028515
+  ...
+# Subtest: BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 47 - BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 117.709112
+  ...
+# Subtest: Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+ok 48 - Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical
+  ---
+  duration_ms: 119.997233
+  ...
+# Subtest: banked uphill support follows real road grade without releasing stability as vertical speed rises
+ok 49 - banked uphill support follows real road grade without releasing stability as vertical speed rises
+  ---
+  duration_ms: 92.87523
+  ...
+# Subtest: actual showroom wall occlusion is removed for rear and diagonal vehicle views
+ok 50 - actual showroom wall occlusion is removed for rear and diagonal vehicle views
+  ---
+  duration_ms: 6.890487
+  ...
+# Subtest: front and in-room rear views restore the real backdrop
+ok 51 - front and in-room rear views restore the real backdrop
+  ---
+  duration_ms: 1.057622
+  ...
+# Subtest: yeosu: editable Blender course and exported GLB respect the 25MB budget
+ok 52 - yeosu: editable Blender course and exported GLB respect the 25MB budget
+  ---
+  duration_ms: 69.162262
+  ...
+# Subtest: yeosu: visual buildings and roofs do not occupy the racing corridor
+ok 53 - yeosu: visual buildings and roofs do not occupy the racing corridor
+  ---
+  duration_ms: 85.176967
+  ...
+# Subtest: yeosu: all route points form a closed, finite circuit without gaps
+ok 54 - yeosu: all route points form a closed, finite circuit without gaps
+  ---
+  duration_ms: 14.954547
+  ...
+# Subtest: yeosu: every route sample at -7,0,+7m has upward asphalt support and clear car space
+ok 55 - yeosu: every route sample at -7,0,+7m has upward asphalt support and clear car space
+  ---
+  duration_ms: 254.32645
+  ...
+# Subtest: seongsamjae: editable Blender course and exported GLB respect the 25MB budget
+ok 56 - seongsamjae: editable Blender course and exported GLB respect the 25MB budget
+  ---
+  duration_ms: 98.771517
+  ...
+# Subtest: seongsamjae: visual buildings and roofs do not occupy the racing corridor
+ok 57 - seongsamjae: visual buildings and roofs do not occupy the racing corridor
+  ---
+  duration_ms: 122.783267
+  ...
+# Subtest: seongsamjae: all route points form a closed, finite circuit without gaps
+ok 58 - seongsamjae: all route points form a closed, finite circuit without gaps
+  ---
+  duration_ms: 26.363031
+  ...
+# Subtest: seongsamjae: every route sample at -7,0,+7m has upward asphalt support and clear car space
+ok 59 - seongsamjae: every route sample at -7,0,+7m has upward asphalt support and clear car space
+  ---
+  duration_ms: 168.267806
+  ...
+# Subtest: yeosu 1 laps: medal targets are backed by complete six-car races
+ok 60 - yeosu 1 laps: medal targets are backed by complete six-car races
+  ---
+  duration_ms: 1.761034
+  ...
+# Subtest: yeosu 3 laps: medal targets are backed by complete six-car races
+ok 61 - yeosu 3 laps: medal targets are backed by complete six-car races
+  ---
+  duration_ms: 1.026887
+  ...
+# Subtest: seongsamjae 1 laps: medal targets are backed by complete six-car races
+ok 62 - seongsamjae 1 laps: medal targets are backed by complete six-car races
+  ---
+  duration_ms: 0.197582
+  ...
+# Subtest: seongsamjae 3 laps: medal targets are backed by complete six-car races
+ok 63 - seongsamjae 3 laps: medal targets are backed by complete six-car races
+  ---
+  duration_ms: 0.152263
+  ...
+# Subtest: course colours preserve collision geometry and leave existing courses untouched
+ok 64 - course colours preserve collision geometry and leave existing courses untouched
+  ---
+  duration_ms: 3.988043
+  ...
+# Subtest: night lamps retain authored emission and shared materials are graded once
+ok 65 - night lamps retain authored emission and shared materials are graded once
+  ---
+  duration_ms: 1.615181
+  ...
+# Subtest: night sky follows camera, has no extra lights or render pass, and disposes on course exit
+ok 66 - night sky follows camera, has no extra lights or render pass, and disposes on course exit
+  ---
+  duration_ms: 3.870675
+  ...
+# Subtest: landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching
+ok 67 - landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching
+  ---
+  duration_ms: 2.234671
+  ...
+# Subtest: touch portrait requires rotation; landscape touch and narrow desktop remain usable
+ok 68 - touch portrait requires rotation; landscape touch and narrow desktop remain usable
+  ---
+  duration_ms: 0.302439
+  ...
+# Subtest: physical viewport rotation clears simultaneous pedals even though the game stage stays landscape
+ok 69 - physical viewport rotation clears simultaneous pedals even though the game stage stays landscape
+  ---
+  duration_ms: 0.564563
+  ...
+# Subtest: initial portrait or switching from fine pointer to portrait touch blocks controls
+ok 70 - initial portrait or switching from fine pointer to portrait touch blocks controls
+  ---
+  duration_ms: 0.241661
+  ...
+# Subtest: fullscreen is requested before the orientation lock, on an explicit user action
+ok 71 - fullscreen is requested before the orientation lock, on an explicit user action
+  ---
+  duration_ms: 0.442702
+  ...
+# Subtest: denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success
+ok 72 - denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success
+  ---
+  duration_ms: 0.6092
+  ...
+# Subtest: loading metrics distinguish cached bytes, transferred bytes and unavailable sizes
+ok 73 - loading metrics distinguish cached bytes, transferred bytes and unavailable sizes
+  ---
+  duration_ms: 1.806042
+  ...
+# Subtest: paused track selection changes one media source without autoplay; resume, restart and garage keep the choice
+ok 74 - paused track selection changes one media source without autoplay; resume, restart and garage keep the choice
+  ---
+  duration_ms: 2.308765
+  ...
+# Subtest: changing tracks while music or master sound is disabled never re-enables sound
+ok 75 - changing tracks while music or master sound is disabled never re-enables sound
+  ---
+  duration_ms: 1.308643
+  ...
+# Subtest: active switching resets time and gain on the same element; same or unknown choices leave the playhead alone
+ok 76 - active switching resets time and gain on the same element; same or unknown choices leave the playhead alone
+  ---
+  duration_ms: 0.376847
+  ...
+# Subtest: a rejected play promise from the old track cannot mark the newly selected track failed
+ok 77 - a rejected play promise from the old track cannot mark the newly selected track failed
+  ---
+  duration_ms: 0.378593
+  ...
+# Subtest: track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults
+ok 78 - track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults
+  ---
+  duration_ms: 0.569763
+  ...
+# Subtest: both published catalog entries resolve to distinct packaged MP3 files containing their actual titles
+ok 79 - both published catalog entries resolve to distinct packaged MP3 files containing their actual titles
+  ---
+  duration_ms: 3.080432
+  ...
+# Subtest: exported Blender signs contain readable place labels on their outward board face
+ok 80 - exported Blender signs contain readable place labels on their outward board face
+  ---
+  duration_ms: 71.671141
+  ...
+# Subtest: all actual sign geometry stays out of the drivable corridor and adds no hidden colliders
+ok 81 - all actual sign geometry stays out of the drivable corridor and adds no hidden colliders
+  ---
+  duration_ms: 79.512266
+  ...
+# Subtest: sign groups survive batching, cull outside the current district and release resources once
+ok 82 - sign groups survive batching, cull outside the current district and release resources once
+  ---
+  duration_ms: 47.943245
+  ...
+# Subtest: Blender corridor has dense street furniture and improved facades within the existing download budget
+ok 83 - Blender corridor has dense street furniture and improved facades within the existing download budget
+  ---
+  duration_ms: 219.667358
+  ...
+# Subtest: parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching
+ok 84 - parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching
+  ---
+  duration_ms: 9.127697
+  ...
+# Subtest: world relief adds only one shared texture and preserves all physics vertices and coastal lighting
+ok 85 - world relief adds only one shared texture and preserves all physics vertices and coastal lighting
+  ---
+  duration_ms: 3.762181
+  ...
+# Subtest: player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes
+ok 86 - player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes
+  ---
+  duration_ms: 0.412557
+  ...
+# {"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+# {"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+# {"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+# {"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+# Subtest: enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h
+ok 87 - enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h
+  ---
+  duration_ms: 430.22172
+  ...
+# Subtest: track selection pairs each world with its own route and rejects unknown locations
+ok 88 - track selection pairs each world with its own route and rejects unknown locations
+  ---
+  duration_ms: 38.483559
+  ...
+# Subtest: Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage
+ok 89 - Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage
+  ---
+  duration_ms: 3.82423
+  ...
+# Subtest: actual Blender road faces up, every route sample has paved support, and both assets remain editable
+ok 90 - actual Blender road faces up, every route sample has paved support, and both assets remain editable
+  ---
+  duration_ms: 861.090456
+  ...
+# Namak physical laps [
+#   {
+#     id: 'supra',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 2.4161526340562087,
+#     minY: 0.5508187413215637,
+#     contacts: 4
+#   },
+#   {
+#     id: 'slk',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.883160340646321,
+#     minY: 0.5408369302749634,
+#     contacts: 4
+#   },
+#   {
+#     id: 'mustang',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 2.4163269289877087,
+#     minY: 0.5657898187637329,
+#     contacts: 4
+#   },
+#   {
+#     id: 'porsche911',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.917660605298897,
+#     minY: 0.5508187413215637,
+#     contacts: 4
+#   },
+#   {
+#     id: 'gtr',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 2.4163879984360577,
+#     minY: 0.5607996582984924,
+#     contacts: 4
+#   },
+#   {
+#     id: 'rx7',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.7328752600144925,
+#     minY: 0.5358662605285645,
+#     contacts: 4
+#   }
+# ]
+# Namak stationary-grid rivals [
+#   {
+#     id: 'supra',
+#     progress: 0,
+#     maxDeviation: 2.200000047687541,
+#     minY: 0.5508187413215637,
+#     contacts: 4,
+#     position: {
+#       x: 150.47105407714844,
+#       y: 0.5510051250457764,
+#       z: 2.200000047683716
+#     },
+#     finish: null,
+#     plan: null
+#   },
+#   {
+#     id: 'slk',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.73952952545651,
+#     minY: 0.5408369302749634,
+#     contacts: 4,
+#     position: {
+#       x: 205.43775939941406,
+#       y: 0.5410054922103882,
+#       z: -1.7271398305892944
+#     },
+#     finish: 94.40833333333333,
+#     plan: {
+#       mode: 'follow',
+#       reason: 'following',
+#       homeLane: 1.7219637632369995,
+#       targetLane: 1.7219637632369995,
+#       passes: 0,
+#       attempts: 3,
+#       aborts: 1,
+#       age: 0
+#     }
+#   },
+#   {
+#     id: 'mustang',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.900168504437077,
+#     minY: 0.5657898187637329,
+#     contacts: 4,
+#     position: {
+#       x: 149.59780883789062,
+#       y: 0.5660055875778198,
+#       z: -1.467954397201538
+#     },
+#     finish: 100.61666666666666,
+#     plan: {
+#       mode: 'follow',
+#       reason: 'following',
+#       homeLane: 1.467954397201538,
+#       targetLane: 1.467954397201538,
+#       passes: 1,
+#       attempts: 2,
+#       aborts: 0,
+#       age: 0
+#     }
+#   },
+#   {
+#     id: 'porsche911',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.955463807464995,
+#     minY: 0.5508187413215637,
+#     contacts: 4,
+#     position: {
+#       x: 220.30242919921875,
+#       y: 0.551005482673645,
+#       z: -1.9227972030639648
+#     },
+#     finish: 91.875,
+#     plan: {
+#       mode: 'follow',
+#       reason: 'following',
+#       homeLane: 1.922555685043335,
+#       targetLane: 1.922555685043335,
+#       passes: 1,
+#       attempts: 3,
+#       aborts: 0,
+#       age: 0
+#     }
+#   },
+#   {
+#     id: 'gtr',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.966067844719954,
+#     minY: 0.5607996582984924,
+#     contacts: 4,
+#     position: {
+#       x: 209.80029296875,
+#       y: 0.5610054731369019,
+#       z: -0.5354852080345154
+#     },
+#     finish: 93.66666666666667,
+#     plan: {
+#       mode: 'follow',
+#       reason: 'following',
+#       homeLane: 0.5388641357421875,
+#       targetLane: 0.5388641357421875,
+#       passes: 1,
+#       attempts: 3,
+#       aborts: 0,
+#       age: 0
+#     }
+#   },
+#   {
+#     id: 'rx7',
+#     progress: 2927.3350238627413,
+#     maxDeviation: 4.951802247702199,
+#     minY: 0.5358662605285645,
+#     contacts: 4,
+#     position: {
+#       x: 232.66781616210938,
+#       y: 0.5360054969787598,
+#       z: -2.120835542678833
+#     },
+#     finish: 88.35,
+#     plan: {
+#       mode: 'follow',
+#       reason: 'following',
+#       homeLane: 2.1223175525665283,
+#       targetLane: 2.1223175525665283,
+#       passes: 1,
+#       attempts: 1,
+#       aborts: 0,
+#       age: 0
+#     }
+#   }
+# ]
+# Subtest: six real physical vehicles complete the new circuit on its exported road and barriers
+ok 91 - six real physical vehicles complete the new circuit on its exported road and barriers
+  ---
+  duration_ms: 5147.754103
+  ...
+# Subtest: five planned rivals finish Namak while the player stays stopped on the starting grid
+ok 92 - five planned rivals finish Namak while the player stays stopped on the starting grid
+  ---
+  duration_ms: 5263.033968
+  ...
+# Subtest: night headlights follow vehicle yaw, illuminate ahead and hide outside a race
+ok 93 - night headlights follow vehicle yaw, illuminate ahead and hide outside a race
+  ---
+  duration_ms: 7.243113
+  ...
+# Subtest: performance runs preserve every slow sample for at least thirty seconds
+ok 94 - performance runs preserve every slow sample for at least thirty seconds
+  ---
+  duration_ms: 2.04481
+  ...
+# Subtest: front-side ghost trial restores all materials and does not change geometry or transform
+ok 95 - front-side ghost trial restores all materials and does not change geometry or transform
+  ---
+  duration_ms: 2.367
+  ...
+# Subtest: releasing one pedal source preserves another finger or keyboard owner
+ok 96 - releasing one pedal source preserves another finger or keyboard owner
+  ---
+  duration_ms: 1.824556
+  ...
+# Subtest: cancelled steering and pedal pointers release independently during simultaneous driving
+ok 97 - cancelled steering and pedal pointers release independently during simultaneous driving
+  ---
+  duration_ms: 0.822382
+  ...
+# Subtest: menu click focus cannot disable ESC; resume rejects a stale held key repeat
+ok 98 - menu click focus cannot disable ESC; resume rejects a stale held key repeat
+  ---
+  duration_ms: 0.625311
+  ...
+# Subtest: typing and Space on menu buttons remain native UI actions
+ok 99 - typing and Space on menu buttons remain native UI actions
+  ---
+  duration_ms: 0.314978
+  ...
+# Subtest: focus or layout clearing releases every control and requires a fresh press
+ok 100 - focus or layout clearing releases every control and requires a fresh press
+  ---
+  duration_ms: 0.261442
+  ...
+# Subtest: layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize
+ok 101 - layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize
+  ---
+  duration_ms: 0.215761
+  ...
+# { touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+# { stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+# {
+#   id: 'supra',
+#   impacts: 1,
+#   maxZ: 27.262197494506836,
+#   penetration: 0.005001296137265854,
+#   retreat: 20.563620931173496,
+#   escapeReverse: false,
+#   restartKmh: 7.308076977197555
+# }
+# {
+#   id: 'slk',
+#   impacts: 1,
+#   maxZ: 27.39307403564453,
+#   penetration: 0.005315589619733885,
+#   retreat: 31.80414800499261,
+#   escapeReverse: false,
+#   restartKmh: 7.285221181160444
+# }
+# {
+#   id: 'mustang',
+#   impacts: 1,
+#   maxZ: 27.050600051879883,
+#   penetration: 0.005000290262767493,
+#   retreat: 18.324362906897758,
+#   escapeReverse: false,
+#   restartKmh: 7.219919077910355
+# }
+# Subtest: holding the touch brake physically stops and stays stopped, while keyboard reverse remains available
+ok 102 - holding the touch brake physically stops and stays stopped, while keyboard reverse remains available
+  ---
+  duration_ms: 262.215149
+  ...
+# Subtest: AI stops behind a stationary car without impact and follows when it moves
+ok 103 - AI stops behind a stationary car without impact and follows when it moves
+  ---
+  duration_ms: 304.49156
+  ...
+# Subtest: all three cars can drive away and change direction after an oblique wall impact
+ok 104 - all three cars can drive away and change direction after an oblique wall impact
+  ---
+  duration_ms: 210.717329
+  ...
+# {
+#   id: 'supra',
+#   mass: 1480,
+#   time100: 4.025,
+#   stopping: 44.61981201171875,
+#   stopTime: 2.916666666666659,
+#   rolling: 83.11804656982422,
+#   distance: 83.11306762695312,
+#   shifts: 2,
+#   peakPitch: 0
+# }
+# {
+#   id: 'slk',
+#   mass: 1450,
+#   time100: 4.916666666666667,
+#   stopping: 44.6231689453125,
+#   stopTime: 2.916666666666659,
+#   rolling: 101.79407836914064,
+#   distance: 101.78851318359375,
+#   shifts: 2,
+#   peakPitch: 0
+# }
+# {
+#   id: 'mustang',
+#   mass: 1680,
+#   time100: 4.183333333333334,
+#   stopping: 44.74658203125,
+#   stopTime: 2.9249999999999923,
+#   rolling: 84.80808749526784,
+#   distance: 84.80499267578125,
+#   shifts: 2,
+#   peakPitch: 0
+# }
+# {
+#   rearEndHits: 2,
+#   peakFront: 20.53059196472168,
+#   front: {
+#     x: 0.016820084303617477,
+#     y: 0.5410052537918091,
+#     z: 59.547950744628906
+#   },
+#   rear: {
+#     x: 0.004478541202843189,
+#     y: 0.5260055065155029,
+#     z: 55.037933349609375
+#   }
+# }
+# {
+#   wallHits: 1,
+#   maxZ: 27.354999542236328,
+#   reverseDistance: 17.38477325439453
+# }
+# Subtest: three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake
+ok 105 - three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake
+  ---
+  duration_ms: 439.001365
+  ...
+# Subtest: a wheel on a raised kerb compresses independently of the opposite wheel
+ok 106 - a wheel on a raised kerb compresses independently of the opposite wheel
+  ---
+  duration_ms: 16.461765
+  ...
+# Subtest: a rear-end collision transfers momentum to another car and reports real solver contact
+ok 107 - a rear-end collision transfers momentum to another car and reports real solver contact
+  ---
+  duration_ms: 139.867721
+  ...
+# Subtest: CCD stops a 230 km/h wall strike and controls remain usable after impact
+ok 108 - CCD stops a 230 km/h wall strike and controls remain usable after impact
+  ---
+  duration_ms: 37.63848
+  ...
+# Subtest: airborne throttle cannot propel or glue the chassis to the road
+ok 109 - airborne throttle cannot propel or glue the chassis to the road
+  ---
+  duration_ms: 8.226731
+  ...
+# Subtest: driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height
+ok 110 - driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height
+  ---
+  duration_ms: 28.996432
+  ...
+# Subtest: driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery
+ok 111 - driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery
+  ---
+  duration_ms: 2.366734
+  ...
+# Subtest: V switches view once per press without changing pedals or stealing editable/button keys
+ok 112 - V switches view once per press without changing pedals or stealing editable/button keys
+  ---
+  duration_ms: 0.588031
+  ...
+# Subtest: one local looping track respects pause, mute, volume, restart, garage stop and disposal
+ok 113 - one local looping track respects pause, mute, volume, restart, garage stop and disposal
+  ---
+  duration_ms: 1.019967
+  ...
+# Subtest: blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal
+ok 114 - blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal
+  ---
+  duration_ms: 0.603588
+  ...
+# Subtest: packaged music is real audio and sharper bends retain lower target speeds
+ok 115 - packaged music is real audio and sharper bends retain lower target speeds
+  ---
+  duration_ms: 10.959271
+  ...
+# Rival speed A/B [
+#   {
+#     profile: 'classic',
+#     max: 138.07923431396486,
+#     metres: 850.8593139648438
+#   },
+#   {
+#     profile: 'race',
+#     max: 185.05221405029297,
+#     metres: 1059.82470703125
+#   }
+# ]
+# Subtest: faster rival pedals produce higher real speed while all tyres stay on a flat straight
+ok 116 - faster rival pedals produce higher real speed while all tyres stay on a flat straight
+  ---
+  duration_ms: 575.587013
+  ...
+# Subtest: every track has ordered medal targets for every lap option
+ok 117 - every track has ordered medal targets for every lap option
+  ---
+  duration_ms: 1.897938
+  ...
+# Subtest: a personal best only improves, per track and lap count
+ok 118 - a personal best only improves, per track and lap count
+  ---
+  duration_ms: 0.665873
+  ...
+# Subtest: corrupt or blocked storage never breaks the result screen
+ok 119 - corrupt or blocked storage never breaks the result screen
+  ---
+  duration_ms: 0.544524
+  ...
+# Subtest: lap number and in-lap distance follow race progress, including the grid offset
+ok 120 - lap number and in-lap distance follow race progress, including the grid offset
+  ---
+  duration_ms: 0.950943
+  ...
+# Subtest: route guidance only announces the finish on the final lap
+ok 121 - route guidance only announces the finish on the final lap
+  ---
+  duration_ms: 1.089724
+  ...
+# Subtest: a ghost replays the recorded run at the same race time
+ok 122 - a ghost replays the recorded run at the same race time
+  ---
+  duration_ms: 2.273284
+  ...
+# Subtest: ghosts persist per track and lap count, and full storage only drops the ghost
+ok 123 - ghosts persist per track and lap count, and full storage only drops the ghost
+  ---
+  duration_ms: 0.362118
+  ...
+# Subtest: race nitro is earned: slow trickle, faster from drifting and drafting
+ok 124 - race nitro is earned: slow trickle, faster from drifting and drafting
+  ---
+  duration_ms: 4.050427
+  ...
+# Subtest: overtake charge is clamped and the slide assist can be switched off live
+ok 125 - overtake charge is clamped and the slide assist can be switched off live
+  ---
+  duration_ms: 0.336214
+  ...
+# Subtest: slipstream only exists close behind a moving car in the same lane
+ok 126 - slipstream only exists close behind a moving car in the same lane
+  ---
+  duration_ms: 0.502684
+  ...
+# Subtest: passing a nearby rival counts once; recovery setbacks and finishers do not
+ok 127 - passing a nearby rival counts once; recovery setbacks and finishers do not
+  ---
+  duration_ms: 0.401783
+  ...
+# Subtest: assist preference defaults on and survives blocked storage
+ok 128 - assist preference defaults on and survives blocked storage
+  ---
+  duration_ms: 0.404356
+  ...
+# Subtest: drafting halves aero drag on a real chassis and starts with a partial nitro tank
+ok 129 - drafting halves aero drag on a real chassis and starts with a partial nitro tank
+  ---
+  duration_ms: 178.186726
+  ...
+# { id: 'supra', brakingParticles: 160, skidSegments: 512 }
+# { id: 'slk', brakingParticles: 160, skidSegments: 512 }
+# { id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+# Subtest: dual exhaust emits at each authored car outlet under translation and heading, not body centre
+ok 130 - dual exhaust emits at each authored car outlet under translation and heading, not body centre
+  ---
+  duration_ms: 4.705417
+  ...
+# Subtest: exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery
+ok 131 - exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery
+  ---
+  duration_ms: 11.73821
+  ...
+# Subtest: straight handbrake creates rear scrub in either direction, never stationary or airborne smoke
+ok 132 - straight handbrake creates rear scrub in either direction, never stationary or airborne smoke
+  ---
+  duration_ms: 16.059202
+  ...
+# Subtest: all three real race cars produce braking smoke and marks without VFX changing physics
+ok 133 - all three real race cars produce braking smoke and marks without VFX changing physics
+  ---
+  duration_ms: 536.308507
+  ...
+# Subtest: stable race camera does not surge or pump FOV on repeated transmission torque cuts
+ok 134 - stable race camera does not surge or pump FOV on repeated transmission torque cuts
+  ---
+  duration_ms: 10.639916
+  ...
+# Subtest: another car is a body collision, never a road surface for wheel suspension rays
+ok 135 - another car is a body collision, never a road surface for wheel suspension rays
+  ---
+  duration_ms: 6.790067
+  ...
+# Subtest: recovered route is a continuous 6.8 km loop covering the original districts
+ok 136 - recovered route is a continuous 6.8 km loop covering the original districts
+  ---
+  duration_ms: 2.325936
+  ...
+# Subtest: finish crossing advances progress; recovery jumps cannot award a lap
+ok 137 - finish crossing advances progress; recovery jumps cannot award a lap
+  ---
+  duration_ms: 0.47813
+  ...
+# Recovered-map traffic: [
+#   {
+#     metres: 6910,
+#     kmh: 0,
+#     contacts: 4,
+#     index: 52,
+#     position: {
+#       x: 679.1719970703125,
+#       y: 7.99200963973999,
+#       z: -409.8380432128906
+#     },
+#     rotation: {
+#       x: -0.005234833341091871,
+#       y: 0.3240702152252197,
+#       z: 0.0009476847480982542,
+#       w: 0.9460180997848511
+#     },
+#     region: 'Harbor'
+#   },
+#   {
+#     metres: 6842,
+#     kmh: 128,
+#     contacts: 4,
+#     index: 26,
+#     position: {
+#       x: 640.3065185546875,
+#       y: 7.4957733154296875,
+#       z: -467.20709228515625
+#     },
+#     rotation: {
+#       x: 0.0011318387696519494,
+#       y: 0.3267305791378021,
+#       z: -0.0003993492864537984,
+#       w: 0.9451168179512024
+#     },
+#     region: 'Harbor'
+#   },
+#   {
+#     metres: 6904,
+#     kmh: 0,
+#     contacts: 4,
+#     index: 46,
+#     position: {
+#       x: 671.016845703125,
+#       y: 7.842749118804932,
+#       z: -423.3453063964844
+#     },
+#     rotation: {
+#       x: -0.004911739379167557,
+#       y: 0.3389388918876648,
+#       z: 0.0009827256435528398,
+#       w: 0.9407950639724731
+#     },
+#     region: 'Harbor'
+#   },
+#   {
+#     metres: 6847,
+#     kmh: 123,
+#     contacts: 4,
+#     index: 24,
+#     position: { x: 637.52880859375, y: 7.513299942016602, z: -470.7549133300781 },
+#     rotation: {
+#       x: 0.0019881748594343662,
+#       y: 0.3410642147064209,
+#       z: -0.0006883933092467487,
+#       w: 0.9400376677513123
+#     },
+#     region: 'Harbor'
+#   },
+#   {
+#     metres: 6902,
+#     kmh: 0,
+#     contacts: 4,
+#     index: 42,
+#     position: {
+#       x: 665.1519165039062,
+#       y: 7.731919288635254,
+#       z: -432.7767028808594
+#     },
+#     rotation: {
+#       x: -0.004381480161100626,
+#       y: 0.3510478436946869,
+#       z: 0.0009182185749523342,
+#       w: 0.9363468289375305
+#     },
+#     region: 'Harbor'
+#   },
+#   {
+#     metres: 6852,
+#     kmh: 116,
+#     contacts: 4,
+#     index: 22,
+#     position: {
+#       x: 634.4554443359375,
+#       y: 7.516513824462891,
+#       z: -474.6608581542969
+#     },
+#     rotation: {
+#       x: 0.0030004149302840233,
+#       y: 0.3508366048336029,
+#       z: -0.0010397109435871243,
+#       w: 0.9364314079284668
+#     },
+#     region: 'Harbor'
+#   }
+# ]
+# Additional full-course cars [
+#   { id: 'm3', progress: 6842.211776361137, contacts: 4 },
+#   { id: 'huracan', progress: 6904.557115109743, contacts: 4 }
+# ]
+# Subtest: six shared-world vehicles remain grounded and drive along recovered geometry
+ok 138 - six shared-world vehicles remain grounded and drive along recovered geometry
+  ---
+  duration_ms: 18623.345729
+  ...
+# Subtest: M3 and Huracán complete the recovered full course with physical road support
+ok 139 - M3 and Huracán complete the recovered full course with physical road support
+  ---
+  duration_ms: 6123.791825
+  ...
+# Subtest: shared geometry, material arrays and maps are disposed once, including hidden scenery
+ok 140 - shared geometry, material arrays and maps are disposed once, including hidden scenery
+  ---
+  duration_ms: 4.626878
+  ...
+# Subtest: shader uniforms, arrays and scene textures share a single disposal without following cycles forever
+ok 141 - shader uniforms, arrays and scene textures share a single disposal without following cycles forever
+  ---
+  duration_ms: 1.082583
+  ...
+# Subtest: instanced GPU-buffer owners and lights release once along with both shadow targets
+ok 142 - instanced GPU-buffer owners and lights release once along with both shadow targets
+  ---
+  duration_ms: 11.55171
+  ...
+# Subtest: environment and reflection owners dispose once without separately disposing their attachment textures
+ok 143 - environment and reflection owners dispose once without separately disposing their attachment textures
+  ---
+  duration_ms: 0.759288
+  ...
+# Subtest: a fresh runtime receives its own cleanup after an earlier scene was disposed
+ok 144 - a fresh runtime receives its own cleanup after an earlier scene was disposed
+  ---
+  duration_ms: 2.963499
+  ...
+# Subtest: ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials
+ok 145 - ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials
+  ---
+  duration_ms: 6.101346
+  ...
+# Subtest: missing or hidden ghost is reported rather than treated as a successful cost reduction
+ok 146 - missing or hidden ghost is reported rather than treated as a successful cost reduction
+  ---
+  duration_ms: 0.280596
+  ...
+# Subtest: frozen renderer comparison captures all three A/B/A phases and always restores full geometry
+ok 147 - frozen renderer comparison captures all three A/B/A phases and always restores full geometry
+  ---
+  duration_ms: 0.654592
+  ...
+# Subtest: cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set
+ok 148 - cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set
+  ---
+  duration_ms: 0.327276
+  ...
+# Subtest: frozen tread A/B changes only distant rival accents and restores authored visibility and resources
+ok 149 - frozen tread A/B changes only distant rival accents and restores authored visibility and resources
+  ---
+  duration_ms: 5.219001
+  ...
+# Subtest: frozen tyre projection leaves close and behind-camera accents intact
+ok 150 - frozen tyre projection leaves close and behind-camera accents intact
+  ---
+  duration_ms: 1.386683
+  ...
+# Subtest: slow frame intervals remain visible when CPU submission is short
+ok 151 - slow frame intervals remain visible when CPU submission is short
+  ---
+  duration_ms: 0.900973
+  ...
+# Subtest: missing CPU observations are explicit and sessions cannot reuse old cost samples
+ok 152 - missing CPU observations are explicit and sessions cannot reuse old cost samples
+  ---
+  duration_ms: 0.38285
+  ...
+# Subtest: pause draws once, remains idle, and redraws after resize or camera changes
+ok 153 - pause draws once, remains idle, and redraws after resize or camera changes
+  ---
+  duration_ms: 0.520856
+  ...
+# Subtest: frame and CPU measurements reset together after a pause
+ok 154 - frame and CPU measurements reset together after a pause
+  ---
+  duration_ms: 0.507066
+  ...
+# Subtest: slow gaps preserve previous callback work and both focus endpoints without filtering
+ok 155 - slow gaps preserve previous callback work and both focus endpoints without filtering
+  ---
+  duration_ms: 0.412705
+  ...
+# Subtest: rolling frame averages cannot erase session slow gap evidence
+ok 156 - rolling frame averages cannot erase session slow gap evidence
+  ---
+  duration_ms: 1.362722
+  ...
+# Subtest: race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock
+ok 157 - race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock
+  ---
+  duration_ms: 0.611749
+  ...
+# Subtest: garage/disposal cancellation prevents a pending preparation from drawing stale objects
+ok 158 - garage/disposal cancellation prevents a pending preparation from drawing stale objects
+  ---
+  duration_ms: 0.494785
+  ...
+# Subtest: preparation errors keep driving blocked, expose the cause, and permit a clean retry
+ok 159 - preparation errors keep driving blocked, expose the cause, and permit a clean retry
+  ---
+  duration_ms: 0.639289
+  ...
+# Subtest: preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps
+ok 160 - preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps
+  ---
+  duration_ms: 0.41492
+  ...
+# Subtest: draw profile counts main/shadow deltas while leaving render results and hooks intact
+ok 161 - draw profile counts main/shadow deltas while leaving render results and hooks intact
+  ---
+  duration_ms: 1.00196
+  ...
+# Subtest: GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries
+ok 162 - GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries
+  ---
+  duration_ms: 0.921609
+  ...
+# Subtest: render failure preserves the original exception, restores the hook and deletes the GPU query
+ok 163 - render failure preserves the original exception, restores the hook and deletes the GPU query
+  ---
+  duration_ms: 0.669264
+  ...
+# Subtest: draw categories use actual scene ancestry and keep parked cars separate from world meshes
+ok 164 - draw categories use actual scene ancestry and keep parked cars separate from world meshes
+  ---
+  duration_ms: 0.43591
+  ...
+# {
+#   progress: 6842.211776361137,
+#   maximumAcceleration: 38.64541053771973,
+#   maximumTilt: 1.920026862985041,
+#   rmsTilt: 0.07945146228788715,
+#   releaseSteps: 78
+# }
+# Subtest: real-map mountain seams do not restore the previous large vertical and orientation impulses
+ok 165 - real-map mountain seams do not restore the previous large vertical and orientation impulses
+  ---
+  duration_ms: 4256.526526
+  ...
+# Subtest: unsupported inverted chassis still lands on its physical roof collider
+ok 166 - unsupported inverted chassis still lands on its physical roof collider
+  ---
+  duration_ms: 29.676897
+  ...
+# Subtest: grip changes the actual constant-input corner trajectory
+ok 167 - grip changes the actual constant-input corner trajectory
+  ---
+  duration_ms: 72.940172
+  ...
+# Subtest: AWD allocates measured forward impulses to front tyres; RWD does not
+ok 168 - AWD allocates measured forward impulses to front tyres; RWD does not
+  ---
+  duration_ms: 32.609451
+  ...
+# Subtest: brake balance redistributes real tyre impulses while physically slowing the car
+ok 169 - brake balance redistributes real tyre impulses while physically slowing the car
+  ---
+  duration_ms: 18.900454
+  ...
+# Subtest: fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame
+ok 170 - fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame
+  ---
+  duration_ms: 87.835388
+  ...
+# Subtest: excessive stalls bound work, expose discarded time, catch up and clear debt on pause
+ok 171 - excessive stalls bound work, expose discarded time, catch up and clear debt on pause
+  ---
+  duration_ms: 0.424102
+  ...
+# {
+#   id: 'supra',
+#   kick: 0.35,
+#   before: {
+#     peak: 0.011359874107432439,
+#     settled: 0.00023280453977908856,
+#     lost: 0,
+#     contacts: 4
+#   },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# {
+#   id: 'supra',
+#   kick: 1,
+#   before: {
+#     peak: 0.041774566338973175,
+#     settled: 0.0004438312869355933,
+#     lost: 10,
+#     contacts: 4
+#   },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# {
+#   id: 'slk',
+#   kick: 0.35,
+#   before: { peak: 0.010584552719215016, settled: 0, lost: 0, contacts: 4 },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# {
+#   id: 'slk',
+#   kick: 1,
+#   before: { peak: 0.038400968317986096, settled: 0, lost: 0, contacts: 4 },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# {
+#   id: 'mustang',
+#   kick: 0.35,
+#   before: { peak: 0.011309360099982676, settled: 0, lost: 0, contacts: 4 },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# {
+#   id: 'mustang',
+#   kick: 1,
+#   before: {
+#     peak: 0.046202623687088044,
+#     settled: 0.0004894078214374062,
+#     lost: 18,
+#     contacts: 4
+#   },
+#   after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+# }
+# { id: 'supra', heaveMetres: 0, kmh: 224.31796875 }
+# { id: 'slk', heaveMetres: 0, kmh: 218.3609619140625 }
+# { id: 'mustang', heaveMetres: 0, kmh: 225.369580078125 }
+# { fps: 30, cameraHeave: 0.0056117077319504105, roadHeave: 0.03 }
+# { fps: 60, cameraHeave: 0.005628560567466856, roadHeave: 0.03 }
+# { fps: 120, cameraHeave: 0.005606701048515461, roadHeave: 0.03 }
+# Subtest: all three cars reduce real rebound and retain contact recovery under a strong impact
+ok 172 - all three cars reduce real rebound and retain contact recovery under a strong impact
+  ---
+  duration_ms: 447.184727
+  ...
+# Subtest: flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave
+ok 173 - flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave
+  ---
+  duration_ms: 363.303018
+  ...
+# Subtest: chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag
+ok 174 - chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag
+  ---
+  duration_ms: 13.13719
+  ...
+# Subtest: stabilized chase follows steep grades, holds its paused frame and snaps after road recovery
+ok 175 - stabilized chase follows steep grades, holds its paused frame and snaps after road recovery
+  ---
+  duration_ms: 5.104322
+  ...
+# {
+#   id: 'supra',
+#   recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+#   recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+# }
+# {
+#   id: 'slk',
+#   recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+#   recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+# }
+# {
+#   id: 'mustang',
+#   recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+#   recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+# }
+# Subtest: stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts
+ok 176 - stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts
+  ---
+  duration_ms: 15.491195
+  ...
+# Subtest: road recovery aligns to the slope and avoids a half-metre suspension drop in all cars
+ok 177 - road recovery aligns to the slope and avoids a half-metre suspension drop in all cars
+  ---
+  duration_ms: 177.410034
+  ...
+# Subtest: sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch
+ok 178 - sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch
+  ---
+  duration_ms: 1.215517
+  ...
+# Subtest: recovery preserves spent boost and resets velocities; a new race refills it
+ok 179 - recovery preserves spent boost and resets velocities; a new race refills it
+  ---
+  duration_ms: 50.021996
+  ...
+# Subtest: recovery rejects an empty-looking point in approaching traffic and never awards progress
+ok 180 - recovery rejects an empty-looking point in approaching traffic and never awards progress
+  ---
+  duration_ms: 0.493626
+  ...
+# Subtest: recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit
+ok 181 - recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit
+  ---
+  duration_ms: 47.090439
+  ...
+# Subtest: side-by-side solver separation protects the authored wide shoulders in all cars
+ok 182 - side-by-side solver separation protects the authored wide shoulders in all cars
+  ---
+  duration_ms: 95.751111
+  ...
+# Subtest: empty paved lane permits overtaking without moving snapshots or giving input to the player
+ok 183 - empty paved lane permits overtaking without moving snapshots or giving input to the player
+  ---
+  duration_ms: 3.812695
+  ...
+# Subtest: adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing
+ok 184 - adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing
+  ---
+  duration_ms: 1.419248
+  ...
+# Subtest: tight bends, missing road proof, airborne cars and insufficient approach room never start a pass
+ok 185 - tight bends, missing road proof, airborne cars and insufficient approach room never start a pass
+  ---
+  duration_ms: 8.353786
+  ...
+# Subtest: a committed passing lane is reserved against a second closing rival
+ok 186 - a committed passing lane is reserved against a second closing rival
+  ---
+  duration_ms: 0.517468
+  ...
+# Subtest: cut-in aborts safely; pause freezes the plan and recovery clears a stale target
+ok 187 - cut-in aborts safely; pause freezes the plan and recovery clears a stale target
+  ---
+  duration_ms: 1.358416
+  ...
+# Subtest: return waits for rear clearance and only counts a pass after physically reaching home
+ok 188 - return waits for rear clearance and only counts a pass after physically reaching home
+  ---
+  duration_ms: 1.251518
+  ...
+# Subtest: the original lead loses its committed exemption when it moves into the crossing
+ok 189 - the original lead loses its committed exemption when it moves into the crossing
+  ---
+  duration_ms: 0.637504
+  ...
+# Subtest: a blocked return holds its current track and moves forward instead of parking across traffic
+ok 190 - a blocked return holds its current track and moves forward instead of parking across traffic
+  ---
+  duration_ms: 0.944147
+  ...
+# Subtest: a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward
+ok 191 - a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward
+  ---
+  duration_ms: 2.537373
+  ...
+# Subtest: a passing rival re-plans when a stationary car occupies its lane again on a closed circuit
+ok 192 - a passing rival re-plans when a stationary car occupies its lane again on a closed circuit
+  ---
+  duration_ms: 0.828341
+  ...
+# Subtest: a re-blocked passing rival holds its approach gap if the alternate lane is occupied
+ok 193 - a re-blocked passing rival holds its approach gap if the alternate lane is occupied
+  ---
+  duration_ms: 0.876279
+  ...
+# Subtest: a lane-centred rival can leave a stopped rear bumper behind but yields to a moving rear car
+ok 194 - a lane-centred rival can leave a stopped rear bumper behind but yields to a moving rear car
+  ---
+  duration_ms: 0.346078
+  ...
+# physical overtake {
+#   id: 'supra',
+#   contacts: 0,
+#   maxLane: 2.0166172981262207,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.7535984516143799,
+#     y: 0.5260055065155029,
+#     z: 174.5360870361328
+#   }
+# }
+# physical overtake {
+#   id: 'slk',
+#   contacts: 0,
+#   maxLane: 2.0303285121917725,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.7592816352844238,
+#     y: 0.5160055160522461,
+#     z: 177.4198455810547
+#   }
+# }
+# physical overtake {
+#   id: 'mustang',
+#   contacts: 0,
+#   maxLane: 2.0350022315979004,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+# }
+# physical overtake {
+#   id: 'porsche911',
+#   contacts: 0,
+#   maxLane: 2.019705057144165,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.7753400802612305,
+#     y: 0.5260055065155029,
+#     z: 176.91458129882812
+#   }
+# }
+# physical overtake {
+#   id: 'gtr',
+#   contacts: 0,
+#   maxLane: 2.0197913646698,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.8165252208709717,
+#     y: 0.5360054969787598,
+#     z: 176.792236328125
+#   }
+# }
+# physical overtake {
+#   id: 'rx7',
+#   contacts: 0,
+#   maxLane: 2.0059328079223633,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.8053041696548462,
+#     y: 0.5110055208206177,
+#     z: 180.03262329101562
+#   }
+# }
+# physical overtake {
+#   id: 'm3',
+#   contacts: 0,
+#   maxLane: 2.017366409301758,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.8131320476531982,
+#     y: 0.5210055112838745,
+#     z: 176.23280334472656
+#   }
+# }
+# physical overtake {
+#   id: 'huracan',
+#   contacts: 0,
+#   maxLane: 2.011688232421875,
+#   plan: {
+#     mode: 'follow',
+#     reason: 'following',
+#     homeLane: -2.2,
+#     targetLane: -2.2,
+#     passes: 1,
+#     attempts: 1,
+#     aborts: 0,
+#     age: 0
+#   },
+#   position: {
+#     x: -1.7570438385009766,
+#     y: 0.5260055065155029,
+#     z: 179.2174835205078
+#   }
+# }
+# Planner recovered-map race {
+#   seconds: 260.4583333333333,
+#   results: [
+#     {
+#       id: 'supra',
+#       metres: 6842,
+#       finish: 260.23333333333335,
+#       index: 28,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: null
+#     },
+#     {
+#       id: 'slk',
+#       metres: 6842,
+#       finish: 213.88333333333333,
+#       index: 52,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: [Object]
+#     },
+#     {
+#       id: 'mustang',
+#       metres: 6842,
+#       finish: 226.99166666666667,
+#       index: 47,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: [Object]
+#     },
+#     {
+#       id: 'porsche911',
+#       metres: 6842,
+#       finish: 227.67499999999998,
+#       index: 44,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: [Object]
+#     },
+#     {
+#       id: 'gtr',
+#       metres: 6842,
+#       finish: 260.45,
+#       index: 26,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: [Object]
+#     },
+#     {
+#       id: 'rx7',
+#       metres: 6842,
+#       finish: 212.70833333333334,
+#       index: 56,
+#       position: [Object],
+#       velocity: [Object],
+#       contacts: 4,
+#       region: 'Harbor',
+#       plan: [Object]
+#     }
+#   ]
+# }
+# Subtest: road proof rejects narrow asphalt, grass and an obstacle on the paved crossing
+ok 195 - road proof rejects narrow asphalt, grass and an obstacle on the paved crossing
+  ---
+  duration_ms: 56.023763
+  ...
+# Subtest: supra: Rapier AI passes a stopped player and returns without contact
+ok 196 - supra: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 315.522497
+  ...
+# Subtest: slk: Rapier AI passes a stopped player and returns without contact
+ok 197 - slk: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 178.543791
+  ...
+# Subtest: mustang: Rapier AI passes a stopped player and returns without contact
+ok 198 - mustang: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 135.590994
+  ...
+# Subtest: porsche911: Rapier AI passes a stopped player and returns without contact
+ok 199 - porsche911: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 134.834568
+  ...
+# Subtest: gtr: Rapier AI passes a stopped player and returns without contact
+ok 200 - gtr: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 138.569408
+  ...
+# Subtest: rx7: Rapier AI passes a stopped player and returns without contact
+ok 201 - rx7: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 124.377935
+  ...
+# Subtest: m3: Rapier AI passes a stopped player and returns without contact
+ok 202 - m3: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 123.398115
+  ...
+# Subtest: huracan: Rapier AI passes a stopped player and returns without contact
+ok 203 - huracan: Rapier AI passes a stopped player and returns without contact
+  ---
+  duration_ms: 124.699894
+  ...
+# Subtest: five faster planned rivals and a slower driven player complete the recovered 6.84 km course
+ok 204 - five faster planned rivals and a slower driven player complete the recovered 6.84 km course
+  ---
+  duration_ms: 20515.783408
+  ...
+# Subtest: explicit camera choice is honored while an unset choice respects reduced motion
+ok 205 - explicit camera choice is honored while an unset choice respects reduced motion
+  ---
+  duration_ms: 1.500691
+  ...
+# Subtest: 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS
+ok 206 - 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS
+  ---
+  duration_ms: 32.206811
+  ...
+# Subtest: reduced motion fixes FOV and reset snaps to the new position
+ok 207 - reduced motion fixes FOV and reset snaps to the new position
+  ---
+  duration_ms: 0.382332
+  ...
+# Subtest: full boost and acceleration stay within nine metres even after prolonged 300 km/h travel
+ok 208 - full boost and acceleration stay within nine metres even after prolonged 300 km/h travel
+  ---
+  duration_ms: 15.57761
+  ...
+# Subtest: audio defaults to silent, clamps volume and fails safely without Web Audio
+ok 209 - audio defaults to silent, clamps volume and fails safely without Web Audio
+  ---
+  duration_ms: 1.153836
+  ...
+# {"id":"supra","previous":{"radius":24.806963803757508,"turn":-1.5708344554064682,"minUp":1,"minContacts":4,"kmh":89.5388988357885,"endKmh":85.40439740387554,"samples":188,"steer":-0.10247714074250636},"left":{"radius":19.429867156384425,"turn":-1.8031494017636325,"minUp":1,"minContacts":4,"kmh":89.55007770176564,"endKmh":83.13315836587175,"samples":169,"steer":-0.1401381392275757},"right":{"radius":19.429830881213423,"turn":1.8031512121622835,"minUp":1,"minContacts":4,"kmh":89.54997159966804,"endKmh":83.13303450017898,"samples":169,"steer":0.14013851922364307}}
+# {"id":"supra","previousRadius":24.806963803757508,"currentRadius":19.429867156384425,"reduction":0.2167575479978172}
+# {"id":"slk","previous":{"radius":25.299618840281184,"turn":-1.2854312829327585,"minUp":1,"minContacts":4,"kmh":89.47908100696782,"endKmh":81.85987458995366,"samples":157,"steer":-0.10653049912284741},"left":{"radius":19.886936709239226,"turn":-1.4378311398026766,"minUp":1,"minContacts":4,"kmh":89.51072615143836,"endKmh":77.90531849376829,"samples":138,"steer":-0.15212328017941823},"right":{"radius":19.886936008293862,"turn":1.4378311700591924,"minUp":1,"minContacts":4,"kmh":89.51072568324462,"endKmh":77.9052754060171,"samples":138,"steer":0.1521235859165848}}
+# {"id":"slk","previousRadius":25.299618840281184,"currentRadius":19.886936709239226,"reduction":0.21394322836295354}
+# {"id":"mustang","previous":{"radius":26.1098038337537,"turn":-1.6613718113814442,"minUp":1,"minContacts":4,"kmh":89.65717747164146,"endKmh":87.53062113231184,"samples":209,"steer":-0.10289826698801052},"left":{"radius":20.37166711484791,"turn":-2.025278761789457,"minUp":1,"minContacts":4,"kmh":89.5631535870292,"endKmh":86.29143308238635,"samples":199,"steer":-0.13736259281752028},"right":{"radius":20.37155422580387,"turn":2.0252905111708115,"minUp":1,"minContacts":4,"kmh":89.56319413838266,"endKmh":86.2894958343885,"samples":199,"steer":0.1373688328932389}}
+# {"id":"mustang","previousRadius":26.1098038337537,"currentRadius":20.37166711484791,"reduction":0.2197694304959794}
+# {"id":"porsche911","previous":{"radius":26.07426673257208,"turn":-1.670270112625636,"minUp":1,"minContacts":4,"kmh":90.01504142887336,"endKmh":90.04454882409827,"samples":209,"steer":-0.0934552061527366},"left":{"radius":19.98313447966392,"turn":-2.179369792357616,"minUp":1,"minContacts":4,"kmh":90.01309282910593,"endKmh":89.99305910144811,"samples":209,"steer":-0.12153998518006555},"right":{"radius":19.98313744756494,"turn":2.179369643531994,"minUp":1,"minContacts":4,"kmh":90.01309195987476,"endKmh":89.99310125133795,"samples":209,"steer":0.1215398600432328}}
+# {"id":"porsche911","previousRadius":26.07426673257208,"currentRadius":19.98313447966392,"reduction":0.2336070392844104}
+# {"id":"gtr","previous":{"radius":26.190700202627873,"turn":-1.6628336591081452,"minUp":1,"minContacts":4,"kmh":90.01471952612383,"endKmh":90.0409735080453,"samples":209,"steer":-0.10603700962567823},"left":{"radius":20.074580530701873,"turn":-2.169468863493735,"minUp":1,"minContacts":4,"kmh":90.01491692657589,"endKmh":90.01422702954693,"samples":209,"steer":-0.13789811754300307},"right":{"radius":20.074579381445314,"turn":2.169468878643617,"minUp":1,"minContacts":4,"kmh":90.01492642408851,"endKmh":90.01421817242851,"samples":209,"steer":0.1378981467522661}}
+# {"id":"gtr","previousRadius":26.190700202627873,"currentRadius":20.074580530701873,"reduction":0.233522571928502}
+# {"id":"rx7","previous":{"radius":25.786122356353726,"turn":-1.519417697146432,"minUp":1,"minContacts":4,"kmh":89.54985639826343,"endKmh":85.50539539417696,"samples":189,"steer":-0.09796524900104134},"left":{"radius":20.21010899850666,"turn":-1.7441127717371592,"minUp":1,"minContacts":4,"kmh":89.56791530384072,"endKmh":83.1574556135978,"samples":170,"steer":-0.1342282840665543},"right":{"radius":20.210159036400302,"turn":1.7441104210335776,"minUp":1,"minContacts":4,"kmh":89.56804541195078,"endKmh":83.15767067380236,"samples":170,"steer":0.13422769445549482}}
+# {"id":"rx7","previousRadius":25.786122356353726,"currentRadius":20.21010899850666,"reduction":0.21624086323600078}
+# {"id":"m3","previous":{"radius":26.13856487207187,"turn":-1.6661329108308327,"minUp":1,"minContacts":4,"kmh":90.01318182381792,"endKmh":90.00264038706557,"samples":209,"steer":-0.10626208257355149},"left":{"radius":20.071106829329203,"turn":-2.169733000727033,"minUp":1,"minContacts":4,"kmh":90.01020517211192,"endKmh":90.02491776503634,"samples":209,"steer":-0.13853950246157315},"right":{"radius":20.071113258740912,"turn":2.1697329553006406,"minUp":1,"minContacts":4,"kmh":90.01022171003846,"endKmh":90.02489317345062,"samples":209,"steer":0.1385395919223404}}
+# {"id":"m3","previousRadius":26.13856487207187,"currentRadius":20.071106829329203,"reduction":0.23212667078082516}
+# {"id":"huracan","previous":{"radius":25.432011405321013,"turn":-1.712444583018188,"minUp":1,"minContacts":4,"kmh":90.01777005435889,"endKmh":90.02063636635407,"samples":209,"steer":-0.10283218296215545},"left":{"radius":19.46735667053948,"turn":-2.237175767024681,"minUp":1,"minContacts":4,"kmh":90.01857519976535,"endKmh":90.03468726980563,"samples":209,"steer":-0.1338376160490185},"right":{"radius":19.467321322269243,"turn":2.2371781385344276,"minUp":1,"minContacts":4,"kmh":90.01852522596629,"endKmh":90.03461975912354,"samples":209,"steer":0.13383772497774712}}
+# {"id":"huracan","previousRadius":25.432011405321013,"currentRadius":19.46735667053948,"reduction":0.23453334617228028}
+# Namak player steering lap {
+#   progress: 2927.3350238627413,
+#   length: 2927.3350238627413,
+#   seconds: 109.90833333333333,
+#   maxDeviation: 4.928398937032917,
+#   minContacts: 4,
+#   sensitivity: 1.6900000000000002
+# }
+# Subtest: another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper
+ok 210 - another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper
+  ---
+  duration_ms: 2.015964
+  ...
+# Subtest: all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support
+ok 211 - all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support
+  ---
+  duration_ms: 914.994631
+  ...
+# Subtest: additional steering stays upright at highway speed and releasing input recentres the wheels
+ok 212 - additional steering stays upright at highway speed and releasing input recentres the wheels
+  ---
+  duration_ms: 495.27513
+  ...
+# Subtest: the player GT-R completes actual Namak road corners with the new grip and rack without recovery teleports
+ok 213 - the player GT-R completes actual Namak road corners with the new grip and rack without recovery teleports
+  ---
+  duration_ms: 1291.944546
+  ...
+# {"kmh":20,"oldRadius":6.418,"newRadius":5.18}
+# {"kmh":40,"oldRadius":13.989,"newRadius":9.627}
+# {"kmh":60,"oldRadius":23.014,"newRadius":20.444}
+# Subtest: Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear
+ok 214 - Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear
+  ---
+  duration_ms: 1.689161
+  ...
+# Subtest: rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded
+ok 215 - rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded
+  ---
+  duration_ms: 0.356155
+  ...
+# Subtest: measured 20/40/60 km/h turns improve over baseline without yaw or position writes
+ok 216 - measured 20/40/60 km/h turns improve over baseline without yaw or position writes
+  ---
+  duration_ms: 251.869375
+  ...
+# Subtest: 230 km/h full steering remains grounded and upright without rotating the body directly
+ok 217 - 230 km/h full steering remains grounded and upright without rotating the body directly
+  ---
+  duration_ms: 94.406806
+  ...
+# Subtest: reversing changes yaw response but not the actual front-wheel steering direction
+ok 218 - reversing changes yaw response but not the actual front-wheel steering direction
+  ---
+  duration_ms: 17.804521
+  ...
+# Subtest: wheel roll follows forward/reverse distance with the correct +X axle sign
+ok 219 - wheel roll follows forward/reverse distance with the correct +X axle sign
+  ---
+  duration_ms: 134.387447
+  ...
+# Subtest: wheel suspension, steering and unwrapped spin interpolate on the same clock as the body
+ok 220 - wheel suspension, steering and unwrapped spin interpolate on the same clock as the body
+  ---
+  duration_ms: 26.703123
+  ...
+# Subtest: reset clears steering, handbrake state and rear grip immediately
+ok 221 - reset clears steering, handbrake state and rear grip immediately
+  ---
+  duration_ms: 12.227797
+  ...
+# Subtest: responsive road steering improves brief input while retaining high-speed and full-lock limits
+ok 222 - responsive road steering improves brief input while retaining high-speed and full-lock limits
+  ---
+  duration_ms: 0.44336
+  ...
+# Subtest: road rear drive and front-biased braking produce physical axle pitch
+ok 223 - road rear drive and front-biased braking produce physical axle pitch
+  ---
+  duration_ms: 29.693765
+  ...
+# Subtest: supra: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 224 - supra: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 33.159919
+  ...
+# Subtest: slk: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 225 - slk: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 12.236948
+  ...
+# Subtest: mustang: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 226 - mustang: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 9.257897
+  ...
+# Subtest: porsche911: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 227 - porsche911: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 11.372107
+  ...
+# Subtest: gtr: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 228 - gtr: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 10.217213
+  ...
+# Subtest: rx7: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 229 - rx7: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 9.485082
+  ...
+# Subtest: m3: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 230 - m3: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 7.447284
+  ...
+# Subtest: huracan: authored pivots survive batching, wheel roll leaves calipers fixed
+ok 231 - huracan: authored pivots survive batching, wheel roll leaves calipers fixed
+  ---
+  duration_ms: 8.888109
+  ...
+# Subtest: supra: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 232 - supra: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.873581
+  ...
+# Subtest: slk: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 233 - slk: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.46445
+  ...
+# Subtest: mustang: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 234 - mustang: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 5.956299
+  ...
+# Subtest: porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 235 - porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.852375
+  ...
+# Subtest: gtr: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 236 - gtr: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.531504
+  ...
+# Subtest: rx7: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 237 - rx7: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.088162
+  ...
+# Subtest: m3: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 238 - m3: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.747238
+  ...
+# Subtest: huracan: visible hubs match physical suspension centres at pitch/roll and full inversion
+ok 239 - huracan: visible hubs match physical suspension centres at pitch/roll and full inversion
+  ---
+  duration_ms: 4.382929
+  ...
+# Subtest: right/left bends follow world heading, including the circular route seam
+ok 240 - right/left bends follow world heading, including the circular route seam
+  ---
+  duration_ms: 3.145027
+  ...
+# Subtest: bend detection uses metres and survives a fourfold change in point density
+ok 241 - bend detection uses metres and survives a fourfold change in point density
+  ---
+  duration_ms: 4.335054
+  ...
+# Subtest: finish, reverse driving and recovery distances follow actual race progress
+ok 242 - finish, reverse driving and recovery distances follow actual race progress
+  ---
+  duration_ms: 7.143187
+  ...
+# Subtest: actual city approach previews its left bend and cached guidance stays pure
+ok 243 - actual city approach previews its left bend and cached guidance stays pure
+  ---
+  duration_ms: 11.340155
+  ...
+# Subtest: isolated heading errors never become a persistent corner warning
+ok 244 - isolated heading errors never become a persistent corner warning
+  ---
+  duration_ms: 0.419267
+  ...
+# Subtest: world surface polish preserves collision vertices and shares one releasable grain texture
+ok 245 - world surface polish preserves collision vertices and shares one releasable grain texture
+  ---
+  duration_ms: 4.251337
+  ...
+# Subtest: paint and glass finish preserve authored colours and maps, without changing rubber
+ok 246 - paint and glass finish preserve authored colours and maps, without changing rubber
+  ---
+  duration_ms: 1.353165
+  ...
+# { id: 'supra', side: -1, maxOffset: 10.64593505859375 }
+# { id: 'supra', side: 1, maxOffset: 10.645939826965332 }
+# { id: 'slk', side: -1, maxOffset: 10.677392959594727 }
+# { id: 'slk', side: 1, maxOffset: 10.677389144897461 }
+# { id: 'mustang', side: -1, maxOffset: 10.604549407958984 }
+# { id: 'mustang', side: 1, maxOffset: 10.604555130004883 }
+# { id: 'porsche911', side: -1, maxOffset: 10.605432510375977 }
+# { id: 'porsche911', side: 1, maxOffset: 10.605437278747559 }
+# { id: 'gtr', side: -1, maxOffset: 10.599272727966309 }
+# { id: 'gtr', side: 1, maxOffset: 10.599276542663574 }
+# { id: 'rx7', side: -1, maxOffset: 10.616661071777344 }
+# { id: 'rx7', side: 1, maxOffset: 10.616663932800293 }
+# { id: 'm3', side: -1, maxOffset: 10.604820251464844 }
+# { id: 'm3', side: 1, maxOffset: 10.604825973510742 }
+# { id: 'huracan', side: -1, maxOffset: 10.605022430419922 }
+# { id: 'huracan', side: 1, maxOffset: 10.605027198791504 }
+# {
+#   progress: 2927.3350238627413,
+#   length: 2927.3350238627413,
+#   maxDeviation: 4.936848311552224,
+#   seconds: 109.95,
+#   contacts: 4
+# }
+# Subtest: sealed Namak wall shells block both directions and every route seam without filling the asphalt
+ok 247 - sealed Namak wall shells block both directions and every route seam without filling the asphalt
+  ---
+  duration_ms: 157.764911
+  ...
+# Subtest: eight physical cars remain inside either wall after a 230km/h lateral impact
+ok 248 - eight physical cars remain inside either wall after a 230km/h lateral impact
+  ---
+  duration_ms: 627.259397
+  ...
+# Subtest: an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not
+ok 249 - an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not
+  ---
+  duration_ms: 0.744215
+  ...
+# Subtest: sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward
+ok 250 - sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward
+  ---
+  duration_ms: 71.907338
+  ...
+# Subtest: C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields
+ok 251 - C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields
+  ---
+  duration_ms: 0.495761
+  ...
+# Subtest: recovery finds a clear point behind a six-car queue beyond the former 64m search window
+ok 252 - recovery finds a clear point behind a six-car queue beyond the former 64m search window
+  ---
+  duration_ms: 0.893684
+  ...
+# Subtest: a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery
+ok 253 - a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery
+  ---
+  duration_ms: 1294.126766
+  ...
+# Subtest: spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count
+ok 254 - spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count
+  ---
+  duration_ms: 22.498481
+  ...
+# Subtest: separate regions and incompatible appearance stay separate; large terrain stays individually culled
+ok 255 - separate regions and incompatible appearance stay separate; large terrain stays individually culled
+  ---
+  duration_ms: 4.866735
+  ...
+# Subtest: collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed
+ok 256 - collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed
+  ---
+  duration_ms: 1.583883
+  ...
+# Subtest: index layout, shadow settings, layers and allocation limits prevent invalid merging
+ok 257 - index layout, shadow settings, layers and allocation limits prevent invalid merging
+  ---
+  duration_ms: 2.03871
+  ...
+# Subtest: frame metrics expose stutters and bounded samples without mixing resumed or new sessions
+ok 258 - frame metrics expose stutters and bounded samples without mixing resumed or new sessions
+  ---
+  duration_ms: 0.728186
+  ...
+# Subtest: whole-district forest splits into bounded cells with every rendered triangle and attribute intact
+ok 259 - whole-district forest splits into bounded cells with every rendered triangle and attribute intact
+  ---
+  duration_ms: 169.484646
+  ...
+1..259
+# tests 259
+# suites 0
+# pass 259
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 196074.915203
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+node:internal/modules/esm/resolve:283
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/content/mumu-racing-resume-20261011/node_modules/dist/node/cli.js' imported from /content/mumu-racing-resume-20261011/node_modules/.bin/vite
+    at finalizeResolution (node:internal/modules/esm/resolve:283:11)
+    at moduleResolve (node:internal/modules/esm/resolve:952:10)
+    at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+    at ModuleLoader.import (node:internal/modules/esm/loader:539:34)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:215:31)
+    at importModuleDynamicallyCallback (node:internal/modules/esm/utils:254:12) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///content/mumu-racing-resume-20261011/node_modules/dist/node/cli.js'
+}
+
+Node.js v20.19.0

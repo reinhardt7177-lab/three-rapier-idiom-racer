@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const root=new URL('../../../',import.meta.url);
+const before=JSON.parse(fs.readFileSync(new URL('./before/asset-hashes.json',import.meta.url),'utf8').replace(/^\uFEFF/,''));
+const assets=before.map(item=>{const bytes=fs.readFileSync(item.Path),sha256=crypto.createHash('sha256').update(bytes).digest('hex');return {path:item.Path,bytes:bytes.length,sha256,unchanged:sha256.toUpperCase()===item.Hash.toUpperCase()};});
+if(assets.some(a=>!a.unchanged))throw new Error('Original asset was changed');
+const own=['src/rebuild/yeosuVisuals.js','src/rebuild/yeosuVisualLayout.js','scripts/yeosu-visuals.test.mjs','docs/YEOSU_GRAPHICS_20261013.md'].map(path=>{const file=new URL(path,root),bytes=fs.readFileSync(file);return {path,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),modifiedUtc:fs.statSync(file).mtime.toISOString()};});
+const log=fs.readFileSync(new URL('./unit-tests-layout-final.log',import.meta.url),'utf8'),number=label=>Number(log.match(new RegExp(`ℹ ${label} (\\d+(?:\\.\\d+)?)`))?.[1]);
+const tests={tests:number('tests'),pass:number('pass'),fail:number('fail'),skipped:number('skipped'),durationMs:number('duration_ms')};
+if(tests.tests!==13||tests.pass!==13||tests.fail!==0||tests.skipped!==0)throw new Error('Latest assigned tests did not all pass');
+const result={createdUtc:new Date().toISOString(),assets,own,unitTests:tests,sourceFrozen:true,browserFrames:'parent validation pending',runtime:'local Node CPU, not GPU/browser performance'};
+const file=new URL('./baked-final-audit.json',import.meta.url);if(fs.existsSync(file))throw new Error('Preserve previous audit');fs.writeFileSync(file,JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

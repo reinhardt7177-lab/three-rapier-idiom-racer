@@ -1,0 +1,101 @@
+Planner recovered-map race {
+  seconds: 450,
+  results: [
+    {
+      id: 'supra',
+      metres: 3034,
+      finish: null,
+      index: 1206,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Mountain',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 237.65,
+      index: 37,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 3041,
+      finish: null,
+      index: 1205,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6840,
+      finish: 233.23333333333332,
+      index: 44,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 3059,
+      finish: null,
+      index: 1208,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6840,
+      finish: 229.63333333333333,
+      index: 44,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✖ five planned rivals and a slower driven player complete the recovered 6.84 km course (47136.0081ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49467.8103
+
+✖ failing tests:
+
+test at scripts\rival-ai.test.mjs:115:1
+✖ five planned rivals and a slower driven player complete the recovered 6.84 km course (47136.0081ms)
+  AssertionError [ERR_ASSERTION]: supra stalled at 3034m / null
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/rival-ai.test.mjs:149:30)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+      at run (node:internal/test_runner/harness:369:12)
+      at test (node:internal/test_runner/harness:378:12)
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/rival-ai.test.mjs:115:1 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

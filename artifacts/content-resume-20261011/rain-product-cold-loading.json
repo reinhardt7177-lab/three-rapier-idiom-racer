@@ -1,0 +1,529 @@
+{
+  "mode": "garage",
+  "selected": "supra",
+  "paused": false,
+  "countdown": 3,
+  "elapsed": 0,
+  "result": null,
+  "kmh": 0,
+  "gear": "N",
+  "place": 1,
+  "progress": 0,
+  "region": "GARAGE",
+  "nitro": 1,
+  "standings": [],
+  "fps": 54,
+  "colliderCount": 58,
+  "contacts": 0,
+  "ai": [],
+  "cameraDistance": 0,
+  "laps": 1,
+  "lapOptions": [
+    1,
+    3
+  ],
+  "best": null,
+  "medals": {
+    "gold": 79,
+    "silver": 81,
+    "bronze": 89
+  },
+  "ghost": null,
+  "timing": {
+    "rawSeconds": 0,
+    "steps": 0,
+    "simulatedSeconds": 0,
+    "pendingSeconds": 0,
+    "droppedSeconds": 0
+  },
+  "camera": {
+    "position": [
+      5.799999999999993,
+      2.799999999999998,
+      7.59999999999999
+    ],
+    "quaternion": [
+      -0.09514659818512664,
+      0.31857528024720877,
+      0.03215847933086423,
+      0.9425618005607572
+    ],
+    "fov": 40
+  },
+  "input": {
+    "throttle": 0,
+    "brake": 0,
+    "reverse": 0,
+    "steer": 0,
+    "handbrake": false,
+    "boost": false
+  },
+  "pauseReason": "",
+  "track": {
+    "id": "yeosu",
+    "name": "여수 밤바다",
+    "length": 3544.053534913463
+  },
+  "audio": {
+    "enabled": false,
+    "paused": true,
+    "volume": 0.35,
+    "failed": false,
+    "state": "uninitialized",
+    "vehicle": "supra",
+    "voice": "부드러운 터보 톤",
+    "shiftCount": 0,
+    "audible": false,
+    "mix": {
+      "gear": 0,
+      "rpm": 850,
+      "hz": 42.5,
+      "load": 0,
+      "boost": 0,
+      "engine": 0.075,
+      "intake": 0,
+      "bass": 0.055,
+      "brightness": 0.92,
+      "wind": 0,
+      "brake": 0,
+      "tire": 0,
+      "squeal": 0
+    },
+    "wanted": true
+  },
+  "difficulty": "normal",
+  "assist": true,
+  "nitroBonus": {
+    "amount": 0,
+    "age": 100
+  },
+  "music": {
+    "wanted": true,
+    "enabled": true,
+    "playing": false,
+    "paused": true,
+    "blocked": false,
+    "failed": false,
+    "volume": 0.24,
+    "time": 0,
+    "duration": 0,
+    "trackId": "seven-mile-horizon",
+    "title": "Seven Mile Horizon",
+    "genre": "해변 힙합"
+  },
+  "cameraMode": "chase",
+  "cockpit": {
+    "visible": false,
+    "rig": 1,
+    "meshes": 18,
+    "steeringAngle": 0,
+    "speedNeedle": 2.2689280275926285,
+    "rpmNeedle": 2.2689280275926285,
+    "redline": 8000,
+    "grainBytes": 65536,
+    "display": {
+      "readout": null,
+      "uploads": 0
+    }
+  },
+  "quality": "high",
+  "progression": {
+    "count": 0,
+    "medals": [],
+    "cars": [
+      {
+        "id": "supra",
+        "name": "GR Supra",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "slk",
+        "name": "SLK Roadster",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "mustang",
+        "name": "Mustang GT",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "porsche911",
+        "name": "Porsche 911",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "gtr",
+        "name": "Nissan GT-R",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "rx7",
+        "name": "Mazda RX-7",
+        "required": 1,
+        "unlocked": false
+      },
+      {
+        "id": "m3",
+        "name": "BMW M3",
+        "required": 2,
+        "unlocked": false
+      },
+      {
+        "id": "huracan",
+        "name": "Lamborghini Huracán",
+        "required": 4,
+        "unlocked": false
+      }
+    ],
+    "tracks": [
+      {
+        "id": "coastal",
+        "name": "해안 월드",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "namak",
+        "name": "남악 시티",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "yeosu",
+        "name": "여수 밤바다",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "seongsamjae",
+        "name": "지리산 성삼재",
+        "required": 1,
+        "unlocked": false
+      }
+    ]
+  },
+  "weather": "clear",
+  "rendering": {
+    "samples": 240,
+    "meanMs": 18.61125,
+    "p95Ms": 33.399999999999636,
+    "maxMs": 33.600000000000364,
+    "over50Ms": 0,
+    "calls": 151,
+    "triangles": 297184,
+    "cpu": {
+      "workMs": {
+        "samples": 240,
+        "missing": 0,
+        "mean": 2.694166667262713,
+        "p95": 3.599999964237213,
+        "max": 9.300000011920929
+      },
+      "physicsMs": {
+        "samples": 240,
+        "missing": 0,
+        "mean": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "renderMs": {
+        "samples": 240,
+        "missing": 0,
+        "mean": 2.558333333333333,
+        "p95": 3.400000035762787,
+        "max": 9.100000023841858
+      }
+    },
+    "evidence": {
+      "totalIntervals": 472,
+      "slowIntervals": 2,
+      "retained": 2,
+      "evicted": 0,
+      "spikes": [
+        {
+          "gapMs": 383.36800000000017,
+          "previous": {
+            "atMs": 1745.532,
+            "cpu": {
+              "workMs": 168.0999999642372,
+              "physicsMs": 0,
+              "renderMs": 167.5
+            },
+            "context": {
+              "visible": true,
+              "focused": true,
+              "callbackDelayMs": 213.86800003576286,
+              "droppedSeconds": 0
+            }
+          },
+          "current": {
+            "atMs": 2128.9,
+            "cpu": {
+              "workMs": 4,
+              "physicsMs": 0,
+              "renderMs": 3.900000035762787
+            },
+            "context": {
+              "visible": true,
+              "focused": true,
+              "callbackDelayMs": 11.000000035762696,
+              "droppedSeconds": 0
+            }
+          }
+        },
+        {
+          "gapMs": 50.19999999999982,
+          "previous": {
+            "atMs": 4295.7,
+            "cpu": {
+              "workMs": 3.600000023841858,
+              "physicsMs": 0,
+              "renderMs": 3.5
+            },
+            "context": {
+              "visible": true,
+              "focused": true,
+              "callbackDelayMs": 15.300000000000182,
+              "droppedSeconds": 0
+            }
+          },
+          "current": {
+            "atMs": 4345.9,
+            "cpu": {
+              "workMs": 2.899999976158142,
+              "physicsMs": 0,
+              "renderMs": 2.800000011920929
+            },
+            "context": {
+              "visible": true,
+              "focused": true,
+              "callbackDelayMs": 10.00000003576315,
+              "droppedSeconds": 0
+            }
+          }
+        }
+      ]
+    },
+    "pageVisible": true,
+    "pageFocused": true,
+    "pauseRendering": {
+      "draws": 473,
+      "skipped": 0
+    },
+    "scenery": {
+      "before": 241,
+      "after": 241,
+      "mergedObjects": 0,
+      "batches": 0,
+      "splitObjects": 0,
+      "partsCreated": 0,
+      "cellSize": 128
+    },
+    "surfaces": {
+      "surfaces": 2,
+      "textureBytes": 16384
+    },
+    "landmarks": {
+      "signs": 6,
+      "visibleSigns": 0
+    },
+    "night": {
+      "lights": 6,
+      "shadowMaps": 0,
+      "reflectionPasses": 0,
+      "skyDraws": 1,
+      "skyTriangles": 528
+    },
+    "lighting": {
+      "ambient": 0.38,
+      "sun": 0.12,
+      "exposure": 0.88,
+      "environment": 0.26,
+      "fogNear": 900,
+      "fogFar": 2500
+    },
+    "atmosphere": {
+      "fog": "#09182d",
+      "turbidity": 2.4,
+      "rayleigh": 2.2,
+      "mieCoefficient": 0.003
+    },
+    "colors": {
+      "version": "yeosu-photo-palette-1",
+      "materials": 3,
+      "emissiveMaterials": 3
+    },
+    "decoration": {
+      "objects": 171,
+      "hidden": 0,
+      "distance": null
+    },
+    "pixelRatio": 1.25,
+    "width": 1280,
+    "height": 720
+  },
+  "loading": {
+    "measured": true,
+    "files": [
+      {
+        "name": "index-CypQ5_gx.js",
+        "encodedBytes": 85644,
+        "transferBytes": 85944,
+        "durationMs": 45.69999998807907
+      },
+      {
+        "name": "react--MMj_Dji.js",
+        "encodedBytes": 60092,
+        "transferBytes": 60392,
+        "durationMs": 40.5
+      },
+      {
+        "name": "three-CZVw8aSm.js",
+        "encodedBytes": 141730,
+        "transferBytes": 142030,
+        "durationMs": 63.5
+      },
+      {
+        "name": "physics-iRel_T-y.js",
+        "encodedBytes": 1077800,
+        "transferBytes": 1078100,
+        "durationMs": 174.30000001192093
+      },
+      {
+        "name": "index-BHytacZT.css",
+        "encodedBytes": 6415,
+        "transferBytes": 6715,
+        "durationMs": 30.5
+      },
+      {
+        "name": "supra.glb",
+        "encodedBytes": 582932,
+        "transferBytes": 583232,
+        "durationMs": 8.300000011920929
+      },
+      {
+        "name": "draco_wasm_wrapper.js",
+        "encodedBytes": 11748,
+        "transferBytes": 12048,
+        "durationMs": 64.80000001192093
+      },
+      {
+        "name": "draco_decoder.wasm",
+        "encodedBytes": 192420,
+        "transferBytes": 192720,
+        "durationMs": 12.699999988079071
+      },
+      {
+        "name": "slk.glb",
+        "encodedBytes": 587308,
+        "transferBytes": 587608,
+        "durationMs": 10.899999976158142
+      },
+      {
+        "name": "mustang.glb",
+        "encodedBytes": 555360,
+        "transferBytes": 555660,
+        "durationMs": 11.199999988079071
+      },
+      {
+        "name": "porsche911.glb",
+        "encodedBytes": 617652,
+        "transferBytes": 617952,
+        "durationMs": 10
+      },
+      {
+        "name": "gtr.glb",
+        "encodedBytes": 551712,
+        "transferBytes": 552012,
+        "durationMs": 14.200000047683716
+      },
+      {
+        "name": "rx7.glb",
+        "encodedBytes": 531020,
+        "transferBytes": 531320,
+        "durationMs": 6
+      },
+      {
+        "name": "m3.glb",
+        "encodedBytes": 628356,
+        "transferBytes": 628656,
+        "durationMs": 6.700000047683716
+      },
+      {
+        "name": "huracan.glb",
+        "encodedBytes": 559472,
+        "transferBytes": 559772,
+        "durationMs": 6.100000023841858
+      },
+      {
+        "name": "garage.glb",
+        "encodedBytes": 132244,
+        "transferBytes": 132544,
+        "durationMs": 7.299999952316284
+      },
+      {
+        "name": "yeosu.glb",
+        "encodedBytes": 3480804,
+        "transferBytes": 3481104,
+        "durationMs": 21.30000001192093
+      },
+      {
+        "name": "cockpit.glb",
+        "encodedBytes": 736208,
+        "transferBytes": 736508,
+        "durationMs": 16.599999964237213
+      },
+      {
+        "name": "yeosu-route.json",
+        "encodedBytes": 97993,
+        "transferBytes": 98293,
+        "durationMs": 20.69999998807907
+      }
+    ],
+    "encodedBytes": 10636910,
+    "transferBytes": 10642610,
+    "cacheHits": 0,
+    "revalidated": 0,
+    "unknownSizes": 0
+  },
+  "preparation": {
+    "phase": "idle",
+    "busy": false,
+    "error": null,
+    "frameBoundary": {
+      "pending": false,
+      "readyAtMs": null,
+      "firstFrameWaitMs": 0,
+      "skippedFrames": 0
+    }
+  },
+  "finishOrder": [],
+  "vfx": {
+    "rain": {
+      "drops": 0,
+      "spray": 0,
+      "budget": 220,
+      "sprayBudget": 160,
+      "drawCalls": 0
+    },
+    "tireSmoke": {
+      "live": 0,
+      "budget": 160
+    },
+    "exhaust": {
+      "live": 0,
+      "budget": 96
+    },
+    "trails": {
+      "allocated": 512,
+      "used": 0,
+      "live": 0
+    },
+    "feedback": {}
+  }
+}

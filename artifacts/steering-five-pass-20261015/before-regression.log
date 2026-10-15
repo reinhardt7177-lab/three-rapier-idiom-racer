@@ -1,0 +1,93 @@
+✖ pass 1: all eight player racks reach useful low-speed lock through actual front tyres only (694.2272ms)
+✖ pass 2: useful-speed player lock is stronger, monotone and continuous; AI and highway limits retain their calibration (1.0455ms)
+✖ pass 3: short player taps engage promptly, opposite input crosses centre, and release is frame independent (0.7161ms)
+✖ pass 4: actual Blender steering wheel has a readable symmetric rack ratio, bounded full lock and no input-only fakery (234.9615ms)
+✔ pass 5: all eight cars support quick turn/countersteer/drift/release sequences without spinning or leaving the ground (4364.0092ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10054.7323
+
+✖ failing tests:
+
+test at scripts\steering-final.test.mjs:16:1
+✖ pass 1: all eight player racks reach useful low-speed lock through actual front tyres only (694.2272ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(deg(Math.abs(s.steer))>31&&deg(Math.abs(s.steer))<33)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-final.test.mjs:22:34)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\steering-final.test.mjs:31:1
+✖ pass 2: useful-speed player lock is stronger, monotone and continuous; AI and highway limits retain their calibration (1.0455ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(deg(steeringLimit(90/3.6,true,tuning,PLAYER_STEERING_SENSITIVITY))>7.5)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-final.test.mjs:34:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\steering-final.test.mjs:50:1
+✖ pass 3: short player taps engage promptly, opposite input crosses centre, and release is frame independent (0.7161ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(-s*side>.88)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-final.test.mjs:53:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\steering-final.test.mjs:62:1
+✖ pass 4: actual Blender steering wheel has a readable symmetric rack ratio, bounded full lock and no input-only fakery (234.9615ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(left>1&&left<1.5)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-final.test.mjs:68:48)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

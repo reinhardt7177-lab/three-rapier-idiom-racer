@@ -1,0 +1,3694 @@
+{
+  "checks": [
+    {
+      "check": "first start",
+      "state": {
+        "mode": "race",
+        "selected": "supra",
+        "paused": false,
+        "countdown": 2,
+        "elapsed": 0,
+        "result": null,
+        "kmh": 0,
+        "gear": "N",
+        "place": 1,
+        "progress": 0,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "YOU",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "NOVA",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": -19.327162097143926,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": -19.327162097143926,
+            "finished": false
+          }
+        ],
+        "fps": 35,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 636.8333740234375,
+          "y": 7.513206481933594,
+          "z": -466.3352355957031
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 640.305419921875,
+              "y": 7.503206253051758,
+              "z": -469.0379638671875
+            },
+            "kmh": 1.128023504278688e-44,
+            "progress": 0,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "slk",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 101.30000000000103
+            }
+          },
+          {
+            "position": {
+              "x": 630.7791137695312,
+              "y": 7.562167644500732,
+              "z": -473.92498779296875
+            },
+            "kmh": 0.0018005699091095566,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "mustang",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 101.30000000000103
+            }
+          },
+          {
+            "position": {
+              "x": 634.185302734375,
+              "y": 7.547170162200928,
+              "z": -476.7102966308594
+            },
+            "kmh": 0.0018679710622901949,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "porsche911",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 101.30000000000103
+            }
+          },
+          {
+            "position": {
+              "x": 624.6744384765625,
+              "y": 7.6372480392456055,
+              "z": -481.2068176269531
+            },
+            "kmh": 0.0029346077379720963,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "gtr",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 101.30000000000103
+            }
+          },
+          {
+            "position": {
+              "x": 628.0103759765625,
+              "y": 7.6129608154296875,
+              "z": -484.0758972167969
+            },
+            "kmh": 0.002826699162063181,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "rx7",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 101.30000000000103
+            }
+          }
+        ],
+        "cameraDistance": 7.68960337078579,
+        "redline": 6500,
+        "rpm": 850,
+        "shifting": false,
+        "mass": 1480,
+        "wheels": [
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3590.7080078125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003422242298256606,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 635.4474487304688,
+              "y": 6.98720121383667,
+              "z": -466.8214416503906
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3969.560302734375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003422242298256606,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.9646606445312,
+              "y": 6.98720121383667,
+              "z": -464.8723449707031
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3590.7080078125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.000034222415706608444,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.7020874023438,
+              "y": 6.98720121383667,
+              "z": -467.7981262207031
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3969.560302734375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003422242298256606,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 638.2192993164062,
+              "y": 6.98720121383667,
+              "z": -465.8490295410156
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 101.30000000000103
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0.3247290551662445,
+          "z": 0,
+          "w": 0.9458070993423462
+        },
+        "angularVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 101.30000000000103
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 6.98720121383667,
+          "planeResidual": 0,
+          "uneven": 0,
+          "filteredGround": 6.98720121383667,
+          "target": 7.50907621383667,
+          "error": 0.004130268096924183,
+          "roadRate": 0,
+          "supportAcceleration": 9.810000563912878,
+          "beforeVertical": -0.035761721432209015,
+          "wheelVertical": 0.049376439303159714,
+          "commandVertical": 0.04598828326706496,
+          "controlledVertical": 0.045988284051418304,
+          "normal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "velocity": {
+          "x": -1.401298464324817e-45,
+          "y": -0.035761721432209015,
+          "z": -2.802596928649634e-45
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6839.740156367915
+        },
+        "timing": {
+          "rawSeconds": 0.016299999999999273,
+          "steps": 2,
+          "simulatedSeconds": 1.2999999999999978,
+          "pendingSeconds": 2.2898349882893854e-16,
+          "droppedSeconds": 2.4335
+        },
+        "camera": {
+          "position": [
+            632.4106870905579,
+            10.213206481933593,
+            -472.01677062540557
+          ],
+          "quaternion": [
+            0.029353024681715682,
+            0.9419351704611001,
+            0.08549373297355464,
+            -0.3233996849298084
+          ],
+          "fov": 54
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "",
+        "audio": {
+          "enabled": true,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "supra",
+          "voice": "부드러운 터보 톤",
+          "shiftCount": 0,
+          "audible": false,
+          "mix": {
+            "gear": 0,
+            "rpm": 850,
+            "hz": 42.5,
+            "load": 0,
+            "boost": 0,
+            "engine": 0.075,
+            "intake": 0,
+            "bass": 0.055,
+            "brightness": 0.92,
+            "shifting": false,
+            "wind": 7.06909459002873e-94,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": true
+        },
+        "rendering": {
+          "samples": 39,
+          "meanMs": 95.73076923076923,
+          "p95Ms": 100.10000000000036,
+          "maxMs": 2683.3999999999996,
+          "over50Ms": 4,
+          "calls": 927,
+          "triangles": 2147435,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 1280,
+          "height": 720
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 30,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": 0,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 3.078807580070958e-46,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "accelerate and pause",
+      "state": {
+        "mode": "race",
+        "selected": "supra",
+        "paused": true,
+        "countdown": 0,
+        "elapsed": 6.11666666666676,
+        "result": null,
+        "kmh": 73,
+        "gear": "2",
+        "place": 4,
+        "progress": 0.004439621118277837,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "NOVA",
+            "progress": 110.89121091073147,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": 102.6703032653642,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": 91.74217722105143,
+            "finished": false
+          },
+          {
+            "name": "YOU",
+            "progress": 30.365854841743946,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": 9.954508318014682,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": -2.4597013936857977,
+            "finished": false
+          }
+        ],
+        "fps": 41,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 654.9955444335938,
+          "y": 7.610512733459473,
+          "z": -443.005859375
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 697.1952514648438,
+              "y": 8.385135650634766,
+              "z": -372.4329833984375
+            },
+            "kmh": 113.11683489520188,
+            "progress": 110.89121091073147,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "slk",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 6.11666666666676
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 109.11666666667392
+            }
+          },
+          {
+            "position": {
+              "x": 643.06103515625,
+              "y": 7.530812740325928,
+              "z": -457.6331481933594
+            },
+            "kmh": 67.13956205959664,
+            "progress": 9.954508318014682,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "mustang",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 6.11666666666676
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 109.11666666667392
+            }
+          },
+          {
+            "position": {
+              "x": 692.9926147460938,
+              "y": 8.314852714538574,
+              "z": -381.5165710449219
+            },
+            "kmh": 115.78799210219856,
+            "progress": 102.6703032653642,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "porsche911",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 6.11666666666676
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 109.11666666667392
+            }
+          },
+          {
+            "position": {
+              "x": 638.0479736328125,
+              "y": 7.528772354125977,
+              "z": -471.3294372558594
+            },
+            "kmh": 20.192398035931333,
+            "progress": -2.4597013936857977,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "gtr",
+            "maneuver": {
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 0.275
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 109.11666666667392
+            }
+          },
+          {
+            "position": {
+              "x": 688.4961547851562,
+              "y": 8.194713592529297,
+              "z": -390.8405456542969
+            },
+            "kmh": 118.5455908151799,
+            "progress": 91.74217722105143,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "rx7",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 6.11666666666676
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 109.11666666667392
+            }
+          }
+        ],
+        "cameraDistance": 7.683208028524826,
+        "redline": 6500,
+        "rpm": 4194,
+        "shifting": false,
+        "mass": 1480,
+        "wheels": [
+          {
+            "y": 0.42452583909034725,
+            "suspensionLength": 0.2754741609096527,
+            "load": 3585.450927734375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 84.47386932373047,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 653.507568359375,
+              "y": 7.076096057891846,
+              "z": -443.62274169921875
+            },
+            "normal": {
+              "x": -0.0037955897860229015,
+              "y": 0.9999773502349854,
+              "z": -0.0055630444549024105
+            }
+          },
+          {
+            "y": 0.42459319233894344,
+            "suspensionLength": 0.2754068076610565,
+            "load": 3974.74658203125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 84.47382354736328,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 655.0247802734375,
+              "y": 7.092398166656494,
+              "z": -441.6737060546875
+            },
+            "normal": {
+              "x": -0.0037748811300843954,
+              "y": 0.999977171421051,
+              "z": -0.005600308068096638
+            }
+          },
+          {
+            "y": 0.4245021760463714,
+            "suspensionLength": 0.27549782395362854,
+            "load": 3584.26025390625,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 84.47381591796875,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 654.76220703125,
+              "y": 7.075425148010254,
+              "z": -444.59942626953125
+            },
+            "normal": {
+              "x": -0.0037955897860229015,
+              "y": 0.9999773502349854,
+              "z": -0.0055630444549024105
+            }
+          },
+          {
+            "y": 0.42450718283653255,
+            "suspensionLength": 0.2754928171634674,
+            "load": 3969.9091796875,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 84.47378540039062,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 656.2794189453125,
+              "y": 7.091664791107178,
+              "z": -442.650390625
+            },
+            "normal": {
+              "x": -0.0037748811300843954,
+              "y": 0.999977171421051,
+              "z": -0.005600308068096638
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 109.11666666667392
+        },
+        "rotation": {
+          "x": -0.0031754332594573498,
+          "y": 0.3247293531894684,
+          "z": 0.0008735167211852968,
+          "w": 0.9458012580871582
+        },
+        "angularVelocity": {
+          "x": -5.6537179180925906e-14,
+          "y": 0.0000012100756521249423,
+          "z": -2.3851622784590472e-14
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 109.11666666667392
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 7.083873295138622,
+          "planeResidual": 0.000015616416931152235,
+          "uneven": 0,
+          "filteredGround": 7.0838506578379885,
+          "target": 7.6057369790212235,
+          "error": 0.003615609632340977,
+          "roadRate": 0.13362334950820612,
+          "supportAcceleration": 9.756546711303404,
+          "beforeVertical": 0.10397742688655853,
+          "wheelVertical": 0.18904787302017212,
+          "commandVertical": 0.1852819828140869,
+          "controlledVertical": 0.18528197705745697,
+          "normal": {
+            "x": -0.0037146591184162086,
+            "y": 0.9999783071853471,
+            "z": -0.005439344295204727
+          }
+        },
+        "velocity": {
+          "x": 12.484295845031738,
+          "y": 0.10353194177150726,
+          "z": 16.037517547607422
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6809.374301526171
+        },
+        "timing": {
+          "rawSeconds": 0,
+          "steps": 0,
+          "simulatedSeconds": 0,
+          "pendingSeconds": 0,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            650.5728250875374,
+            10.29224456374909,
+            -448.68736917310986
+          ],
+          "quaternion": [
+            0.026531636529895097,
+            0.9426440471193789,
+            0.0772754292502134,
+            -0.3236460732461296
+          ],
+          "fov": 54
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "manual",
+        "audio": {
+          "enabled": true,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "supra",
+          "voice": "부드러운 터보 톤",
+          "shiftCount": 1,
+          "audible": false,
+          "mix": {
+            "gear": 2,
+            "rpm": 4164.547664140544,
+            "hz": 208.2273832070272,
+            "load": 0.5737534207373789,
+            "boost": 0,
+            "engine": 0.19773176086259775,
+            "intake": 0.03155643814055584,
+            "bass": 0.055,
+            "brightness": 0.92,
+            "shifting": false,
+            "wind": 0.029740292052198695,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": true
+        },
+        "rendering": {
+          "samples": 0,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 1280,
+          "height": 720
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 48,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": 3.2010768239987706,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 0.0000020304444914304687,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "mute survives restart",
+      "state": {
+        "mode": "race",
+        "selected": "supra",
+        "paused": false,
+        "countdown": 3,
+        "elapsed": 0,
+        "result": null,
+        "kmh": 0,
+        "gear": "N",
+        "place": 1,
+        "progress": 0,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "YOU",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "NOVA",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": -19.327162097143926,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": -19.327162097143926,
+            "finished": false
+          }
+        ],
+        "fps": 39,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 636.8333740234375,
+          "y": 7.513206481933594,
+          "z": -466.3352355957031
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 640.305419921875,
+              "y": 7.503206253051758,
+              "z": -469.0379638671875
+            },
+            "kmh": 1.0089348943138683e-44,
+            "progress": 0,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "slk",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.47500000000038
+            }
+          },
+          {
+            "position": {
+              "x": 630.7791137695312,
+              "y": 7.562167644500732,
+              "z": -473.92498779296875
+            },
+            "kmh": 0.0018005699091095566,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "mustang",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.47500000000038
+            }
+          },
+          {
+            "position": {
+              "x": 634.185302734375,
+              "y": 7.547170162200928,
+              "z": -476.7102966308594
+            },
+            "kmh": 0.0018679708639220292,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "porsche911",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.47500000000038
+            }
+          },
+          {
+            "position": {
+              "x": 624.6744384765625,
+              "y": 7.6372480392456055,
+              "z": -481.2068176269531
+            },
+            "kmh": 0.002934607464661226,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "gtr",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.47500000000038
+            }
+          },
+          {
+            "position": {
+              "x": 628.0103759765625,
+              "y": 7.6129608154296875,
+              "z": -484.0758972167969
+            },
+            "kmh": 0.0028266993215195204,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "rx7",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.47500000000038
+            }
+          }
+        ],
+        "cameraDistance": 7.68960337078579,
+        "redline": 6500,
+        "rpm": 850,
+        "shifting": false,
+        "mass": 1480,
+        "wheels": [
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3590.7080078125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003396727333893068,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 635.4474487304688,
+              "y": 6.98720121383667,
+              "z": -466.8214416503906
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3969.560302734375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003396727333893068,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.9646606445312,
+              "y": 6.98720121383667,
+              "z": -464.8723449707031
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3590.7080078125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003396727333893068,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.7020874023438,
+              "y": 6.98720121383667,
+              "z": -467.7981262207031
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3969.560302734375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003396727333893068,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 638.2192993164062,
+              "y": 6.98720121383667,
+              "z": -465.8490295410156
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 100.47500000000038
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0.3247290551662445,
+          "z": 0,
+          "w": 0.9458070993423462
+        },
+        "angularVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 100.47500000000038
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 6.98720121383667,
+          "planeResidual": 0,
+          "uneven": 0,
+          "filteredGround": 6.98720121383667,
+          "target": 7.50907621383667,
+          "error": 0.004130268096924183,
+          "roadRate": 0,
+          "supportAcceleration": 9.810000563912878,
+          "beforeVertical": -0.035761721432209015,
+          "wheelVertical": 0.049376439303159714,
+          "commandVertical": 0.04598828326706496,
+          "controlledVertical": 0.045988284051418304,
+          "normal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "velocity": {
+          "x": -1.401298464324817e-45,
+          "y": -0.035761721432209015,
+          "z": 0
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6839.740156367915
+        },
+        "timing": {
+          "rawSeconds": 0.03330000000000291,
+          "steps": 3,
+          "simulatedSeconds": 0.47500000000000064,
+          "pendingSeconds": 0.008300000000003025,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            632.4106870905579,
+            10.213206481933593,
+            -472.01677062540557
+          ],
+          "quaternion": [
+            0.029353024681715682,
+            0.9419351704611001,
+            0.08549373297355464,
+            -0.3233996849298084
+          ],
+          "fov": 54
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "",
+        "audio": {
+          "enabled": false,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "supra",
+          "voice": "부드러운 터보 톤",
+          "shiftCount": 0,
+          "audible": false,
+          "mix": {
+            "gear": 0,
+            "rpm": 850,
+            "hz": 42.5,
+            "load": 0,
+            "boost": 0,
+            "engine": 0.075,
+            "intake": 0,
+            "bass": 0.055,
+            "brightness": 0.92,
+            "shifting": false,
+            "wind": 1.4138189180057455e-94,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": false
+        },
+        "rendering": {
+          "samples": 9,
+          "meanMs": 53.70000000000032,
+          "p95Ms": 250,
+          "maxMs": 250,
+          "over50Ms": 2,
+          "calls": 927,
+          "triangles": 2147435,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 1280,
+          "height": 720
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 16,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": 0,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 5.528837674738818e-46,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "all eight muted starts",
+      "vehicles": [
+        {
+          "selected": "supra",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "supra",
+            "voice": "부드러운 터보 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 42.5,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.055,
+              "brightness": 0.92,
+              "shifting": false,
+              "wind": 1.4138189180057455e-94,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "slk",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "slk",
+            "voice": "경쾌한 로드스터 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 28.333333333333332,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.025,
+              "brightness": 0.85,
+              "shifting": false,
+              "wind": 2.4034921606097674e-93,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "mustang",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "mustang",
+            "voice": "낮고 굵은 머슬 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 56.666666666666664,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.1,
+              "brightness": 0.65,
+              "shifting": false,
+              "wind": 1.4138189180057453e-93,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "porsche911",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "porsche911",
+            "voice": "건조한 스포츠 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 42.5,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.04,
+              "brightness": 1.18,
+              "shifting": false,
+              "wind": 7.06909459002873e-94,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "gtr",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "gtr",
+            "voice": "깊은 트윈터보 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 42.5,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.075,
+              "brightness": 0.86,
+              "shifting": false,
+              "wind": 2.262110268809193e-93,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "rx7",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "rx7",
+            "voice": "높고 매끈한 로터리 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 28.333333333333332,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.018,
+              "brightness": 1.3,
+              "shifting": false,
+              "wind": 1.4138189180057453e-93,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "m3",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "m3",
+            "voice": "선명한 스포츠 세단 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 42.5,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.045,
+              "brightness": 1.08,
+              "shifting": false,
+              "wind": 2.8276378360114906e-94,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        },
+        {
+          "selected": "huracan",
+          "audio": {
+            "enabled": false,
+            "paused": true,
+            "volume": 0.35,
+            "failed": false,
+            "state": "running",
+            "vehicle": "huracan",
+            "voice": "날카로운 고회전 톤",
+            "shiftCount": 0,
+            "audible": false,
+            "mix": {
+              "gear": 0,
+              "rpm": 850,
+              "hz": 70.83333333333333,
+              "load": 0,
+              "boost": 0,
+              "engine": 0.075,
+              "intake": 0,
+              "bass": 0.025,
+              "brightness": 1.48,
+              "shifting": false,
+              "wind": 5.655275672022982e-94,
+              "brake": 0,
+              "tire": 0,
+              "squeal": 0
+            },
+            "wanted": false
+          }
+        }
+      ]
+    },
+    {
+      "check": "portrait touch sound enable",
+      "state": {
+        "mode": "race",
+        "selected": "huracan",
+        "paused": true,
+        "countdown": 3,
+        "elapsed": 0,
+        "result": null,
+        "kmh": 0,
+        "gear": "N",
+        "place": 1,
+        "progress": 0,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "YOU",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "NOVA",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": -19.327162097143926,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": -19.327162097143926,
+            "finished": false
+          }
+        ],
+        "fps": 58,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 636.8333740234375,
+          "y": 7.513206481933594,
+          "z": -466.3352355957031
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 640.305419921875,
+              "y": 7.513206481933594,
+              "z": -469.0379638671875
+            },
+            "kmh": 7.13424705545069e-45,
+            "progress": 0,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "supra",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 630.7789916992188,
+              "y": 7.537161827087402,
+              "z": -473.92510986328125
+            },
+            "kmh": 0.002055436998920682,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "slk",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 634.1853637695312,
+              "y": 7.562175273895264,
+              "z": -476.710205078125
+            },
+            "kmh": 0.0017369972986139846,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "mustang",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 624.67431640625,
+              "y": 7.627839088439941,
+              "z": -481.2069396972656
+            },
+            "kmh": 0.003031230445255108,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "porsche911",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 628.0106201171875,
+              "y": 7.637329578399658,
+              "z": -484.07562255859375
+            },
+            "kmh": 0.0028584367460799676,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "gtr",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          }
+        ],
+        "cameraDistance": 8.802272433866122,
+        "redline": 8000,
+        "rpm": 850,
+        "shifting": false,
+        "mass": 1440,
+        "wheels": [
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3493.661865234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 635.3737182617188,
+              "y": 6.98720121383667,
+              "z": -466.859130859375
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3862.27490234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.9830932617188,
+              "y": 6.98720121383667,
+              "z": -464.79168701171875
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3493.661865234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362723823637,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.6836547851562,
+              "y": 6.98720121383667,
+              "z": -467.8787841796875
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3862.27490234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 638.2930297851562,
+              "y": 6.98720121383667,
+              "z": -465.81134033203125
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 100.10000000000008
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0.3247290551662445,
+          "z": 0,
+          "w": 0.9458070993423462
+        },
+        "angularVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 100.10000000000008
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 6.98720121383667,
+          "planeResidual": 0,
+          "uneven": 0,
+          "filteredGround": 6.98720121383667,
+          "target": 7.50907621383667,
+          "error": 0.004130268096924183,
+          "roadRate": 0,
+          "supportAcceleration": 9.810000563912878,
+          "beforeVertical": -0.035761721432209015,
+          "wheelVertical": 0.04937644302845001,
+          "commandVertical": 0.04598828326706496,
+          "controlledVertical": 0.045988284051418304,
+          "normal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "velocity": {
+          "x": -2.802596928649634e-45,
+          "y": -0.035761721432209015,
+          "z": 0
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6839.740156367915
+        },
+        "timing": {
+          "rawSeconds": 0,
+          "steps": 0,
+          "simulatedSeconds": 0,
+          "pendingSeconds": 0,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            631.7964250165469,
+            10.713206481933593,
+            -472.80587271286424
+          ],
+          "quaternion": [
+            0.03339605007849182,
+            0.9407920572766352,
+            0.09726946434793032,
+            -0.32300721371173435
+          ],
+          "fov": 60
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "manual",
+        "audio": {
+          "enabled": true,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "huracan",
+          "voice": "날카로운 고회전 톤",
+          "shiftCount": 0,
+          "audible": false,
+          "mix": {
+            "gear": 0,
+            "rpm": 850,
+            "hz": 70.83333333333333,
+            "load": 0,
+            "boost": 0,
+            "engine": 0.075,
+            "intake": 0,
+            "bass": 0.025,
+            "brightness": 1.48,
+            "shifting": false,
+            "wind": 5.655275672022982e-94,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": true
+        },
+        "rendering": {
+          "samples": 0,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 390,
+          "height": 844
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 2,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": 0,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 1.1057675349477636e-45,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "landscape sound disable and rotate pause",
+      "state": {
+        "mode": "race",
+        "selected": "huracan",
+        "paused": true,
+        "countdown": 3,
+        "elapsed": 0,
+        "result": null,
+        "kmh": 0,
+        "gear": "N",
+        "place": 1,
+        "progress": 0,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "YOU",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "NOVA",
+            "progress": 0,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": -9.765728568485613,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": -19.327162097143926,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": -19.327162097143926,
+            "finished": false
+          }
+        ],
+        "fps": 46,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 636.8333740234375,
+          "y": 7.513206481933594,
+          "z": -466.3352355957031
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 640.305419921875,
+              "y": 7.513206481933594,
+              "z": -469.0379638671875
+            },
+            "kmh": 7.13424705545069e-45,
+            "progress": 0,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "supra",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 630.7789916992188,
+              "y": 7.537161827087402,
+              "z": -473.92510986328125
+            },
+            "kmh": 0.002055436998920682,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "slk",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 634.1853637695312,
+              "y": 7.562175273895264,
+              "z": -476.710205078125
+            },
+            "kmh": 0.0017369972986139846,
+            "progress": -9.765728568485613,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "mustang",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 624.67431640625,
+              "y": 7.627839088439941,
+              "z": -481.2069396972656
+            },
+            "kmh": 0.003031230445255108,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "porsche911",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          },
+          {
+            "position": {
+              "x": 628.0106201171875,
+              "y": 7.637329578399658,
+              "z": -484.07562255859375
+            },
+            "kmh": 0.0028584367460799676,
+            "progress": -19.327162097143926,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "gtr",
+            "maneuver": null,
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 100.10000000000008
+            }
+          }
+        ],
+        "cameraDistance": 7.68960337078579,
+        "redline": 8000,
+        "rpm": 850,
+        "shifting": false,
+        "mass": 1440,
+        "wheels": [
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3493.661865234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 635.3737182617188,
+              "y": 6.98720121383667,
+              "z": -466.859130859375
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3862.27490234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.9830932617188,
+              "y": 6.98720121383667,
+              "z": -464.79168701171875
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239947617053985,
+            "suspensionLength": 0.27600523829460144,
+            "load": 3493.661865234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362723823637,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 636.6836547851562,
+              "y": 6.98720121383667,
+              "z": -467.8787841796875
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+          {
+            "y": 0.4239948213100433,
+            "suspensionLength": 0.27600517868995667,
+            "load": 3862.27490234375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": -0.00003490362360025756,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 638.2930297851562,
+              "y": 6.98720121383667,
+              "z": -465.81134033203125
+            },
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 100.10000000000008
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0.3247290551662445,
+          "z": 0,
+          "w": 0.9458070993423462
+        },
+        "angularVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 100.10000000000008
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 6.98720121383667,
+          "planeResidual": 0,
+          "uneven": 0,
+          "filteredGround": 6.98720121383667,
+          "target": 7.50907621383667,
+          "error": 0.004130268096924183,
+          "roadRate": 0,
+          "supportAcceleration": 9.810000563912878,
+          "beforeVertical": -0.035761721432209015,
+          "wheelVertical": 0.04937644302845001,
+          "commandVertical": 0.04598828326706496,
+          "controlledVertical": 0.045988284051418304,
+          "normal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "velocity": {
+          "x": -2.802596928649634e-45,
+          "y": -0.035761721432209015,
+          "z": 0
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6839.740156367915
+        },
+        "timing": {
+          "rawSeconds": 0,
+          "steps": 0,
+          "simulatedSeconds": 0,
+          "pendingSeconds": 0,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            632.4106870905579,
+            10.213206481933593,
+            -472.01677062540557
+          ],
+          "quaternion": [
+            0.029353024681715682,
+            0.9419351704611001,
+            0.08549373297355464,
+            -0.3233996849298084
+          ],
+          "fov": 54
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "layout",
+        "audio": {
+          "enabled": false,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "huracan",
+          "voice": "날카로운 고회전 톤",
+          "shiftCount": 0,
+          "audible": false,
+          "mix": {
+            "gear": 0,
+            "rpm": 850,
+            "hz": 70.83333333333333,
+            "load": 0,
+            "boost": 0,
+            "engine": 0.075,
+            "intake": 0,
+            "bass": 0.025,
+            "brightness": 1.48,
+            "shifting": false,
+            "wind": 5.655275672022982e-94,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": false
+        },
+        "rendering": {
+          "samples": 0,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 844,
+          "height": 390
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 2,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": 0,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 1.1057675349477636e-45,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "landscape pointer gas release",
+      "state": {
+        "mode": "race",
+        "selected": "huracan",
+        "paused": false,
+        "countdown": 0,
+        "elapsed": 9.216666666666784,
+        "result": null,
+        "kmh": 83,
+        "gear": "2",
+        "place": 5,
+        "progress": 0.007118971005291029,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "NOVA",
+            "progress": 237.65803164459575,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": 219.7944489362802,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": 204.69810407348965,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": 53.995167144294776,
+            "finished": false
+          },
+          {
+            "name": "YOU",
+            "progress": 48.691911856907915,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": 2.4716199932230793,
+            "finished": false
+          }
+        ],
+        "fps": 42,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 667.1801147460938,
+          "y": 7.771024703979492,
+          "z": -427.34991455078125
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 734.7301025390625,
+              "y": 9.038278579711914,
+              "z": -251.9267120361328
+            },
+            "kmh": 131.11440153373263,
+            "progress": 237.65803164459575,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "supra",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.216666666666784
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.21666666667639
+            }
+          },
+          {
+            "position": {
+              "x": 640.9789428710938,
+              "y": 7.503207206726074,
+              "z": -467.0818176269531
+            },
+            "kmh": 14.063822382395369,
+            "progress": 2.4716199932230793,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "slk",
+            "maneuver": {
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 3.5833333333333233
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.21666666667639
+            }
+          },
+          {
+            "position": {
+              "x": 730.8408813476562,
+              "y": 8.93746566772461,
+              "z": -269.2476806640625
+            },
+            "kmh": 136.61437408549764,
+            "progress": 219.7944489362802,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "mustang",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.216666666666784
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.21666666667639
+            }
+          },
+          {
+            "position": {
+              "x": 670.4056396484375,
+              "y": 7.831296920776367,
+              "z": -422.4351501464844
+            },
+            "kmh": 98.94951850770768,
+            "progress": 53.995167144294776,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "porsche911",
+            "maneuver": {
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 1.4087149944235229,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 1.7083333333333297
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.21666666667639
+            }
+          },
+          {
+            "position": {
+              "x": 726.8397216796875,
+              "y": 8.841495513916016,
+              "z": -285.5489501953125
+            },
+            "kmh": 142.15631998760057,
+            "progress": 204.69810407348965,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "gtr",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.216666666666784
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.21666666667639
+            }
+          }
+        ],
+        "cameraDistance": 7.857319562183357,
+        "redline": 8000,
+        "rpm": 4919,
+        "shifting": false,
+        "mass": 1440,
+        "wheels": [
+          {
+            "y": 0.4280591428279876,
+            "suspensionLength": 0.27194085717201233,
+            "load": 4125.36181640625,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 141.17135620117188,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 665.6051025390625,
+              "y": 7.234917163848877,
+              "z": -428.0212097167969
+            },
+            "normal": {
+              "x": -0.006680300924926996,
+              "y": 0.9999194741249084,
+              "z": -0.01079510897397995
+            }
+          },
+          {
+            "y": 0.4230683863162994,
+            "suspensionLength": 0.27693161368370056,
+            "load": 2662.23583984375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 141.17108154296875,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 667.2144165039062,
+              "y": 7.2558207511901855,
+              "z": -425.953857421875
+            },
+            "normal": {
+              "x": -0.0032794782891869545,
+              "y": 0.9999802112579346,
+              "z": -0.0053735836409032345
+            }
+          },
+          {
+            "y": 0.42741672396659847,
+            "suspensionLength": 0.2725832760334015,
+            "load": 4093.913818359375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 141.17135620117188,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 666.9150390625,
+              "y": 7.232660293579102,
+              "z": -429.0408935546875
+            },
+            "normal": {
+              "x": -0.006680300924926996,
+              "y": 0.9999194741249084,
+              "z": -0.01079510897397995
+            }
+          },
+          {
+            "y": 0.4234999239444732,
+            "suspensionLength": 0.27650007605552673,
+            "load": 2685.8525390625,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 141.17111206054688,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 668.5243530273438,
+              "y": 7.254637241363525,
+              "z": -426.9735412597656
+            },
+            "normal": {
+              "x": -0.0032794782891869545,
+              "y": 0.9999802112579346,
+              "z": -0.0053735836409032345
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 112.21666666667639
+        },
+        "rotation": {
+          "x": -0.004768365994095802,
+          "y": 0.32472679018974304,
+          "z": 0.001120205270126462,
+          "w": 0.9457951784133911
+        },
+        "angularVelocity": {
+          "x": 1.809189733789629e-12,
+          "y": -0.000024834367650328204,
+          "z": 1.3356908894895936e-12
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 112.21666666667639
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 7.244465997141418,
+          "planeResidual": 0.0002683401107788085,
+          "uneven": 0,
+          "filteredGround": 7.244612637459473,
+          "target": 7.766512680493702,
+          "error": 0.00245923951972582,
+          "roadRate": 0.22522345480569803,
+          "supportAcceleration": 9.516565928839823,
+          "beforeVertical": 0.21304091811180115,
+          "wheelVertical": 0.2914924919605255,
+          "commandVertical": 0.29234563418546633,
+          "controlledVertical": 0.29234564304351807,
+          "normal": {
+            "x": -0.005215803597647292,
+            "y": 0.9999520156501935,
+            "z": -0.008292272905905422
+          }
+        },
+        "velocity": {
+          "x": 14.191455841064453,
+          "y": 0.21059566736221313,
+          "z": 18.230430603027344
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6791.048244511007
+        },
+        "timing": {
+          "rawSeconds": 0.033,
+          "steps": 4,
+          "simulatedSeconds": 12.11666666666662,
+          "pendingSeconds": 0.00013333333332287908,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            662.6411069687457,
+            10.442205245205304,
+            -433.1808384583297
+          ],
+          "quaternion": [
+            0.026187112268504405,
+            0.9427253665171302,
+            0.07627164819298218,
+            -0.3236753839236236
+          ],
+          "fov": 54
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "",
+        "audio": {
+          "enabled": false,
+          "paused": false,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "huracan",
+          "voice": "날카로운 고회전 톤",
+          "shiftCount": 1,
+          "audible": false,
+          "mix": {
+            "gear": 2,
+            "rpm": 4959.312726595913,
+            "hz": 413.2760605496594,
+            "load": 0.000005837067362057055,
+            "boost": 0,
+            "engine": 0.09059559620472228,
+            "intake": 5.837067362057055e-8,
+            "bass": 0.025,
+            "brightness": 1.48,
+            "shifting": false,
+            "wind": 0.03842971335796884,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": false
+        },
+        "rendering": {
+          "samples": 240,
+          "meanMs": 24.653333333333286,
+          "p95Ms": 49.79999999998836,
+          "maxMs": 133.39999999999418,
+          "over50Ms": 6,
+          "calls": 946,
+          "triangles": 2245986,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 844,
+          "height": 390
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 30,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": -1.032000209199334,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 0.000003012704047493883,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "rotate after drive",
+      "state": {
+        "mode": "race",
+        "selected": "huracan",
+        "paused": true,
+        "countdown": 0,
+        "elapsed": 9.300000000000113,
+        "result": null,
+        "kmh": 83,
+        "gear": "2",
+        "place": 5,
+        "progress": 0.007506160774446106,
+        "region": "Harbor",
+        "nitro": 1,
+        "standings": [
+          {
+            "name": "NOVA",
+            "progress": 240.22906875160137,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": 222.33091388648157,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": 207.19876086489464,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": 56.65665300149933,
+            "finished": false
+          },
+          {
+            "name": "YOU",
+            "progress": 51.340189269132715,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": 2.4716199932230793,
+            "finished": false
+          }
+        ],
+        "fps": 42,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 668.3602905273438,
+          "y": 7.789545059204102,
+          "z": -425.83380126953125
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 735.3438720703125,
+              "y": 9.039738655090332,
+              "z": -248.9542694091797
+            },
+            "kmh": 131.0899619057904,
+            "progress": 240.22906875160137,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "supra",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.300000000000113
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.30000000000979
+            }
+          },
+          {
+            "position": {
+              "x": 641.2015991210938,
+              "y": 7.503207206726074,
+              "z": -466.8452453613281
+            },
+            "kmh": 13.97675324409666,
+            "progress": 2.4716199932230793,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "slk",
+            "maneuver": {
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 3.6666666666666563
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.30000000000979
+            }
+          },
+          {
+            "position": {
+              "x": 731.5581665039062,
+              "y": 8.96288013458252,
+              "z": -266.1674499511719
+            },
+            "kmh": 136.63286705800093,
+            "progress": 222.33091388648157,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "mustang",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.300000000000113
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.30000000000979
+            }
+          },
+          {
+            "position": {
+              "x": 671.5772705078125,
+              "y": 7.860577583312988,
+              "z": -420.44195556640625
+            },
+            "kmh": 100.64542521252912,
+            "progress": 56.65665300149933,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "porsche911",
+            "maneuver": {
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 1.4087149944235229,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 1.7916666666666627
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.30000000000979
+            }
+          },
+          {
+            "position": {
+              "x": 727.6595458984375,
+              "y": 8.868646621704102,
+              "z": -282.3639221191406
+            },
+            "kmh": 142.0733996758899,
+            "progress": 207.19876086489464,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "gtr",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 9.300000000000113
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 112.30000000000979
+            }
+          }
+        ],
+        "cameraDistance": 8.791517193356336,
+        "redline": 8000,
+        "rpm": 4900,
+        "shifting": false,
+        "mass": 1440,
+        "wheels": [
+          {
+            "y": 0.42400286793708797,
+            "suspensionLength": 0.275997132062912,
+            "load": 2889.317138671875,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 146.6615447998047,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 666.7853393554688,
+              "y": 7.251435279846191,
+              "z": -426.505126953125
+            },
+            "normal": {
+              "x": -0.00347134075127542,
+              "y": 0.999978244304657,
+              "z": -0.005609553307294846
+            }
+          },
+          {
+            "y": 0.426199060678482,
+            "suspensionLength": 0.27380093932151794,
+            "load": 4902.63037109375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 146.66127014160156,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 668.3946533203125,
+              "y": 7.276149272918701,
+              "z": -424.4377746582031
+            },
+            "normal": {
+              "x": -0.006813589483499527,
+              "y": 0.9999144673347473,
+              "z": -0.01116439513862133
+            }
+          },
+          {
+            "y": 0.4245315611362457,
+            "suspensionLength": 0.2754684388637543,
+            "load": 2915.199951171875,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 146.66152954101562,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 668.0952758789062,
+              "y": 7.25026273727417,
+              "z": -427.5247802734375
+            },
+            "normal": {
+              "x": -0.00347134075127542,
+              "y": 0.999978244304657,
+              "z": -0.005609553307294846
+            }
+          },
+          {
+            "y": 0.4254419028759002,
+            "suspensionLength": 0.27455809712409973,
+            "load": 4861.1943359375,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 146.66128540039062,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 669.70458984375,
+              "y": 7.273690223693848,
+              "z": -425.4574279785156
+            },
+            "normal": {
+              "x": -0.006813589483499527,
+              "y": 0.9999144673347473,
+              "z": -0.01116439513862133
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 112.30000000000979
+        },
+        "rotation": {
+          "x": -0.004254173953086138,
+          "y": 0.32472726702690125,
+          "z": 0.0009157732711173594,
+          "w": 0.9457976818084717
+        },
+        "angularVelocity": {
+          "x": -9.045948668948145e-13,
+          "y": 0.000016981883163680322,
+          "z": -5.371031852781372e-13
+        },
+        "recovery": {
+          "count": 0,
+          "reason": "",
+          "age": 112.30000000000979
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 7.262842320703554,
+          "planeResidual": 0.00032162666320800803,
+          "uneven": 0,
+          "filteredGround": 7.26237820838586,
+          "target": 7.784272974249758,
+          "error": 0.0035478417902812254,
+          "roadRate": 0.19892646028874078,
+          "supportAcceleration": 9.680722827368086,
+          "beforeVertical": 0.17222151160240173,
+          "wheelVertical": 0.26226064562797546,
+          "commandVertical": 0.2528942018304691,
+          "controlledVertical": 0.25289419293403625,
+          "normal": {
+            "x": -0.004495164312795063,
+            "y": 0.9999621267251724,
+            "z": -0.007452423301946585
+          }
+        },
+        "velocity": {
+          "x": 14.137866973876953,
+          "y": 0.17114415764808655,
+          "z": 18.16163444519043
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6788.399967098782
+        },
+        "timing": {
+          "rawSeconds": 0,
+          "steps": 0,
+          "simulatedSeconds": 0,
+          "pendingSeconds": 0,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            663.3232950136987,
+            10.959840717511021,
+            -432.30440218409245
+          ],
+          "quaternion": [
+            0.030092274175691634,
+            0.9417361846699701,
+            0.08764584837274478,
+            -0.32333514931291457
+          ],
+          "fov": 60
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "layout",
+        "audio": {
+          "enabled": false,
+          "paused": true,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "huracan",
+          "voice": "날카로운 고회전 톤",
+          "shiftCount": 1,
+          "audible": false,
+          "mix": {
+            "gear": 2,
+            "rpm": 4940.2025785821115,
+            "hz": 411.6835482151759,
+            "load": 0.000001619596792312617,
+            "boost": 0,
+            "engine": 0.09053593164481502,
+            "intake": 1.619596792312617e-8,
+            "bass": 0.025,
+            "brightness": 1.48,
+            "shifting": false,
+            "wind": 0.038140145877007314,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": false
+        },
+        "rendering": {
+          "samples": 0,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 390,
+          "height": 844
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 28,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": -1.041885835036858,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 0.000003494863385289139,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    },
+    {
+      "check": "enabled sound with boost after recovery",
+      "state": {
+        "mode": "race",
+        "selected": "huracan",
+        "paused": false,
+        "countdown": 0,
+        "elapsed": 13.133333333333228,
+        "result": null,
+        "kmh": 60,
+        "gear": "1",
+        "place": 5,
+        "progress": 0.013811923213719298,
+        "region": "Harbor",
+        "nitro": 0.8513333333333348,
+        "standings": [
+          {
+            "name": "NOVA",
+            "progress": 380.5476696930088,
+            "finished": false
+          },
+          {
+            "name": "BLAZE",
+            "progress": 368.2882589951365,
+            "finished": false
+          },
+          {
+            "name": "LUNA",
+            "progress": 355.3051578140925,
+            "finished": false
+          },
+          {
+            "name": "MIST",
+            "progress": 172.83720191179998,
+            "finished": false
+          },
+          {
+            "name": "YOU",
+            "progress": 94.46996584154607,
+            "finished": false
+          },
+          {
+            "name": "RAVEN",
+            "progress": 48.691911856907915,
+            "finished": false
+          }
+        ],
+        "fps": 31,
+        "colliderCount": 160,
+        "contacts": 4,
+        "position": {
+          "x": 686.9821166992188,
+          "y": 8.239494323730469,
+          "z": -387.4076232910156
+        },
+        "ai": [
+          {
+            "position": {
+              "x": 752.2354125976562,
+              "y": 9.860187530517578,
+              "z": -110.53240966796875
+            },
+            "kmh": 131.11911518100223,
+            "progress": 380.5476696930088,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "NOVA",
+            "vehicle": "supra",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 13.133333333333228
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 116.13333333334617
+            }
+          },
+          {
+            "position": {
+              "x": 668.2872924804688,
+              "y": 7.76454496383667,
+              "z": -427.63665771484375
+            },
+            "kmh": 82.97874032547968,
+            "progress": 48.691911856907915,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "RAVEN",
+            "vehicle": "slk",
+            "maneuver": {
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 3.1249999999999916
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 116.13333333334617
+            }
+          },
+          {
+            "position": {
+              "x": 751.5603637695312,
+              "y": 9.819592475891113,
+              "z": -122.90519714355469
+            },
+            "kmh": 134.78760342571007,
+            "progress": 368.2882589951365,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "BLAZE",
+            "vehicle": "mustang",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 13.133333333333228
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 116.13333333334617
+            }
+          },
+          {
+            "position": {
+              "x": 714.0664672851562,
+              "y": 8.683358192443848,
+              "z": -314.955322265625
+            },
+            "kmh": 125.85553356787506,
+            "progress": 172.83720191179998,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "MIST",
+            "vehicle": "porsche911",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 2.499999999999994
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 116.13333333334617
+            }
+          },
+          {
+            "position": {
+              "x": 750.8385620117188,
+              "y": 9.75566291809082,
+              "z": -134.77230834960938
+            },
+            "kmh": 138.18801596288523,
+            "progress": 355.3051578140925,
+            "contacts": 4,
+            "waitingForTraffic": false,
+            "name": "LUNA",
+            "vehicle": "gtr",
+            "maneuver": {
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 13.133333333333228
+            },
+            "recovery": {
+              "count": 0,
+              "reason": "",
+              "age": 116.13333333334617
+            }
+          }
+        ],
+        "cameraDistance": 8.92179457981942,
+        "redline": 8000,
+        "rpm": 5636,
+        "shifting": false,
+        "mass": 1440,
+        "wheels": [
+          {
+            "y": 0.425342720746994,
+            "suspensionLength": 0.274657279253006,
+            "load": 3553.369140625,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 265.2806396484375,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 685.5492553710938,
+              "y": 7.6980085372924805,
+              "z": -388.2549133300781
+            },
+            "normal": {
+              "x": -0.0056922039948403835,
+              "y": 0.9999189972877502,
+              "z": -0.011376060545444489
+            }
+          },
+          {
+            "y": 0.4219007313251495,
+            "suspensionLength": 0.27809926867485046,
+            "load": 2578.4921875,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 265.27978515625,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 686.8390502929688,
+              "y": 7.725746154785156,
+              "z": -385.97454833984375
+            },
+            "normal": {
+              "x": -0.0028375533875077963,
+              "y": 0.9999794363975525,
+              "z": -0.005755104124546051
+            }
+          },
+          {
+            "y": 0.4252125442028045,
+            "suspensionLength": 0.27478745579719543,
+            "load": 3546.999267578125,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 265.2806396484375,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 686.994140625,
+              "y": 7.696936130523682,
+              "z": -389.0721435546875
+            },
+            "normal": {
+              "x": -0.0056922039948403835,
+              "y": 0.9999189972877502,
+              "z": -0.011376060545444489
+            }
+          },
+          {
+            "y": 0.42223946452140804,
+            "suspensionLength": 0.2777605354785919,
+            "load": 2597.030029296875,
+            "radius": 0.35,
+            "steering": 0,
+            "rotation": 265.27984619140625,
+            "launchAngle": 0,
+            "contact": true,
+            "point": {
+              "x": 688.283935546875,
+              "y": 7.725142478942871,
+              "z": -386.79180908203125
+            },
+            "normal": {
+              "x": -0.0028375533875077963,
+              "y": 0.9999794363975525,
+              "z": -0.005755104124546051
+            }
+          }
+        ],
+        "impact": {
+          "count": 0,
+          "intensity": 0,
+          "deltaV": 0,
+          "age": 103.17500000000253
+        },
+        "rotation": {
+          "x": -0.005778688006103039,
+          "y": 0.2545388340950012,
+          "z": 0.0012302212417125702,
+          "w": 0.9670445322990417
+        },
+        "angularVelocity": {
+          "x": 2.7137844922642262e-12,
+          "y": -0.000016072564903879538,
+          "z": 5.6537179180925906e-14
+        },
+        "recovery": {
+          "count": 1,
+          "reason": "manual",
+          "age": 3.1749999999999914
+        },
+        "ride": {
+          "locked": true,
+          "contacts": 4,
+          "reason": "supported",
+          "transitions": 1,
+          "ground": 7.711391146480145,
+          "planeResidual": 0.00011725553093289562,
+          "uneven": 0,
+          "filteredGround": 7.712054744027893,
+          "target": 8.233966180418863,
+          "error": 0.003781011963949865,
+          "roadRate": 0.19729716484329887,
+          "supportAcceleration": 9.397994207714573,
+          "beforeVertical": 0.17735159397125244,
+          "wheelVertical": 0.24829435348510742,
+          "commandVertical": 0.2556682123688739,
+          "controlledVertical": 0.2556682229042053,
+          "normal": {
+            "x": -0.005321158386212815,
+            "y": 0.9999301866400527,
+            "z": -0.010550218927483285
+          }
+        },
+        "velocity": {
+          "x": 8.228398323059082,
+          "y": 0.17391818761825562,
+          "z": 14.54761028289795
+        },
+        "guidance": {
+          "direction": "left",
+          "sharp": false,
+          "distance": 0,
+          "remaining": 6745.270190526369
+        },
+        "timing": {
+          "rawSeconds": 0.03339999999999418,
+          "steps": 4,
+          "simulatedSeconds": 3.8333333333333224,
+          "pendingSeconds": 0.00006666666666156271,
+          "droppedSeconds": 0
+        },
+        "camera": {
+          "position": [
+            682.8772731832465,
+            11.413386811772185,
+            -394.665383600383
+          ],
+          "quaternion": [
+            0.024245688577298776,
+            0.9626639981731189,
+            0.09211364880506182,
+            -0.2533875468735113
+          ],
+          "fov": 60
+        },
+        "input": {
+          "throttle": 0,
+          "reverse": 0,
+          "steer": 0,
+          "handbrake": false,
+          "boost": false
+        },
+        "pauseReason": "",
+        "audio": {
+          "enabled": true,
+          "paused": false,
+          "volume": 0.35,
+          "failed": false,
+          "state": "running",
+          "vehicle": "huracan",
+          "voice": "날카로운 고회전 톤",
+          "shiftCount": 0,
+          "audible": true,
+          "mix": {
+            "gear": 1,
+            "rpm": 5701.057750577045,
+            "hz": 475.0881458814204,
+            "load": 0.0000012532835761697825,
+            "boost": 0,
+            "engine": 0.0862818187519285,
+            "intake": 1.2532835761697826e-8,
+            "bass": 0.025,
+            "brightness": 1.48,
+            "shifting": false,
+            "wind": 0.02011244428123198,
+            "brake": 0,
+            "tire": 0,
+            "squeal": 0
+          },
+          "wanted": true
+        },
+        "rendering": {
+          "samples": 126,
+          "meanMs": 30.423809523809478,
+          "p95Ms": 50,
+          "maxMs": 66.70000000001164,
+          "over50Ms": 6,
+          "calls": 427,
+          "triangles": 999211,
+          "scenery": {
+            "before": 558,
+            "after": 1453,
+            "mergedObjects": 293,
+            "batches": 57,
+            "splitObjects": 64,
+            "partsCreated": 1195,
+            "cellSize": 128
+          },
+          "surfaces": {
+            "surfaces": 11,
+            "textureBytes": 16384
+          },
+          "pixelRatio": 1.25,
+          "width": 390,
+          "height": 844
+        },
+        "vfx": {
+          "tireSmoke": {
+            "live": 0,
+            "budget": 160
+          },
+          "exhaust": {
+            "live": 29,
+            "budget": 96
+          },
+          "trails": {
+            "allocated": 512,
+            "used": 0,
+            "live": 0
+          },
+          "feedback": {
+            "acceleration": -1.3683911634967143,
+            "push": 0,
+            "braking": 0,
+            "scrub": 0,
+            "slipAngle": 0.000001961260933336666,
+            "sliding": false,
+            "launchSpin": 0,
+            "wheelSlip": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "grounded": true
+          }
+        }
+      }
+    }
+  ],
+  "errors": []
+}

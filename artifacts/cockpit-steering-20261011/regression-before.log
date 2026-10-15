@@ -1,0 +1,31 @@
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (55.6354ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (4.0737ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (6.2834ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (3.2222ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (4.4224ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (0.5367ms)
+✖ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (3.7048ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.4461
+
+✖ failing tests:
+
+test at scripts\cockpit.test.mjs:106:1
+✖ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (3.7048ms)
+  AssertionError [ERR_ASSERTION]: KeyA / keyboard / 1 / compact=false wheel stripe moves opposite the driver input
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/cockpit.test.mjs:120:14)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

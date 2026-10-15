@@ -1,0 +1,396 @@
+{
+  "label": "rear-yield",
+  "selected": "yeosu-traffic",
+  "wallSeconds": 116.96965300000001,
+  "result": {
+    "track": "yeosu",
+    "raceMode": "grid",
+    "difficulty": "normal",
+    "weather": "clear",
+    "traffic": {
+      "count": 6,
+      "vehicles": [
+        {
+          "name": "TRAFFIC 1",
+          "kmh": 59.33080531576027,
+          "position": {
+            "x": 1468.5625,
+            "y": 8.55099868774414,
+            "z": -224.47897338867188
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 2",
+          "kmh": 62.014347130024895,
+          "position": {
+            "x": 172.06732177734375,
+            "y": 8.55099868774414,
+            "z": 155.5457000732422
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 3",
+          "kmh": 1.128023504278688e-44,
+          "position": {
+            "x": -184.857177734375,
+            "y": 8.55099868774414,
+            "z": -44.82163619995117
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 4",
+          "kmh": 67.47061105203537,
+          "position": {
+            "x": 544.6754760742188,
+            "y": 8.55099868774414,
+            "z": 1208.8509521484375
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 5",
+          "kmh": 73.32746232912196,
+          "position": {
+            "x": 1100.9364013671875,
+            "y": 9.060812950134277,
+            "z": 72.65779876708984
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 6",
+          "kmh": 72.93823364424163,
+          "position": {
+            "x": 872.0252685546875,
+            "y": 8.551011085510254,
+            "z": -806.2889404296875
+          },
+          "contacts": 4,
+          "lane": 3.2
+        }
+      ]
+    },
+    "seconds": 420,
+    "cars": [
+      {
+        "id": "supra",
+        "name": "YOU",
+        "player": true,
+        "place": 2,
+        "finish": 360.52,
+        "metres": 8902,
+        "lowest": 0.37,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 6.58,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "name": "NOVA",
+        "player": false,
+        "place": 4,
+        "finish": 376.13,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 13.51,
+        "draftSeconds": 7.97,
+        "plan": {
+          "personality": "NOVA",
+          "style": "코너 강자",
+          "mode": "aborting",
+          "reason": "occupied",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 2,
+          "attempts": 3,
+          "aborts": 1,
+          "age": 1.333333333333331
+        }
+      },
+      {
+        "id": "mustang",
+        "name": "RAVEN",
+        "player": false,
+        "place": 3,
+        "finish": 361.68,
+        "metres": 8902,
+        "lowest": 0.39,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 5.73,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "RAVEN",
+          "style": "공격형",
+          "mode": "changing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 0.4250000000000005
+        }
+      },
+      {
+        "id": "porsche911",
+        "name": "BLAZE",
+        "player": false,
+        "place": 5,
+        "finish": null,
+        "metres": 8508,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 9.4,
+        "draftSeconds": 67.22,
+        "plan": {
+          "personality": "BLAZE",
+          "style": "직선 강자",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 414.99166666645357
+        }
+      },
+      {
+        "id": "gtr",
+        "name": "MIST",
+        "player": false,
+        "place": 1,
+        "finish": 279.35,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 13.61,
+        "draftSeconds": 9.23,
+        "plan": {
+          "personality": "MIST",
+          "style": "수비형",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 2,
+          "attempts": 4,
+          "aborts": 1,
+          "age": 0.6000000000000003
+        }
+      },
+      {
+        "id": "rx7",
+        "name": "LUNA",
+        "player": false,
+        "place": 6,
+        "finish": null,
+        "metres": 6735,
+        "lowest": 0.39,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 1.63,
+        "draftSeconds": 0.99,
+        "plan": {
+          "personality": "LUNA",
+          "style": "균형형",
+          "mode": "passing",
+          "reason": "yield-rear",
+          "homeLane": -2.2,
+          "targetLane": -1.7751198758224969,
+          "passes": 1,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 396.0333333331375
+        }
+      }
+    ]
+  },
+  "minima": {
+    "supra": {
+      "time": 169.88333333333333,
+      "distance": 3239.377372401622,
+      "lane": 2.4532959064642377,
+      "relativeY": 0.3721512603070636,
+      "kmh": 186.0545777090953,
+      "contacts": 4,
+      "ground": 16.405456908498277,
+      "ray": {
+        "height": 16.457538604736328,
+        "normal": {
+          "x": -0.038151826709508896,
+          "y": 0.992499589920044,
+          "z": 0.1161414235830307
+        }
+      },
+      "plan": null
+    },
+    "slk": {
+      "time": 108.61666666666666,
+      "distance": 3227.3796784297638,
+      "lane": 2.3862722646415606,
+      "relativeY": 0.3752677188051017,
+      "kmh": 174.51545744382452,
+      "contacts": 4,
+      "ground": 15.01298667976624,
+      "ray": {
+        "height": 15.057324409484863,
+        "normal": {
+          "x": -0.035288505256175995,
+          "y": 0.99370276927948,
+          "z": 0.10634610056877136
+        }
+      },
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "passing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": 2.2,
+        "passes": 1,
+        "attempts": 2,
+        "aborts": 0,
+        "age": 74.86666666667232
+      }
+    },
+    "mustang": {
+      "time": 136.63333333333333,
+      "distance": 4613.113332179347,
+      "lane": -1.5513126072109051,
+      "relativeY": 0.39077804585580367,
+      "kmh": 187.7414097679004,
+      "contacts": 4,
+      "ground": 16.993780484337044,
+      "ray": {
+        "height": 17.049715042114258,
+        "normal": {
+          "x": 0.034653712064027786,
+          "y": 0.9924915432929993,
+          "z": 0.11730184406042099
+        }
+      },
+      "plan": {
+        "personality": "RAVEN",
+        "style": "공격형",
+        "mode": "passing",
+        "reason": "overtake",
+        "homeLane": 2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 1,
+        "aborts": 0,
+        "age": 26.21666666666582
+      }
+    },
+    "porsche911": {
+      "time": 109.16666666666667,
+      "distance": 3239.377372401622,
+      "lane": 2.3787667235849015,
+      "relativeY": 0.3757065581586261,
+      "kmh": 176.20340114633422,
+      "contacts": 4,
+      "ground": 16.407965885729148,
+      "ray": {
+        "height": 16.457222938537598,
+        "normal": {
+          "x": -0.038151826709508896,
+          "y": 0.992499589920044,
+          "z": 0.1161414235830307
+        }
+      },
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": 2.2,
+        "passes": 0,
+        "attempts": 1,
+        "aborts": 0,
+        "age": 104.16666666669563
+      }
+    },
+    "gtr": {
+      "time": 132.05833333333334,
+      "distance": 4609.114100855393,
+      "lane": 2.826707776279485,
+      "relativeY": 0.3789315727098419,
+      "kmh": 193.36926271151347,
+      "contacts": 4,
+      "ground": 16.49219022467215,
+      "ray": {
+        "height": 16.547566413879395,
+        "normal": {
+          "x": 0.03330785408616066,
+          "y": 0.9926592707633972,
+          "z": 0.11626800894737244
+        }
+      },
+      "plan": {
+        "personality": "MIST",
+        "style": "수비형",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": 2.2,
+        "targetLane": 2.2,
+        "passes": 2,
+        "attempts": 3,
+        "aborts": 1,
+        "age": 23.30833333333265
+      }
+    },
+    "rx7": {
+      "time": 277.4,
+      "distance": 4611.11371651737,
+      "lane": -1.430518843925917,
+      "relativeY": 0.39178394409268336,
+      "kmh": 59.371450297301024,
+      "contacts": 4,
+      "ground": 16.77711524676816,
+      "ray": {
+        "height": 16.79517650604248,
+        "normal": {
+          "x": 0.03418485447764397,
+          "y": 0.9924797415733337,
+          "z": 0.11753915250301361
+        }
+      },
+      "plan": {
+        "personality": "LUNA",
+        "style": "균형형",
+        "mode": "passing",
+        "reason": "yield-rear",
+        "homeLane": -2.2,
+        "targetLane": -1.7751198758224969,
+        "passes": 1,
+        "attempts": 2,
+        "aborts": 0,
+        "age": 253.4416666666005
+      }
+    }
+  },
+  "stalls": 0
+}

@@ -1,0 +1,397 @@
+{
+  "generatedAt": "2026-10-11T06:40:17.959Z",
+  "scope": "Read-only current-file and preserved-evidence audit; no new browser benchmark, no new physics run",
+  "inputEvidence": [
+    {
+      "path": "artifacts/visual-polish-20261011/frozen-check-evidence.json",
+      "sha256": "a5ce0878abb6a587a6b0c602870dff081827fe031ecb675929ff76bf03463755"
+    },
+    {
+      "path": "artifacts/visual-polish-20261011/frozen-comparison-summary.json",
+      "sha256": "07756e8559482e743d95e0153c8c6cec49365f2c9bf3c12b3ed27b93f74b941f"
+    },
+    {
+      "path": "artifacts/korea-circuits-20261011/matrix.json",
+      "sha256": "4255a9b623d4a465da68c2167f91062107b5aecf93e95997726dc2c3c942b3e3"
+    }
+  ],
+  "currentInputs": {
+    "checked": 139,
+    "mismatches": []
+  },
+  "courses": [
+    {
+      "id": "yeosu",
+      "files": [
+        {
+          "path": "scripts/blender/build_yeosu.py",
+          "bytes": 138,
+          "sha256": "74cbcff21bef2bd9e31627184876618888df0291fb9fec36f1ae008d30c93dfc"
+        },
+        {
+          "path": "assets-sources/yeosu/yeosu.blend",
+          "bytes": 499845,
+          "sha256": "c7213c453b04dfe8b63e242f46c5c2167115b2a2ba029c2917fbb9561a631b99"
+        },
+        {
+          "path": "public/assets/rebuild/yeosu.glb",
+          "bytes": 3480804,
+          "sha256": "ab7248b3ec254953652d177b5528d2d0d37408e9c2c3845e55dbade49d48d1f9"
+        },
+        {
+          "path": "public/assets/rebuild/yeosu-route.json",
+          "bytes": 314001,
+          "sha256": "10a5729d1707b4058e79647aca67fdbd4ed44602f33bed30d2a382060bd29ffc"
+        }
+      ],
+      "recordedRuns": [
+        {
+          "difficulty": "easy",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998332877959759,
+          "median": 89.3,
+          "lowestY": 0.48
+        },
+        {
+          "difficulty": "normal",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998349791019411,
+          "median": 81.76,
+          "lowestY": 0.48
+        },
+        {
+          "difficulty": "hard",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998350412685246,
+          "median": 79.9,
+          "lowestY": 0.48
+        },
+        {
+          "difficulty": "easy",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998329550661049,
+          "median": 252.47,
+          "lowestY": 0.48
+        },
+        {
+          "difficulty": "normal",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998349791019411,
+          "median": 237.21,
+          "lowestY": 0.48
+        },
+        {
+          "difficulty": "hard",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9998350412685246,
+          "median": 225.07,
+          "lowestY": 0.48
+        }
+      ]
+    },
+    {
+      "id": "seongsamjae",
+      "files": [
+        {
+          "path": "scripts/blender/build_seongsamjae.py",
+          "bytes": 144,
+          "sha256": "59ae9afcce4e2351bbafd50bab55a2a358097cea7b8c4f0f64641772ae412a89"
+        },
+        {
+          "path": "assets-sources/seongsamjae/seongsamjae.blend",
+          "bytes": 1878196,
+          "sha256": "04af8b63b207b180b883634a98f77aca20566cb11082675af13e1cc7dd11f201"
+        },
+        {
+          "path": "public/assets/rebuild/seongsamjae.glb",
+          "bytes": 9539680,
+          "sha256": "8a78f4962bdfed2b771c7210d1f8621c4df12b3c7d3069cc0b94cb72a1630b8d"
+        },
+        {
+          "path": "public/assets/rebuild/seongsamjae-route.json",
+          "bytes": 543436,
+          "sha256": "3e2cafb215d328a8fc18a7927cca406fecb4f51a6b74fa6deb87bfa9e249ab54"
+        }
+      ],
+      "recordedRuns": [
+        {
+          "difficulty": "easy",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9845272529272777,
+          "median": 170.29,
+          "lowestY": 0.35
+        },
+        {
+          "difficulty": "normal",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9845420682885632,
+          "median": 167.71,
+          "lowestY": 0.34
+        },
+        {
+          "difficulty": "hard",
+          "laps": 1,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9848399103941258,
+          "median": 157.4,
+          "lowestY": 0.34
+        },
+        {
+          "difficulty": "easy",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9845272529272777,
+          "median": 499.47,
+          "lowestY": 0.34
+        },
+        {
+          "difficulty": "normal",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9845420404415529,
+          "median": 490.33,
+          "lowestY": 0.34
+        },
+        {
+          "difficulty": "hard",
+          "laps": 3,
+          "finished": 6,
+          "cars": 6,
+          "minimumUp": 0.9845612539047803,
+          "median": 457.73,
+          "lowestY": 0.34
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "supra",
+      "path": "public/assets/rebuild/supra.glb",
+      "sha256": "7ff8499be306918e481c28ccfbaa6f55d91b81e894cd71647b35df69a97f8797",
+      "bytes": 582932,
+      "primitives": 47,
+      "triangles": 146010,
+      "doubleSidedPrimitives": 47,
+      "doubleSidedTriangles": 146010
+    },
+    {
+      "id": "slk",
+      "path": "public/assets/rebuild/slk.glb",
+      "sha256": "fde8c0a095f08d1082aae8149884849a69c3f1b5c28960a1aa69c87eb056ceac",
+      "bytes": 587308,
+      "primitives": 49,
+      "triangles": 139388,
+      "doubleSidedPrimitives": 49,
+      "doubleSidedTriangles": 139388
+    },
+    {
+      "id": "mustang",
+      "path": "public/assets/rebuild/mustang.glb",
+      "sha256": "01dd55a0e5212144f1c7dd6e9655a98da697adfecc44a73af6ffffa05bc67227",
+      "bytes": 555360,
+      "primitives": 47,
+      "triangles": 149260,
+      "doubleSidedPrimitives": 47,
+      "doubleSidedTriangles": 149260
+    },
+    {
+      "id": "porsche911",
+      "path": "public/assets/rebuild/porsche911.glb",
+      "sha256": "758af150288fb76d1e186ed9ff4d94ae8b597acc486db17496eb33dbc69b3eba",
+      "bytes": 617652,
+      "primitives": 50,
+      "triangles": 156498,
+      "doubleSidedPrimitives": 50,
+      "doubleSidedTriangles": 156498
+    },
+    {
+      "id": "gtr",
+      "path": "public/assets/rebuild/gtr.glb",
+      "sha256": "7f50d54b65ee7dd028a8b8d5ad9924bcfb5a9bfffeaa372c9e924451f868fe50",
+      "bytes": 551712,
+      "primitives": 48,
+      "triangles": 142540,
+      "doubleSidedPrimitives": 48,
+      "doubleSidedTriangles": 142540
+    },
+    {
+      "id": "rx7",
+      "path": "public/assets/rebuild/rx7.glb",
+      "sha256": "1df62ab2e62ec5662f7527e973514a510051fff6215fc76c36f8e89716e8f3e7",
+      "bytes": 531020,
+      "primitives": 47,
+      "triangles": 134380,
+      "doubleSidedPrimitives": 47,
+      "doubleSidedTriangles": 134380
+    },
+    {
+      "id": "m3",
+      "path": "public/assets/rebuild/m3.glb",
+      "sha256": "34a96e05655e96bb8306612e9580e3cdf8b95782034c827561ffdcf573d52a34",
+      "bytes": 628356,
+      "primitives": 48,
+      "triangles": 188996,
+      "doubleSidedPrimitives": 48,
+      "doubleSidedTriangles": 188996
+    },
+    {
+      "id": "huracan",
+      "path": "public/assets/rebuild/huracan.glb",
+      "sha256": "1172b1d60cc6e341c9a4187c4061e882f92475d0336ca8a4e70e1826f6f4db67",
+      "bytes": 559472,
+      "primitives": 47,
+      "triangles": 130644,
+      "doubleSidedPrimitives": 47,
+      "doubleSidedTriangles": 130644
+    }
+  ],
+  "phases": [
+    {
+      "phase": "full-before",
+      "samples": 359,
+      "meanMs": 24.79164345403903,
+      "p95Ms": 33.5,
+      "maxMs": 66.70000000001164,
+      "over50Ms": 3,
+      "physicsMeanMs": 0,
+      "renderMeanMs": 21.45013927500228,
+      "gpuMeanMs": 15.210737000000002,
+      "gpuSamples": 6,
+      "drawSamples": 6,
+      "other": {
+        "calls": [
+          95,
+          95,
+          95,
+          95,
+          95,
+          95
+        ],
+        "triangles": [
+          292212,
+          292212,
+          292212,
+          292212,
+          292212,
+          292212
+        ],
+        "meanCpuMs": 6.100000003973643
+      },
+      "slowIntervals": [
+        {
+          "gapMs": 50.100000000034925,
+          "previousWorkMs": 19,
+          "previousRenderMs": 18.799999952316284,
+          "previousCallbackDelayMs": 42.799999976181425,
+          "currentCallbackDelayMs": 16.1999999761465,
+          "visibleBoth": true,
+          "focusedBoth": true
+        },
+        {
+          "gapMs": 66.70000000001164,
+          "previousWorkMs": 68.89999997615814,
+          "previousRenderMs": 68.69999998807907,
+          "previousCallbackDelayMs": 5.900000023830216,
+          "currentCallbackDelayMs": 22.900000011897646,
+          "visibleBoth": true,
+          "focusedBoth": true
+        },
+        {
+          "gapMs": 50.100000000034925,
+          "previousWorkMs": 35.80000001192093,
+          "previousRenderMs": 35.69999998807907,
+          "previousCallbackDelayMs": 20.299999976181425,
+          "currentCallbackDelayMs": 9.1999999761465,
+          "visibleBoth": true,
+          "focusedBoth": true
+        }
+      ]
+    },
+    {
+      "phase": "tread-only",
+      "samples": 359,
+      "meanMs": 21.31002785515317,
+      "p95Ms": 33.40000000002328,
+      "maxMs": 50,
+      "over50Ms": 0,
+      "physicsMeanMs": 0,
+      "renderMeanMs": 19.132311978546024,
+      "gpuMeanMs": 13.2185325,
+      "gpuSamples": 6,
+      "drawSamples": 6,
+      "other": {
+        "calls": [
+          95,
+          95,
+          95,
+          95,
+          95,
+          95
+        ],
+        "triangles": [
+          292212,
+          292212,
+          292212,
+          292212,
+          292212,
+          292212
+        ],
+        "meanCpuMs": 5.483333319425583
+      },
+      "slowIntervals": []
+    },
+    {
+      "phase": "full-after",
+      "samples": 359,
+      "meanMs": 22.42367688022294,
+      "p95Ms": 33.40000000002328,
+      "maxMs": 33.5,
+      "over50Ms": 0,
+      "physicsMeanMs": 0,
+      "renderMeanMs": 20.057938720024396,
+      "gpuMeanMs": 14.085468166666667,
+      "gpuSamples": 6,
+      "drawSamples": 6,
+      "other": {
+        "calls": [
+          95,
+          95,
+          95,
+          95,
+          95,
+          95
+        ],
+        "triangles": [
+          292212,
+          292212,
+          292212,
+          292212,
+          292212,
+          292212
+        ],
+        "meanCpuMs": 6.200000027815501
+      },
+      "slowIntervals": []
+    }
+  ]
+}

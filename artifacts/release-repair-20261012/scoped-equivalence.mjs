@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+const dir='artifacts/release-repair-20261012',source=fs.readFileSync('src/rebuild/rivalPlanner.js','utf8');
+const sha=s=>crypto.createHash('sha256').update(s).digest('hex'),normalize=s=>s.replace(/^import .*;\r?\n/gm,'').replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g,'').replace(/\bblocker\b/g,'stopped').replace(/\s+/g,'');
+const original=source.replace('function decide(car,cars,plan,trafficEnabled=false)','function decide(car,cars,plan)').replace('trafficEnabled&&speedProfile','speedProfile').replace('(trafficEnabled?blocker.lane:own.lane)','blocker.lane').replace('decide(car,participants,plan,traffic.length>0)','decide(car,participants,plan)');
+const frozen=JSON.parse(fs.readFileSync(`${dir}/final-check-inputs.json`)),expected=frozen.find(r=>r.path.replaceAll('\\','/')==='src/rebuild/rivalPlanner.js').sha256;
+assert.equal(normalize(original),normalize(fs.readFileSync(`${dir}/planner-obstacle.mjs`,'utf8')),'civilian-enabled logic specializes to the measured candidate exactly');
+const report={recorded:new Date().toISOString(),sourceSha256:sha(source),failedRunSourceSha256:expected,baselineBefore:'before/traffic-final/rivalPlanner.js',measuredCandidateSha256:sha(fs.readFileSync(`${dir}/planner-obstacle.mjs`)),civilianBranchEquivalent:true,calibration:'yeosu-medal-calibration.json',exactInterimByteReconstruction:false,note:'The civilian-enabled source specializes to the measured candidate after comments/import-path/line-ending normalization. The existing baseline before-copy, measured candidate and failed-run input hashes remain preserved. An attempted byte reconstruction failed and is not claimed as an original copy. No-civilian moving-blocker changes are disabled, retaining the validated passing sequence. Original failed run and calibration are not replaced.'};
+fs.writeFileSync(`${dir}/traffic-scoped-equivalence.json`,JSON.stringify(report,null,2));console.log(report);

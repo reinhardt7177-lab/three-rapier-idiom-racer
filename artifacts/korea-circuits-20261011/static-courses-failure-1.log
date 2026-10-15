@@ -1,0 +1,44 @@
+✔ yeosu: editable Blender course and exported GLB respect the 25MB budget (592.906ms)
+✔ yeosu: all route points form a closed, finite circuit without gaps (265.9205ms)
+✖ yeosu: every route sample at -7,0,+7m has upward asphalt support and clear car space (1309.8632ms)
+✔ seongsamjae: editable Blender course and exported GLB respect the 25MB budget (709.0035ms)
+✔ seongsamjae: all route points form a closed, finite circuit without gaps (202.8967ms)
+✖ seongsamjae: every route sample at -7,0,+7m has upward asphalt support and clear car space (366.0498ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9492.9885
+
+✖ failing tests:
+
+test at scripts\korea-courses.test.mjs:42:2
+✖ yeosu: every route sample at -7,0,+7m has upward asphalt support and clear car space (1309.8632ms)
+  AssertionError [ERR_ASSERTION]: asphalt gap 29 lane 7
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/korea-courses.test.mjs:51:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\korea-courses.test.mjs:42:2
+✖ seongsamjae: every route sample at -7,0,+7m has upward asphalt support and clear car space (366.0498ms)
+  AssertionError [ERR_ASSERTION]: asphalt gap 63 lane 0
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/korea-courses.test.mjs:51:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

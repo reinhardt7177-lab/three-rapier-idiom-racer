@@ -1,0 +1,8 @@
+[
+  {
+    "level": "error",
+    "message": "THREE.THREE.WebGLProgram: Shader Error 0 - VALIDATE_STATUS false\n\nMaterial Name: Namak_Wood\nMaterial Type: MeshStandardMaterial\n\nProgram Info Log: Fragment shader is not compiled.\n\nFRAGMENT\n\nERROR: 0:1616: 'weather' : undeclared identifier\n\n  1611: \tdiffuseColor *= sampledDiffuseColor;\n  1612: #endif\n  1613: #if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA )\n  1614: \tdiffuseColor *= vColor;\n  1615: #endif\n> 1616: float grainLine=sin((surfacePosition.x+surfacePosition.z)*40.0+weather*8.0);diffuseColor.rgb*=1.0+grainLine*.07;\n  1617:           float fineGrain=texture2D(surfaceGrain,surfacePosition.xz*1.8).r-.5;\n  1618:           float weather=texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5;\n  1619:           diffuseColor.rgb*=1.0+fineGrain*0.18+weather*0.30;\n  1620: #ifdef USE_ALPHAMAP\n  1621: \tdiffuseColor.a *= texture2D( alphaMap, vAlphaMapUv ).g;\n  1622: #endif",
+    "timestamp": "2026-10-10T11:03:09.919Z",
+    "url": "http://127.0.0.1:5191/assets/three-CZ4asi8Y.js"
+  }
+]

@@ -1,0 +1,126 @@
+{
+  "finish": {
+    "elapsed": 86.43333333334819,
+    "input": {
+      "boost": false,
+      "brake": 0,
+      "handbrake": false,
+      "reverse": 0,
+      "steer": 0,
+      "throttle": 0
+    },
+    "preparation": {
+      "busy": false,
+      "compileMs": 581.5999999642372,
+      "drawMs": 422,
+      "error": null,
+      "frameBoundary": {
+        "firstFrameWaitMs": 7.800000011920929,
+        "pending": false,
+        "readyAtMs": 44514.89999997616,
+        "skippedFrames": 2
+      },
+      "phase": "ready",
+      "setupMs": 305.7999999523163,
+      "totalMs": 1318.300000011921
+    },
+    "qa": true,
+    "result": {
+      "bestLap": 84.45833333334662,
+      "difficulty": "normal",
+      "ghostSaved": false,
+      "improved": false,
+      "lapTimes": [
+        84.45833333334662
+      ],
+      "laps": 1,
+      "medal": "silver",
+      "place": 3,
+      "previous": 84.45833333334662,
+      "time": 84.45833333334662
+    },
+    "standings": [
+      {
+        "finished": true,
+        "name": "MIST",
+        "time": 83.5166666666792
+      },
+      {
+        "finished": true,
+        "name": "RAVEN",
+        "time": 84.25000000001312
+      },
+      {
+        "finished": true,
+        "name": "YOU",
+        "time": 84.45833333334662
+      },
+      {
+        "finished": true,
+        "name": "LUNA",
+        "time": 85.88333333334775
+      },
+      {
+        "finished": true,
+        "name": "NOVA",
+        "time": 86.30000000001475
+      },
+      {
+        "finished": true,
+        "name": "BLAZE",
+        "time": 86.43333333334819
+      }
+    ]
+  },
+  "restart": {
+    "elapsed": 13.066666666666563,
+    "input": {
+      "boost": false,
+      "brake": 0,
+      "handbrake": false,
+      "reverse": 0,
+      "steer": 0,
+      "throttle": 0
+    },
+    "preparation": {
+      "busy": false,
+      "compileMs": 572.8000000119209,
+      "drawMs": 23.599999964237213,
+      "error": null,
+      "frameBoundary": {
+        "firstFrameWaitMs": 9.600000023841858,
+        "pending": false,
+        "readyAtMs": 318963.59999996424,
+        "skippedFrames": 1
+      },
+      "phase": "ready",
+      "setupMs": 92.5,
+      "totalMs": 702.5999999642372
+    },
+    "qa": false
+  },
+  "canvasRelease": {
+    "elapsed": 25.999999999999165,
+    "input": {
+      "boost": false,
+      "brake": 0,
+      "handbrake": false,
+      "reverse": 0,
+      "steer": 0,
+      "throttle": 0
+    },
+    "qa": false
+  },
+  "errors": [],
+  "flow": [
+    "garage",
+    "start",
+    "finish",
+    "result",
+    "garage",
+    "restart",
+    "qaOff",
+    "keyboard",
+    "pause"
+  ]
+}

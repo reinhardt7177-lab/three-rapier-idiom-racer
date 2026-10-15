@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-14T03:37:54.109Z",
+  "host": "racing.mumuworld.com",
+  "results": [
+    {
+      "method": "OS lookup",
+      "answers": [
+        {
+          "address": "127.0.0.1",
+          "family": 4
+        }
+      ]
+    },
+    {
+      "method": "Node c-ares DNS query",
+      "server": "1.1.1.1",
+      "answers": [
+        {
+          "address": "127.0.0.1",
+          "ttl": 3600
+        }
+      ]
+    },
+    {
+      "method": "Node c-ares DNS query",
+      "server": "8.8.8.8",
+      "answers": [
+        {
+          "address": "127.0.0.1",
+          "ttl": 3600
+        }
+      ]
+    },
+    {
+      "url": "https://racing.mumuworld.com/release.json",
+      "error": "ECONNREFUSED",
+      "address": "127.0.0.1"
+    },
+    {
+      "url": "https://mumu-circuit.reinhardt7177.workers.dev/release.json",
+      "status": 200,
+      "sourceCommit": "4359d7dee328e94b6dc2c11d2e278bbaf6167043",
+      "answers": null
+    },
+    {
+      "url": "https://dns.google/resolve?name=racing.mumuworld.com&type=A",
+      "error": "ETIMEDOUT",
+      "address": null
+    }
+  ]
+}

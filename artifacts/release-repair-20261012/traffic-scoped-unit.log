@@ -1,0 +1,282 @@
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (5.6327ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (1.7291ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (13.9254ms)
+✔ a committed passing lane is reserved against a second closing rival (0.4366ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (1.6202ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (1.0506ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.5383ms)
+✔ a committed crossing yields to closing rear traffic without braking across its path (1.9347ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (0.8855ms)
+✔ a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward (0.7611ms)
+✔ a passing rival re-plans when a stationary car occupies its lane again on a closed circuit (0.6312ms)
+✔ a re-blocked passing rival holds its approach gap if the alternate lane is occupied (0.5915ms)
+✔ a lane-centred rival can leave a stopped rear bumper behind but yields to a moving rear car (0.2844ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 264.23333333333335,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 264.225,
+      index: 26,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 219.35,
+      index: 48,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 212.92499999999998,
+      index: 53,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6842,
+      finish: 218.75,
+      index: 54,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 219.225,
+      index: 52,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 227.03333333333333,
+      index: 50,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (71.3301ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (609.8277ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (286.2322ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (160.7179ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (159.6664ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (160.0692ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (153.8453ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (226.0689ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (127.1711ms)
+✔ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (36964.6254ms)
+✔ a new moving lead can be passed before the original lead is behind (10.055ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (2.4935ms)
+✔ a lead with no passing speed advantage does not start another crossing (1.31ms)
+✔ after a partial crossing yield, the next pass points away from the new lead on either side (3.5136ms)
+✔ a race without civilians keeps the validated original passing sequence (0.8291ms)
+✔ restoring short moving headway briefly slows below the lead without stopping (0.722ms)
+✔ the existing gap remains the target and ordinary non-traffic-race behavior is preserved (1.1007ms)
+✔ restoring headway keeps stopped-car hold and never requests a negative speed (0.1971ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40760.4658

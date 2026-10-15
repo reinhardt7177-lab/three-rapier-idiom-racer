@@ -1,0 +1,40 @@
+{
+  "startedAt": "2026-10-11T13:15:00+09:00",
+  "deadline": "2026-10-11T19:15:00+09:00",
+  "baseCommit": "8c5bb8b",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "status": "stopped-after-namak-wheel-lod-regression",
+  "completed": [
+    "actual official photos and satellite reference captures",
+    "course-specific first palette and night sky",
+    "241 regression tests + build on Colab CPU; 136 input hashes matched",
+    "18 physical championship finishes",
+    "4 viewport race/menu clipping and overlap checks",
+    "before/after resource and frame records",
+    "bounded lifetime frame-gap evidence with both endpoint focus/CPU; cold first render stalls confirmed",
+    "243 regression tests + build on Colab CPU; 136 hashes matched; 4 viewport HUD/menu and keyboard release",
+    "race world compile/warm draw before clock; stale timestamp boundary fixed; preparation costs preserved",
+    "247 full regression tests + build on actual Colab CPU; 137 local hashes matched",
+    "18 physical championship finishes; Namak browser 6 finishes/result/garage/restart/keyboard release; four viewport HUD/menu",
+    "paired baseline/current Namak sustained cost evidence; resolution and frozen-transform trials recorded, unproven trial excluded; 137 source hashes unchanged",
+    "DEV draw classification and asynchronous actual GPU timer;251 full tests/build on Colab CPU,138 hashes matched;4 viewport HUD/menu,input release and6 browser finishes",
+    "wheel tread screen-spaceLOD trial24focusedtests passed;179200tri removed but p95worse; excluded and138hashes restored/build8.29s"
+  ],
+  "next": [
+    "on explicit resumption: full-frame timeline with controlled host/GPU/cache and same camera/AI positions",
+    "diagnose prior Seongsamjae1000ms gaps; preserve all bad frames",
+    "after performance gate: Blender Yeosu bridge/reflections and Seongsamjae forest/ridges"
+  ],
+  "stopReason": "Matched Namak product wheel-LOD trial p95 rose33.4→50ms; trial excluded/restored138hashes; user stop criterion triggered; automation6PAUSED",
+  "heartbeatId": "6",
+  "baselineServerPid": 29552,
+  "check": {
+    "passed": 251,
+    "failed": 0,
+    "skipped": 0,
+    "inputHashes": 138,
+    "seconds": 203.72396159172058
+  },
+  "lastObservation": "baselineA/Bp9533.5/33.4ms vs trialB50ms; trial source excluded; no new full Colab check claimed",
+  "lastUpdatedAt": "2026-10-11T06:02:14.621Z"
+}

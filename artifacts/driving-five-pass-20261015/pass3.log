@@ -1,0 +1,34 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (4.7339ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (2.244ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (374.5283ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (18.4355ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (66.1902ms)
+✔ RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart (3.3916ms)
+✔ launch smoke uses only the rear contact patches below drift speed and stops in the air (7.3074ms)
+✔ smoke follows actual wheel contacts, stays bounded and clears on reset or quality change (29.7108ms)
+✔ same-speed acceleration and braking produce distinct bounded camera response at every frame rate (24.033ms)
+✔ audio load and boost are distinct at identical road speed (0.6697ms)
+✔ stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration (0.8199ms)
+✔ actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis (2.5318ms)
+{"push":1,"braking":1,"scrub":0.9999999028585778}
+✔ real Rapier drive/brake/corner signals do not change the simulation trajectory (661.4559ms)
+✔ tire trails have a bounded pool, fade, and never bridge reset/airborne gaps (15.7374ms)
+✔ load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag (0.7487ms)
+✔ pending audio resume cannot undo mute or reopen a disposed graph (3.0096ms)
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (6.654ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (7.9981ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (11.855ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (928.2232ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (10.3195ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (9.2121ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2606.7353

@@ -1,0 +1,127 @@
+✖ Blender corridor has dense street furniture and improved facades within the existing download budget (744.5336ms)
+✖ parked authored cars remain outside the paved race corridor, share buffers, cull by distance and survive batching (38.3605ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (17.894ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (1.7806ms)
+✖ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (2098.7135ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (6.3748ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (13.4202ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (2.5802ms)
+✔ typing and Space on menu buttons remain native UI actions (1.0499ms)
+✔ focus or layout clearing releases every control and requires a fresh press (1.072ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (1.0025ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (1830.1516ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (808.6515ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (21.778ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (6.0914ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (98.5384ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (3.5532ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (8.9314ms)
+{"kmh":20,"oldRadius":6.418,"newRadius":5.18}
+{"kmh":40,"oldRadius":13.989,"newRadius":9.627}
+{"kmh":60,"oldRadius":23.014,"newRadius":20.444}
+✔ Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear (8.6789ms)
+✔ rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded (1.2198ms)
+✔ measured 20/40/60 km/h turns improve over baseline without yaw or position writes (1273.6818ms)
+✔ 230 km/h full steering remains grounded and upright without rotating the body directly (431.3105ms)
+✔ reversing changes yaw response but not the actual front-wheel steering direction (72.2016ms)
+✔ wheel roll follows forward/reverse distance with the correct +X axle sign (438.4656ms)
+✔ wheel suspension, steering and unwrapped spin interpolate on the same clock as the body (106.1827ms)
+✔ reset clears steering, handbrake state and rear grip immediately (76.2954ms)
+✔ responsive road steering improves brief input while retaining high-speed and full-lock limits (1.2755ms)
+✔ road rear drive and front-biased braking produce physical axle pitch (96.3188ms)
+✔ right/left bends follow world heading, including the circular route seam (11.1572ms)
+✔ bend detection uses metres and survives a fourfold change in point density (6.5153ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (16.2297ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (39.9757ms)
+✔ isolated heading errors never become a persistent corner warning (2.3558ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (21.2019ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (4.3556ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (94.7685ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (13.4858ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (6.409ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (6.9198ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (1.9948ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (884.8905ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 38
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27129.8966
+
+✖ failing tests:
+
+test at scripts\namak-polish.test.mjs:17:1
+✖ Blender corridor has dense street furniture and improved facades within the existing download budget (744.5336ms)
+  AssertionError [ERR_ASSERTION]: DrainBar
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:22:88)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\namak-polish.test.mjs:30:1
+✖ parked authored cars remain outside the paved race corridor, share buffers, cull by distance and survive batching (38.3605ms)
+  Error: THREE.GLTFLoader: No DRACOLoader instance provided.
+      at new GLTFDracoMeshCompressionExtension (file:///D:/racing/three-rapier-idiom-racer/node_modules/three/examples/jsm/loaders/GLTFLoader.js:1918:10)
+      at GLTFLoader.parse (file:///D:/racing/three-rapier-idiom-racer/node_modules/three/examples/jsm/loaders/GLTFLoader.js:521:37)
+      at file:///D:/racing/three-rapier-idiom-racer/node_modules/three/examples/jsm/loaders/GLTFLoader.js:566:10
+      at new Promise (<anonymous>)
+      at GLTFLoader.parseAsync (file:///D:/racing/three-rapier-idiom-racer/node_modules/three/examples/jsm/loaders/GLTFLoader.js:564:10)
+      at parse (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:15:103)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:32:44)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+
+test at scripts\namak-polish.test.mjs:70:1
+✖ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (2098.7135ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(s.steer-s.steerInput*s.steeringLimit)<1e-10)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:82:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

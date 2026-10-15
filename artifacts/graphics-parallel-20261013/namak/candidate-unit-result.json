@@ -1,0 +1,18 @@
+{
+  "command": "node --test artifacts/graphics-parallel-20261013/namak/namak-visuals.candidate.test.mjs",
+  "runtime": "local Windows Node v24.12.0; no Colab or GPU execution",
+  "tests": 5,
+  "pass": 5,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "durationMs": 40002.8938,
+  "cases": [
+    "actual GLB authored road/collider/vertex invariance",
+    "wall clearance and deterministic medium foliage coverage",
+    "quality budgets, range visibility and low mode",
+    "original shader composition, anti-aliasing uniforms and material restoration",
+    "owned instance buffer disposal and shared scene assets exactly once"
+  ],
+  "interpretation": "Candidate unit tests only; not browser shader compilation, FPS, human driving or full regression. Parent regression/map workers were running concurrently."
+}

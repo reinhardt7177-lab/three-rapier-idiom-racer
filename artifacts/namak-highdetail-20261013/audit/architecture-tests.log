@@ -1,0 +1,15 @@
+✔ separate architecture export preserves original Blender, world, route and physical fixtures byte for byte (196.7463ms)
+✔ actual visual asset matches its output report, remains bounded and contains no hidden physics (224.443ms)
+✔ exported crown and basin use Y up and reservoir walkway faces point outward from the closed solid (115.3606ms)
+✔ architecture occupies none of the sampled vehicle height space across every route point and eight lanes (1234.5516ms)
+✔ real architecture keeps its bounded layer through batching, hides by world/quality/distance and restores visibility (112.5891ms)
+✔ quality uses the object boundary distance, including switching back after low mode (1.8718ms)
+✔ controller owns no asset resources; terminal scene cleanup releases every shared material and geometry exactly once (12.9384ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3317.5442

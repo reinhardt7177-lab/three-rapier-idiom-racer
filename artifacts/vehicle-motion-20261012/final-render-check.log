@@ -1,0 +1,69 @@
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (179.3711ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (396.6771ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (1049.4534ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (53.358ms)
+✔ the low-quality fallback clears visual lean without changing physical state (128.9629ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.4576ms)
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (4384.2344ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (609.3651ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (752.3079ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (285.9854ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (549.178ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (2.1648ms)
+✔ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (522.8136ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (7.31ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (1.1325ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (217.643ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (96.9278ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (2.1008ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (57.5497ms)
+✔ every track has ordered medal targets for every lap option (231.7962ms)
+✔ a personal best only improves, per track and lap count (0.996ms)
+✔ corrupt or blocked storage never breaks the result screen (1.9544ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (2.8843ms)
+✔ route guidance only announces the finish on the final lap (2.2516ms)
+✔ a ghost replays the recorded run at the same race time (5.4621ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (0.9811ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (333.7237ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (118.7604ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (745.2768ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (154.3985ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (416.4597ms)
+{
+  progress: 6842.211776361137,
+  maximumAcceleration: 38.64541053771973,
+  maximumTilt: 1.920026862985041,
+  rmsTilt: 0.07945146228788715,
+  releaseSteps: 78
+}
+✔ real-map mountain seams do not restore the previous large vertical and orientation impulses (88944.6108ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (156.5769ms)
+✔ grip changes the actual constant-input corner trajectory (153.2182ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (102.4075ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (46.7988ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (233.313ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.5111ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (3807.4373ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (508.6532ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (875.451ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (884.0142ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (441.0798ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (274.2071ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (146.6252ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (596.7733ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (1443.0401ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (354.1388ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (375.7368ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (266.501ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (118.0858ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (138.1744ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (137.5036ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (185.5426ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104447.7791

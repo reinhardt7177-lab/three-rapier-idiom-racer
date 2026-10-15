@@ -1,0 +1,125 @@
+--- task-start/src/rebuild/runtime.js
++++ current/src/rebuild/runtime.js
+@@ -34,7 +34,8 @@
+ import {difficultyById,difficultyPace,gridSlot,loadDifficulty,saveDifficulty} from './raceDifficulty.js';
+ import {createSurfaceMap,touchingWall} from './raceSurface.js';
+ import {LAP_OPTIONS,loadLaps,saveLaps,bestRecord,submitRecord,medalTimes,medalFor,lapInfo} from './raceRecords.js';
+-import {createGhostRecorder,ghostPose,loadGhost,saveGhost} from './raceGhost.js';
++import {createGhostRecorder,ghostPose,ghostVelocity,ghostVisibleFromCamera,loadGhost,saveGhost} from './raceGhost.js';
++import {applyBodyMotion} from './bodyMotion.js';
+ import {RACE_NITRO,OVERTAKE_CHARGE,slipstream,createOvertakeCounter,loadAssist,saveAssist} from './raceRules.js';
+ import {createCockpit} from './cockpit.js';
+ import {MUSIC_TRACKS} from './musicTracks.js';
+@@ -137,8 +138,8 @@
+   let difficulty=difficultyById(loadDifficulty(storage())),assist=loadAssist(storage()),nitroBonus={amount:0,age:100};
+   const overtakes=createOvertakeCounter();
+   // Laps chosen in the garage; raceLaps is fixed for the race in progress.
+-  let laps=loadLaps(storage()),raceLaps=laps,best=bestRecord(storage(),track.id,laps),ghost=null,ghostView=null,ghostRecorder=null,lapStart=0,lapTimes=[],playerLap=1;
+-  function clearGhost(){ghostView?.dispose();ghostView?.root.removeFromParent();ghostView=null;ghost=null;ghostRecorder=null;}
++  let laps=loadLaps(storage()),raceLaps=laps,best=bestRecord(storage(),track.id,laps),ghost=null,ghostView=null,ghostRecorder=null,lapStart=0,lapTimes=[],playerLap=1,ghostPreviousState=null,ghostPreviousTime=null;
++  function clearGhost(){ghostView?.dispose();ghostView?.root.removeFromParent();ghostView=null;ghost=null;ghostRecorder=null;ghostPreviousState=ghostPreviousTime=null;}
+   function showGhost(){
+     if(!quality.ghost)return;
+     ghost=loadGhost(storage(),track.id,raceLaps);
+@@ -210,6 +211,7 @@
+     state.preparation={...preparation.snapshot(),busy:preparation.busy()||raceBoundary.pending(),frameBoundary:raceBoundary.snapshot()};
+     state.finishOrder=ordered.map(c=>({name:c.name,time:c.finish,finished:c.finish!==null}));
+     if(import.meta.env.DEV)state.qaDriver=qaDriver;
++    if(import.meta.env.DEV)state.bodyMotion={cars:cars.map(c=>({id:c.id,...c.view.motion.snapshot()})),ghost:ghostView?.motion.snapshot()??null,ghostVisible:ghostView?.root.visible??false,reducedMotion,cameraExtraTilt:0};
+     if(import.meta.env.DEV)state.performanceTrial={kind:performanceKind,status:performanceStatus,condition:performanceCondition,label:PERFORMANCE_EXPERIMENTS[performanceKind]?.[performanceCondition],profile:!!profile,frozen:frozenEnabled,results:performanceStatus==='running'?[]:performanceResults};
+     state.vfx={rain:rain.stats(),tireSmoke:smoke.stats(),exhaust:exhaust.stats(),trails:trails.stats(),feedback:latestFeedback};
+     state.ai.forEach((s,i)=>{const car=cars[i+1];s.waitingForTraffic=!!car.waitingForTraffic;s.name=car.name;s.vehicle=car.id;s.maneuver=rivalPlanner.snapshot(car);s.recovery=car.recovery;});
+@@ -344,11 +346,17 @@
+   function presentScene(now,dt){
+     if(mode==='race'){
+       trafficViews?.update(paused?1:clock.alpha());
+-      cars.forEach(c=>poseVehicle(c.view,c.state,.6,c.previous,paused?1:clock.alpha()));
++      cars.forEach(c=>{poseVehicle(c.view,c.state,.6,c.previous,paused?1:clock.alpha());applyBodyMotion(c.view,c.previous,c.state,paused?0:dt,{sampleSeconds:STEP,reducedMotion,enabled:quality.id!=='low'});});
+       if(ghostView){
+-        const pose=countdown<=0&&!result&&performanceTrial?.visible!==false?ghostPose(ghost,elapsed+(paused?0:clock.alpha()*STEP)):null;
++        const ghostTime=elapsed+(paused?0:clock.alpha()*STEP),pose=countdown<=0&&!result&&performanceTrial?.visible!==false?ghostPose(ghost,ghostTime):null;
+         ghostView.root.visible=!!pose;
+-        if(pose){ghostView.root.quaternion.set(pose.rotation.x,pose.rotation.y,pose.rotation.z,pose.rotation.w);ghostView.root.position.copy(modelPosition(new THREE.Vector3(pose.position.x,pose.position.y,pose.position.z),ghostView.root.quaternion,.6));}
++        if(pose){
++          ghostView.root.quaternion.set(pose.rotation.x,pose.rotation.y,pose.rotation.z,pose.rotation.w);ghostView.root.position.copy(modelPosition(new THREE.Vector3(pose.position.x,pose.position.y,pose.position.z),ghostView.root.quaternion,.6));
++          const state={...pose,velocity:ghostVelocity(ghost,ghostTime)};
++          if(ghostPreviousState&&ghostTime>ghostPreviousTime)applyBodyMotion(ghostView,ghostPreviousState,state,paused?0:dt,{sampleSeconds:ghostTime-ghostPreviousTime,reducedMotion,enabled:quality.id!=='low'});
++          ghostPreviousState=state;ghostPreviousTime=ghostTime;
++          ghostView.root.visible=ghostVisibleFromCamera(cameraMode,ghostView.root.position,cars[0].view.root.position);
++        }
+       }
+       const p=cars[0],forward=new THREE.Vector3(0,0,1).applyQuaternion(p.view.root.quaternion);
+       const presentedPosition=p.view.root.position.clone().add(new THREE.Vector3(0,.6,0).applyQuaternion(p.view.root.quaternion));
+--- task-start/src/rebuild/assets.js
++++ current/src/rebuild/assets.js
+@@ -5,6 +5,7 @@
+ import { createSceneDisposer } from '../rendering/sceneResources.js';
+ import {modelPosition} from './vehiclePose.js';
+ import {polishVehicleMaterial} from './surfacePolish.js';
++import {createBodyMotion} from './bodyMotion.js';
+ 
+ import {VEHICLES} from './fleet.js';
+ import {TRACKS} from './tracks.js';
+@@ -111,7 +112,16 @@
+   let wheelRadius;
+   root.traverse(o=>{if(o.userData.vehicle_rig_version===2)wheelRadius=o.userData.wheel_radius;});
+   const spec={length:size.z,track:Math.abs(wheels[0].center.x-wheels[2].center.x),wheelbase:Math.abs(wheels[0].center.z-wheels[1].center.z),...(wheelRadius?{wheelRadius}:{})};
+-  return {root,wheels,floorOffset,spec,dispose(){materials.forEach(m=>m.dispose());}};
++  // A separate visual pivot owns only the static chassis meshes. Preserve the
++  // original world transforms while excluding every wheel/steering/suspension
++  // descendant, including calipers and tyres batched below their rig nodes.
++  const body=new THREE.Group();body.name='Visual_Chassis_Motion';
++  body.position.y=Math.max(.45,Math.min(.9,wheels.reduce((s,w)=>s+w.baseY,0)/wheels.length+.35));root.add(body);
++  const chassis=[];
++  root.traverse(o=>{if(!o.isMesh)return;for(let p=o;p&&p!==root;p=p.parent)if(/^(Wheel_|Steering_|Suspension_)/.test(p.name))return;chassis.push(o);});
++  root.updateMatrixWorld(true);for(const o of chassis)body.attach(o);
++  const motion=createBodyMotion();
++  return {root,body,motion,wheels,floorOffset,spec,dispose(){materials.forEach(m=>m.dispose());}};
+ }
+ 
+ export function poseVehicle(view,state,modelOffset=.6,previous=state,alpha=1) {
+--- task-start/src/rebuild/raceGhost.js
++++ current/src/rebuild/raceGhost.js
+@@ -32,6 +32,15 @@
+  return {position:{x:lerp(0),y:lerp(1),z:lerp(2)},rotation:{x:qx/n,y:qy/n,z:qz/n,w:qw/n}};
+ }
+ 
++// Derive a smooth velocity from existing pose samples; older saved replays
++// need no format change. Central differences avoid 0.1s stair-step lean.
++export function ghostVelocity(ghost,time){
++ const n=ghost?.data?.length/7|0;if(n<2)return {x:0,y:0,z:0};
++ const f=Math.max(0,Math.min(n-1,time/ghost.interval)),i=Math.min(n-2,Math.floor(f)),t=f-i,d=ghost.data;
++ const velocity=(j,k)=>{const a=Math.max(0,j-1),b=Math.min(n-1,j+1);return (d[b*7+k]-d[a*7+k])/((b-a)*ghost.interval);};
++ return {x:velocity(i,0)*(1-t)+velocity(i+1,0)*t,y:velocity(i,1)*(1-t)+velocity(i+1,1)*t,z:velocity(i,2)*(1-t)+velocity(i+1,2)*t};
++}
++
+ const key=(trackId,laps)=>`mumu.circuit.ghost.v1.${trackId}.${laps}${TRACKS.find(t=>t.id===trackId)?.revision?'.'+TRACKS.find(t=>t.id===trackId).revision:''}`;
+ export function loadGhost(storage,trackId,laps){
+  try{
+@@ -43,3 +52,13 @@
+ export function saveGhost(storage,trackId,laps,ghost){
+  try{storage?.setItem(key(trackId,laps),JSON.stringify(ghost));return true;}catch{return false;}
+ }
++
++// A replay exactly matching the driver can put its double-sided glass/roof
++// inside the cockpit camera. Keep its pose/motion, but exclude that overlap
++// from the first-person view; distant replays and chase view remain visible.
++export function ghostVisibleFromCamera(mode,ghostPosition,playerPosition){
++ if(mode!=='first-person')return true;
++ if(!ghostPosition||!playerPosition)return false;
++ const dx=ghostPosition.x-playerPosition.x,dy=ghostPosition.y-playerPosition.y,dz=ghostPosition.z-playerPosition.z;
++ return dx*dx+dy*dy+dz*dz>=16;
++}
+--- task-start/package.json
++++ current/package.json
+@@ -7,8 +7,8 @@
+     "dev": "vite --host 0.0.0.0",
+     "build": "vite build",
+     "check": "npm run check:rebuild",
+-    "check:race": "node --test --test-concurrency=1 scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/fleet-eight.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs",
+-    "check:rebuild": "node --test --test-concurrency=1 scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/weather.test.mjs scripts/rain-vfx.test.mjs scripts/rain-race.test.mjs scripts/rival-personalities.test.mjs scripts/rival-personality-race.test.mjs scripts/progression.test.mjs scripts/progression-race.test.mjs scripts/performance-comparison.test.mjs scripts/graphics-quality.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build",
++    "check:race": "node --test --test-concurrency=1 scripts/body-motion.test.mjs scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/fleet-eight.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs",
++    "check:rebuild": "node --test --test-concurrency=1 scripts/body-motion.test.mjs scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/weather.test.mjs scripts/rain-vfx.test.mjs scripts/rain-race.test.mjs scripts/rival-personalities.test.mjs scripts/rival-personality-race.test.mjs scripts/progression.test.mjs scripts/progression-race.test.mjs scripts/performance-comparison.test.mjs scripts/graphics-quality.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build",
+     "preview": "vite preview --host 0.0.0.0"
+   },
+   "dependencies": {
