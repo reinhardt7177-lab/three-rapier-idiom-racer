@@ -1,0 +1,18 @@
+[36mvite v7.3.5 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 164 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                  [39m[1m[2m    1.95 kB[22m[1m[22m[2m │ gzip:     0.80 kB[22m
+[2mdist/[22m[35massets/index-Bb1ACK0u.css   [39m[1m[2m   35.21 kB[22m[1m[22m[2m │ gzip:     7.26 kB[22m
+[2mdist/[22m[36massets/bundler-hUWv2h5-.js  [39m[1m[2m  117.07 kB[22m[1m[22m[2m │ gzip:    31.66 kB[22m
+[2mdist/[22m[36massets/react-34UxNz19.js    [39m[1m[2m  191.92 kB[22m[1m[22m[2m │ gzip:    60.15 kB[22m
+[2mdist/[22m[36massets/index-DyDn9r29.js    [39m[1m[2m  347.37 kB[22m[1m[22m[2m │ gzip:   121.30 kB[22m
+[2mdist/[22m[36massets/three-C-m27Z9i.js    [39m[1m[33m  590.68 kB[39m[22m[2m │ gzip:   151.99 kB[22m
+[2mdist/[22m[36massets/physics-iRel_T-y.js  [39m[1m[33m2,853.14 kB[39m[22m[2m │ gzip: 1,077.80 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 1m 7s[39m

@@ -1,0 +1,235 @@
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (163.7342ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (7.5073ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (18.4695ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (0.649ms)
+✔ the low-quality fallback clears visual lean without changing physical state (1.885ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.4723ms)
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (14.5982ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (11.5916ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (5.1414ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (10.0586ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (10.8382ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (81.7924ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (6.4157ms)
+✔ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (4.9252ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (14.5962ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (2.9735ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (1.4158ms)
+✔ one-draw alloy retains cut-face and graphite shading through vertex colours without extra textures (9.6811ms)
+✔ reference polish completes three authored passes with unchanged rig and mechanical geometry (155.8615ms)
+✔ paint clearcoat, opaque glazing and matte tyres retain different optical responses (14.2705ms)
+✖ supra: authored pivots survive batching, wheel roll leaves calipers fixed (604.6266ms)
+✖ slk: authored pivots survive batching, wheel roll leaves calipers fixed (143.9757ms)
+✖ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (94.8567ms)
+✖ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (108.1475ms)
+✖ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (385.5694ms)
+✖ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (193.9261ms)
+✖ m3: authored pivots survive batching, wheel roll leaves calipers fixed (86.5751ms)
+✖ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (13.7192ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (312.0514ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (12.4263ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (163.2489ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (19.4859ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (8.975ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (54.6914ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (16.0177ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (13.4846ms)
+✔ right/left bends follow world heading, including the circular route seam (30.2574ms)
+✔ bend detection uses metres and survives a fourfold change in point density (3.5637ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (12.3351ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (16.231ms)
+✔ isolated heading errors never become a persistent corner warning (1.5431ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (12.7279ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (2.8687ms)
+ℹ tests 43
+ℹ suites 0
+ℹ pass 35
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15749.7758
+
+✖ failing tests:
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ supra: authored pivots survive batching, wheel roll leaves calipers fixed (604.6266ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ slk: authored pivots survive batching, wheel roll leaves calipers fixed (143.9757ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (94.8567ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (108.1475ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (385.5694ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (193.9261ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ m3: authored pivots survive batching, wheel roll leaves calipers fixed (86.5751ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-rig.test.mjs:29:28
+✖ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (13.7192ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.27 !== 0.34
+  
+      at file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:43:11
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-rig.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.27,
+    expected: 0.34,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

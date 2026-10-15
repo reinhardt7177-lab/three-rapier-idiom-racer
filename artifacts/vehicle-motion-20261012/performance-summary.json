@@ -1,0 +1,139 @@
+{
+  "rows": [
+    {
+      "sample": "performance-before-1",
+      "durationMs": 30000.5,
+      "frame": {
+        "samples": 1530,
+        "mean": 19.60816993464052,
+        "p95": 33.39999999999418,
+        "max": 50.19999999999709,
+        "over50": 2
+      },
+      "cpu": {
+        "samples": 1530,
+        "mean": 8.199934640536512,
+        "p95": 11.799999997019768,
+        "max": 48.30000000447035
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 825.8124076880547,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "visibleFrames": 1530,
+      "focusedFrames": 1530
+    },
+    {
+      "sample": "performance-after-1",
+      "durationMs": 30000.5,
+      "frame": {
+        "samples": 694,
+        "mean": 43.22838616714697,
+        "p95": 66.79999999998836,
+        "max": 233.5,
+        "over50": 208
+      },
+      "cpu": {
+        "samples": 694,
+        "mean": 7.7262247837972575,
+        "p95": 11.099999994039536,
+        "max": 93.90000000596046
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 825.8124076880547,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "visibleFrames": 694,
+      "focusedFrames": 694
+    },
+    {
+      "sample": "performance-before-2",
+      "durationMs": 30017.20000000001,
+      "frame": {
+        "samples": 597,
+        "mean": 50.280067001675064,
+        "p95": 66.90000000002328,
+        "max": 133.20000000001164,
+        "over50": 257
+      },
+      "cpu": {
+        "samples": 597,
+        "mean": 7.611055276464278,
+        "p95": 10.899999998509884,
+        "max": 15.200000002980232
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 825.8124076880547,
+        "elapsed": 30.03333333333227,
+        "dropped": 0
+      },
+      "visibleFrames": 597,
+      "focusedFrames": 597
+    },
+    {
+      "sample": "performance-low-final",
+      "durationMs": 30033.8,
+      "frame": {
+        "samples": 666,
+        "mean": 45.095795795795794,
+        "p95": 66.79999999999927,
+        "max": 83.60000000000218,
+        "over50": 208
+      },
+      "cpu": {
+        "samples": 666,
+        "mean": 7.078378378483537,
+        "p95": 10.700000002980232,
+        "max": 68.69999999552965
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 825.8124076880547,
+        "elapsed": 30.049999999998935,
+        "dropped": 0
+      },
+      "visibleFrames": 666,
+      "focusedFrames": 666
+    }
+  ],
+  "lowFallback": "chassis motion disabled",
+  "warning": "Large run-to-run baseline variance: before p95 33.4 and 66.9 ms. Final low p95 66.8 ms. No isolated cause or restored 20 ms target claimed.",
+  "finalVersusImmediateBeforeP95": -0.10000000002401066
+}

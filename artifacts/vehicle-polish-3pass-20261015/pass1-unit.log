@@ -1,0 +1,42 @@
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (5.3763ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (10.2211ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (16.1527ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (0.6388ms)
+✔ the low-quality fallback clears visual lean without changing physical state (1.1523ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.4143ms)
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (8.035ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (4.4879ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (2.466ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (2.0099ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (1.8591ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (2.0053ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.0117ms)
+✔ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (2.9471ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (5.6306ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (1.965ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (0.6584ms)
+✔ one-draw alloy retains cut-face and graphite shading through vertex colours without extra textures (0.4524ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (67.6374ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (14.9ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (10.7932ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (14.3875ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (12.2617ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (10.4279ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (14.317ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (9.2123ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (6.8772ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (6.5606ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (8.1741ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (6.4361ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (6.5051ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (27.9444ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (7.756ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (9.7654ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 814.5244

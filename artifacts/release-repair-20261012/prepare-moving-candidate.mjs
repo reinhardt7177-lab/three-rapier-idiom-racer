@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const read=p=>fs.readFileSync(new URL(p,import.meta.url),'utf8'),write=(p,s)=>{const u=new URL(p,import.meta.url);if(fs.existsSync(u))throw Error(`${p} already exists`);fs.writeFileSync(u,s);};
+let planner=read('../../src/rebuild/rivalPlanner.js');
+const before=".filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&Math.abs(s.v)<1)";
+const after=".filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&(Math.abs(s.v)<1||(speedProfile&&s.v>1&&curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-s.v*3.6>=(plan.style?.passGap??12))))";
+if(!planner.includes(before))throw Error('Expected old passing lead filter');
+planner=planner.replace(before,after).replace("plan.stop=stopped.along<16+Math.max(0,own.v)*.5+Math.max(0,own.v)**2/12;plan.reason='stopped-ahead';","plan.stop=Math.abs(stopped.v)<1&&stopped.along<16+Math.max(0,own.v)*.5+Math.max(0,own.v)**2/12;plan.reason=Math.abs(stopped.v)<1?'stopped-ahead':'slow-ahead';");
+planner=planner.replace(/from '\.\/([^']+)'/g,(_,p)=>`from '${new URL('../../src/rebuild/'+p,import.meta.url).href}'`);
+write('planner-moving-lead.mjs',planner);
+let sim=read('../../scripts/race-sim.mjs');
+sim=sim.replace("from '../src/rebuild/rivalPlanner.js'","from './planner-moving-lead.mjs'").replace(/from '\.\.\/src\/([^']+)'/g,(_,p)=>`from '${new URL('../../src/'+p,import.meta.url).href}'`).replaceAll('new URL(`../public/','new URL(`../../public/').replaceAll('new URL(`../artifacts/','new URL(`../../artifacts/');
+write('sim-moving-lead.mjs',sim);
+write('diagnose-moving-lead.mjs',read('diagnose.mjs').replace("from '../../scripts/race-sim.mjs'","from './sim-moving-lead.mjs'"));
+const manifest={execution:'Isolated candidate. Game sources unchanged while the first full regression runs.',changedBehavior:'Only re-plan a slower moving lead during passing; ordinary safety/road checks remain.',source:['../../src/rebuild/rivalPlanner.js','../../scripts/race-sim.mjs'].map(p=>({path:p,sha256:crypto.createHash('sha256').update(read(p)).digest('hex')})),candidate:['planner-moving-lead.mjs','sim-moving-lead.mjs'].map(p=>({path:p,sha256:crypto.createHash('sha256').update(read(p)).digest('hex')}))};
+write('moving-candidate-inputs.json',JSON.stringify(manifest,null,2));console.log('Isolated candidate prepared; original tests/time limits unchanged.');

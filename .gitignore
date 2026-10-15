@@ -10,3 +10,26 @@ dist/
 .vite-dev*.log
 __pycache__/
 .wrangler/
+
+# Local agent settings and transport diagnostics
+.claude/
+artifacts/**/connector-transfer*-response.json
+artifacts/**/transfer-cell*.json
+artifacts/**/api-probe.log
+artifacts/release-curation-20261016/before/
+
+artifacts/**/*.b64
+artifacts/**/*.zip
+artifacts/**/*.gz
+artifacts/**/*.tar
+artifacts/**/*.pid
+
+# Local junctions reuse the current public assets; do not publish duplicate trees.
+artifacts/ai-3pass-20261015/baseline/public/
+artifacts/ai-3pass-20261015/qa-source/public/
+artifacts/content-resume-20261011/quality-baseline/public/
+artifacts/content-resume-20261011/rain-baseline/public/
+artifacts/korea-circuits-20261011/baseline-app/public/
+artifacts/vehicle-motion-20261012/performance-before/public/
+artifacts/visual-polish-20261011/baseline-8c5bb8b/public/
+artifacts/visual-polish-20261011/baseline-e1a6237/public/

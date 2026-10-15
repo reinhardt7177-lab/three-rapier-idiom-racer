@@ -1,0 +1,32 @@
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url),{chromium}=require(process.env.MUMU_PLAYWRIGHT_MODULE || (process.env.USERPROFILE + '/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
+const dir='artifacts/roadscape-20261013',label=process.argv[2]||'game-flow';if(fs.existsSync(`${dir}/${label}.json`))throw Error('preserve old results');
+const browser=await chromium.launch({channel:'msedge',headless:true,args:['--use-angle=d3d11','--mute-audio']});
+const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1,hasTouch:true});await context.addInitScript(()=>localStorage.setItem('mumu.circuit.graphics.v1','low'));
+const page=await context.newPage(),errors=[],layouts=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+const sizes=[[1280,720],[1024,768],[844,390],[667,375]];
+async function layout(stage){for(const [width,height] of sizes){await page.setViewportSize({width,height});await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));const data=await page.evaluate(()=>{
+ const selectors=['.garage-heading','.vehicle-heading','.garage-launch','.position-card','.race-route','.race-clock','.speed-card','.race-standings','.race-result','.race-menu','.touch-controls'];
+ const panels=selectors.flatMap(s=>[...document.querySelectorAll(s)].map(e=>({name:s,element:e})));
+ const visible=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;};
+ const boxes=panels.filter(p=>visible(p.element)).map(p=>{const r=p.element.getBoundingClientRect();return {name:p.name,x:r.x,y:r.y,w:r.width,h:r.height};});
+ const clipped=boxes.filter(r=>r.x<-.6||r.y<-.6||r.x+r.w>innerWidth+.6||r.y+r.h>innerHeight+.6);
+ const controls=[...document.querySelectorAll('button,select,input')].filter(visible).map(e=>{const r=e.getBoundingClientRect();return {name:(e.getAttribute('aria-label')||e.textContent).trim(),x:r.x,y:r.y,w:r.width,h:r.height};});
+ const clippedControls=controls.filter(r=>r.x<-.6||r.y<-.6||r.x+r.w>innerWidth+.6||r.y+r.h>innerHeight+.6);
+ const overlaps=[];for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];if((a.name==='.race-menu'||b.name==='.race-menu'||a.name==='.race-result'||b.name==='.race-result'))continue;if(Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x)>.6&&Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y)>.6)overlaps.push([a.name,b.name]);}
+ return {width:innerWidth,height:innerHeight,boxes,clipped,clippedControls,overlaps,controls,input:window.__mumuRebuild?.input,paused:window.__mumuRebuild?.paused};
+ });await page.screenshot({path:`${dir}/${label}-${stage}-${width}x${height}.png`});layouts.push({stage,...data});}await page.setViewportSize({width:1280,height:720});}
+const state=()=>page.evaluate(()=>window.__mumuRebuild);
+try{
+ await page.goto('http://127.0.0.1:5196/?track=namak&qaDriver=1',{waitUntil:'domcontentloaded',timeout:120000});await page.waitForFunction(()=>window.__mumuRebuild?.mode==='garage',undefined,{timeout:120000});
+ await layout('garage');await page.getByRole('button',{name:/검수용 자동 페달/}).click();await page.locator('.launch-modes > button.primary').click();
+ await page.waitForFunction(()=>window.__mumuRebuild?.mode==='race'&&window.__mumuRebuild?.countdown<=0,undefined,{timeout:120000});
+ await layout('race');if((await state()).paused)await page.keyboard.press('Escape');
+ await page.waitForFunction(()=>window.__mumuRebuild?.result,undefined,{timeout:240000});await page.waitForFunction(()=>window.__mumuRebuild?.finishOrder?.every(c=>c.finished),undefined,{timeout:90000});const finish=await state();await layout('result');
+ await page.getByRole('button',{name:'차고로 돌아가기',exact:true}).click();await page.waitForFunction(()=>window.__mumuRebuild?.mode==='garage');await page.getByRole('button',{name:/검수용 자동 페달/}).click();await page.locator('.launch-modes > button.primary').click();await page.waitForFunction(()=>window.__mumuRebuild?.countdown<=0&&window.__mumuRebuild?.mode==='race');
+ await page.keyboard.down('ArrowUp');await page.keyboard.down('ArrowLeft');await page.waitForFunction(()=>window.__mumuRebuild?.input?.throttle>0&&window.__mumuRebuild?.input?.steer<0);const pressed=await state();await page.keyboard.press('Escape');await page.keyboard.up('ArrowUp');await page.keyboard.up('ArrowLeft');await page.waitForFunction(()=>window.__mumuRebuild?.paused);const menu=await state();await layout('menu');
+ await page.setViewportSize({width:844,height:390});await page.getByRole('button',{name:'주행 재개 →',exact:true}).click();await page.waitForFunction(()=>!window.__mumuRebuild?.paused);const gas=page.getByRole('button',{name:'GAS',exact:true}),box=await gas.boundingBox();if(!box)throw Error('touch pedal not visible');await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.waitForFunction(()=>window.__mumuRebuild?.input?.throttle>0);const pointerPressed=await state();await page.keyboard.press('Escape');await page.mouse.up();await page.waitForFunction(()=>window.__mumuRebuild?.paused&&window.__mumuRebuild?.input?.throttle===0);const pointerCancelled=await state();
+ await page.getByRole('button',{name:'차고로 돌아가기',exact:true}).click();await page.waitForFunction(()=>window.__mumuRebuild?.mode==='garage');const returned=await state();
+ const report={execution:'Isolated headless Edge / actual application and Rapier, development auto pedals; native keyboard and native mouse pointer on displayed touch pad, not physical phone touch. Not human/mobile verification. Frame metrics not acceptance.',finish,pressed,menu,pointerPressed,pointerCancelled,returned,layouts,errors};fs.writeFileSync(`${dir}/${label}.json`,JSON.stringify(report,null,2));console.log(JSON.stringify({finish:finish.result,allFinished:finish.finishOrder,recoveries:finish.recovery,errors,layouts:layouts.map(r=>({stage:r.stage,w:r.width,h:r.height,clipped:r.clipped.length,overlaps:r.overlaps.length})),inputOnPause:menu.input,inputOnReturn:returned.input},null,2));if(errors.length||layouts.some(r=>r.clipped.length||r.clippedControls.length||r.overlaps.length))process.exitCode=1;
+}catch(e){fs.writeFileSync(`${dir}/${label}-failure.json`,JSON.stringify({error:String(e.stack||e),errors,layouts,state:await state().catch(()=>null)},null,2));throw e;}finally{await browser.close();}

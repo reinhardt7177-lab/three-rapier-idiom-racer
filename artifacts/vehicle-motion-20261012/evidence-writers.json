@@ -1,0 +1,69 @@
+[
+  {
+    "script": "scripts\\championship-race.test.mjs",
+    "lines": [
+      " fs.writeFileSync(new URL('../artifacts/championship-20261011/physical-series.json',import.meta.url),JSON.stringify({device:'CPU / Rapier WASM',series,table,races},null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\engine-feel.test.mjs",
+    "lines": [
+      " fs.mkdirSync(new URL('../artifacts/engine-feel-20261010/',import.meta.url),{recursive:true});fs.writeFileSync(new URL('../artifacts/engine-feel-20261010/physical-fleet.json',import.meta.url),JSON.stringify(results,null,2));console.log(results);"
+    ]
+  },
+  {
+    "script": "scripts\\namak.test.mjs",
+    "lines": [
+      "const report=JSON.parse(read('artifacts/namak-20261010/map-report.json'));",
+      " const bin=read('artifacts/namak-20261010/colliders.bin'),manifest=JSON.parse(read('artifacts/namak-20261010/colliders.json'));",
+      "  fs.writeFileSync(new URL('../artifacts/namak-20261010/physical-laps.json',import.meta.url),JSON.stringify({seconds:steps/120,cars:result},null,2));console.log('Namak physical laps',result);",
+      " const asphalt=new Set();const bin=read('artifacts/namak-20261010/colliders.bin'),manifest=JSON.parse(read('artifacts/namak-20261010/colliders.json'));",
+      "  fs.writeFileSync(new URL('../artifacts/namak-20261010/stationary-grid-rivals.json',import.meta.url),JSON.stringify({seconds:steps/120,cars:result},null,2));console.log('Namak stationary-grid rivals',result);"
+    ]
+  },
+  {
+    "script": "scripts\\progression-race.test.mjs",
+    "lines": [
+      " const folder=new URL('../artifacts/content-resume-20261011/',import.meta.url);fs.mkdirSync(folder,{recursive:true});",
+      " fs.writeFileSync(new URL('progression-race.json',folder),JSON.stringify({race,progress},null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\rain-race.test.mjs",
+    "lines": [
+      " fs.mkdirSync(new URL('../artifacts/content-resume-20261011/',import.meta.url),{recursive:true});",
+      " fs.writeFileSync(new URL('../artifacts/content-resume-20261011/rain-races.json',import.meta.url),JSON.stringify({device:'Colab CPU / Rapier WASM',results},null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\rival-ai.test.mjs",
+    "lines": [
+      " const binary=fs.readFileSync(new URL('../artifacts/unity-recovery/colliders.bin',import.meta.url));",
+      " const manifest=JSON.parse(fs.readFileSync(new URL('../artifacts/unity-recovery/colliders.json',import.meta.url))),asphalt=new Set();",
+      "  fs.mkdirSync(new URL('../artifacts/rival-ai-20261010/',import.meta.url),{recursive:true});",
+      "  fs.writeFileSync(new URL('../artifacts/rival-ai-20261010/full-course.json',import.meta.url),JSON.stringify(results,null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\rival-personality-race.test.mjs",
+    "lines": [
+      "   fs.mkdirSync(new URL('../artifacts/content-resume-20261011/',import.meta.url),{recursive:true});",
+      "   fs.writeFileSync(new URL('../artifacts/content-resume-20261011/rival-personality-races.json',import.meta.url),JSON.stringify({device:'Colab CPU / Rapier WASM',results},null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\steering-turn.test.mjs",
+    "lines": [
+      " const binary=read('artifacts/namak-20261010/colliders.bin'),manifest=JSON.parse(read('artifacts/namak-20261010/colliders.json'));",
+      "  fs.writeFileSync(new URL('../artifacts/steering-turn-20261010/namak-player-lap.json',import.meta.url),JSON.stringify(result,null,2));"
+    ]
+  },
+  {
+    "script": "scripts\\wall-recovery.test.mjs",
+    "lines": [
+      " const binary=read('artifacts/namak-20261010/colliders.bin'),manifest=JSON.parse(read('artifacts/namak-20261010/colliders.json'));",
+      "  fs.mkdirSync(new URL('../artifacts/wall-recovery-20261011/',import.meta.url),{recursive:true});",
+      "  fs.writeFileSync(new URL('../artifacts/wall-recovery-20261011/namak-lap.json',import.meta.url),JSON.stringify(result,null,2));"
+    ]
+  }
+]

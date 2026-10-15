@@ -1,0 +1,221 @@
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (18.9439ms)
+✔ static world avoids repeated transform composition while moving children keep updating (12.9687ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.5001ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (1.5495ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (794.5245ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (64.695ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (7.4615ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (0.9956ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (1451.0394ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (466.7922ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (88.0107ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (12.6041ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (17.0408ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (36.5962ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (77.0503ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (6.7718ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (1636.9579ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.748233519603263,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 209.39755249023438,
+      y: 0.5410054922103882,
+      z: -1.5463483333587646
+    },
+    finish: 94.175,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5458813905715942,
+      targetLane: 1.5458813905715942,
+      passes: 0,
+      attempts: 5,
+      aborts: 1,
+      age: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.49554443359375,
+      y: 0.5660055875778198,
+      z: -1.6251873970031738
+    },
+    finish: 100.51666666666667,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6251873970031738,
+      targetLane: 1.6251873970031738,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 221.38380432128906,
+      y: 0.551005482673645,
+      z: -1.9177477359771729
+    },
+    finish: 91.225,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.9174301624298096,
+      targetLane: 1.9174301624298096,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 215.62814331054688,
+      y: 0.5610054731369019,
+      z: -0.8650961518287659
+    },
+    finish: 93.60833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.872882068157196,
+      targetLane: 0.872882068157196,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.974983492645963,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.5238037109375,
+      y: 0.5360054969787598,
+      z: -2.1215479373931885
+    },
+    finish: 88.70833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.122314453125,
+      targetLane: 2.122314453125,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (19540.5625ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (25275.3523ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (11.3254ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (3.0152ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (69.3497ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (2.3019ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (29.5103ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 57224.4273

@@ -1,0 +1,31 @@
+✔ separate architecture export preserves original Blender, world, route and physical fixtures byte for byte (255.3927ms)
+✔ actual visual asset matches its output report, remains bounded and contains no hidden physics (396.9566ms)
+✖ exported crown, reflecting basin and reservoir walkway have visible upward faces at authored game coordinates (138.5911ms)
+✔ architecture occupies none of the sampled vehicle height space across every route point and eight lanes (1849.4454ms)
+✔ real architecture keeps its bounded layer through batching, hides by world/quality/distance and restores visibility (22.6389ms)
+✔ quality uses the object boundary distance, including switching back after low mode (5.5467ms)
+✔ controller owns no asset resources; terminal scene cleanup releases every shared material and geometry exactly once (275.5722ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5364.7289
+
+✖ failing tests:
+
+test at scripts\namak-architecture.test.mjs:58:1
+✖ exported crown, reflecting basin and reservoir walkway have visible upward faces at authored game coordinates (138.5911ms)
+  AssertionError [ERR_ASSERTION]: reservoir timber ring: upward normal -1
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-architecture.test.mjs:72:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

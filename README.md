@@ -1,79 +1,80 @@
-# MUMU CIRCUIT
+# MUMU CIRCUIT · 무무레이싱
 
-Blender 차량 8종으로 6대 레이스·AI 1:1 연습·온라인 친구 1:1을 달리는 순수 웹 게임입니다. 현재 개발 코스는 **해안 월드 6.84km·남악 시티 2.93km·실제 OSM 도로 기반 여수 밤바다 8.90km·지리산 성삼재 5.83km**입니다. 화면은 Three.js, 주행·충돌은 Rapier, UI는 React를 사용합니다. 기존 정식 배포의 여수는3.54km이며 아래 개발본 검증 상태와 구분합니다.
+Blender로 만든 차량과 코스를 Three.js로 그리고, Rapier로 주행·충돌을 계산하는 웹 레이싱 게임입니다.
 
-**2026-10-12 로컬 개발본 주의:** 여수를 실제 OSM 도로 기반8.90km로 재구성하고 일반 교통/라이벌 개선을 작업 중입니다. 완주 검증 실패로 중단했으며 새 코스 메달 기준·전체 회귀는 미완료입니다. 아래 정식 배포 이력과 구분하세요. [계획·검증·중단·남은 작업](docs/YEOSU_MAP_TRAFFIC_20261012.md).
+- **[게임 실행](https://racing.mumuworld.com/)**
+- **[무무클래스 앱 소개](https://www.mumuclass.kr/apps/eced455d-2a26-4047-bfa5-73b3f5a13804)**
+- [제작기](docs/blog/MAKING_OF.md) · [대표 이미지 20장](docs/blog/IMAGES.md) · [현재 우선순위](docs/NEXT_STEPS.md)
 
-**온라인 1:1 친구 대전:** 차고의 대전 모드에서 온라인 1:1을 선택하고 방을 만든 뒤 초대 링크를 친구에게 전달합니다. 두 사람이 준비하면 방장이 출발합니다. 실제 차량 충돌·공유 일시정지·결과·재경기를 지원합니다. 방장의 창을 열어두세요. 일부 네트워크는 TURN 없이 연결할 수 없어 별도 검수가 필요합니다. AI 1:1 연습도 선택할 수 있습니다. [구현·검증·알려진 문제](docs/ONLINE_DUEL_20261012.md). 현재 새 개발본은 출시 결함을 남긴 테스트 Preview 공개 대상입니다.
+![현재 차고](docs/blog/images/15-current-garage.png)
 
-- [공식 게임 · racing.mumuworld.com](https://racing.mumuworld.com/?track=namak): 2026-10-14 최신 커밋 `1ef0c24`를 Vercel 운영 배포로 연결했습니다. Cloudflare는 DNS만 담당하며 게임용 Worker와 기본 Workers 주소는 삭제했습니다. 실제 사용자 Chrome에서 차고·주행·1인칭·메뉴·차고 복귀를 확인했습니다. [연결 설정·파일 검증·남은 한계](docs/VERCEL_CUTOVER_20261014.md).
-- [이전 온라인 1:1 테스트 빌드·GitHub Pages](https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&v=e36e227): 소스9917d9c/정적빌드e36e227인 이전 검수본입니다. 공식 최신 주소는 위 링크입니다.
+## 현재 게임
 
-## 실행과 검증
+| 구성 | 내용 |
+| --- | --- |
+| 차량 | Blender 차량 8종, 회전·조향하는 바퀴, 공통 3D 운전석 |
+| 코스 | 해안 월드 6.84km, 남악 시티 2.93km, 여수 밤바다 8.90km, 지리산 성삼재 5.83km |
+| 싱글 | 플레이어 + AI 5대, AI 1:1, 쉬움·보통·어려움, 1·3랩 |
+| 진행 | 전남 챔피언십, 메달·해금, 코스별 기록·고스트 |
+| 연출 | 1·3인칭, 타이어 연기·자국·배기, 엔진 합성음, BGM 2곡, 비 날씨 |
+| 친구 대전 | 초대 링크·방 코드·QR로 연결하는 온라인 1:1 |
+| 그래픽 | 높음·보통·낮음 품질 선택과 저장 |
 
-- 정식 배포: [MUMU CIRCUIT](https://mumu-racing.vercel.app/) · [여수 밤바다](https://mumu-racing.vercel.app/?track=yeosu) · [지리산 성삼재](https://mumu-racing.vercel.app/?track=seongsamjae)
-- 정식 게임 소스 `12a1c61`: 챔피언십·메달 해금·라이벌 5명 개성·그래픽 품질·비 날씨 포함.
-- [2026-10-11 최신 콘텐츠 배포·검증·남은 문제](docs/DEPLOYMENT_CONTENT_20261011.md) · [이전 배포 기록](docs/DEPLOYMENT_20261011.md)
-- 현재 로컬 웹: [게임 실행](http://127.0.0.1:5191/)
-- 새 맵: [남악 시티 실행](http://127.0.0.1:5191/?track=namak) · 차고에서 코스 선택
-- 개발: `npm run dev -- --host 127.0.0.1 --port 5190 --strictPort`
-- 검증·빌드: `npm run check` 또는 `npm run check:rebuild`
-- 빌드 실행: `npm run preview -- --host 127.0.0.1 --port 5191 --strictPort`
-- 5191 서버 재실행: 상위 폴더의 `WebPreview.cmd`. `Play.cmd`는 실행 중인 로컬 게임을 엽니다.
+친구 대전은 방장이 두 차량의 물리와 결승을 계산하는 방식입니다. 임의 상대 자동 매칭, 전용 순위 서버, 호스트 이전은 없습니다. 실제 휴대폰·다른 통신망의 연결 품질은 추가 검수가 필요합니다.
 
-## 현재 유지하는 파일
+여수의 도로 평면은 OpenStreetMap 좌표를 바탕으로 재구성했습니다. 지형 높이·도로 폭·랜드마크는 레이스에 맞게 편집했습니다. 남악과 성삼재도 사진·지도에서 참고한 풍경을 레이스 코스로 구성한 것으로, 실제 지역 전체를 측량 복제한 게임은 아닙니다. 실차 이름을 참고한 자체 차량 모델이며 제조사 공식 스캔이나 제휴 제품이 아닙니다.
 
-[남악 벽 충돌·자동 복귀](docs/WALL_RECOVERY_20261011.md): 벽 충돌체에 두께를 주고, 벽 밖 이탈 시 도로로 자동 복귀합니다. 수동 복귀는 `C` 또는 화면의 복귀 버튼입니다.
+## 로컬 실행
 
-[남악 시티 트랙](docs/NAMAK_CITY_20261010.md): 항공·거리 사진을 참고한 도청대로·상가·아파트·영산강 수변·공원 순환 코스. 실제 도시 전체의 측량 복제는 아닙니다. 원본은 `assets-sources/namak/namak.blend`, 재생성은 `scripts/blender/build_namak.py`, 전체 미리보기는 `scripts/blender/preview_namak.py`입니다.
+Node.js와 Git LFS가 필요합니다. 이 작업본은 Node 24에서 검증했습니다.
 
-[남악 도로 주변·조향 개선](docs/NAMAK_POLISH_20261010.md): 정류장·상가 쇼윈도·보도 포장·화단·주차 차량과 재질·조명을 보강했습니다. 터치 브레이크는 오래 눌러도 후진하지 않습니다.
+```powershell
+git lfs install
+git lfs pull
+npm ci
+npm run dev -- --port 5191
+```
 
-[코너 조향·접지 보강](docs/STEERING_TURN_20261010.md): 이전 조향에 추가1.3배(기본 대비1.69)를 적용하고 플레이어 접지를30% 보강했습니다. 저속 최대 각도는 유지하며 약90km/h의 실제 물리 시험에서 차량8종의 회전반경이21~23% 감소했습니다.
+개발 주소는 `http://localhost:5191/`입니다. 특정 코스는 `?track=namak`, `?track=yeosu`, `?track=seongsamjae`, `?track=coastal`로 엽니다.
 
-[해변 BGM · Blender 3D 운전석 · 빠른 라이벌](docs/RACE_EXPERIENCE_20261010.md): `V`로 시점 전환, 메뉴에서 음악 설정. 실제 조향·속도·RPM이 핸들/계기판에 연결됩니다. 운전석은 8종 공통 커스텀 모델입니다.
+```powershell
+npm run check
+npm run build
+npm run preview -- --port 5192
+```
 
-[음악 2곡 선택](docs/MUSIC_SELECTION_20261010.md): `ESC → 배경음악 선택`에서 해변 힙합 **Seven Mile Horizon** 또는 신스웨이브 **Slipstream Pursuit**를 선택합니다. 선택은 새로고침 후에도 유지됩니다.
+`check`는 실제 Rapier 레이스를 포함해 로컬에서 수 분 이상 걸립니다. 최근 전체 실행은 QR 기능 마감 때 **475/475 통과**했으며, 당시 소스·시간·한계는 [QR 검증 문서](docs/ONLINE_QR_INVITE_20261015.md)에 있습니다. 이후 정리는 문서·증거·이미지 범위이며 새 검증 결과는 [마감 기록](docs/RELEASE_HANDOFF_20261016.md)에서 구분합니다.
+
+## 소스 구조
 
 | 경로 | 용도 |
 | --- | --- |
-| `src/rebuild/main.jsx` | 현재 앱 입구·차고·레이스 UI |
-| `src/rebuild/` | 차량 선택·주행·맵·VFX·렌더링 |
-| `src/driving/`, `src/garage/`, `src/rendering/`, `src/scenery/` | 현재 앱과 회귀 시험이 사용하는 공유 모듈·검증용 차량 |
-| `public/assets/rebuild/` | 차량 8종·맵·차고 GLB, 경로와 Draco 디코더 |
-| `assets-sources/vehicles-v6/` | 현재 차량 8종 Blender 편집 원본 |
-| `assets-sources/cockpit-v1/cockpit.blend` | 1인칭 3D 운전석 Blender 편집 원본 |
-| `public/assets/audio/*.mp3` | 해변 힙합·신스웨이브 BGM 2곡 |
-| `assets-sources/rebuilt-unity/world.blend`, `garage.blend` | 현재 맵·차고의 Blender 편집 원본; 폴더명은 복구 이력 |
-| `scripts/*.test.mjs` | 현재 차량·주행·충돌·카메라·입력·메모리·렌더링 회귀 시험 |
-| `scripts/blender/` | 최신 저장 원본에서 웹 GLB 수출 |
-| `artifacts/unity-recovery/colliders.bin`, `colliders.json` | 전체 코스 물리 시험의 실제 충돌 데이터 |
-| `docs/` | 현재 기능·검증·라이선스 기록 |
+| `src/rebuild/` | 현재 앱 입구, 차고·레이스 UI, 차량·물리·맵·온라인 |
+| `src/driving/`, `src/garage/`, `src/rendering/`, `src/scenery/` | 실행·회귀 시험이 사용하는 공유 모듈 |
+| `public/assets/rebuild/` | 배포용 차량·코스·차고 GLB, 주행 경로, Draco 디코더 |
+| `public/assets/audio/` | 현재 게임에서 선택하는 BGM 2곡 |
+| `assets-sources/vehicles-v6/` | 현재 차량 8종의 Blender 편집 원본 |
+| `assets-sources/cockpit-v1/` | 공통 운전석 Blender 원본 |
+| `assets-sources/namak/`, `yeosu/`, `seongsamjae/` | 코스 원본·지도 자료 |
+| `assets-sources/rebuilt-unity/` | 해안·차고 편집 원본. 폴더명은 복구 이력 |
+| `assets-sources/music-maps-20261011/` | Gemini 생성 음악 원본 4곡. 현재 게임에는 미연결 |
+| `scripts/blender/` | 제작·폴리싱·GLB 재수출 스크립트 |
+| `scripts/*.test.mjs` | 입력·차량·충돌·레이스·진행·온라인 회귀 시험 |
+| `artifacts/` | 수치·실패 로그·필수 물리 fixture. 일반 스크린샷은 블로그 20장으로 정리 |
+| `docs/blog/` | 제작기·사진 갤러리·사진 출처/해시 목록 |
 
-Blender 5.2는 Windows에 설치된 프로그램을 사용합니다. 작업 폴더의 이전 휴대용 Blender와 Unity 도구는 제거했습니다. 최신 원본은 지우지 않고 편집 후 수출합니다.
+Blender 원본을 편집한 뒤 해당 수출 스크립트를 실행합니다. 이전 단계의 폴리싱 스크립트를 전부 순서대로 다시 적용하는 방식은 권장하지 않습니다.
 
-`blender -b --python scripts/blender/export_fleet_eight.py -- --only huracan`
+```powershell
+blender -b --python scripts/blender/export_fleet_eight.py -- --only supra
+blender -b --python scripts/blender/export_environment.py
+```
 
-맵·차고는 `scripts/blender/export_environment.py`로 수출합니다. 이전 제작 단계의 색 보정 스크립트를 다시 적용하지 않습니다.
+## 보존·배포
 
-## 정리와 현재 상태
-
-2026-10-10 요청에 따라 구버전 실행본·차량 원본·미사용 코드·에셋·도구·시험 자료 8,105개, **1.61GiB**를 삭제했습니다. 최신 모델·맵·차고와 현재 검사에 필요한 자료를 남겼습니다. Git 기록·원격 저장소 설정·비밀 설정 파일은 보존합니다.
-
-[정리·성능 검증](docs/CLEANUP_PERFORMANCE_20261010.md) · [차량 외장 v6](docs/VEHICLE_POLISH_V6.md) · [다음 작업](docs/NEXT_STEPS.md)
-
-[오픈소스 차량 제어 비교 분석](docs/RACING_REPOSITORY_COMPARISON_20261010.md): 현재 튜닝의 적용 여부와 접지·조향·카메라 설계, 다음 구현 제안.
-
-[주행 설계 적용·실제 맵 계측](docs/RIDE_DESIGN_20261010.md): 중복 바닥 지지 수정, 차량별 구동·제동·접지력 연결, 고정 물리 시간과 회귀 검증.
-
-[1차 그래픽·코스 안내 폴리싱](docs/VISUAL_POLISH_20261010.md): 차량 페인트·유리 마감, 하늘·노면 표현, 커브 방향과 남은 거리 HUD. 113개 회귀 시험·웹 빌드 통과. 차량 형상과 주행 물리는 이번 변경에서 유지합니다.
-
-[AI 라이벌 추월·회피](docs/RIVAL_AI_20261010.md): 실제 도로 포장과 차량 간격을 확인해 차선 이동·추월·복귀합니다. 차량 8종의 실제 직선 추월과 6대 전체 코스 완주, 브라우저 주행 흐름을 확인했습니다. 최신 전체 회귀 시험 131개·웹 빌드 통과.
-
-[차량별 엔진 소리·가속 응답](docs/ENGINE_FEEL_20261010.md): 합성 음색 8종, 실제 RPM·변속 연결, 차량별 가속 응답과 음소거 유지·터치 제어. 최신 전체 회귀 시험 136개·웹 빌드 통과. 수프라는 검증된 기존 주행 설정을 유지했습니다.
-
-2026-10-11 사용자 요청으로 최신 콘텐츠 검증본 `12a1c61`을 Vercel 정식 주소에 배포했습니다. 남악의 그래픽 “낮음” 검증 표본은 성능 목표를 통과했으며, 이 PC의 세션별 프레임 변동과 추가 그래픽 고도화는 남아 있습니다. 휴대폰 실기기와 사람의 전체 코스 운전 검증도 필요합니다. 새로 생성한 맵별 음악 4곡은 아직 게임에 연결하지 않았습니다.
-
-[남악 지명·길찾기 표식](docs/NAMAK_LANDMARKS_20261010.md): Blender 안내판·도로명·입구 표식22개, 출처와 게임 좌표·편집 원본·검증 기록.
-
-[레이싱 AI 3회 고도화·검증](docs/RIVAL_AI_3PASS_20261015.md): 노면별 제동·끼어들기 예측, 슬립스트림·니트로 운영, 성격별 재추월·결승 공략. 로컬 적용과 운영 배포 상태는 문서를 참고하세요.
+- 현재 게임은 Unity 실행 파일을 사용하지 않습니다. Unity 프로젝트 전체가 복구됐다는 의미도 아닙니다.
+- 큰 `world.blend`는 Git LFS로 관리합니다. 비밀키·환경 파일·설치 의존성·빌드 사본은 공개하지 않습니다.
+- 공식 서비스는 기존 Vercel 프로젝트와 `racing.mumuworld.com`을 사용합니다. Cloudflare는 DNS 연결 역할입니다.
+- 무무클래스에는 기존 **앱 올리기** 기능으로 게임을 등록했습니다. 무무클래스 사이트 코드는 변경하지 않았습니다.
+- 이번 정리는 작업 폴더의 사진·임시 복제본 정리입니다. Git 이력의 과거 사진까지 영구 제거하는 작업은 하지 않았습니다.
+- [온라인 설계·제약](docs/ONLINE_MATCH_REVIEW_20261015.md) · [QR 초대](docs/ONLINE_QR_INVITE_20261015.md) · [도로 주변 제작·출처](docs/ROADSCAPE_20261013.md) · [차량 실차 비교](docs/VEHICLE_REFERENCE_3PASS_20261015.md)
