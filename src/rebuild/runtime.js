@@ -176,7 +176,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     ghostView.root.traverse(o=>{if(!o.isMesh)return;o.castShadow=o.receiveShadow=false;o.renderOrder=2;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.transparent=true;m.opacity=.36;m.depthWrite=false;m.needsUpdate=true;}});
     ghostView.root.visible=false;scene.add(ghostView.root);
   }
-  const planRivals=()=>createRivalPlanner(route,{roadClear,speedProfile:raceProfile??difficulty.profile,nitro:difficulty.nitro,personalities:true});
+  const planRivals=()=>createRivalPlanner(route,{roadClear,speedProfile:raceProfile??difficulty.profile,nitro:difficulty.nitro,personalities:true,racecraft:difficulty.racecraft??false,raceDistance:route.length*raceLaps});
   let rivalPlanner=planRivals();
   function spawn(index,lane=0,spec=null){
     const pose=routePose(route,index,lane);
@@ -429,8 +429,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       const presentedPosition=p.view.root.position.clone().add(new THREE.Vector3(0,.6,0).applyQuaternion(p.view.root.quaternion));
       p.view.root.visible=cameraMode!=='first-person';
       cockpit.update(p.state,cameraMode==='first-person',RACE_TUNING[selected].redline,{compact:host.clientWidth<700,music:music.status(),now});
-      if(cameraMode==='first-person')firstPerson.update(p.view.root.position,p.view.root.quaternion,paused?0:dt,{snap:cameraSnap,roof:RACE_TUNING[selected].roof,width:RACE_TUNING[selected].width,compact:host.clientWidth<700});
-      else {camera.near=.15;chase.update(presentedPosition,forward,p.state.kmh,paused?0:dt,{snap:cameraSnap,compact:host.clientWidth<700,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,boost:p.state.action?.active,impact:cameraImpact,stableRide:true});}
+      if(cameraMode==='first-person')firstPerson.update(p.view.root.position,p.view.root.quaternion,paused?0:dt,{snap:cameraSnap,roof:RACE_TUNING[selected].roof,width:RACE_TUNING[selected].width,compact:host.clientWidth<700,pedalResponse:true,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,drive:p.state.drive,grounded:latestFeedback.grounded,kmh:p.state.kmh});
+      else {camera.near=.15;chase.update(presentedPosition,forward,p.state.kmh,paused?0:dt,{snap:cameraSnap,compact:host.clientWidth<700,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,boost:p.state.action?.active,impact:cameraImpact,stableRide:true,pedalResponse:true,drive:p.state.drive,grounded:latestFeedback.grounded,velocity:p.state.velocity});}
       cameraSnap=false;cameraImpact=0;
       // The shadow and visible chassis must use the same interpolated frame.
       sun.position.copy(presentedPosition).add(new THREE.Vector3(-25,45,20));sun.target.position.copy(presentedPosition);

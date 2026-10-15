@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createNamakArchitecture} from './namakArchitecture.js';
 
 export const NAMAK_VISUAL_BUDGETS=Object.freeze({
  high:Object.freeze({distance:230,lobes:9,chunks:12,surfaceDetail:1}),
@@ -91,6 +92,7 @@ export function namakTreeDetails(route){
 }
 
 export function createNamakVisuals(scene,world,route,{quality='high'}={}){
+ const architecture=createNamakArchitecture(world,quality);
  const root=new THREE.Group();root.name='Namak_Visual_Details';root.userData={dynamic:true,visualOnly:true};world.add(root);
  const originals=[],uniforms=new Set(),seen=new Set(),chunks=[];
  let id=qualityId(quality),budget=NAMAK_VISUAL_BUDGETS[id],disposed=false,lastUpdate=-Infinity,previousVisible=null;
@@ -136,11 +138,13 @@ export function createNamakVisuals(scene,world,route,{quality='high'}={}){
   maximumDrawCalls:chunks.length,visibleDrawCalls:0,visibleInstances:0,visibleTriangles:0,shadowDrawCalls:0,quality:id,updateInterval:.2};
  const api={root,stats,setQuality(value){
   if(disposed)return;id=qualityId(value);budget=NAMAK_VISUAL_BUDGETS[id];stats.quality=id;
+  architecture.setQuality(value);
   for(const u of uniforms)u.value=budget.surfaceDetail;
   for(const chunk of chunks)chunk.mesh.count=budget.lobes===9?chunk.count:budget.lobes===5?chunk.mediumCount:0;
   lastUpdate=-Infinity;
  },update(camera,dt=0,elapsed=0,visible=world.visible){
   if(disposed)return;
+  architecture.update(camera,visible);stats.architecture=architecture.stats;
   const shown=Boolean(visible&&world.visible&&budget.distance>0&&camera?.position);root.visible=shown;
   if(!shown){stats.visibleDrawCalls=stats.visibleInstances=stats.visibleTriangles=0;previousVisible=shown;return;}
   if(shown===previousVisible&&Number.isFinite(elapsed)&&elapsed>=lastUpdate&&elapsed-lastUpdate<stats.updateInterval)return;
@@ -156,6 +160,7 @@ export function createNamakVisuals(scene,world,route,{quality='high'}={}){
   for(let i=0;i<Math.min(nearby.length,budget.chunks);i++){const chunk=nearby[i].chunk;chunk.mesh.visible=true;calls++;count+=chunk.mesh.count;}
   stats.visibleDrawCalls=calls;stats.visibleInstances=count;stats.visibleTriangles=count*trianglesPerInstance;
  },dispose(){
+  architecture.dispose();
   if(disposed)return;disposed=true;root.removeFromParent();for(const chunk of chunks)chunk.mesh.dispose();geometry.dispose();foliage.dispose();uniforms.clear();
   for(const saved of originals){
    const {material}=saved;material.color.copy(saved.color);material.roughness=saved.roughness;material.metalness=saved.metalness;

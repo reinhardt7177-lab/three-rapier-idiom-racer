@@ -18,7 +18,7 @@ export function handleRaceKeyDown(event,actions){
  // Recovery remains available after touching a pedal left its button focused.
  if(event.code==='KeyC'){event.preventDefault();if(!event.repeat&&actions.canDrive())actions.recover();return;}
  // Preserve Space/Enter and navigation semantics on menu buttons.
- if(event.target.closest?.('button'))return;
+ if(event.target.closest?.('button')&&!event.target.closest?.('[data-race-control]'))return;
  event.preventDefault();
  if(event.code==='KeyR'){if(!event.repeat)actions.restart();return;}
  if(event.code==='KeyM'){if(!event.repeat)actions.mute();return;}

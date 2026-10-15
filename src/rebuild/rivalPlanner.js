@@ -1,6 +1,7 @@
 import {personalityByName,personalitySpeedProfile} from './rivalPersonalities.js';
 import {aiInput,curveSpeeds} from './course.js';
 import {RACE_TUNING,RACE_GRID_LANE} from './vehicleDynamics.js';
+import {createRacecraftState,updateRacecraft,racecraftBoost} from './rivalRacecraft.js';
 
 const smooth=t=>t*t*(3-2*t);
 const dimensions=c=>RACE_TUNING[c.id]||{length:4.8,collisionWidth:2.05};
@@ -22,10 +23,12 @@ function easyRoad(route,car){
 
 // The planner only supplies steering/pedals. Rapier owns every car transform.
 // One shared planner arbitrates five rivals before the single world step.
-export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false,personalities=false}={}){
+// Advanced traffic prediction belongs to the explicit racecraft configuration.
+// Classic, easy and standalone QA callers retain the proven braking envelope.
+export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false,personalities=false,racecraft=null,raceDistance=route.length}={}){
   const plans=new Map();
   function record(car){
-    if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,cooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
+    if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,craft:createRacecraftState(),profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,cooldown:0,attackCooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
     return plans.get(car);
   }
   function mergeClear(car,target,cars,committed=null){
@@ -112,16 +115,17 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       // Re-plan it with the same road, closing-traffic and speed-advantage proof.
       const blocker=cars.filter(c=>c!==car&&Math.abs(c.state.position.y-car.state.position.y)<3)
         .map(c=>({car:c,...local(route,car,c)}))
-        .filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&(Math.abs(s.v)<1||(trafficEnabled&&speedProfile&&s.v>1&&curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-s.v*3.6>=(plan.style?.passGap??12))))
+        .filter(s=>s.along>0&&s.along<Math.max(35,own.v*3+20)&&Math.abs(s.lane-own.lane)<2.3&&(Math.abs(s.v)<1||((trafficEnabled||racecraft)&&speedProfile&&s.v>1&&curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-s.v*3.6>=plan.passGap)))
         .sort((a,b)=>a.along-b.along)[0];
       if(blocker){
         plan.stop=Math.abs(blocker.v)<1&&blocker.along<16+Math.max(0,own.v)*.5+Math.max(0,own.v)**2/12;plan.reason=Math.abs(blocker.v)<1?'stopped-ahead':'slow-ahead';
         // A rear yield can hold a partial crossing. Pick the side away from the
         // obstruction rather than treating that partial position as a full lane.
-        const target=(trafficEnabled?blocker.lane:own.lane)<0?RACE_GRID_LANE:-RACE_GRID_LANE;
-        if(blocker.along>=9&&easyRoad(route,car)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
+        const target=(trafficEnabled||racecraft?blocker.lane:own.lane)<0?RACE_GRID_LANE:-RACE_GRID_LANE;
+        if(blocker.along>=9&&(!racecraft||Math.abs(target-own.lane)>.9)&&(!racecraft||Math.abs(blocker.v)<1||plan.attackCooldown===0)&&easyRoad(route,car)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
           plan.mode='changing';plan.target=target;plan.lead=blocker.car;plan.leadLane=blocker.lane;
           plan.age=0;plan.stop=false;plan.reason='overtake';plan.attempts++;
+          plan.attackCooldown=racecraft?(plan.style?.returnCooldown??3):0;
           plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
         }
         return;
@@ -140,18 +144,20 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     if(!lead||lead.v*3.6>=(plan.profile?.maxSpeed??138)*(car.pace??1)-8)return;
     // Following already matches the lead's speed. Compare available road pace,
     // otherwise a faster rival can never start passing a moving slow player.
-    if(lead.v>1&&(speedProfile?curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-lead.v*3.6<(plan.style?.passGap??12):own.v<lead.v+2))return;
+    if(lead.v>1&&(speedProfile?curveSpeeds(route,plan.profile)[car.index]*(car.pace??1)-lead.v*3.6<plan.passGap:own.v<lead.v+2))return;
     // Hold the approach gap for a stopped lead instead of creeping so close
     // that there is no room left to steer around it.
     if(lead.v<1&&lead.along<16)plan.stop=true;
     if(lead.v<-2){plan.reason='oncoming';return;}
     if(lead.along<9){plan.reason='too-close';return;}
     if(plan.cooldown>0){plan.reason='cooldown';return;}
+    if(plan.holdDraft){plan.reason='drafting';return;}
     if(!easyRoad(route,car)){plan.reason='curve';return;}
     const target=plan.home<0?RACE_GRID_LANE:-RACE_GRID_LANE;
     if(!mergeClear(car,target,cars)){plan.reason='occupied';return;}
     if(!pavement(car,own.lane,target)){plan.reason='road';return;}
     plan.mode='changing';plan.target=target;plan.lead=lead.car;plan.leadLane=lead.lane;plan.age=0;plan.stop=false;plan.reason='overtake';plan.attempts++;
+    plan.attackCooldown=racecraft?(plan.style?.returnCooldown??3):0;
     plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
   }
   return {
@@ -162,12 +168,21 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       // Front cars commit first; ties use stable race order, never randomness.
       active.sort((a,b)=>(b.progress??0)-(a.progress??0));
       for(const car of active){
-        const plan=record(car);plan.age+=dt;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.timer-=dt;
+        const plan=record(car);plan.age+=dt;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.attackCooldown=Math.max(0,plan.attackCooldown-dt);plan.timer-=dt;
+        if(plan.timer<=0){
+          plan.openRoad=easyRoad(route,car);
+          const own=local(route,car);
+          plan.draftLead=participants.filter(c=>c!==car&&Math.abs(c.state.position.y-car.state.position.y)<3).map(c=>({...local(route,car,c),ownLane:own.lane})).filter(s=>s.along>0&&Math.abs(s.lane-own.lane)<1.5).sort((a,b)=>a.along-b.along)[0];
+        }
+        const craft=updateRacecraft(plan.craft,{dt,car,lead:plan.draftLead,openRoad:plan.openRoad,config:racecraft,style:plan.style,remaining:raceDistance-(car.progress??0)});
+        plan.holdDraft=craft.holdDraft;
+        plan.passGap=Math.max(6,(plan.style?.passGap??12)-(craft.attacking?2:0));
         if(plan.timer<=0){plan.timer=.2;decide(car,participants,plan,traffic.length>0);}
         const changing=['changing','returning','aborting'].includes(plan.mode);
         const target=plan.stop?local(route,car).lane:plan.target;
         const input=aiInput(route,car.state,car.index,target,car.pace??1,participants.filter(c=>c!==car).map(c=>c.state),{
           lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile:plan.profile,
+          adaptiveBraking:!!racecraft,predictiveTraffic:!!racecraft,
           // Keep the approach outside the 9m crossing guard. Closing to the
           // former 6m following gap made every later passing request too close.
           trafficGap:changing?6:12,restoreFollowGap:traffic.length>0&&!changing,
@@ -176,12 +191,13 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
         if(plan.stop)input.throttle=0;
         // Same nitro rules as the player: spent only while settled on a clear
         // straight with plenty of permitted speed left, never during a merge.
-        else if(nitro&&!changing&&input.throttle&&!input.waitingForTraffic&&input.targetKmh-car.state.kmh>(plan.style?.boostGap??30))input.boost=true;
+        const boost=racecraftBoost(plan.craft,{dt,car,input,changing:changing||plan.stop,openRoad:plan.openRoad,enabled:nitro,config:racecraft,style:plan.style});
+        if(boost)input.boost=true;
         inputs.set(car,input);
       }
       return inputs;
     },
-    snapshot(car){const p=plans.get(car);return p?{personality:p.style?.name??null,style:p.style?.label??null,mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age}:null;},
+    snapshot(car){const p=plans.get(car);return p?{personality:p.style?.name??null,style:p.style?.label??null,mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age,tactic:p.craft.tactic,boosts:p.craft.boosts,draftSetups:p.craft.draftSetups}:null;},
     reset(car,lane=car?.lane){if(!car){plans.clear();return;}const old=plans.get(car);plans.delete(car);const p=record(car);p.home=p.target=lane;p.cooldown=2;p.passes=old?.passes??0;p.attempts=old?.attempts??0;p.aborts=old?.aborts??0;},
   };
 }

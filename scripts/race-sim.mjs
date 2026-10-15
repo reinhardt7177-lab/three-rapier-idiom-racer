@@ -51,7 +51,7 @@ export async function runRace({trackId='coastal',difficultyId='normal',player='s
  const {track,route,parts}=data??loadTrack(trackId),{world,asphalt,surfaceMap}=buildWorld(parts);
  const difficulty=difficultyById(difficultyId),startIndex=25;
  const wetSurface=createWeatherSurfaceQuery(surfaceMap,weather),raceProfile=weatherSpeedProfile(difficulty.profile,weather),drivenProfile=weatherSpeedProfile(playerProfile,weather);
- const planner=createRivalPlanner(route,{roadClear:createOvertakeRoadCheck(world,route,asphalt),speedProfile:raceProfile,nitro:difficulty.nitro,personalities});
+ const planner=createRivalPlanner(route,{roadClear:createOvertakeRoadCheck(world,route,asphalt),speedProfile:raceProfile,nitro:difficulty.nitro,personalities,racecraft:difficulty.racecraft??false,raceDistance:route.length*laps});
  const online=raceMode==='online',roster=online?onlineRoster(player,guestVehicle):raceRoster(player,{mode:raceMode,opponent});
  const cars=[],traffic=createRoadTraffic(world,route,{count:raceMode!=='grid'?0:trafficCount,surface:wetSurface});
  const driverPlanner=trafficCount&&raceMode==='grid'?createRivalPlanner(route,{roadClear:createOvertakeRoadCheck(world,route,asphalt),speedProfile:drivenProfile}):null;

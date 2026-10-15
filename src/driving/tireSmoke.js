@@ -7,6 +7,7 @@ export function createTireSmoke({billboards=false,strong=false}={}) {
   const positions = new Float32Array(SMOKE_LIMIT * 3), velocities = new Float32Array(SMOKE_LIMIT * 3);
   const ages = new Float32Array(SMOKE_LIMIT).fill(10), lives = new Float32Array(SMOKE_LIMIT);
   const sizes = new Float32Array(SMOKE_LIMIT), alphas = new Float32Array(SMOKE_LIMIT);
+  const strengths = new Float32Array(SMOKE_LIMIT);
   let geometry = new THREE.BufferGeometry();
   for (const [name, array, n] of [['position', positions, 3], ['aSize', sizes, 1], ['aAlpha', alphas, 1]])
     geometry.setAttribute(name, new THREE.BufferAttribute(array, n).setUsage(THREE.DynamicDrawUsage));
@@ -41,8 +42,8 @@ export function createTireSmoke({billboards=false,strong=false}={}) {
       const j = i * 3, t = ages[i] / lives[i];
       positions[j] += velocities[j] * dt; positions[j + 1] += velocities[j + 1] * dt; positions[j + 2] += velocities[j + 2] * dt;
       velocities[j] *= Math.exp(-dt * 1.6); velocities[j + 2] *= Math.exp(-dt * 1.6);
-      sizes[i] = (strong?1.05:.85) + t * (strong?3.1:2.6);
-      alphas[i] = (strong?.70:.40) * Math.min(1, t * 12) * (1 - t) ** 1.3;
+      sizes[i] = ((strong?.65:.5) + .4*strengths[i]) + t * (strong?3.1:2.6)*(.6+.4*strengths[i]);
+      alphas[i] = (strong?.70:.40) * (.25+.75*strengths[i]) * Math.min(1, t * 12) * (1 - t) ** 1.3;
     }
     state.wheels.forEach((w, i) => {
       const slip = Math.min(1, Math.max(0, Math.max(signals.wheelSlip[i] || 0, state.brake > .5 ? (signals.braking || 0) * .8 : 0)));
@@ -56,7 +57,8 @@ export function createTireSmoke({billboards=false,strong=false}={}) {
         velocities[j] = state.velocity.x * .08 + (random() - .5) * .7;
         velocities[j + 1] = .35 + random() * .35;
         velocities[j + 2] = state.velocity.z * .08 + (random() - .5) * .7;
-        ages[k] = 0; lives[k] = (strong?.85:.65) + random() * .45; sizes[k] = strong?1.05:.85; alphas[k] = .06;
+        strengths[k]=slip;
+        ages[k] = 0; lives[k] = (strong?.85:.65) + random() * .45; sizes[k] = (strong?.65:.5)+.4*slip; alphas[k] = .06*slip;
       }
     });
     live = 0; for (let i = 0; i < SMOKE_LIMIT; i++) if (alphas[i] > 0) live++;

@@ -56,10 +56,12 @@ export function aiInput(route,state,index,lane,pace=1,traffic=[],options={}) {
   let speed=Math.min((options.speedProfile?.maxSpeed??138)*pace,options.speedLimit??Infinity),probe=index,ahead=0;
   // Brake before the bend: suspension grip cannot repair a late 138 km/h turn.
   // Faster profiles look as far ahead as a full stop from the current speed.
-  const v=state.kmh/3.6,horizon=Math.max(30+v*1.5,options.speedProfile?.fullBrakingHorizon?30+v*v/12:0);
+  const grip=options.adaptiveBraking?clamp(state.surface?.grip??1,.45,1):1;
+  const deceleration=6*grip;
+  const v=state.kmh/3.6,horizon=Math.max(30+v*1.5,options.speedProfile?.fullBrakingHorizon?30+v*v/(2*deceleration):0);
   while(ahead<horizon){
     const limit=limits[probe]*pace;
-    const safe=Math.sqrt((limit/3.6)**2+2*6*Math.max(0,ahead-12))*3.6;
+    const safe=Math.sqrt((limit/3.6)**2+2*deceleration*Math.max(0,ahead-12))*3.6;
     speed=Math.min(speed,safe);
     const next=(probe+1)%n;ahead+=Math.hypot(points[next].x-points[probe].x,points[next].z-points[probe].z);probe=next;
     if(probe===index)break;
@@ -73,14 +75,19 @@ export function aiInput(route,state,index,lane,pace=1,traffic=[],options={}) {
     const dx=other.position.x-state.position.x,dz=other.position.z-state.position.z;
     const along=dx*f.x+dz*f.z,lateral=Math.abs(dx*f.z-dz*f.x);
     const ownSpeed=Math.max(0,state.speed??state.kmh/3.6);
-    const leadSpeed=Math.max(0,other.velocity?other.velocity.x*f.x+other.velocity.z*f.z:other.kmh/3.6);
-    const closing=Math.max(0,ownSpeed-leadSpeed),lookAhead=Math.max(followGap+10,6+closing*.5+closing*closing/12);
-    if(along>0&&along<lookAhead&&lateral<2.2){
+    const signedLead=other.velocity?other.velocity.x*f.x+other.velocity.z*f.z:other.kmh/3.6;
+    const leadSpeed=Math.max(0,signedLead),closing=Math.max(0,ownSpeed-(options.predictiveTraffic?signedLead:leadSpeed));
+    const lookAhead=Math.max(followGap+10,(options.predictiveTraffic?followGap:6)+closing*.5+closing*closing/(2*deceleration));
+    const sideSpeed=(other.velocity?.x??0)*f.z-(other.velocity?.z??0)*f.x;
+    const signedLateral=dx*f.z-dz*f.x;
+    const timeToClose=Math.min(1.2,Math.max(0,(along-followGap)/Math.max(1,closing)));
+    const cuttingIn=options.predictiveTraffic&&Math.abs(signedLateral+sideSpeed*timeToClose)<2.2;
+    if(along>0&&along<lookAhead&&(lateral<2.2||cuttingIn)){
       const gap=Math.max(0,along-followGap);
       // A moving lead cannot restore a short gap if we only match its speed.
       // Civilian-traffic planning opts into recovering the existing clearance.
       const followSpeed=Math.max(0,leadSpeed+(options.restoreFollowGap?along-followGap:gap)/.9);
-      const safe=Math.min(Math.sqrt(leadSpeed*leadSpeed+12*gap),followSpeed)*3.6;
+      const safe=Math.min(Math.sqrt(leadSpeed*leadSpeed+2*deceleration*gap),followSpeed)*3.6;
       if(safe<speed){speed=safe;trafficLimited=true;}
       if(along<=followGap+.2&&leadSpeed<.5){speed=0;hold=true;trafficLimited=true;}
     }

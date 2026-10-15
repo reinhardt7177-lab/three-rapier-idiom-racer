@@ -24,7 +24,16 @@ export function createCockpit(root,camera) {
     root.position.set(0,compact?-.12:0,compact?-.32:0);
     // Positive front-wheel yaw is a left turn; +Z rotation moves the
     // camera-space wheel's upper stripe left from the driver's seat.
-    wheel.rotation.z=(vehicle?.wheels?.[1]?.steering||0)*4;
+    // Use the centre rack, not just the inside/outside tyre: Ackermann must
+    // not make the driver's handwheel turn farther in one direction.
+    let rack=vehicle?.steer;
+    if(!Number.isFinite(rack)){
+      const left=vehicle?.wheels?.[1]?.steering,right=vehicle?.wheels?.[3]?.steering;
+      rack=Number.isFinite(left)&&Number.isFinite(right)?(left+right)/2:Number.isFinite(left)?left:Number.isFinite(right)?right:0;
+    }
+    // A readable handwheel ratio with a bounded 160-degree animation stop.
+    // Actual physical rack state remains the source, including countersteer.
+    wheel.rotation.z=Math.max(-2.8,Math.min(2.8,rack*10));
     // The right gauge is physically labeled 0..8 (thousands of RPM).
     speed.rotation.z=angle(clamp(vehicle?.kmh,260)/260);
     rpm.rotation.z=angle(clamp(vehicle?.powertrain?.rpm,8000)/8000);

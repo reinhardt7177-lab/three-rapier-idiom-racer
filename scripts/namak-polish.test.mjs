@@ -7,10 +7,10 @@ import {createNamakPresentation,NAMAK_PARKING,outdoorLighting} from '../src/rebu
 import {polishWorldSurfaces} from '../src/rebuild/surfacePolish.js';
 import {batchWorldScenery} from '../src/rebuild/worldRendering.js';
 import {createSceneDisposer} from '../src/rendering/sceneResources.js';
-import {steeringLimit,wheelSteering} from '../src/driving/steering.js';
-import {initPhysics,createVehiclePhysics,STEP} from '../src/driving/physics.js';
+import {steeringLimit,wheelSteering,PLAYER_STEERING_SENSITIVITY} from '../src/driving/steering.js';
+import {initPhysics,createVehiclePhysics} from '../src/driving/physics.js';
 import {VEHICLES} from '../src/rebuild/fleet.js';
-import {RACE_TUNING} from '../src/rebuild/vehicleDynamics.js';
+import {playerRaceTuning} from '../src/rebuild/vehicleDynamics.js';
 const read=p=>fs.readFileSync(new URL(`../${p}`,import.meta.url));
 const parse=async id=>{const b=read(`public/assets/rebuild/${id}.glb`);return (await new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'')).scene;};
 
@@ -64,20 +64,25 @@ test('world relief adds only one shared texture and preserves all physics vertic
  assert.deepEqual(outdoorLighting(),{ambient:.45,sun:2,exposure:.85,environment:.32,fogNear:800,fogFar:2600});assert.ok(outdoorLighting(true).sun>outdoorLighting().sun);
 });
 
-test('player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes',()=>{
- const spec={...VEHICLES[0],steeringAcceleration:RACE_TUNING.supra.steeringAcceleration??12.8};
- for(const kmh of [40,100,180,230]){
-  const original=steeringLimit(kmh/3.6,true,spec),enhanced=steeringLimit(kmh/3.6,true,spec,1.3);
-  assert.ok(Math.abs(enhanced/original-1.3)<1e-12);assert.equal(enhanced,steeringLimit(-kmh/3.6,true,spec,1.3));
+test('current player steering retains city lock, the calibrated highway envelope and mirrored wheel axes',()=>{
+ const vehicle=VEHICLES.find(v=>v.id==='supra'),spec={...vehicle,...playerRaceTuning(vehicle.id)};
+ assert.equal(PLAYER_STEERING_SENSITIVITY,1.3*1.3);
+ // The approved city rack has a stop and a speed-dependent corner bonus;
+ // a uniform 1.3 multiplier describes the superseded calibration only.
+ for(const [kmh,lock,cornerGain] of [[0,.56],[40,.56],[90,null,1.18],[135,null,1.09],[180,null,1],[230,null,1]]){
+  const original=steeringLimit(kmh/3.6,true,spec),enhanced=steeringLimit(kmh/3.6,true,spec,PLAYER_STEERING_SENSITIVITY);
+  const expected=lock??original*PLAYER_STEERING_SENSITIVITY*cornerGain;
+  assert.ok(Math.abs(enhanced-expected)<1e-12,`${kmh}km/h player rack calibration`);
+  assert.equal(enhanced,steeringLimit(-kmh/3.6,true,spec,PLAYER_STEERING_SENSITIVITY));
   const left=wheelSteering(enhanced,spec),right=wheelSteering(-enhanced,spec);assert.equal(left[0],0);assert.equal(left[2],0);assert.equal(left[1],-right[3]);
  }
- assert.equal(steeringLimit(0,true,spec,1.3),.52);
+ assert.equal(steeringLimit(0,true,spec),.52,'AI/default rack stop remains unchanged');
 });
 
-test('enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h',async()=>{
- await initPhysics();const spec=VEHICLES.find(v=>v.id==='supra');
+test('current player steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h',async()=>{
+ await initPhysics();const spec=VEHICLES.find(v=>v.id==='supra'),raceTuning=playerRaceTuning(spec.id),steeringSpec={...spec,...raceTuning};
  for(const target of [100,180])for(const direction of [-1,1]){
-  const sim=createVehiclePhysics({barriers:false,launchEnabled:false,arcade:true,progressiveAcceleration:true,start:{x:0,y:1,z:-500},spec,raceTuning:RACE_TUNING.supra,steeringSensitivity:1.3});
+  const sim=createVehiclePhysics({barriers:false,launchEnabled:false,arcade:true,progressiveAcceleration:true,start:{x:0,y:1,z:-500},spec,raceTuning,steeringSensitivity:PLAYER_STEERING_SENSITIVITY});
   try{
    let s;for(let i=0;i<120;i++)s=sim.step({brake:1});
    for(let i=0;i<2400&&s.kmh<target;i++)s=sim.step({throttle:1});assert.ok(s.kmh>=target,`reach ${target}`);
@@ -85,11 +90,11 @@ test('enhanced steering actually turns the Rapier front wheels and stays upright
     const previousSpeed=s.speed;
     s=sim.step({throttle:.2,steer:direction});
     assert.equal(s.contacts,4);assert.ok(1-2*(s.rotation.x**2+s.rotation.z**2)>.97);
-    const baseline=steeringLimit(s.speed,true,{...spec,steeringAcceleration:RACE_TUNING.supra.steeringAcceleration??12.8});
-    assert.ok(Math.abs(s.steeringLimit/baseline-1.3)<1e-12);
-    const appliedLimit=steeringLimit(previousSpeed,true,{...spec,steeringAcceleration:RACE_TUNING.supra.steeringAcceleration??12.8},1.3);
+    assert.equal(s.steeringSensitivity,PLAYER_STEERING_SENSITIVITY);
+    assert.equal(s.steeringLimit,steeringLimit(s.speed,true,steeringSpec,PLAYER_STEERING_SENSITIVITY),'snapshot reports the current-speed rack');
+    const appliedLimit=steeringLimit(previousSpeed,true,steeringSpec,PLAYER_STEERING_SENSITIVITY);
     assert.ok(Math.abs(s.steer-s.steerInput*appliedLimit)<1e-10);
-    wheelSteering(s.steer,spec).forEach((angle,j)=>assert.ok(Math.abs(s.wheels[j].steering-angle)<1e-8));
+    wheelSteering(s.steer,spec).forEach((angle,j)=>assert.equal(s.wheels[j].steering,Math.fround(angle),'Rapier receives the actual Ackermann angle'));
    }
    assert.ok(s.position.x*direction<-.2);console.log(JSON.stringify({target,direction,kmh:s.kmh,contacts:s.contacts,steer:s.steer,sensitivity:s.steeringSensitivity}));
   }finally{sim.dispose();}

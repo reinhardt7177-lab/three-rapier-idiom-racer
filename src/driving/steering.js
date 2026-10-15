@@ -3,16 +3,32 @@ import { GT_SPEC } from '../vehicleSpec.js';
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 // An additional 30% over the previous player setting; AI keeps sensitivity 1.
 export const PLAYER_STEERING_SENSITIVITY = 1.3 * 1.3;
+const playerBlend = (responsive, sensitivity) => responsive
+  ? clamp((sensitivity - 1) / (PLAYER_STEERING_SENSITIVITY - 1), 0, 1) : 0;
+export function steeringCornerGain(speedMps, responsive = false, sensitivity = 1) {
+  const t = clamp((Math.abs(speedMps) * 3.6 - 90) / 90, 0, 1);
+  return 1 + .18 * playerBlend(responsive, sensitivity) * (1 - t * t * (3 - 2 * t));
+}
 // Road-friendly arcade tuning, not a claim of real tyre performance.
 // Limit rack angle, not body yaw. Rapier still determines the actual turn.
 export function steeringLimit(speedMps, responsive = false, spec = GT_SPEC, sensitivity = 1) {
-  return Math.min(.52, Math.max(1, Math.min(PLAYER_STEERING_SENSITIVITY, sensitivity)) * Math.atan(spec.wheelbase * (spec.steeringAcceleration??12.8) * (responsive ? 1 + .4 * Math.max(0, 1 - Math.max(0, Math.abs(speedMps) - 25) / 30) : 1) / Math.max(25, speedMps ** 2)));
+  const speed = Math.abs(speedMps), player = playerBlend(responsive, sensitivity);
+  const rackStop = .52 + .04 * player;
+  // Add lock where city corners need it. Fade smoothly to the existing
+  // highway envelope by 180 km/h, without changing the AI's rack.
+  const turnIn = steeringCornerGain(speed, responsive, sensitivity);
+  const acceleration = (spec.steeringAcceleration ?? 12.8)
+    * (responsive ? 1 + .4 * Math.max(0, 1 - Math.max(0, speed - 25) / 30) : 1);
+  const gain = clamp(sensitivity, 1, PLAYER_STEERING_SENSITIVITY);
+  return Math.min(rackStop, gain * Math.atan(spec.wheelbase * acceleration / Math.max(25, speed ** 2)) * turnIn);
 }
 
-export function updateSteering(previousInput, input, dt, responsive = false) {
+export function updateSteering(previousInput, input, dt, responsive = false, sensitivity = 1) {
   const target = -clamp(Number(input) || 0, -1, 1);
   const rate = target === 0 ? 16 : target * previousInput < 0 ? 22 : 14;
-  const next = previousInput + (target - previousInput) * (1 - Math.exp(-rate * (responsive ? 1.4 : 1) * dt));
+  const player = playerBlend(responsive, sensitivity);
+  const response = 1 + player * (target === 0 ? .08 : target * previousInput < 0 ? .20 : .16);
+  const next = previousInput + (target - previousInput) * (1 - Math.exp(-rate * (responsive ? 1.4 : 1) * response * dt));
   return Math.abs(next) < .0001 ? 0 : next;
 }
 

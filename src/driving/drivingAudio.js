@@ -25,7 +25,10 @@ export function createEngineResponse(vehicle='legacy') {
     if (previousTime === null || time < previousTime) rpm = 850;
     const dt = previousTime === null || time < previousTime ? 0 : Math.min(.1, time - previousTime);
     previousTime = time;
-    rpm += (target.rpm - rpm) * (1 - Math.exp(-dt / (target.rpm > rpm ? .24 : .18)));
+    // Follow the real gearbox cut quickly; the old 180 ms fall smeared most
+    // of a short shift into the next gear. Normal revs retain their smoothing.
+    const response=target.shifting?.065:target.rpm>rpm?.24:.18;
+    rpm += (target.rpm - rpm) * (1 - Math.exp(-dt / response));
     return { ...target, rpm, hz: rpm * engineVoice(vehicle).pulses / 60 };
   } };
 }

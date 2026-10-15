@@ -4,8 +4,8 @@ import {RIVAL_RACE_PROFILE} from './rivalSpeed.js';
 // no teleports. Easy keeps the previous rival calibration exactly.
 export const DIFFICULTIES=Object.freeze([
  Object.freeze({id:'easy',label:'쉬움',description:'예전 라이벌 속도',paceBase:.95,paceStep:.02,profile:RIVAL_RACE_PROFILE,nitro:false}),
- Object.freeze({id:'normal',label:'보통',description:'코너와 추월에서 따라붙는 라이벌',paceBase:.99,paceStep:.02,profile:Object.freeze({maxSpeed:245,lateralAcceleration:7.3,fullBrakingHorizon:true}),nitro:true,rivalNitro:Object.freeze({startCharge:25,passiveCharge:2,draftCharge:8})}),
- Object.freeze({id:'hard',label:'어려움',description:'니트로와 빠른 코너 공략',paceBase:1.01,paceStep:.02,profile:Object.freeze({maxSpeed:265,lateralAcceleration:8.1,fullBrakingHorizon:true}),nitro:true,rivalNitro:Object.freeze({startCharge:60,passiveCharge:5,draftCharge:8})}),
+ Object.freeze({id:'normal',label:'보통',description:'슬립스트림을 모아 추월하는 라이벌',paceBase:.99,paceStep:.02,profile:Object.freeze({maxSpeed:245,lateralAcceleration:7.3,fullBrakingHorizon:true}),nitro:true,rivalNitro:Object.freeze({startCharge:25,passiveCharge:2,draftCharge:8}),racecraft:Object.freeze({draftPatience:1.1,boostReserve:18,boostBurst:1.3,boostCooldown:1.5,attackWindow:400})}),
+ Object.freeze({id:'hard',label:'어려움',description:'재추월과 결승 직전 니트로 공략',paceBase:1.01,paceStep:.02,profile:Object.freeze({maxSpeed:265,lateralAcceleration:8.1,fullBrakingHorizon:true}),nitro:true,rivalNitro:Object.freeze({startCharge:60,passiveCharge:5,draftCharge:8}),racecraft:Object.freeze({draftPatience:.7,boostReserve:12,boostBurst:1.8,boostCooldown:1,attackWindow:600})}),
 ]);
 export const DEFAULT_DIFFICULTY='normal';
 export function difficultyById(id){return DIFFICULTIES.find(d=>d.id===id)||DIFFICULTIES.find(d=>d.id===DEFAULT_DIFFICULTY);}

@@ -53,6 +53,11 @@ export async function loadRebuildAssets(onProgress=()=>{},track=TRACKS[0]) {
     // Attach immediately so both normal disposal and the loading-error cleanup
     // own this overlay through the world; it supplies no physics colliders.
     result.landmarks=signs.scene;result.world.add(result.landmarks);
+    onProgress('남악 청사·상가·수변 디테일',.99);
+    const architecture=await loader.loadAsync(`${import.meta.env.BASE_URL}assets/rebuild/namak-architecture.glb`);
+    architecture.scene.name='Namak_Architecture';
+    architecture.scene.userData.dynamic=true;
+    result.world.add(architecture.scene);
   }
   onProgress('출발 준비 완료',1);
   result.loading=browserLoadingMetrics();

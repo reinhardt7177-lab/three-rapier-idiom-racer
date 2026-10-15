@@ -40,18 +40,18 @@ function measure(spec,kmh,sensitivity,direction=1,tuning=RACE_TUNING[spec.id]){
  }finally{sim.dispose();}
 }
 
-test('another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper',()=>{
+test('player steering reaches the physical rack with useful-speed lock, bounded stop and highway taper',()=>{
  assert.ok(Math.abs(PLAYER_STEERING_SENSITIVITY/1.3-1.3)<1e-12);
  for(const spec of VEHICLES){
   const tuning={...spec,steeringAcceleration:RACE_TUNING[spec.id].steeringAcceleration};
   for(const kmh of [60,90,130,180,230]){
    const previous=steeringLimit(kmh/3.6,true,tuning,1.3);
    const current=steeringLimit(kmh/3.6,true,tuning,PLAYER_STEERING_SENSITIVITY);
-   assert.ok(Math.abs(current/previous-1.3)<1e-12);
+   assert.ok(current/previous>=1.3-1e-12&&current/previous<1.45);
    assert.equal(current,steeringLimit(-kmh/3.6,true,tuning,PLAYER_STEERING_SENSITIVITY));
    assert.equal(current,steeringLimit(kmh/3.6,true,tuning,99));
   }
-  assert.equal(steeringLimit(0,true,tuning,PLAYER_STEERING_SENSITIVITY),.52);
+  assert.equal(steeringLimit(0,true,tuning,PLAYER_STEERING_SENSITIVITY),.56);
   assert.ok(steeringLimit(230/3.6,true,tuning,PLAYER_STEERING_SENSITIVITY)<.02);
  }
 });

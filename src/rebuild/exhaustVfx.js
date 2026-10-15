@@ -25,7 +25,11 @@ export function createExhaustVfx(){
   }
   if(enabled&&emitters?.length){
    q.set(state.rotation.x,state.rotation.y,state.rotation.z,state.rotation.w);back.set(0,0,-1).applyQuaternion(q);
-   carry+=dt*(18+14*Math.max(0,state.drive||0));
+   // Dense idle vapour must not remain a smoke screen at racing speed.
+   // Boost/load still gives a brief stronger plume at the authored outlets.
+   const speed=Math.abs(Number(state.speed??((state.kmh||0)/3.6))||0);
+   const speedFade=1-.88*Math.min(1,speed/35);
+   carry+=dt*(18+14*Math.max(0,state.drive||0))*speedFade;
    while(carry>=1){carry--;for(const emitter of emitters){
     const i=cursor,j=i*3;cursor=(cursor+1)%limit;point.copy(emitter).applyQuaternion(q).add(modelPosition(new Vector3(state.position.x,state.position.y,state.position.z),q,modelOffset));
     positions.set(point.toArray(),j);velocities[j]=back.x*.95+state.velocity.x*.12+(random()-.5)*.15;velocities[j+1]=back.y*.95+.3+random()*.16;velocities[j+2]=back.z*.95+state.velocity.z*.12+(random()-.5)*.15;

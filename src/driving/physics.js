@@ -6,7 +6,7 @@ import beachStage2Colliders from './beachStage2Colliders.json' with { type: 'jso
 import cityStage3Colliders from './cityStage3Colliders.json' with { type: 'json' };
 import lighthouseStage4Colliders from './lighthouseStage4Colliders.json' with { type: 'json' };
 import { GT_SPEC } from '../vehicleSpec.js';
-import { steeringLimit, updateSteering, wheelSteering } from './steering.js';
+import { steeringLimit, updateSteering, wheelSteering, steeringCornerGain } from './steering.js';
 import { createArcadeAction, initialArcadeAction } from './arcadeAction.js';
 import { createLaunch, idleLaunch } from './launch.js';
 import { createRaceDrivetrain } from '../rebuild/vehicleDynamics.js';
@@ -140,9 +140,13 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     const force = ((powertrain?.force??(drive * (drive >= 0 ? 12500 / (1 + abs * .012) : 5000)))+(action?.power||0)*7000) * taper;
     // Smooth the rack input before applying the current speed envelope: accelerating
     // cannot leave a stale low-speed angle on the tyres. Rack angles remain physical.
-    steerInput = updateSteering(steerInput, input.steer, STEP, progressiveAcceleration);
+    steerInput = updateSteering(steerInput, input.steer, STEP, progressiveAcceleration, steeringSensitivity);
     steer = steerInput * steeringLimit(abs, progressiveAcceleration, steeringSpec, steeringSensitivity);
     const angles = wheelSteering(steer, spec);
+    // Extra rack angle alone saturated the tyres on several cars. Match its
+    // useful-speed envelope with bounded tyre capacity, preserving AI/highway
+    // calibration. Rapier tyre forces still produce all heading changes.
+    const cornerCapacity = 1 + (steeringCornerGain(abs, progressiveAcceleration, steeringSensitivity) - 1) * (2 / 3);
     drifting = handling? handling.drifting : !!input.handbrake && abs > 3;
     updateSurfaces();
     scrape = clamp(Number(input.scrape) || 0, 0, 1);
@@ -153,12 +157,12 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
       const brakeWeight=raceTuning?(front?frontBrakeBias:1-frontBrakeBias)/2:progressiveAcceleration?(front?.32:.18):.25;
       controller.setWheelEngineForce(i, force * launch.traction * (!raceTuning&&progressiveAcceleration && drive > 0 ? .78 : 1) * driveWeight);
       controller.setWheelBrake(i, brake * (raceTuning?mass*10.2:14000) * STEP * brakeWeight + (!front && input.handbrake ? 2200 * STEP * (handling?.handbrakeScale??1) : 0) + (drive === 0 && abs < .2 ? 5 : 0));
-      controller.setWheelFrictionSlip(i, (!front && handling ? tireGrip*handling.grip : !front && drifting ? .7 : tireGrip) * surfaceGrip[i]);
+      controller.setWheelFrictionSlip(i, (!front && handling ? tireGrip*handling.grip : !front && drifting ? .7 : tireGrip) * surfaceGrip[i] * cornerCapacity);
       // Rear drive spends part of its lateral grip on propulsion in a turn.
       // This bounded arcade approximation supplements Rapier suspension loading.
       const powerSlip = progressiveAcceleration && driveWeight>0 && speed > 5 && speed < 40 && brake === 0
         ? .14 * Math.abs(steerInput) * Math.max(0, drive) * (1 - (handling?.recovery || 0)) : 0;
-      controller.setWheelSideFrictionStiffness(i, (tireGrip/2.3) * (!front && handling ? handling.grip : !front && drifting ? .3 : 1) * (1 - powerSlip) * surfaceGrip[i]);
+      controller.setWheelSideFrictionStiffness(i, (tireGrip/2.3) * (!front && handling ? handling.grip : !front && drifting ? .3 : 1) * (1 - powerSlip) * surfaceGrip[i] * cornerCapacity);
     }
     body.resetForces(true);
     body.resetTorques(true);
