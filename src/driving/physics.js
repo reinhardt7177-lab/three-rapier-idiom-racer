@@ -11,6 +11,7 @@ import { createArcadeAction, initialArcadeAction } from './arcadeAction.js';
 import { createLaunch, idleLaunch } from './launch.js';
 import { createRaceDrivetrain } from '../rebuild/vehicleDynamics.js';
 import {createActiveRide} from '../rebuild/activeRide.js';
+import {createCollisionResponse} from './collisionResponse.js';
 import {registerRideSupport,stepVehicleWorld} from './vehicleWorld.js';
 export {stepVehicleWorld} from './vehicleWorld.js';
 
@@ -92,6 +93,8 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     controller.setWheelSideFrictionStiffness(i, 1);
   }
   let steer = 0, steerInput = 0, peakKmh = 0, elapsed = 0, brake = 0, drifting = false, drive = 0, handbrake = false, scrape = 0, draft = 0;
+  const collisionResponse=raceTuning?createCollisionResponse():null;
+  let beforeSolve=null;
   // Per-tyre surface under the wheel (grip multiplier, rolling drag m/s²).
   // Filtered so a single ray through a road-mesh seam cannot be felt.
   const surfaceGrip = [1, 1, 1, 1], surfaceDrag = [0, 0, 0, 0];
@@ -111,15 +114,30 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     const p = body.translation(), q = body.rotation(), v = body.linvel(), f = forwardOf(q);
     const speed = v.x * f.x + v.y * f.y + v.z * f.z;
     const kmh = Math.hypot(v.x, v.z) * 3.6;
-    const contacts = connections.reduce((n, _, i) => n + Number(controller.wheelIsInContact(i)), 0);
+    // Read each wheel field once. These WASM queries are immutable until the
+    // next vehicle/world update; the HUD and renderer share this one sample.
+    let contacts = 0;
+    const wheels = connections.map((c, i) => {
+      const contact = !!controller.wheelIsInContact(i);
+      const suspensionLength = controller.wheelSuspensionLength(i) ?? .34;
+      if (contact) contacts++;
+      return { y: VEHICLE.modelOffset + c.y - suspensionLength, suspensionLength,
+        load: controller.wheelSuspensionForce(i) ?? 0, radius: wheelRadius,
+        steering: controller.wheelSteering(i) || 0, rotation: controller.wheelRotation(i) || 0,
+        launchAngle: i % 2 === 0 ? launch.wheelAngle : 0, contact,
+        point: contact ? { ...controller.wheelContactPoint(i) } : null,
+        normal: contact ? { ...controller.wheelContactNormal(i) } : null };
+    });
     return { position: { ...p }, rotation: { ...q }, velocity: { ...v }, angularVelocity: { ...body.angvel() }, ride:activeRide?.snapshot()??null, speed, kmh, peakKmh, elapsed, steer, steerInput, steeringSensitivity, steeringLimit: steeringLimit(Math.abs(speed), progressiveAcceleration, steeringSpec, steeringSensitivity), brake, drifting, drive, handbrake, contacts,
-      draft, surface: { grip: (surfaceGrip[0] + surfaceGrip[1] + surfaceGrip[2] + surfaceGrip[3]) / 4, drag: (surfaceDrag[0] + surfaceDrag[1] + surfaceDrag[2] + surfaceDrag[3]) / 4, scrape },
+      draft, collisionResponse:collisionResponse?.snapshot()??null, surface: { grip: (surfaceGrip[0] + surfaceGrip[1] + surfaceGrip[2] + surfaceGrip[3]) / 4, drag: (surfaceDrag[0] + surfaceDrag[1] + surfaceDrag[2] + surfaceDrag[3]) / 4, scrape },
       action:action?{...action}:null, drift:drift?{...drift}:null, launch: { ...launch },
       gear: powertrain?.gear??(speed < -.25 ? 'R' : kmh < 1 ? 'N' : String(Math.min(6, 1 + Math.floor(kmh / 42)))),mass,powertrain:powertrain?{...powertrain}:null,
-      wheels: connections.map((c, i) => ({ y: VEHICLE.modelOffset + c.y - (controller.wheelSuspensionLength(i) ?? .34), suspensionLength:controller.wheelSuspensionLength(i)??.34,load:controller.wheelSuspensionForce(i)??0,radius:wheelRadius,steering: controller.wheelSteering(i) || 0, rotation: controller.wheelRotation(i) || 0, launchAngle: i % 2 === 0 ? launch.wheelAngle : 0, contact: !!controller.wheelIsInContact(i), point: controller.wheelIsInContact(i) ? { ...controller.wheelContactPoint(i) } : null, normal: controller.wheelIsInContact(i) ? { ...controller.wheelContactNormal(i) } : null })),
+      wheels,
     };
   }
-  function step(input = {}, integrate = true) {
+  function step(input = {}, integrate = true, sample = true) {
+    collisionResponse?.update(STEP);
+    const collisionFeel=collisionResponse?.snapshot();
     const v = body.linvel(), f = forwardOf(body.rotation());
     const speed = v.x * f.x + v.y * f.y + v.z * f.z, abs = Math.abs(speed);
     const throttle = clamp(Number(input.throttle) || 0, 0, 1), reverse = clamp(Number(input.reverse) || 0, 0, 1);
@@ -155,9 +173,9 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
       controller.setWheelSteering(i, angles[i]);
       const driveWeight=raceTuning?(front?frontDriveBias:1-frontDriveBias)/2:progressiveAcceleration?(front?0:.5):.25;
       const brakeWeight=raceTuning?(front?frontBrakeBias:1-frontBrakeBias)/2:progressiveAcceleration?(front?.32:.18):.25;
-      controller.setWheelEngineForce(i, force * launch.traction * (!raceTuning&&progressiveAcceleration && drive > 0 ? .78 : 1) * driveWeight);
+      controller.setWheelEngineForce(i, force * launch.traction * (!raceTuning&&progressiveAcceleration && drive > 0 ? .78 : 1) * driveWeight * (drive>0?(collisionFeel?.powerScale??1)*(scrape?.6:1):1));
       controller.setWheelBrake(i, brake * (raceTuning?mass*10.2:14000) * STEP * brakeWeight + (!front && input.handbrake ? 2200 * STEP * (handling?.handbrakeScale??1) : 0) + (drive === 0 && abs < .2 ? 5 : 0));
-      controller.setWheelFrictionSlip(i, (!front && handling ? tireGrip*handling.grip : !front && drifting ? .7 : tireGrip) * surfaceGrip[i] * cornerCapacity);
+      controller.setWheelFrictionSlip(i, (!front && handling ? tireGrip*handling.grip : !front && drifting ? .7 : tireGrip) * surfaceGrip[i] * cornerCapacity * (front?1:collisionFeel?.rearGripScale??1));
       // Rear drive spends part of its lateral grip on propulsion in a turn.
       // This bounded arcade approximation supplements Rapier suspension loading.
       const powerSlip = progressiveAcceleration && driveWeight>0 && speed > 5 && speed < 40 && brake === 0
@@ -181,7 +199,7 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     // motion. Faded in below 4 m/s so a parked car never creeps or jitters.
     const groundSpeed = Math.hypot(v.x, v.z);
     if (groundSpeed > .05) {
-      let resist = scrape * 5.5;
+      let resist = scrape * 9;
       for (let i = 0; i < 4; i++) if (controller.wheelIsInContact(i)) resist += surfaceDrag[i] / 4;
       const magnitude = mass * resist * Math.min(1, groundSpeed / 4) / groundSpeed;
       if (magnitude) body.addForce({ x: -v.x * magnitude, y: 0, z: -v.z * magnitude }, true);
@@ -216,10 +234,12 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
       if(handling.recoveryTorque)body.addTorque({x:0,y:handling.recoveryTorque,z:0},true);
     }
     activeRide?.update(STEP,v);
-    if (!integrate) return snapshot();
+    beforeSolve=collisionResponse?{...body.linvel()}:null;
+    if (!integrate) return sample ? snapshot() : undefined;
     stepVehicleWorld(world); return finishStep();
   }
   function finishStep() {
+    if(beforeSolve){collisionResponse.observe(beforeSolve,body.linvel());beforeSolve=null;}
     elapsed += STEP;
     const state = snapshot(); peakKmh = Math.max(peakKmh, state.kmh); state.peakKmh = peakKmh;
     return state;
@@ -227,6 +247,7 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
   // A shared-world coordinator resets all bodies before the next common step.
   function reset(position = start, yaw = 0, { stepWorld = !sharedWorld,rotation=null,preserveCharge=false } = {}) {
     activeRide?.reset();
+    collisionResponse?.reset();beforeSolve=null;
     drivetrain?.reset();powertrain=drivetrain?.snapshot()??null;
     launchController?.reset(); launch = idleLaunch();
     driftController?.reset(); drift=driftController?initialArcadeAction():null;
@@ -238,7 +259,10 @@ export function createVehiclePhysics({ barriers = true, harbor = false, coast = 
     for (let i = 0; i < 4; i++) { controller.setWheelEngineForce(i, 0); controller.setWheelBrake(i, 0); controller.setWheelSteering(i, 0); controller.setWheelFrictionSlip(i, tireGrip); controller.setWheelSideFrictionStiffness(i, tireGrip/2.3); }
     if (stepWorld) stepVehicleWorld(world);
   }
-  return { world, body, colliders,controller, step, finishStep, snapshot, reset,
+  // Shared-world callers sample only after the common solve in finishStep().
+  // Keep step(input, false)'s existing return contract for other callers.
+  const prepareStep = input => step(input, false, false);
+  return { world, body, colliders,controller, step, prepareStep, finishStep, snapshot, reset,
     addCharge:amount=>{if(!actionController)return 0;const charge=actionController.addCharge(amount);action={...action,charge};return charge;},
     setRecoveryAssist:value=>actionController?.setRecoveryAssist(value), dispose: () => { unregisterRide();if(sharedWorld){world.removeVehicleController(controller);world.removeRigidBody(body);}else world.free();} };
 }

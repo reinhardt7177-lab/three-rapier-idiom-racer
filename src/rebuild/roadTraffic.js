@@ -18,7 +18,7 @@ export function createRoadTraffic(world,route,{count=6,surface=null}={}){
  }
  return {cars,step(racers=[],running=true){
   const participants=[...racers,...cars];
-  for(const c of cars)c.sim.step(running?aiInput(route,c.state,c.index,c.lane,c.pace,participants.filter(o=>o!==c).map(o=>o.state),{speedProfile:PROFILE,trafficGap:12}):{brake:1},false);
+  for(const c of cars)c.sim.prepareStep(running?aiInput(route,c.state,c.index,c.lane,c.pace,participants.filter(o=>o!==c).map(o=>o.state),{speedProfile:PROFILE,trafficGap:12}):{brake:1});
  },finishStep(){for(const c of cars){c.previous=c.state;c.state=c.sim.finishStep();c.index=nearestRoute(route,c.state.position,c.index).index;}},
  snapshot:()=>({count:cars.length,vehicles:cars.map(c=>({name:c.name,kmh:c.state.kmh,position:c.state.position,contacts:c.state.contacts,lane:c.lane}))}),
  dispose(){for(const c of cars)c.sim.dispose();cars.length=0;}};

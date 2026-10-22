@@ -9,7 +9,7 @@ export function createChaseCamera(camera) {
   const offset = new Vector3(), target = new Vector3(), aim = new Vector3(),heading=new Vector3(0,0,1),travel=new Vector3();
   let surge = 0,hit=0,hitTime=0,anchorY=null,pedalCue=0;
   return {
-    update(position, forward, kmh, dt, { compact = false, snap = false, motion = true, push = 0, braking = 0, boost = false,impact=0,stableRide=false,pedalResponse=false,drive=0,grounded=true,velocity=null } = {}) {
+    update(position, forward, kmh, dt, { compact = false, snap = false, motion = true, push = 0, braking = 0, boost = false,impact=0,stableRide=false,contactResponse=false,pedalResponse=false,drive=0,grounded=true,velocity=null } = {}) {
       // Isolate road/suspension heave from the chase rig. Horizontal tracking is
       // still exact, and real chassis/wheel poses are never filtered or rewritten.
       const seconds=Math.max(0,dt);
@@ -41,9 +41,11 @@ export function createChaseCamera(camera) {
       camera.position.copy(position).add(offset);
       camera.position.y+=anchorY-position.y;
       if(snap||!motion){hit=0;hitTime=0;}
-      if(motion&&impact>0){hit=Math.max(hit,Math.min(1,impact));hitTime=0;}
+      if(seconds>0&&motion&&impact>0){hit=Math.max(hit,Math.min(1,impact));hitTime=0;}
       hitTime+=Math.max(0,dt);hit*=Math.exp(-Math.max(0,dt)*12);
-      if(motion&&!stableRide&&hit>.001)camera.position.y+=Math.sin(hitTime*55)*hit*.16;
+      // An actual contact is a short decaying cue even on the stable race rig.
+      // No ambient road/gear wobble; reduced motion disables it entirely.
+      if(motion&&(!stableRide||contactResponse)&&hit>.001)camera.position.y+=Math.sin(hitTime*55)*hit*.12;
       aim.copy(position).addScaledVector(heading, 4 + 4 * speedBlend); aim.y = anchorY + .65 + .22 * surge;
       // During a real slide, look partway toward travel so the corner remains
       // readable. No sideways cue at rest, in reverse, or after recovery snap.

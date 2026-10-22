@@ -14,7 +14,11 @@ export function audioMix(state, signals = {},vehicle='legacy') {
   return { gear, rpm: targetRpm, hz: targetRpm * voice.pulses / 60, load, boost, engine: .075 + load * .19 + ratio * .045,
     intake:voice.intake*load,bass:voice.bass,brightness:voice.brightness,shifting:state.powertrain?.shifting,
     wind: ratio * ratio * .32, brake: clamp(signals.braking) * .18,
-    tire: clamp(signals.scrub) * .24, squeal: clamp(signals.scrub) ** 2 * .023 };
+    tire: clamp(signals.scrub) * .24, scrape:clamp(state.surface?.scrape)*clamp((speed-8)/65)*.18, squeal: clamp(signals.scrub) ** 2 * .023 };
+}
+
+export function impactMix(value,{kind='impact',otherVehicle=false}={}){
+ const strength=clamp(value);return kind==='scrape'?{body:strength*.025,metal:strength*.20,decay:.045}:{body:strength*(otherVehicle?.32:.27),metal:strength*(otherVehicle?.11:.21),decay:otherVehicle?.11:.075};
 }
 
 // Shared tachometer/audio response runs even when sound is disabled.
@@ -35,7 +39,7 @@ export function createEngineResponse(vehicle='legacy') {
 
 export function createDrivingAudio() {
   let context, master, engineGain, windGain, brakeGain, tireGain, squealGain, filter, tireFilter, engine, harmonic, wind, squeal, sub, subGain, harmonicGain, boostGain, shiftGain,intakeGain,compressor;
-  let enabled = false, paused = false, volume = .35, disposed = false, failed = false, request = 0,impactGain;
+  let enabled = false, paused = false, volume = .35, disposed = false, failed = false, request = 0,impactGain,impactMetalGain,scrapeGain;
   let mix = audioMix({}), previousGear = 0, shiftUntil = 0;
   let vehicle='legacy',shiftCount=0;
   const engineResponse = createEngineResponse();
@@ -76,6 +80,8 @@ export function createDrivingAudio() {
     intakeGain = noiseBand(3400, .75).gain;
     shiftGain = noiseBand(180, 1.1).gain;
     impactGain = noiseBand(320,.6).gain;
+    impactMetalGain = noiseBand(2350,.8).gain;
+    scrapeGain = noiseBand(1150,.65).gain;
     brakeGain = noiseBand(480, .85).gain;
     const tire = noiseBand(1450, .9); tireGain = tire.gain; tireFilter = tire.band;
     squeal = context.createOscillator(); squeal.type = 'sine'; squeal.frequency.value = 1050;
@@ -104,7 +110,7 @@ export function createDrivingAudio() {
     },
     setVolume(value) { volume = clamp(value); silenceTarget(); },
     setPaused(value) { paused = !!value; silenceTarget(); },
-    impact(value){if(!context||paused||!enabled||disposed||context.state!=='running')return;const now=context.currentTime;impactGain.gain.cancelScheduledValues(now);impactGain.gain.setValueAtTime(.14*clamp(value),now);impactGain.gain.setTargetAtTime(0,now,.075);},
+    impact(value,hit){if(!context||paused||!enabled||disposed||context.state!=='running')return;const now=context.currentTime,cue=impactMix(value,hit);for(const [node,level] of [[impactGain,cue.body],[impactMetalGain,cue.metal]]){node.gain.cancelScheduledValues(now);node.gain.setValueAtTime(level,now);node.gain.setTargetAtTime(0,now,cue.decay);}},
     update(state, signals = {}) {
       mix = engineResponse.update(state, signals);
       const time = Number(state.elapsed) || 0;
@@ -126,6 +132,7 @@ export function createDrivingAudio() {
       windGain.gain.setTargetAtTime(mix.wind, now, .16);
       brakeGain.gain.setTargetAtTime(mix.brake, now, .05);
       tireGain.gain.setTargetAtTime(mix.tire, now, .045); squealGain.gain.setTargetAtTime(mix.squeal, now, .05);
+      scrapeGain.gain.setTargetAtTime(mix.scrape,now,.045);
       tireFilter.frequency.setTargetAtTime(1050 + clamp(signals.scrub) * 850, now, .08);
       squeal.frequency.setTargetAtTime(1020 + clamp(signals.scrub) * 310, now, .09);
       return mix.gear;

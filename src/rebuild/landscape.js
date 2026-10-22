@@ -12,12 +12,13 @@ export function landscapePresentation(width, height, coarse = false) {
 // A 16:9 stage stays landscape during phone rotation. Observe the containing
 // viewport too, so captured pedals are cleared on that change.
 export function createPresentationGuard({clear,pause}) {
-  let blocked=false,orientation=null;
+  let blocked=false,orientation=null,controlsVisible;
   return {
     update(next) {
-      const changed=orientation!==null&&orientation!==next.orientation;
+      const changed=orientation!==null&&(orientation!==next.orientation||
+        controlsVisible!==undefined&&next.controlsVisible!==controlsVisible);
       const newlyBlocked=next.blocked&&!blocked;
-      blocked=!!next.blocked;orientation=next.orientation;
+      blocked=!!next.blocked;orientation=next.orientation;controlsVisible=next.controlsVisible;
       if(changed||newlyBlocked){clear();pause(blocked?'orientation':'layout');}
     },
     canDrive:()=>!blocked,

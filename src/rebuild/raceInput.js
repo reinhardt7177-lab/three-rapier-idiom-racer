@@ -1,3 +1,5 @@
+import {showTouchControls} from './touchControls.js';
+
 // Each keyboard key and captured pointer owns its own press. Releasing one
 // source must never cancel another finger or a keyboard key on the same pedal.
 export function createRaceInput(){
@@ -25,7 +27,7 @@ export function handleRaceKeyDown(event,actions){
  if(event.code==='KeyV'){if(!event.repeat)actions.camera?.();return;}
  if(actions.canDrive())actions.input.press(event.code,'keyboard',event.repeat);
 }
-export function raceLayout(width,height){
- const touch=width<=700||(height<=550&&width<=1000);
+export function raceLayout(width,height,touchInput=false){
+ const touch=showTouchControls(width,height,{touch:touchInput});
  return `${width>height?'landscape':'portrait'}-${touch?'touch':'keyboard'}`;
 }

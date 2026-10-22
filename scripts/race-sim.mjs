@@ -64,7 +64,7 @@ export async function runRace({trackId='coastal',difficultyId='normal',player='s
    sim.reset(pose.position,pose.yaw,{stepWorld:false});
    cars.push({id,name,sim,index,lane,player:i===0,onlineHuman:online,pace:i===0||online?1:difficultyPace(difficulty,rivalIndex),finish:null,progress:route.points[index].distance-route.points[startIndex].distance,distance:route.points[index].distance,state:sim.snapshot(),scrape:false,draft:0,draftSeconds:0,scrapeSeconds:0,offroadSeconds:0,boostSeconds:0,lowest:Infinity});
   }
-  for(let i=0;i<120;i++){cars.forEach(c=>c.sim.step({brake:1},false));traffic.step(cars,false);stepVehicleWorld(world);traffic.finishStep();cars.forEach(c=>c.state=c.sim.finishStep());}
+  for(let i=0;i<120;i++){cars.forEach(c=>c.sim.prepareStep({brake:1}));traffic.step(cars,false);stepVehicleWorld(world);traffic.finishStep();cars.forEach(c=>c.state=c.sim.finishStep());}
   let steps=0;
   for(;steps<maxSeconds/STEP&&cars.some(c=>c.finish==null);steps++){
    const inputs=online?new Map():planner.update(cars,STEP,traffic.cars);
@@ -76,7 +76,7 @@ export async function runRace({trackId='coastal',difficultyId='normal',player='s
     // on the timing line creates a test-only two-lane roadblock.
     let input=c.finish!=null?(!c.player&&!online&&c.finishRunout<50?aiInput(route,c.state,c.index,c.finishLane,c.pace,cars.filter(o=>o!==c).map(o=>o.state),{speedProfile:raceProfile,speedLimit:55}):{brake:1}):c.player||online?(driverInput??aiInput(route,c.state,c.index,c.lane,1,[...cars.filter(o=>o!==c),...traffic.cars].map(o=>o.state),{speedProfile:drivenProfile})):inputs.get(c);
     if(c.scrape||c.draft)input={...input,scrape:c.scrape?1:0,draft:c.draft};
-    c.sim.step(input,false);
+    c.sim.prepareStep(input);
    }
    traffic.step(cars,true);stepVehicleWorld(world);traffic.finishStep();
    for(const c of cars){

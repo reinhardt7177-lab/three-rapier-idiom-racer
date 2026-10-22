@@ -46,7 +46,8 @@ test('focus or layout clearing releases every control and requires a fresh press
  assert.deepEqual(input.read(),{throttle:0,brake:0,reverse:0,steer:0,handbrake:false,boost:false});
 });
 test('layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize',()=>{
- assert.notEqual(raceLayout(390,844),raceLayout(844,390));assert.notEqual(raceLayout(844,390),raceLayout(1100,390));
+ assert.notEqual(raceLayout(390,844),raceLayout(844,390));assert.notEqual(raceLayout(844,390),raceLayout(1100,620));
+ assert.equal(raceLayout(844,390),raceLayout(1100,390),'the compact HUD also shows pedals above 1000px width');
  assert.equal(raceLayout(390,844),raceLayout(390,800));
 });
 

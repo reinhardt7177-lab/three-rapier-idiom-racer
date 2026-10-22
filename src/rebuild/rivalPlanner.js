@@ -28,7 +28,7 @@ function easyRoad(route,car){
 export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false,personalities=false,racecraft=null,raceDistance=route.length}={}){
   const plans=new Map();
   function record(car){
-    if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,craft:createRacecraftState(),profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,cooldown:0,attackCooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
+    if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,craft:createRacecraftState(),profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,queueAge:0,cooldown:0,attackCooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
     return plans.get(car);
   }
   function mergeClear(car,target,cars,committed=null){
@@ -67,13 +67,17 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     return true;
   }
   function pavement(car,from,to){return roadClear({index:car.index,fromLane:from,toLane:to,state:car.state,dimensions:dimensions(car)});}
+  // A high-speed bend still forbids passing. A queue behind a stationary car
+  // may use the same full pavement/merge proof at walking speed, otherwise a
+  // human stopping in a bend can permanently park every rival behind them.
+  function queueEscape(car,lead,plan){return !!speedProfile&&plan.queueAge>=1.2&&car.state.kmh<8&&Math.abs(lead.v)<1&&lead.along>=9&&lead.along<35;}
   function decide(car,cars,plan,trafficEnabled=false){
     const own=local(route,car);plan.stop=false;
     if(car.state.contacts<3||car.state.ride?.locked===false){plan.reason='airborne';return;}
     if(['changing','returning','aborting'].includes(plan.mode)){
       if(Math.abs(own.lane-plan.target)<.45){
         if(plan.mode==='changing'){plan.mode='passing';plan.reason='overtake';}
-        else {if(plan.mode==='returning')plan.passes++;plan.mode='follow';plan.lead=null;plan.cooldown=plan.style?.returnCooldown??3;plan.reason='following';}
+        else {if(plan.mode==='returning')plan.passes++;plan.mode='follow';plan.lead=null;plan.queuePass=false;plan.cooldown=plan.style?.returnCooldown??3;plan.reason='following';}
         plan.age=0;return;
       }
       const trafficClear=mergeClear(car,plan.target,cars,plan.mode==='changing'?plan:null),roadAvailable=pavement(car,own.lane,plan.target);
@@ -111,6 +115,7 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       return;
     }
     if(plan.mode==='passing'){
+      if(plan.queuePass&&(!plan.lead||!cars.includes(plan.lead)||local(route,car,plan.lead).along<-dimensions(car).length-12))plan.queuePass=false;
       // A pass can meet another slow moving car before the first lead is behind.
       // Re-plan it with the same road, closing-traffic and speed-advantage proof.
       const blocker=cars.filter(c=>c!==car&&Math.abs(c.state.position.y-car.state.position.y)<3)
@@ -122,11 +127,13 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
         // A rear yield can hold a partial crossing. Pick the side away from the
         // obstruction rather than treating that partial position as a full lane.
         const target=(trafficEnabled||racecraft?blocker.lane:own.lane)<0?RACE_GRID_LANE:-RACE_GRID_LANE;
-        if(blocker.along>=9&&(!racecraft||Math.abs(target-own.lane)>.9)&&(!racecraft||Math.abs(blocker.v)<1||plan.attackCooldown===0)&&easyRoad(route,car)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
+        const escape=queueEscape(car,blocker,plan);
+        if(blocker.along>=9&&(!racecraft||Math.abs(target-own.lane)>.9)&&(!racecraft||Math.abs(blocker.v)<1||plan.attackCooldown===0)&&(easyRoad(route,car)||escape)&&mergeClear(car,target,cars)&&pavement(car,own.lane,target)){
           plan.mode='changing';plan.target=target;plan.lead=blocker.car;plan.leadLane=blocker.lane;
           plan.age=0;plan.stop=false;plan.reason='overtake';plan.attempts++;
           plan.attackCooldown=racecraft?(plan.style?.returnCooldown??3):0;
-          plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
+          plan.changeSpeed=escape?14:car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
+          plan.queuePass=escape;
         }
         return;
       }
@@ -152,13 +159,15 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
     if(lead.along<9){plan.reason='too-close';return;}
     if(plan.cooldown>0){plan.reason='cooldown';return;}
     if(plan.holdDraft){plan.reason='drafting';return;}
-    if(!easyRoad(route,car)){plan.reason='curve';return;}
+    const escape=queueEscape(car,lead,plan);
+    if(!easyRoad(route,car)&&!escape){plan.reason='curve';return;}
     const target=plan.home<0?RACE_GRID_LANE:-RACE_GRID_LANE;
     if(!mergeClear(car,target,cars)){plan.reason='occupied';return;}
     if(!pavement(car,own.lane,target)){plan.reason='road';return;}
     plan.mode='changing';plan.target=target;plan.lead=lead.car;plan.leadLane=lead.lane;plan.age=0;plan.stop=false;plan.reason='overtake';plan.attempts++;
     plan.attackCooldown=racecraft?(plan.style?.returnCooldown??3):0;
-    plan.changeSpeed=car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
+    plan.changeSpeed=escape?14:car.state.kmh<25?14:Math.max(35,Math.min(speedProfile?150:95,car.state.kmh+10));
+    plan.queuePass=escape;
   }
   return {
     update(cars,dt,traffic=[]){
@@ -168,7 +177,7 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       // Front cars commit first; ties use stable race order, never randomness.
       active.sort((a,b)=>(b.progress??0)-(a.progress??0));
       for(const car of active){
-        const plan=record(car);plan.age+=dt;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.attackCooldown=Math.max(0,plan.attackCooldown-dt);plan.timer-=dt;
+        const plan=record(car);plan.age+=dt;plan.queueAge=car.state.kmh<8?plan.queueAge+dt:0;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.attackCooldown=Math.max(0,plan.attackCooldown-dt);plan.timer-=dt;
         if(plan.timer<=0){
           plan.openRoad=easyRoad(route,car);
           const own=local(route,car);
@@ -179,19 +188,27 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
         plan.passGap=Math.max(6,(plan.style?.passGap??12)-(craft.attacking?2:0));
         if(plan.timer<=0){plan.timer=.2;decide(car,participants,plan,traffic.length>0);}
         const changing=['changing','returning','aborting'].includes(plan.mode);
+        // A car that began passing on the preceding straight can also reach a
+        // stopped queue mid-bend. Its normal long look-ahead cuts across the
+        // inner lane. Keep the short, slow path until the stopped car is behind.
+        const queueNearby=plan.mode==='passing'&&!plan.openRoad&&participants.some(c=>{
+          if(c===car||c.state.kmh>=4||Math.abs(c.state.position.y-car.state.position.y)>3)return false;
+          const s=local(route,car,c);return s.along>-dimensions(car).length-12&&s.along<35&&Math.hypot(c.state.position.x-car.state.position.x,c.state.position.z-car.state.position.z)<40;
+        });
+        const careful=plan.queuePass||queueNearby;
         const target=plan.stop?local(route,car).lane:plan.target;
         const input=aiInput(route,car.state,car.index,target,car.pace??1,participants.filter(c=>c!==car).map(c=>c.state),{
-          lookAheadMinimum:changing&&car.state.kmh<35?4:12,preciseAim:changing,speedProfile:plan.profile,
+          lookAheadMinimum:(changing||careful)&&car.state.kmh<35?4:12,preciseAim:changing||careful,speedProfile:plan.profile,
           adaptiveBraking:!!racecraft,predictiveTraffic:!!racecraft,
           // Keep the approach outside the 9m crossing guard. Closing to the
           // former 6m following gap made every later passing request too close.
           trafficGap:changing?6:12,restoreFollowGap:traffic.length>0&&!changing,
-          speedLimit:plan.stop?0:changing?plan.changeSpeed:Infinity,stop:plan.stop,waitingForTraffic:plan.stop,
+          speedLimit:plan.stop?0:careful?14:changing?plan.changeSpeed:Infinity,stop:plan.stop,waitingForTraffic:plan.stop,
         });
         if(plan.stop)input.throttle=0;
         // Same nitro rules as the player: spent only while settled on a clear
         // straight with plenty of permitted speed left, never during a merge.
-        const boost=racecraftBoost(plan.craft,{dt,car,input,changing:changing||plan.stop,openRoad:plan.openRoad,enabled:nitro,config:racecraft,style:plan.style});
+        const boost=racecraftBoost(plan.craft,{dt,car,input,changing:changing||plan.stop||careful,openRoad:plan.openRoad,enabled:nitro,config:racecraft,style:plan.style});
         if(boost)input.boost=true;
         inputs.set(car,input);
       }

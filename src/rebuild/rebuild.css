@@ -547,3 +547,35 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 /* Attribution is an actual source link, shown without covering racing sight. */
 .map-attribution{position:absolute;left:36px;top:76px;pointer-events:auto;font-size:8.5px;line-height:1.35;color:#a6bbc9;text-decoration:underline;max-width:calc(100% - 72px);}
 @container game (max-height:550px){.map-attribution{left:16px;top:110px;}}
+
+/* Touch capability is independent of viewport size (large/hybrid tablets too).
+   One row leaves the road centre clear and keeps HUDs above the pedals. */
+.rebuild-app[data-touch-controls="true"]{
+ --touch-size:clamp(44px,10cqh,68px);
+ --touch-bottom:max(10px,env(safe-area-inset-bottom,0px));
+ --touch-left:max(12px,env(safe-area-inset-left,0px));
+ --touch-right:max(12px,env(safe-area-inset-right,0px));
+}
+.rebuild-app[data-touch-controls="false"] .touch-controls{display:none}
+.rebuild-app[data-touch-controls="true"] .touch-controls{
+ display:grid;position:absolute;bottom:var(--touch-bottom);left:var(--touch-left);right:var(--touch-right);
+ grid-template-columns:repeat(2,var(--touch-size)) 1fr repeat(4,var(--touch-size));grid-template-rows:var(--touch-size);gap:6px;pointer-events:none;
+}
+.rebuild-app[data-touch-controls="true"] .touch-controls button{
+ min-width:44px;min-height:44px;width:100%;height:100%;padding:0 2px;flex:none;
+ border:1px solid #b3d2ef99;background:#0c1b30d9;border-radius:6px;font-size:clamp(9px,1.7cqh,12px);font-weight:800;
+ pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(1){grid-column:1;grid-row:1}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(2){grid-column:2;grid-row:1}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(3){grid-column:4;grid-row:1}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(4){grid-column:5;grid-row:1;background:#a3d6f9ef;color:#122638}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(5){grid-column:6;grid-row:1;color:#89d4ff}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:nth-child(6){grid-column:7;grid-row:1;color:#89d4ff}
+.rebuild-app[data-touch-controls="true"] .touch-controls button:active{background:#c9eaff;color:#122638}
+.rebuild-app[data-touch-controls="true"] .camera-switch{left:var(--touch-left);bottom:calc(var(--touch-bottom) + var(--touch-size) + 10px)}
+.rebuild-app[data-touch-controls="true"] .speed-card{right:var(--touch-right);bottom:calc(var(--touch-bottom) + var(--touch-size) + 10px)}
+.rebuild-app[data-touch-controls="true"] .race-controls-note{display:none}
+@container game (max-width:460px){
+ .rebuild-app[data-touch-controls="true"] .touch-controls{left:max(6px,env(safe-area-inset-left,0px));right:max(6px,env(safe-area-inset-right,0px));gap:3px}
+}

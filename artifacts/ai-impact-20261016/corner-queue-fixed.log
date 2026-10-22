@@ -1,0 +1,35 @@
+{"side":-1,"index":211,"clearAt":{"slk":8.158333333333333,"gtr":10.058333333333334,"rx7":12.541666666666666,"porsche911":19.825,"mustang":21.683333333333334},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+{"side":1,"index":211,"clearAt":{"slk":8.925,"gtr":12.25,"rx7":13.575,"porsche911":20.816666666666666,"mustang":23.4},"contacts":117,"lowest":0.05078659057617152,"offroad":0,"touches":[{"time":11.066666666666666,"id":"rx7","index":211,"position":{"x":-505.2926025390625,"y":8.53600025177002,"z":-61.365386962890625},"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":2.2,"targetLane":-2.2,"passes":0,"attempts":1,"aborts":0,"age":2.316666666666661,"tactic":"pace","boosts":0,"draftSetups":0}},{"time":11.075,"id":"rx7","index":211,"position":{"x":-505.3553161621094,"y":8.53600025177002,"z":-61.35387420654297},"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":2.2,"targetLane":-2.2,"passes":0,"attempts":1,"aborts":0,"age":2.3249999999999944,"tactic":"pace","boosts":0,"draftSetups":0}},{"time":11.083333333333334,"id":"rx7","index":211,"position":{"x":-505.4173583984375,"y":8.53600025177002,"z":-61.34242630004883},"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":2.2,"targetLane":-2.2,"passes":0,"attempts":1,"aborts":0,"age":2.3333333333333277,"tactic":"pace","boosts":0,"draftSetups":0}},{"time":11.091666666666667,"id":"rx7","index":211,"position":{"x":-505.4788513183594,"y":8.53600025177002,"z":-61.3310546875},"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":2.2,"targetLane":-2.2,"passes":0,"attempts":1,"aborts":0,"age":2.341666666666661,"tactic":"pace","boosts":0,"draftSetups":0}}]}
+✔ Yeosu bend: five queued rivals clear a stopped player on lane -1 without contact or recovery (1809.9645ms)
+✖ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (1980.3534ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4841.8408
+
+✖ failing tests:
+
+test at scripts\corner-queue.test.mjs:13:26
+✖ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (1980.3534ms)
+  AssertionError [ERR_ASSERTION]: queue escape cannot push the player
+  
+  117 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/corner-queue.test.mjs:30:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 117,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -313,7 +313,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       if(networkRace)Object.assign(cars.at(-1),{onlineHuman:true,peerRole:roster[i].peerRole,pace:1,peerOvertakes:createOvertakeCounter(),nitroBonus:{amount:0,age:100},lapTimes:[],onlineLap:1,onlineLapStart:0});
     }
     if(track.traffic&&raceSetup.mode==='grid'){roadTraffic=createRoadTraffic(world,route,{count:TRAFFIC_BUDGET[quality.id],surface:raceSurface});trafficViews=createTrafficViews(roadTraffic.cars);scene.add(trafficViews.root);}
-    for(let i=0;i<120;i++){cars.forEach(c=>c.sim.step({brake:1},false));roadTraffic?.step(cars,false);stepVehicleWorld(world);roadTraffic?.finishStep();cars.forEach(c=>{c.state=c.previous=c.sim.finishStep();});}
+    for(let i=0;i<120;i++){cars.forEach(c=>c.sim.prepareStep({brake:1}));roadTraffic?.step(cars,false);stepVehicleWorld(world);roadTraffic?.finishStep();cars.forEach(c=>{c.state=c.previous=c.sim.finishStep();});}
     signals.reset();smoke.clear();exhaust.clear();trails.clear();sparks.clear();raceContacts.clear();latestFeedback={};cameraImpact=0;audio.setPaused(true);renderer.domElement.focus({preventScroll:true});last=performance.now();publish();
     },compile(){presentScene(performance.now(),0);return renderer.compileAsync(scene,camera);},draw(){renderer.info.reset();drawScene('preparation');},ready(){
       clock.reset();frameMetrics.reset();drivingInput.clear();last=performance.now();fpsStart=last;frames=0;
@@ -361,10 +361,10 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       c.previous=c.state;
       const input=!running?{brake:1}:c.finish!==null?(!c.player&&!c.onlineHuman&&c.finishRunout<50?aiInput(route,c.state,c.index,c.finishLane,c.pace,cars.filter(o=>o!==c).map(o=>o.state),{speedProfile:raceProfile,speedLimit:55}):{brake:1}):c.player?(import.meta.env.DEV&&qaDriver?qaInput:drivingInput.read()):c.onlineHuman?online.remoteInput.read():rivalInputs.get(c);
       c.waitingForTraffic=!!input.waitingForTraffic;
-      c.sim.step(c.scrape||c.draft?{...input,scrape:c.scrape?1:0,draft:c.draft}:input,false);
+      c.sim.prepareStep(c.scrape||c.draft?{...input,scrape:c.scrape?1:0,draft:c.draft}:input);
     }
     roadTraffic?.step(cars,running);stepVehicleWorld(world,raceContacts.queue);roadTraffic?.finishStep();
-    raceContacts.finish(roadTraffic?[...cars,...roadTraffic.cars]:cars,STEP,(car,hit)=>{if(running){if(car.player){cameraImpact=Math.max(cameraImpact,hit.intensity);audio.impact(hit.intensity);}if(car.player||car.state.position&&Math.hypot(car.state.position.x-cars[0].state.position.x,car.state.position.z-cars[0].state.position.z)<65)sparks.emit(hit);}});
+    raceContacts.finish(roadTraffic?[...cars,...roadTraffic.cars]:cars,STEP,(car,hit)=>{if(running){if(car.player){cameraImpact=Math.max(cameraImpact,hit.intensity*(hit.kind==='scrape'?.2:1));audio.impact(hit.intensity,hit);}if(car.player||car.state.position&&Math.hypot(car.state.position.x-cars[0].state.position.x,car.state.position.z-cars[0].state.position.z)<65)sparks.emit(hit);}});
     sparks.update(STEP);
     for(const c of cars){
       c.state=c.sim.finishStep();c.scrape=running&&touchingWall(world,c.sim.colliders,surfaceMap.isWall);const nearest=nearestRoute(route,c.state.position,c.index);c.index=nearest.index;
@@ -429,8 +429,8 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       const presentedPosition=p.view.root.position.clone().add(new THREE.Vector3(0,.6,0).applyQuaternion(p.view.root.quaternion));
       p.view.root.visible=cameraMode!=='first-person';
       cockpit.update(p.state,cameraMode==='first-person',RACE_TUNING[selected].redline,{compact:host.clientWidth<700,music:music.status(),now});
-      if(cameraMode==='first-person')firstPerson.update(p.view.root.position,p.view.root.quaternion,paused?0:dt,{snap:cameraSnap,roof:RACE_TUNING[selected].roof,width:RACE_TUNING[selected].width,compact:host.clientWidth<700,pedalResponse:true,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,drive:p.state.drive,grounded:latestFeedback.grounded,kmh:p.state.kmh});
-      else {camera.near=.15;chase.update(presentedPosition,forward,p.state.kmh,paused?0:dt,{snap:cameraSnap,compact:host.clientWidth<700,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,boost:p.state.action?.active,impact:cameraImpact,stableRide:true,pedalResponse:true,drive:p.state.drive,grounded:latestFeedback.grounded,velocity:p.state.velocity});}
+      if(cameraMode==='first-person')firstPerson.update(p.view.root.position,p.view.root.quaternion,paused?0:dt,{snap:cameraSnap,roof:RACE_TUNING[selected].roof,width:RACE_TUNING[selected].width,compact:host.clientWidth<700,pedalResponse:true,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,drive:p.state.drive,grounded:latestFeedback.grounded,kmh:p.state.kmh,impact:cameraImpact});
+      else {camera.near=.15;chase.update(presentedPosition,forward,p.state.kmh,paused?0:dt,{snap:cameraSnap,compact:host.clientWidth<700,motion:!reducedMotion,push:latestFeedback.push,braking:latestFeedback.braking,boost:p.state.action?.active,impact:cameraImpact,stableRide:true,contactResponse:true,pedalResponse:true,drive:p.state.drive,grounded:latestFeedback.grounded,velocity:p.state.velocity});}
       cameraSnap=false;cameraImpact=0;
       // The shadow and visible chassis must use the same interpolated frame.
       sun.position.copy(presentedPosition).add(new THREE.Vector3(-25,45,20));sun.target.position.copy(presentedPosition);
@@ -457,12 +457,16 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
       }
       if(frozenComparison.active())pauseRendering.invalidate();
     }else if(frozenComparison?.active()){frozenComparison.cancel();frameMetrics.reset();}
-    if(preparation.blocked()||!pauseRendering.draw(paused)){last=now;frame=requestAnimationFrame(render);return;}
+    if(preparation.blocked()){last=now;frame=requestAnimationFrame(render);return;}
     if(mode==='race'){
       const boundary=raceBoundary.enter(now,performance.now());
       if(!boundary.accepted){frame=requestAnimationFrame(render);return;}
-      if(boundary.first){last=now;fpsStart=now;frames=0;}
+      // A focus pause during preparation still has to accept the first fresh
+      // frame. Otherwise paused-draw caching can strand the pending boundary
+      // and the resume button remains blocked forever.
+      if(boundary.first){last=now;fpsStart=now;frames=0;pauseRendering.invalidate();}
     }
+    if(!pauseRendering.draw(paused)){last=now;frame=requestAnimationFrame(render);return;}
     const workStart=performance.now();let physicsMs=0;
     const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
     if(mode==='race'&&!paused){const physicsStart=performance.now();if(raceSetup.mode==='online'&&online.status().role==='guest'){
@@ -474,6 +478,7 @@ export async function createRebuild(host,signal,onState,onLoading,track=TRACKS[0
     if(!paused||frozenComparison?.active())frameMetrics.record(now,renderer.info.render,{workMs:performance.now()-workStart,physicsMs,renderMs},{visible:document.visibilityState==='visible',focused:document.hasFocus(),callbackDelayMs:Math.max(0,workStart-now),droppedSeconds:clock.snapshot().droppedSeconds});
     if(import.meta.env.DEV&&performanceStatus==='running'&&performanceRun&&!paused&&countdown<=0&&performanceRun.record(now,renderMs,renderer.info.render,{visible:document.visibilityState==='visible',focused:document.hasFocus()})){
       performanceResults.push({label:PERFORMANCE_EXPERIMENTS[performanceKind]?.[performanceCondition]??'제품 기준',...performanceRun.snapshot(),context:{width:host.clientWidth,height:host.clientHeight,dpr:renderer.getPixelRatio(),quality:quality.id,track:track.id,camera:cameraMode,ghost:!!ghostView,profile:!!profile,frozen:frozenEnabled,progress:cars[0].progress,elapsed,dropped:clock.snapshot().droppedSeconds}});
+      if(import.meta.env.DEV)console.info('MUMU_PERFORMANCE',JSON.stringify(performanceResults.at(-1)));
       performanceRun=null;performanceTrial?.restore();performanceTrial=null;
       if(++performanceCondition<(performanceKind==='acceptance'?1:3))performanceRace();else {performanceStatus='complete';profile?.dispose();profile=null;qaDriver=false;pause(true);publish();}
     }
