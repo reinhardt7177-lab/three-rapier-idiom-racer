@@ -1,0 +1,2131 @@
+[
+  {
+    "track": "yeosu",
+    "difficulty": "normal",
+    "weather": "clear",
+    "traffic": {
+      "count": 0,
+      "vehicles": []
+    },
+    "seconds": 420,
+    "cars": [
+      {
+        "id": "supra",
+        "player": true,
+        "place": 1,
+        "finish": 288.78,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 58.04,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "player": false,
+        "place": 5,
+        "finish": null,
+        "metres": 6991,
+        "lowest": 0.37,
+        "scrapeSeconds": 0.83,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 12.53,
+        "draftSeconds": 32.46,
+        "plan": {
+          "personality": "NOVA",
+          "style": "코너 강자",
+          "mode": "passing",
+          "reason": "stopped-ahead",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 397.9083333331358
+        }
+      },
+      {
+        "id": "mustang",
+        "player": false,
+        "place": 2,
+        "finish": 293.92,
+        "metres": 8902,
+        "lowest": 0.36,
+        "scrapeSeconds": 1.44,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 10.15,
+        "draftSeconds": 0.03,
+        "plan": {
+          "personality": "RAVEN",
+          "style": "공격형",
+          "mode": "changing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 1,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 0.9999999999999989
+        }
+      },
+      {
+        "id": "porsche911",
+        "player": false,
+        "place": 6,
+        "finish": null,
+        "metres": 2482,
+        "lowest": 0.51,
+        "scrapeSeconds": 326.02,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 5.82,
+        "draftSeconds": 20.95,
+        "plan": {
+          "personality": "BLAZE",
+          "style": "직선 강자",
+          "mode": "passing",
+          "reason": "defer-return",
+          "homeLane": -2.2,
+          "targetLane": -7.380474362897747,
+          "passes": 1,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 222.07499999996236
+        }
+      },
+      {
+        "id": "gtr",
+        "player": false,
+        "place": 4,
+        "finish": null,
+        "metres": 6995,
+        "lowest": 0.38,
+        "scrapeSeconds": 198.04,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 9.79,
+        "draftSeconds": 5.65,
+        "plan": {
+          "personality": "MIST",
+          "style": "수비형",
+          "mode": "follow",
+          "reason": "following",
+          "homeLane": 2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 322.0749999998714
+        }
+      },
+      {
+        "id": "rx7",
+        "player": false,
+        "place": 3,
+        "finish": 294.41,
+        "metres": 8902,
+        "lowest": 0.36,
+        "scrapeSeconds": 3.25,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 16.67,
+        "draftSeconds": 87.66,
+        "plan": {
+          "personality": "LUNA",
+          "style": "균형형",
+          "mode": "passing",
+          "reason": "stopped-ahead",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 3,
+          "attempts": 4,
+          "aborts": 0,
+          "age": 62.533333333330425
+        }
+      }
+    ],
+    "minimumUp": 0.9923513642174221,
+    "lowestTraffic": null,
+    "samples": [
+      {
+        "time": 0,
+        "cars": [
+          {
+            "metres": -24,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 0,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": 0,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -12,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -12,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -24,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 20,
+        "cars": [
+          {
+            "metres": 428,
+            "kmh": 81,
+            "plan": null
+          },
+          {
+            "metres": 448,
+            "kmh": 93,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 20.00833333333284
+            }
+          },
+          {
+            "metres": 488,
+            "kmh": 117,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 20.00833333333284
+            }
+          },
+          {
+            "metres": 448,
+            "kmh": 112,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 4.7916666666666945
+            }
+          },
+          {
+            "metres": 458,
+            "kmh": 100,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 1.0416666666666654
+            }
+          },
+          {
+            "metres": 402,
+            "kmh": 53,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 15.624999999999753
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 40,
+        "cars": [
+          {
+            "metres": 1146,
+            "kmh": 76,
+            "plan": null
+          },
+          {
+            "metres": 1150,
+            "kmh": 77,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 17.91666666666629
+            }
+          },
+          {
+            "metres": 1202,
+            "kmh": 109,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 40.008333333331706
+            }
+          },
+          {
+            "metres": 1180,
+            "kmh": 101,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 1.9376936056588074,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 16.24999999999972
+            }
+          },
+          {
+            "metres": 1178,
+            "kmh": 102,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 21.041666666666114
+            }
+          },
+          {
+            "metres": 1134,
+            "kmh": 80,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 35.62499999999862
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 60,
+        "cars": [
+          {
+            "metres": 1624,
+            "kmh": 162,
+            "plan": null
+          },
+          {
+            "metres": 1638,
+            "kmh": 158,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 37.91666666666516
+            }
+          },
+          {
+            "metres": 1750,
+            "kmh": 138,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 60.00833333333057
+            }
+          },
+          {
+            "metres": 1720,
+            "kmh": 155,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.1189110549769703,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 5.416666666666726
+            }
+          },
+          {
+            "metres": 1718,
+            "kmh": 156,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 41.04166666666498
+            }
+          },
+          {
+            "metres": 1612,
+            "kmh": 164,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 55.624999999997485
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 80,
+        "cars": [
+          {
+            "metres": 2166,
+            "kmh": 143,
+            "plan": null
+          },
+          {
+            "metres": 2174,
+            "kmh": 141,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 57.91666666666402
+            }
+          },
+          {
+            "metres": 2306,
+            "kmh": 170,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 80.00833333334307
+            }
+          },
+          {
+            "metres": 2250,
+            "kmh": 150,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 1.4583333333333306
+            }
+          },
+          {
+            "metres": 2302,
+            "kmh": 174,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 61.04166666666384
+            }
+          },
+          {
+            "metres": 2160,
+            "kmh": 143,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 75.62500000000625
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 100,
+        "cars": [
+          {
+            "metres": 2799,
+            "kmh": 109,
+            "plan": null
+          },
+          {
+            "metres": 2759,
+            "kmh": 85,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 77.91666666667474
+            }
+          },
+          {
+            "metres": 2801,
+            "kmh": 112,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 16.666666666666362
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 18.749999999999577
+            }
+          },
+          {
+            "metres": 2831,
+            "kmh": 112,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 2.0833333333333286
+            }
+          },
+          {
+            "metres": 2741,
+            "kmh": 76,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 8.333333333333501
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 120,
+        "cars": [
+          {
+            "metres": 3837,
+            "kmh": 224,
+            "plan": null
+          },
+          {
+            "metres": 3681,
+            "kmh": 216,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 97.91666666669066
+            }
+          },
+          {
+            "metres": 3853,
+            "kmh": 220,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 36.66666666666523
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 38.749999999998444
+            }
+          },
+          {
+            "metres": 3883,
+            "kmh": 216,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 22.08333333333272
+            }
+          },
+          {
+            "metres": 3697,
+            "kmh": 216,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 10.000000000000073
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 140,
+        "cars": [
+          {
+            "metres": 4825,
+            "kmh": 188,
+            "plan": null
+          },
+          {
+            "metres": 4709,
+            "kmh": 175,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 117.91666666670658
+            }
+          },
+          {
+            "metres": 4789,
+            "kmh": 176,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 56.66666666666409
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "returning",
+              "reason": "return",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 6.458333333333444
+            }
+          },
+          {
+            "metres": 4877,
+            "kmh": 196,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 42.08333333333159
+            }
+          },
+          {
+            "metres": 4727,
+            "kmh": 185,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 29.999999999998938
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 160,
+        "cars": [
+          {
+            "metres": 5449,
+            "kmh": 32,
+            "plan": null
+          },
+          {
+            "metres": 5407,
+            "kmh": 83,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 137.91666666670557
+            }
+          },
+          {
+            "metres": 5429,
+            "kmh": 66,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 76.66666666667375
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "returning",
+              "reason": "return",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 26.458333333332472
+            }
+          },
+          {
+            "metres": 5461,
+            "kmh": 29,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 62.08333333333045
+            }
+          },
+          {
+            "metres": 5433,
+            "kmh": 60,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 49.999999999997804
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 180,
+        "cars": [
+          {
+            "metres": 5987,
+            "kmh": 36,
+            "plan": null
+          },
+          {
+            "metres": 5951,
+            "kmh": 83,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 157.91666666668738
+            }
+          },
+          {
+            "metres": 5951,
+            "kmh": 82,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 96.66666666668966
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "returning",
+              "reason": "return",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 46.45833333333134
+            }
+          },
+          {
+            "metres": 6007,
+            "kmh": 39,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 82.08333333334473
+            }
+          },
+          {
+            "metres": 5973,
+            "kmh": 59,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 2,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 4.7916666666666945
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 200,
+        "cars": [
+          {
+            "metres": 6419,
+            "kmh": 165,
+            "plan": null
+          },
+          {
+            "metres": 6313,
+            "kmh": 138,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 177.9166666666692
+            }
+          },
+          {
+            "metres": 6321,
+            "kmh": 141,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 116.66666666670558
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 2.0833333333333286
+            }
+          },
+          {
+            "metres": 6537,
+            "kmh": 112,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 102.08333333336064
+            }
+          },
+          {
+            "metres": 6411,
+            "kmh": 181,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 2,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 24.7916666666659
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 220,
+        "cars": [
+          {
+            "metres": 6943,
+            "kmh": 155,
+            "plan": null
+          },
+          {
+            "metres": 6823,
+            "kmh": 123,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 197.916666666651
+            }
+          },
+          {
+            "metres": 6855,
+            "kmh": 140,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 136.6666666667067
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 22.08333333333272
+            }
+          },
+          {
+            "metres": 6987,
+            "kmh": 24,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 122.08333333337656
+            }
+          },
+          {
+            "metres": 6935,
+            "kmh": 148,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 2,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 44.79166666666477
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 240,
+        "cars": [
+          {
+            "metres": 7759,
+            "kmh": 106,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 217.9166666666328
+            }
+          },
+          {
+            "metres": 7521,
+            "kmh": 149,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 12.916666666666574
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 42.08333333333159
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 142.08333333336844
+            }
+          },
+          {
+            "metres": 7503,
+            "kmh": 152,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 8.12500000000018
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 260,
+        "cars": [
+          {
+            "metres": 8168,
+            "kmh": 108,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 237.91666666661462
+            }
+          },
+          {
+            "metres": 8014,
+            "kmh": 53,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 32.91666666666544
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 62.08333333333045
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 162.08333333335025
+            }
+          },
+          {
+            "metres": 8004,
+            "kmh": 42,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 28.124999999999044
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 280,
+        "cars": [
+          {
+            "metres": 8700,
+            "kmh": 103,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 257.9166666665964
+            }
+          },
+          {
+            "metres": 8592,
+            "kmh": 89,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 52.916666666664305
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 82.08333333334473
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 182.08333333333206
+            }
+          },
+          {
+            "metres": 8586,
+            "kmh": 90,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "airborne",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 48.12499999999791
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 300,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 277.91666666657824
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 102.08333333336064
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 202.08333333331387
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 320,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 297.91666666656005
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 122.08333333337656
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 222.08333333329568
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 340,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 317.91666666654186
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 142.08333333336844
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 242.0833333332775
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 360,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 337.91666666652367
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 162.08333333335025
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 262.0833333332593
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 380,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 357.9166666665055
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 182.08333333333206
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 282.0833333332411
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      },
+      {
+        "time": 400,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6991,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 377.9166666664873
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 0.9999999999999989
+            }
+          },
+          {
+            "metres": 2482,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": -7.380474362897747,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 202.08333333331387
+            }
+          },
+          {
+            "metres": 6995,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 302.0833333332229
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "stopped-ahead",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 3,
+              "attempts": 4,
+              "aborts": 0,
+              "age": 62.533333333330425
+            }
+          }
+        ],
+        "traffic": {
+          "count": 0,
+          "vehicles": []
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,443 @@
+{
+  "totals": {
+    "beforeBytes": 4613812,
+    "afterBytes": 3972524,
+    "savedBytes": 641288,
+    "beforeTriangles": 1187716,
+    "afterTriangles": 1057156,
+    "savedTriangles": 130560
+  },
+  "protected": [
+    {
+      "path": "src/driving/physics.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/vehicleDynamics.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/fleet.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/vehiclePose.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/bodyMotion.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/tracks.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/raceRecords.js",
+      "unchanged": true
+    },
+    {
+      "path": "src/rebuild/onlineProtocol.js",
+      "unchanged": true
+    }
+  ],
+  "layoutFailures": [],
+  "frames": [
+    {
+      "file": "perf-final-high-a1.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.399999999994,
+      "frame": {
+        "samples": 1595,
+        "mean": 18.80902821316614,
+        "p95": 33.39999999999418,
+        "max": 99.90000000000873,
+        "over50": 3
+      },
+      "cpu": {
+        "samples": 1595,
+        "mean": 13.763699059594762,
+        "p95": 17.200000017881393,
+        "max": 32.30000001192093
+      },
+      "draws": {
+        "first": {
+          "calls": 1212,
+          "triangles": 2306871
+        },
+        "last": {
+          "calls": 772,
+          "triangles": 1586772
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-high-a2.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30017.100000000002,
+      "frame": {
+        "samples": 1558,
+        "mean": 19.26643132220796,
+        "p95": 33.39999999999782,
+        "max": 66.59999999999854,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1558,
+        "mean": 13.075096277603748,
+        "p95": 19.899999976158142,
+        "max": 60.5
+      },
+      "draws": {
+        "first": {
+          "calls": 1212,
+          "triangles": 2306871
+        },
+        "last": {
+          "calls": 772,
+          "triangles": 1586772
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.03333333333227,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-high-b.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.300000000003,
+      "frame": {
+        "samples": 1620,
+        "mean": 18.518703703703707,
+        "p95": 33.30000000000291,
+        "max": 66.59999999999854,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1620,
+        "mean": 13.623395061732074,
+        "p95": 17.900000005960464,
+        "max": 39.79999998211861
+      },
+      "draws": {
+        "first": {
+          "calls": 1304,
+          "triangles": 2078391
+        },
+        "last": {
+          "calls": 839,
+          "triangles": 1423572
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-a1.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.600000000006,
+      "frame": {
+        "samples": 1799,
+        "mean": 16.676264591439693,
+        "p95": 16.80000000000291,
+        "max": 33.299999999995634,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1799,
+        "mean": 5.203501945869865,
+        "p95": 6.5,
+        "max": 20.100000023841858
+      },
+      "draws": {
+        "first": {
+          "calls": 376,
+          "triangles": 901281
+        },
+        "last": {
+          "calls": 426,
+          "triangles": 1041060
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-a2.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.5,
+      "frame": {
+        "samples": 1798,
+        "mean": 16.68548387096774,
+        "p95": 16.80000000000291,
+        "max": 50.099999999998545,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1798,
+        "mean": 5.032536151444952,
+        "p95": 7.199999988079071,
+        "max": 11.099999994039536
+      },
+      "draws": {
+        "first": {
+          "calls": 376,
+          "triangles": 901281
+        },
+        "last": {
+          "calls": 426,
+          "triangles": 1041060
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-b.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.500000000007,
+      "frame": {
+        "samples": 1798,
+        "mean": 16.685483870967747,
+        "p95": 16.80000000000291,
+        "max": 50.099999999998545,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1798,
+        "mean": 6.46701891002586,
+        "p95": 9.5,
+        "max": 14.200000017881393
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 803361
+        },
+        "last": {
+          "calls": 472,
+          "triangles": 926820
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-namak-low-a1.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30017.199999999953,
+      "frame": {
+        "samples": 1563,
+        "mean": 19.204862444017884,
+        "p95": 33.40000000002328,
+        "max": 50.09999999997672,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1563,
+        "mean": 9.548176583863189,
+        "p95": 11.900000005960464,
+        "max": 41.19999998807907
+      },
+      "draws": {
+        "first": {
+          "calls": 376,
+          "triangles": 901281
+        },
+        "last": {
+          "calls": 426,
+          "triangles": 1041060
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.03333333333227,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-namak-low-a2-prevertex.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.40000000001,
+      "frame": {
+        "samples": 1506,
+        "mean": 19.920584329349275,
+        "p95": 33.39999999999418,
+        "max": 50,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1506,
+        "mean": 9.159030544112719,
+        "p95": 11.5,
+        "max": 46.900000005960464
+      },
+      "draws": {
+        "first": {
+          "calls": 376,
+          "triangles": 901281
+        },
+        "last": {
+          "calls": 426,
+          "triangles": 1041060
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-namak-low-b.json",
+      "label": "제품 기준",
+      "status": "complete",
+      "durationMs": 30000.399999999994,
+      "frame": {
+        "samples": 1388,
+        "mean": 21.614121037463974,
+        "p95": 33.400000000001455,
+        "max": 66.70000000001164,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1388,
+        "mean": 11.145533141317731,
+        "p95": 13.600000023841858,
+        "max": 47.80000001192093
+      },
+      "draws": {
+        "first": {
+          "calls": 439,
+          "triangles": 803361
+        },
+        "last": {
+          "calls": 500,
+          "triangles": 926820
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  ]
+}

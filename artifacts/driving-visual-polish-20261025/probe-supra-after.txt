@@ -1,0 +1,69 @@
+
+## full throttle 0-6s
+ pitch 0.00..0.00deg  |roll|max 0.00deg  yawRate max 0.0deg/s  latAcc max 0.0m/s2  maxStepTilt 0.000deg  locked 100%
+ 0.0s 0kmh p0.00 r0.00 yr0.0 steer0.000
+ 0.5s 12kmh p0.00 r0.00 yr0.0 steer0.000
+ 1.0s 27kmh p0.00 r0.00 yr0.0 steer0.000
+ 1.5s 43kmh p0.00 r0.00 yr0.0 steer0.000
+ 2.0s 60kmh p0.00 r0.00 yr0.0 steer0.000
+ 2.5s 70kmh p0.00 r0.00 yr0.0 steer0.000
+ 3.0s 80kmh p0.00 r0.00 yr0.0 steer0.000
+ 3.5s 90kmh p0.00 r0.00 yr0.0 steer0.000
+ 4.0s 100kmh p0.00 r0.00 yr0.0 steer0.000
+ 4.5s 107kmh p0.00 r0.00 yr0.0 steer0.000
+ 5.0s 113kmh p0.00 r0.00 yr0.0 steer0.000
+ 5.5s 119kmh p0.00 r0.00 yr0.0 steer0.000
+
+## hard brake from 120
+ pitch 0.00..0.00deg  |roll|max 0.00deg  yawRate max 0.0deg/s  latAcc max 0.0m/s2  maxStepTilt 0.000deg  locked 100%
+ 0.0s 120kmh p0.00 r0.00 yr0.0 steer0.000
+ 0.5s 101kmh p0.00 r0.00 yr0.0 steer0.000
+ 1.0s 82kmh p0.00 r0.00 yr0.0 steer0.000
+ 1.5s 63kmh p0.00 r0.00 yr0.0 steer0.000
+ 2.0s 44kmh p0.00 r0.00 yr0.0 steer0.000
+ 2.5s 26kmh p0.00 r0.00 yr0.0 steer0.000
+ 3.0s 7kmh p0.00 r0.00 yr0.0 steer0.000
+ 3.5s 0kmh p0.00 r0.00 yr0.0 steer0.000
+
+## steady right turn 80kmh (full steer)
+ pitch -0.00..0.00deg  |roll|max 0.00deg  yawRate max 46.5deg/s  latAcc max 17.0m/s2  maxStepTilt 0.000deg  locked 100%
+ 0.0s 80kmh p0.00 r-0.00 yr-2.5 steer-0.031
+ 0.5s 80kmh p-0.00 r0.00 yr-43.5 steer-0.178
+ 1.0s 80kmh p0.00 r-0.00 yr-44.6 steer-0.178
+ 1.5s 80kmh p0.00 r0.00 yr-45.2 steer-0.178
+ 2.0s 80kmh p0.00 r-0.00 yr-45.5 steer-0.179
+ 2.5s 79kmh p0.00 r0.00 yr-45.4 steer-0.185
+ 3.0s 77kmh p-0.00 r-0.00 yr-45.1 steer-0.194
+ 3.5s 75kmh p0.00 r0.00 yr-44.8 steer-0.204
+ 4.0s 74kmh p0.00 r0.00 yr-44.7 steer-0.209
+ 4.5s 75kmh p0.00 r0.00 yr-45.5 steer-0.202
+
+## slalom 90kmh, 1s each way
+ pitch -0.00..0.00deg  |roll|max 0.00deg  yawRate max 42.0deg/s  latAcc max 17.1m/s2  maxStepTilt 0.000deg  locked 100%
+ 0.0s 90kmh p-0.00 r0.00 yr2.5 steer0.024
+ 0.5s 90kmh p-0.00 r-0.00 yr39.6 steer0.141
+ 1.0s 90kmh p0.00 r-0.00 yr42.0 steer0.066
+ 1.5s 90kmh p0.00 r-0.00 yr-39.3 steer-0.141
+ 2.0s 90kmh p-0.00 r0.00 yr-41.8 steer-0.066
+ 2.5s 90kmh p-0.00 r-0.00 yr39.3 steer0.141
+ 3.0s 90kmh p0.00 r-0.00 yr41.8 steer0.066
+ 3.5s 90kmh p0.00 r-0.00 yr-39.3 steer-0.141
+ 4.0s 90kmh p0.00 r0.00 yr-41.8 steer-0.066
+ 4.5s 90kmh p0.00 r0.00 yr39.3 steer0.141
+ 5.0s 90kmh p-0.00 r-0.00 yr41.8 steer0.066
+ 5.5s 90kmh p-0.00 r0.00 yr-39.3 steer-0.141
+
+## handbrake turn 90kmh
+ pitch -0.00..0.00deg  |roll|max 0.00deg  yawRate max 105.2deg/s  latAcc max 16.7m/s2  maxStepTilt 0.000deg  locked 100%
+ 0.0s 90kmh p0.00 r0.00 yr-2.5 steer-0.024
+ 0.5s 87kmh p-0.00 r0.00 yr-57.3 steer-0.151
+ 1.0s 78kmh p0.00 r-0.00 yr-94.8 steer-0.184
+ 1.5s 57kmh p0.00 r-0.00 yr-24.4 steer-0.349
+ 2.0s 34kmh p0.00 r0.00 yr-3.4 steer-0.560
+ 2.5s 33kmh p0.00 r0.00 yr-56.2 steer-0.458
+ 3.0s 50kmh p0.00 r0.00 yr-0.0 steer0.000
+ 3.5s 66kmh p0.00 r0.00 yr-0.0 steer0.000
+
+## Namak 60s AI-driven player car
+ lock/unlock transitions 1, re-lock pops >0.3deg: 0 []
+ max per-step tilt change 0.000deg, vertical accel RMS 4m/s2, steer sign flips 220, max yaw-rate change 283deg/s2

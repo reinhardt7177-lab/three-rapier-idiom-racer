@@ -1,0 +1,107 @@
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (4.4411ms)
+✔ static world avoids repeated transform composition while moving children keep updating (2.8491ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.2261ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (0.8103ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (224.8796ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (30.088ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (5.2467ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (7.2342ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (14.1733ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (2.9759ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (0.7029ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (9.542ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (0.8331ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (2.0308ms)
+✔ roadside cells retain near bounds, respect tiers, and low quality adds no draws (4.1036ms)
+✔ garage hides the extension and visibility changes do not alter transforms or shared resources (3.0275ms)
+✔ absent extensions and originally hidden art stay hidden (0.8862ms)
+✔ ground supporting distant buildings survives decoration culling and low quality (0.6442ms)
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'D:\racing\three-rapier-idiom-racer\artifacts\cloudflare-car-deploy-20261014\build-source\artifacts\roadscape-20261013\seongsamjae\build-report.json'
+    at Object.openSync (node:fs:560:18)
+    at Object.readFileSync (node:fs:444:35)
+    at file (file:///D:/racing/three-rapier-idiom-racer/artifacts/cloudflare-car-deploy-20261014/build-source/scripts/seongsamjae-roadscape.test.mjs:8:21)
+    at file:///D:/racing/three-rapier-idiom-racer/artifacts/cloudflare-car-deploy-20261014/build-source/scripts/seongsamjae-roadscape.test.mjs:12:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\racing\\three-rapier-idiom-racer\\artifacts\\cloudflare-car-deploy-20261014\\build-source\\artifacts\\roadscape-20261013\\seongsamjae\\build-report.json'
+}
+
+Node.js v24.12.0
+✖ scripts\seongsamjae-roadscape.test.mjs (114.799ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (289.1684ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (454.8912ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (427.9555ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (120.7525ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (90.4113ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (76.2556ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (75.3415ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (81.3758ms)
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (7.3666ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (4.9653ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (2.5876ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (2.832ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (6.2549ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (2.6852ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.8995ms)
+✔ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (2.6157ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (4.5909ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (2.3625ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (1.0099ms)
+✔ one-draw alloy retains cut-face and graphite shading through vertex colours without extra textures (0.4888ms)
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'D:\racing\three-rapier-idiom-racer\artifacts\cloudflare-car-deploy-20261014\build-source\artifacts\roadscape-20261013\yeosu\asset-report.json'
+    at Object.openSync (node:fs:560:18)
+    at Object.readFileSync (node:fs:444:35)
+    at read (file:///D:/racing/three-rapier-idiom-racer/artifacts/cloudflare-car-deploy-20261014/build-source/scripts/yeosu-roadscape.test.mjs:9:22)
+    at json (file:///D:/racing/three-rapier-idiom-racer/artifacts/cloudflare-car-deploy-20261014/build-source/scripts/yeosu-roadscape.test.mjs:10:30)
+    at file:///D:/racing/three-rapier-idiom-racer/artifacts/cloudflare-car-deploy-20261014/build-source/scripts/yeosu-roadscape.test.mjs:16:16 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\racing\\three-rapier-idiom-racer\\artifacts\\cloudflare-car-deploy-20261014\\build-source\\artifacts\\roadscape-20261013\\yeosu\\asset-report.json'
+}
+
+Node.js v24.12.0
+✖ scripts\yeosu-roadscape.test.mjs (263.755ms)
+✔ baked light layout is tied to the exact unchanged GLB and agrees with authored light positions (74.6775ms)
+✔ unchanged emitted surfaces retain their layout identity after runtime scenery batching (84.081ms)
+✔ changed emitted geometry falls back to its current light surfaces rather than a stale baked layout (41.4235ms)
+✔ a transformed world carries its baked light positions along with the root (14.7147ms)
+✔ interleaved GLTF positions preserve the layout check and changed positions safely fall back (48.0328ms)
+✔ actual batched Blender geometry supplies all eight bridge lamps and independently sampled shore lights (5.6788ms)
+✔ visual replacement leaves every authored vertex, material, collider annotation and transform unchanged (18.6131ms)
+✔ reflection mask covers the complete +/-7m road corridor and the new sea remains far below the asphalt (8.0821ms)
+✔ quality budgets bound extra calls, geometry and light sources without adding lights or a render pass (7.9382ms)
+✔ pause holds the ripple clock, visibility restores the old sea, and distance removes inactive reflection sources (4.801ms)
+✔ owned GPU resources dispose once and authored geometry/material resources are retained (5.4922ms)
+✔ a restarted race reselects nearby reflections when the elapsed clock returns to zero (4.9449ms)
+✔ an unrelated empty world receives no visual lights, sea geometry or additional draws (0.9166ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 51
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2640.4057
+
+✖ failing tests:
+
+test at scripts\seongsamjae-roadscape.test.mjs:1:1
+✖ scripts\seongsamjae-roadscape.test.mjs (114.799ms)
+  'test failed'
+
+test at scripts\yeosu-roadscape.test.mjs:1:1
+✖ scripts\yeosu-roadscape.test.mjs (263.755ms)
+  'test failed'

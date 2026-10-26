@@ -1,0 +1,48 @@
+✖ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (17.4227ms)
+✖ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (298.4304ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2458.2604
+
+✖ failing tests:
+
+test at scripts\namak-polish.test.mjs:67:1
+✖ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (17.4227ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(enhanced/original-1.3)<1e-12)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:71:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\namak-polish.test.mjs:77:1
+✖ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (298.4304ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(s.steeringLimit/baseline-1.3)<1e-12)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-polish.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

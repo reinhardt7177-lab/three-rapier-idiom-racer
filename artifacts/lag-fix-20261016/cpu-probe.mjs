@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {performance} from 'node:perf_hooks';
+import {runRace} from '../../scripts/race-sim.mjs';
+import {difficultyById} from '../../src/rebuild/raceDifficulty.js';
+const label=process.argv[2]??'before',trackId=process.argv[3]??'yeosu';
+const started=performance.now();
+const result=await runRace({trackId,difficultyId:'normal',trafficCount:6,maxSeconds:60,playerProfile:difficultyById('hard').profile});
+const wallMs=performance.now()-started;
+const row={label,trackId,simulatedSeconds:60,wallMs,wallMsPer60HzFrame:wallMs/3600,result,note:'Local CPU-only bounded workload, includes startup; unfinished cars are expected at 60s. No browser/GPU or race-completion claim.'};
+fs.writeFileSync(new URL(`./cpu-${label}-${trackId}.json`,import.meta.url),JSON.stringify(row,null,2));
+console.log(JSON.stringify({label,trackId,wallMs,wallMsPer60HzFrame:row.wallMsPer60HzFrame}));

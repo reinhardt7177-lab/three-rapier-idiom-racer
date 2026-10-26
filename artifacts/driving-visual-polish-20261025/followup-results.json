@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-25T14:36:40.380Z",
+  "results": [
+    {
+      "name": "probe-supra-after",
+      "args": [
+        "artifacts/motion-check-20261011/probe.mjs",
+        "supra"
+      ],
+      "exitCode": 0,
+      "seconds": 8.977
+    },
+    {
+      "name": "weave-after",
+      "args": [
+        "artifacts/motion-check-20261011/weave.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 6.714
+    },
+    {
+      "name": "feel-before",
+      "args": [
+        "D:/racing/.work/stock-car-rea-20261025/validation-final/scripts/driving-feel-matrix.mjs",
+        "D:\\racing\\three-rapier-idiom-racer/artifacts/driving-visual-polish-20261025/feel-before.json"
+      ],
+      "exitCode": 0,
+      "seconds": 3.236
+    },
+    {
+      "name": "feel-after",
+      "args": [
+        "scripts/driving-feel-matrix.mjs",
+        "D:\\racing\\three-rapier-idiom-racer/artifacts/driving-visual-polish-20261025/feel-after.json"
+      ],
+      "exitCode": 0,
+      "seconds": 2.742
+    }
+  ]
+}

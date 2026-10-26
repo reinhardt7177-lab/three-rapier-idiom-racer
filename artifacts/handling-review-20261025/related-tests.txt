@@ -1,0 +1,78 @@
+{"bodyMotionSampling":[{"fps":30,"phase":1,"peakPitchDegrees":0.07750697291292614},{"fps":60,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":2,"peakPitchDegrees":0.07841361034287299},{"fps":60,"phase":2,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":2,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":60,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":60,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":4,"peakPitchDegrees":0.07879231960289464}]}
+✔ one-step collision impulses survive four phases at 30/60/120fps and match at common physical times (28.3899ms)
+✔ render interpolation never integrates a sample again and clamps only its presentation alpha (2.142ms)
+✔ paused samples preserve the spring and both interpolation endpoints; recovery clears every visible history (0.7482ms)
+✔ fixed samples keep the existing full and reduced-motion pitch and roll limits (2.3983ms)
+✔ a remote 250ms sample measures acceleration over the packet interval and integrates its whole duration (0.3294ms)
+✔ sampling and presenting preserve all wheel transforms and physical snapshots, with low quality clearing both endpoints (5.5177ms)
+✔ a drained CCD contact still locates sparks on real collider geometry with a bounded buffer (45.3548ms)
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (0.4402ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (0.6798ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (3.327ms)
+✔ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (1.046ms)
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (1.6419ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.5108ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (177.0197ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (5.6623ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (5.0472ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (9.3153ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (12.926ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (3.266ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (107.2999ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.4359ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.7215ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.9006ms)
+✔ typing and Space on menu buttons remain native UI actions (0.2826ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.2929ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.2866ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.26189613342285,
+  penetration: 0.005001296137265854,
+  retreat: 24.600356772592576,
+  escapeReverse: false,
+  restartKmh: 7.2980665816164745
+}
+{
+  id: 'slk',
+  impacts: 2,
+  maxZ: 27.385963439941406,
+  penetration: 0.004999396007598023,
+  retreat: 28.051620811403325,
+  escapeReverse: false,
+  restartKmh: 7.230162618218268
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.055423736572266,
+  penetration: 0.005096432348604907,
+  retreat: 25.749811011616085,
+  escapeReverse: false,
+  restartKmh: 7.344852885429801
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (239.9841ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (310.4906ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (163.6227ms)
+✔ a chase orbit preserves radius through crash yaw, wrapped headings and countersteering (21.367ms)
+✔ orbit pause is exact and recovery snap follows heading immediately (0.7223ms)
+✔ a remote contact plays once; duplicates, old packets, paused and late events do not replay (0.8026ms)
+✔ recovery and rematch reset impact identity without old contact bursts (0.3646ms)
+✔ unsafe optional peer contact fields cannot reach sparks, audio or the camera (0.3536ms)
+✔ the same manifold contact yields opposite sides for the two cars and rotates with their headings (1.449ms)
+✔ directional impacts mirror, keep driver eyes fixed, stay below one degree and decay fully (3.9551ms)
+✔ chase collision direction is bounded and never creates ambient wobble (1.7435ms)
+✔ a recovery snap clears old recoil but accepts a fresh collision in that same packet (0.5072ms)
+✔ a deliberate driving-motion choice overrides the system preference while auto honors it (0.2749ms)
+✔ driving-motion choices survive reload and blocked storage fails safely (0.2765ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4721.8027

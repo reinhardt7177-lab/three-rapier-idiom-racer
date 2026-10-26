@@ -1,0 +1,92 @@
+{
+  "at": "2026-10-25T11:54:13.048Z",
+  "sourceHead": "7f75155cddea44eeb1913161932824c8690e118a",
+  "localOnly": true,
+  "fullRegression": {
+    "testFiles": 76,
+    "tests": 508,
+    "pass": 508,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "seconds": 3713.767,
+    "exitCode": 0,
+    "execution": "Unchanged complete assertions, concurrency1 / 384MiB Node heap; ordinary npm command was interrupted, not passed",
+    "npmCommandPass": false
+  },
+  "build": {
+    "exitCode": 0,
+    "wallSeconds": 7.742,
+    "viteReportedSeconds": 4.54,
+    "files": 37,
+    "bytes": 80118722,
+    "deltaBytes": 4790,
+    "deltaTextGzipBytes": 1650,
+    "assetsUnchanged": true
+  },
+  "physical": {
+    "clearRaces": 24,
+    "rainRaces": 14,
+    "vehicles": 228,
+    "allFinished": true,
+    "allAboveTrack": true
+  },
+  "finalSourceDevFrame": {
+    "scope": "Final source, DEV server, no expensive profile. Not a production-build benchmark.",
+    "condition": {
+      "camera": "chase",
+      "dpr": 0.75,
+      "dropped": 0,
+      "elapsed": 30.016666666665603,
+      "frozen": false,
+      "ghost": false,
+      "height": 720,
+      "profile": false,
+      "progress": 829.8114992507088,
+      "quality": "low",
+      "track": "namak",
+      "width": 1280
+    },
+    "frame": {
+      "max": 66.60000000000582,
+      "mean": 17.084510250569473,
+      "over50": 4,
+      "p95": 17,
+      "samples": 1756
+    },
+    "cpu": {
+      "max": 65,
+      "mean": 8.492881549025858,
+      "p95": 11.100000001490116,
+      "samples": 1756
+    },
+    "durationMs": 30000.39999999999
+  },
+  "productionInitialResources": {
+    "scope": "Namak garage resource timing entries; excludes navigation document, later race audio and other maps. No before-version cold-cache production measurement.",
+    "files": 21,
+    "encodedBytes": 28556290,
+    "transferBytes": 28562590,
+    "cacheHits": 0,
+    "unknownSizes": 0
+  },
+  "productionBrowser": {
+    "checkpoints": [
+      "portrait-setting-reachable-after-scroll",
+      "production-garage-ready",
+      "production-keyboard-release",
+      "production-braking-release",
+      "production-first-person",
+      "production-garage-return"
+    ],
+    "errors": 0,
+    "warnings": 1
+  },
+  "remaining": [
+    "Stock Car Racing Android execution and measured runtime comparison",
+    "New online two-browser collision presentation / two physical devices and different networks",
+    "Production-build full-lap and sustained frame benchmark",
+    "Intermittent >50ms frames: final DEV 4 events, max66.6ms"
+  ],
+  "deployment": "No commit, push, PR, main merge or operational deployment for this task. Local production preview at http://127.0.0.1:5204/?track=namak"
+}

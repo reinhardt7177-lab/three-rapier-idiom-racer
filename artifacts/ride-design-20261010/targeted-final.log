@@ -1,0 +1,137 @@
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 844.8607788085938,
+  distance: 844.7932281494141
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 771.1849951171876,
+  distance: 771.1353302001953
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 845.6960894157625,
+  distance: 845.6399078369141
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 847.9114013671874,
+  distance: 847.8453216552734
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 856.018564453125,
+  distance: 855.9578704833984
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 861.1986328125,
+  distance: 861.1202697753906
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 813.1017443847655,
+  distance: 813.0361480712891
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 952.4103271484374,
+  distance: 952.3285522460938
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (29.071ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (604.8312ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (447.2572ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (237.8751ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (188.3652ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (188.6021ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (153.2767ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (141.7306ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (128.6884ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (100.2716ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.808333333333334,
+  stopping: 44.645660400390625,
+  stopTime: 2.916666666666659,
+  rolling: 100.2945526123047,
+  distance: 100.2889404296875,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.1,
+  stopping: 44.733795166015625,
+  stopTime: 2.9249999999999923,
+  rolling: 82.94249171584889,
+  distance: 82.93890380859375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 2,
+  peakFront: 20.53059196472168,
+  front: {
+    x: 0.016820084303617477,
+    y: 0.5410052537918091,
+    z: 59.547950744628906
+  },
+  rear: {
+    x: 0.004478541202843189,
+    y: 0.5260055065155029,
+    z: 55.037933349609375
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.38477325439453
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (604.1688ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (34.2356ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (346.9157ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (75.5167ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (12.6573ms)
+{
+  progress: 6842.211776361137,
+  maximumAcceleration: 38.64541053771973,
+  maximumTilt: 1.920026862985041,
+  rmsTilt: 0.07945146228788715,
+  releaseSteps: 78
+}
+✔ real-map mountain seams do not restore the previous large vertical and orientation impulses (4972.9687ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (44.8235ms)
+✔ grip changes the actual constant-input corner trajectory (85.9084ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (49.6026ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (23.6694ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (162.8804ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.5299ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14252.043

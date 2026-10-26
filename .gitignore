@@ -8,3 +8,48 @@ dist/
 .vercel
 .asset-import/
 .vite-dev*.log
+__pycache__/
+.wrangler/
+
+# Local agent settings and transport diagnostics
+.claude/
+artifacts/**/connector-transfer*-response.json
+artifacts/**/transfer-cell*.json
+artifacts/**/api-probe.log
+artifacts/release-curation-20261016/before/
+
+artifacts/**/*.b64
+artifacts/**/*.zip
+artifacts/**/*.gz
+artifacts/**/*.tar
+artifacts/**/*.pid
+
+# Local junctions reuse the current public assets; do not publish duplicate trees.
+artifacts/ai-3pass-20261015/baseline/public/
+artifacts/ai-3pass-20261015/qa-source/public/
+artifacts/content-resume-20261011/quality-baseline/public/
+artifacts/content-resume-20261011/rain-baseline/public/
+artifacts/korea-circuits-20261011/baseline-app/public/
+artifacts/vehicle-motion-20261012/performance-before/public/
+artifacts/visual-polish-20261011/baseline-8c5bb8b/public/
+artifacts/visual-polish-20261011/baseline-e1a6237/public/
+
+# Local change snapshots stay off GitHub and out of deployment uploads.
+artifacts/ai-impact-20261016/before/
+artifacts/lag-fix-20261016/before/
+artifacts/mobile-controls-20261022/before/
+artifacts/deploy-mobile-20261022/before/
+artifacts/rea-stockcar-20261025/before/
+
+# Detailed local filesystem inventories and preserved comparison copies.
+artifacts/cleanup-20261022/
+
+# Local before-copies for the driving/night readability work
+artifacts/driving-visual-polish-20261025/before/
+
+# Keep unshipped handling experiments and deployment snapshots local.
+artifacts/ai-unjam-20261026/before/
+artifacts/ai-unjam-20261026/candidate-first/
+artifacts/handling-review-20261025/before/
+artifacts/driving-visual-polish-20261025/candidate/
+artifacts/deploy-ai-polish-20261026/before/

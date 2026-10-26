@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {spawn} from 'node:child_process';
+const task=path.resolve('artifacts/vehicle-polish-3pass-20261015'),root=path.join(task,'validation-source');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const inputs=[];
+function walk(dir){for(const e of fs.readdirSync(path.join(root,dir),{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else inputs.push({path:p,sha256:sha(fs.readFileSync(path.join(root,p)))});}}
+for(const dir of ['src','scripts','public','assets-sources'])walk(dir);
+for(const p of ['package.json','package-lock.json','vite.config.js','index.html'])inputs.push({path:p,sha256:sha(fs.readFileSync(path.join(root,p)))});
+fs.writeFileSync(path.join(task,'isolated-check-inputs.json'),JSON.stringify(inputs,null,2));
+const log=fs.openSync(path.join(task,'isolated-check.log'),'w'),started=performance.now();
+const child=spawn('cmd.exe',['/d','/s','/c','npm run check'],{cwd:root,stdio:['ignore',log,log],windowsHide:true});
+console.log(JSON.stringify({pid:child.pid,started:new Date().toISOString(),root}));
+const exitCode=await new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',resolve);});fs.closeSync(log);
+const text=fs.readFileSync(path.join(task,'isolated-check.log'),'utf8');
+const counts=Object.fromEntries(['tests','pass','fail','skipped'].map(k=>[k,Number(text.match(new RegExp('(?:#|ℹ) '+k+' (\\d+)'))?.[1]??-1)]));
+const changedInputs=inputs.filter(i=>sha(fs.readFileSync(path.join(root,i.path)))!==i.sha256);
+const result={execution:'Local Windows CPU / Rapier WASM; car-only frozen HEAD plus listed overlays; no Colab',exitCode,seconds:(performance.now()-started)/1000,counts,inputs:inputs.length,changedInputs};
+fs.writeFileSync(path.join(task,'isolated-check-summary.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));process.exitCode=exitCode;

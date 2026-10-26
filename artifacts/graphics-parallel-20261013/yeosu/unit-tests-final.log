@@ -1,0 +1,16 @@
+✔ actual batched Blender geometry supplies all eight bridge lamps and independently sampled shore lights (5116.8606ms)
+✔ visual replacement leaves every authored vertex, material, collider annotation and transform unchanged (3059.2985ms)
+✔ reflection mask covers the complete +/-7m road corridor and the new sea remains far below the asphalt (1979.8792ms)
+✔ quality budgets bound extra calls, geometry and light sources without adding lights or a render pass (193.7234ms)
+✔ pause holds the ripple clock, visibility restores the old sea, and distance removes inactive reflection sources (441.6178ms)
+✔ owned GPU resources dispose once and authored geometry/material resources are retained (359.7351ms)
+✔ a restarted race reselects nearby reflections when the elapsed clock returns to zero (1003.3308ms)
+✔ an unrelated empty world receives no visual lights, sea geometry or additional draws (6.0402ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30186.9899

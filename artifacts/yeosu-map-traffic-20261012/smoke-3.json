@@ -1,0 +1,3605 @@
+[
+  {
+    "track": "yeosu",
+    "difficulty": "normal",
+    "weather": "clear",
+    "traffic": {
+      "count": 6,
+      "vehicles": [
+        {
+          "name": "TRAFFIC 1",
+          "kmh": 59.27925161322071,
+          "position": {
+            "x": 1451.7021484375,
+            "y": 8.55099868774414,
+            "z": -19.335054397583008
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 2",
+          "kmh": 62.08535175873347,
+          "position": {
+            "x": -116.37968444824219,
+            "y": 8.550997734069824,
+            "z": -26.08628273010254
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 3",
+          "kmh": 1.128023504278688e-44,
+          "position": {
+            "x": -190.7261505126953,
+            "y": 8.55099868774414,
+            "z": -45.7298583984375
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 4",
+          "kmh": 67.47061105203537,
+          "position": {
+            "x": 544.6754760742188,
+            "y": 8.55099868774414,
+            "z": 1208.8509521484375
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 5",
+          "kmh": 73.32746232912196,
+          "position": {
+            "x": 1100.9364013671875,
+            "y": 9.060812950134277,
+            "z": 72.65779876708984
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 6",
+          "kmh": 72.93823364424163,
+          "position": {
+            "x": 872.0252685546875,
+            "y": 8.551011085510254,
+            "z": -806.2889404296875
+          },
+          "contacts": 4,
+          "lane": 3.2
+        }
+      ]
+    },
+    "seconds": 420,
+    "cars": [
+      {
+        "id": "supra",
+        "player": true,
+        "place": 3,
+        "finish": 354.25,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 19.62,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "player": false,
+        "place": 6,
+        "finish": null,
+        "metres": 6949,
+        "lowest": 0.39,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 1.4,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "NOVA",
+          "style": "코너 강자",
+          "mode": "follow",
+          "reason": "too-close",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 0,
+          "attempts": 1,
+          "aborts": 1,
+          "age": 397.9083333331358
+        }
+      },
+      {
+        "id": "mustang",
+        "player": false,
+        "place": 2,
+        "finish": 286.32,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 10.76,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "RAVEN",
+          "style": "공격형",
+          "mode": "changing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 3,
+          "aborts": 0,
+          "age": 0.7
+        }
+      },
+      {
+        "id": "porsche911",
+        "player": false,
+        "place": 4,
+        "finish": null,
+        "metres": 8878,
+        "lowest": 0.41,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 9.43,
+        "draftSeconds": 50.24,
+        "plan": {
+          "personality": "BLAZE",
+          "style": "직선 강자",
+          "mode": "passing",
+          "reason": "stopped-ahead",
+          "homeLane": -2.2,
+          "targetLane": 2.7492767180421094,
+          "passes": 1,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 148.32500000002943
+        }
+      },
+      {
+        "id": "gtr",
+        "player": false,
+        "place": 1,
+        "finish": 279.29,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 12.19,
+        "draftSeconds": 7.83,
+        "plan": {
+          "personality": "MIST",
+          "style": "수비형",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 1,
+          "attempts": 3,
+          "aborts": 1,
+          "age": 0.5416666666666672
+        }
+      },
+      {
+        "id": "rx7",
+        "player": false,
+        "place": 5,
+        "finish": null,
+        "metres": 8872,
+        "lowest": 0.39,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 6.38,
+        "draftSeconds": 113.13,
+        "plan": {
+          "personality": "LUNA",
+          "style": "균형형",
+          "mode": "passing",
+          "reason": "stopped-ahead",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 2,
+          "aborts": 1,
+          "age": 411.8666666664564
+        }
+      }
+    ],
+    "minimumUp": 0.9920870986425196,
+    "lowestTraffic": 8.530617713928223,
+    "samples": [
+      {
+        "time": 0,
+        "cars": [
+          {
+            "metres": -24,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 0,
+            "kmh": 0,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": 0,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -12,
+            "kmh": 0,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -12,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          },
+          {
+            "metres": -24,
+            "kmh": 0,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 0.008333333333333333
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 0.020211703529479354,
+              "position": {
+                "x": -335.3687744140625,
+                "y": 8.530617713928223,
+                "z": -55.46821212768555
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 0.020211705986271762,
+              "position": {
+                "x": -457.90936279296875,
+                "y": 8.530617713928223,
+                "z": 877.6118774414062
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 0.020211703833211452,
+              "position": {
+                "x": 659.8756103515625,
+                "y": 8.530617713928223,
+                "z": 1285.1641845703125
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 0.05948992186478137,
+              "position": {
+                "x": 1085.282470703125,
+                "y": 10.534907341003418,
+                "z": 101.99561309814453
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 0.020211703488101706,
+              "position": {
+                "x": 729.591552734375,
+                "y": 8.530617713928223,
+                "z": -1052.6500244140625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 0.020211704037891666,
+              "position": {
+                "x": 1335.354248046875,
+                "y": 8.530617713928223,
+                "z": -318.68914794921875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 20,
+        "cars": [
+          {
+            "metres": 388,
+            "kmh": 28,
+            "plan": null
+          },
+          {
+            "metres": 452,
+            "kmh": 67,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "occupied",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 20.00833333333284
+            }
+          },
+          {
+            "metres": 502,
+            "kmh": 123,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 20.00833333333284
+            }
+          },
+          {
+            "metres": 458,
+            "kmh": 115,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 8.750000000000144
+            }
+          },
+          {
+            "metres": 476,
+            "kmh": 113,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "cooldown",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 1.8749999999999958
+            }
+          },
+          {
+            "metres": 440,
+            "kmh": 103,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 11.874999999999966
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.29948311885469,
+              "position": {
+                "x": -531.4359130859375,
+                "y": 8.550999641418457,
+                "z": 17.17256736755371
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.03512956456603,
+              "position": {
+                "x": -132.44711303710938,
+                "y": 8.550999641418457,
+                "z": 890.9434204101562
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.78623533072744,
+              "position": {
+                "x": 836.9260864257812,
+                "y": 9.026473999023438,
+                "z": 1000.367431640625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.5102903245072,
+              "position": {
+                "x": 1128.447998046875,
+                "y": 8.55099868774414,
+                "z": -247.77488708496094
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 66.02388438531241,
+              "position": {
+                "x": 700.5540771484375,
+                "y": 8.550999641418457,
+                "z": -988.7454833984375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.93642064165351,
+              "position": {
+                "x": 1479.406982421875,
+                "y": 8.550999641418457,
+                "z": -78.72942352294922
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 40,
+        "cars": [
+          {
+            "metres": 782,
+            "kmh": 59,
+            "plan": null
+          },
+          {
+            "metres": 788,
+            "kmh": 59,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 17.91666666666629
+            }
+          },
+          {
+            "metres": 1218,
+            "kmh": 111,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 40.008333333331706
+            }
+          },
+          {
+            "metres": 1190,
+            "kmh": 108,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 8.333333333333501
+            }
+          },
+          {
+            "metres": 1198,
+            "kmh": 110,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 13.958333333333181
+            }
+          },
+          {
+            "metres": 1182,
+            "kmh": 96,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 31.87499999999883
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.29869327731216,
+              "position": {
+                "x": -552.502197265625,
+                "y": 8.550999641418457,
+                "z": 345.820556640625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.09024496604847,
+              "position": {
+                "x": 95.25724792480469,
+                "y": 8.550999641418457,
+                "z": 1073.262939453125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.74444295764141,
+              "position": {
+                "x": 939.0416259765625,
+                "y": 26.551008224487305,
+                "z": 655.724365234375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.5149347807518,
+              "position": {
+                "x": 1026.75341796875,
+                "y": 26.551008224487305,
+                "z": -604.8292846679688
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.18414848821921,
+              "position": {
+                "x": 948.1729736328125,
+                "y": 8.550999641418457,
+                "z": -690.9988403320312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.96810981074933,
+              "position": {
+                "x": 1223.5382080078125,
+                "y": 8.550999641418457,
+                "z": 222.00537109375
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 60,
+        "cars": [
+          {
+            "metres": 1110,
+            "kmh": 56,
+            "plan": null
+          },
+          {
+            "metres": 1116,
+            "kmh": 56,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 37.91666666666516
+            }
+          },
+          {
+            "metres": 1780,
+            "kmh": 119,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 60.00833333333057
+            }
+          },
+          {
+            "metres": 1754,
+            "kmh": 136,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 28.333333333332366
+            }
+          },
+          {
+            "metres": 1760,
+            "kmh": 132,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 33.95833333333205
+            }
+          },
+          {
+            "metres": 1746,
+            "kmh": 142,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 51.8749999999977
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 54.78655092775944,
+              "position": {
+                "x": -645.3414916992188,
+                "y": 8.550999641418457,
+                "z": 659.9398193359375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.01544478842587,
+              "position": {
+                "x": 428.1052551269531,
+                "y": 8.550999641418457,
+                "z": 1151.689208984375
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.77175429030929,
+              "position": {
+                "x": 1029.6051025390625,
+                "y": 26.544654846191406,
+                "z": 307.47802734375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4932210992704,
+              "position": {
+                "x": 814.6337890625,
+                "y": 8.55099868774414,
+                "z": -922.9002685546875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.18224449307947,
+              "position": {
+                "x": 1096.0076904296875,
+                "y": 8.550999641418457,
+                "z": -517.0647583007812
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.97456382722015,
+              "position": {
+                "x": 854.0311889648438,
+                "y": 8.550999641418457,
+                "z": 119.39376068115234
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 80,
+        "cars": [
+          {
+            "metres": 1382,
+            "kmh": 69,
+            "plan": null
+          },
+          {
+            "metres": 1392,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 57.91666666666402
+            }
+          },
+          {
+            "metres": 2358,
+            "kmh": 179,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 0,
+              "aborts": 0,
+              "age": 80.00833333334307
+            }
+          },
+          {
+            "metres": 2342,
+            "kmh": 178,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 48.33333333333123
+            }
+          },
+          {
+            "metres": 2368,
+            "kmh": 184,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 53.95833333333091
+            }
+          },
+          {
+            "metres": 2332,
+            "kmh": 180,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 71.87500000000327
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.30545514108567,
+              "position": {
+                "x": -535.9833984375,
+                "y": 8.550999641418457,
+                "z": 879.5552978515625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 61.99491079027703,
+              "position": {
+                "x": 677.7052612304688,
+                "y": 8.550999641418457,
+                "z": 1261.5313720703125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.80183121989091,
+              "position": {
+                "x": 1123.711669921875,
+                "y": 8.55099868774414,
+                "z": -39.84918212890625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 24.22655446795643,
+              "position": {
+                "x": 617.240234375,
+                "y": 8.55099868774414,
+                "z": -1018.7316284179688
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 69.89393892504715,
+              "position": {
+                "x": 1391.6766357421875,
+                "y": 8.550999641418457,
+                "z": -278.98797607421875
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.96033425562085,
+              "position": {
+                "x": 584.148193359375,
+                "y": 8.550999641418457,
+                "z": 14.090912818908691
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 100,
+        "cars": [
+          {
+            "metres": 1744,
+            "kmh": 64,
+            "plan": null
+          },
+          {
+            "metres": 1750,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 77.91666666667474
+            }
+          },
+          {
+            "metres": 3039,
+            "kmh": 174,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 0
+            }
+          },
+          {
+            "metres": 3027,
+            "kmh": 176,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 68.33333333333378
+            }
+          },
+          {
+            "metres": 3017,
+            "kmh": 174,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 73.95833333333826
+            }
+          },
+          {
+            "metres": 3015,
+            "kmh": 179,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 91.87500000001918
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.29027364627187,
+              "position": {
+                "x": -179.20883178710938,
+                "y": 8.550999641418457,
+                "z": 895.4799194335938
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.003188463104316,
+              "position": {
+                "x": 844.2272338867188,
+                "y": 10.748578071594238,
+                "z": 963.0899658203125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.816245304208,
+              "position": {
+                "x": 1115.28564453125,
+                "y": 13.353728294372559,
+                "z": -397.6802978515625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.46437197817774,
+              "position": {
+                "x": 879.7525634765625,
+                "y": 8.55099868774414,
+                "z": -795.6334838867188
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.22956824628626,
+              "position": {
+                "x": 1435.0499267578125,
+                "y": 8.550999641418457,
+                "z": 12.259421348571777
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.9111271586353,
+              "position": {
+                "x": 247.12657165527344,
+                "y": 8.550999641418457,
+                "z": 167.25401306152344
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 120,
+        "cars": [
+          {
+            "metres": 2058,
+            "kmh": 59,
+            "plan": null
+          },
+          {
+            "metres": 2064,
+            "kmh": 59,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 97.91666666669066
+            }
+          },
+          {
+            "metres": 3809,
+            "kmh": 205,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 7.91666666666685
+            }
+          },
+          {
+            "metres": 3499,
+            "kmh": 67,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 88.3333333333497
+            }
+          },
+          {
+            "metres": 4003,
+            "kmh": 180,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 13.74999999999986
+            }
+          },
+          {
+            "metres": 3495,
+            "kmh": 67,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 111.8750000000351
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.2545702994389,
+              "position": {
+                "x": 49.84670639038086,
+                "y": 8.550999641418457,
+                "z": 1059.169677734375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 66.97487953106926,
+              "position": {
+                "x": 946.5870361328125,
+                "y": 26.551000595092773,
+                "z": 595.827392578125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.76917219158561,
+              "position": {
+                "x": 959.1806640625,
+                "y": 20.68751335144043,
+                "z": -718.9974365234375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 54.80175067998657,
+              "position": {
+                "x": 987.4509887695312,
+                "y": 8.55099868774414,
+                "z": -558.3012084960938
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.2181851481732,
+              "position": {
+                "x": 1133.922119140625,
+                "y": 8.550999641418457,
+                "z": 239.11257934570312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.97477677263558,
+              "position": {
+                "x": -54.31570053100586,
+                "y": 8.550999641418457,
+                "z": -11.813774108886719
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 140,
+        "cars": [
+          {
+            "metres": 2396,
+            "kmh": 59,
+            "plan": null
+          },
+          {
+            "metres": 2402,
+            "kmh": 59,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 117.91666666670658
+            }
+          },
+          {
+            "metres": 4777,
+            "kmh": 177,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 27.916666666665723
+            }
+          },
+          {
+            "metres": 3871,
+            "kmh": 65,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 108.33333333336562
+            }
+          },
+          {
+            "metres": 4989,
+            "kmh": 176,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 33.74999999999873
+            }
+          },
+          {
+            "metres": 3865,
+            "kmh": 65,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 131.8750000000444
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.330262395848294,
+              "position": {
+                "x": 375.3431396484375,
+                "y": 8.550999641418457,
+                "z": 1136.1009521484375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 64.6588544203087,
+              "position": {
+                "x": 1041.811279296875,
+                "y": 24.013355255126953,
+                "z": 237.0093231201172
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.75371899165276,
+              "position": {
+                "x": 755.8306884765625,
+                "y": 8.55099868774414,
+                "z": -1016.4871215820312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.465982191909,
+              "position": {
+                "x": 1286.3944091796875,
+                "y": 8.55099868774414,
+                "z": -371.19927978515625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.22730747167937,
+              "position": {
+                "x": 787.7031860351562,
+                "y": 8.550999641418457,
+                "z": 70.73319244384766
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.93690800499704,
+              "position": {
+                "x": -456.279052734375,
+                "y": 8.550999641418457,
+                "z": -55.3370246887207
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 160,
+        "cars": [
+          {
+            "metres": 2885,
+            "kmh": 140,
+            "plan": null
+          },
+          {
+            "metres": 2705,
+            "kmh": 22,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 137.91666666670557
+            }
+          },
+          {
+            "metres": 5441,
+            "kmh": 46,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 1,
+              "aborts": 0,
+              "age": 47.91666666666459
+            }
+          },
+          {
+            "metres": 4237,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 128.33333333338095
+            }
+          },
+          {
+            "metres": 5505,
+            "kmh": 85,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 53.74999999999759
+            }
+          },
+          {
+            "metres": 4233,
+            "kmh": 62,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 151.8750000000262
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 22.552097502431675,
+              "position": {
+                "x": 628.5199584960938,
+                "y": 8.550999641418457,
+                "z": 1293.997314453125
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.05823212367111,
+              "position": {
+                "x": 1124.380859375,
+                "y": 8.551012992858887,
+                "z": -116.55433654785156
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.76984552641181,
+              "position": {
+                "x": 654.3145751953125,
+                "y": 8.55099868774414,
+                "z": -1004.3406982421875
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.50605005015413,
+              "position": {
+                "x": 1489.1204833984375,
+                "y": 8.55099868774414,
+                "z": -152.2258758544922
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.23957093980367,
+              "position": {
+                "x": 548.7616577148438,
+                "y": 8.550999641418457,
+                "z": 47.29889678955078
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.93260933195278,
+              "position": {
+                "x": -536.2760009765625,
+                "y": 8.550999641418457,
+                "z": 249.87525939941406
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 180,
+        "cars": [
+          {
+            "metres": 3983,
+            "kmh": 190,
+            "plan": null
+          },
+          {
+            "metres": 3023,
+            "kmh": 62,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 157.91666666668738
+            }
+          },
+          {
+            "metres": 5987,
+            "kmh": 36,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 4.375000000000007
+            }
+          },
+          {
+            "metres": 4585,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 148.33333333336276
+            }
+          },
+          {
+            "metres": 6047,
+            "kmh": 37,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 73.75000000000476
+            }
+          },
+          {
+            "metres": 4581,
+            "kmh": 62,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 171.87500000000801
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 62.22569468361408,
+              "position": {
+                "x": 816.0797729492188,
+                "y": 8.550999641418457,
+                "z": 1052.5472412109375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 61.97776036263392,
+              "position": {
+                "x": 1091.1180419921875,
+                "y": 20.6769962310791,
+                "z": -458.7605285644531
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.79618195964906,
+              "position": {
+                "x": 900.5934448242188,
+                "y": 8.55099868774414,
+                "z": -756.3375854492188
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.451680776374,
+              "position": {
+                "x": 1309.2633056640625,
+                "y": 8.55099868774414,
+                "z": 162.01516723632812
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.22082563327366,
+              "position": {
+                "x": 208.8668212890625,
+                "y": 8.550999641418457,
+                "z": 155.61062622070312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.87045405266485,
+              "position": {
+                "x": -638.2361450195312,
+                "y": 8.550999641418457,
+                "z": 640.1544799804688
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 200,
+        "cars": [
+          {
+            "metres": 4933,
+            "kmh": 96,
+            "plan": null
+          },
+          {
+            "metres": 3375,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 177.9166666666692
+            }
+          },
+          {
+            "metres": 6445,
+            "kmh": 164,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 24.374999999999257
+            }
+          },
+          {
+            "metres": 4941,
+            "kmh": 96,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 168.33333333334457
+            }
+          },
+          {
+            "metres": 6609,
+            "kmh": 69,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 93.75000000002068
+            }
+          },
+          {
+            "metres": 4937,
+            "kmh": 96,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 191.87499999998983
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.21908742972616,
+              "position": {
+                "x": 924.3402099609375,
+                "y": 26.55220603942871,
+                "z": 718.2907104492188
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 96.21928683456217,
+              "position": {
+                "x": 918.1727905273438,
+                "y": 13.716365814208984,
+                "z": -765.4170532226562
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 42.012683319998935,
+              "position": {
+                "x": 998.68896484375,
+                "y": 8.55099868774414,
+                "z": -543.6807250976562
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4475433081721,
+              "position": {
+                "x": 969.212158203125,
+                "y": 8.55099868774414,
+                "z": 189.9121856689453
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.1782155228672,
+              "position": {
+                "x": -76.84146881103516,
+                "y": 8.550999641418457,
+                "z": -24.178829193115234
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.95854969525318,
+              "position": {
+                "x": -472.07794189453125,
+                "y": 8.550999641418457,
+                "z": 876.94775390625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 220,
+        "cars": [
+          {
+            "metres": 5379,
+            "kmh": 54,
+            "plan": null
+          },
+          {
+            "metres": 3723,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 197.916666666651
+            }
+          },
+          {
+            "metres": 6989,
+            "kmh": 166,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 44.374999999998124
+            }
+          },
+          {
+            "metres": 5397,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 188.33333333332638
+            }
+          },
+          {
+            "metres": 7271,
+            "kmh": 150,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 113.7500000000366
+            }
+          },
+          {
+            "metres": 5389,
+            "kmh": 63,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 211.87499999997164
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.23898856635995,
+              "position": {
+                "x": 1010.1131591796875,
+                "y": 26.55101203918457,
+                "z": 380.3397216796875
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.05219378283017,
+              "position": {
+                "x": 644.7808837890625,
+                "y": 8.550997734069824,
+                "z": -1065.152099609375
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.72980705659184,
+              "position": {
+                "x": 1288.961181640625,
+                "y": 8.55099868774414,
+                "z": -359.1281433105469
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4541585349357,
+              "position": {
+                "x": 704.596923828125,
+                "y": 8.55099868774414,
+                "z": -4.730760097503662
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.20562972004721,
+              "position": {
+                "x": -464.410888671875,
+                "y": 8.550999641418457,
+                "z": -62.16905212402344
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 46.12938660445175,
+              "position": {
+                "x": -76.03064727783203,
+                "y": 8.550999641418457,
+                "z": 898.16845703125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 240,
+        "cars": [
+          {
+            "metres": 5775,
+            "kmh": 124,
+            "plan": null
+          },
+          {
+            "metres": 4073,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 217.9166666666328
+            }
+          },
+          {
+            "metres": 7804,
+            "kmh": 71,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 64.3749999999973
+            }
+          },
+          {
+            "metres": 5713,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 208.3333333333082
+            }
+          },
+          {
+            "metres": 7904,
+            "kmh": 82,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 133.7500000000427
+            }
+          },
+          {
+            "metres": 5707,
+            "kmh": 62,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 231.87499999995345
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.26386548389567,
+              "position": {
+                "x": 1109.0494384765625,
+                "y": 8.565738677978516,
+                "z": 47.10239791870117
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.058472039344345,
+              "position": {
+                "x": 814.7518310546875,
+                "y": 8.550997734069824,
+                "z": -885.5142822265625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.72272248518038,
+              "position": {
+                "x": 1482.9970703125,
+                "y": 8.55099868774414,
+                "z": -148.11875915527344
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4762721827781,
+              "position": {
+                "x": 435.1497497558594,
+                "y": 8.55099868774414,
+                "z": 159.77523803710938
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.22992447940112,
+              "position": {
+                "x": -541.31982421875,
+                "y": 8.550999641418457,
+                "z": 222.9945526123047
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.95761384540282,
+              "position": {
+                "x": 219.25608825683594,
+                "y": 8.550999641418457,
+                "z": 1094.913818359375
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 260,
+        "cars": [
+          {
+            "metres": 6179,
+            "kmh": 78,
+            "plan": null
+          },
+          {
+            "metres": 4429,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 237.91666666661462
+            }
+          },
+          {
+            "metres": 8216,
+            "kmh": 82,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 84.37500000001322
+            }
+          },
+          {
+            "metres": 6015,
+            "kmh": 55,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 228.33333333329
+            }
+          },
+          {
+            "metres": 8408,
+            "kmh": 125,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "follow",
+              "reason": "following",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 153.7500000000245
+            }
+          },
+          {
+            "metres": 6007,
+            "kmh": 39,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 251.87499999993526
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.28098043303272,
+              "position": {
+                "x": 1130.54638671875,
+                "y": 8.621296882629395,
+                "z": -308.11529541015625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 56.25351771868298,
+              "position": {
+                "x": 963.6665649414062,
+                "y": 8.550997734069824,
+                "z": -636.397705078125
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.72267184383576,
+              "position": {
+                "x": 1309.6326904296875,
+                "y": 8.55099868774414,
+                "z": 153.83688354492188
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 56.605487476864376,
+              "position": {
+                "x": 74.22663116455078,
+                "y": 8.55099868774414,
+                "z": 122.9973373413086
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.25286473642669,
+              "position": {
+                "x": -635.7171020507812,
+                "y": 8.550999641418457,
+                "z": 599.1130981445312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.90973048269501,
+              "position": {
+                "x": 588.2005004882812,
+                "y": 8.550999641418457,
+                "z": 1245.839599609375
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 280,
+        "cars": [
+          {
+            "metres": 6717,
+            "kmh": 63,
+            "plan": null
+          },
+          {
+            "metres": 4785,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 257.9166666665964
+            }
+          },
+          {
+            "metres": 8754,
+            "kmh": 51,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 104.37500000002913
+            }
+          },
+          {
+            "metres": 6315,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 8.333333333333501
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 82,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 6309,
+            "kmh": 62,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 271.87499999991707
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.35680190173193,
+              "position": {
+                "x": 1012.2064208984375,
+                "y": 26.360334396362305,
+                "z": -641.8058471679688
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.05299322282083,
+              "position": {
+                "x": 1161.6904296875,
+                "y": 8.550997734069824,
+                "z": -484.806640625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.81136384742183,
+              "position": {
+                "x": 983.5956420898438,
+                "y": 8.55099868774414,
+                "z": 191.27777099609375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.47951527746642,
+              "position": {
+                "x": -204.49746704101562,
+                "y": 8.55099868774414,
+                "z": -40.888023376464844
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.20679864318699,
+              "position": {
+                "x": -547.4384765625,
+                "y": 8.550999641418457,
+                "z": 877.9719848632812
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.92999712975964,
+              "position": {
+                "x": 807.9737548828125,
+                "y": 8.550999641418457,
+                "z": 1055.0028076171875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 300,
+        "cars": [
+          {
+            "metres": 7517,
+            "kmh": 152,
+            "plan": null
+          },
+          {
+            "metres": 5137,
+            "kmh": 64,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 277.91666666657824
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 6651,
+            "kmh": 45,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 28.333333333332366
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 6645,
+            "kmh": 46,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 291.8749999998989
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 64.2765286656275,
+              "position": {
+                "x": 815.5484619140625,
+                "y": 8.55099868774414,
+                "z": -933.0247192382812
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 44.62345793677948,
+              "position": {
+                "x": 1417.2581787109375,
+                "y": 8.550997734069824,
+                "z": -278.1242370605469
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 29.656002180505805,
+              "position": {
+                "x": 728.7235107421875,
+                "y": 8.55099868774414,
+                "z": -2.4306604862213135
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.49175183604834,
+              "position": {
+                "x": -520.5966186523438,
+                "y": 8.55099868774414,
+                "z": -30.847003936767578
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.24489833099223,
+              "position": {
+                "x": -157.853271484375,
+                "y": 8.550999641418457,
+                "z": 896.3494262695312
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.9314085780618,
+              "position": {
+                "x": 929.3538818359375,
+                "y": 26.551008224487305,
+                "z": 668.95556640625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 320,
+        "cars": [
+          {
+            "metres": 8014,
+            "kmh": 53,
+            "plan": null
+          },
+          {
+            "metres": 5451,
+            "kmh": 27,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 297.91666666656005
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 6967,
+            "kmh": 67,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 48.33333333333123
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 6963,
+            "kmh": 67,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 311.8749999998807
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 27.70697772383283,
+              "position": {
+                "x": 613.3057250976562,
+                "y": 8.55099868774414,
+                "z": -1024.0247802734375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 67.0051985205345,
+              "position": {
+                "x": 1449.9261474609375,
+                "y": 8.550997734069824,
+                "z": -1.5519298315048218
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.52808911434394,
+              "position": {
+                "x": 483.60601806640625,
+                "y": 8.55099868774414,
+                "z": 124.13152313232422
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4916716998001,
+              "position": {
+                "x": -545.6101684570312,
+                "y": 8.55099868774414,
+                "z": 343.0848388671875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.20569164492306,
+              "position": {
+                "x": 118.25709533691406,
+                "y": 8.550999641418457,
+                "z": 1087.9287109375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.94495871333946,
+              "position": {
+                "x": 1031.1944580078125,
+                "y": 26.030603408813477,
+                "z": 276.7791442871094
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 340,
+        "cars": [
+          {
+            "metres": 8586,
+            "kmh": 94,
+            "plan": null
+          },
+          {
+            "metres": 5761,
+            "kmh": 59,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 317.91666666654186
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 7409,
+            "kmh": 103,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 68.33333333333378
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 7405,
+            "kmh": 103,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 331.8749999998625
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.25308050520045,
+              "position": {
+                "x": 837.77685546875,
+                "y": 8.55099868774414,
+                "z": -842.858642578125
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 103.67948315780363,
+              "position": {
+                "x": 1106.2755126953125,
+                "y": 8.550997734069824,
+                "z": 243.9090576171875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.80840198060896,
+              "position": {
+                "x": 140.24578857421875,
+                "y": 8.55099868774414,
+                "z": 140.80223083496094
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.47341907126683,
+              "position": {
+                "x": -628.9537353515625,
+                "y": 8.55099868774414,
+                "z": 700.2584228515625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.21603164608803,
+              "position": {
+                "x": 491.6400146484375,
+                "y": 8.550999641418457,
+                "z": 1187.5355224609375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.94290495196569,
+              "position": {
+                "x": 1124.796875,
+                "y": 8.55099868774414,
+                "z": -122.68709564208984
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 360,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6047,
+            "kmh": 26,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 337.91666666652367
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 7880,
+            "kmh": 38,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 88.3333333333497
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 7872,
+            "kmh": 37,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 351.8749999998443
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 24.74346001088509,
+              "position": {
+                "x": 942.7709350585938,
+                "y": 8.55099868774414,
+                "z": -610.584716796875
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 38.12053471425497,
+              "position": {
+                "x": 718.8922729492188,
+                "y": 8.550997734069824,
+                "z": -0.6804677248001099
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 64.78885895113423,
+              "position": {
+                "x": -115.36934661865234,
+                "y": 8.55099868774414,
+                "z": -32.40565872192383
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.4873217014818,
+              "position": {
+                "x": -438.14324951171875,
+                "y": 8.55099868774414,
+                "z": 878.395263671875
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.18269246866018,
+              "position": {
+                "x": 744.2832641601562,
+                "y": 8.550999641418457,
+                "z": 1190.0579833984375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.93768423045073,
+              "position": {
+                "x": 1068.23974609375,
+                "y": 25.461748123168945,
+                "z": -519.6178588867188
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 380,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6327,
+            "kmh": 59,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 357.9166666665055
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 8198,
+            "kmh": 60,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 108.33333333336562
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 8192,
+            "kmh": 60,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 371.8749999998261
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 59.255763757466056,
+              "position": {
+                "x": 1167.7398681640625,
+                "y": 8.55099868774414,
+                "z": -472.0384826660156
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 59.94949483873421,
+              "position": {
+                "x": 476.3897399902344,
+                "y": 8.550997734069824,
+                "z": 137.98948669433594
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 1.128023504278688e-44,
+              "position": {
+                "x": -190.7261505126953,
+                "y": 8.55099868774414,
+                "z": -45.7298583984375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 42.21787122824856,
+              "position": {
+                "x": -73.74488830566406,
+                "y": 8.55099868774414,
+                "z": 899.1499633789062
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.17545220992874,
+              "position": {
+                "x": 894.26904296875,
+                "y": 24.19342613220215,
+                "z": 831.16650390625
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 72.95218803950907,
+              "position": {
+                "x": 848.0776977539062,
+                "y": 8.550983428955078,
+                "z": -866.7271118164062
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      },
+      {
+        "time": 400,
+        "cars": [
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": null
+          },
+          {
+            "metres": 6647,
+            "kmh": 45,
+            "plan": {
+              "personality": "NOVA",
+              "style": "코너 강자",
+              "mode": "follow",
+              "reason": "too-close",
+              "homeLane": -2.2,
+              "targetLane": -2.2,
+              "passes": 0,
+              "attempts": 1,
+              "aborts": 1,
+              "age": 377.9166666664873
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "RAVEN",
+              "style": "공격형",
+              "mode": "changing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": 2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 0,
+              "age": 0.7
+            }
+          },
+          {
+            "metres": 8540,
+            "kmh": 62,
+            "plan": {
+              "personality": "BLAZE",
+              "style": "직선 강자",
+              "mode": "passing",
+              "reason": "defer-return",
+              "homeLane": -2.2,
+              "targetLane": 2.7492767180421094,
+              "passes": 1,
+              "attempts": 2,
+              "aborts": 0,
+              "age": 128.33333333338095
+            }
+          },
+          {
+            "metres": 8902,
+            "kmh": 0,
+            "plan": {
+              "personality": "MIST",
+              "style": "수비형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": 2.2,
+              "targetLane": -2.2,
+              "passes": 1,
+              "attempts": 3,
+              "aborts": 1,
+              "age": 0.5416666666666672
+            }
+          },
+          {
+            "metres": 8534,
+            "kmh": 62,
+            "plan": {
+              "personality": "LUNA",
+              "style": "균형형",
+              "mode": "passing",
+              "reason": "overtake",
+              "homeLane": -2.2,
+              "targetLane": 2.2,
+              "passes": 0,
+              "attempts": 2,
+              "aborts": 1,
+              "age": 391.8749999998079
+            }
+          }
+        ],
+        "traffic": {
+          "count": 6,
+          "vehicles": [
+            {
+              "name": "TRAFFIC 1",
+              "kmh": 43.72039938144424,
+              "position": {
+                "x": 1411.6307373046875,
+                "y": 8.55099868774414,
+                "z": -272.825439453125
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 2",
+              "kmh": 62.05860678491318,
+              "position": {
+                "x": 144.9393768310547,
+                "y": 8.550997734069824,
+                "z": 148.75021362304688
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 3",
+              "kmh": 1.128023504278688e-44,
+              "position": {
+                "x": -190.7261505126953,
+                "y": 8.55099868774414,
+                "z": -45.7298583984375
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 4",
+              "kmh": 67.49392464443781,
+              "position": {
+                "x": 192.53045654296875,
+                "y": 8.55099868774414,
+                "z": 1093.1334228515625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            },
+            {
+              "name": "TRAFFIC 5",
+              "kmh": 70.25226517861734,
+              "position": {
+                "x": 990.6260986328125,
+                "y": 26.551008224487305,
+                "z": 453.1821594238281
+              },
+              "contacts": 4,
+              "lane": -3.2
+            },
+            {
+              "name": "TRAFFIC 6",
+              "kmh": 42.002062614446444,
+              "position": {
+                "x": 621.1784057617188,
+                "y": 8.55099868774414,
+                "z": -1033.2916259765625
+              },
+              "contacts": 4,
+              "lane": 3.2
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

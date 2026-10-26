@@ -1,0 +1,94 @@
+{
+  "samples": 16,
+  "calls": 868,
+  "triangles": 1279323,
+  "cpuMean": 15.81249999254942,
+  "gpuMean": 11.173166562499999,
+  "gpuMax": 17.021145,
+  "buckets": [
+    {
+      "pass": "shadow",
+      "category": "world",
+      "calls": 37,
+      "triangles": 28887,
+      "cpuMean": 0.3124999925494194
+    },
+    {
+      "pass": "shadow",
+      "category": "ground",
+      "calls": 9,
+      "triangles": 1252,
+      "cpuMean": 0.0625000074505806
+    },
+    {
+      "pass": "shadow",
+      "category": "vegetation",
+      "calls": 10,
+      "triangles": 7056,
+      "cpuMean": 0.06875000149011612
+    },
+    {
+      "pass": "shadow",
+      "category": "road",
+      "calls": 2,
+      "triangles": 240,
+      "cpuMean": 0.02499999850988388
+    },
+    {
+      "pass": "shadow",
+      "category": "vehicle",
+      "calls": 47,
+      "triangles": 146010,
+      "cpuMean": 0.2812500111758709
+    },
+    {
+      "pass": "main",
+      "category": "world",
+      "calls": 308,
+      "triangles": 116634,
+      "cpuMean": 2.768750000745058
+    },
+    {
+      "pass": "main",
+      "category": "ground",
+      "calls": 31,
+      "triangles": 6380,
+      "cpuMean": 0.24375000596046448
+    },
+    {
+      "pass": "main",
+      "category": "vegetation",
+      "calls": 127,
+      "triangles": 103176,
+      "cpuMean": 0.9562499970197678
+    },
+    {
+      "pass": "main",
+      "category": "road",
+      "calls": 11,
+      "triangles": 1408,
+      "cpuMean": 0.06875000521540642
+    },
+    {
+      "pass": "main",
+      "category": "sky",
+      "calls": 1,
+      "triangles": 12,
+      "cpuMean": 0.02500000596046448
+    },
+    {
+      "pass": "main",
+      "category": "vehicle",
+      "calls": 284,
+      "triangles": 868076,
+      "cpuMean": 4.074999999254942
+    },
+    {
+      "pass": "main",
+      "category": "other",
+      "calls": 1,
+      "triangles": 192,
+      "cpuMean": 0.03750000149011612
+    }
+  ]
+}

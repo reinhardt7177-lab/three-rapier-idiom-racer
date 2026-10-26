@@ -1,0 +1,248 @@
+{
+  "label": "after",
+  "trackId": "yeosu",
+  "simulatedSeconds": 60,
+  "wallMs": 10539.3926,
+  "wallMsPer60HzFrame": 2.927609055555555,
+  "result": {
+    "track": "yeosu",
+    "raceMode": "grid",
+    "difficulty": "normal",
+    "weather": "clear",
+    "traffic": {
+      "count": 6,
+      "vehicles": [
+        {
+          "name": "TRAFFIC 1",
+          "kmh": 54.81795240497626,
+          "position": {
+            "x": -645.3488159179688,
+            "y": 8.550999641418457,
+            "z": 659.8133544921875
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 2",
+          "kmh": 62.04736044312329,
+          "position": {
+            "x": 427.9736633300781,
+            "y": 8.550999641418457,
+            "z": 1151.631591796875
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 3",
+          "kmh": 64.80292191310635,
+          "position": {
+            "x": 1029.5660400390625,
+            "y": 26.545120239257812,
+            "z": 307.622802734375
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 4",
+          "kmh": 67.51587984378214,
+          "position": {
+            "x": 814.72119140625,
+            "y": 8.55099868774414,
+            "z": -922.7708740234375
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 5",
+          "kmh": 70.20534169368673,
+          "position": {
+            "x": 1095.8563232421875,
+            "y": 8.550999641418457,
+            "z": -517.1238403320312
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 6",
+          "kmh": 72.92050370476485,
+          "position": {
+            "x": 854.1762084960938,
+            "y": 8.550999641418457,
+            "z": 119.48036193847656
+          },
+          "contacts": 4,
+          "lane": 3.2
+        }
+      ]
+    },
+    "seconds": 60,
+    "cars": [
+      {
+        "id": "supra",
+        "name": "YOU",
+        "player": true,
+        "place": 6,
+        "finish": null,
+        "metres": 1354,
+        "lowest": 0.51,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 2.77,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "name": "NOVA",
+        "player": false,
+        "place": 2,
+        "finish": null,
+        "metres": 1610,
+        "lowest": 0.5,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 3.91,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "NOVA",
+          "style": "코너 강자",
+          "mode": "follow",
+          "reason": "following",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 1,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 33.94999999999872,
+          "tactic": "pace",
+          "boosts": 5,
+          "draftSetups": 0
+        }
+      },
+      {
+        "id": "mustang",
+        "name": "RAVEN",
+        "player": false,
+        "place": 4,
+        "finish": null,
+        "metres": 1442,
+        "lowest": 0.52,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 3.71,
+        "draftSeconds": 0.17,
+        "plan": {
+          "personality": "RAVEN",
+          "style": "공격형",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 0,
+          "attempts": 7,
+          "aborts": 0,
+          "age": 0.6166666666666669,
+          "tactic": "boost-attack",
+          "boosts": 8,
+          "draftSetups": 3
+        }
+      },
+      {
+        "id": "porsche911",
+        "name": "BLAZE",
+        "player": false,
+        "place": 5,
+        "finish": null,
+        "metres": 1384,
+        "lowest": 0.51,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 3.92,
+        "draftSeconds": 9.15,
+        "plan": {
+          "personality": "BLAZE",
+          "style": "직선 강자",
+          "mode": "passing",
+          "reason": "slow-ahead",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 5,
+          "aborts": 0,
+          "age": 16.65833333333303,
+          "tactic": "boost-attack",
+          "boosts": 6,
+          "draftSetups": 3
+        }
+      },
+      {
+        "id": "gtr",
+        "name": "MIST",
+        "player": false,
+        "place": 1,
+        "finish": null,
+        "metres": 1694,
+        "lowest": 0.51,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 3.57,
+        "draftSeconds": 3.2,
+        "plan": {
+          "personality": "MIST",
+          "style": "수비형",
+          "mode": "follow",
+          "reason": "following",
+          "homeLane": 2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 1,
+          "aborts": 1,
+          "age": 53.94999999999758,
+          "tactic": "pace",
+          "boosts": 5,
+          "draftSetups": 5
+        }
+      },
+      {
+        "id": "rx7",
+        "name": "LUNA",
+        "player": false,
+        "place": 3,
+        "finish": null,
+        "metres": 1526,
+        "lowest": 0.48,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 4.02,
+        "draftSeconds": 2.99,
+        "plan": {
+          "personality": "LUNA",
+          "style": "균형형",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 0,
+          "attempts": 5,
+          "aborts": 0,
+          "age": 3.5333333333333234,
+          "tactic": "pace",
+          "boosts": 6,
+          "draftSetups": 1
+        }
+      }
+    ]
+  },
+  "note": "Local CPU-only bounded workload, includes startup; unfinished cars are expected at 60s. No browser/GPU or race-completion claim."
+}

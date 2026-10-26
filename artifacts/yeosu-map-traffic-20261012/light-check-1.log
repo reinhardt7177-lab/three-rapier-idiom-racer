@@ -1,0 +1,30 @@
+✖ rival pursuit aims the required wheel angle without saturation and still brakes for civilian traffic (4.7304ms)
+✔ civilian visual wheels turn/rotate with physics and budgets stay bounded (14.1761ms)
+✔ Yeosu uses verifiable OSM road coordinates and a single connected motor-road loop (30.9989ms)
+✔ new geographic course isolates times and ghosts while preserving legacy earned medals (1.9064ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1373.2617
+
+✖ failing tests:
+
+test at scripts\traffic-controls.test.mjs:11:1
+✖ rival pursuit aims the required wheel angle without saturation and still brakes for civilian traffic (4.7304ms)
+  AssertionError [ERR_ASSERTION]: smooth right lane correction
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/traffic-controls.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

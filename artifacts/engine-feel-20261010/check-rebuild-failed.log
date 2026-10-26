@@ -1,0 +1,772 @@
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=1 scripts/engine-feel.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+✔ eight original voices have distinct spectra and pitch follows actual RPM, not road speed (2.2064ms)
+✔ voice changes reset response, pause holds RPM, and recovery clears stale shift history (0.618ms)
+✔ vehicle pedal response, shift interruption and engine braking really reach the drivetrain (2.5114ms)
+✔ Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources (12.0187ms)
+[
+  {
+    id: 'supra',
+    time100: 4.016666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.596893310546875
+  },
+  {
+    id: 'slk',
+    time100: 4.916666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6158447265625
+  },
+  {
+    id: 'mustang',
+    time100: 4.183333333333334,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6285339355468835
+  },
+  {
+    id: 'porsche911',
+    time100: 3.8833333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.941973876953128
+  },
+  {
+    id: 'gtr',
+    time100: 4,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 2.8290344238281193
+  },
+  {
+    id: 'rx7',
+    time100: 3.6416666666666666,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.9134094238281136
+  },
+  {
+    id: 'm3',
+    time100: 4.233333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.583599853515622
+  },
+  {
+    id: 'huracan',
+    time100: 3.125,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 3.776660156250003
+  }
+]
+✔ eight tuned vehicles accelerate, change gears and coast with stable supported chassis (422.4292ms)
+✔ RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart (1.5013ms)
+✔ launch smoke uses only the rear contact patches below drift speed and stops in the air (4.3966ms)
+✔ smoke follows actual wheel contacts, stays bounded and clears on reset or quality change (15.498ms)
+✔ same-speed acceleration and braking produce distinct bounded camera response at every frame rate (6.9116ms)
+✔ audio load and boost are distinct at identical road speed (0.9074ms)
+✔ stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration (0.5658ms)
+✔ actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis (1.5853ms)
+{"push":1,"braking":1,"scrub":0.9999999028585778}
+✔ real Rapier drive/brake/corner signals do not change the simulation trajectory (213.6863ms)
+✔ tire trails have a bounded pool, fade, and never bridge reset/airborne gaps (9.3471ms)
+✔ load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag (0.3772ms)
+✔ pending audio resume cannot undo mute or reopen a disposed graph (1.1823ms)
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 843.48701171875,
+  distance: 843.4264373779297
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 765.2173974609376,
+  distance: 765.1571350097656
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 840.7089739372468,
+  distance: 840.6544036865234
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 854.0896362304687,
+  distance: 854.0217132568359
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 861.81134765625,
+  distance: 861.7566528320312
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 876.3626989746094,
+  distance: 876.2820434570312
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 816.6609045410156,
+  distance: 816.5952758789062
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 974.0006103515624,
+  distance: 973.9185791015625
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (26.781ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (230.7683ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (169.7156ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (99.8319ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (98.7649ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (90.4434ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (79.2917ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (72.387ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (68.8248ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (51.0075ms)
+✔ actual showroom wall occlusion is removed for rear and diagonal vehicle views (3.6659ms)
+✔ front and in-room rear views restore the real backdrop (1.2592ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (0.8915ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (0.681ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.3496ms)
+✔ typing and Space on menu buttons remain native UI actions (0.1362ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.1693ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.2297ms)
+{
+  stationaryLeadHits: 0,
+  minimumGap: 6.1886444091796875,
+  rearKmh: 1.0089348943138683e-44
+}
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262178421020508,
+  penetration: 0.005001296137265854,
+  retreat: 21.20028481288783,
+  escapeReverse: false,
+  restartKmh: 7.389839626266341
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (381.3908ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (148.2111ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.016666666666667,
+  stopping: 44.619415283203125,
+  stopTime: 2.916666666666659,
+  rolling: 83.4607566833496,
+  distance: 83.45510864257812,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 4,
+  peakFront: 20.582582473754883,
+  front: {
+    x: 0.02341809868812561,
+    y: 0.5410052537918091,
+    z: 60.16099548339844
+  },
+  rear: {
+    x: 0.005400537513196468,
+    y: 0.5260055065155029,
+    z: 55.650970458984375
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.441370010375977
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (250.6646ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (13.3918ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (114.5044ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (33.2158ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (5.1908ms)
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (7.041ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (8.1582ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (9.3645ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (363.2879ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (7.9826ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (5.4264ms)
+✔ recovered route is a continuous 6.8 km loop covering the original districts (1.7363ms)
+✔ finish crossing advances progress; recovery jumps cannot award a lap (0.4484ms)
+Recovered-map traffic: [
+  {
+    metres: 6910,
+    kmh: 0,
+    contacts: 4,
+    index: 52,
+    position: {
+      x: 679.2164916992188,
+      y: 7.9930500984191895,
+      z: -409.74884033203125
+    },
+    rotation: {
+      x: -0.0052352165803313255,
+      y: 0.3239379823207855,
+      z: 0.0009484427282586694,
+      w: 0.9460633397102356
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6842,
+    kmh: 128,
+    contacts: 4,
+    index: 26,
+    position: {
+      x: 640.3065185546875,
+      y: 7.4957733154296875,
+      z: -467.20709228515625
+    },
+    rotation: {
+      x: 0.0011318387696519494,
+      y: 0.3267305791378021,
+      z: -0.0003993492864537984,
+      w: 0.9451168179512024
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6904,
+    kmh: 0,
+    contacts: 4,
+    index: 46,
+    position: {
+      x: 671.016845703125,
+      y: 7.842749118804932,
+      z: -423.3453063964844
+    },
+    rotation: {
+      x: -0.004911739379167557,
+      y: 0.3389388918876648,
+      z: 0.0009827256435528398,
+      w: 0.9407950639724731
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6847,
+    kmh: 123,
+    contacts: 4,
+    index: 24,
+    position: { x: 637.52880859375, y: 7.513299942016602, z: -470.7549133300781 },
+    rotation: {
+      x: 0.0019881748594343662,
+      y: 0.3410642147064209,
+      z: -0.0006883933092467487,
+      w: 0.9400376677513123
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6902,
+    kmh: 0,
+    contacts: 4,
+    index: 42,
+    position: {
+      x: 665.1519165039062,
+      y: 7.731919288635254,
+      z: -432.7767028808594
+    },
+    rotation: {
+      x: -0.004381480161100626,
+      y: 0.3510478436946869,
+      z: 0.0009182185749523342,
+      w: 0.9363468289375305
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6852,
+    kmh: 116,
+    contacts: 4,
+    index: 22,
+    position: {
+      x: 634.4554443359375,
+      y: 7.516513824462891,
+      z: -474.6608581542969
+    },
+    rotation: {
+      x: 0.0030004149302840233,
+      y: 0.3508366048336029,
+      z: -0.0010397109435871243,
+      w: 0.9364314079284668
+    },
+    region: 'Harbor'
+  }
+]
+Additional full-course cars [
+  { id: 'm3', progress: 6842.211776361137, contacts: 4 },
+  { id: 'huracan', progress: 6904.557115109743, contacts: 4 }
+]
+✔ six shared-world vehicles remain grounded and drive along recovered geometry (20706.6873ms)
+✔ M3 and Huracán complete the recovered full course with physical road support (9521.9454ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (8.1308ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (0.8997ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (14.0721ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (0.607ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (1.9729ms)
+✖ real-map mountain seams do not restore the previous large vertical and orientation impulses (7480.8843ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (53.4989ms)
+✔ grip changes the actual constant-input corner trajectory (112.7214ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (43.2106ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (45.4089ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (132.6859ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.5699ms)
+{
+  id: 'supra',
+  kick: 0.35,
+  before: {
+    peak: 0.011359874107432439,
+    settled: 0.00023280453977908856,
+    lost: 0,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'supra',
+  kick: 1,
+  before: {
+    peak: 0.041774566338973175,
+    settled: 0.0004438312869355933,
+    lost: 10,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 0.35,
+  before: { peak: 0.010584552719215016, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 1,
+  before: { peak: 0.038400968317986096, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 0.35,
+  before: { peak: 0.011309360099982676, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 1,
+  before: {
+    peak: 0.046202623687088044,
+    settled: 0.0004894078214374062,
+    lost: 18,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{ id: 'supra', heaveMetres: 0, kmh: 224.08478393554688 }
+{ id: 'slk', heaveMetres: 0, kmh: 218.3609619140625 }
+{ id: 'mustang', heaveMetres: 0, kmh: 225.369580078125 }
+{ fps: 30, cameraHeave: 0.0056117077319504105, roadHeave: 0.03 }
+{ fps: 60, cameraHeave: 0.005628560567466856, roadHeave: 0.03 }
+{ fps: 120, cameraHeave: 0.005606701048515461, roadHeave: 0.03 }
+✔ all three cars reduce real rebound and retain contact recovery under a strong impact (792.8085ms)
+✔ flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave (475.8443ms)
+✔ chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag (18.2622ms)
+✔ stabilized chase follows steep grades, holds its paused frame and snaps after road recovery (8.2537ms)
+{
+  id: 'supra',
+  recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+  recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+}
+{
+  id: 'slk',
+  recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+  recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+}
+{
+  id: 'mustang',
+  recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+  recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+}
+✔ stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts (28.1718ms)
+✔ road recovery aligns to the slope and avoids a half-metre suspension drop in all cars (509.5514ms)
+✔ sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch (1.9881ms)
+✔ recovery preserves spent boost and resets velocities; a new race refills it (83.2467ms)
+✔ recovery rejects an empty-looking point in approaching traffic and never awards progress (1.0145ms)
+✔ recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit (110.8465ms)
+✔ side-by-side solver separation protects the authored wide shoulders in all cars (257.453ms)
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (7.962ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (1.9902ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (18.7469ms)
+✔ a committed passing lane is reserved against a second closing rival (0.3777ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (1.2417ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (0.7378ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.4953ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (0.9884ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0173590183258057,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7573285102844238,
+    y: 0.5260054469108582,
+    z: 174.8102569580078
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 264.5,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 264.4916666666667,
+      index: 26,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 239.2,
+      index: 42,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 253.41666666666666,
+      index: 39,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6842,
+      finish: 233.125,
+      index: 51,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 237.33333333333334,
+      index: 43,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 229.975,
+      index: 53,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (76.3917ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (478.4998ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (362.8752ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (177.4ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (170.5685ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (188.0177ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (106.0242ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (109.4705ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (158.9903ms)
+✔ five planned rivals and a slower driven player complete the recovered 6.84 km course (62853.7493ms)
+✔ explicit camera choice is honored while an unset choice respects reduced motion (3.0648ms)
+✔ 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS (37.8268ms)
+✔ reduced motion fixes FOV and reset snaps to the new position (0.5777ms)
+✔ full boost and acceleration stay within nine metres even after prolonged 300 km/h travel (23.7752ms)
+✔ audio defaults to silent, clamps volume and fails safely without Web Audio (11.0032ms)
+{"kmh":20,"oldRadius":6.418,"newRadius":5.18}
+{"kmh":40,"oldRadius":13.989,"newRadius":9.627}
+{"kmh":60,"oldRadius":23.014,"newRadius":20.444}
+✔ Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear (1.9577ms)
+✔ rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded (1.5373ms)
+✔ measured 20/40/60 km/h turns improve over baseline without yaw or position writes (669.9842ms)
+✔ 230 km/h full steering remains grounded and upright without rotating the body directly (177.2849ms)
+✔ reversing changes yaw response but not the actual front-wheel steering direction (24.0905ms)
+✔ wheel roll follows forward/reverse distance with the correct +X axle sign (168.36ms)
+✔ wheel suspension, steering and unwrapped spin interpolate on the same clock as the body (46.2871ms)
+✔ reset clears steering, handbrake state and rear grip immediately (19.8157ms)
+✔ responsive road steering improves brief input while retaining high-speed and full-lock limits (0.3658ms)
+✔ road rear drive and front-biased braking produce physical axle pitch (34.4898ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (38.8214ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (14.9792ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (12.8165ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (18.1042ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (13.7563ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (16.9961ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (11.6231ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (10.073ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (9.1867ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (6.5983ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (8.8403ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (6.0117ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (6.4106ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (5.9595ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (6.8669ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (8.6099ms)
+✔ right/left bends follow world heading, including the circular route seam (3.628ms)
+✔ bend detection uses metres and survives a fourfold change in point density (2.222ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (3.8515ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (9.1801ms)
+✔ isolated heading errors never become a persistent corner warning (1.0446ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (6.3259ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (1.1205ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (20.2854ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (2.851ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (1.1949ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (2.2502ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (0.4311ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (163.5102ms)
+ℹ tests 136
+ℹ suites 0
+ℹ pass 135
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124478.8597
+
+✖ failing tests:
+
+test at scripts\ride-design.test.mjs:16:1
+✖ real-map mountain seams do not restore the previous large vertical and orientation impulses (7480.8843ms)
+  AssertionError [ERR_ASSERTION]: mountain vertical impulse 89.28030967712402
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/ride-design.test.mjs:50:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

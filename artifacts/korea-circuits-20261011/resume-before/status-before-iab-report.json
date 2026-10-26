@@ -1,0 +1,26 @@
+{
+  "status": "stopped-after-four-browser-connection-failures",
+  "staticAttempts": 3,
+  "staticLatestPassed": 6,
+  "fullCheck": {
+    "tests": 226,
+    "pass": 226,
+    "fail": 0,
+    "build": true
+  },
+  "colabExecuted": true,
+  "colabDevice": "CPU / Rapier WASM",
+  "races": 12,
+  "starts": 72,
+  "finished": 72,
+  "garageFourViewports": true,
+  "fullHudFourViewports": false,
+  "performanceGate": false,
+  "stage2Started": false,
+  "committed": false,
+  "pushed": false,
+  "browserTimeouts": 3,
+  "stopReason": "User stop condition: same browser connection/control problem over three failures",
+  "browserPipeClosures": 1,
+  "browserConnectionFailures": 4
+}

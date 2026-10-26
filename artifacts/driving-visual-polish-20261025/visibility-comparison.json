@@ -1,0 +1,75 @@
+{
+  "scope": "Display sRGB 8-bit weighted code values, not measured monitor luminance or photometric realism. Same camera/car/road position, quality medium, 1280x720; differently timed AI excluded from ROIs. Before production preview vs after DEV shader-equivalent source.",
+  "rows": {
+    "before": {
+      "road": {
+        "mean": 18.03552141025641,
+        "median": 11.0762,
+        "pixels": 7800,
+        "region": [
+          320,
+          340,
+          450,
+          400
+        ]
+      },
+      "rear_paint": {
+        "mean": 50.95180337777777,
+        "median": 41.739399999999996,
+        "pixels": 5625,
+        "region": [
+          575,
+          510,
+          700,
+          555
+        ]
+      },
+      "sky": {
+        "mean": 24.183822529411763,
+        "median": 23.9048,
+        "pixels": 6800,
+        "region": [
+          470,
+          60,
+          550,
+          145
+        ]
+      }
+    },
+    "after": {
+      "road": {
+        "mean": 42.53545379487179,
+        "median": 37.7994,
+        "pixels": 7800,
+        "region": [
+          320,
+          340,
+          450,
+          400
+        ]
+      },
+      "rear_paint": {
+        "mean": 94.33427612444444,
+        "median": 78.90239999999999,
+        "pixels": 5625,
+        "region": [
+          575,
+          510,
+          700,
+          555
+        ]
+      },
+      "sky": {
+        "mean": 24.183822529411763,
+        "median": 23.9048,
+        "pixels": 6800,
+        "region": [
+          470,
+          60,
+          550,
+          145
+        ]
+      }
+    }
+  }
+}

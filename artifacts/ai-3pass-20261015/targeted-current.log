@@ -1,0 +1,29 @@
+✔ five fixed personalities differ in corner, passing and nitro decisions without modifying snapshots (12.0718ms)
+✔ aggressive rival accepts a smaller speed advantage; defensive rival keeps following (6.9976ms)
+✔ wet braking sees a corner earlier and lowers approach speed without changing car snapshots (7.973ms)
+✔ oncoming speed and lateral cut-ins are predicted before the old forward guard (2.9039ms)
+✔ a low-charge rival builds a draft briefly, then commits instead of following forever (30.3557ms)
+✔ a stopped or rapidly closing lead never triggers draft waiting (299.1895ms)
+✔ boost has bounded bursts, cooldown and a charge reserve; pausing freezes each timer (13.2767ms)
+✔ boost yields to airborne, off-road, wall, merging, braking and a steering correction (2.9822ms)
+✔ final attack uses total race distance and skips draft patience without inventing speed or charge (2.5728ms)
+✔ difficulty and personality change patience and resource timing with fixed speed ceilings (1.1461ms)
+✔ a moving second lead cannot trigger immediate lane weaving; a stopped blocker remains urgent (9.4962ms)
+✔ a lead on the lane edge never creates fake repeat passes toward the current lane (14.7986ms)
+✔ easy can retain the proven brake envelope while advanced profiles predict cut-ins (184.0604ms)
+✔ a new moving lead can be passed before the original lead is behind (102.4986ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (4.9032ms)
+✔ a lead with no passing speed advantage does not start another crossing (5.5496ms)
+✔ after a partial crossing yield, the next pass points away from the new lead on either side (485.739ms)
+✔ a race without civilians keeps the validated original passing sequence (0.8892ms)
+✔ restoring short moving headway briefly slows below the lead without stopping (0.5358ms)
+✔ the existing gap remains the target and ordinary non-traffic-race behavior is preserved (1.7337ms)
+✔ restoring headway keeps stopped-car hold and never requests a negative speed (0.3733ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5687.3731

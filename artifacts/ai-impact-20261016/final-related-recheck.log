@@ -1,0 +1,97 @@
+✔ a drained CCD contact still locates sparks on real collider geometry with a bounded buffer (93.5461ms)
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (0.4593ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (0.5772ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (2.9817ms)
+✔ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (1.23ms)
+{"side":-1,"index":211,"clearAt":{"slk":8.158333333333333,"gtr":15.049999999999999,"rx7":18.508333333333333,"porsche911":20.35,"mustang":22.45},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+{"side":1,"index":211,"clearAt":{"slk":9,"gtr":16.05,"rx7":19.53333333333333,"porsche911":21.525,"mustang":24.375},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+✔ an abandoned queue crossing releases its walking-speed cap after returning home (14.6311ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane -1 without contact or recovery (2584.6935ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (1943.2133ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 4,
+  peakFront: 20.165983200073242,
+  front: {
+    x: 0.0116855688393116,
+    y: 0.5410051345825195,
+    z: 57.46251678466797
+  },
+  rear: {
+    x: -0.006788182072341442,
+    y: 0.5260053873062134,
+    z: 52.9525032043457
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.387452125549316
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (672.5585ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (24.1596ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (256.519ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (58.1842ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (9.7157ms)
+{
+  id: 'supra',
+  recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+  recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+}
+{
+  id: 'slk',
+  recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+  recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+}
+{
+  id: 'mustang',
+  recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+  recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+}
+✔ stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts (22.4532ms)
+✔ road recovery aligns to the slope and avoids a half-metre suspension drop in all cars (272.3638ms)
+✔ sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch (2.7078ms)
+✔ recovery preserves spent boost and resets velocities; a new race refills it (79.0459ms)
+✔ recovery rejects an empty-looking point in approaching traffic and never awards progress (0.6561ms)
+✔ recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit (164.6129ms)
+✔ side-by-side solver separation protects the authored wide shoulders in all cars (208.9154ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5967.5106

@@ -3,6 +3,22 @@ import { GT_SPEC } from '../vehicleSpec.js';
 
 export function deckHeight(z) { return 1.015 - .12 * (Math.abs(z) / (GT_SPEC.length / 2)) ** 3; }
 
+// Cover the tyre shoulders locally; retain the cabin, sill and physical hubs.
+export function bodyHalfWidth(z) {
+  const flare=Math.max(...[-1,1].map(side=>Math.max(0,1-((z-side*GT_SPEC.wheelbase/2)/.8)**2)**2));
+  const rearFlare=Math.max(0,1-((z+GT_SPEC.wheelbase/2)/.8)**2)**2;
+  const tail=Math.max(0,Math.min(1,(-z-1.65)/.65));
+  return 1.04-.18*(Math.abs(z)/2.3)**4+.16*flare+.022*rearFlare+.12*tail*tail*(3-2*tail);
+}
+
+// Faceted rear fascia: a broad shoulder and tucked lower corners, not a flat slab.
+export function createRearBumperGeometry() {
+  const shape=new THREE.Shape();
+  const outline=[[-.94,.84],[.94,.84],[1,.68],[.92,.30],[.66,.26],[-.66,.26],[-.92,.30],[-1,.68]];
+  outline.forEach(([x,y],i)=>i?shape.lineTo(x,y):shape.moveTo(x,y));shape.closePath();
+  return new THREE.ExtrudeGeometry(shape,{depth:.13,bevelEnabled:true,bevelSegments:4,steps:1,bevelSize:.025,bevelThickness:.025}).translate(0,0,-2.40);
+}
+
 // A closed longitudinal shell. Wheel pockets only cut the OUTER sill, never
 // lift the floor or central bonnet. +Z front; winding faces outwards.
 export function createBodyGeometry() {
@@ -10,7 +26,7 @@ export function createBodyGeometry() {
   let firstRing, lastRing;
   for (let i = 0; i <= steps; i++) {
     const z = -GT_SPEC.length / 2 + i / steps * GT_SPEC.length;
-    const width = 1.04 - .18 * (Math.abs(z) / 2.3) ** 4;
+    const width = bodyHalfWidth(z);
     let pocket = .34;
     for (const hubZ of [-GT_SPEC.wheelbase / 2, GT_SPEC.wheelbase / 2]) {
       const dz = z - hubZ;

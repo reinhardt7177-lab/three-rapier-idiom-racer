@@ -1,0 +1,28 @@
+✖ a late peer factory result cannot resurrect a timed-out connection or leak its room (25.4177ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2282.5251
+
+✖ failing tests:
+
+test at scripts\online-race.test.mjs:175:1
+✖ a late peer factory result cannot resurrect a timed-out connection or leak its room (25.4177ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'hosting' !== 'error'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/online-race.test.mjs:178:225)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'hosting',
+    expected: 'error',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

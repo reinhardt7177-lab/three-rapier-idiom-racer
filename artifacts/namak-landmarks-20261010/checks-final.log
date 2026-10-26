@@ -1,0 +1,31 @@
+✔ exported Blender signs contain readable place labels on their outward board face (370.2299ms)
+✔ all actual sign geometry stays out of the drivable corridor and adds no hidden colliders (354.4463ms)
+✔ sign groups survive batching, cull outside the current district and release resources once (102.5595ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (406.4691ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (30.1947ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (5.7902ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (0.6883ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (1136.9584ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (7.692ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (7.0911ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (149.4573ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (4.6728ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (160.0269ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (48.6077ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (7.2675ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (4.0218ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (25.9503ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (1.4755ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (598.6206ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4135.0998

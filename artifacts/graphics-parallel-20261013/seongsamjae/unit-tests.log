@@ -1,0 +1,21 @@
+Command: node --test --test-concurrency=1 scripts/seongsamjae-visuals.test.mjs
+Runtime: Windows / Node v24.12.0
+Unified exec session: 62055, exit 0.
+Saved from the actual returned process output; this is not a browser render log.
+
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (8503.7456ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (5338.5785ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (2958.6274ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (2328.1312ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (708.943ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (1155.9002ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (1326.1921ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (506.5069ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34619.1075

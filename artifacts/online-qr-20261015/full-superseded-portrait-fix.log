@@ -1,0 +1,67 @@
+
+> mumu-open-circuit@0.1.0 check
+> npm run check:rebuild
+
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=2 scripts/steering-final.test.mjs scripts/driving-five-pass.test.mjs scripts/vehicle-finish.test.mjs scripts/namak-architecture.test.mjs scripts/online-race.test.mjs scripts/online-qr.test.mjs scripts/online-physics.test.mjs scripts/duel-mode.test.mjs scripts/duel-race.test.mjs scripts/body-motion.test.mjs scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/traffic-planner.test.mjs scripts/traffic-race.test.mjs scripts/weather.test.mjs scripts/rain-vfx.test.mjs scripts/rain-race.test.mjs scripts/rival-personalities.test.mjs scripts/rival-personality-race.test.mjs scripts/progression.test.mjs scripts/progression-race.test.mjs scripts/performance-comparison.test.mjs scripts/graphics-quality.test.mjs scripts/map-materials.test.mjs scripts/roadscape.test.mjs scripts/yeosu-roadscape.test.mjs scripts/seongsamjae-roadscape.test.mjs scripts/namak-visuals.test.mjs scripts/yeosu-visuals.test.mjs scripts/seongsamjae-visuals.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-racecraft.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (4.5251ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (5.3923ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (9.7177ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (0.3391ms)
+✔ the low-quality fallback clears visual lean without changing physical state (0.7142ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.2183ms)
+✔ six physical cars finish all three championship rounds and earn only finish-based points (44375.6651ms)
+✔ three real course rounds advance once and award 10/6/4/3/2/1 (2.8097ms)
+✔ partial, duplicate, unknown and invalid finishes cannot create championship points (1.392ms)
+✔ rounds remain immutable and points ties use wins then real total finish time (0.2973ms)
+✔ series checkpoint resumes its next course and corrupted data is rejected (0.5981ms)
+✔ best series uses points before time and tolerates blocked storage (1.5693ms)
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (94.8942ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (8.186ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (8.3875ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (5.5905ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (7.2309ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (1.2837ms)
+✔ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (14.0705ms)
+coastal easy median rival finish 207.75 YOU:4/207.96s scrape 0s off 0s nitro 0s | slk:5/215.02s scrape 0s off 0s nitro 0s | mustang:1/207.18s scrape 0.15s off 0s nitro 0s | porsche911:3/207.75s scrape 0s off 0s nitro 0s | gtr:2/207.31s scrape 0.31s off 0s nitro 0s | rx7:6/215.13s scrape 0s off 0s nitro 0s
+coastal normal median rival finish 203.47 YOU:3/202.6s scrape 0s off 0s nitro 0s | slk:6/211.69s scrape 0s off 0s nitro 13.59s | mustang:2/200.72s scrape 0s off 0s nitro 12.1s | porsche911:1/195.67s scrape 0s off 0s nitro 12.62s | gtr:4/203.47s scrape 0s off 0s nitro 13.32s | rx7:5/206.82s scrape 0s off 0s nitro 14.47s
+coastal hard median rival finish 193.48 YOU:6/202.97s scrape 0s off 0s nitro 0s | slk:4/197.45s scrape 0s off 0s nitro 25.4s | mustang:1/190.13s scrape 0s off 0s nitro 24.48s | porsche911:3/193.48s scrape 0s off 0s nitro 25.84s | gtr:2/193.07s scrape 0s off 0s nitro 24.91s | rx7:5/200.71s scrape 0s off 0s nitro 23.69s
+namak easy median rival finish 91.88 YOU:3/89.32s scrape 0s off 0s nitro 0s | slk:4/91.88s scrape 0s off 0s nitro 0s | mustang:2/89.19s scrape 0s off 0s nitro 0s | porsche911:5/92s scrape 0s off 0s nitro 0s | gtr:1/88.69s scrape 0s off 0s nitro 0s | rx7:6/92.45s scrape 0s off 0s nitro 0s
+namak normal median rival finish 81.87 YOU:4/82.22s scrape 0s off 0s nitro 0s | slk:5/83.23s scrape 0s off 0s nitro 5.79s | mustang:2/80.17s scrape 0s off 0s nitro 5.63s | porsche911:3/81.87s scrape 0s off 0s nitro 7.66s | gtr:1/79.82s scrape 0s off 0s nitro 5.65s | rx7:6/85.11s scrape 0s off 0s nitro 5.73s
+namak hard median rival finish 78.30 YOU:6/81.53s scrape 0s off 0s nitro 0s | slk:2/78.09s scrape 0s off 0s nitro 11.73s | mustang:1/75.87s scrape 0s off 0s nitro 11.74s | porsche911:3/78.3s scrape 0s off 0s nitro 12.38s | gtr:4/79.62s scrape 0s off 0s nitro 12.07s | rx7:5/81.28s scrape 0s off 0s nitro 10.93s
+✔ the player starts from the back of a full grid; rivals keep their order ahead (1.9882ms)
+✔ easy keeps the previous rival calibration; harder levels are strictly quicker (0.3652ms)
+✔ difficulty preference survives reloads and blocked storage never breaks the garage (0.5267ms)
+✔ every exported racing road is asphalt and the open ground around it is slower (59.1601ms)
+✔ grass and paving slow a coasting car; asphalt behaves exactly as before (327.766ms)
+✔ wall scraping costs speed, and a parked car pressed to a wall never creeps (108.5581ms)
+✔ wall contact is reported for barriers, not for the road a car is resting on (28.0833ms)
+✔ fast rivals see a hairpin early enough to brake; the previous profile is unchanged (2.8071ms)
+✔ only nitro-enabled rivals boost, and never while merging or held behind traffic (4.8187ms)
+✔ coastal: every difficulty finishes from a back-of-grid start without falls, and harder is faster (78594.2005ms)
+✔ namak: every difficulty finishes from a back-of-grid start without falls, and harder is faster (33055.4395ms)
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (3.3321ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (1.0667ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (250.7395ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (9.0584ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (13.0949ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (18.2421ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (7.1259ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (3.1077ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (194.0532ms)
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (3.8142ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (2.2071ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (0.5357ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (0.2662ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (0.8375ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (0.5031ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (1.8268ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (0.5689ms)
+{"config":{"trackId":"coastal","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":212.89,"lowest":0.27}],"minUpright":0.96253714788797,"wallSeconds":16.92}
+{"config":{"trackId":"coastal","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":207.54,"lowest":0.26}],"minUpright":0.962471076270875,"wallSeconds":22.3}
+{"config":{"trackId":"coastal","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":195,"lowest":0.27}],"minUpright":0.9656079452050637,"wallSeconds":15.27}
+{"config":{"trackId":"namak","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":91.63,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":5.87}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":82.18,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":6.15}
+{"config":{"trackId":"namak","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":76.53,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":5.06}

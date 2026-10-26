@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd(),task='artifacts/vehicle-polish-3pass-20261015',frozen=path.join(task,'validation-source'),out=path.join(frozen,task);
+fs.mkdirSync(out,{recursive:true});
+const monitor=fs.readFileSync('artifacts/vehicle-finish-20261013/qa-monitor.js','utf8');fs.writeFileSync(path.join(out,'qa-monitor.js'),monitor);
+let html=fs.readFileSync(path.join(frozen,'index.html'),'utf8').replace('</body>',`<script type="module" src="/${task}/qa-monitor.js"></script></body>`);
+fs.writeFileSync(path.join(out,'play.html'),html);
+for(const file of ['baseline-assets.js','baseline-surface.js','baseline-studio.js'])fs.copyFileSync(path.join(task,file),path.join(out,file));
+// Baseline assets differ only in the eight car GLBs; worlds/cockpit are identical.
+let assets=fs.readFileSync(path.join(frozen,'src/rebuild/assets.js'),'utf8').replaceAll("from '../","from '/src/").replaceAll("from './","from '/src/rebuild/").replace("from '/src/rebuild/surfacePolish.js'","from './baseline-surface.js'");
+assets=assets.replace('`${import.meta.env.BASE_URL}assets/rebuild/${id===\'world\'?track.world:id}.glb`',"(VEHICLES.some(v=>v.id===id)?`/"+task+"/baseline-glb/${id}.glb`:`${import.meta.env.BASE_URL}assets/rebuild/${id==='world'?track.world:id}.glb`)");
+fs.writeFileSync(path.join(out,'baseline-assets.js'),assets);
+fs.mkdirSync(path.join(out,'baseline-glb'),{recursive:true});
+for(const id of ['supra','slk','mustang','porsche911','gtr','rx7','m3','huracan'])fs.copyFileSync(path.join(task,`before/public/assets/rebuild/${id}.glb`),path.join(out,`baseline-glb/${id}.glb`));
+let runtime=fs.readFileSync(path.join(frozen,'src/rebuild/runtime.js'),'utf8').replaceAll("from '../","from '/src/").replaceAll("from './","from '/src/rebuild/");
+runtime=runtime.replace("from '/src/rebuild/assets.js'","from './baseline-assets.js'").replace("from '/src/rebuild/vehicleStudio.js'","from './baseline-studio.js'");
+fs.writeFileSync(path.join(out,'baseline-runtime.js'),runtime);
+let main=fs.readFileSync(path.join(frozen,'src/rebuild/main.jsx'),'utf8').replaceAll("from './","from '/src/rebuild/").replace("import './rebuild.css'","import '/src/rebuild/rebuild.css'");
+main=main.replace("from '/src/rebuild/runtime.js'","from './baseline-runtime.js'");
+fs.writeFileSync(path.join(out,'baseline-main.jsx'),main);
+fs.writeFileSync(path.join(out,'baseline.html'),html.replace('/src/rebuild/main.jsx',`/${task}/baseline-main.jsx`));
+console.log('Frozen before/after browser entries ready; regression inputs unchanged.');

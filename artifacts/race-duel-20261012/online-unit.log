@@ -1,0 +1,31 @@
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (12.0052ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (4.9929ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (15.8064ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (0.423ms)
+✔ the low-quality fallback clears visual lean without changing physical state (0.7225ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.2565ms)
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (9.8469ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (1.8583ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (6.2721ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (0.4636ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (1.0435ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (0.5948ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (3.1437ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (1.8579ms)
+✔ online is a real selectable mode; host and guest each see themselves first on distinct grid slots (2.786ms)
+✔ online pedals clamp unsafe values and stale or reordered packets cannot leave throttle held (0.7132ms)
+✔ invites preserve the chosen course and discard developer QA flags (0.869ms)
+✔ a room requires two real peers ready and prepared before either race starts (161.5649ms)
+✔ the guest sends pedals, while shared pause/resume clears them and a rematch resets both ready flags (198.9008ms)
+✔ a third player is rejected without replacing either participant, and disconnect never invents a finish (185.801ms)
+✔ a different track revision cannot join the room (61.1455ms)
+✔ online personal bests are isolated from AI practice and medals (1.4397ms)
+✔ malformed frame transforms, incomplete wheels and impossible quaternions are rejected (13.6985ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1354.3922

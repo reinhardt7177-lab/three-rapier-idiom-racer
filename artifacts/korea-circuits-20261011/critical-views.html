@@ -1,0 +1,30 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>성삼재 중요 구간 · 정적 화면 검수</title>
+<style>body{margin:0;background:#141c23;color:white;font:14px system-ui}header{position:absolute;z-index:1;padding:12px;background:#141c23dd}button{padding:10px;margin-right:8px}#status{display:block;margin-top:8px}canvas{display:block}</style>
+<header>정적 모델 검수 · 실제 주행 또는 완주 증거가 아닙니다<br>
+<button data-view="grade">최대 오르막</button><button data-view="descent">최대 내리막</button><button data-view="hairpin">급한 헤어핀</button><button data-view="summit">성삼재 전망</button><span id="status">모델을 불러오는 중</span></header>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {Sky} from 'three/addons/objects/Sky.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {outdoorLighting} from '/src/rebuild/namakPresentation.js';
+import {outdoorAtmosphere} from '/src/rebuild/namakColors.js';
+import {polishWorldSurfaces} from '/src/rebuild/surfacePolish.js';
+import {createChaseCamera} from '/src/driving/chaseCamera.js';
+import {createNamakLandmarks} from '/src/rebuild/namakLandmarks.js';
+const route=await (await fetch('/assets/rebuild/seongsamjae-route.json')).json(),world=(await new GLTFLoader().loadAsync('/assets/rebuild/seongsamjae.glb')).scene;
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(1);renderer.setSize(innerWidth,innerHeight);renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;document.body.append(renderer.domElement);
+const lighting=outdoorLighting(false),atmosphere=outdoorAtmosphere(false),scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(54,innerWidth/innerHeight,.15,3500),chase=createChaseCamera(camera);
+scene.background=new THREE.Color(atmosphere.fog);scene.fog=new THREE.Fog(atmosphere.fog,lighting.fogNear,lighting.fogFar);scene.add(world);
+world.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});polishWorldSurfaces(world);
+const sky=new Sky();sky.scale.setScalar(1000);Object.assign(sky.material.uniforms.turbidity,{value:atmosphere.turbidity});sky.material.uniforms.rayleigh.value=atmosphere.rayleigh;sky.material.uniforms.mieCoefficient.value=atmosphere.mieCoefficient;sky.material.uniforms.sunPosition.value.set(-25,45,20).normalize();scene.add(sky);
+const pmrem=new THREE.PMREMGenerator(renderer),skyScene=new THREE.Scene();skyScene.add(sky.clone());scene.environment=pmrem.fromScene(skyScene,.04).texture;scene.environmentIntensity=lighting.environment;
+const ambient=new THREE.HemisphereLight('#dbeeff','#6c5942',lighting.ambient),sun=new THREE.DirectionalLight('#fff4e0',lighting.sun);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-25,right:25,top:25,bottom:-25,near:.1,far:120});sun.shadow.normalBias=.04;scene.add(ambient,sun,sun.target);renderer.toneMappingExposure=lighting.exposure;
+const landmarks=createNamakLandmarks(world),points=route.points,derivative=i=>{const a=points[i],b=points[(i+1)%points.length];return (b.y-a.y)/Math.hypot(b.x-a.x,b.z-a.z);};
+let grade=0,descent=0,hairpin=0,turn=-1;
+for(let i=0;i<points.length;i++){if(derivative(i)>derivative(grade))grade=i;if(derivative(i)<derivative(descent))descent=i;const p=points[i],n=points[(i+15)%points.length],bend=Math.acos(Math.max(-1,Math.min(1,p.dx*n.dx+p.dz*n.dz)));if(bend>turn){turn=bend;hairpin=i;}}
+const summit=points.reduce((m,p,i)=>p.y>points[m].y?i:m,0),views={grade,descent,hairpin,summit};
+function show(name){const index=views[name],p=points[index],position=new THREE.Vector3(p.x,p.y+.9,p.z);chase.update(position,new THREE.Vector3(p.dx,0,p.dz),80,0,{snap:true,motion:false,stableRide:true});sky.position.copy(camera.position);sun.position.copy(position).add(new THREE.Vector3(-25,45,20));sun.target.position.copy(position);landmarks.update(camera,true);renderer.render(scene,camera);const evidence={view:name,index,distance:p.distance,grade:derivative(index),region:p.region,camera:camera.position.toArray(),point:[p.x,p.y,p.z],staticOnly:true};document.querySelector('#status').textContent=`${p.region} · ${p.distance.toFixed(1)}m · 경사 ${(100*derivative(index)).toFixed(2)}%`;document.querySelector('#status').dataset.evidence=JSON.stringify(evidence);}
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>show(b.dataset.view));show('grade');
+</script></html>

@@ -1,0 +1,62 @@
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (12.3882ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (7.9783ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (4.3837ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (4.3148ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (3.0181ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (2.9005ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.8372ms)
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (5.6032ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (8.1774ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (3.7869ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (1.4852ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (93.2778ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (39.2838ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (38.7028ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (41.5395ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (29.8461ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (24.9571ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (25.3826ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (27.6345ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (18.6347ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (21.855ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (14.2489ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (16.1962ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (19.1673ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (17.7534ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (18.5516ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (13.2824ms)
+✔ right/left bends follow world heading, including the circular route seam (8.0608ms)
+✔ bend detection uses metres and survives a fourfold change in point density (6.0158ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (12.1253ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (30.8031ms)
+✔ isolated heading errors never become a persistent corner warning (1.7073ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (19.1122ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (4.5975ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 33
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2124.4817
+
+✖ failing tests:
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (5.6032ms)
+  AssertionError [ERR_ASSERTION]: Two-tone spokes must batch per wheel, not multiply draw submissions
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:21:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
