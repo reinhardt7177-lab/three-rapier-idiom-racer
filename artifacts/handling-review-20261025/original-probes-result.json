@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-25T12:30:13.676Z",
+  "scope": "Read-only existing product probes plus focused regressions; no tuning edits and no APK runtime.",
+  "results": [
+    {
+      "name": "probe-supra-current",
+      "arguments": [
+        "artifacts/motion-check-20261011/probe.mjs",
+        "supra"
+      ],
+      "exitCode": 0,
+      "seconds": 3.163
+    },
+    {
+      "name": "weave-current",
+      "arguments": [
+        "artifacts/motion-check-20261011/weave.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 2.737
+    },
+    {
+      "name": "related-tests",
+      "arguments": [
+        "--test",
+        "--test-concurrency=1",
+        "scripts/race-controls.test.mjs",
+        "scripts/driving-five-pass.test.mjs",
+        "scripts/collision-feel.test.mjs",
+        "scripts/renewal-presentation.test.mjs",
+        "scripts/body-motion-sampling.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 4.828
+    }
+  ]
+}

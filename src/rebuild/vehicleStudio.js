@@ -13,8 +13,8 @@ export function createVehicleStudio(){
  panel('left-softbox',[-6,4.5,0],[8,1.1],'#e8f0ff',3.2);
  panel('right-rim',[6,2.8,-1],[9,.7],'#d2e4ff',2.7);
  panel('ceiling-strip',[0,7,0],[2.1,11],'#f7f3eb',2.6);
- panel('rear-strip',[0,3,-7],[10,.7],'#b6d2f0',2.4);
- panel('front-bounce',[0,2,8],[9,4],'#7f8b95',.6);
+ panel('rear-strip',[0,3,-7],[10,.7],'#b6d2f0',2.8);
+ panel('front-bounce',[0,2,8],[9,4],'#7f8b95',.9);
  scene.dispose=()=>{for(const resource of owned)resource.dispose();owned.clear();};
  return scene;
 }

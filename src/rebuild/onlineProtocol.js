@@ -1,4 +1,5 @@
 import {VEHICLES} from './fleet.js';
+import {validImpactState} from './impactPresentation.js';
 export const ONLINE_VERSION=2;
 export const ONLINE_STEP_MS=50;
 export const INPUT_EXPIRY_MS=350;
@@ -37,7 +38,7 @@ export function validOnlineFrame(frame){
  if(!frame||frame.version!==ONLINE_VERSION||typeof frame.runId!=='string'||!Number.isSafeInteger(frame.sequence)||!finite(frame.elapsed)||frame.elapsed<0||!finite(frame.countdown)||typeof frame.paused!=='boolean'||!Array.isArray(frame.cars)||frame.cars.length!==2)return false;
  return frame.cars.every(c=>{
   const s=c?.state;
-  return validVehicle(c.id)&&Number.isSafeInteger(c.index)&&c.index>=0&&finite(c.progress)&& (c.finish===null||finite(c.finish)&&c.finish>=0)&&s&&vec(s.position,['x','y','z'])&&vec(s.rotation,['x','y','z','w'])&&Math.abs(Math.hypot(s.rotation.x,s.rotation.y,s.rotation.z,s.rotation.w)-1)<.02&&vec(s.velocity,['x','y','z'])&&vec(s.angularVelocity,['x','y','z'])&&finite(s.speed)&&finite(s.kmh)&&finite(s.steer)&&Array.isArray(s.wheels)&&s.wheels.length===4&&s.wheels.every(w=>w&&['y','steering','rotation','launchAngle','radius'].every(k=>finite(w[k])));
+  return validVehicle(c.id)&&Number.isSafeInteger(c.index)&&c.index>=0&&finite(c.progress)&& (c.finish===null||finite(c.finish)&&c.finish>=0)&&validImpactState(c.impact)&&s&&vec(s.position,['x','y','z'])&&vec(s.rotation,['x','y','z','w'])&&Math.abs(Math.hypot(s.rotation.x,s.rotation.y,s.rotation.z,s.rotation.w)-1)<.02&&vec(s.velocity,['x','y','z'])&&vec(s.angularVelocity,['x','y','z'])&&finite(s.speed)&&finite(s.kmh)&&finite(s.steer)&&Array.isArray(s.wheels)&&s.wheels.length===4&&s.wheels.every(w=>w&&['y','steering','rotation','launchAngle','radius'].every(k=>finite(w[k])));
  });
 }
 export function inviteLink(url,room,trackId){

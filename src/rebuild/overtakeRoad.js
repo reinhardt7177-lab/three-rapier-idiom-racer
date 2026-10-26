@@ -1,9 +1,10 @@
 import RAPIER from '@dimforge/rapier3d-compat';
+import {createRecoveryRoadCheck} from './recoveryRoad.js';
 
 // Broad-phase queries use the recovered asphalt colliders, not a guessed width
 // or visible grass. A vehicle-sized volume also rejects walls on the crossing.
 export function createOvertakeRoadCheck(world,route,asphalt){
-  return ({index,fromLane,toLane,state,dimensions})=>{
+  const check=({index,fromLane,toLane,state,dimensions})=>{
     if(!asphalt.size)return false;
     const points=route.points,n=points.length,horizon=Math.max(30,Math.max(0,state.kmh/3.6)*3+12);
     for(const distance of [0,10,horizon/2,horizon]){
@@ -28,4 +29,8 @@ export function createOvertakeRoadCheck(world,route,asphalt){
     }
     return true;
   };
+  // Keep the original crossing contract; actual-pose reverse proof is opt-in
+  // for planners using this real-world road checker, never an assumed width.
+  check.recoveryClear=createRecoveryRoadCheck(world,asphalt);
+  return check;
 }

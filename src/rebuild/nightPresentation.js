@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {createNightSky} from './koreaPresentation.js';
 
-export const NIGHT_LIGHTING=Object.freeze({ambient:.38,sun:.12,exposure:.88,environment:.26,fogNear:900,fogFar:2500});
+export const NIGHT_LIGHTING=Object.freeze({ambient:.62,sun:.24,exposure:1.02,environment:.55,fogNear:900,fogFar:2500});
 export const NIGHT_ATMOSPHERE=Object.freeze({fog:'#09182d',turbidity:2.4,rayleigh:2.2,mieCoefficient:.003});
 
 // Fixed six-light budget: four nearby road lamps and two player headlights.
@@ -9,8 +9,8 @@ export const NIGHT_ATMOSPHERE=Object.freeze({fog:'#09182d',turbidity:2.4,rayleig
 export function createNightPresentation(scene,route){
  const group=new THREE.Group();group.name='Night_Road_Lights';group.visible=false;scene.add(group);
  const sky=createNightSky();group.add(sky);
- const lamps=Array.from({length:4},()=>{const light=new THREE.PointLight('#b6dcff',55,46,2);group.add(light);return light;});
- const heads=Array.from({length:2},()=>{const light=new THREE.SpotLight('#d5eaff',34,70,.38,.6,1.6);group.add(light,light.target);return light;});
+ const lamps=Array.from({length:4},()=>{const light=new THREE.PointLight('#c6dcff',120,46,2);group.add(light);return light;});
+ const heads=Array.from({length:2},()=>{const light=new THREE.SpotLight('#d5eaff',180,90,.40,.6,1.6);group.add(light,light.target);return light;});
  const forward=new THREE.Vector3(),offset=new THREE.Vector3(),beamDrop=new THREE.Vector3(0,-1.8,0);
  return {stats:{lights:6,shadowMaps:0,reflectionPasses:0,skyDraws:1,skyTriangles:sky.geometry.index.count/3},update(state,index,visible,cameraPosition){
   group.visible=visible;if(!visible||!state)return;

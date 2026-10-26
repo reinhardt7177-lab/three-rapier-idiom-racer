@@ -4,8 +4,8 @@ import {Vector3} from 'three';
 // no speed-dependent world-position lag, fake bob, or chassis roll.
 export function createFirstPersonCamera(camera){
  const forward=new Vector3(),right=new Vector3(),target=new Vector3();
- let height=null,pitch=null,pedalCue=0,hit=0,hitTime=0;
- return {update(modelPosition,rotation,dt,{snap=false,roof=1.3,width=1.9,compact=false,pedalResponse=false,motion=true,push=0,braking=0,drive=0,grounded=true,kmh=0,impact=0}={}){
+ let height=null,pitch=null,pedalCue=0,hit=0,hitTime=0,hitSide=0,hitForward=0,directional=false;
+ return {update(modelPosition,rotation,dt,{snap=false,roof=1.3,width=1.9,compact=false,pedalResponse=false,motion=true,push=0,braking=0,drive=0,grounded=true,kmh=0,impact=0,impactDirection=null}={}){
   forward.set(0,0,1).applyQuaternion(rotation);
   const yaw=Math.atan2(forward.x,forward.z),roadPitch=Math.max(-.38,Math.min(.38,Math.atan2(forward.y,Math.hypot(forward.x,forward.z))));
   const eye=modelPosition.y+Math.max(1.03,roof-.1),seconds=Math.max(0,dt);
@@ -15,11 +15,11 @@ export function createFirstPersonCamera(camera){
   camera.position.copy(modelPosition).addScaledVector(right,-width*.19);
   camera.position.y=height;camera.position.addScaledVector(new Vector3(Math.sin(yaw),0,Math.cos(yaw)),.12);
   camera.up.set(0,1,0);target.copy(camera.position).addScaledVector(forward,30);camera.lookAt(target);
-  if(snap||!motion){hit=hitTime=0;}
-  if(seconds>0&&motion&&!snap&&impact>0){hit=Math.max(hit,Math.min(1,impact));hitTime=0;}
+  if(snap||!motion){hit=hitTime=hitSide=hitForward=0;directional=false;}
+  if(seconds>0&&motion&&impact>0){hit=Math.max(hit,Math.min(1,impact));hitTime=0;directional=!!impactDirection;hitSide=Math.max(-1,Math.min(1,Number(impactDirection?.side)||0));hitForward=Math.max(-1,Math.min(1,Number(impactDirection?.forward)||0));}
   hitTime+=seconds;hit*=Math.exp(-seconds*12);
   // A contact-only lens kick stays below half a degree; driver eye never moves.
-  if(motion)camera.rotateZ(Math.sin(hitTime*45)*hit*.008);
+  if(motion){camera.rotateZ((directional?hitSide:Math.sin(hitTime*45))*hit*.008);camera.rotateX(-hitForward*hit*.006);}
   const demand=pedalResponse&&motion&&grounded?Math.max(-1,Math.min(1,braking>0?-braking:drive>0?.35+.65*push:0)):0;
   if(snap||!motion||!pedalResponse)pedalCue=0;
   else pedalCue+=(demand-pedalCue)*(1-Math.exp(-seconds/(demand<0?.16:.42)));

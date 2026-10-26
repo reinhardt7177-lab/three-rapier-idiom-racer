@@ -1,0 +1,1246 @@
+{
+  "at": "2026-10-26T04:14:53.320Z",
+  "scope": "Current stable physics; only initial fixture pose copied from observed rejected-candidate wall incident; no live transform writes.",
+  "initial": {
+    "id": "slk",
+    "name": "NOVA",
+    "player": false,
+    "finish": null,
+    "index": 1726,
+    "progress": 11258.722203727822,
+    "position": {
+      "x": -356.7684631347656,
+      "y": 52.7160758972168,
+      "z": 484.950439453125
+    },
+    "rotation": {
+      "x": -0.01664356328547001,
+      "y": -0.6802777647972107,
+      "z": 0.0019687535241246223,
+      "w": 0.73276287317276
+    },
+    "velocity": {
+      "x": -0.0262996107339859,
+      "y": -0.03430316597223282,
+      "z": 0.02421828918159008
+    },
+    "angularVelocity": {
+      "x": 9.870939621237085e-9,
+      "y": 0.009193051606416702,
+      "z": 7.77454101097419e-9
+    },
+    "kmh": 0.12870667395719745,
+    "contacts": 4,
+    "steer": -0.5199999999999998,
+    "steeringLimit": 0.52,
+    "lane": 8.444534192871094,
+    "headingError": 130.96296896925546,
+    "scrape": 1,
+    "ride": {
+      "locked": true,
+      "contacts": 4,
+      "reason": "supported",
+      "transitions": 25,
+      "ground": 52.2024754402544,
+      "planeResidual": 0.0010218614808878152,
+      "uneven": 0,
+      "filteredGround": 52.2024751456401,
+      "target": 52.71463786240172,
+      "error": 0.0014189613287456382,
+      "roadRate": 0.001257967042286147,
+      "supportAcceleration": 10.563685383096121,
+      "beforeVertical": -0.03442875295877457,
+      "wheelVertical": 0.05387808009982109,
+      "commandVertical": 0.053601958567026445,
+      "controlledVertical": 0.053601957857608795,
+      "normal": {
+        "x": 0.019761107038956564,
+        "y": 0.9994382317333863,
+        "z": -0.02706879380831252
+      }
+    },
+    "plan": {
+      "personality": "NOVA",
+      "style": "코너 강자",
+      "mode": "passing",
+      "reason": "airborne",
+      "homeLane": -2.2,
+      "targetLane": 2.2,
+      "passes": 0,
+      "attempts": 1,
+      "aborts": 0,
+      "age": 332.95833333319484,
+      "tactic": "pace",
+      "boosts": 0,
+      "draftSetups": 0
+    },
+    "input": {
+      "targetKmh": 42,
+      "steer": 1,
+      "throttle": 1,
+      "brake": 0,
+      "waitingForTraffic": false,
+      "scrape": 1,
+      "draft": 0
+    }
+  },
+  "lowest": 0.45964145996094175,
+  "offroad": 0,
+  "rows": [
+    {
+      "t": 0,
+      "progress": 0,
+      "kmh": 0.012828750765620046,
+      "position": {
+        "x": -356.7684326171875,
+        "y": 52.71590042114258,
+        "z": 484.95037841796875
+      },
+      "contacts": 0,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "airborne",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 0.008333333333333333,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 1,
+      "progress": 0,
+      "kmh": 0.21632635452502383,
+      "position": {
+        "x": -356.80072021484375,
+        "y": 52.715938568115234,
+        "z": 484.97784423828125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 1.0083333333333322,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 2,
+      "progress": 0,
+      "kmh": 0.22337343550264446,
+      "position": {
+        "x": -356.8373107910156,
+        "y": 52.71747589111328,
+        "z": 485.0072021484375
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 2.008333333333329,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 3,
+      "progress": 0,
+      "kmh": 0.23138603875232452,
+      "position": {
+        "x": -356.8880615234375,
+        "y": 52.71965026855469,
+        "z": 485.0517883300781
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 3.0083333333333253,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 4,
+      "progress": 0,
+      "kmh": 0.24093259683322965,
+      "position": {
+        "x": -356.9455871582031,
+        "y": 52.722267150878906,
+        "z": 485.1036071777344
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 4.008333333333322,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 5,
+      "progress": 0,
+      "kmh": 0.25266987714213435,
+      "position": {
+        "x": -357.00506591796875,
+        "y": 52.725040435791016,
+        "z": 485.1562805175781
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 5.008333333333372,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 6,
+      "progress": 0,
+      "kmh": 0.2657022660940001,
+      "position": {
+        "x": -357.06646728515625,
+        "y": 52.72793960571289,
+        "z": 485.20916748046875
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 6.008333333333422,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 7,
+      "progress": 0,
+      "kmh": 0.32040901476986955,
+      "position": {
+        "x": -357.1320495605469,
+        "y": 52.731197357177734,
+        "z": 485.259765625
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 7.008333333333471,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 8,
+      "progress": 0,
+      "kmh": 0.333158502583956,
+      "position": {
+        "x": -357.208984375,
+        "y": 52.73451614379883,
+        "z": 485.3156433105469
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 8.00833333333352,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 9,
+      "progress": 0,
+      "kmh": 0.3499369039669173,
+      "position": {
+        "x": -357.2944641113281,
+        "y": 52.738033294677734,
+        "z": 485.3742370605469
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 9.008333333333463,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 10,
+      "progress": -1.7986097814982713,
+      "kmh": 0.3712074531426786,
+      "position": {
+        "x": -357.3824157714844,
+        "y": 52.741703033447266,
+        "z": 485.4326171875
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 10.008333333333406,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 11,
+      "progress": -1.7986097814982713,
+      "kmh": 0.3940621001292826,
+      "position": {
+        "x": -357.4726257324219,
+        "y": 52.745418548583984,
+        "z": 485.4912109375
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 11.008333333333349,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": 1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 12,
+      "progress": -3.6224573011386383,
+      "kmh": 11.96476868949863,
+      "position": {
+        "x": -358.4037170410156,
+        "y": 52.78671646118164,
+        "z": 486.2787170410156
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 12.008333333333292,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": -1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 13,
+      "progress": -7.366810195902872,
+      "kmh": 34.41773779790802,
+      "position": {
+        "x": -358.73028564453125,
+        "y": 52.90402603149414,
+        "z": 492.16619873046875
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 13.008333333333235,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": -1,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 14,
+      "progress": -1.7986097814982713,
+      "kmh": 41.97928370607372,
+      "position": {
+        "x": -348.6192321777344,
+        "y": 52.7873649597168,
+        "z": 494.76458740234375
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 14.008333333333178,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 42,
+        "steer": -1,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 15,
+      "progress": 9.50532434361503,
+      "kmh": 61.84585412804325,
+      "position": {
+        "x": -341.8787536621094,
+        "y": 52.43613815307617,
+        "z": 482.82562255859375
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 15.008333333333121,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 62.52449805628074,
+        "steer": -0.059508037265642945,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 16,
+      "progress": 27.8886456417722,
+      "kmh": 59.88221772742982,
+      "position": {
+        "x": -337.6319274902344,
+        "y": 51.95920181274414,
+        "z": 466.399658203125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 16.008333333333066,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 55.12288099781067,
+        "steer": -0.03946020535297049,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 17,
+      "progress": 41.56256290186684,
+      "kmh": 53.973844883235095,
+      "position": {
+        "x": -336.97418212890625,
+        "y": 51.47989273071289,
+        "z": 450.8376770019531
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 17.00833333333301,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 49.319967078644154,
+        "steer": -0.1485748092257384,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 18,
+      "progress": 58.4039434525921,
+      "kmh": 52.42913749347923,
+      "position": {
+        "x": -340.1653747558594,
+        "y": 51.00307846069336,
+        "z": 436.45751953125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 18.008333333332953,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 48.84214994804798,
+        "steer": -0.5074130564312117,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 19,
+      "progress": 73.72647480810974,
+      "kmh": 51.266078991109026,
+      "position": {
+        "x": -347.36248779296875,
+        "y": 50.56721878051758,
+        "z": 424.077880859375
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 19.008333333332896,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 52.37420513808458,
+        "steer": -0.4108311628581148,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 20,
+      "progress": 87.98873330881815,
+      "kmh": 56.63942696873824,
+      "position": {
+        "x": -358.0537109375,
+        "y": 50.19174575805664,
+        "z": 413.469970703125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 20.00833333333284,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 56.56584707637384,
+        "steer": -0.15272275881699018,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 21,
+      "progress": 105.59205944130827,
+      "kmh": 67.18427840735646,
+      "position": {
+        "x": -372.4679870605469,
+        "y": 49.8864860534668,
+        "z": 404.7138977050781
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 21.008333333332782,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 91.023115211391,
+        "steer": -0.23280527313860994,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 22,
+      "progress": 126.92820463825774,
+      "kmh": 85.74190798602935,
+      "position": {
+        "x": -392.237548828125,
+        "y": 49.62250518798828,
+        "z": 396.90203857421875
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 22.008333333332725,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 147.47752460860266,
+        "steer": -0.10164307689573826,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 23,
+      "progress": 152.13611597244017,
+      "kmh": 99.22893699714145,
+      "position": {
+        "x": -417.2550048828125,
+        "y": 49.3635368347168,
+        "z": 389.6326599121094
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 23.00833333333267,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 183.15,
+        "steer": -0.06815429543886724,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 24,
+      "progress": 182.86716267962856,
+      "kmh": 111.45172047864561,
+      "position": {
+        "x": -445.76068115234375,
+        "y": 49.10139083862305,
+        "z": 382.9200744628906
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 24.00833333333261,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 183.15,
+        "steer": -0.035295024028053616,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 25,
+      "progress": 215.0408446061292,
+      "kmh": 123.3183267933931,
+      "position": {
+        "x": -477.6280212402344,
+        "y": 48.807621002197266,
+        "z": 375.9011535644531
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 25.008333333332555,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 150.50975363104865,
+        "steer": 0.04493794084339808,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 26,
+      "progress": 249.6981579457779,
+      "kmh": 130.49485570419233,
+      "position": {
+        "x": -512.323486328125,
+        "y": 48.44473648071289,
+        "z": 367.5225524902344
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 26.008333333332498,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 125.71842738289851,
+        "steer": 0.13374852425270672,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 27,
+      "progress": 284.2092027554827,
+      "kmh": 108.37707564858297,
+      "position": {
+        "x": -543.960693359375,
+        "y": 48.01301956176758,
+        "z": 357.5323486328125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 27.00833333333244,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 102.1685603745401,
+        "steer": 0.3776341687846033,
+        "throttle": 0,
+        "brake": 0.65,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 28,
+      "progress": 314.1530110707208,
+      "kmh": 101.88406087249895,
+      "position": {
+        "x": -569.7039794921875,
+        "y": 47.474388122558594,
+        "z": 345.48944091796875
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 28.008333333332384,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 108.92011417104673,
+        "steer": 0.3022775410389644,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 29,
+      "progress": 344.4314893767296,
+      "kmh": 110.61077570190876,
+      "position": {
+        "x": -594.4126586914062,
+        "y": 46.51531982421875,
+        "z": 328.8131408691406
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 29.008333333332327,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 109.59214747592559,
+        "steer": 0.40768860772688326,
+        "throttle": 0,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 30,
+      "progress": 373.952762000029,
+      "kmh": 112.47005273609473,
+      "position": {
+        "x": -616.517822265625,
+        "y": 45.104305267333984,
+        "z": 307.60333251953125
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 30.00833333333227,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 112.56060472143268,
+        "steer": 0.22471878946344337,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 31,
+      "progress": 409.70051387372405,
+      "kmh": 125.52538030745778,
+      "position": {
+        "x": -636.5689697265625,
+        "y": 43.563812255859375,
+        "z": 281.3424072265625
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 31.008333333332214,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 153.4528619634703,
+        "steer": 0.2708301866223923,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 32,
+      "progress": 445.2901188418391,
+      "kmh": 137.74403940253572,
+      "position": {
+        "x": -655.8797607421875,
+        "y": 42.4715461730957,
+        "z": 250.23997497558594
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 32.00833333333216,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 177.5479950818763,
+        "steer": 0.17524426056873543,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 33,
+      "progress": 484.5815084489932,
+      "kmh": 144.94897968830736,
+      "position": {
+        "x": -674.3546142578125,
+        "y": 42.322696685791016,
+        "z": 215.49549865722656
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 33.008333333332104,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 183.15,
+        "steer": 0.1960999972053678,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    },
+    {
+      "t": 34,
+      "progress": 527.7539697159709,
+      "kmh": 152.1214047875805,
+      "position": {
+        "x": -691.1395874023438,
+        "y": 42.93480682373047,
+        "z": 177.78475952148438
+      },
+      "contacts": 4,
+      "plan": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 34.00833333333205,
+        "tactic": "pace",
+        "boosts": 0,
+        "draftSetups": 0
+      },
+      "input": {
+        "targetKmh": 183.15,
+        "steer": 0.14546742568933846,
+        "throttle": 1,
+        "brake": 0,
+        "waitingForTraffic": false
+      }
+    }
+  ]
+}

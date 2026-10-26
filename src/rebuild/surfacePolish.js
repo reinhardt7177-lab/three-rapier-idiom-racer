@@ -5,7 +5,7 @@ export function polishVehicleMaterial(m,{vivid=false}={}){
   if(/Exterior_NewPaint/.test(m.name)){
     // A rougher coloured base under a smoother dielectric coat reads as paint
     // rather than coloured chrome. No extra map, uniform or render pass.
-    m.roughness=.30;m.metalness=.27;
+    m.roughness=.30;m.metalness=.27;m.envMapIntensity=1.1;
     if('clearcoat' in m){m.clearcoat=.95;m.clearcoatRoughness=.12;}
     if(vivid&&!vividPaintMaterials.has(m)){
       vividPaintMaterials.add(m);
@@ -68,7 +68,7 @@ export function polishVehicleMaterial(m,{vivid=false}={}){
 
 // One shared 64px mipmapped grain. World-space coordinates also work on roads
 // without UVs, and remain identical after static scenery batching.
-export function polishWorldSurfaces(root,{namak=false}={}){
+export function polishWorldSurfaces(root,{namak=false,night=false}={}){
   const data=new Uint8Array(64*64*4);let seed=73471;
   for(let i=0;i<data.length;i+=4){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const value=80+(seed>>>24)%96;data.set([value,value,value,255],i);}
   const grain=new THREE.DataTexture(data,64,64);grain.wrapS=grain.wrapT=THREE.RepeatWrapping;
@@ -84,7 +84,9 @@ export function polishWorldSurfaces(root,{namak=false}={}){
       const brick=namak&&m.name==='Namak_Brick',stone=namak&&/^Namak_(Stone|Cream|White|Sand)$/.test(m.name),wood=namak&&m.name==='Namak_Wood',water=namak&&m.name==='Water',paving=namak&&m.name==='Paving';
       if(!road&&!ground&&!brick&&!stone&&!wood&&!water)continue;
       surfaces++;m.roughness=water?.25:road?.88:.94;
-      if(road)m.color.setRGB(.018,.022,.027);
+      // Night asphalt gets a cool, readable base; paint lines and bridge
+      // emissions keep their contrast. Geometry/collision stay untouched.
+      if(road)m.color.setRGB(...(night?[.032,.041,.060]:[.018,.022,.027]));
       // Direct property keeps the shared texture visible to the scene disposer.
       m.surfaceGrain=grain;
       m.onBeforeCompile=shader=>{

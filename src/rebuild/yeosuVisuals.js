@@ -171,10 +171,10 @@ const WATER_FRAGMENT=`
    vec2 toward=cameraPosition.xz-sourcePosition[i].xz;float reach=clamp(length(toward),25.0,230.0);
    vec2 axis=normalize(toward+vec2(.0001));vec2 delta=waterPosition.xz-sourcePosition[i].xz;
    float along=dot(delta,axis),side=dot(delta,vec2(-axis.y,axis.x));
-   float width=2.2+max(along,0.0)*.035;
+   float width=3.2+max(along,0.0)*.035;
    float streak=exp(-side*side/(width*width))*exp(-max(along,0.0)/reach*2.0)*step(-2.0,along);
-   float ripples=pow(.5+.5*sin(along*2.2+wave*1.8+visualTime*.85+float(i)*.8),5.0);
-   colour+=sourceColour[i]*sourceStrength[i]*streak*(.08+.62*ripples)*(.35+grazing*.65)*reflectionAllowed;
+   float ripples=pow(.5+.5*sin(along*2.2+wave*1.8+visualTime*.85+float(i)*.8),3.0);
+   colour+=sourceColour[i]*sourceStrength[i]*streak*(.10+.72*ripples)*(.35+grazing*.65)*reflectionAllowed;
   }
   gl_FragColor=vec4(max(colour,vec3(0.0)),1.0);
   #include <colorspace_fragment>
@@ -200,7 +200,7 @@ export function createYeosuVisuals(scene,world,route,{quality='high'}={}){
  const bridgeHalos=createHalos(sources.bridge,'Yeosu_Bridge_Halos',haloMaterial),roadHalos=createHalos(sources.road,'Yeosu_Road_Halos',haloMaterial);
  for(const mesh of [bridgeHalos,roadHalos])if(mesh){group.add(mesh);resources.push(mesh.geometry);}
  const waterMaterial=new THREE.ShaderMaterial({name:'Yeosu_Analytic_Sea',toneMapped:false,fog:true,depthWrite:true,
-  uniforms:{...THREE.UniformsUtils.clone(THREE.UniformsLib.fog),roadMask:{value:corridor.texture},roadBounds:{value:corridor.bounds},deepColour:{value:new THREE.Color('#031329')},horizonColour:{value:new THREE.Color('#0a3158')},visualTime:{value:0},sourceCount:{value:0},
+  uniforms:{...THREE.UniformsUtils.clone(THREE.UniformsLib.fog),roadMask:{value:corridor.texture},roadBounds:{value:corridor.bounds},deepColour:{value:new THREE.Color('#031329')},horizonColour:{value:new THREE.Color('#103959')},visualTime:{value:0},sourceCount:{value:0},
    sourcePosition:{value:Array.from({length:WATER_SOURCE_LIMIT},()=>new THREE.Vector3())},sourceColour:{value:Array.from({length:WATER_SOURCE_LIMIT},()=>new THREE.Color())},sourceStrength:{value:new Float32Array(WATER_SOURCE_LIMIT)}},
   vertexShader:WATER_VERTEX,fragmentShader:WATER_FRAGMENT});
  resources.push(waterMaterial);

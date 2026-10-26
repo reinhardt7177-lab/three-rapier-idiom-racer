@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-25T13:31:04.184Z",
+  "command": "node --test scripts/steering-final.test.mjs scripts/steering-turn.test.mjs",
+  "workspace": "D:/racing/.work/driving-visual-polish-20261025/validation-candidate",
+  "passed": 8,
+  "failed": 2,
+  "reason": "Old smaller-radius requirements conflict with the user-approved 15–18 m/s² grip limit. Not a support/sign/input failure. Retained exact old test sources in before/.",
+  "failures": [
+    {
+      "test": "physical 60/90 kmh turning radius improves",
+      "vehicle": "supra",
+      "kmh": 60,
+      "beforeRadius": 9.615879112838991,
+      "afterRadius": 17.34200818426337
+    },
+    {
+      "test": "all eight cars actually turn tighter at 90km/h",
+      "vehicle": "supra",
+      "kmh": 90,
+      "beforeRadius": 23.682463613779582,
+      "afterRadius": 33.896924450999016
+    }
+  ]
+}

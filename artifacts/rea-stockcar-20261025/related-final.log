@@ -1,0 +1,33 @@
+{"bodyMotionSampling":[{"fps":30,"phase":1,"peakPitchDegrees":0.07750697291292614},{"fps":60,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":2,"peakPitchDegrees":0.07841361034287299},{"fps":60,"phase":2,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":2,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":60,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":60,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":4,"peakPitchDegrees":0.07879231960289464}]}
+✔ one-step collision impulses survive four phases at 30/60/120fps and match at common physical times (126.3108ms)
+✔ render interpolation never integrates a sample again and clamps only its presentation alpha (1.8861ms)
+✔ paused samples preserve the spring and both interpolation endpoints; recovery clears every visible history (2.2183ms)
+✔ fixed samples keep the existing full and reduced-motion pitch and roll limits (9.5084ms)
+✔ a remote 250ms sample measures acceleration over the packet interval and integrates its whole duration (3.0861ms)
+✔ sampling and presenting preserve all wheel transforms and physical snapshots, with low quality clearing both endpoints (43.5332ms)
+✔ a drained CCD contact still locates sparks on real collider geometry with a bounded buffer (189.249ms)
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (11.5726ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (3.54ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (179.9811ms)
+✔ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (2.8751ms)
+✔ quality choices save, reject unknown values and tolerate blocked storage (4.6065ms)
+✔ quality culls distant decoration and preserves road, barriers, colliders and near bounds (7.9087ms)
+✔ a chase orbit preserves radius through crash yaw, wrapped headings and countersteering (98.9123ms)
+✔ orbit pause is exact and recovery snap follows heading immediately (1.3185ms)
+✔ a remote contact plays once; duplicates, old packets, paused and late events do not replay (2.8697ms)
+✔ recovery and rematch reset impact identity without old contact bursts (0.9351ms)
+✔ unsafe optional peer contact fields cannot reach sparks, audio or the camera (1.3799ms)
+✔ the same manifold contact yields opposite sides for the two cars and rotates with their headings (4.2605ms)
+✔ directional impacts mirror, keep driver eyes fixed, stay below one degree and decay fully (7.0455ms)
+✔ chase collision direction is bounded and never creates ambient wobble (3.8477ms)
+✔ a recovery snap clears old recoil but accepts a fresh collision in that same packet (4.7309ms)
+✔ a deliberate driving-motion choice overrides the system preference while auto honors it (50.4849ms)
+✔ driving-motion choices survive reload and blocked storage fails safely (0.6732ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5657.6013

@@ -2,6 +2,7 @@ import {personalityByName,personalitySpeedProfile} from './rivalPersonalities.js
 import {aiInput,curveSpeeds} from './course.js';
 import {RACE_TUNING,RACE_GRID_LANE} from './vehicleDynamics.js';
 import {createRacecraftState,updateRacecraft,racecraftBoost} from './rivalRacecraft.js';
+import {recoveryState,updateRivalRecovery} from './rivalRecovery.js';
 
 const smooth=t=>t*t*(3-2*t);
 const dimensions=c=>RACE_TUNING[c.id]||{length:4.8,collisionWidth:2.05};
@@ -25,11 +26,11 @@ function easyRoad(route,car){
 // One shared planner arbitrates five rivals before the single world step.
 // Advanced traffic prediction belongs to the explicit racecraft configuration.
 // Classic, easy and standalone QA callers retain the proven braking envelope.
-export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,nitro=false,personalities=false,racecraft=null,raceDistance=route.length}={}){
+export function createRivalPlanner(route,{roadClear=()=>false,recoveryClear=roadClear.recoveryClear,speedProfile=null,nitro=false,personalities=false,racecraft=null,raceDistance=route.length}={}){
   const plans=new Map();
   function record(car){
     if(!plans.has(car)){const style=personalities?personalityByName(car.name):null;plans.set(car,{style,craft:createRacecraftState(),profile:style?personalitySpeedProfile(speedProfile,style):speedProfile,home:car.lane,target:car.lane,mode:'follow',reason:'following',timer:0,age:0,queueAge:0,cooldown:0,attackCooldown:0,lead:null,passes:0,attempts:0,aborts:0,stop:false,changeSpeed:95});}
-    return plans.get(car);
+    const plan=plans.get(car);plan.recovery??=recoveryState();return plan;
   }
   function mergeClear(car,target,cars,committed=null){
     const own=local(route,car),a=dimensions(car),ownV=Math.max(2,own.v);
@@ -177,6 +178,11 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       // Front cars commit first; ties use stable race order, never randomness.
       active.sort((a,b)=>(b.progress??0)-(a.progress??0));
       for(const car of active){
+        const currentPlan=record(car),recovery=updateRivalRecovery(currentPlan.recovery,{route,car,cars:participants,dt,pathClear:recoveryClear});
+        if(recovery){inputs.set(car,recovery);continue;}
+        if(currentPlan.recovery.rejoined){
+          Object.assign(currentPlan,{mode:'follow',target:currentPlan.home,lead:null,queuePass:false,stop:false,timer:0});currentPlan.recovery.rejoined=false;
+        }
         const plan=record(car);plan.age+=dt;plan.queueAge=car.state.kmh<8?plan.queueAge+dt:0;plan.cooldown=Math.max(0,plan.cooldown-dt);plan.attackCooldown=Math.max(0,plan.attackCooldown-dt);plan.timer-=dt;
         if(plan.timer<=0){
           plan.openRoad=easyRoad(route,car);
@@ -214,7 +220,7 @@ export function createRivalPlanner(route,{roadClear=()=>false,speedProfile=null,
       }
       return inputs;
     },
-    snapshot(car){const p=plans.get(car);return p?{personality:p.style?.name??null,style:p.style?.label??null,mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age,tactic:p.craft.tactic,boosts:p.craft.boosts,draftSetups:p.craft.draftSetups}:null;},
+    snapshot(car){const p=plans.get(car);return p?{personality:p.style?.name??null,style:p.style?.label??null,mode:p.mode,reason:p.reason,homeLane:p.home,targetLane:p.target,passes:p.passes,attempts:p.attempts,aborts:p.aborts,age:p.age,tactic:p.craft.tactic,boosts:p.craft.boosts,draftSetups:p.craft.draftSetups,recovery:p.recovery?.phase,reverseAttempts:p.recovery?.attempts??0}:null;},
     reset(car,lane=car?.lane){if(!car){plans.clear();return;}const old=plans.get(car);plans.delete(car);const p=record(car);p.home=p.target=lane;p.cooldown=2;p.passes=old?.passes??0;p.attempts=old?.attempts??0;p.aborts=old?.aborts??0;},
   };
 }
