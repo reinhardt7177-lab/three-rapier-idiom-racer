@@ -1,0 +1,63 @@
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ left and right arrow paths point to their screen side without a CSS mirror transform (1.067ms)
+✔ navigation follows the actual driver-camera side at yaw 0 (5.0723ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.5903ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.277ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (0.9354ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (56.5199ms)
+✔ every track has ordered medal targets for every lap option (1.2592ms)
+✔ a personal best only improves, per track and lap count (0.5679ms)
+✔ corrupt or blocked storage never breaks the result screen (0.4466ms)
+✔ new-course saved badges are recalculated without deleting times or legacy medals (0.3417ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (1.0923ms)
+✔ route guidance only announces the finish on the final lap (1.0745ms)
+✔ a ghost replays the recorded run at the same race time (2.811ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (0.4946ms)
+✔ touch detection includes tablets with a mouse and desktop-mode touch browsers (1.4689ms)
+✔ phones, large tablets and manual fallback show pedals regardless of primary pointer (0.5009ms)
+✔ layout guard matches the compact HUD at widths above 1000 and the 550px boundary (0.3537ms)
+✔ changing control visibility releases every owner and pauses once, not on address-bar resize (2.1091ms)
+✔ a hybrid tablet rotated to portrait blocks driving and clears simultaneous pedals (0.4087ms)
+✔ right/left bends follow world heading, including the circular route seam (2.192ms)
+✔ bend detection uses metres and survives a fourfold change in point density (1.1209ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (3.8498ms)
+✔ actual city approach previews its geometrically verified right bend and cached guidance stays pure (6.901ms)
+✔ isolated heading errors never become a persistent corner warning (0.3863ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (4.6681ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (1.0621ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 425.9896
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 174 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       1.95 kB │ gzip:     0.80 kB
+dist/assets/index-Ub1sNbkv.css       41.13 kB │ gzip:     8.10 kB
+dist/assets/inviteQr-B2rCSQVd.js     21.74 kB │ gzip:     8.04 kB
+dist/assets/bundler-DMHVwdtc.js     117.07 kB │ gzip:    31.66 kB
+dist/assets/react-DXdbzrGC.js       191.93 kB │ gzip:    60.15 kB
+dist/assets/index-CFdzG8lY.js       367.20 kB │ gzip:   128.39 kB
+dist/assets/three-C-m27Z9i.js       590.68 kB │ gzip:   151.99 kB
+dist/assets/physics-iRel_T-y.js   2,853.14 kB │ gzip: 1,077.80 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.35s

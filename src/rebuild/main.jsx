@@ -16,6 +16,7 @@ import {progressFromRecords,canRaceTrack} from './progression.js';
 import {WEATHER_OPTIONS} from './weather.js';
 import {RaceSetup} from './RaceSetup.jsx';
 import {OnlineLobby} from './OnlineLobby.jsx';
+import {routeArrowPath} from './routeGuidance.js';
 import {DEFAULT_RACE_SETUP} from './raceMode.js';
 import './rebuild.css';
 
@@ -67,7 +68,7 @@ function CourseGuide({guide,region,progress,lap=1,laps=1}){
   return <div className={`race-route ${guide?.sharp&&guide.distance<=120?'corner-warning':''}`} aria-label="코스 안내">
     <span>{track.label} / LAP {lap}/{laps}</span>
     <div className="route-summary"><span>{region?.toUpperCase()}</span><b aria-label={`남은 거리 ${Math.ceil(remaining)} 미터`}>{remaining>=1000?`${(remaining/1000).toFixed(2)} KM`:`${Math.ceil(remaining)} M`} <small>남음</small></b></div>
-    <div className="corner-guide"><span className={`corner-icon ${direction}`} aria-hidden="true">{direction==='finish'?'⚑':<svg viewBox="0 0 40 36"><path d={bend?'M10 32V16Q10 8 18 8H32M24 1L32 8L24 15':'M20 32V4M10 14L20 4L30 14'}/></svg>}</span><div><strong>{label}</strong><small>{bend?(guide.distance===0?'커브 진행 중':`${guide.distance} M 앞`):direction==='finish'?(remaining===0?'완주':`${Math.ceil(remaining)} M 앞`):'다음 커브를 준비하세요'}{guide?.sharp&&<em>급커브</em>}</small></div></div>
+    <div className="corner-guide"><span className={`corner-icon ${direction}`} aria-hidden="true">{direction==='finish'?'⚑':<svg viewBox="0 0 40 36"><path d={routeArrowPath(direction)}/></svg>}</span><div><strong>{label}</strong><small>{bend?(guide.distance===0?'커브 진행 중':`${guide.distance} M 앞`):direction==='finish'?(remaining===0?'완주':`${Math.ceil(remaining)} M 앞`):'다음 커브를 준비하세요'}{guide?.sharp&&<em>급커브</em>}</small></div></div>
     <div className="course-meter"><i style={{width:`${progress*100}%`}}/></div>
   </div>;
 }

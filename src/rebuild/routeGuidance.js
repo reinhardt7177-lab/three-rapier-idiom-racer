@@ -1,3 +1,10 @@
+// Explicit screen-space paths avoid a negative SVG transform/compositing layer.
+export function routeArrowPath(direction){
+  return direction==='left'?'M30 32V16Q30 8 22 8H8M16 1L8 8L16 15':
+    direction==='right'?'M10 32V16Q10 8 18 8H32M24 1L32 8L24 15':'M20 32V4M10 14L20 4L30 14';
+}
+
+
 const cache=new WeakMap();
 const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
 const forward=(a,b,length)=>(b-a+length)%length;
@@ -13,7 +20,7 @@ export function routeBends(route){
     for(let k=1;k<n;k++){b=(i+k)%n;if(forward(point.distance,p[b].distance,route.length)>=15)break;}
     const span=Math.max(1,forward(p[a].distance,p[b].distance,route.length));
     const angle=wrap(Math.atan2(p[b].dx,p[b].dz)-Math.atan2(p[a].dx,p[a].dz))*30/span;
-    return Math.abs(angle)<.06?null:{direction:angle>0?'right':'left',sharp:Math.abs(angle)>.38};
+    return Math.abs(angle)<.06?null:{direction:angle>0?'left':'right',sharp:Math.abs(angle)>.38};
   });
   // Suppress isolated heading glitches. Join runs across the route seam.
   const visited=new Set();

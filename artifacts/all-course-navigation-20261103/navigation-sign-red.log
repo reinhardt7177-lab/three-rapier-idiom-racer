@@ -1,0 +1,118 @@
+✖ navigation follows the actual driver-camera side at yaw 0 (11.3001ms)
+✖ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.5921ms)
+✖ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.9576ms)
+✖ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (1.932ms)
+✖ all four authored courses agree with geometric road tangents, not a mirrored heading convention (22.1662ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1010.079
+
+✖ failing tests:
+
+test at scripts\navigation.test.mjs:13:51
+✖ navigation follows the actual driver-camera side at yaw 0 (11.3001ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'left' !== 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:19:43)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'left',
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:13:51
+✖ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.5921ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'left' !== 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:19:43)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'left',
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:13:51
+✖ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.9576ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'left' !== 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:19:43)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'left',
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:13:51
+✖ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (1.932ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'left' !== 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:19:43)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'left',
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:23:1
+✖ all four authored courses agree with geometric road tangents, not a mirrored heading convention (22.1662ms)
+  AssertionError [ERR_ASSERTION]: world road point 0
+  
+  'left' !== 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:37:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'left',
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

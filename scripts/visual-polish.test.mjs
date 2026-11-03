@@ -13,7 +13,7 @@ function circle(sign=1,n=126,radius=100){
 const coast=JSON.parse(fs.readFileSync(new URL('../public/assets/rebuild/world-route.json',import.meta.url)));
 
 test('right/left bends follow world heading, including the circular route seam',()=>{
-  for(const [sign,direction] of [[1,'right'],[-1,'left']]){
+  for(const [sign,direction] of [[1,'left'],[-1,'right']]){
     const route=circle(sign);
     for(const index of [0,60,125])assert.equal(routeGuidance(route,index).direction,direction);
   }
@@ -21,7 +21,7 @@ test('right/left bends follow world heading, including the circular route seam',
 test('bend detection uses metres and survives a fourfold change in point density',()=>{
   for(const n of [63,252]){
     const guide=routeGuidance(circle(1,n),0);
-    assert.equal(guide.direction,'right');assert.equal(guide.distance,0);assert.equal(guide.sharp,false);
+    assert.equal(guide.direction,'left');assert.equal(guide.distance,0);assert.equal(guide.sharp,false);
     assert.equal(routeGuidance(circle(1,n,35),0).sharp,true);
   }
 });
@@ -31,14 +31,14 @@ test('finish, reverse driving and recovery distances follow actual race progress
   const finish=routeGuidance(coast,25,coast.length-10);
   assert.equal(finish.direction,'finish');assert.equal(finish.remaining,10);
   assert.equal(routeGuidance(coast,25,coast.length-50).direction,'finish');
-  assert.equal(routeGuidance(coast,25,coast.length-51).direction,'left');
+  assert.equal(routeGuidance(coast,25,coast.length-51).direction,'right');
   assert.equal(routeGuidance(coast,25,400).remaining+100,routeGuidance(coast,25,300).remaining);
   assert.equal(routeGuidance(coast,25,-100).remaining,coast.length);
 });
-test('actual city approach previews its left bend and cached guidance stays pure',()=>{
+test('actual city approach previews its geometrically verified right bend and cached guidance stays pure',()=>{
   const index=coast.points.findIndex(p=>p.region==='City'),before=JSON.stringify(coast);
   const guide=routeGuidance(coast,index,coast.points[index].distance);
-  assert.equal(guide.direction,'left');assert.ok(guide.distance>0&&guide.distance<150);
+  assert.equal(guide.direction,'right');assert.ok(guide.distance>0&&guide.distance<150);
   assert.equal(routeBends(coast),routeBends(coast));assert.equal(JSON.stringify(coast),before);
 });
 test('isolated heading errors never become a persistent corner warning',()=>{

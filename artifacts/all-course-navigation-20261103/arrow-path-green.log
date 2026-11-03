@@ -1,0 +1,23 @@
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ left and right arrow paths point to their screen side without a CSS mirror transform (1.4934ms)
+✔ navigation follows the actual driver-camera side at yaw 0 (5.6585ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.5732ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.2738ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (0.5623ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (77.7129ms)
+✔ a continuing bend previews the next independent corner rather than the next point of the same bend (2.3577ms)
+✔ high speed previews a bend earlier without changing low-speed finish or lap rules (1.8515ms)
+✔ static corner lookup does not rescan the road on every HUD update (6.1899ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 248.2086

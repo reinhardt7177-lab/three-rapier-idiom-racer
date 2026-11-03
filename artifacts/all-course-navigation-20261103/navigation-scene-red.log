@@ -1,0 +1,126 @@
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ navigation follows the actual driver-camera side at yaw 0 (5.243ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.318ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.0446ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (0.6133ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (62.2687ms)
+✖ a continuing bend previews the next independent corner rather than the next point of the same bend (2.3168ms)
+✖ high speed previews a bend earlier without changing low-speed finish or lap rules (1.6329ms)
+✖ static corner lookup does not rescan the road on every HUD update (5.6303ms)
+✖ unlimited high-quality decoration retains the exact visibility policy without per-mesh distance work (14.2328ms)
+✔ finite quality switching, near-sphere bounds and restore remain exact (0.6132ms)
+✖ Namak reuses the culling scratch sphere across updates and quality changes (21.4767ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 6
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 273.4836
+
+✖ failing tests:
+
+test at scripts\navigation.test.mjs:49:1
+✖ a continuing bend previews the next independent corner rather than the next point of the same bend (2.3168ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:52:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:56:1
+✖ high speed previews a bend earlier without changing low-speed finish or lap rules (1.6329ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'straight' !== 'left'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:60:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'straight',
+    expected: 'left',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:65:1
+✖ static corner lookup does not rescan the road on every HUD update (5.6303ms)
+  AssertionError [ERR_ASSERTION]: 5300 point reads for 100 cached announcements
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:70:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\scene-update-work.test.mjs:8:1
+✖ unlimited high-quality decoration retains the exact visibility policy without per-mesh distance work (14.2328ms)
+  AssertionError [ERR_ASSERTION]: no finite distance limit requires no distance evaluation
+  
+  12000 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/scene-update-work.test.mjs:13:153)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 12000,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\scene-update-work.test.mjs:22:1
+✖ Namak reuses the culling scratch sphere across updates and quality changes (21.4767ms)
+  AssertionError [ERR_ASSERTION]: 20 temporary sphere objects
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/scene-update-work.test.mjs:26:112)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
