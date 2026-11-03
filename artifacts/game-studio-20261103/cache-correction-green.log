@@ -1,0 +1,31 @@
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (21.6986ms)
+✔ static world avoids repeated transform composition while moving children keep updating (9.579ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.6396ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (1.6822ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (12.3472ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (7.0721ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (46.5825ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (1.468ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (5.6612ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (1349.3447ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (1132.2499ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (1260.3089ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (495.877ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (276.1783ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (266.527ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (240.8443ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (246.9867ms)
+✔ night exhaust scatters dim blue ambient instead of glowing like rear headlights (5.1881ms)
+✔ night reflection is a separate blue-hour/warm-harbor bake with no live lights (6.8248ms)
+✔ asphalt has lit aggregate without geometry or texture growth {} (8.973ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"night":true} (7.7366ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"namak":true} (2.1705ms)
+✔ aggregate roughness preserves wet-road optical calibration instead of clamping it to dry asphalt (1.8459ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7839.4105

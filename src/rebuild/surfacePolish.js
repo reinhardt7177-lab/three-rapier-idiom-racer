@@ -98,21 +98,32 @@ export function polishWorldSurfaces(root,{namak=false,night=false}={}){
           float fineGrain=texture2D(surfaceGrain,surfacePosition.xz*1.8).r-.5;
           float weather=texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5;
           diffuseColor.rgb*=1.0+fineGrain*${road?'0.24':'0.18'}+weather*${road?'0.22':'0.30'};`);
+        if(road){
+          // Reuse the existing aggregate sample; no texture, draw or reflection
+          // pass is added. Subpixel relief fades instead of sparkling in motion.
+          shader.fragmentShader=shader.fragmentShader.replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>
+            roughnessFactor=clamp(roughnessFactor+fineGrain*.08,.04,1.0);`);
+        }
         if(namak){
           const pattern=paving?`vec2 tile=fract(surfacePosition.xz/0.6);float joint=1.0-smoothstep(.018,.045,min(min(tile.x,1.0-tile.x),min(tile.y,1.0-tile.y)));diffuseColor.rgb*=1.0-joint*.24;`
             :brick?`float row=floor(surfacePosition.y*3.8);vec2 tile=fract(vec2((surfacePosition.x+surfacePosition.z)*2.5+mod(row,2.0)*.5,surfacePosition.y*3.8));float joint=1.0-smoothstep(.025,.075,min(min(tile.x,1.0-tile.x),min(tile.y,1.0-tile.y)));diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.13,.12,.10),joint*.55);`
             :wood?`float grainLine=sin((surfacePosition.x+surfacePosition.z)*40.0+(texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5)*8.0);diffuseColor.rgb*=1.0+grainLine*.07;`
             :water?`float wave=sin(surfacePosition.x*1.4+surfacePosition.z*.9)*sin(surfacePosition.z*1.7);diffuseColor.rgb*=.94+wave*.06;`:'';
           shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>\n${pattern}`);
+        }
+        if(namak||road){
           // Derivative bump in view space adds small surface relief without
           // changing the perfectly flat collision road or creating UV buffers.
-          shader.fragmentShader=`vec3 namakRelief(vec3 pos,vec3 n,vec2 dh,float side){vec3 sx=normalize(dFdx(pos));vec3 sy=normalize(dFdy(pos));vec3 r1=cross(sy,n);vec3 r2=cross(n,sx);float det=dot(sx,r1)*side;return normalize(abs(det)*n-sign(det)*(dh.x*r1+dh.y*r2));}\n`+shader.fragmentShader;
+          shader.fragmentShader=`vec3 namakRelief(vec3 pos,vec3 n,vec2 dh,float side){vec3 sx=dFdx(pos);vec3 sy=dFdy(pos);vec3 r1=cross(sy,n);vec3 r2=cross(n,sx);float det=dot(sx,r1)*side;if(abs(det)<1e-8)return n;return normalize(abs(det)*n-sign(det)*(dh.x*r1+dh.y*r2));}\n`+shader.fragmentShader;
           shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
-            float surfaceHeight=texture2D(surfaceGrain,surfacePosition.${brick||stone?'xy':'xz'}*${water?'0.4':'2.7'}).r*${water?'0.03':road?'0.004':'0.008'};
-            normal=namakRelief(-vViewPosition,normal,vec2(dFdx(surfaceHeight),dFdy(surfaceHeight)),faceDirection);`);
+            ${road?'float roadReliefFade=1.0-smoothstep(.15,.8,max(fwidth(surfacePosition.x*2.7),fwidth(surfacePosition.z*2.7)));':''}
+            float surfaceHeight=texture2D(surfaceGrain,surfacePosition.${brick||stone?'xy':'xz'}*${water?'0.4':'2.7'}).r*${water?'0.03':road?'0.002':'0.008'};
+            vec2 surfaceGradient=vec2(dFdx(surfaceHeight),dFdy(surfaceHeight));
+            ${road?'surfaceGradient*=roadReliefFade;':''}
+            normal=namakRelief(-vViewPosition,normal,surfaceGradient,faceDirection);`);
         }
       };
-      m.customProgramCacheKey=()=>namak?`namak-surface-v2-${m.name}`:`coastal-surface-v1-${road?'road':'ground'}`;
+      m.customProgramCacheKey=()=>namak?`namak-surface-v3-${m.name}`:road?'coastal-surface-v2-road':'coastal-surface-v1-ground';
     }
   });
   if(!surfaces)grain.dispose();

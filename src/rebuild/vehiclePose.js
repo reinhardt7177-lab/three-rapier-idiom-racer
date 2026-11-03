@@ -29,6 +29,12 @@ export function createRecoveryWatch({roadHalfWidth=Infinity}={}){
  }};
 }
 
+// A respawn must avoid physical traffic as well as the race roster. Called on
+// recovery only; no per-frame collection or mutation of either owner.
+export function recoveryObstacles(car,racers,civilianCars=[]){
+ return [...racers.filter(c=>c!==car),...civilianCars].map(c=>c.state).filter(Boolean);
+}
+
 export function recoverySpaceClear(position,traffic){
  return traffic.every(s=>{
   const dx=position.x-s.position.x,dz=position.z-s.position.z;

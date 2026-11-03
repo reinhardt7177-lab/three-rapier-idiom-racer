@@ -1,0 +1,73 @@
+{"bodyMotionSampling":[{"fps":30,"phase":1,"peakPitchDegrees":0.07750697291292614},{"fps":60,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":2,"peakPitchDegrees":0.07841361034287299},{"fps":60,"phase":2,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":2,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":60,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":60,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":4,"peakPitchDegrees":0.07879231960289464}]}
+✔ one-step collision impulses survive four phases at 30/60/120fps and match at common physical times (63.0972ms)
+✔ render interpolation never integrates a sample again and clamps only its presentation alpha (1.7988ms)
+✔ paused samples preserve the spring and both interpolation endpoints; recovery clears every visible history (1.4269ms)
+✔ fixed samples keep the existing full and reduced-motion pitch and roll limits (5.0119ms)
+✔ a remote 250ms sample measures acceleration over the packet interval and integrates its whole duration (0.9097ms)
+✔ sampling and presenting preserve all wheel transforms and physical snapshots, with low quality clearing both endpoints (14.2915ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.8704ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.4354ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.8546ms)
+✔ typing and Space on menu buttons remain native UI actions (0.3866ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.2508ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.3488ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.26189613342285,
+  penetration: 0.005001296137265854,
+  retreat: 24.600356772592576,
+  escapeReverse: false,
+  restartKmh: 7.2980665816164745
+}
+{
+  id: 'slk',
+  impacts: 2,
+  maxZ: 27.385963439941406,
+  penetration: 0.004999396007598023,
+  retreat: 28.051620811403325,
+  escapeReverse: false,
+  restartKmh: 7.230162618218268
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.055423736572266,
+  penetration: 0.005096432348604907,
+  retreat: 25.749811011616085,
+  escapeReverse: false,
+  restartKmh: 7.344852885429801
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (302.6706ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (379.1386ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (197.5753ms)
+✔ a chase orbit preserves radius through crash yaw, wrapped headings and countersteering (27.4727ms)
+✔ orbit pause is exact and recovery snap follows heading immediately (0.8144ms)
+✔ a remote contact plays once; duplicates, old packets, paused and late events do not replay (1.1786ms)
+✔ recovery and rematch reset impact identity without old contact bursts (0.5112ms)
+✔ unsafe optional peer contact fields cannot reach sparks, audio or the camera (0.3814ms)
+✔ the same manifold contact yields opposite sides for the two cars and rotates with their headings (1.8219ms)
+✔ directional impacts mirror, keep driver eyes fixed, stay below one degree and decay fully (4.4748ms)
+✔ chase collision direction is bounded and never creates ambient wobble (2.8357ms)
+✔ a recovery snap clears old recoil but accepts a fresh collision in that same packet (0.7585ms)
+✔ a deliberate driving-motion choice overrides the system preference while auto honors it (0.3912ms)
+✔ driving-motion choices survive reload and blocked storage fails safely (0.3618ms)
+✔ recovery avoids a civilian occupying the preferred lane without moving forward (2.3826ms)
+✔ recovery also respects the next second of civilian travel and fails safely when all candidates are occupied (0.4408ms)
+✔ touch drift can combine gas and steering, with independent pointer and keyboard release (0.8621ms)
+✔ night exhaust scatters dim blue ambient instead of glowing like rear headlights (2.8354ms)
+✔ night reflection is a separate blue-hour/warm-harbor bake with no live lights (2.0448ms)
+✔ asphalt has lit aggregate without geometry or texture growth {} (6.0929ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"night":true} (1.2359ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"namak":true} (1.1183ms)
+✔ aggregate roughness preserves wet-road optical calibration instead of clamping it to dry asphalt (1.1083ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3949.7927

@@ -1,0 +1,133 @@
+✔ releasing one pedal source preserves another finger or keyboard owner (1.3495ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.4336ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (1.8642ms)
+✔ typing and Space on menu buttons remain native UI actions (0.5066ms)
+✔ focus or layout clearing releases every control and requires a fresh press (1.0855ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.6611ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.26189613342285,
+  penetration: 0.005001296137265854,
+  retreat: 24.600356772592576,
+  escapeReverse: false,
+  restartKmh: 7.2980665816164745
+}
+{
+  id: 'slk',
+  impacts: 2,
+  maxZ: 27.385963439941406,
+  penetration: 0.004999396007598023,
+  retreat: 28.051620811403325,
+  escapeReverse: false,
+  restartKmh: 7.230162618218268
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.055423736572266,
+  penetration: 0.005096432348604907,
+  retreat: 25.749811011616085,
+  escapeReverse: false,
+  restartKmh: 7.344852885429801
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (427.1031ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (1023.4981ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (587.0481ms)
+✔ ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials (12.1391ms)
+✔ missing or hidden ghost is reported rather than treated as a successful cost reduction (0.4742ms)
+✔ frozen renderer comparison captures all three A/B/A phases and always restores full geometry (0.8442ms)
+✔ cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set (0.4505ms)
+✔ frozen tread A/B changes only distant rival accents and restores authored visibility and resources (10.9121ms)
+✔ frozen tyre projection leaves close and behind-camera accents intact (2.3917ms)
+✔ slow frame intervals remain visible when CPU submission is short (1.323ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (0.5157ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (0.5911ms)
+✔ frame and CPU measurements reset together after a pause (0.6689ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (0.6294ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.3559ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (0.9158ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (0.5225ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.6032ms)
+✔ preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps (0.4476ms)
+✔ draw profile counts main/shadow deltas while leaving render results and hooks intact (1.354ms)
+✔ GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries (0.9913ms)
+✔ render failure preserves the original exception, restores the hook and deletes the GPU query (0.9558ms)
+✔ draw categories use actual scene ancestry and keep parked cars separate from world meshes (0.4761ms)
+{
+  id: 'supra',
+  kick: 0.35,
+  before: {
+    peak: 0.011359874107432439,
+    settled: 0.00023280453977908856,
+    lost: 0,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'supra',
+  kick: 1,
+  before: {
+    peak: 0.041774566338973175,
+    settled: 0.0004438312869355933,
+    lost: 10,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 0.35,
+  before: { peak: 0.010584552719215016, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 1,
+  before: { peak: 0.038400968317986096, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 0.35,
+  before: { peak: 0.011309360099982676, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 1,
+  before: {
+    peak: 0.046202623687088044,
+    settled: 0.0004894078214374062,
+    lost: 18,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{ id: 'supra', heaveMetres: 0, kmh: 224.31796875 }
+{ id: 'slk', heaveMetres: 0, kmh: 218.3609619140625 }
+{ id: 'mustang', heaveMetres: 0, kmh: 225.369580078125 }
+{ fps: 30, cameraHeave: 0.0056117077319504105, roadHeave: 0.03 }
+{ fps: 60, cameraHeave: 0.005628560567466856, roadHeave: 0.03 }
+{ fps: 120, cameraHeave: 0.005606701048515461, roadHeave: 0.03 }
+✔ all three cars reduce real rebound and retain contact recovery under a strong impact (637.7372ms)
+✔ flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave (588.9675ms)
+✔ chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag (18.0189ms)
+✔ stabilized chase follows steep grades, holds its paused frame and snaps after road recovery (3.5595ms)
+✔ four real routes retain exact nearest point, distance, hint fallback and wrap order (969.0014ms)
+✔ hint bounds preserve earlier ties and robust distances at very large finite coordinates (1.3993ms)
+✔ steady route tracking avoids at least 90 percent of redundant exact hypot calls (0.9801ms)
+✔ legacy coastline projections retain all values including degenerate segments and crossing ties (219.8015ms)
+✔ coastline startup search skips impossible distance evaluations (1.8667ms)
+✔ idle drawing wakes during camera damping and explicit changes; racing never skips draws (1.2515ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10491.9436

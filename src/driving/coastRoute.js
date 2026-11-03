@@ -68,7 +68,11 @@ export function nearestRoad(position, roads = COAST_ROADS) {
   for (const [id, points] of Object.entries(roads)) for (let i = 0; i < points.length - 1; i++) {
     const a = points[i], b = points[i + 1], dx = b.x - a.x, dz = b.z - a.z, l2 = dx * dx + dz * dz;
     const t = Math.max(0, Math.min(1, ((position.x - a.x) * dx + (position.z - a.z) * dz) / l2));
-    const x = a.x + dx * t, z = a.z + dz * t, d = Math.hypot(position.x - x, position.z - z);
+    const x = a.x + dx * t, z = a.z + dz * t;
+    // Axis distance is a conservative lower bound. Projection, visit order and
+    // final hypot stay identical; degenerate/NaN segments retain legacy behavior.
+    if (best && (Math.abs(position.x - x) > best.distance || Math.abs(position.z - z) > best.distance)) continue;
+    const d = Math.hypot(position.x - x, position.z - z);
     if (!best || d < best.distance) best = { x, z, ...(a.y === undefined ? {} : { y: a.y + ((b.y ?? a.y) - a.y) * t }), tx: dx / Math.sqrt(l2), tz: dz / Math.sqrt(l2), halfWidth: a.halfWidth + (b.halfWidth - a.halfWidth) * t, s: a.s + (b.s - a.s) * t, id, index: i, distance: d };
   }
   return best;

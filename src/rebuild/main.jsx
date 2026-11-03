@@ -33,8 +33,20 @@ function controlPresentation(width,height,force=false){
   const touch=touchInput(),stage=landscapePresentation(width,height,touch);
   return {...stage,controlsVisible:showTouchControls(stage.width,stage.height,{touch,force})};
 }
-function PitMenu({stats,runtime,pauseCopy,expand,fullscreen,forceTouch,onForceTouch}){
-  return <div className="menu-shade"><section className="race-menu pit-menu" aria-label="일시정지 메뉴">
+function PitMenu({stats,runtime,pauseCopy,expand,fullscreen,forceTouch,onForceTouch,blocked=false}){
+  const panel=useRef();
+  useEffect(()=>{
+    if(blocked||panel.current.contains(document.activeElement))return;
+    const fallback=[...panel.current.querySelectorAll('button,select,input')].find(x=>!x.disabled&&x.getClientRects().length);
+    (panel.current.querySelector('button.primary:not(:disabled)')??fallback)?.focus();
+  },[blocked,stats.online?.phase]);
+  function keys(e){
+    if(e.key!=='Tab')return;
+    const items=[...panel.current.querySelectorAll('button,select,input')].filter(x=>!x.disabled&&x.getClientRects().length),first=items[0],last=items.at(-1);
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+  }
+  return <div className="menu-shade"><section ref={panel} role="dialog" aria-modal="true" className="race-menu pit-menu" aria-label="일시정지 메뉴" onKeyDown={keys}>
     <header className="pit-header"><div><span className="kicker">PIT STOP</span><h2>잠시 숨 고르기.</h2><p>{pauseCopy}</p></div><button onClick={expand}>{fullscreen?'전체 화면 종료':'전체 화면'}</button></header>
     <div className="pit-columns">
       <div className="pit-actions"><button className="primary" disabled={stats.raceSetup?.mode==='online'&&stats.online?.phase!=='racing'} onClick={()=>runtime.pause()}>주행 재개 →</button><button onClick={()=>stats.raceSetup?.mode==='online'?runtime.garage():runtime.start()}>{stats.raceSetup?.mode==='online'?'대기실로 돌아가기':'레이스 다시 시작'}</button><button onClick={()=>stats.raceSetup?.mode==='online'?runtime.online('leave'):runtime.garage()}>차고로 돌아가기</button><button onClick={()=>runtime.camera()}>시점 전환 · {stats.cameraMode==='first-person'?'1인칭':'3인칭'}</button><button disabled={stats.raceSetup?.mode==='online'} aria-pressed={!!stats.assist} title={stats.assist?'차가 미끄러지면 스스로 자세를 잡습니다':'직접 카운터 스티어해야 하며 스핀할 수 있습니다'} onClick={()=>runtime.assist()}>미끄러짐 보정 · {stats.assist?'켜짐':'꺼짐 (스핀 가능)'}</button></div>
@@ -139,12 +151,12 @@ function App(){
       <button className="camera-switch" aria-label="카메라 시점 전환" aria-pressed={stats.cameraMode==='first-person'} onClick={()=>runtime.current.camera()}>{stats.cameraMode==='first-person'?'1인칭':'3인칭'} <kbd>V</kbd></button>
       {stats.recovery?.age<4&&stats.recovery.reason!=='manual'&&!stats.paused&&<div className="recovery-note" role="status">도로 복귀 완료 · 가속을 다시 눌러주세요</div>}
       {stats.countdown>0&&!stats.paused&&<div className="race-countdown" aria-live="assertive">{stats.countdown}<small>READY TO RACE</small></div>}
-      {stats.paused&&<PitMenu stats={stats} runtime={runtime.current} pauseCopy={pauseCopy} expand={expand} fullscreen={fullscreen} forceTouch={forceTouch} onForceTouch={toggleTouchControls}/>}
+      {stats.paused&&<PitMenu stats={stats} runtime={runtime.current} pauseCopy={pauseCopy} expand={expand} fullscreen={fullscreen} forceTouch={forceTouch} onForceTouch={toggleTouchControls} blocked={presentation.blocked}/>}
       {stats.result&&!stats.paused&&<div className="menu-shade"><section className={series?'race-menu series-result':'race-menu'}><span className="kicker">{onlineMode?'ONLINE 1:1':duel?'AI DUEL':'FINISH'} / {track.label} / {onlineMode?'친구 대전':difficultyById(stats.result.difficulty).label} / {stats.result.laps} LAP{stats.result.laps>1?'S':''}</span><h2>{duel?duelTitle[stats.result.outcome]:series&&!roundTrack(series)?`${seriesTable(series).findIndex(r=>r.name==='YOU')+1}위 챔피언십`:`${stats.result.place}위 완주`}</h2><p className="result-time">{time(stats.result.time)} <Medal id={stats.result.medal}/></p>
       {duel&&<p className="duel-result-opponent">{stats.result.opponent} · {stats.duel?.rivalTime!=null?time(stats.duel.rivalTime):'주행 중'}<br/>{stats.result.wins}승 / {stats.result.runs}회 대결{stats.result.recordsSaved===false&&' · 기록 저장 불가'}</p>}
       <p className="record-note">{stats.result.improved?<>NEW RECORD{stats.result.previous!==null?` · 이전 ${time(stats.result.previous)}`:''}{stats.result.ghostSaved?' · 다음 레이스에 고스트 등장':''}</>:stats.best?<>BEST {time(stats.best.time)}</>:null}{stats.result.laps>1&&<> · 베스트 랩 {time(stats.result.bestLap)}</>}<UnlockNote items={stats.result.unlocked}/></p>
       {stats.medals&&<p className="medal-targets">금 {time(stats.medals.gold)} · 은 {time(stats.medals.silver)} · 동 {time(stats.medals.bronze)}</p>}{series?<><ChampionshipTable series={series}/>{roundTrack(series)===track.id?<p className="series-advance" role="status">나머지 차량 완주를 기다리는 중</p>:roundTrack(series)?<button className="primary series-advance" onClick={()=>goToRound(roundTrack(series))}>다음 코스 →</button>:<p className="series-advance" role="status">시리즈 완주 · 최고 {(seriesRecord?.best||seriesBest(browserStorage('localStorage'),series))?.points??'—'}점</p>}<button className="series-exit" onClick={exitChampionship}>차고로 돌아가기</button></>:<><button className="primary" onClick={()=>onlineMode?runtime.current.garage():runtime.current.start()}>{onlineMode?'대기실로 →':'다시 레이스 →'}</button><button onClick={()=>onlineMode?runtime.current.online('leave'):runtime.current.garage()}>차고로 돌아가기</button></>}</section></div>}
-      <div className="touch-controls" role="group" aria-label="터치 주행">{[['ArrowLeft','←','왼쪽 조향'],['ArrowRight','→','오른쪽 조향'],['TouchBrake','BRAKE','브레이크'],['ArrowUp','GAS','가속'],['Space','NITRO','니트로']].map(([code,label,name])=>{
+      <div className="touch-controls" role="group" aria-label="터치 주행">{[['ArrowLeft','←','왼쪽 조향'],['ArrowRight','→','오른쪽 조향'],['TouchDrift','DRIFT','드리프트'],['TouchBrake','BRAKE','브레이크'],['ArrowUp','GAS','가속'],['Space','NITRO','니트로']].map(([code,label,name])=>{
         const release=e=>runtime.current.input(code,false,`pointer-${e.pointerId}`);
         return <button key={code} aria-label={name} data-race-control={code} disabled={stats.paused||!!stats.result} onPointerDown={e=>{if(e.button!==0)return;e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);runtime.current.input(code,true,`pointer-${e.pointerId}`);}} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}>{label}</button>;
       })}<button className="recover-button" aria-label="도로로 복귀" disabled={stats.paused||!!stats.result} onClick={()=>runtime.current.recover()}>복귀</button></div>

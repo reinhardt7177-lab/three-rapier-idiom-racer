@@ -32,8 +32,16 @@ export function createRenderTiming(capacity=240){
 // A paused camera only needs another draw after a visible state change.
 export function createPauseRendering(){
  let dirty=true;const stats={draws:0,skipped:0};
- return {stats,invalidate(){dirty=true;},draw(paused){
+ return {stats,invalidate(){dirty=true;},draw(paused,cameraChanged=false){
+  if(cameraChanged)dirty=true;
   if(!paused){dirty=false;stats.draws++;return true;}
   if(!dirty){stats.skipped++;return false;}dirty=false;stats.draws++;return true;
  }};
+}
+
+// Wheel/pinch handlers can update the camera before the next RAF. Listen to
+// actual changes as well as the RAF damping result, and own the subscription.
+export function bindRenderInvalidation(controls,rendering){
+ const changed=()=>rendering.invalidate();controls.addEventListener('change',changed);
+ return ()=>controls.removeEventListener('change',changed);
 }

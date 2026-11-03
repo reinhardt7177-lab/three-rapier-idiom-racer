@@ -10,9 +10,10 @@ export function exhaustPoints(id){
  const original=['supra','slk','mustang'].includes(id),x=original?.66:.61;
  return [-1,1].flatMap(side=>(vehicle.quadExhaust?[-.057,.057]:[0]).map(dx=>new Vector3(side*x+dx,.31,-vehicle.length/2-(original?.125:.155))));
 }
-export function createExhaustVfx(){
+export function createExhaustVfx({night=false}={}){
  const limit=96,positions=new Float32Array(limit*3),sizes=new Float32Array(limit),alphas=new Float32Array(limit),velocities=new Float32Array(limit*3),ages=new Float32Array(limit).fill(10),lives=new Float32Array(limit);
- const root=createSmokeCloud(positions,sizes,alphas,{color:'#b3bdc3',name:'dual-exhaust-vapour'}),q=new Quaternion(),point=new Vector3(),back=new Vector3();
+ // Vapour scatters ambient light instead of glowing like an emissive lamp.
+ const root=createSmokeCloud(positions,sizes,alphas,{color:night?'#5f7082':'#b3bdc3',name:'dual-exhaust-vapour'}),q=new Quaternion(),point=new Vector3(),back=new Vector3();
  let cursor=0,carry=0,live=0,seed=37;
  const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  function clear(){alphas.fill(0);ages.fill(10);carry=cursor=live=0;root.visible=false;root.geometry.attributes.aAlpha.needsUpdate=true;}

@@ -10,7 +10,7 @@ export function createRaceInput(){
   if(!held.has(code))held.set(code,new Set());held.get(code).add(source);
  },release(code,source='keyboard'){
   const owners=held.get(code);if(!owners)return;owners.delete(source);if(!owners.size)held.delete(code);
- },read:()=>({throttle:has('KeyW','ArrowUp')?1:0,brake:has('TouchBrake')?1:0,reverse:has('KeyS','ArrowDown')?1:0,steer:Number(has('KeyD','ArrowRight'))-Number(has('KeyA','ArrowLeft')),handbrake:has('ShiftLeft','ShiftRight'),boost:has('Space')})};
+ },read:()=>({throttle:has('KeyW','ArrowUp')?1:0,brake:has('TouchBrake')?1:0,reverse:has('KeyS','ArrowDown')?1:0,steer:Number(has('KeyD','ArrowRight'))-Number(has('KeyA','ArrowLeft')),handbrake:has('ShiftLeft','ShiftRight','TouchDrift'),boost:has('Space')})};
 }
 const handled=new Set(['KeyW','KeyS','KeyA','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight','Space','Escape','KeyC','KeyR','KeyM','KeyV']);
 export function handleRaceKeyDown(event,actions){

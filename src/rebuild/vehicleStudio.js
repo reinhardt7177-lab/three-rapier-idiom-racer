@@ -19,6 +19,28 @@ export function createVehicleStudio(){
  return scene;
 }
 
+// Baked night-only environment. Blue sky/road ribbons and small amber harbor
+// lights give paint a believable outdoor horizon rather than white showroom
+// rectangles. This scene is disposed immediately after PMREM capture.
+export function createNightVehicleStudio(){
+ const scene=new THREE.Scene();scene.name='Night_Vehicle_Reflection';scene.background=new THREE.Color('#1e3658');
+ const geometry=new THREE.PlaneGeometry(),owned=new Set([geometry]);
+ const panels=[
+  ['night-sky-fill',[0,8,0],[12,14],'#b3d7ff',1.7],
+  ['cool-road-left',[-7,3,0],[6,.45],'#74baff',4],
+  ['cool-road-right',[7,3,0],[9,.45],'#85c3ff',3.2],
+  ['warm-harbor-left',[-5,1.8,-7],[.9,4],'#ffbb66',6],
+  ['warm-harbor-right',[7,1.3,5],[.45,2.8],'#ffb65d',5],
+  ['night-ground',[0,-2,0],[40,40],'#0d1825',1],
+ ];
+ for(const [name,position,size,color,intensity] of panels){
+  const material=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide});material.color.multiplyScalar(intensity);owned.add(material);
+  const mesh=new THREE.Mesh(geometry,material);mesh.name=name;mesh.position.fromArray(position);mesh.scale.set(size[0],size[1],1);mesh.lookAt(0,0,0);scene.add(mesh);
+ }
+ scene.dispose=()=>{for(const resource of owned)resource.dispose();owned.clear();};
+ return scene;
+}
+
 // A dark ground hemisphere gives outdoor paint/window reflections a readable
 // horizon. Only the small baking scene contains this plane; no new world mesh.
 export function addVehicleReflectionGround(scene){

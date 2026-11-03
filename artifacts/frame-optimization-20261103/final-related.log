@@ -1,0 +1,48 @@
+✔ actual showroom wall occlusion is removed for rear and diagonal vehicle views (12.9464ms)
+✔ front and in-room rear views restore the real backdrop (2.4456ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (10.8691ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (2.1934ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (177.2901ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (3.6128ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (9.9134ms)
+✔ ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials (18.5328ms)
+✔ missing or hidden ghost is reported rather than treated as a successful cost reduction (1.8074ms)
+✔ frozen renderer comparison captures all three A/B/A phases and always restores full geometry (4.0697ms)
+✔ cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set (0.8516ms)
+✔ frozen tread A/B changes only distant rival accents and restores authored visibility and resources (14.3789ms)
+✔ frozen tyre projection leaves close and behind-camera accents intact (8.1803ms)
+✔ slow frame intervals remain visible when CPU submission is short (1.5533ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (0.5992ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (1.06ms)
+✔ frame and CPU measurements reset together after a pause (1.2065ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (1.3047ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.7707ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (1.8645ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (0.5426ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.7644ms)
+✔ preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps (0.545ms)
+✔ draw profile counts main/shadow deltas while leaving render results and hooks intact (2.0702ms)
+✔ GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries (1.3558ms)
+✔ render failure preserves the original exception, restores the hook and deletes the GPU query (4.6293ms)
+✔ draw categories use actual scene ancestry and keep parked cars separate from world meshes (0.8269ms)
+✔ four real routes retain exact nearest point, distance, hint fallback and wrap order (1268.5664ms)
+✔ hint bounds preserve earlier ties and robust distances at very large finite coordinates (2.3992ms)
+✔ steady route tracking avoids at least 90 percent of redundant exact hypot calls (1.1825ms)
+✔ legacy coastline projections retain all values including degenerate segments and crossing ties (385.6483ms)
+✔ coastline startup search skips impossible distance evaluations (2.6625ms)
+✔ idle drawing wakes during camera damping and explicit changes; racing never skips draws (45.9922ms)
+✔ a real OrbitControls dolly schedules an idle draw even when the following update returns false (13.5627ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (121.6617ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (12.0921ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (3.2693ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (3.5776ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (1.4851ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (506.5643ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8562.1723

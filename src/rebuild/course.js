@@ -19,7 +19,13 @@ export function curveSpeeds(route,profile=null){
 export function nearestRoute(route,position,hint=null) {
   const points=route.points,n=points.length;
   let best={index:0,distance:Infinity};
-  const visit=i=>{i=(i+n)%n;const p=points[i],d=Math.hypot(p.x-position.x,p.z-position.z);if(d<best.distance)best={index:i,distance:d};};
+  // An actual candidate supplies an upper bound, not a changed visit order.
+  // Keep the exact hypot arithmetic and earlier ties (including duplicate points).
+  const seed=hint!==null?points[hint]:null;
+  let limit=seed?Math.hypot(seed.x-position.x,seed.z-position.z):Infinity;
+  const visit=i=>{i=(i+n)%n;const p=points[i],dx=p.x-position.x,dz=p.z-position.z;
+    if(Math.abs(dx)>limit||Math.abs(dz)>limit)return;
+    const d=Math.hypot(dx,dz);if(d<best.distance){best={index:i,distance:d};limit=d;}};
   if(hint===null)for(let i=0;i<n;i++)visit(i);
   else {for(let i=hint-65;i<=hint+65;i++)visit(i);if(best.distance>35)for(let i=0;i<n;i++)visit(i);}
   return {...best,point:points[best.index]};

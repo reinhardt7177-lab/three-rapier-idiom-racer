@@ -1,0 +1,89 @@
+✖ four real routes retain exact nearest point, distance, hint fallback and wrap order (513.9983ms)
+✔ hint bounds preserve earlier ties and robust distances at very large finite coordinates (1.7224ms)
+✖ steady route tracking avoids at least 90 percent of redundant exact hypot calls (1.6522ms)
+✔ legacy coastline projections retain all values including degenerate segments and crossing ties (159.7336ms)
+✖ coastline startup search skips impossible distance evaluations (0.9523ms)
+✖ idle drawing wakes during camera damping and explicit changes; racing never skips draws (0.8182ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 2
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1735.0428
+
+✖ failing tests:
+
+test at scripts\route-work.test.mjs:26:1
+✖ four real routes retain exact nearest point, distance, hint fallback and wrap order (513.9983ms)
+  Error: ENOENT: no such file or directory, open 'D:\racing\three-rapier-idiom-racer\public\assets\rebuild\route.json'
+      at Object.openSync (node:fs:560:18)
+      at Object.readFileSync (node:fs:444:35)
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/route-work.test.mjs:29:67)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'D:\\racing\\three-rapier-idiom-racer\\public\\assets\\rebuild\\route.json'
+  }
+
+test at scripts\route-work.test.mjs:44:1
+✖ steady route tracking avoids at least 90 percent of redundant exact hypot calls (1.6522ms)
+  AssertionError [ERR_ASSERTION]: 131 expensive distances, was 131
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/route-work.test.mjs:47:34)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\route-work.test.mjs:54:1
+✖ coastline startup search skips impossible distance evaluations (0.9523ms)
+  AssertionError [ERR_ASSERTION]: 950 expensive distances, was 950
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/route-work.test.mjs:56:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\route-work.test.mjs:58:1
+✖ idle drawing wakes during camera damping and explicit changes; racing never skips draws (0.8182ms)
+  AssertionError [ERR_ASSERTION]: camera damping must keep drawing
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/route-work.test.mjs:61:30)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

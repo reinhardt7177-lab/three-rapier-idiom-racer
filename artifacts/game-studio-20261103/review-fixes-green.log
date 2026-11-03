@@ -1,0 +1,38 @@
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (9.4362ms)
+✔ static world avoids repeated transform composition while moving children keep updating (6.47ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.5092ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (1.7131ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (820.8699ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (19.1611ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (17.8198ms)
+✔ current player steering retains city lock, the calibrated highway envelope and mirrored wheel axes (2.4215ms)
+{"target":100,"direction":-1,"kmh":101.92262506493653,"contacts":4,"steer":0.10599078676988365,"sensitivity":1.6900000000000002}
+{"target":100,"direction":1,"kmh":101.92263323208242,"contacts":4,"steer":-0.10599076816399536,"sensitivity":1.6900000000000002}
+{"target":180,"direction":-1,"kmh":180.3234393269464,"contacts":4,"steer":0.022687679882019144,"sensitivity":1.6900000000000002}
+{"target":180,"direction":1,"kmh":180.3234393269464,"contacts":4,"steer":-0.02268767989090806,"sensitivity":1.6900000000000002}
+✔ current player steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (1732.3135ms)
+✔ night headlights follow vehicle yaw, illuminate ahead and hide outside a race (12.9248ms)
+✔ night asphalt stays separate from daylight with unchanged geometry and surface texture budget (9.5704ms)
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (7.0241ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (12.4049ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (15.5397ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (1343.0547ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (14.7523ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (15.0547ms)
+✔ night exhaust scatters dim blue ambient instead of glowing like rear headlights (7.4638ms)
+✔ night reflection is a separate blue-hour/warm-harbor bake with no live lights (6.1961ms)
+✔ asphalt has lit aggregate without geometry or texture growth {} (12.1952ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"night":true} (2.7472ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"namak":true} (2.4345ms)
+✔ aggregate roughness preserves wet-road optical calibration instead of clamping it to dry asphalt (2.2447ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10031.3589

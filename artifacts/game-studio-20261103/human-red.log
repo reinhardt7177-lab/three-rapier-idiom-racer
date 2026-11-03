@@ -1,0 +1,353 @@
+✖ supra: human maximum turn stays within arcade tyre capacity with four grounded wheels (173.8396ms)
+✖ supra: assisted 90km/h handbrake is a moving drift, not a parking spin (66.5569ms)
+✖ slk: human maximum turn stays within arcade tyre capacity with four grounded wheels (42.21ms)
+✖ slk: assisted 90km/h handbrake is a moving drift, not a parking spin (70.4812ms)
+✖ mustang: human maximum turn stays within arcade tyre capacity with four grounded wheels (111.5938ms)
+✖ mustang: assisted 90km/h handbrake is a moving drift, not a parking spin (69.1686ms)
+✖ porsche911: human maximum turn stays within arcade tyre capacity with four grounded wheels (67.8701ms)
+✖ porsche911: assisted 90km/h handbrake is a moving drift, not a parking spin (83.0263ms)
+✖ gtr: human maximum turn stays within arcade tyre capacity with four grounded wheels (67.8188ms)
+✖ gtr: assisted 90km/h handbrake is a moving drift, not a parking spin (59.4485ms)
+✖ rx7: human maximum turn stays within arcade tyre capacity with four grounded wheels (44.5071ms)
+✖ rx7: assisted 90km/h handbrake is a moving drift, not a parking spin (65.3126ms)
+✖ m3: human maximum turn stays within arcade tyre capacity with four grounded wheels (44.1271ms)
+✖ m3: assisted 90km/h handbrake is a moving drift, not a parking spin (38.2314ms)
+✖ huracan: human maximum turn stays within arcade tyre capacity with four grounded wheels (33.4837ms)
+✖ huracan: assisted 90km/h handbrake is a moving drift, not a parking spin (34.9344ms)
+✖ human steering uses travel speed in a large slide, while legacy presets retain their values (10.3986ms)
+✖ ground-speed recovery persists sideways, but does not activate in air, at rest, or in reverse (9.5043ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 0
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2174.6531
+
+✖ failing tests:
+
+test at scripts\human-handling.test.mjs:24:2
+✖ supra: human maximum turn stays within arcade tyre capacity with four grounded wheels (173.8396ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 33.969723910161825 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ supra: assisted 90km/h handbrake is a moving drift, not a parking spin (66.5569ms)
+  AssertionError [ERR_ASSERTION]: retained speed 10.082909382711819 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ slk: human maximum turn stays within arcade tyre capacity with four grounded wheels (42.21ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 32.51907576505845 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ slk: assisted 90km/h handbrake is a moving drift, not a parking spin (70.4812ms)
+  AssertionError [ERR_ASSERTION]: retained speed 11.887787629823864 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ mustang: human maximum turn stays within arcade tyre capacity with four grounded wheels (111.5938ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 32.69948172764878 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ mustang: assisted 90km/h handbrake is a moving drift, not a parking spin (69.1686ms)
+  AssertionError [ERR_ASSERTION]: retained speed 10.79353810239614 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ porsche911: human maximum turn stays within arcade tyre capacity with four grounded wheels (67.8701ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 36.91837546948915 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ porsche911: assisted 90km/h handbrake is a moving drift, not a parking spin (83.0263ms)
+  AssertionError [ERR_ASSERTION]: retained speed 6.779677503241208 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ gtr: human maximum turn stays within arcade tyre capacity with four grounded wheels (67.8188ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 36.075060526331846 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ gtr: assisted 90km/h handbrake is a moving drift, not a parking spin (59.4485ms)
+  AssertionError [ERR_ASSERTION]: retained speed 12.276843374773064 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ rx7: human maximum turn stays within arcade tyre capacity with four grounded wheels (44.5071ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 32.514214364592746 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ rx7: assisted 90km/h handbrake is a moving drift, not a parking spin (65.3126ms)
+  AssertionError [ERR_ASSERTION]: retained speed 5.451684955165461 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ m3: human maximum turn stays within arcade tyre capacity with four grounded wheels (44.1271ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 35.35299365564663 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ m3: assisted 90km/h handbrake is a moving drift, not a parking spin (38.2314ms)
+  AssertionError [ERR_ASSERTION]: retained speed 12.397150522102399 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:24:2
+✖ huracan: human maximum turn stays within arcade tyre capacity with four grounded wheels (33.4837ms)
+  AssertionError [ERR_ASSERTION]: lateral acceleration 38.30079985629684 m/s²
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:32:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:35:2
+✖ huracan: assisted 90km/h handbrake is a moving drift, not a parking spin (34.9344ms)
+  AssertionError [ERR_ASSERTION]: retained speed 11.042243498584845 km/h
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:39:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:43:1
+✖ human steering uses travel speed in a large slide, while legacy presets retain their values (10.3986ms)
+  AssertionError [ERR_ASSERTION]: 0.56 versus travel envelope 0.20694353884090472
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:48:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\human-handling.test.mjs:52:1
+✖ ground-speed recovery persists sideways, but does not activate in air, at rest, or in reverse (9.5043ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(a.recovery>.9)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/human-handling.test.mjs:55:41)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
