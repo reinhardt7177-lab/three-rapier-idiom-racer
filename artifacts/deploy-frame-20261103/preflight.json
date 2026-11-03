@@ -1,0 +1,716 @@
+{
+  "at": "2026-11-03T13:44:07.926Z",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "previousHead": "26fd4d50fba4b5174a97d93920b2b48ca0a07aa8",
+  "verifiedInputs": 230,
+  "allInputsMatch": true,
+  "credentialSignatures": 0,
+  "files": 139,
+  "bytes": 8787376,
+  "freshRelatedTests": 49,
+  "freshBuildSeconds": 4.57,
+  "fullCheckReference": "artifacts/frame-optimization-20261103/npm-check-result.json",
+  "excluded": [
+    "local before copies",
+    "discarded physics/helper scripts",
+    "unrelated diagnostics",
+    "credentials"
+  ],
+  "rows": [
+    {
+      "path": ".gitignore",
+      "bytes": 1921,
+      "sha256": "326519c1628f773e37d4b87f25097ccd19cfb9295d0d27dc7769783f0b41d558"
+    },
+    {
+      "path": "docs/NEXT_STEPS.md",
+      "bytes": 65447,
+      "sha256": "dd33fa9ddcfb35dec0bfee38a528de9f71cf76f2a485df5c3193cc2fa8366261"
+    },
+    {
+      "path": "package.json",
+      "bytes": 6328,
+      "sha256": "ac578e9dc26cc941666091faf0f68e4d3f700ec253089a6fed9b5c18d43e5c77"
+    },
+    {
+      "path": "src/driving/coastRoute.js",
+      "bytes": 11525,
+      "sha256": "b20a5274739f99345da08d6e7c8d75bd076c565a2c7c2d8f1b74c9c7a7e05089"
+    },
+    {
+      "path": "src/rebuild/course.js",
+      "bytes": 6267,
+      "sha256": "130e97cdbeac7c43314feb83b0f5d13aae67ec484d764fe55b173aeaccf63f22"
+    },
+    {
+      "path": "src/rebuild/exhaustVfx.js",
+      "bytes": 3118,
+      "sha256": "94b56a07569751973823b1db738c72d42f0544765f5d05957cf6c96bab109615"
+    },
+    {
+      "path": "src/rebuild/main.jsx",
+      "bytes": 29158,
+      "sha256": "35135e7115ae52aef9b6f91f3e22575d7954feda1e283fb8af164de06c015d12"
+    },
+    {
+      "path": "src/rebuild/raceInput.js",
+      "bytes": 2320,
+      "sha256": "e8bf1e76a36b4ece94c098e78f81b7edab3b1812b50b5d81bd9f9041c21e53e0"
+    },
+    {
+      "path": "src/rebuild/rebuild.css",
+      "bytes": 42753,
+      "sha256": "e9add291d89a4b3a78de2cb3e5cfc8dcf02a37de69854a3d683b50b9d9512000"
+    },
+    {
+      "path": "src/rebuild/renderTiming.js",
+      "bytes": 2659,
+      "sha256": "2e8a2a52c49878b9089712f7c8932f5b2ffde1e69f342b213cb2aac4629a1239"
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "bytes": 57998,
+      "sha256": "654f57a198682f1d48f2d71996473423a6574665ede9df93793689a03e057421"
+    },
+    {
+      "path": "src/rebuild/surfacePolish.js",
+      "bytes": 9211,
+      "sha256": "ed85202dc1b94af12b16159fee41f17275e3cb2c2c24c81dbabeef0c34be3de2"
+    },
+    {
+      "path": "src/rebuild/vehiclePose.js",
+      "bytes": 2908,
+      "sha256": "8a1df86a6fbb9db3ba7e1098685a0d5ba5ae5f9c1e1b7814a32072581765439d"
+    },
+    {
+      "path": "src/rebuild/vehicleStudio.js",
+      "bytes": 3013,
+      "sha256": "656fdb57764a5200e36187137da6c8e8a7516e2d822e1af121080bf817b695ec"
+    },
+    {
+      "path": "scripts/route-work.test.mjs",
+      "bytes": 5327,
+      "sha256": "81ba78a8d7a29e03dd01f66b0cebbd2f0e4722c40e0c96061f75e4cb55c71be9"
+    },
+    {
+      "path": "scripts/studio-controls.test.mjs",
+      "bytes": 2576,
+      "sha256": "554f9d70ed0ea6003a32d8f34f07ff309bcb71605fc0634d0c01a7df111610f5"
+    },
+    {
+      "path": "scripts/studio-visuals.test.mjs",
+      "bytes": 4535,
+      "sha256": "dac8a566e8b3e228f9e7c74c51fb68d6282d88256b3e5fa5de8866bebefb4226"
+    },
+    {
+      "path": "docs/FRAME_OPTIMIZATION_20261103.md",
+      "bytes": 9564,
+      "sha256": "677c242b2d509af67d69cf50f025ce2a331c491f43bb69211cb679ee98a5b225"
+    },
+    {
+      "path": "docs/GAME_STUDIO_DESIGN_20261103.md",
+      "bytes": 3655,
+      "sha256": "42f805c55e023887a2488677e6e07ad3e9dd96f722f7511e2bd888dd85d2345d"
+    },
+    {
+      "path": "docs/GAME_STUDIO_REVIEW_20261103.md",
+      "bytes": 13923,
+      "sha256": "222634b77f2a11d250d76907105ccb4245f448c5cef50b704e05e0490ed93c9a"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-03-frame-optimization.md",
+      "bytes": 3705,
+      "sha256": "7d8fbd1de647d3ac64d36f38efbe8cf10540a9c5cacbb3c29caa3a13514d3109"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-03-game-studio-polish.md",
+      "bytes": 5251,
+      "sha256": "0d04128adef15167896cc437e469def2164226ba078d4878f9fabceb399ab981"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/build-footprint.json",
+      "bytes": 15461,
+      "sha256": "95c530a45c285e6bd26a79a2b09623bd2543273fb4232e56f67640b9c6bab9ee"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/completion-summary.json",
+      "bytes": 202,
+      "sha256": "85a83ce3ae40a73a0d38593d673b2b98ce624c5469f4ac77cfdf0c59959f8ae9"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/cpu-race-before.json",
+      "bytes": 6306,
+      "sha256": "fb351547b3edf2700af59099803820cd9a178efd36a6c9cee0e6b016a1eee8a6"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/final-related.log",
+      "bytes": 4212,
+      "sha256": "854cae15962c7b3381d86f7b5bced08a5b1fd079b7951e3f3794b4aba4a8abf9"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/idle-after.json",
+      "bytes": 986,
+      "sha256": "e2dbbc90c62b3e3098652b26c5415358de3333dc6de94527c6cdc529ecac5ed6"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/idle-before.json",
+      "bytes": 210,
+      "sha256": "23cadf28665a79639f6c41fc3e1366d30c057a32575df08afc1849078000e79b"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/namak-low-A1.json",
+      "bytes": 297516,
+      "sha256": "828f02081b7b1246872efa3a57bdc5ea3b34318928211a65e69802aafedfd281"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/namak-low-A2-interrupted.json",
+      "bytes": 123,
+      "sha256": "f31af5a1b86a6f398d77bd7503f456a58492f7a6b3f4843451ba9702a6d37ab1"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/namak-low-A2.json",
+      "bytes": 291618,
+      "sha256": "d6a1dd72a623ab0e14bba3d867bca533fe557d8cc0c5ba61dcaf49adb4b2f39c"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/namak-low-B.json",
+      "bytes": 296456,
+      "sha256": "9795a55e83b8769be9b20e8a6fc4729c1cb01e4ad3a04bbb216efdb273115ed2"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/npm-check-result.json",
+      "bytes": 462,
+      "sha256": "8c13f0a6b68eea71fb80ce358c848b750471d44b091f4e9e1ad28199e7a1feb7"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/npm-check.log",
+      "bytes": 92647,
+      "sha256": "bc1b71bd8ccb176f9744834b9bdfd04c1aa30d0f71f053aba5f35560804d3051"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/performance-summary.json",
+      "bytes": 7392,
+      "sha256": "795c3c3dd7643ff4e010275a3b5d98d0ab77e32836e808b4a72c4ef74941e2cc"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/preservation-final.json",
+      "bytes": 76553,
+      "sha256": "124fe19a7d83c7419e9bf11c5649984e9a363311824d3b85ce5218e105833e55"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/preservation-scope.json",
+      "bytes": 3248,
+      "sha256": "2ac2467aeb4127a02d02d13ef8b870ecd6cd28dd955890e49c0730a961e5bc48"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/production-console.json",
+      "bytes": 775,
+      "sha256": "bcec08417a58dc090c11f0fa29c71932ed486f41e94fc6fcaa649698c82d568b"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/production-drive.json",
+      "bytes": 21209,
+      "sha256": "0f891bcd34dadc010c111846a7ae6c72d4a59436719e371948d434eaa78cd100"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/production-garage.json",
+      "bytes": 5224,
+      "sha256": "3a386eadefcd33f98bb107ff465756d302a5a691d424c0a80ef56c1be37c4d7f"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/production-ui-resize-paused.json",
+      "bytes": 7055,
+      "sha256": "ec6d2b8dbae7f54a9e75789fadee2311df8ccf7969df352aebcbd0f55ea69dd9"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/production-ui.json",
+      "bytes": 7129,
+      "sha256": "f2bf843242d2a99ea8a5484e4907bff6dd5a7229aaba8b4efadf1a2c336a84d1"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/profile-high-before.json",
+      "bytes": 48151,
+      "sha256": "03c44e033ef300530e618759692729c9a921a2f521290342cb724f4e47894c5e"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/profile-moving-before.json",
+      "bytes": 48076,
+      "sha256": "3632024a64b635aa507f7f606dc0546ca79d23aca342ce1326848a887401f83b"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression-summary.json",
+      "bytes": 34760,
+      "sha256": "690baef84240b92a5ef63e05748a528e8a2df5152527d3f3bf8899063b5f1e23"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/review.md",
+      "bytes": 1194,
+      "sha256": "6514fbd6315f9821060822403d603c0d77ea09ccef6a6926b694ff4298cdd92f"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/route-idle-green.log",
+      "bytes": 6237,
+      "sha256": "048dbc7420c48b9bdf0b467454ea4b6f2d5048f510a45722a03eec9b85fcf017"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/route-idle-red.log",
+      "bytes": 4261,
+      "sha256": "812e4b3ceda08fb9767bfccdfd7d7bbfc74c532f34951a8856675b0188535d0e"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/route-work-counts.json",
+      "bytes": 825,
+      "sha256": "0883ccb3703b96c585ebfa138616a99291f91f88f6221c8513fa36f3345b9fce"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/trace-after-B.json",
+      "bytes": 6725,
+      "sha256": "7ddb5fc1dcee04efdaf80027aa3aad3810e1e9ed018022898961310904df7fcf"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/trace-before-A1.json",
+      "bytes": 6709,
+      "sha256": "ab61984f966f7454f4df63cd811959505cff29d45e3b26f555a5a16c3688b1fe"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/trace-before-A2.json",
+      "bytes": 6709,
+      "sha256": "c96dd1b6c59519dbebf4a4e867eccb374b9f1d89f24d0652632ea732eef3bf99"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/validation-baseline-inputs.json",
+      "bytes": 537230,
+      "sha256": "b5b743a92c1c3c2837dfbda3a540d010490f9091b7edf5686af89ca32bc73575"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/validation-final-inputs.json",
+      "bytes": 537400,
+      "sha256": "7a88f603d8a386777360b59e2404f1f98d90ad6d9bc5b4e5368559359045912f"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/yeosu-high-A1.json",
+      "bytes": 197169,
+      "sha256": "a47a8ea2573a71abe538da9d8baa7ace13df383934545b329f02dbec2437c3d2"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/yeosu-high-A2.json",
+      "bytes": 277234,
+      "sha256": "87350a239dae109ec195cfad9d8e2e52e0c713bc0bf111e7bd0f203257b1b4b3"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/yeosu-high-B.json",
+      "bytes": 273695,
+      "sha256": "ddc6b91d07e1af9adf8b0a8760ce56e6a33241179abfa1b5999299fe158ec995"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/yeosu-low-final.json",
+      "bytes": 294780,
+      "sha256": "fa2e080793b173e00d59bff79e18bac4a98dcaea3173046300ac7871723ccdb6"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/zoom-red.log",
+      "bytes": 1049,
+      "sha256": "b99d73cf3b98e1432720d81b560a621a64cbc8aa5ff879587caa473a7d76d189"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/namak-lap.json",
+      "bytes": 156,
+      "sha256": "98542687323784f5a9bc7bb2112402e257a8d45bb321aea8e28c37b802472158"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/physical-series.json",
+      "bytes": 17437,
+      "sha256": "d07e55673d777f8a5269a0c414c16fb818cc1901a8d0c92178a129b4ad704eeb"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/progression-race.json",
+      "bytes": 6216,
+      "sha256": "6fc371e30a5b504b516371789b33e123759c17b0c31bd112c3125628dae67967"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/provenance.json",
+      "bytes": 872,
+      "sha256": "93e2f0dffecb2de855ec07367f3ee3d1622b2274aded7539425c486a53c9d6b3"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/rain-races.json",
+      "bytes": 71404,
+      "sha256": "e84042a82065019b70390b3b788fd583bda7e5e5d84b149aecc8752b0f27abbf"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/rival-personality-races.json",
+      "bytes": 119744,
+      "sha256": "0f70e5324f1a7c3f4acec52713ae389a8d47dd489b061d06c127427b238da44b"
+    },
+    {
+      "path": "artifacts/frame-optimization-20261103/regression/traffic-races.json",
+      "bytes": 20611,
+      "sha256": "403af1f8f7130346ef02451ab4d5311ce02d47bc0be28a2523568fb00e6152bc"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/baseline-inputs.json",
+      "bytes": 2330,
+      "sha256": "bac619b7b6fa2208986c4aede566b6e5fed018f7464b5c870953388a0e56c31e"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/baseline-source-verification.json",
+      "bytes": 787,
+      "sha256": "b47a3e1e8374072e5c1aa69d2f76b7bfe10d98c0d0c661ceb50e670e1051fa1e"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/browser-console.json",
+      "bytes": 1548,
+      "sha256": "3f570dafab48cbc100da3741f53e1ee30883b9ab81b6c0bd8d6957b4518b23dc"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/browser-driving.json",
+      "bytes": 767,
+      "sha256": "dd46b888893e72250e21dbdb486671fe8b186ab645567bf8daf548b6ec138b03"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/browser-focus.json",
+      "bytes": 1040,
+      "sha256": "b9bbbd794d20b3f83611d8d6fd09b72c22a2a425551395d54def1e3f2b6c072b"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/build-footprint.json",
+      "bytes": 15462,
+      "sha256": "6d6e81eeadb36b324d1b3bb782b299466a44b6996ae11e39f41bf65803e2fb8d"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/build.log",
+      "bytes": 1112,
+      "sha256": "81a9ea263777d9bb2fec8acc81c166181ee7c14fc1b637eefffadae671c087e8"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/cache-correction-green.log",
+      "bytes": 2577,
+      "sha256": "bf2ecd047955f9110ea841f4758466b54e7a1062b4a0115d1ebc87d553cf73a0"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/characterize-after.log",
+      "bytes": 2708,
+      "sha256": "9c835013b4102cad2a60de2c3e725315aecf722c4bf8d1280a518b0b993af13a"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/completion-gate.json",
+      "bytes": 34385,
+      "sha256": "44de84c89153a0525513738b56bab370eee3e4b7258fd98980a7589dce46db3d"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/completion-gate.log",
+      "bytes": 2886,
+      "sha256": "2f99233878cbc5d8af30dbc08a7551b18b17fec5343c11e3816d26e0ca6ee3fc"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/completion-summary.json",
+      "bytes": 10055,
+      "sha256": "4b69545b123625a8f9713d8a20cedebeefc2f367983dea3f257cc5021d220d89"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/controls-green.log",
+      "bytes": 2797,
+      "sha256": "859f93be7f8279248ed1fa267b123b3e6622da9586b194a1313c47deb7880775"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/controls-red.log",
+      "bytes": 3510,
+      "sha256": "c9e4ca0c8d1d62200cf9a17e00ab299c307deb3b56414d842dff24595d247c14"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/derivative-red.log",
+      "bytes": 2926,
+      "sha256": "4daca1b654870addbe97c34067ae99a29ed9bb4ef9c80e525f3180d81b7e4830"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/docs-check.json",
+      "bytes": 603,
+      "sha256": "f22bc731945c4c62ea74bda0a967aa85a624ddf4811b8fbee3bd6a37122b8258"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/exhaust-red.log",
+      "bytes": 1047,
+      "sha256": "9ccacee05e9a996dc8caed8c63bdbce19973a365d1b80c1137f52d9789a3c9a6"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/final-related.log",
+      "bytes": 5097,
+      "sha256": "38b1b4519f0dc9181226dbb4a22d8e9e12ff789bcb2bc1436b09a164d011014c"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/handling-after.json",
+      "bytes": 372302,
+      "sha256": "11916493e8a061701eb469c0772ce78b785089ddae62dff6a05e930704027352"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/handling-before.json",
+      "bytes": 370034,
+      "sha256": "838588df3d122f6f4d680b319367d30beeb8947b81a34e10fccc2275f64b46e6"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/handling-stop.json",
+      "bytes": 518,
+      "sha256": "d33d8f00e1dac16db05e128498bdc4fde454d674ce71a1bfb8b2d58558e70bff"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/human-green-1.log",
+      "bytes": 1871,
+      "sha256": "71866cecc7849c7db30b7a022534221e4aabb1e22dc7dc50822f348e47b78266"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/human-red.log",
+      "bytes": 17781,
+      "sha256": "3224f5f80e4f35d9105532fb91ded07632d2d81212054c1cf7f2fa910c7184cf"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/loading-before-production.json",
+      "bytes": 2971,
+      "sha256": "da383c90dfa6b86c8674fb40a70d37687e1e01095b3282c0d64b545caf815b5c"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/loading-final.json",
+      "bytes": 2971,
+      "sha256": "732f20d4acfffcf607bf38c8bda5aca14192807b678b96e11b41ff34e2d2f086"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/namak-recovery-lap.json",
+      "bytes": 156,
+      "sha256": "98542687323784f5a9bc7bb2112402e257a8d45bb321aea8e28c37b802472158"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-cache-failure-result.json",
+      "bytes": 432,
+      "sha256": "4bb199fb5997fa022426b8d2df1ec7d748aed5ff2d59632c9e9e9d8070389a41"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-cache-failure.log",
+      "bytes": 92103,
+      "sha256": "e74a1ffb344cd7dba0c16629efc5d64f0e60d26fb131303ccac8402f40c6d705"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-pre-review-result.json",
+      "bytes": 333,
+      "sha256": "063f2250aeb50ef6f4f0c12dc51f10ce83a82f9ec0dda14410f699ea4ca827d5"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-pre-review.log",
+      "bytes": 10703,
+      "sha256": "b560306826f72224656bf5b31e6c3cc597d5cee966a4b9684e32e1c5e9100c67"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-result.json",
+      "bytes": 457,
+      "sha256": "855b5158e5eeb29f72e6d5027c8119a72a28b5314f94a95d811a92d368aef99e"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-wrong-workspace-result.json",
+      "bytes": 327,
+      "sha256": "2d220a9d4279b21b762cc624be4ae4c00a6f556ca86c535229a1c45fe23e9b89"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check-wrong-workspace.log",
+      "bytes": 4700,
+      "sha256": "137bf47a0e3b776709a6739e339f61a9c33c2c0d38ad098e7efb85710774bb29"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/npm-check.log",
+      "bytes": 92035,
+      "sha256": "e2deb63f9c272bbf78c832e1c8b6bc210855ea1d9a07f69116a5198003fdf1bb"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-namak-A1.json",
+      "bytes": 251401,
+      "sha256": "63c71b9b2f4c4631f91d5a6b726aa211dea25c7d9c93b278f866faa436b700e0"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-namak-A2.json",
+      "bytes": 233934,
+      "sha256": "9421719d110f529488383b42e61f522618a2d4e66e86352435324051da4a8e39"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-namak-B.json",
+      "bytes": 238364,
+      "sha256": "7c2daf6388b958c1a3ff9768cf1cf54d0a59dcce4e70c9f33f7f19989daf7242"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-summary.json",
+      "bytes": 6835,
+      "sha256": "9c1d8a4c151165905c0b4e17528c2bafc400494baa03b1d8b69aa167f9d12306"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-yeosu-A1.json",
+      "bytes": 155101,
+      "sha256": "6bc62d9206f789775a75441d0d4fa80f6ea56db03a286f071ef0ad64424fe602"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-yeosu-A2.json",
+      "bytes": 142939,
+      "sha256": "ef527b5c251dbbb01fcce519ba4c083565979462a05a86adec03be2703d5a9bd"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/performance-yeosu-B.json",
+      "bytes": 188916,
+      "sha256": "e489def253404619a48682eeb236f89c115d0de7f0bdfed0c808734c9514c8fb"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/preservation-final.json",
+      "bytes": 76232,
+      "sha256": "d084269eb80d4a0b5cbd75401e921cf9205b5f0e60d48e774efb27175ad244bf"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/preservation-ui-stage.json",
+      "bytes": 5075,
+      "sha256": "dbb63704d392782a6d4f7d2863cb90e58733edb1a3dae0cf9712799ba4eeaba0"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/preservation.json",
+      "bytes": 464,
+      "sha256": "50de5d353adcfcbf35c3dca316be8ddc5140d490dd2e262a7a83662cf2ecbb75"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/production-console-filtered.json",
+      "bytes": 117,
+      "sha256": "bed0a3645ef71f4fc0353b7a76b7886a04985a1686a0c3ec2178a19a6d37108e"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/production-console.json",
+      "bytes": 3094,
+      "sha256": "a8cbbba35b1953ba7d31b5233fe958c32108048ea4d55551d7faa5a8db417bb5"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/production-input-release.json",
+      "bytes": 271,
+      "sha256": "9125b29092859b3b26a44aa7efea82c7f2ce1e7d88372728eb0e2c6cd79a4aae"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/production-recovery.json",
+      "bytes": 252,
+      "sha256": "304f2e4ab56e063b6aa2c204cfbc20858fbae514917924a84adfc8d2fa554994"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/production-ui.json",
+      "bytes": 7629,
+      "sha256": "ad52eb59c0986f6749c0846f8b1e01914ecc003f39bb4dba073d8cc63ed2a37a"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/progress.md",
+      "bytes": 5624,
+      "sha256": "698870dd1ccb831d4904bb533164007f07d3b57a7ca1f772501e3409a32c913c"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/review-fixes-green.log",
+      "bytes": 3285,
+      "sha256": "0e0990698a379b5bfe6a7062b1b434b9a69aaf4ba55e35d0c06f6d7131dcfb6a"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/review.md",
+      "bytes": 2503,
+      "sha256": "3941a91c6e338fbc48d535da56e3e776159aee03b5f1e85670a201dd9e4d13d5"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/stable-build.log",
+      "bytes": 1111,
+      "sha256": "0cb6af84b8baeb7d4c8461afbf51a740923d33ada709c2f3efa3c4870dd8cd7a"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/traffic-before.json",
+      "bytes": 46350,
+      "sha256": "f521f4abedbf0b88b43b68663de143fc29c8983dbfef394195c75bab1a300c09"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/traffic-before.log",
+      "bytes": 279,
+      "sha256": "9025120b924641e9ef32ef9af109e5ea6d556ac7a4462d59e2e13a475f9e489b"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/ui-844-retest.json",
+      "bytes": 1072,
+      "sha256": "d66410ea176defb5a8e2f16547f5ea8f362025d25cac8ffbad33f7c96a6695d4"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/ui-portrait.json",
+      "bytes": 301,
+      "sha256": "3ef2d880877fe3f57e222919b399492e9504fca82a3938165be20992628265aa"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/ui-sizes.json",
+      "bytes": 11098,
+      "sha256": "5e0849d53d5f444201c6656c95588db3b1fd825a2f8e31ccefd1289378a788aa"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/validation-corrected-inputs.json",
+      "bytes": 537402,
+      "sha256": "a43a001d5fc26e2019036bc6c5fe4d09b3ac30b50d7adeeefa198820ebde9623"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/validation-final-inputs.json",
+      "bytes": 537231,
+      "sha256": "a761978c04eca21447d5adf1b43710e69dd75ef36c830ee4de6bf484b6227a41"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/validation-inputs.json",
+      "bytes": 537224,
+      "sha256": "611477d9ad4e80a67d661578dc4195bed99aac874d27525643b7aeb6a6ecfe48"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/validation-safe-inputs.json",
+      "bytes": 537063,
+      "sha256": "311a557fdad5f3732dfd4e47de480a5939b1d695e81ba98c830480e26c73e004"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/visual-green.log",
+      "bytes": 3858,
+      "sha256": "6b3fcd446d88fae830187ca312b29786159cd32eabe361f3e0637ad8d78dbaca"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/visual-red.log",
+      "bytes": 5560,
+      "sha256": "cb0e6dee6f1fe978c29a14699f8035ccbbf753b09831327e0671a028a9c910f7"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/visual-vfx-green.log",
+      "bytes": 1388,
+      "sha256": "0402f664eb5b20233586889bbd3dd67346fc447f5f1ca8af9eed22d7fc056397"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/wet-red.log",
+      "bytes": 1049,
+      "sha256": "0a2e58e61f0bf856a10bddaae73a07ce84a487d2f4b9015c0349587bf491fded"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/namak-lap.json",
+      "bytes": 156,
+      "sha256": "98542687323784f5a9bc7bb2112402e257a8d45bb321aea8e28c37b802472158"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/physical-series.json",
+      "bytes": 17437,
+      "sha256": "d07e55673d777f8a5269a0c414c16fb818cc1901a8d0c92178a129b4ad704eeb"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/progression-race.json",
+      "bytes": 6216,
+      "sha256": "6fc371e30a5b504b516371789b33e123759c17b0c31bd112c3125628dae67967"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/provenance.json",
+      "bytes": 865,
+      "sha256": "cc6ef99ba15b67c8ec3e715920500343efc6417ddc9933ae146ea314b69daddd"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/rain-races.json",
+      "bytes": 71404,
+      "sha256": "e84042a82065019b70390b3b788fd583bda7e5e5d84b149aecc8752b0f27abbf"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/rival-personality-races.json",
+      "bytes": 119744,
+      "sha256": "0f70e5324f1a7c3f4acec52713ae389a8d47dd489b061d06c127427b238da44b"
+    },
+    {
+      "path": "artifacts/game-studio-20261103/regression/traffic-races.json",
+      "bytes": 20611,
+      "sha256": "403af1f8f7130346ef02451ab4d5311ce02d47bc0be28a2523568fb00e6152bc"
+    }
+  ]
+}
