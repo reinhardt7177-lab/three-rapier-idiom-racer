@@ -1,0 +1,98 @@
+{
+  "at": "2026-11-04T00:01:46.209Z",
+  "host": "https://mumu-racing.vercel.app",
+  "deployment": "dpl_6qAVo9w56dkjFceDaUAGhuAKP1Lv",
+  "checks": [
+    {
+      "camera": "first-person",
+      "contacts": 4,
+      "guidance": {
+        "direction": "left",
+        "distance": 70,
+        "remaining": 8902.28892711853,
+        "sharp": false
+      },
+      "input": {
+        "boost": false,
+        "brake": 0,
+        "handbrake": false,
+        "reverse": 0,
+        "steer": 0,
+        "throttle": 0
+      },
+      "kmh": 38,
+      "phase": "keyboard-release-and-first-person"
+    },
+    {
+      "contacts": 4,
+      "input": {
+        "boost": false,
+        "brake": 0,
+        "handbrake": false,
+        "reverse": 0,
+        "steer": 0,
+        "throttle": 0
+      },
+      "paused": true,
+      "phase": "recovery-and-pause"
+    },
+    {
+      "contacts": 4,
+      "input": {
+        "boost": false,
+        "brake": 0,
+        "handbrake": false,
+        "reverse": 0,
+        "steer": 0,
+        "throttle": 0
+      },
+      "kmh": 36,
+      "phase": "pointer-release"
+    },
+    {
+      "guide": "COASTAL WORLD / LAP 1/1HARBOR6.84 KM 남음오른쪽 커브커브 진행 중",
+      "path": "M10 32V16Q10 8 18 8H32M24 1L32 8L24 15",
+      "phase": "coastal-right",
+      "svgTransform": "none"
+    },
+    {
+      "garageVisible": true,
+      "input": {
+        "boost": false,
+        "brake": 0,
+        "handbrake": false,
+        "reverse": 0,
+        "steer": 0,
+        "throttle": 0
+      },
+      "mode": "garage",
+      "phase": "final-garage"
+    }
+  ],
+  "logs": [
+    {
+      "level": "warn",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+      "timestamp": "2026-11-04T00:00:46.903Z",
+      "url": "https://mumu-racing.vercel.app/assets/three-C-m27Z9i.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+      "timestamp": "2026-11-04T00:03:14.453Z",
+      "url": "https://mumu-racing.vercel.app/assets/three-C-m27Z9i.js"
+    }
+  ],
+  "settingsRestored": {
+    "forceTouch": "auto",
+    "camera": "chase",
+    "quality": "high",
+    "viewportOverrideReset": true
+  },
+  "limitations": [
+    "Browser QA used the default hostname of the same production deployment because normal custom-domain access on this PC was refused by its DNS result.",
+    "IAB viewport emulation is not physical mobile/tablet testing.",
+    "No new full-lap or frame-time benchmark in this deployment task."
+  ],
+  "startReady": true
+}

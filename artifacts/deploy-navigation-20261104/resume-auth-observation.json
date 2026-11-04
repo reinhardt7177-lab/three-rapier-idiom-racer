@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-03T23:56:41.263Z",
+  "userSaidReauthenticationComplete": true,
+  "action": "Redeploy same source 0e477c6 to Production",
+  "observed": "Vercel showed Reauthenticate again; requested user completion in this current dialog",
+  "credentialsRead": false,
+  "production": {
+    "host": "mumu-racing.vercel.app",
+    "status": 200,
+    "js": "index-B3y9OuW_.js",
+    "css": "index-CgpPrsvJ.css",
+    "expectedJs": "index-CFdzG8lY.js"
+  },
+  "officialLocal": {
+    "host": "racing.mumuworld.com",
+    "resolvedIp": "127.0.0.1",
+    "error": "ECONNREFUSED 127.0.0.1:443"
+  },
+  "publicDnsProbe": {
+    "endpoint": "dns.google",
+    "error": "ETIMEDOUT/ECONNREFUSED"
+  },
+  "networkSettingsChanged": false
+}
