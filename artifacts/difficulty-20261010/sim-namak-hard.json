@@ -1,0 +1,124 @@
+{
+ "track": "namak",
+ "difficulty": "hard",
+ "seconds": 100.71,
+ "cars": [
+  {
+   "id": "supra",
+   "player": true,
+   "place": 5,
+   "finish": 100.47,
+   "metres": 2927,
+   "lowest": 0.53,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 0,
+   "plan": null
+  },
+  {
+   "id": "slk",
+   "player": false,
+   "place": 4,
+   "finish": 99.93,
+   "metres": 2927,
+   "lowest": 0.52,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 13.17,
+   "plan": {
+    "mode": "changing",
+    "reason": "occupied",
+    "homeLane": -2.2,
+    "targetLane": -2.2,
+    "passes": 0,
+    "attempts": 2,
+    "aborts": 0,
+    "age": 0.7666666666666664
+   }
+  },
+  {
+   "id": "mustang",
+   "player": false,
+   "place": 1,
+   "finish": 80.21,
+   "metres": 2927,
+   "lowest": 0.54,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 13.38,
+   "plan": {
+    "mode": "follow",
+    "reason": "following",
+    "homeLane": 2.2,
+    "targetLane": 2.2,
+    "passes": 0,
+    "attempts": 0,
+    "aborts": 0,
+    "age": 80.21666666667657
+   }
+  },
+  {
+   "id": "porsche911",
+   "player": false,
+   "place": 2,
+   "finish": 80.68,
+   "metres": 2927,
+   "lowest": 0.53,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 13.84,
+   "plan": {
+    "mode": "follow",
+    "reason": "following",
+    "homeLane": -2.2,
+    "targetLane": -2.2,
+    "passes": 1,
+    "attempts": 3,
+    "aborts": 2,
+    "age": 4.016666666666656
+   }
+  },
+  {
+   "id": "gtr",
+   "player": false,
+   "place": 3,
+   "finish": 81.16,
+   "metres": 2927,
+   "lowest": 0.54,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 11.32,
+   "plan": {
+    "mode": "passing",
+    "reason": "overtake",
+    "homeLane": 2.2,
+    "targetLane": -2.2,
+    "passes": 0,
+    "attempts": 3,
+    "aborts": 2,
+    "age": 57.199999999997395
+   }
+  },
+  {
+   "id": "rx7",
+   "player": false,
+   "place": 6,
+   "finish": 100.7,
+   "metres": 2927,
+   "lowest": 0.51,
+   "scrapeSeconds": 0,
+   "offroadSeconds": 0,
+   "boostSeconds": 4.01,
+   "plan": {
+    "mode": "passing",
+    "reason": "stopped-ahead",
+    "homeLane": -2.2,
+    "targetLane": 2.2,
+    "passes": 0,
+    "attempts": 1,
+    "aborts": 0,
+    "age": 95.90833333335573
+   }
+  }
+ ]
+}

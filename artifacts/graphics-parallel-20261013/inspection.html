@@ -1,0 +1,58 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MUMU · 맵 그래픽 검수</title><link rel="icon" href="data:,">
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#06111e;color:#dfeaf3;font:14px system-ui}canvas{display:block;width:100%;height:100%}#label{position:absolute;top:15px;left:15px;padding:10px 14px;background:#06111ecc;border:1px solid #7189a955;pointer-events:none}#status{margin-top:4px;color:#b4cadb}</style>
+<div id="label"><strong id="title">그래픽 검수 준비</strong><div id="status">별도 렌더링 검수 · 제품 UI/물리 검수와 구분</div></div>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
+import {Sky} from 'three/addons/objects/Sky.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {TRACKS} from '/src/rebuild/tracks.js';
+import {polishWorldSurfaces} from '/src/rebuild/surfacePolish.js';
+import {batchWorldScenery} from '/src/rebuild/worldRendering.js';
+import {applyNamakColors,outdoorAtmosphere,tintNamakSky} from '/src/rebuild/namakColors.js';
+import {outdoorLighting} from '/src/rebuild/namakPresentation.js';
+import {applyKoreaPalette,MOUNTAIN_LIGHTING,MOUNTAIN_ATMOSPHERE} from '/src/rebuild/koreaPresentation.js';
+import {createNightPresentation,NIGHT_LIGHTING,NIGHT_ATMOSPHERE} from '/src/rebuild/nightPresentation.js';
+import {qualityById,createDecorationQuality} from '/src/rebuild/graphicsQuality.js';
+import {freezeStaticWorld} from './staticWorld.candidate.mjs';
+import {createDaylightSky} from '/src/rebuild/daylightSky.js';
+const params=new URLSearchParams(location.search),track=TRACKS.find(t=>t.id===params.get('track'))||TRACKS[0],quality=qualityById(params.get('quality')||'high');
+const scene=new THREE.Scene(),renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Number(params.get('dpr'))||1);renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=quality.shadows;renderer.shadowMap.type=THREE.PCFShadowMap;renderer.info.autoReset=false;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;document.body.appendChild(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.15,3500),namak=track.id==='namak',mountain=track.id==='seongsamjae';
+const lighting=track.night?NIGHT_LIGHTING:mountain?MOUNTAIN_LIGHTING:outdoorLighting(namak),atmosphere=track.night?NIGHT_ATMOSPHERE:mountain?MOUNTAIN_ATMOSPHERE:outdoorAtmosphere(namak);
+scene.background=new THREE.Color(atmosphere.fog);scene.fog=new THREE.Fog(atmosphere.fog,lighting.fogNear,lighting.fogFar);renderer.toneMappingExposure=lighting.exposure;
+const sun=new THREE.DirectionalLight('#fff4e0',lighting.sun);sun.castShadow=quality.shadows&&!track.night;sun.shadow.mapSize.set(quality.shadowSize,quality.shadowSize);sun.shadow.normalBias=.04;Object.assign(sun.shadow.camera,{left:-25,right:25,top:25,bottom:-25,near:.1,far:120});scene.add(sun,sun.target,new THREE.HemisphereLight('#dbeeff','#6c5942',lighting.ambient));
+const sky=new Sky();sky.scale.setScalar(1000);Object.assign(sky.material.uniforms.turbidity,{value:atmosphere.turbidity});sky.material.uniforms.rayleigh.value=atmosphere.rayleigh;sky.material.uniforms.mieCoefficient.value=atmosphere.mieCoefficient;sky.material.uniforms.sunPosition.value.set(-25,45,20).normalize();if(namak)tintNamakSky(sky);
+const envScene=track.night?new RoomEnvironment():new THREE.Scene();if(!track.night)envScene.add(sky);const pmrem=new THREE.PMREMGenerator(renderer),env=pmrem.fromScene(envScene,track.night?.035:.04);scene.environment=env.texture;scene.environmentIntensity=lighting.environment;pmrem.dispose();if(track.night)envScene.dispose();if(!track.night)scene.add(sky);
+const errors=[];addEventListener('error',e=>errors.push(e.message));
+const decoder=new DRACOLoader().setDecoderPath('/assets/rebuild/draco/'),loader=new GLTFLoader().setDRACOLoader(decoder);
+const started=performance.now();
+try{
+ const world=(await loader.loadAsync('/assets/rebuild/'+track.world+'.glb')).scene,route=await (await fetch('/assets/rebuild/'+track.route)).json();
+ world.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;}});scene.add(world);
+ polishWorldSurfaces(world,{namak});if(namak)applyNamakColors(world);else applyKoreaPalette(world,track.id);
+ const batching=batchWorldScenery(world),night=track.night?createNightPresentation(scene,route):null;
+ const decor=createDecorationQuality(world);decor.set(quality.decorationDistance);
+ const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');
+ let index=Number(params.get('index'))||0,elapsed=0,last=0,visuals=null,staticWorld=null,daylight=null,enhanced=false,sampling=null;
+ const context={track:track.id,quality:quality.id,width:innerWidth,height:innerHeight,dpr:renderer.getPixelRatio(),gpu:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),userAgent:navigator.userAgent,batching,worldLoadMs:performance.now()-started};
+ function point(){return route.points[((index%route.points.length)+route.points.length)%route.points.length];}
+ function positionCamera(){const p=point(),f=new THREE.Vector3(p.dx,0,p.dz).normalize(),side=new THREE.Vector3(f.z,0,-f.x);camera.position.set(p.x,p.y+3.2,p.z).addScaledVector(f,-9).addScaledVector(side,1.2);camera.lookAt(new THREE.Vector3(p.x,p.y+1.4,p.z).addScaledVector(f,48));sun.position.set(p.x-25,p.y+45,p.z+20);sun.target.position.set(p.x,p.y,p.z);camera.updateMatrixWorld(true);}
+ async function setEnhanced(value){if(value===enhanced)return;visuals?.dispose();staticWorld?.dispose();daylight?.dispose();visuals=staticWorld=daylight=null;enhanced=value;
+  if(value){const paths={namak:'/src/rebuild/namakVisuals.js',yeosu:'/src/rebuild/yeosuVisuals.js',seongsamjae:'/src/rebuild/seongsamjaeVisuals.js',coastal:'./coastalVisuals.candidate.mjs'},fn={namak:'createNamakVisuals',yeosu:'createYeosuVisuals',seongsamjae:'createSeongsamjaeVisuals',coastal:'createCoastalVisuals'};const module=await import(/* @vite-ignore */paths[track.id]);visuals=module[fn[track.id]](scene,world,route,{quality});staticWorld=freezeStaticWorld(world);}
+  if(value&&!track.night)daylight=createDaylightSky(sky,track.id,quality);
+  document.getElementById('title').textContent=`${track.name} · ${value?'개선':'기준'} · ${quality.label}`;await renderer.compileAsync(scene,camera);
+ }
+ function summary(rows){const values=rows.map(r=>r.ms).sort((a,b)=>a-b),sum=k=>rows.reduce((n,r)=>n+r[k],0)/rows.length;return {samples:rows.length,meanMs:sum('ms'),p95Ms:values[Math.ceil(values.length*.95)-1],maxMs:values.at(-1),over50Ms:values.filter(v=>v>50).length,cpuSubmitMs:sum('cpu'),calls:rows.at(-1)?.calls,triangles:rows.at(-1)?.triangles,firstFrame:rows[0],lastFrame:rows.at(-1)};}
+ function frame(now){const dt=last?Math.min(.05,(now-last)/1000):0;elapsed+=dt;positionCamera();if(!track.night)sky.position.copy(camera.position);night?.update({position:new THREE.Vector3(point().x,point().y+.53,point().z),rotation:new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),Math.atan2(point().dx,point().dz))},index,true,camera.position);decor.update(camera);visuals?.update(camera,dt,elapsed,true);const cpu=performance.now();renderer.info.reset();renderer.render(scene,camera);const submission=performance.now()-cpu;
+  if(sampling&&last&&now>=sampling.from){sampling.rows.push({now,ms:now-last,cpu:submission,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles});if(now>=sampling.until){const s=sampling;sampling=null;s.resolve({context:{...context,index,enhanced,visuals:visuals?.stats,staticWorld:staticWorld?.stats},...summary(s.rows),raw:s.rows,errors:[...errors]});}}
+  last=now;requestAnimationFrame(frame);
+ }
+ window.graphicsProbe={context,regions:[...new Set(route.points.map(p=>p.region))],routePoints:route.points.length,async enhanced(v){await setEnhanced(v);},async camera(i){index=i;positionCamera();await renderer.compileAsync(scene,camera);},find(region){return route.points.findIndex(p=>p.region===region);},sample(seconds=30){if(sampling)throw Error('measurement already active');return new Promise(resolve=>{sampling={from:performance.now()+3000,until:performance.now()+3000+seconds*1000,rows:[],resolve};});},snapshot(){return {context:{...context,index,enhanced},visuals:visuals?.stats,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,errors};}};
+ positionCamera();await renderer.compileAsync(scene,camera);document.getElementById('title').textContent=`${track.name} · 기준 · ${quality.label}`;requestAnimationFrame(frame);window.graphicsReady=true;
+}catch(e){document.getElementById('status').textContent=e.message;window.graphicsFailure=String(e.stack||e);console.error(e);}finally{decoder.dispose();}
+</script></html>

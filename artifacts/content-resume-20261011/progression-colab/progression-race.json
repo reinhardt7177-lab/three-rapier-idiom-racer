@@ -1,0 +1,225 @@
+{
+  "race": {
+    "track": "namak",
+    "difficulty": "normal",
+    "seconds": 87.05,
+    "cars": [
+      {
+        "id": "supra",
+        "player": true,
+        "place": 3,
+        "finish": 84.69,
+        "metres": 2927,
+        "lowest": 0.53,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 47.93,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "player": false,
+        "place": 5,
+        "finish": 86.91,
+        "metres": 2927,
+        "lowest": 0.52,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 15.17,
+        "plan": {
+          "mode": "follow",
+          "reason": "occupied",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 0,
+          "attempts": 0,
+          "aborts": 0,
+          "age": 86.9166666666819
+        }
+      },
+      {
+        "id": "mustang",
+        "player": false,
+        "place": 1,
+        "finish": 84.15,
+        "metres": 2927,
+        "lowest": 0.54,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0.2,
+        "plan": {
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 0,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 2.8999999999999924
+        }
+      },
+      {
+        "id": "porsche911",
+        "player": false,
+        "place": 6,
+        "finish": 87.04,
+        "metres": 2927,
+        "lowest": 0.53,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 84.03,
+        "plan": {
+          "mode": "follow",
+          "reason": "too-close",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 0,
+          "attempts": 0,
+          "aborts": 0,
+          "age": 87.05000000001534
+        }
+      },
+      {
+        "id": "gtr",
+        "player": false,
+        "place": 2,
+        "finish": 84.31,
+        "metres": 2927,
+        "lowest": 0.54,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 13.52,
+        "plan": {
+          "mode": "passing",
+          "reason": "defer-return",
+          "homeLane": 2.2,
+          "targetLane": 1.4119268655776978,
+          "passes": 0,
+          "attempts": 2,
+          "aborts": 1,
+          "age": 2.2249999999999948
+        }
+      },
+      {
+        "id": "rx7",
+        "player": false,
+        "place": 4,
+        "finish": 85.97,
+        "metres": 2927,
+        "lowest": 0.51,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0,
+        "plan": {
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 2,
+          "aborts": 0,
+          "age": 0.35000000000000026
+        }
+      }
+    ]
+  },
+  "progress": {
+    "count": 1,
+    "medals": [
+      {
+        "track": "namak",
+        "laps": 1,
+        "medal": "silver",
+        "time": 84.69
+      }
+    ],
+    "cars": [
+      {
+        "id": "supra",
+        "name": "GR Supra",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "slk",
+        "name": "SLK Roadster",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "mustang",
+        "name": "Mustang GT",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "porsche911",
+        "name": "Porsche 911",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "gtr",
+        "name": "Nissan GT-R",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "rx7",
+        "name": "Mazda RX-7",
+        "required": 1,
+        "unlocked": true
+      },
+      {
+        "id": "m3",
+        "name": "BMW M3",
+        "required": 2,
+        "unlocked": false
+      },
+      {
+        "id": "huracan",
+        "name": "Lamborghini Huracán",
+        "required": 4,
+        "unlocked": false
+      }
+    ],
+    "tracks": [
+      {
+        "id": "coastal",
+        "name": "해안 월드",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "namak",
+        "name": "남악 시티",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "yeosu",
+        "name": "여수 밤바다",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "seongsamjae",
+        "name": "지리산 성삼재",
+        "required": 1,
+        "unlocked": true
+      }
+    ]
+  }
+}

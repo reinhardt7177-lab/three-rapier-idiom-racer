@@ -1,0 +1,292 @@
+✔ driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height (25.4366ms)
+✔ driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery (2.4444ms)
+✔ V switches view once per press without changing pedals or stealing editable/button keys (0.5158ms)
+✔ one local looping track respects pause, mute, volume, restart, garage stop and disposal (0.822ms)
+✔ blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal (1.5922ms)
+✔ packaged music is real audio and sharper bends retain lower target speeds (18.0439ms)
+Rival speed A/B [
+  {
+    profile: 'classic',
+    max: 138.07923431396486,
+    metres: 850.8593139648438
+  },
+  {
+    profile: 'race',
+    max: 185.05221405029297,
+    metres: 1059.82470703125
+  }
+]
+✔ faster rival pedals produce higher real speed while all tyres stay on a flat straight (589.3325ms)
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (4.5211ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (1.3331ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (11.1648ms)
+✔ a committed passing lane is reserved against a second closing rival (0.3471ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (1.1617ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (0.7268ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.4431ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (0.7418ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 450,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 263.65,
+      index: 45,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 4143,
+      finish: null,
+      index: 1621,
+      position: [Object],
+      velocity: [Object],
+      contacts: 3,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 263.8,
+      index: 44,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 4143,
+      finish: null,
+      index: 1621,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 263.9583333333333,
+      index: 42,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 204.68333333333334,
+      index: 56,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (50.2127ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (261.4516ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (160.8224ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (137.12ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (163.1471ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (111.3277ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (78.6407ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (103.0956ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (83.3922ms)
+✖ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (57021.1629ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 24
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61244.5503
+
+✖ failing tests:
+
+test at scripts\rival-ai.test.mjs:125:1
+✖ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (57021.1629ms)
+  AssertionError [ERR_ASSERTION]: slk stalled at 4143m / {"mode":"follow","reason":"following","homeLane":2.2,"targetLane":2.2,"passes":0,"attempts":0,"aborts":0,"age":449.99999999975506}
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/rival-ai.test.mjs:160:30)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

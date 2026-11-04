@@ -1,0 +1,30 @@
+✖ aggregate roughness preserves wet-road optical calibration instead of clamping it to dry asphalt (28.1824ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3995.9377
+
+✖ failing tests:
+
+test at scripts\studio-visuals.test.mjs:46:1
+✖ aggregate roughness preserves wet-road optical calibration instead of clamping it to dry asphalt (28.1824ms)
+  AssertionError [ERR_ASSERTION]: wet uniform survives at average grain
+  
+  0.65 !== 0.48
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:56:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0.65,
+    expected: 0.48,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

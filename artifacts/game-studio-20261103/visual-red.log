@@ -1,0 +1,84 @@
+✖ night reflection is a separate blue-hour/warm-harbor bake with no live lights (16.0513ms)
+✖ asphalt has lit aggregate without geometry or texture growth {} (21.0776ms)
+✖ asphalt has lit aggregate without geometry or texture growth {"night":true} (1.8814ms)
+✖ asphalt has lit aggregate without geometry or texture growth {"namak":true} (1.8041ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 688.0088
+
+✖ failing tests:
+
+test at scripts\studio-visuals.test.mjs:8:1
+✖ night reflection is a separate blue-hour/warm-harbor bake with no live lights (16.0513ms)
+  AssertionError [ERR_ASSERTION]: separated warm harbor light reflections, not a neutral showroom
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:13:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\studio-visuals.test.mjs:21:53
+✖ asphalt has lit aggregate without geometry or texture growth {} (21.0776ms)
+  AssertionError [ERR_ASSERTION]: light must respond to aggregate normals on all tracks
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:28:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'varying vec3 surfacePosition;\nuniform sampler2D surfaceGrain;\n#include <color_fragment>\n          float fineGrain=texture2D(surfaceGrain,surfacePosition.xz*1.8).r-.5;\n          float weather=texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5;\n          diffuseColor.rgb*=1.0+fineGrain*0.24+weather*0.22;\n#include <roughnessmap_fragment>\n#include <normal_fragment_maps>',
+    expected: /normal=namakRelief\(/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at scripts\studio-visuals.test.mjs:21:53
+✖ asphalt has lit aggregate without geometry or texture growth {"night":true} (1.8814ms)
+  AssertionError [ERR_ASSERTION]: light must respond to aggregate normals on all tracks
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:28:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'varying vec3 surfacePosition;\nuniform sampler2D surfaceGrain;\n#include <color_fragment>\n          float fineGrain=texture2D(surfaceGrain,surfacePosition.xz*1.8).r-.5;\n          float weather=texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5;\n          diffuseColor.rgb*=1.0+fineGrain*0.24+weather*0.22;\n#include <roughnessmap_fragment>\n#include <normal_fragment_maps>',
+    expected: /normal=namakRelief\(/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at scripts\studio-visuals.test.mjs:21:53
+✖ asphalt has lit aggregate without geometry or texture growth {"namak":true} (1.8041ms)
+  AssertionError [ERR_ASSERTION]: aggregate changes optical roughness
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:29:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'vec3 namakRelief(vec3 pos,vec3 n,vec2 dh,float side){vec3 sx=normalize(dFdx(pos));vec3 sy=normalize(dFdy(pos));vec3 r1=cross(sy,n);vec3 r2=cross(n,sx);float det=dot(sx,r1)*side;return normalize(abs(det)*n-sign(det)*(dh.x*r1+dh.y*r2));}\nvarying vec3 surfacePosition;\nuniform sampler2D surfaceGrain;\n#include <color_fragment>\n\n          float fineGrain=texture2D(surfaceGrain,surfacePosition.xz*1.8).r-.5;\n          float weather=texture2D(surfaceGrain,surfacePosition.xz*.025).r-.5;\n          diffuseColor.rgb*=1.0+fineGrain*0.24+weather*0.22;\n#include <roughnessmap_fragment>\n#include <normal_fragment_maps>\n            float surfaceHeight=texture2D(surfaceGrain,surfacePosition.xz*2.7).r*0.004;\n            normal=namakRelief(-vViewPosition,normal,vec2(dFdx(surfaceHeight),dFdy(surfaceHeight)),faceDirection);',
+    expected: /roughnessFactor=clamp\(/,
+    operator: 'match',
+    diff: 'simple'
+  }

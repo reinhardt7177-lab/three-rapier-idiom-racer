@@ -1,0 +1,210 @@
+✖ supra: polished export preserves mechanical transforms, paint and tyre dimensions (4.2803ms)
+✖ slk: polished export preserves mechanical transforms, paint and tyre dimensions (2.6954ms)
+✖ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (2.0061ms)
+✖ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (2.2867ms)
+✖ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (2.1269ms)
+✖ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (1.8395ms)
+✖ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.5851ms)
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (2.0467ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (4.5428ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (2.17ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (0.5315ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (49.4573ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (25.9946ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (15.1908ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (24.1726ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (16.9549ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (14.1201ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (23.5202ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (24.0214ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (12.513ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (12.6655ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (12.8417ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (9.5916ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (9.9088ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (10.073ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (8.8048ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (10.2575ms)
+✔ right/left bends follow world heading, including the circular route seam (2.2123ms)
+✔ bend detection uses metres and survives a fourfold change in point density (1.8185ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (5.4337ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (8.7059ms)
+✔ isolated heading errors never become a persistent corner warning (0.7318ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (8.3147ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (1.9149ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 26
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 870.9331
+
+✖ failing tests:
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ supra: polished export preserves mechanical transforms, paint and tyre dimensions (4.2803ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ slk: polished export preserves mechanical transforms, paint and tyre dimensions (2.6954ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (2.0061ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (2.2867ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (2.1269ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (1.8395ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.5851ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (2.0467ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:14:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,33 @@
+✔ mountain roadscape is an editable <=3MB visual-only spatial asset with shared opaque material (41.1962ms)
+✔ every mountain scenery triangle keeps all route segments and +/-7m driving lanes clear (2037.0537ms)
+✔ rock skirts, rail posts and deck piers use actual original terrain elevations (783.4668ms)
+✔ mountain asset contains rock cuts, readable hairpin furniture and supported summit viewing deck (1.2276ms)
+✖ every bedding seam stays on an actual exported rock edge, including tapered cutting ends (337.8439ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4748.393
+
+✖ failing tests:
+
+test at scripts\seongsamjae-roadscape.test.mjs:101:1
+✖ every bedding seam stays on an actual exported rock edge, including tapered cutting ends (337.8439ms)
+  AssertionError [ERR_ASSERTION]: claimed rock support must be real exported triangles
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/seongsamjae-roadscape.test.mjs:111:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

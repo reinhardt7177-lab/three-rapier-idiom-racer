@@ -1,0 +1,44 @@
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (1546.6455ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (102.8693ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (13.4908ms)
+✔ current player steering retains city lock, the calibrated highway envelope and mirrored wheel axes (9.6932ms)
+{"target":100,"direction":-1,"kmh":101.92262506493653,"contacts":4,"steer":0.10599078676988365,"sensitivity":1.6900000000000002}
+{"target":100,"direction":1,"kmh":101.92263323208242,"contacts":4,"steer":-0.10599076816399536,"sensitivity":1.6900000000000002}
+{"target":180,"direction":-1,"kmh":180.3234393269464,"contacts":4,"steer":0.022687679882019144,"sensitivity":1.6900000000000002}
+{"target":180,"direction":1,"kmh":180.3234393269464,"contacts":4,"steer":-0.02268767989090806,"sensitivity":1.6900000000000002}
+✔ current player steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (3206.6323ms)
+✔ night headlights follow vehicle yaw, illuminate ahead and hide outside a race (12.2405ms)
+✔ night asphalt stays separate from daylight with unchanged geometry and surface texture budget (11.7985ms)
+✔ night reflection is a separate blue-hour/warm-harbor bake with no live lights (7.5767ms)
+✔ asphalt has lit aggregate without geometry or texture growth {} (9.505ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"night":true} (4.0193ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"namak":true} (1.9205ms)
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (30.041ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (75.1791ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (8.9416ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (10.765ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (15.2044ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (10.7253ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (17.5056ms)
+✔ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (12.4332ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (28.6357ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (3.1597ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (0.9332ms)
+✔ one-draw alloy retains cut-face and graphite shading through vertex colours without extra textures (0.6396ms)
+✔ reference polish completes three authored passes with unchanged rig and mechanical geometry (143.1876ms)
+✔ paint clearcoat, opaque glazing and matte tyres retain different optical responses (142.3282ms)
+✔ right/left bends follow world heading, including the circular route seam (5.0273ms)
+✔ bend detection uses metres and survives a fourfold change in point density (28.1875ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (28.7831ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (48.4285ms)
+✔ isolated heading errors never become a persistent corner warning (15.7171ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (99.0161ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (4.048ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13906.3389

@@ -1,0 +1,11 @@
+00:38.203  blend            | Read blend: "D:\racing\three-rapier-idiom-racer\assets-sources\vehicles-v6\supra.blend"
+D:\racing\three-rapier-idiom-racer\scripts\blender\polish_vehicle_reference.py:37: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.get(name) or bpy.data.materials.new(name);m.use_nodes=True
+Traceback (most recent call last):
+  File "D:\racing\three-rapier-idiom-racer\scripts\blender\polish_vehicle_reference.py", line 144, in <module>
+    radius=float(chassis['wheel_radius'])*.78
+                 ~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'bpy_struct[key]: key "wheel_radius" not found'
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

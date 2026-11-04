@@ -1,0 +1,14 @@
+✔ restoring a short moving headway briefly slows below the lead rather than following forever (19.8176ms)
+✔ the existing gap remains the target and ordinary no-traffic-race behavior is preserved (2.9017ms)
+✔ restoring headway keeps the stopped-car hold and never requests a negative speed (0.7687ms)
+✔ a new moving lead can be passed before the original lead is behind (29.6947ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (3.2841ms)
+✔ a lead with no passing speed advantage does not start another crossing (1.8402ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.208

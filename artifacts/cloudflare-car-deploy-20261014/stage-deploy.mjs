@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const git=(args,input)=>execFileSync('git',args,{input,maxBuffer:10000000}).toString().trim(),dir='artifacts/cloudflare-car-deploy-20261014';
+if(git(['rev-parse','HEAD'])!=='4359d7dee328e94b6dc2c11d2e278bbaf6167043')throw Error('Source HEAD changed');
+if(git(['branch','--show-current'])!=='codex/korea-circuits-progression-20261011'||git(['diff','--cached','--name-only']))throw Error('Preserve branch/index');
+const files=fs.readdirSync(dir).filter(n=>/\.(json|log|png|mjs)$/.test(n)&&n!=='deployments-local-only.log').map(n=>`${dir}/${n}`);
+files.push('docs/CLOUDFLARE_VEHICLE_DEPLOY_20261014.md');
+for(const f of files)if(fs.statSync(f).size>100000000||/\.key|\.env|build-source|before\//.test(f))throw Error('Private/large staging file');
+git(['add','--',...files]);
+const work=fs.readFileSync('docs/NEXT_STEPS.md','utf8'),paragraph=work.split(/\r?\n/).find(l=>l.startsWith('**차량 최신 버전 Cloudflare 배포 완료'));
+if(!paragraph)throw Error('Completed deployment paragraph missing');
+let doc=git(['show','HEAD:docs/NEXT_STEPS.md']).replace(/\r\n/g,'\n');doc=doc.replace(/^(#[^\n]+\n)/,`$1\n${paragraph}\n\n아래 차량 작업 종료 당시의 ‘이번 운영 배포 없음’은 배포 전 이력이다. 현재 배포 상태는 위 문단을 따른다.\n`);
+const object=git(['hash-object','-w','--stdin'],doc+'\n');git(['update-index','--cacheinfo',`100644,${object},docs/NEXT_STEPS.md`]);
+const staged=git(['diff','--cached','--name-only']).split('\n');
+if(staged.some(p=>p!=='docs/NEXT_STEPS.md'&&p!=='docs/CLOUDFLARE_VEHICLE_DEPLOY_20261014.md'&&!p.startsWith(dir+'/')))throw Error('Foreign file staged');
+console.log(JSON.stringify({files:staged.length,staged},null,2));

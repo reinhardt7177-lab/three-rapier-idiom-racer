@@ -1,0 +1,16 @@
+✔ recovery avoids a civilian occupying the preferred lane without moving forward (1.799ms)
+✔ recovery also respects the next second of civilian travel and fails safely when all candidates are occupied (0.327ms)
+✔ touch drift can combine gas and steering, with independent pointer and keyboard release (0.378ms)
+✔ touch detection includes tablets with a mouse and desktop-mode touch browsers (0.8877ms)
+✔ phones, large tablets and manual fallback show pedals regardless of primary pointer (0.3094ms)
+✔ layout guard matches the compact HUD at widths above 1000 and the 550px boundary (0.8728ms)
+✔ changing control visibility releases every owner and pauses once, not on address-bar resize (1.441ms)
+✔ a hybrid tablet rotated to portrait blocks driving and clears simultaneous pedals (0.2638ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 242.8832

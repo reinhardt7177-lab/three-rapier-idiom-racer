@@ -1,0 +1,57 @@
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (2.538ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (0.7977ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (4.4034ms)
+✔ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (1.2984ms)
+{"side":-1,"index":211,"clearAt":{"slk":8.158333333333333,"gtr":15.049999999999999,"rx7":18.508333333333333,"porsche911":20.35,"mustang":22.45},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+{"side":1,"index":211,"clearAt":{"slk":9,"gtr":16.05,"rx7":19.53333333333333,"porsche911":21.525,"mustang":24.375},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+✖ an abandoned queue crossing releases its walking-speed cap after returning home (12.6095ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane -1 without contact or recovery (1658.0826ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (1244.1495ms)
+{
+  id: 'supra',
+  recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+  recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+}
+{
+  id: 'slk',
+  recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+  recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+}
+{
+  id: 'mustang',
+  recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+  recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+}
+✔ stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts (14.7121ms)
+✔ road recovery aligns to the slope and avoids a half-metre suspension drop in all cars (190.5613ms)
+✔ sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch (2.3454ms)
+✔ recovery preserves spent boost and resets velocities; a new race refills it (46.9109ms)
+✔ recovery rejects an empty-looking point in approaching traffic and never awards progress (0.5057ms)
+✔ recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit (150.7682ms)
+✔ side-by-side solver separation protects the authored wide shoulders in all cars (141.3315ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4246.1217
+
+✖ failing tests:
+
+test at scripts\corner-queue.test.mjs:13:1
+✖ an abandoned queue crossing releases its walking-speed cap after returning home (12.6095ms)
+  AssertionError [ERR_ASSERTION]: an aborted queue pass cannot leave a permanent 14 km/h cap
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/corner-queue.test.mjs:23:57)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

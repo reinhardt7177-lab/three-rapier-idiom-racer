@@ -1,0 +1,258 @@
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (2.6485ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (0.9079ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (5.9259ms)
+✔ a committed passing lane is reserved against a second closing rival (0.3461ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (2.2776ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (3.3796ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.4753ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0109546184539795,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7869724035263062,
+    y: 0.5160055160522461,
+    z: 173.8331298828125
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0169780254364014,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8060598373413086,
+    y: 0.5410054922103882,
+    z: 175.7940673828125
+  }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019803285598755,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7762057781219482,
+    y: 0.5260055065155029,
+    z: 177.1041259765625
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0194497108459473,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8163669109344482,
+    y: 0.5360053777694702,
+    z: 176.68067932128906
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0265953540802,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7980520725250244,
+    y: 0.5110055208206177,
+    z: 180.60435485839844
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.0175509452819824,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.813862681388855,
+    y: 0.5210055112838745,
+    z: 176.3759002685547
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.013458490371704,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7654885053634644,
+    y: 0.5260053873062134,
+    z: 180.22911071777344
+  }
+}
+Planner recovered-map race {
+  seconds: 450,
+  results: [
+    {
+      id: 'supra',
+      metres: 3034,
+      finish: null,
+      contacts: 4,
+      region: 'Mountain',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 237.65,
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 3041,
+      finish: null,
+      contacts: 4,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6840,
+      finish: 233.23333333333332,
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 3059,
+      finish: null,
+      contacts: 4,
+      region: 'Mountain',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6840,
+      finish: 229.63333333333333,
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (43.7395ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (188.0273ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (137.4504ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (94.4109ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (96.6286ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (89.7458ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (93.2879ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (84.2517ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (121.5967ms)
+✖ five planned rivals and a slower driven player complete the recovered 6.84 km course (23516.1822ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25576.297
+
+✖ failing tests:
+
+test at scripts\rival-ai.test.mjs:115:1
+✖ five planned rivals and a slower driven player complete the recovered 6.84 km course (23516.1822ms)
+  AssertionError [ERR_ASSERTION]: supra stalled at 3034m / null
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/rival-ai.test.mjs:149:30)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,22 @@
+✔ slow frame intervals remain visible when CPU submission is short (2.1166ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (1.2411ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (0.2762ms)
+✔ frame and CPU measurements reset together after a pause (0.3017ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (0.3336ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.2359ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (0.5461ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (1.0988ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.3664ms)
+✔ preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps (0.3149ms)
+✔ draw profile counts main/shadow deltas while leaving render results and hooks intact (0.7645ms)
+✔ GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries (0.5204ms)
+✔ render failure preserves the original exception, restores the hook and deletes the GPU query (1.8062ms)
+✔ draw categories use actual scene ancestry and keep parked cars separate from world meshes (0.2619ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.5637

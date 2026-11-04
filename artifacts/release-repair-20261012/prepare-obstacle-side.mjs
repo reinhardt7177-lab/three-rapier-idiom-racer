@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const read=p=>fs.readFileSync(new URL(p,import.meta.url),'utf8');
+const write=(p,s)=>{const u=new URL(p,import.meta.url);if(fs.existsSync(u))throw Error('Preserve '+p);fs.writeFileSync(u,s);};
+const planner=read('planner-final.mjs'),old='const target=own.lane<0?RACE_GRID_LANE:-RACE_GRID_LANE;';
+if(!planner.includes(old))throw Error('Expected passing target choice');
+write('planner-obstacle.mjs',planner.replace(old,'const target=stopped.lane<0?RACE_GRID_LANE:-RACE_GRID_LANE;'));
+write('sim-obstacle.mjs',read('sim-final.mjs').replace("from './planner-final.mjs'","from './planner-obstacle.mjs'"));
+let matrix=read('matrix-final.mjs').replace("from './sim-final.mjs'","from './sim-obstacle.mjs'").replace('final-${group}.json','obstacle-${group}.json');
+matrix=matrix.replace("const cases=group==='coastal'?[","const cases=group==='pair'?['easy','normal'].map(difficultyId=>({trackId:'yeosu',difficultyId,weather:'clear',laps:1,trafficCount:6})):group==='coastal'?[");
+write('matrix-obstacle.mjs',matrix);
+write('obstacle-candidate-inputs.json',JSON.stringify({cause:'A held partial crossing is not a lane-centred car. Choosing the opposite side of its own lane sign can point into the slow lead. Choose the side away from the obstruction, with all crossing and road checks retained.',inputs:['planner-final.mjs','planner-obstacle.mjs','sim-obstacle.mjs'].map(p=>({path:p,sha256:crypto.createHash('sha256').update(read(p)).digest('hex')}))},null,2));

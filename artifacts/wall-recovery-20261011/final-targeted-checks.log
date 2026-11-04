@@ -1,0 +1,104 @@
+✔ releasing one pedal source preserves another finger or keyboard owner (4.7191ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.6445ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.8245ms)
+✔ typing and Space on menu buttons remain native UI actions (0.3311ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.3077ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.2513ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (554.5852ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (605.4582ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (408.3002ms)
+✔ race nitro is earned: slow trickle, faster from drifting and drafting (7.6253ms)
+✔ overtake charge is clamped and the slide assist can be switched off live (0.5478ms)
+✔ slipstream only exists close behind a moving car in the same lane (3.3957ms)
+✔ passing a nearby rival counts once; recovery setbacks and finishers do not (0.538ms)
+✔ assist preference defaults on and survives blocked storage (0.5585ms)
+✔ drafting halves aero drag on a real chassis and starts with a partial nitro tank (276.5396ms)
+{
+  id: 'supra',
+  recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+  recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+}
+{
+  id: 'slk',
+  recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+  recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+}
+{
+  id: 'mustang',
+  recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+  recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+}
+✔ stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts (23.4249ms)
+✔ road recovery aligns to the slope and avoids a half-metre suspension drop in all cars (322.7416ms)
+✔ sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch (2.6386ms)
+✔ recovery preserves spent boost and resets velocities; a new race refills it (78.423ms)
+✔ recovery rejects an empty-looking point in approaching traffic and never awards progress (1.9001ms)
+✔ recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit (117.9971ms)
+✔ side-by-side solver separation protects the authored wide shoulders in all cars (241.0078ms)
+{ id: 'supra', side: -1, maxOffset: 10.64593505859375 }
+{ id: 'supra', side: 1, maxOffset: 10.645939826965332 }
+{ id: 'slk', side: -1, maxOffset: 10.677392959594727 }
+{ id: 'slk', side: 1, maxOffset: 10.677389144897461 }
+{ id: 'mustang', side: -1, maxOffset: 10.604549407958984 }
+{ id: 'mustang', side: 1, maxOffset: 10.604555130004883 }
+{ id: 'porsche911', side: -1, maxOffset: 10.605432510375977 }
+{ id: 'porsche911', side: 1, maxOffset: 10.605437278747559 }
+{ id: 'gtr', side: -1, maxOffset: 10.599272727966309 }
+{ id: 'gtr', side: 1, maxOffset: 10.599276542663574 }
+{ id: 'rx7', side: -1, maxOffset: 10.616661071777344 }
+{ id: 'rx7', side: 1, maxOffset: 10.616663932800293 }
+{ id: 'm3', side: -1, maxOffset: 10.604820251464844 }
+{ id: 'm3', side: 1, maxOffset: 10.604825973510742 }
+{ id: 'huracan', side: -1, maxOffset: 10.605022430419922 }
+{ id: 'huracan', side: 1, maxOffset: 10.605027198791504 }
+{
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  maxDeviation: 4.936848311552224,
+  seconds: 109.95,
+  contacts: 4
+}
+✔ sealed Namak wall shells block both directions and every route seam without filling the asphalt (291.3257ms)
+✔ eight physical cars remain inside either wall after a 230km/h lateral impact (1276.6475ms)
+✔ an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not (1.3623ms)
+✔ sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward (115.3275ms)
+✔ C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields (0.6061ms)
+✔ recovery finds a clear point behind a six-car queue beyond the former 64m search window (0.9589ms)
+✔ a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery (1817.812ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15097.2079

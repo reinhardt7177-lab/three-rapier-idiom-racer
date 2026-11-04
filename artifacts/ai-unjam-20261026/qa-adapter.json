@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-26T04:56:24.333Z",
+  "purpose": "Own-app read-only diagnostic button in isolated Vite dev hosts. Clicking publishes the already exposed debug snapshot into hidden DOM output; no live physics/state writes and no sampling loop. Both A/B hosts use same adapter; absent from production/build config.",
+  "script": "if(new URLSearchParams(location.search).has('qaSnapshot')){const b=document.createElement('button'),o=document.createElement('output');b.id='qa-snapshot-button';b.textContent='검수 수치 읽기';b.style.cssText='position:fixed;right:2px;top:2px;z-index:99999;font:10px sans-serif;padding:2px';o.id='qa-snapshot';o.hidden=true;b.addEventListener('click',()=>{o.textContent=JSON.stringify(window.__mumuRebuild??{});});document.body.append(b,o);}",
+  "configSha256": "a1f4b397a59b375579143ea52c718cccdda881e010d711a2424dd78f16a80cc9"
+}

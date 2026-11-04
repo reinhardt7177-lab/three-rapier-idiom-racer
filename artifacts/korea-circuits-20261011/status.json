@@ -1,0 +1,108 @@
+{
+  "status": "stage2-championship-performance-gate-stop",
+  "staticAttempts": 3,
+  "staticLatestPassed": 6,
+  "colabExecuted": true,
+  "colabDevice": "CPU / Rapier WASM",
+  "races": 12,
+  "starts": 72,
+  "finished": 72,
+  "garageFourViewports": true,
+  "fullHudFourViewports": true,
+  "performanceGate": "short stationary browser samples recorded; previous large delay not reproduced, whole-course visual/flow audit remains",
+  "stage2Started": true,
+  "committed": true,
+  "pushed": true,
+  "browserTimeouts": 3,
+  "stopReason": null,
+  "browserPipeClosures": 1,
+  "browserConnectionFailures": 4,
+  "browserRecovered": "Codex in-app browser",
+  "basicKeyboardAndPointerRelease": true,
+  "performanceWarning": {
+    "track": "namak",
+    "beforeMeanMs": 17.50041666666669,
+    "afterMeanMs": 18.473333333333358,
+    "beforeP95Ms": 17,
+    "afterP95Ms": 33.30000000000291,
+    "causality": "unconfirmed short sample",
+    "sameDrawCalls": 868,
+    "sameTriangles": 1279323
+  },
+  "fullCheckBeforePerformanceInstrumentation": {
+    "tests": 226,
+    "pass": 226,
+    "fail": 0,
+    "build": true
+  },
+  "currentFullCheck": {
+    "file": "artifacts/championship-20261011/full-check-7.json",
+    "tests": 238,
+    "passed": 238,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 189.09265422821045,
+    "buildSeconds": 3.23,
+    "compute": "CPU / Rapier WASM",
+    "localHashCount": 123,
+    "mismatches": []
+  },
+  "currentTargetedCheck": {
+    "tests": 10,
+    "pass": 10,
+    "fail": 0,
+    "build": true,
+    "buildSeconds": 2.18
+  },
+  "pauseRenderVerified": {
+    "before": {
+      "draws": 1678,
+      "skipped": 0
+    },
+    "after": {
+      "draws": 1681,
+      "skipped": 647
+    },
+    "elapsedUnchanged": 21.183333333332772,
+    "resumeThrottle": 0
+  },
+  "colabConnected": true,
+  "stage1Complete": true,
+  "remainingStage1": [],
+  "nightCurveScreenshot": true,
+  "latestImplementationCommit": "1706de4",
+  "mapImageReferencesVerified": true,
+  "criticalViews": {
+    "static": true,
+    "runtimeDrive": false,
+    "gradeUp": 9.9121903257,
+    "gradeDown": 17.5871128487,
+    "hairpin": true,
+    "summitRoadOverlapFixed": true
+  },
+  "complete": false,
+  "championship": {
+    "functionalFlowVerified": true,
+    "threeRoundsFinished": true,
+    "browserPlayer": {
+      "rank": 4,
+      "points": 9,
+      "totalSeconds": 339.90833333333336
+    },
+    "performanceGatePassed": false
+  },
+  "stop": {
+    "userCondition": "기존 코스 성능이 나빠지면 멈추고 보고",
+    "observed": "Namak p95 16.9 → 33.6ms; >50ms 0 → 8",
+    "causeEstablished": false
+  },
+  "next": "기존 남악 성능을 동일 조건에서 재현·수정한 후 확장 재개",
+  "remainingStage2": [
+    "championship performance gate",
+    "medal unlocks",
+    "rival personalities with no AI teleport",
+    "another course night and performance cost"
+  ],
+  "report": "docs/KOREA_RELEASE_GATE_20261011.md",
+  "championshipImplementationCommit": "6238068"
+}

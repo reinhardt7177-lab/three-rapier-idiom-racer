@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-03T15:11:59.968Z",
+  "url": "http://127.0.0.1:5220/?track=yeosu",
+  "observed": {
+    "keyboardKmh": 53,
+    "pointerKmh": 31,
+    "camera": "first-person then chase",
+    "contactsAfterRecovery": 4,
+    "inputAfterKeyAndMenu": {
+      "throttle": 0,
+      "brake": 0,
+      "reverse": 0,
+      "steer": 0,
+      "handbrake": false,
+      "boost": false
+    },
+    "garageReturn": true,
+    "forceTouchRestored": "auto",
+    "viewportOverrideReset": true,
+    "yeosuGuide": "left / 85m",
+    "coastalGuide": "right / current bend",
+    "loading": {
+      "files": 20,
+      "encodedBytes": 21195127,
+      "scope": "Resource Timing sizes exposed in DOM telemetry during this local preview load. Not claimed as controlled cold cache."
+    }
+  },
+  "logs": [
+    {
+      "level": "warn",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+      "timestamp": "2026-11-03T15:07:29.515Z",
+      "url": "http://127.0.0.1:5220/assets/three-C-m27Z9i.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+      "timestamp": "2026-11-03T15:09:48.843Z",
+      "url": "http://127.0.0.1:5220/assets/three-C-m27Z9i.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision",
+      "timestamp": "2026-11-03T15:11:49.575Z",
+      "url": "http://127.0.0.1:5220/assets/three-C-m27Z9i.js"
+    }
+  ],
+  "limitations": [
+    "IAB emulation, not physical mobile/tablet",
+    "Full race completion tested headlessly, not by manual driving",
+    "No final navigation-only performance claim; regression CPU work overlapped functional UI checks"
+  ]
+}

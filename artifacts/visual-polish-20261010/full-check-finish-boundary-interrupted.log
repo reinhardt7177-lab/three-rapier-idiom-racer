@@ -1,0 +1,169 @@
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=1 scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+✔ RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart (3.8139ms)
+✔ launch smoke uses only the rear contact patches below drift speed and stops in the air (8.6043ms)
+✔ smoke follows actual wheel contacts, stays bounded and clears on reset or quality change (44.3407ms)
+✔ same-speed acceleration and braking produce distinct bounded camera response at every frame rate (20.228ms)
+✔ audio load and boost are distinct at identical road speed (0.5233ms)
+✔ stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration (2.0544ms)
+✔ actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis (3.2191ms)
+{"push":1,"braking":1,"scrub":0.9999999028585778}
+✔ real Rapier drive/brake/corner signals do not change the simulation trajectory (597.8079ms)
+✔ tire trails have a bounded pool, fade, and never bridge reset/airborne gaps (19.9086ms)
+✔ load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag (1.2651ms)
+✔ pending audio resume cannot undo mute or reopen a disposed graph (2.8907ms)
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 844.8607788085938,
+  distance: 844.7932281494141
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 771.1849951171876,
+  distance: 771.1353302001953
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 845.6960894157625,
+  distance: 845.6399078369141
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 847.9114013671874,
+  distance: 847.8453216552734
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 856.018564453125,
+  distance: 855.9578704833984
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 861.1986328125,
+  distance: 861.1202697753906
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 813.1017443847655,
+  distance: 813.0361480712891
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 952.4103271484374,
+  distance: 952.3285522460938
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (20.3658ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (529.5864ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (480.7195ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (338.0393ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (140.2575ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (149.4862ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (125.9855ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (114.6189ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (88.296ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (75.0492ms)
+✔ actual showroom wall occlusion is removed for rear and diagonal vehicle views (4.7075ms)
+✔ front and in-room rear views restore the real backdrop (1.2964ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.6766ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.4261ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.5413ms)
+✔ typing and Space on menu buttons remain native UI actions (0.1782ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.1971ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.1758ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.385976791381836,
+  penetration: 0.005001312966772531,
+  retreat: 27.76101117910733,
+  escapeReverse: false,
+  restartKmh: 7.3359480042293805
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050607681274414,
+  penetration: 0.005000290262767493,
+  retreat: 19.639902027484478,
+  escapeReverse: false,
+  restartKmh: 7.270321530113169
+}
+✔ AI stops behind a stationary car without impact and follows when it moves (589.9496ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (318.2248ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.808333333333334,
+  stopping: 44.645660400390625,
+  stopTime: 2.916666666666659,
+  rolling: 100.2945526123047,
+  distance: 100.2889404296875,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.1,
+  stopping: 44.733795166015625,
+  stopTime: 2.9249999999999923,
+  rolling: 82.94249171584889,
+  distance: 82.93890380859375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 2,
+  peakFront: 20.53059196472168,
+  front: {
+    x: 0.016820084303617477,
+    y: 0.5410052537918091,
+    z: 59.547950744628906
+  },
+  rear: {
+    x: 0.004478541202843189,
+    y: 0.5260055065155029,
+    z: 55.037933349609375
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.38477325439453
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (383.8208ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (25.8584ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (186.6934ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (65.135ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (10.1686ms)

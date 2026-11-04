@@ -1,0 +1,59 @@
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (3.9589ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (1.0403ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (5.2339ms)
+✖ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (22.3242ms)
+{"side":-1,"index":211,"clearAt":{"slk":6.458333333333333,"gtr":8.608333333333333,"rx7":12.541666666666666,"porsche911":16.083333333333332,"mustang":21.3},"contacts":0,"lowest":0.05078659057617152,"offroad":0}
+✔ Yeosu bend: five queued rivals clear a stopped player on lane -1 without contact or recovery (2261.1058ms)
+✖ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (3007.8122ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6558.3009
+
+✖ failing tests:
+
+test at scripts\collision-feel.test.mjs:35:1
+✖ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (22.3242ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(camera.rotation.z)<Math.PI/180)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/collision-feel.test.mjs:38:138)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\corner-queue.test.mjs:13:26
+✖ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (3007.8122ms)
+  AssertionError [ERR_ASSERTION]: queue escape cannot push the player
+  
+  115 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/corner-queue.test.mjs:29:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 115,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,32 @@
+{"id":"supra","previous":{"radius":24.173318773330955,"turn":-1.5266646167524205,"minUp":1,"minContacts":4,"kmh":85.38784962563103,"steer":-0.1025182361615413},"left":{"radius":18.717792022839188,"turn":-1.9584139867742696,"minUp":1,"minContacts":4,"kmh":83.07310602368176,"steer":-0.14034297084181338},"right":{"radius":18.717731637694968,"turn":1.9584170701328945,"minUp":1,"minContacts":4,"kmh":83.07306522813818,"steer":0.14034301718323633}}
+✔ another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper (10.2504ms)
+✖ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (380.9383ms)
+✔ additional steering stays upright at highway speed and releasing input recentres the wheels (343.507ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2876.6681
+
+✖ failing tests:
+
+test at scripts\steering-turn.test.mjs:49:1
+✖ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (380.9383ms)
+  AssertionError [ERR_ASSERTION]: compare at matching road speed: 83.07310602368176
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-turn.test.mjs:59:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

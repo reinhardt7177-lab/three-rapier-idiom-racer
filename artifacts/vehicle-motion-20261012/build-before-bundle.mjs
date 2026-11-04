@@ -1,0 +1,13 @@
+import {build} from 'vite';
+import react from '@vitejs/plugin-react';
+import {fileURLToPath} from 'node:url';
+import fs from 'node:fs';
+import path from 'node:path';
+import {gzipSync} from 'node:zlib';
+const root=fileURLToPath(new URL('performance-before/',import.meta.url)),out=fileURLToPath(new URL('before-bundle/',import.meta.url));
+if(!process.argv.includes('--sizes-only'))await build({root,configFile:false,publicDir:false,plugins:[react()],build:{outDir:out,emptyOutDir:false,rollupOptions:{output:{manualChunks:{physics:['@dimforge/rapier3d-compat'],three:['three'],react:['react','react-dom/client']}}}}});
+const sizes=folder=>fs.readdirSync(path.join(folder,'assets')).filter(n=>/\.(js|css)$/.test(n)).map(name=>{const b=fs.readFileSync(path.join(folder,'assets',name));return {name,bytes:b.length,gzipBytes:gzipSync(b).length};});
+const before=sizes(out),after=sizes(fileURLToPath(new URL('../../dist/',import.meta.url)));
+const total=a=>a.reduce((s,r)=>({bytes:s.bytes+r.bytes,gzipBytes:s.gzipBytes+r.gzipBytes}),{bytes:0,gzipBytes:0});
+fs.writeFileSync(new URL('bundle-size-comparison.json',import.meta.url),JSON.stringify({before,after,beforeTotal:total(before),afterTotal:total(after),note:'Same Vite production bundling and chunk settings, unchanged shared public assets. Bundle bytes/gzip sizes are not a cold network-loading measurement.'},null,2));
+console.log({beforeTotal:total(before),afterTotal:total(after)});

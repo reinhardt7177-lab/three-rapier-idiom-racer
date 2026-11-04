@@ -1,0 +1,52 @@
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (10.3607ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.507ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (3.6885ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.7364ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (1.1907ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (1.0219ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (2.2743ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (2.0091ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (1.3344ms)
+✔ typing and Space on menu buttons remain native UI actions (0.4475ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.4409ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.3325ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (425.8605ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (515.5985ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (367.2488ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3501.9058

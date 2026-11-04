@@ -1,0 +1,56 @@
+✔ quality choices save, reject unknown values and tolerate blocked storage (1.738ms)
+✔ quality culls distant decoration and preserves road, barriers, colliders and near bounds (4.8296ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (866.0904ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (133.2795ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (20.7114ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (33.0694ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (38.5743ms)
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ navigation follows the actual driver-camera side at yaw 0 (9.0051ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (2.0328ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.9781ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (1.0459ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (124.7571ms)
+✔ a continuing bend previews the next independent corner rather than the next point of the same bend (10.7808ms)
+✔ high speed previews a bend earlier without changing low-speed finish or lap rules (3.7674ms)
+✔ static corner lookup does not rescan the road on every HUD update (8.4311ms)
+✔ every track has ordered medal targets for every lap option (3.9581ms)
+✔ a personal best only improves, per track and lap count (1.0646ms)
+✔ corrupt or blocked storage never breaks the result screen (0.9097ms)
+✔ new-course saved badges are recalculated without deleting times or legacy medals (1.1694ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (4.7768ms)
+✔ route guidance only announces the finish on the final lap (5.3918ms)
+✔ a ghost replays the recorded run at the same race time (4.0405ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (0.655ms)
+✔ unlimited high-quality decoration retains the exact visibility policy without per-mesh distance work (79.5516ms)
+✔ finite quality switching, near-sphere bounds and restore remain exact (0.9666ms)
+✔ Namak reuses the culling scratch sphere across updates and quality changes (114.1723ms)
+✔ static ridge bounds are cached rather than rebuilt during each forest update (555.2758ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (514.4561ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (1034.5487ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (1239.5276ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (337.5599ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (294.746ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (171.5678ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (318.4387ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (340.0174ms)
+✔ right/left bends follow world heading, including the circular route seam (4.6191ms)
+✔ bend detection uses metres and survives a fourfold change in point density (10.6959ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (8.1012ms)
+✔ actual city approach previews its geometrically verified right bend and cached guidance stays pure (19.3621ms)
+✔ isolated heading errors never become a persistent corner warning (0.9247ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (16.5562ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (2.8389ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7407.5066

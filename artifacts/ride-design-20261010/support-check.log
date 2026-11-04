@@ -1,0 +1,179 @@
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 844.8607788085938,
+  distance: 844.7932281494141
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 771.1850780478727,
+  distance: 771.1354217529297
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 845.6960894157625,
+  distance: 845.6399078369141
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 847.9114013671874,
+  distance: 847.8452606201172
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 855.98560546875,
+  distance: 855.9246826171875
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 861.1987145378703,
+  distance: 861.120361328125
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 813.1017443855773,
+  distance: 813.0360870361328
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 952.3868286132812,
+  distance: 952.3041076660156
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (55.5008ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (866.0913ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (293.2209ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (257.633ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (291.0541ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (159.1689ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (134.2575ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (121.9397ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (101.1967ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (91.6274ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804657206159,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.808333333333334,
+  stopping: 44.644256591796875,
+  stopTime: 2.916666666666659,
+  rolling: 100.29455248366254,
+  distance: 100.2889404296875,
+  shifts: 2,
+  peakPitch: 1.9697790243229787e-25
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.1,
+  stopping: 44.732696533203125,
+  stopTime: 2.9249999999999923,
+  rolling: 82.94249171584889,
+  distance: 82.93890380859375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 3,
+  peakFront: 20.53217887878418,
+  front: {
+    x: -0.031453847885131836,
+    y: 0.5410053133964539,
+    z: 59.54949951171875
+  },
+  rear: {
+    x: -0.040466200560331345,
+    y: 0.526005744934082,
+    z: 55.03947067260742
+  }
+}
+{
+  wallHits: 2,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.385655879974365
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (503.2232ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (31.3361ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (269.9632ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (211.8557ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (14.7706ms)
+{
+  id: 'supra',
+  kick: 0.35,
+  before: {
+    peak: 0.011359851525141082,
+    settled: 0.00023275772921177042,
+    lost: 0,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'supra',
+  kick: 1,
+  before: {
+    peak: 0.041809127835308595,
+    settled: 0.0004451893661204157,
+    lost: 10,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 0.35,
+  before: { peak: 0.010539328032232703, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 1,
+  before: { peak: 0.03844577330498269, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 0.35,
+  before: { peak: 0.01126703532192866, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 1,
+  before: { peak: 0.046223407743046015, settled: 0, lost: 18, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{ id: 'supra', heaveMetres: 0, kmh: 224.31796875003081 }
+{ id: 'slk', heaveMetres: 0, kmh: 218.67356414795947 }
+{ id: 'mustang', heaveMetres: 0, kmh: 225.27696533203127 }
+{ fps: 30, cameraHeave: 0.0056117077319504105, roadHeave: 0.03 }
+{ fps: 60, cameraHeave: 0.005628560567466856, roadHeave: 0.03 }
+{ fps: 120, cameraHeave: 0.005606701048515461, roadHeave: 0.03 }
+✔ all three cars reduce real rebound and retain contact recovery under a strong impact (1038.9323ms)
+✔ flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave (841.3041ms)
+✔ chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag (25.2522ms)
+✔ stabilized chase follows steep grades, holds its paused frame and snaps after road recovery (7.8637ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12201.3147

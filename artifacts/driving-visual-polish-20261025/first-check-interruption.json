@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-25T14:33:05.528Z",
+  "reason": "The old Namak steering assertion expected forward speed after product handling moved to horizontal travel speed. Strict equality/1e-10 tolerance retained and the five related tests passed after correcting the input expectation. The already-running full command was stopped to avoid completing obsolete assertions; all partial logs are retained. Final full command restarts on validation-final2.",
+  "productChangesAfterInitialRun": false,
+  "changedTest": "scripts/namak-polish.test.mjs"
+}

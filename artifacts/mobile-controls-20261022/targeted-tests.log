@@ -1,0 +1,57 @@
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (1.7536ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.142ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (1.6906ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.2549ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.5185ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.4257ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.9154ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.3991ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.9585ms)
+✔ typing and Space on menu buttons remain native UI actions (6.2798ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.5334ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.4079ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.26189613342285,
+  penetration: 0.005001296137265854,
+  retreat: 24.600356772592576,
+  escapeReverse: false,
+  restartKmh: 7.2980665816164745
+}
+{
+  id: 'slk',
+  impacts: 2,
+  maxZ: 27.385963439941406,
+  penetration: 0.004999396007598023,
+  retreat: 28.051620811403325,
+  escapeReverse: false,
+  restartKmh: 7.230162618218268
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.055423736572266,
+  penetration: 0.005096432348604907,
+  retreat: 25.749811011616085,
+  escapeReverse: false,
+  restartKmh: 7.344852885429801
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (286.8733ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (324.4925ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (207.0656ms)
+✔ touch detection includes tablets with a mouse and desktop-mode touch browsers (1.6436ms)
+✔ phones, large tablets and manual fallback show pedals regardless of primary pointer (0.672ms)
+✔ layout guard matches the compact HUD at widths above 1000 and the 550px boundary (1.63ms)
+✔ changing control visibility releases every owner and pauses once, not on address-bar resize (2.3839ms)
+✔ a hybrid tablet rotated to portrait blocks driving and clears simultaneous pedals (0.5676ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2182.7661

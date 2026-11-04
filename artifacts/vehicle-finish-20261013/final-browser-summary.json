@@ -1,0 +1,409 @@
+{
+  "time": "2026-10-14T01:01:05.072Z",
+  "ui": [
+    {
+      "mode": "garage",
+      "width": 1280,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "garage",
+      "width": 1024,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": [
+        [
+          ".vehicle-heading",
+          ".garage-launch"
+        ]
+      ]
+    },
+    {
+      "mode": "garage",
+      "width": 844,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "garage",
+      "width": 667,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "hud",
+      "width": 1280,
+      "elapsed": 16.51666666666637,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "hud",
+      "width": 1024,
+      "elapsed": 57.6583333333307,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "hud",
+      "width": 844,
+      "elapsed": 58.54999999999732,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "hud",
+      "width": 667,
+      "elapsed": 59.34999999999727,
+      "paused": false,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "result",
+      "width": 1280,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": true,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "result",
+      "width": 1024,
+      "elapsed": 86.14166666668129,
+      "paused": false,
+      "result": true,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "result",
+      "width": 844,
+      "elapsed": 86.14166666668129,
+      "paused": true,
+      "result": true,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "result",
+      "width": 667,
+      "elapsed": 86.14166666668129,
+      "paused": true,
+      "result": true,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "menu",
+      "width": 1280,
+      "elapsed": 39.14999999999842,
+      "paused": true,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "menu",
+      "width": 1024,
+      "elapsed": 39.14999999999842,
+      "paused": true,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "menu",
+      "width": 844,
+      "elapsed": 39.14999999999842,
+      "paused": true,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "mode": "menu",
+      "width": 667,
+      "elapsed": 39.14999999999842,
+      "paused": true,
+      "result": false,
+      "clipped": [],
+      "overlaps": []
+    }
+  ],
+  "trials": [
+    {
+      "file": "perf-final-high-a1.json",
+      "frame": {
+        "samples": 1595,
+        "mean": 18.80902821316614,
+        "p95": 33.39999999999418,
+        "max": 99.90000000000873,
+        "over50": 3
+      },
+      "cpu": {
+        "samples": 1595,
+        "mean": 13.763699059594762,
+        "p95": 17.200000017881393,
+        "max": 32.30000001192093
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.399999999994,
+      "intervalExample": {
+        "at": 66.59999999999127,
+        "ms": 66.59999999999127,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-high-a2.json",
+      "frame": {
+        "samples": 1558,
+        "mean": 19.26643132220796,
+        "p95": 33.39999999999782,
+        "max": 66.59999999999854,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1558,
+        "mean": 13.075096277603748,
+        "p95": 19.899999976158142,
+        "max": 60.5
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.03333333333227,
+        "dropped": 0
+      },
+      "durationMs": 30017.100000000002,
+      "intervalExample": {
+        "at": 49.80000000000109,
+        "ms": 49.80000000000109,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-high-b.json",
+      "frame": {
+        "samples": 1620,
+        "mean": 18.518703703703707,
+        "p95": 33.30000000000291,
+        "max": 66.59999999999854,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1620,
+        "mean": 13.623395061732074,
+        "p95": 17.900000005960464,
+        "max": 39.79999998211861
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.25,
+        "quality": "high",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.300000000003,
+      "intervalExample": {
+        "at": 66.59999999999854,
+        "ms": 66.59999999999854,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-a1.json",
+      "frame": {
+        "samples": 1799,
+        "mean": 16.676264591439693,
+        "p95": 16.80000000000291,
+        "max": 33.299999999995634,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1799,
+        "mean": 5.203501945869865,
+        "p95": 6.5,
+        "max": 20.100000023841858
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.600000000006,
+      "intervalExample": {
+        "at": 16.5,
+        "ms": 16.5,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-a2.json",
+      "frame": {
+        "samples": 1798,
+        "mean": 16.68548387096774,
+        "p95": 16.80000000000291,
+        "max": 50.099999999998545,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1798,
+        "mean": 5.032536151444952,
+        "p95": 7.199999988079071,
+        "max": 11.099999994039536
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.5,
+      "intervalExample": {
+        "at": 16.69999999999709,
+        "ms": 16.69999999999709,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "file": "perf-final-low-b.json",
+      "frame": {
+        "samples": 1798,
+        "mean": 16.685483870967747,
+        "p95": 16.80000000000291,
+        "max": 50.099999999998545,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1798,
+        "mean": 6.46701891002586,
+        "p95": 9.5,
+        "max": 14.200000017881393
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.500000000007,
+      "intervalExample": {
+        "at": 16.700000000004366,
+        "ms": 16.700000000004366,
+        "visible": true,
+        "focused": true
+      },
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  ],
+  "finish": {
+    "raceMode": "grid",
+    "outcome": null,
+    "opponent": null,
+    "unlocked": [],
+    "place": 6,
+    "time": 86.14166666668129,
+    "difficulty": "normal",
+    "laps": 1,
+    "lapTimes": [
+      86.14166666668129
+    ],
+    "bestLap": 86.14166666668129,
+    "improved": false,
+    "previous": 86.14166666668129,
+    "medal": "bronze",
+    "ghostSaved": false
+  },
+  "baselineOverlap": [
+    [
+      ".vehicle-heading",
+      ".garage-launch"
+    ]
+  ],
+  "logs": []
+}

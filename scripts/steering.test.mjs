@@ -134,3 +134,30 @@ test('reset clears steering, handbrake state and rear grip immediately', () => {
     assert.equal(sim.controller.wheelFrictionSlip(0), sim.controller.wheelFrictionSlip(1));
   } finally { sim.dispose(); }
 });
+
+
+test('responsive road steering improves brief input while retaining high-speed and full-lock limits',()=>{
+  assert.ok(steeringLimit(60/3.6,true)>steeringLimit(60/3.6)*1.35);
+  assert.equal(steeringLimit(200/3.6,true),steeringLimit(200/3.6));
+  assert.equal(steeringLimit(0,true),.52);
+  const slow=updateSteering(0,1,.05),quick=updateSteering(0,1,.05,true);
+  assert.ok(Math.abs(quick)>Math.abs(slow));
+  assert.equal(updateSteering(0,-1,.05,true),-quick);
+});
+
+
+test('road rear drive and front-biased braking produce physical axle pitch',()=>{
+ const sim=createVehiclePhysics({progressiveAcceleration:true,launchEnabled:true,barriers:false});
+ try{
+  const forces=[0,0,0,0],apply=sim.controller.setWheelEngineForce.bind(sim.controller);
+  sim.controller.setWheelEngineForce=(i,f)=>{forces[i]=f;apply(i,f);};
+  run(sim,120,{brake:1});const idle=sim.snapshot().rotation.x;
+  const accelerating=run(sim,480,{throttle:1});
+  assert.equal(forces[1],0);assert.equal(forces[3],0);assert.ok(forces[0]>0&&forces[2]>0);
+  assert.ok(accelerating.rotation.x<idle,'front must rise from real suspension load');
+  const braking=run(sim,30,{brake:1});
+  assert.ok(braking.rotation.x>accelerating.rotation.x,'braking must pitch nose down');
+  assert.equal(braking.contacts,4);
+  sim.reset();assert.ok(Math.abs(sim.snapshot().speed)<.01);
+ }finally{sim.dispose();}
+});

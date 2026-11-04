@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-25T14:53:44.995Z",
+  "reason": "Confirmed completion regression: exact before source six cars finish coastal/easy/3 in 610.25–634.90s; candidate has four unfinished at1260s. Also two traffic completion failures and eight export coating parity failures.",
+  "filesRestoredFromBefore": [
+    "package.json",
+    "src/driving/physics.js",
+    "src/driving/arcadeAction.js",
+    "src/rebuild/vehicleDynamics.js",
+    "scripts/race-sim.mjs",
+    "scripts/steering-final.test.mjs",
+    "scripts/steering-turn.test.mjs",
+    "scripts/namak-polish.test.mjs"
+  ],
+  "runtime": "Only new human/rival tuning selection/import reverted; pre-existing REA motion/contact changes and new night opt-in retained.",
+  "surface": "Authored paint and glass coefficients restored; only reflection intensity/studio and night/world changes retained.",
+  "candidate": [
+    {
+      "path": "package.json",
+      "sha256": "54611451b39227d86370105fda7082a9cb81928c95787aa5a2b1baaac852b7ac"
+    },
+    {
+      "path": "src/driving/physics.js",
+      "sha256": "6da700996c49700abda18af7e82417eab673b8c6702b4f1b8253daab2080964e"
+    },
+    {
+      "path": "src/driving/arcadeAction.js",
+      "sha256": "71f4528d002fb493b11fbcd2f8ecda52fa429756aed3fb69aab73dfd8363478d"
+    },
+    {
+      "path": "src/rebuild/vehicleDynamics.js",
+      "sha256": "a5daf8a7e0bec46783f5b8158f40f7684e345950405eea3b525cf3d5244cf490"
+    },
+    {
+      "path": "scripts/race-sim.mjs",
+      "sha256": "0e76a48d3cd968b14eca3b34cd20d5c321597312d2b5e4e6564dc4c4bfc845cb"
+    },
+    {
+      "path": "scripts/steering-final.test.mjs",
+      "sha256": "73239ff83ba6b2b8e719cdccc1780ba23d59f84e893a1bec2d47845a4a48883a"
+    },
+    {
+      "path": "scripts/steering-turn.test.mjs",
+      "sha256": "afd5eb76c7618be45147be1c80409ac39821c6897b4c68bbe1142bebb78c5636"
+    },
+    {
+      "path": "scripts/namak-polish.test.mjs",
+      "sha256": "1e307304c73691eec16ab852ffafad10b5c8a8571e4ce78ef1e3fbf79459b00e"
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "sha256": "8371e841678f421948c653a7ed3df88f7df04211b4f74b52f6d4e6a260740d10"
+    },
+    {
+      "path": "src/rebuild/surfacePolish.js",
+      "sha256": "7fbeefd2d5ff89c9bfb2369d8e301977d97fb1aa8b2897735a20fe056ad1a265"
+    },
+    {
+      "path": "scripts/player-handling.test.mjs",
+      "sha256": "58a8175fb486da89ccda0967f12fba3a36b0df4a4297f45b9bcfa0eb4de6c808"
+    }
+  ],
+  "newTest": "Moved from registered product scripts to candidate/scripts for evidence; no user-created file removed."
+}

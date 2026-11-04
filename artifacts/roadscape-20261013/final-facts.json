@@ -1,0 +1,1087 @@
+{
+  "created": "2026-10-13T05:12:34.821Z",
+  "models": {
+    "yeosu": {
+      "base": 9632808,
+      "extension": 4830744,
+      "extensionSha256": "9af89a3de0c5aaadd15ecd25e237cef0126bf44cc4efcc58c83855595797bc14",
+      "blendBytes": 1150786,
+      "initialBinaryBefore": 16248045,
+      "initialBinaryAfter": 21078789
+    },
+    "seongsamjae": {
+      "base": 9539680,
+      "extension": 2820352,
+      "extensionSha256": "8f8f381acd7e0f07553abe3f26bca03a79ec1b7c6b4f444d56ce800b6c75cb0b",
+      "blendBytes": 449557,
+      "initialBinaryBefore": 15816256,
+      "initialBinaryAfter": 18636608
+    }
+  },
+  "initialBinaryDefinition": "All 8 car models, garage, cockpit, selected world + route and Draco decoder. Excludes JS/CSS and audio; byte inventory, not cold network timing. Each course loads its extension even at low quality.",
+  "code": [
+    {
+      "file": "bundler-hUWv2h5-.js",
+      "bytes": 117074,
+      "gzip": 31655
+    },
+    {
+      "file": "index-Bb1ACK0u.css",
+      "bytes": 35207,
+      "gzip": 7258
+    },
+    {
+      "file": "index-BvW-5ZmB.js",
+      "bytes": 342122,
+      "gzip": 119376
+    },
+    {
+      "file": "physics-iRel_T-y.js",
+      "bytes": 2853140,
+      "gzip": 1077800
+    },
+    {
+      "file": "react-34UxNz19.js",
+      "bytes": 191918,
+      "gzip": 60145
+    },
+    {
+      "file": "three-CN199l_j.js",
+      "bytes": 592526,
+      "gzip": 152117
+    }
+  ],
+  "races": [
+    {
+      "track": "namak",
+      "result": {
+        "raceMode": "grid",
+        "outcome": null,
+        "opponent": null,
+        "unlocked": [
+          {
+            "id": "rx7",
+            "name": "Mazda RX-7",
+            "required": 1,
+            "unlocked": true,
+            "kind": "cars"
+          },
+          {
+            "id": "seongsamjae",
+            "name": "지리산 성삼재",
+            "required": 1,
+            "unlocked": true,
+            "kind": "tracks"
+          }
+        ],
+        "place": 6,
+        "time": 86.14166666668129,
+        "difficulty": "normal",
+        "laps": 1,
+        "lapTimes": [
+          86.14166666668129
+        ],
+        "bestLap": 86.14166666668129,
+        "improved": true,
+        "previous": null,
+        "medal": "bronze",
+        "ghostSaved": true
+      },
+      "finishOrder": [
+        {
+          "name": "RAVEN",
+          "time": 80.10000000000981,
+          "finished": true
+        },
+        {
+          "name": "MIST",
+          "time": 80.25833333334327,
+          "finished": true
+        },
+        {
+          "name": "BLAZE",
+          "time": 80.68333333334361,
+          "finished": true
+        },
+        {
+          "name": "LUNA",
+          "time": 80.80000000001037,
+          "finished": true
+        },
+        {
+          "name": "NOVA",
+          "time": 82.57500000001178,
+          "finished": true
+        },
+        {
+          "name": "YOU",
+          "time": 86.14166666668129,
+          "finished": true
+        }
+      ],
+      "recoveries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "namak-real-finish-complete.json"
+    },
+    {
+      "track": "seongsamjae",
+      "result": {
+        "raceMode": "grid",
+        "outcome": null,
+        "opponent": null,
+        "unlocked": [],
+        "place": 6,
+        "time": 172.36666666667423,
+        "difficulty": "normal",
+        "laps": 1,
+        "lapTimes": [
+          172.36666666667423
+        ],
+        "bestLap": 172.36666666667423,
+        "improved": true,
+        "previous": null,
+        "medal": null,
+        "ghostSaved": true
+      },
+      "finishOrder": [
+        {
+          "name": "RAVEN",
+          "time": 159.56666666668588,
+          "finished": true
+        },
+        {
+          "name": "MIST",
+          "time": 160.03333333335212,
+          "finished": true
+        },
+        {
+          "name": "LUNA",
+          "time": 162.04166666668362,
+          "finished": true
+        },
+        {
+          "name": "NOVA",
+          "time": 165.02500000001424,
+          "finished": true
+        },
+        {
+          "name": "BLAZE",
+          "time": 165.34166666668062,
+          "finished": true
+        },
+        {
+          "name": "YOU",
+          "time": 172.36666666667423,
+          "finished": true
+        }
+      ],
+      "recoveries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "seongsamjae-complete.json"
+    },
+    {
+      "track": "yeosu",
+      "result": {
+        "raceMode": "grid",
+        "outcome": null,
+        "opponent": null,
+        "unlocked": [],
+        "place": 4,
+        "time": 294.9333333332294,
+        "difficulty": "normal",
+        "laps": 1,
+        "lapTimes": [
+          294.9333333332294
+        ],
+        "bestLap": 294.9333333332294,
+        "improved": true,
+        "previous": null,
+        "medal": null,
+        "ghostSaved": true
+      },
+      "finishOrder": [
+        {
+          "name": "MIST",
+          "time": 279.266666666577,
+          "finished": true
+        },
+        {
+          "name": "RAVEN",
+          "time": 286.5499999999037,
+          "finished": true
+        },
+        {
+          "name": "BLAZE",
+          "time": 289.8999999999007,
+          "finished": true
+        },
+        {
+          "name": "YOU",
+          "time": 294.9333333332294,
+          "finished": true
+        },
+        {
+          "name": "LUNA",
+          "time": 296.7666666665611,
+          "finished": true
+        },
+        {
+          "name": "NOVA",
+          "time": 318.9583333332076,
+          "finished": true
+        }
+      ],
+      "recoveries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "yeosu-complete.json"
+    }
+  ],
+  "layouts": [
+    {
+      "file": "seongsamjae-garage-1280.json",
+      "width": 1280,
+      "height": 720,
+      "boxes": [
+        {
+          "name": ".garage-heading",
+          "x": 36,
+          "y": 151,
+          "w": 362.9375,
+          "h": 166
+        },
+        {
+          "name": ".vehicle-heading",
+          "x": 1087.5625,
+          "y": 140,
+          "w": 154.4375,
+          "h": 140.8000030517578
+        },
+        {
+          "name": ".garage-launch",
+          "x": 1009,
+          "y": 427.8000183105469,
+          "w": 235,
+          "h": 254.1999969482422
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "seongsamjae-garage-1024.json",
+      "width": 1024,
+      "height": 768,
+      "boxes": [
+        {
+          "name": ".garage-heading",
+          "x": 36,
+          "y": 247,
+          "w": 362.9375,
+          "h": 166
+        },
+        {
+          "name": ".vehicle-heading",
+          "x": 831.5625,
+          "y": 236,
+          "w": 154.4375,
+          "h": 140.8000030517578
+        },
+        {
+          "name": ".garage-launch",
+          "x": 753,
+          "y": 379.8000183105469,
+          "w": 235,
+          "h": 254.1999969482422
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "seongsamjae-garage-844.json",
+      "width": 844,
+      "height": 390,
+      "boxes": [
+        {
+          "name": ".vehicle-heading",
+          "x": 665.3875122070312,
+          "y": 72,
+          "w": 87.625,
+          "h": 83.20000457763672
+        },
+        {
+          "name": ".garage-launch",
+          "x": 602.0125122070312,
+          "y": 180.8000030517578,
+          "w": 155,
+          "h": 197.60000610351562
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "seongsamjae-garage-667.json",
+      "width": 667,
+      "height": 375,
+      "boxes": [
+        {
+          "name": ".vehicle-heading",
+          "x": 563.4750366210938,
+          "y": 72,
+          "w": 87.625,
+          "h": 83.20000457763672
+        },
+        {
+          "name": ".garage-launch",
+          "x": 500.1000061035156,
+          "y": 165.60000610351562,
+          "w": 155,
+          "h": 197.60000610351562
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "namak-current-running.json",
+      "width": 1280,
+      "height": 720,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 26,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 26,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 1119,
+          "y": 26,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 1058,
+          "y": 438,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 176,
+          "w": 128,
+          "h": 180
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "yeosu-hud-1024.json",
+      "width": 1024,
+      "height": 768,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 122,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 122,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 863,
+          "y": 122,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 802,
+          "y": 390,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 272,
+          "w": 128,
+          "h": 180
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "yeosu-hud-844.json",
+      "width": 844,
+      "height": 390,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 84.9749984741211,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 152.97500610351562,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 676.2125244140625,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 669.0125122070312,
+          "y": 247.1999969482422,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 84.9749984741211,
+          "y": 83,
+          "w": 70,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 86.9749984741211,
+          "y": 17.600000381469727,
+          "w": 670.0250244140625,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 84.9749984741211,
+          "y": 338.3999938964844,
+          "w": 674.0375366210938,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "yeosu-hud-667.json",
+      "width": 667,
+      "height": 375,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 10.08750057220459,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 78.0875015258789,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 574.2999877929688,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 567.1000366210938,
+          "y": 232,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 10.08750057220459,
+          "y": 83,
+          "w": 70,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 12.08750057220459,
+          "y": 10,
+          "w": 643,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 10.08750057220459,
+          "y": 323.20001220703125,
+          "w": 647.0125122070312,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "namak-real-finish-complete.json",
+      "width": 1280,
+      "height": 720,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 26,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 26,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 1119,
+          "y": 26,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 1058,
+          "y": 438,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 176,
+          "w": 128,
+          "h": 180
+        },
+        {
+          "name": ".race-menu",
+          "x": 450,
+          "y": 135.10000610351562,
+          "w": 380,
+          "h": 449.8000183105469
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "result-1024.json",
+      "width": 1024,
+      "height": 768,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 122,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 122,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 863,
+          "y": 122,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 802,
+          "y": 390,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 272,
+          "w": 128,
+          "h": 180
+        },
+        {
+          "name": ".race-menu",
+          "x": 322,
+          "y": 159.10000610351562,
+          "w": 380,
+          "h": 449.8000183105469
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "result-844.json",
+      "width": 844,
+      "height": 390,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 84.9749984741211,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 152.97500610351562,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 676.2125244140625,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 669.0125122070312,
+          "y": 247.1999969482422,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 84.9749984741211,
+          "y": 83,
+          "w": 79.5250015258789,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 86.9749984741211,
+          "y": 17.600000381469727,
+          "w": 670.0250244140625,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 84.9749984741211,
+          "y": 338.3999938964844,
+          "w": 674.0375366210938,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "result-667.json",
+      "width": 667,
+      "height": 375,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 10.08750057220459,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 78.0875015258789,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 574.2999877929688,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 567.1000366210938,
+          "y": 232,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 10.08750057220459,
+          "y": 83,
+          "w": 79.5250015258789,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 12.08750057220459,
+          "y": 10,
+          "w": 643,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 10.08750057220459,
+          "y": 323.20001220703125,
+          "w": 647.0125122070312,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "menu-final-1280.json",
+      "width": 1280,
+      "height": 720,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 26,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 26,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 1119,
+          "y": 26,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 1058,
+          "y": 438,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 176,
+          "w": 128,
+          "h": 180
+        },
+        {
+          "name": ".race-menu",
+          "x": 280,
+          "y": 126.80000305175781,
+          "w": 720,
+          "h": 466.3999938964844
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "menu-final-1024.json",
+      "width": 1024,
+      "height": 768,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 28,
+          "y": 122,
+          "w": 116,
+          "h": 108.80000305175781
+        },
+        {
+          "name": ".race-route",
+          "x": 162,
+          "y": 122,
+          "w": 230,
+          "h": 122
+        },
+        {
+          "name": ".race-clock",
+          "x": 863,
+          "y": 122,
+          "w": 133,
+          "h": 124.4000015258789
+        },
+        {
+          "name": ".speed-card",
+          "x": 802,
+          "y": 390,
+          "w": 190,
+          "h": 234
+        },
+        {
+          "name": ".race-standings",
+          "x": 28,
+          "y": 272,
+          "w": 128,
+          "h": 180
+        },
+        {
+          "name": ".race-menu",
+          "x": 152,
+          "y": 150.8000030517578,
+          "w": 720,
+          "h": 466.3999938964844
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "menu-final-844.json",
+      "width": 844,
+      "height": 390,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 84.9749984741211,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 152.97500610351562,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 676.2125244140625,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 669.0125122070312,
+          "y": 247.1999969482422,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 84.9749984741211,
+          "y": 83,
+          "w": 70,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 86.9749984741211,
+          "y": 17.600000381469727,
+          "w": 670.0250244140625,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 84.9749984741211,
+          "y": 338.3999938964844,
+          "w": 674.0375366210938,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    },
+    {
+      "file": "menu-final-667.json",
+      "width": 667,
+      "height": 375,
+      "boxes": [
+        {
+          "name": ".position-card",
+          "x": 10.08750057220459,
+          "y": 8,
+          "w": 60,
+          "h": 56.79999923706055
+        },
+        {
+          "name": ".race-route",
+          "x": 78.0875015258789,
+          "y": 8,
+          "w": 145,
+          "h": 63.400001525878906
+        },
+        {
+          "name": ".race-clock",
+          "x": 574.2999877929688,
+          "y": 8,
+          "w": 82.80000305175781,
+          "h": 76.5999984741211
+        },
+        {
+          "name": ".speed-card",
+          "x": 567.1000366210938,
+          "y": 232,
+          "w": 90,
+          "h": 84.20000457763672
+        },
+        {
+          "name": ".race-standings",
+          "x": 10.08750057220459,
+          "y": 83,
+          "w": 70,
+          "h": 124.80000305175781
+        },
+        {
+          "name": ".race-menu",
+          "x": 12.08750057220459,
+          "y": 10,
+          "w": 643,
+          "h": 355.20001220703125
+        },
+        {
+          "name": ".touch-controls",
+          "x": 10.08750057220459,
+          "y": 323.20001220703125,
+          "w": 647.0125122070312,
+          "h": 44
+        }
+      ],
+      "clipped": [],
+      "overlaps": []
+    }
+  ],
+  "check": {
+    "execution": "Local Windows CPU / Rapier WASM, no Colab connection",
+    "label": "final",
+    "exitCode": 0,
+    "seconds": 871.4350719000001,
+    "counts": {
+      "tests": 416,
+      "pass": 416,
+      "fail": 0,
+      "skipped": 0
+    },
+    "changedInputs": [],
+    "reports": [
+      {
+        "path": "artifacts/championship-20261011/physical-series.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\championship-20261011\\physical-series.json",
+        "sha256": "c03a9834cdfc2e5475003d11adcc9bf14d18c24971fca5f2695bb916e8bf2297"
+      },
+      {
+        "path": "artifacts/engine-feel-20261010/physical-fleet.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\engine-feel-20261010\\physical-fleet.json",
+        "sha256": "91deee6ddbddd1de2c79468ef074363a427fb6d7a21715299e41e4d927d662cc"
+      },
+      {
+        "path": "artifacts/namak-20261010/physical-laps.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\namak-20261010\\physical-laps.json",
+        "sha256": "fd898965a3f51f39b9892339facb403fb5dae1a54b20735e6f70b07768be6e6d"
+      },
+      {
+        "path": "artifacts/namak-20261010/stationary-grid-rivals.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\namak-20261010\\stationary-grid-rivals.json",
+        "sha256": "a4718508d88e21d61cf1586aec1a778165c3f19d3c5a37d53aa267a91cff73e2"
+      },
+      {
+        "path": "artifacts/content-resume-20261011/progression-race.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\content-resume-20261011\\progression-race.json",
+        "sha256": "8dde85e8a09e5df6d2cd1a289c7622e110d1bbcad2be7f581656d598467bf417"
+      },
+      {
+        "path": "artifacts/content-resume-20261011/rain-races.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\content-resume-20261011\\rain-races.json",
+        "sha256": "42427fd181e82a8e4990c2950e68308d4696471d8f4db83a07a1ada31dd9397a"
+      },
+      {
+        "path": "artifacts/rival-ai-20261010/full-course.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\rival-ai-20261010\\full-course.json",
+        "sha256": "6e1607a834e0c7d538773021d633fb1917e9087533d165f752fd3c7653d5f942"
+      },
+      {
+        "path": "artifacts/content-resume-20261011/rival-personality-races.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\content-resume-20261011\\rival-personality-races.json",
+        "sha256": "aad3be05b6198104828fc66feb908818cdd9b9817e9f7c31b4698230b940f2b2"
+      },
+      {
+        "path": "artifacts/steering-turn-20261010/namak-player-lap.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\steering-turn-20261010\\namak-player-lap.json",
+        "sha256": "2836696c1e332c9926de8cbe87dd4cae258fde584efa0500f29bcd7023df229e"
+      },
+      {
+        "path": "artifacts/wall-recovery-20261011/namak-lap.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\wall-recovery-20261011\\namak-lap.json",
+        "sha256": "59f04fe772286d7094753d669e283e36cf0b3884299d9b9d06778349105441a1"
+      },
+      {
+        "path": "artifacts/race-duel-20261012/duel-races.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\race-duel-20261012\\duel-races.json",
+        "sha256": "d9838b8256132472c9930bddf4980f0770ddaec30952cb8a5108ccd32b1767f3"
+      },
+      {
+        "path": "artifacts/race-duel-20261012/online-headless.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\race-duel-20261012\\online-headless.json",
+        "sha256": "804a09f19db09d6c9207839d36cbf80f742fcaec19334194d5891d376c768a60"
+      },
+      {
+        "path": "artifacts/release-repair-20261012/traffic-races.json",
+        "rawEvidence": "D:\\racing\\three-rapier-idiom-racer\\artifacts\\roadscape-20261013\\final-check-evidence\\artifacts\\release-repair-20261012\\traffic-races.json",
+        "sha256": "80011d3abc24219ffb0efa64ddc4a335331eb2b0001dc47f2b9b4ebb95e346d4"
+      }
+    ],
+    "previousEvidenceRestored": true,
+    "note": "Raw old writers may say Colab CPU. This run was local Windows CPU. No failures were filtered."
+  }
+}

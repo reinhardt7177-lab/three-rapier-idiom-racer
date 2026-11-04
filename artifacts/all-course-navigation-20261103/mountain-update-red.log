@@ -1,0 +1,30 @@
+✖ static ridge bounds are cached rather than rebuilt during each forest update (229.6358ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 592.8089
+
+✖ failing tests:
+
+test at scripts\seongsamjae-visuals.test.mjs:19:1
+✖ static ridge bounds are cached rather than rebuilt during each forest update (229.6358ms)
+  AssertionError [ERR_ASSERTION]: a static ridge must not allocate/rebuild a sphere every frame
+  
+  576 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/seongsamjae-visuals.test.mjs:23:66)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 576,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

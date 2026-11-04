@@ -1,0 +1,83 @@
+✖ unlimited decoration performs no distance work and restores exact visibility each frame (9.1855ms)
+✔ finite culling, invalid camera coordinates and disposal retain original visibility policy (0.7919ms)
+✖ Namak reuses one scratch sphere through moving world and quality changes (15.2248ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (170.7979ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (343.0059ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (389.1541ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (100.4239ms)
+✖ static mountain ridge bounds are not rebuilt during camera/quality updates (80.9529ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (76.646ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (84.1113ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (101.345ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (87.5529ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 9
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1847.8892
+
+✖ failing tests:
+
+test at scripts\scene-update-work.test.mjs:8:1
+✖ unlimited decoration performs no distance work and restores exact visibility each frame (9.1855ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  12000 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/scene-update-work.test.mjs:13:182)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 12000,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\scene-update-work.test.mjs:29:1
+✖ Namak reuses one scratch sphere through moving world and quality changes (15.2248ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  20 !== 1
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/scene-update-work.test.mjs:33:133)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 20,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\seongsamjae-visuals.test.mjs:71:1
+✖ static mountain ridge bounds are not rebuilt during camera/quality updates (80.9529ms)
+  AssertionError [ERR_ASSERTION]: immutable world bounds belong to creation, not the frame loop
+  
+  432 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/seongsamjae-visuals.test.mjs:79:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 432,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

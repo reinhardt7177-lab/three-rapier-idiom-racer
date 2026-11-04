@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-26T05:15:26.458Z",
+  "scope": "Frozen actual coastal colliders, five immobile queued actors; per-controller-step CPU cost, not rendered frame time",
+  "results": [
+    {
+      "name": "before",
+      "queries": 0,
+      "samples": 3000,
+      "mean": 0.02023766666666476,
+      "p95": 0.04619999999999891,
+      "max": 1.3899999999998727
+    },
+    {
+      "name": "after",
+      "queries": 768,
+      "samples": 3000,
+      "mean": 0.09010033333332891,
+      "p95": 0.9126999999998588,
+      "max": 3.860200000000077
+    },
+    {
+      "name": "before-repeat",
+      "queries": 0,
+      "samples": 3000,
+      "mean": 0.010510566666666818,
+      "p95": 0.01889999999957581,
+      "max": 0.607499999999618
+    }
+  ]
+}

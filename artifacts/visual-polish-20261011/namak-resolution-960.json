@@ -1,0 +1,989 @@
+{
+  "elapsed": 29.241666666665648,
+  "input": {
+    "boost": false,
+    "brake": 0,
+    "handbrake": false,
+    "reverse": 0,
+    "steer": 0,
+    "throttle": 0
+  },
+  "loading": {
+    "cacheHits": 20,
+    "encodedBytes": 27754102,
+    "files": [
+      {
+        "durationMs": 65.30000001192093,
+        "encodedBytes": 81256,
+        "name": "index-C3i8YmwM.js",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 68.19999998807907,
+        "encodedBytes": 60092,
+        "name": "react--MMj_Dji.js",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 96.10000002384186,
+        "encodedBytes": 141726,
+        "name": "three-DoN1w2jg.js",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 125.89999997615814,
+        "encodedBytes": 1077800,
+        "name": "physics-iRel_T-y.js",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 74.80000001192093,
+        "encodedBytes": 5959,
+        "name": "index-BpoUVlGI.css",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 22.80000001192093,
+        "encodedBytes": 582932,
+        "name": "supra.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 12,
+        "encodedBytes": 11748,
+        "name": "draco_wasm_wrapper.js",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 13.699999988079073,
+        "encodedBytes": 192420,
+        "name": "draco_decoder.wasm",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 15,
+        "encodedBytes": 587308,
+        "name": "slk.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 10.100000023841858,
+        "encodedBytes": 555360,
+        "name": "mustang.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 13,
+        "encodedBytes": 617652,
+        "name": "porsche911.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 29.5,
+        "encodedBytes": 551712,
+        "name": "gtr.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 12.799999952316284,
+        "encodedBytes": 531020,
+        "name": "rx7.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 11.899999976158142,
+        "encodedBytes": 628356,
+        "name": "m3.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 15.399999976158142,
+        "encodedBytes": 559472,
+        "name": "huracan.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 8.599999964237213,
+        "encodedBytes": 132244,
+        "name": "garage.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 68.69999998807907,
+        "encodedBytes": 19885452,
+        "name": "namak.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 15.600000023841858,
+        "encodedBytes": 736208,
+        "name": "cockpit.glb",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 13.399999976158142,
+        "encodedBytes": 48973,
+        "name": "namak-route.json",
+        "transferBytes": 300
+      },
+      {
+        "durationMs": 11.199999988079073,
+        "encodedBytes": 766412,
+        "name": "namak-landmarks.glb",
+        "transferBytes": 300
+      }
+    ],
+    "measured": true,
+    "revalidated": 20,
+    "transferBytes": 6000,
+    "unknownSizes": 0
+  },
+  "preparation": {
+    "busy": false,
+    "compileMs": 437.9000000357628,
+    "drawMs": 1048.5,
+    "error": null,
+    "frameBoundary": {
+      "firstFrameWaitMs": 27.5,
+      "pending": false,
+      "readyAtMs": 35306.39999997616,
+      "skippedFrames": 2
+    },
+    "phase": "ready",
+    "setupMs": 1086.199999988079,
+    "totalMs": 2589.699999988079
+  },
+  "rendering": {
+    "atmosphere": {
+      "fog": "#8bbdd8",
+      "mieCoefficient": 0.003,
+      "rayleigh": 2.2,
+      "turbidity": 2.4
+    },
+    "calls": 868,
+    "colors": {
+      "gradedMaterials": 30,
+      "materials": 23,
+      "version": "namak-vivid-1"
+    },
+    "cpu": {
+      "physicsMs": {
+        "max": 22.69999998807907,
+        "mean": 3.2045833324392636,
+        "missing": 0,
+        "p95": 6.599999964237213,
+        "samples": 240
+      },
+      "renderMs": {
+        "max": 42.89999997615814,
+        "mean": 12.8983333311975,
+        "missing": 0,
+        "p95": 17.799999952316284,
+        "samples": 240
+      },
+      "workMs": {
+        "max": 53.89999997615814,
+        "mean": 16.329583330452444,
+        "missing": 0,
+        "p95": 23.5,
+        "samples": 240
+      }
+    },
+    "evidence": {
+      "evicted": 6,
+      "retained": 24,
+      "slowIntervals": 30,
+      "spikes": [
+        {
+          "current": {
+            "atMs": 36250.8,
+            "context": {
+              "callbackDelayMs": 19.69999999999709,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 6.099999964237213,
+              "renderMs": 16.400000035762787,
+              "workMs": 22.69999998807907
+            }
+          },
+          "gapMs": 66.60000000000582,
+          "previous": {
+            "atMs": 36184.2,
+            "context": {
+              "callbackDelayMs": 15.99999998808198,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 24.899999976158146,
+              "renderMs": 41.60000002384186,
+              "workMs": 66.80000001192093
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 36417.3,
+            "context": {
+              "callbackDelayMs": 17.999999952313374,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.69999998807907,
+              "renderMs": 25.899999976158146,
+              "workMs": 46.80000001192093
+            }
+          },
+          "gapMs": 66.60000000000582,
+          "previous": {
+            "atMs": 36350.7,
+            "context": {
+              "callbackDelayMs": 2.1999999761610525,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 6.899999976158142,
+              "renderMs": 67,
+              "workMs": 75.89999997615814
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 36467.4,
+            "context": {
+              "callbackDelayMs": 15.599999999998545,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 5.299999952316284,
+              "renderMs": 21.30000001192093,
+              "workMs": 26.899999976158146
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 36417.3,
+            "context": {
+              "callbackDelayMs": 17.999999952313374,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.69999998807907,
+              "renderMs": 25.899999976158146,
+              "workMs": 46.80000001192093
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 36617.4,
+            "context": {
+              "callbackDelayMs": 13.499999976156689,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.399999976158142,
+              "renderMs": 21.30000001192093,
+              "workMs": 39.10000002384186
+            }
+          },
+          "gapMs": 83.30000000000291,
+          "previous": {
+            "atMs": 36534.1,
+            "context": {
+              "callbackDelayMs": 5.400000000001455,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.69999998807907,
+              "renderMs": 60.09999996423721,
+              "workMs": 80.29999995231628
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 37400.7,
+            "context": {
+              "callbackDelayMs": 7.6999999761610525,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 13.199999988079073,
+              "renderMs": 21,
+              "workMs": 34.69999998807907
+            }
+          },
+          "gapMs": 66.69999999999709,
+          "previous": {
+            "atMs": 37334,
+            "context": {
+              "callbackDelayMs": 4.599999964237213,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 11.5,
+              "renderMs": 38,
+              "workMs": 49.90000003576279
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 37984.2,
+            "context": {
+              "callbackDelayMs": 14.80000000000291,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 8,
+              "renderMs": 16.099999964237213,
+              "workMs": 24.299999952316284
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 37934.1,
+            "context": {
+              "callbackDelayMs": 12.69999995231774,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.100000023841858,
+              "renderMs": 31.700000047683716,
+              "workMs": 49.70000004768371
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 38167.5,
+            "context": {
+              "callbackDelayMs": 5.699999988079071,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.399999976158142,
+              "renderMs": 20.100000023841854,
+              "workMs": 30.80000001192093
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 38117.4,
+            "context": {
+              "callbackDelayMs": 20.19999996423576,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 0.800000011920929,
+              "renderMs": 15.299999952316284,
+              "workMs": 16.19999998807907
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 38650.8,
+            "context": {
+              "callbackDelayMs": 16.499999952313374,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.700000047683716,
+              "renderMs": 12.600000023841858,
+              "workMs": 23.600000023841854
+            }
+          },
+          "gapMs": 66.70000000000437,
+          "previous": {
+            "atMs": 38584.1,
+            "context": {
+              "callbackDelayMs": 11.799999976159596,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 23.69999998807907,
+              "renderMs": 43.5,
+              "workMs": 69.5
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 38884.2,
+            "context": {
+              "callbackDelayMs": 6.499999988081981,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 19.200000047683716,
+              "renderMs": 16.099999964237213,
+              "workMs": 37.69999998807907
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 38834.1,
+            "context": {
+              "callbackDelayMs": 14.69999995231774,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 1.9000000357627869,
+              "renderMs": 15.600000023841858,
+              "workMs": 24.400000035762787
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 39017.5,
+            "context": {
+              "callbackDelayMs": 12.5,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 7.5,
+              "renderMs": 16.69999998807907,
+              "workMs": 25.299999952316284
+            }
+          },
+          "gapMs": 66.59999999999854,
+          "previous": {
+            "atMs": 38950.9,
+            "context": {
+              "callbackDelayMs": 14.199999964235758,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.600000023841858,
+              "renderMs": 33.60000002384186,
+              "workMs": 51.60000002384186
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 39300.8,
+            "context": {
+              "callbackDelayMs": 5.499999952313374,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 9.800000011920927,
+              "renderMs": 18.400000035762787,
+              "workMs": 28.400000035762787
+            }
+          },
+          "gapMs": 50.10000000000582,
+          "previous": {
+            "atMs": 39250.7,
+            "context": {
+              "callbackDelayMs": 16.80000000000291,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 6.699999988079071,
+              "renderMs": 20.899999976158146,
+              "workMs": 28.099999964237213
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 39467.5,
+            "context": {
+              "callbackDelayMs": 9.599999964237211,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 23.400000035762787,
+              "renderMs": 31.80000001192093,
+              "workMs": 58.10000002384186
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 39417.4,
+            "context": {
+              "callbackDelayMs": 20.099999999998545,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.399999976158142,
+              "renderMs": 20.30000001192093,
+              "workMs": 31
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 39534.1,
+            "context": {
+              "callbackDelayMs": 2.2999999761595973,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 9.800000011920927,
+              "renderMs": 18.100000023841854,
+              "workMs": 28.100000023841854
+            }
+          },
+          "gapMs": 66.59999999999854,
+          "previous": {
+            "atMs": 39467.5,
+            "context": {
+              "callbackDelayMs": 9.599999964237211,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 23.400000035762787,
+              "renderMs": 31.80000001192093,
+              "workMs": 58.10000002384186
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 40717.4,
+            "context": {
+              "callbackDelayMs": 15.199999964235758,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 17.900000035762787,
+              "renderMs": 20.400000035762787,
+              "workMs": 40
+            }
+          },
+          "gapMs": 66.70000000000437,
+          "previous": {
+            "atMs": 40650.7,
+            "context": {
+              "callbackDelayMs": 5.6999999761610525,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 6.699999988079071,
+              "renderMs": 15.699999988079073,
+              "workMs": 22.80000001192093
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 42750.9,
+            "context": {
+              "callbackDelayMs": 7.799999988077616,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 7.600000023841858,
+              "renderMs": 15.899999976158142,
+              "workMs": 23.69999998807907
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 42700.8,
+            "context": {
+              "callbackDelayMs": 14.099999976155232,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 15,
+              "renderMs": 17,
+              "workMs": 39.80000001192093
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 42901,
+            "context": {
+              "callbackDelayMs": 15.599999964237211,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 7.199999988079071,
+              "renderMs": 25,
+              "workMs": 32.40000003576279
+            }
+          },
+          "gapMs": 50.19999999999709,
+          "previous": {
+            "atMs": 42850.8,
+            "context": {
+              "callbackDelayMs": 15.69999999999709,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 14.299999952316284,
+              "renderMs": 34.60000002384186,
+              "workMs": 49.39999997615814
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 43017.6,
+            "context": {
+              "callbackDelayMs": 22.99999996423867,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 24.30000001192093,
+              "renderMs": 25.30000001192093,
+              "workMs": 50.10000002384186
+            }
+          },
+          "gapMs": 83.29999999999563,
+          "previous": {
+            "atMs": 42934.3,
+            "context": {
+              "callbackDelayMs": 26.799999964234303,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.800000011920927,
+              "renderMs": 53.39999997615814,
+              "workMs": 67.60000002384186
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 43084.2,
+            "context": {
+              "callbackDelayMs": 25.49999998808198,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 23.5,
+              "renderMs": 39.89999997615814,
+              "workMs": 64.09999996423721
+            }
+          },
+          "gapMs": 66.59999999999854,
+          "previous": {
+            "atMs": 43017.6,
+            "context": {
+              "callbackDelayMs": 22.99999996423867,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 24.30000001192093,
+              "renderMs": 25.30000001192093,
+              "workMs": 50.10000002384186
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 43167.6,
+            "context": {
+              "callbackDelayMs": 11.799999976159596,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 22.69999998807907,
+              "renderMs": 29.5,
+              "workMs": 52.5
+            }
+          },
+          "gapMs": 83.40000000000146,
+          "previous": {
+            "atMs": 43084.2,
+            "context": {
+              "callbackDelayMs": 25.49999998808198,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 23.5,
+              "renderMs": 39.89999997615814,
+              "workMs": 64.09999996423721
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 43267.6,
+            "context": {
+              "callbackDelayMs": 23.099999988080526,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 20,
+              "renderMs": 25.100000023841854,
+              "workMs": 45.5
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 43217.5,
+            "context": {
+              "callbackDelayMs": 20.799999952316284,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.200000047683716,
+              "renderMs": 31.599999964237213,
+              "workMs": 42.30000001192093
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 43334.2,
+            "context": {
+              "callbackDelayMs": 9.099999952319196,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 31.80000001192093,
+              "renderMs": 14.199999988079073,
+              "workMs": 46.30000001192093
+            }
+          },
+          "gapMs": 66.59999999999854,
+          "previous": {
+            "atMs": 43267.6,
+            "context": {
+              "callbackDelayMs": 23.099999988080526,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 20,
+              "renderMs": 25.100000023841854,
+              "workMs": 45.5
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 47134.4,
+            "context": {
+              "callbackDelayMs": 3.499999976156687,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.100000023841858,
+              "renderMs": 14.5,
+              "workMs": 24.69999998807907
+            }
+          },
+          "gapMs": 50.099999999998545,
+          "previous": {
+            "atMs": 47084.3,
+            "context": {
+              "callbackDelayMs": 25.89999998807616,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 3.899999976158142,
+              "renderMs": 17.399999976158142,
+              "workMs": 21.399999976158146
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 47267.6,
+            "context": {
+              "callbackDelayMs": 7.900000000001455,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 13.799999952316284,
+              "renderMs": 16.599999964237213,
+              "workMs": 30.69999998807907
+            }
+          },
+          "gapMs": 83.40000000000146,
+          "previous": {
+            "atMs": 47184.2,
+            "context": {
+              "callbackDelayMs": 21.80000000000291,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 24.69999998807907,
+              "renderMs": 43.59999996423721,
+              "workMs": 68.59999996423721
+            }
+          }
+        },
+        {
+          "current": {
+            "atMs": 63617.8,
+            "context": {
+              "callbackDelayMs": 11.599999976155232,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 22.69999998807907,
+              "renderMs": 16.599999964237213,
+              "workMs": 39.39999997615814
+            }
+          },
+          "gapMs": 66.60000000000582,
+          "previous": {
+            "atMs": 63551.2,
+            "context": {
+              "callbackDelayMs": 12.49999998808198,
+              "droppedSeconds": 0.02513333333332912,
+              "focused": true,
+              "visible": true
+            },
+            "cpu": {
+              "physicsMs": 10.899999976158142,
+              "renderMs": 42.89999997615814,
+              "workMs": 53.89999997615814
+            }
+          }
+        }
+      ],
+      "totalIntervals": 1210
+    },
+    "height": 540,
+    "landmarks": {
+      "signs": 22,
+      "visibleSigns": 1
+    },
+    "lighting": {
+      "ambient": 0.25,
+      "environment": 0.28,
+      "exposure": 0.6,
+      "fogFar": 2400,
+      "fogNear": 900,
+      "sun": 2.2
+    },
+    "maxMs": 66.60000000000582,
+    "meanMs": 22.2229166666667,
+    "over50Ms": 1,
+    "p95Ms": 33.400000000001455,
+    "pageFocused": true,
+    "pageVisible": true,
+    "pauseRendering": {
+      "draws": 2807,
+      "skipped": 0
+    },
+    "pixelRatio": 1.0000000149011612,
+    "presentation": {
+      "parkedCars": 4,
+      "visibleParkedCars": 1
+    },
+    "samples": 240,
+    "scenery": {
+      "after": 1383,
+      "batches": 57,
+      "before": 1441,
+      "cellSize": 128,
+      "mergedObjects": 117,
+      "partsCreated": 3,
+      "splitObjects": 1
+    },
+    "surfaces": {
+      "surfaces": 11,
+      "textureBytes": 16384
+    },
+    "triangles": 1279323,
+    "width": 960
+  }
+}

@@ -1,26 +1,44 @@
 import { GT_SPEC } from '../vehicleSpec.js';
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+// An additional 30% over the previous player setting; AI keeps sensitivity 1.
+export const PLAYER_STEERING_SENSITIVITY = 1.3 * 1.3;
+const playerBlend = (responsive, sensitivity) => responsive
+  ? clamp((sensitivity - 1) / (PLAYER_STEERING_SENSITIVITY - 1), 0, 1) : 0;
+export function steeringCornerGain(speedMps, responsive = false, sensitivity = 1) {
+  const t = clamp((Math.abs(speedMps) * 3.6 - 90) / 90, 0, 1);
+  return 1 + .18 * playerBlend(responsive, sensitivity) * (1 - t * t * (3 - 2 * t));
+}
 // Road-friendly arcade tuning, not a claim of real tyre performance.
 // Limit rack angle, not body yaw. Rapier still determines the actual turn.
-export function steeringLimit(speedMps) {
-  return Math.min(.52, Math.atan(GT_SPEC.wheelbase * 12.8 / Math.max(25, speedMps ** 2)));
+export function steeringLimit(speedMps, responsive = false, spec = GT_SPEC, sensitivity = 1) {
+  const speed = Math.abs(speedMps), player = playerBlend(responsive, sensitivity);
+  const rackStop = .52 + .04 * player;
+  // Add lock where city corners need it. Fade smoothly to the existing
+  // highway envelope by 180 km/h, without changing the AI's rack.
+  const turnIn = steeringCornerGain(speed, responsive, sensitivity);
+  const acceleration = (spec.steeringAcceleration ?? 12.8)
+    * (responsive ? 1 + .4 * Math.max(0, 1 - Math.max(0, speed - 25) / 30) : 1);
+  const gain = clamp(sensitivity, 1, PLAYER_STEERING_SENSITIVITY);
+  return Math.min(rackStop, gain * Math.atan(spec.wheelbase * acceleration / Math.max(25, speed ** 2)) * turnIn);
 }
 
-export function updateSteering(previousInput, input, dt) {
+export function updateSteering(previousInput, input, dt, responsive = false, sensitivity = 1) {
   const target = -clamp(Number(input) || 0, -1, 1);
   const rate = target === 0 ? 16 : target * previousInput < 0 ? 22 : 14;
-  const next = previousInput + (target - previousInput) * (1 - Math.exp(-rate * dt));
+  const player = playerBlend(responsive, sensitivity);
+  const response = 1 + player * (target === 0 ? .08 : target * previousInput < 0 ? .20 : .16);
+  const next = previousInput + (target - previousInput) * (1 - Math.exp(-rate * (responsive ? 1.4 : 1) * response * dt));
   return Math.abs(next) < .0001 ? 0 : next;
 }
 
 // The two front tyre axes meet on the rear axle's extended line (Ackermann).
 // Returned order matches model/physics: -X rear/front, +X rear/front.
-export function wheelSteering(centerAngle) {
+export function wheelSteering(centerAngle, spec = GT_SPEC) {
   if (Math.abs(centerAngle) < .000001) return [0, 0, 0, 0];
-  const sign = Math.sign(centerAngle), radius = GT_SPEC.wheelbase / Math.tan(Math.abs(centerAngle));
-  const inner = sign * Math.atan(GT_SPEC.wheelbase / (radius - GT_SPEC.track / 2));
-  const outer = sign * Math.atan(GT_SPEC.wheelbase / (radius + GT_SPEC.track / 2));
+  const sign = Math.sign(centerAngle), radius = spec.wheelbase / Math.tan(Math.abs(centerAngle));
+  const inner = sign * Math.atan(spec.wheelbase / (radius - spec.track / 2));
+  const outer = sign * Math.atan(spec.wheelbase / (radius + spec.track / 2));
   return [0, sign < 0 ? inner : outer, 0, sign > 0 ? inner : outer];
 }
 
@@ -32,6 +50,7 @@ export function applyWheelPose(wheels, previous, current, alpha) {
     wheel.pivot.rotation.y = before.steering + (after.steering - before.steering) * a;
     // Continuous Rapier angle: don't wrap at 2π, or spinning reverses at the seam.
     // +X rotation makes the bottom tread move -Z relative to the forward (+Z) car.
-    wheel.spin.rotation.x = before.rotation + (after.rotation - before.rotation) * a;
+    wheel.spin.rotation.x = before.rotation + (after.rotation - before.rotation) * a
+      + (before.launchAngle || 0) + ((after.launchAngle || 0) - (before.launchAngle || 0)) * a;
   });
 }

@@ -1,0 +1,32 @@
+✔ Yeosu medal evidence belongs to the current geographic route, independent of checkout line endings (29.5224ms)
+✔ yeosu 1 laps: medal targets are backed by complete six-car races (0.7644ms)
+✔ yeosu 3 laps: medal targets are backed by complete six-car races (0.4958ms)
+✔ seongsamjae 1 laps: medal targets are backed by complete six-car races (0.4528ms)
+✔ seongsamjae 3 laps: medal targets are backed by complete six-car races (0.7039ms)
+✔ fresh garage has five cars and three courses; first genuine medal opens mountain and RX-7 (4.3717ms)
+✔ medal upgrades do not farm unlocks, lap formats count once and existing records migrate (1.2481ms)
+✔ every track has ordered medal targets for every lap option (2.9701ms)
+✔ a personal best only improves, per track and lap count (0.697ms)
+✔ corrupt or blocked storage never breaks the result screen (0.676ms)
+✔ new-course saved badges are recalculated without deleting times or legacy medals (0.5319ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (1.2875ms)
+✔ route guidance only announces the finish on the final lap (1.2619ms)
+✔ a ghost replays the recorded run at the same race time (3.0366ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (0.5524ms)
+✔ a new moving lead can be passed before the original lead is behind (8.032ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (2.3779ms)
+✔ a lead with no passing speed advantage does not start another crossing (1.1062ms)
+✔ after a partial crossing yield, the next pass points away from the new lead on either side (2.6845ms)
+✔ restoring short moving headway briefly slows below the lead without stopping (0.5969ms)
+✔ the existing gap remains the target and ordinary non-traffic-race behavior is preserved (1.8061ms)
+✔ restoring headway keeps stopped-car hold and never requests a negative speed (0.2995ms)
+✔ Yeosu uses verifiable OSM road coordinates and a single connected motor-road loop (19.7468ms)
+✔ new geographic course isolates times and ghosts while preserving legacy earned medals (0.7919ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.3261

@@ -1,0 +1,254 @@
+
+> mumu-open-circuit@0.1.0 check:namak-art
+> node --test --test-concurrency=1 scripts/namak-architecture.test.mjs scripts/namak-visuals.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/map-materials.test.mjs scripts/render-resources.test.mjs && npm run build
+
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (18.8284ms)
+✔ static world avoids repeated transform composition while moving children keep updating (5.5238ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.4788ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (1.5375ms)
+✔ separate architecture export preserves original Blender, world, route and physical fixtures byte for byte (165.9187ms)
+✔ actual visual asset matches its output report, remains bounded and contains no hidden physics (140.7012ms)
+✔ exported crown and basin use Y up and reservoir walkway faces point outward from the closed solid (34.8457ms)
+✔ architecture occupies none of the sampled vehicle height space across every route point and eight lanes (1370.952ms)
+✔ real architecture keeps its bounded layer through batching, hides by world/quality/distance and restores visibility (19.8064ms)
+✔ quality uses the object boundary distance, including switching back after low mode (1.819ms)
+✔ controller owns no asset resources; terminal scene cleanup releases every shared material and geometry exactly once (53.1438ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (954.9038ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (76.8393ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (6.6152ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (0.8156ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (2051.5213ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (873.441ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (157.5114ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (14.4042ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (28.2613ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (56.0737ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (105.5868ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (5.0417ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (2662.402ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.748233519603263,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 209.39755249023438,
+      y: 0.5410054922103882,
+      z: -1.5463483333587646
+    },
+    finish: 94.175,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5458813905715942,
+      targetLane: 1.5458813905715942,
+      passes: 0,
+      attempts: 5,
+      aborts: 1,
+      age: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.49554443359375,
+      y: 0.5660055875778198,
+      z: -1.6251873970031738
+    },
+    finish: 100.51666666666667,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6251873970031738,
+      targetLane: 1.6251873970031738,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 221.38380432128906,
+      y: 0.551005482673645,
+      z: -1.9177477359771729
+    },
+    finish: 91.225,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.9174301624298096,
+      targetLane: 1.9174301624298096,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 215.62814331054688,
+      y: 0.5610054731369019,
+      z: -0.8650961518287659
+    },
+    finish: 93.60833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.872882068157196,
+      targetLane: 0.872882068157196,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.974983492645963,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.5238037109375,
+      y: 0.5360054969787598,
+      z: -2.1215479373931885
+    },
+    finish: 88.70833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.122314453125,
+      targetLane: 2.122314453125,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (12758.7103ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (12872.2743ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (4.5849ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (1.5805ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (28.022ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (1.07ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (3.0476ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43408.2244
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 163 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      1.95 kB │ gzip:     0.80 kB
+dist/assets/index-Bb1ACK0u.css      35.21 kB │ gzip:     7.26 kB
+dist/assets/bundler-hUWv2h5-.js    117.07 kB │ gzip:    31.66 kB
+dist/assets/react-34UxNz19.js      191.92 kB │ gzip:    60.15 kB
+dist/assets/index-Ca6q04Wx.js      341.74 kB │ gzip:   119.24 kB
+dist/assets/three-CN199l_j.js      592.53 kB │ gzip:   152.12 kB
+dist/assets/physics-iRel_T-y.js  2,853.14 kB │ gzip: 1,077.80 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.35s

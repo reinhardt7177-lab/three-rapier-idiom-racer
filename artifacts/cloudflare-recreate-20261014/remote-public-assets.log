@@ -1,0 +1,74 @@
+{
+  "host": "racing.mumuworld.com",
+  "location": "Cloudflare remote Wrangler preview",
+  "time": "2026-10-14T04:00:03.253Z",
+  "files": 35,
+  "matched": 35,
+  "totalBytes": 78686994,
+  "routes": [
+    {
+      "track": "coastal",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "track": "namak",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "track": "yeosu",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "track": "seongsamjae",
+      "status": 200,
+      "entry": true
+    }
+  ],
+  "missingAssetStatus": 404,
+  "sourceCommit": "4359d7dee328e94b6dc2c11d2e278bbaf6167043",
+  "sourceMatch": true,
+  "dns": [
+    {
+      "provider": "cloudflare",
+      "status": 200,
+      "dnsStatus": 0,
+      "answers": [
+        {
+          "name": "racing.mumuworld.com",
+          "type": 1,
+          "TTL": 300,
+          "data": "172.67.138.78"
+        },
+        {
+          "name": "racing.mumuworld.com",
+          "type": 1,
+          "TTL": 300,
+          "data": "104.21.38.200"
+        }
+      ]
+    },
+    {
+      "provider": "google",
+      "status": 200,
+      "dnsStatus": 0,
+      "answers": [
+        {
+          "name": "racing.mumuworld.com.",
+          "type": 1,
+          "TTL": 300,
+          "data": "104.21.38.200"
+        },
+        {
+          "name": "racing.mumuworld.com.",
+          "type": 1,
+          "TTL": 300,
+          "data": "172.67.138.78"
+        }
+      ]
+    }
+  ],
+  "localProxyStatus": 200
+}

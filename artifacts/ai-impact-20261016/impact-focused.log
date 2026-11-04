@@ -1,0 +1,137 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (3.9813ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.5949ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (395.7791ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (23.9732ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (20.0507ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (16.0899ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (4.2301ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (16.6155ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (228.7177ms)
+✔ eight original voices have distinct spectra and pitch follows actual RPM, not road speed (3.8896ms)
+✔ voice changes reset response, pause holds RPM, and recovery clears stale shift history (1.5585ms)
+✔ vehicle pedal response, shift interruption and engine braking really reach the drivetrain (2.4144ms)
+✔ Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources (4.7628ms)
+[
+  {
+    id: 'supra',
+    time100: 4.025,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6687438964843864
+  },
+  {
+    id: 'slk',
+    time100: 4.916666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6158447265625
+  },
+  {
+    id: 'mustang',
+    time100: 4.183333333333334,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6285339355468835
+  },
+  {
+    id: 'porsche911',
+    time100: 3.8833333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.941973876953128
+  },
+  {
+    id: 'gtr',
+    time100: 4,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 2.8290344238281193
+  },
+  {
+    id: 'rx7',
+    time100: 3.6416666666666666,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.9134094238281136
+  },
+  {
+    id: 'm3',
+    time100: 4.233333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.583599853515622
+  },
+  {
+    id: 'huracan',
+    time100: 3.125,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 3.776660156250003
+  }
+]
+✔ eight tuned vehicles accelerate, change gears and coast with stable supported chassis (1008.0486ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 4,
+  peakFront: 20.165983200073242,
+  front: {
+    x: 0.0116855688393116,
+    y: 0.5410051345825195,
+    z: 57.46251678466797
+  },
+  rear: {
+    x: -0.006788182072341442,
+    y: 0.5260053873062134,
+    z: 52.9525032043457
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.387452125549316
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (508.8277ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (21.8592ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (256.3877ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (50.619ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (8.4054ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4294.2128

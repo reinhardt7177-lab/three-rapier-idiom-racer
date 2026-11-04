@@ -1,0 +1,2482 @@
+{
+  "host": {
+    "mode": "garage",
+    "selected": "supra",
+    "paused": false,
+    "countdown": 3,
+    "elapsed": 0,
+    "result": null,
+    "kmh": 0,
+    "gear": "N",
+    "place": 1,
+    "progress": 0,
+    "region": "GARAGE",
+    "nitro": 1,
+    "standings": [],
+    "fps": 1,
+    "colliderCount": 48,
+    "contacts": 0,
+    "ai": [],
+    "cameraDistance": 0,
+    "laps": 1,
+    "lapOptions": [
+      1,
+      3
+    ],
+    "best": null,
+    "medals": null,
+    "ghost": null,
+    "raceSetup": {
+      "mode": "online",
+      "opponent": "NOVA"
+    },
+    "participants": 2,
+    "duel": null,
+    "online": {
+      "phase": "lobby",
+      "role": "host",
+      "room": "mumu-6e61fe2ff934435097f8fc36",
+      "vehicle": "supra",
+      "remoteVehicle": "supra",
+      "error": "",
+      "errorCode": "",
+      "errorDetails": "",
+      "signallingDown": false,
+      "readyLocal": false,
+      "readyRemote": false,
+      "connected": true,
+      "runId": null,
+      "config": null,
+      "rtt": 1.9000000059604645,
+      "txBytes": 7510,
+      "rxBytes": 7508,
+      "shareUrl": "https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&room=mumu-6e61fe2ff934435097f8fc36"
+    },
+    "timing": {
+      "rawSeconds": 0,
+      "steps": 0,
+      "simulatedSeconds": 0,
+      "pendingSeconds": 0,
+      "droppedSeconds": 0
+    },
+    "camera": {
+      "position": [
+        5.799999999999993,
+        2.799999999999998,
+        7.59999999999999
+      ],
+      "quaternion": [
+        -0.09514659818512664,
+        0.31857528024720877,
+        0.03215847933086423,
+        0.9425618005607572
+      ],
+      "fov": 40
+    },
+    "input": {
+      "throttle": 0,
+      "brake": 0,
+      "reverse": 0,
+      "steer": 0,
+      "handbrake": false,
+      "boost": false
+    },
+    "pauseReason": "",
+    "track": {
+      "id": "namak",
+      "name": "남악 시티",
+      "length": 2927.3350238627413
+    },
+    "audio": {
+      "enabled": false,
+      "paused": true,
+      "volume": 0.35,
+      "failed": false,
+      "state": "uninitialized",
+      "vehicle": "supra",
+      "voice": "부드러운 터보 톤",
+      "shiftCount": 0,
+      "audible": false,
+      "mix": {
+        "gear": 0,
+        "rpm": 850,
+        "hz": 42.5,
+        "load": 0,
+        "boost": 0,
+        "engine": 0.075,
+        "intake": 0,
+        "bass": 0.055,
+        "brightness": 0.92,
+        "wind": 0,
+        "brake": 0,
+        "tire": 0,
+        "squeal": 0
+      },
+      "wanted": true
+    },
+    "difficulty": "normal",
+    "assist": true,
+    "nitroBonus": {
+      "amount": 0,
+      "age": 100
+    },
+    "music": {
+      "wanted": true,
+      "enabled": true,
+      "playing": false,
+      "paused": true,
+      "blocked": false,
+      "failed": false,
+      "volume": 0.24,
+      "time": 0,
+      "duration": 0,
+      "trackId": "seven-mile-horizon",
+      "title": "Seven Mile Horizon",
+      "genre": "해변 힙합"
+    },
+    "cameraMode": "chase",
+    "cockpit": {
+      "visible": false,
+      "rig": 1,
+      "meshes": 18,
+      "steeringAngle": 0,
+      "speedNeedle": 2.2689280275926285,
+      "rpmNeedle": 2.2689280275926285,
+      "redline": 8000,
+      "grainBytes": 65536,
+      "display": {
+        "readout": null,
+        "uploads": 0
+      }
+    },
+    "quality": "high",
+    "progression": {
+      "count": 0,
+      "medals": [],
+      "cars": [
+        {
+          "id": "supra",
+          "name": "GR Supra",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "slk",
+          "name": "SLK Roadster",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "mustang",
+          "name": "Mustang GT",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "porsche911",
+          "name": "Porsche 911",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "gtr",
+          "name": "Nissan GT-R",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "rx7",
+          "name": "Mazda RX-7",
+          "required": 1,
+          "unlocked": false
+        },
+        {
+          "id": "m3",
+          "name": "BMW M3",
+          "required": 2,
+          "unlocked": false
+        },
+        {
+          "id": "huracan",
+          "name": "Lamborghini Huracán",
+          "required": 4,
+          "unlocked": false
+        }
+      ],
+      "tracks": [
+        {
+          "id": "coastal",
+          "name": "해안 월드",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "namak",
+          "name": "남악 시티",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "yeosu",
+          "name": "여수 밤바다",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "seongsamjae",
+          "name": "지리산 성삼재",
+          "required": 1,
+          "unlocked": false
+        }
+      ]
+    },
+    "weather": "clear",
+    "traffic": {
+      "count": 0,
+      "vehicles": []
+    },
+    "rendering": {
+      "samples": 240,
+      "meanMs": 808.4854166666667,
+      "p95Ms": 1016.7999999998137,
+      "maxMs": 1017.5999999998603,
+      "over50Ms": 213,
+      "calls": 151,
+      "triangles": 297184,
+      "cpu": {
+        "workMs": {
+          "samples": 240,
+          "missing": 0,
+          "mean": 4.79874999995033,
+          "p95": 7.299999997019768,
+          "max": 35.599999994039536
+        },
+        "physicsMs": {
+          "samples": 240,
+          "missing": 0,
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "renderMs": {
+          "samples": 240,
+          "missing": 0,
+          "mean": 4.735833332998057,
+          "p95": 7.200000002980232,
+          "max": 35.29999999701977
+        }
+      },
+      "evidence": {
+        "totalIntervals": 6443,
+        "slowIntervals": 1595,
+        "retained": 24,
+        "evicted": 1571,
+        "spikes": [
+          {
+            "gapMs": 1000.3000000000466,
+            "previous": {
+              "atMs": 1286138.4,
+              "cpu": {
+                "workMs": 4.9000000059604645,
+                "physicsMs": 0,
+                "renderMs": 4.800000011920929
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.2000000015832484,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1287138.7,
+              "cpu": {
+                "workMs": 4.5,
+                "physicsMs": 0,
+                "renderMs": 4.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.19999999855645,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.4000000001397,
+            "previous": {
+              "atMs": 1287138.7,
+              "cpu": {
+                "workMs": 4.5,
+                "physicsMs": 0,
+                "renderMs": 4.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.19999999855645,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1288155.1,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.2999999984167516,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.6999999999534,
+            "previous": {
+              "atMs": 1288155.1,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.2999999984167516,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1289171.8,
+              "cpu": {
+                "workMs": 2.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 2.8999999910593033
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.5000000044237822,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.0999999998603,
+            "previous": {
+              "atMs": 1289171.8,
+              "cpu": {
+                "workMs": 2.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 2.8999999910593033
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.5000000044237822,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1290171.9,
+              "cpu": {
+                "workMs": 5.200000002980232,
+                "physicsMs": 0,
+                "renderMs": 5.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.299999995622784,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.4000000001397,
+            "previous": {
+              "atMs": 1290171.9,
+              "cpu": {
+                "workMs": 5.200000002980232,
+                "physicsMs": 0,
+                "renderMs": 5.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.299999995622784,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1291188.3,
+              "cpu": {
+                "workMs": 4,
+                "physicsMs": 0,
+                "renderMs": 3.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.0000000044237822,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.5,
+            "previous": {
+              "atMs": 1291188.3,
+              "cpu": {
+                "workMs": 4,
+                "physicsMs": 0,
+                "renderMs": 3.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.0000000044237822,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1292188.8,
+              "cpu": {
+                "workMs": 4.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7000000074040145,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.5999999998603,
+            "previous": {
+              "atMs": 1292188.8,
+              "cpu": {
+                "workMs": 4.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7000000074040145,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1293205.4,
+              "cpu": {
+                "workMs": 3.3999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.3999999910593033
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000075437129,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.5,
+            "previous": {
+              "atMs": 1293205.4,
+              "cpu": {
+                "workMs": 3.3999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.3999999910593033
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000075437129,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1294221.9,
+              "cpu": {
+                "workMs": 6.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 6.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.9000000045634806,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.1000000000931,
+            "previous": {
+              "atMs": 1294221.9,
+              "cpu": {
+                "workMs": 6.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 6.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.9000000045634806,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1295222,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.100000008940697
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.3999999985098839,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 849.8000000000466,
+            "previous": {
+              "atMs": 1295222,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.100000008940697
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.3999999985098839,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1296071.8,
+              "cpu": {
+                "workMs": 4.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 9.000000004423782,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8999999999069,
+            "previous": {
+              "atMs": 1296071.8,
+              "cpu": {
+                "workMs": 4.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 9.000000004423782,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1297088.7,
+              "cpu": {
+                "workMs": 4.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.9000000015366822,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.9000000001397,
+            "previous": {
+              "atMs": 1297088.7,
+              "cpu": {
+                "workMs": 4.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.9000000015366822,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1298105.6,
+              "cpu": {
+                "workMs": 3.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.7999999970197678
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.9000000073574483,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.2999999998137,
+            "previous": {
+              "atMs": 1298105.6,
+              "cpu": {
+                "workMs": 3.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.7999999970197678
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.9000000073574483,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1299121.9,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 3.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4999999986030161,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8000000000466,
+            "previous": {
+              "atMs": 1299121.9,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 3.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4999999986030161,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1300138.7,
+              "cpu": {
+                "workMs": 4.199999988079071,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.3000000074971467,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.5,
+            "previous": {
+              "atMs": 1300138.7,
+              "cpu": {
+                "workMs": 4.199999988079071,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.3000000074971467,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1301155.2,
+              "cpu": {
+                "workMs": 4.899999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.899999991059303
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.6000000045169145,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8000000000466,
+            "previous": {
+              "atMs": 1301155.2,
+              "cpu": {
+                "workMs": 4.899999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.899999991059303
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.6000000045169145,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1302172,
+              "cpu": {
+                "workMs": 3.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 999.8999999999069,
+            "previous": {
+              "atMs": 1302172,
+              "cpu": {
+                "workMs": 3.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1303171.9,
+              "cpu": {
+                "workMs": 3.7000000029802322,
+                "physicsMs": 0,
+                "renderMs": 3.6000000089406967
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7000000015832484,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.1000000000931,
+            "previous": {
+              "atMs": 1303171.9,
+              "cpu": {
+                "workMs": 3.7000000029802322,
+                "physicsMs": 0,
+                "renderMs": 3.6000000089406967
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7000000015832484,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1304172,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.200000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000,
+            "previous": {
+              "atMs": 1304172,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.200000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1305172,
+              "cpu": {
+                "workMs": 3.5,
+                "physicsMs": 0,
+                "renderMs": 3.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.3999999999069,
+            "previous": {
+              "atMs": 1305172,
+              "cpu": {
+                "workMs": 3.5,
+                "physicsMs": 0,
+                "renderMs": 3.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000014901161,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1306172.4,
+              "cpu": {
+                "workMs": 4.899999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.6000000075437129,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.1000000000931,
+            "previous": {
+              "atMs": 1306172.4,
+              "cpu": {
+                "workMs": 4.899999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.6000000075437129,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1307172.5,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999985098839,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.3000000000466,
+            "previous": {
+              "atMs": 1307172.5,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999985098839,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1308188.8,
+              "cpu": {
+                "workMs": 4.700000002980232,
+                "physicsMs": 0,
+                "renderMs": 4.600000008940697
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.30000000144355,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8999999999069,
+            "previous": {
+              "atMs": 1308188.8,
+              "cpu": {
+                "workMs": 4.700000002980232,
+                "physicsMs": 0,
+                "renderMs": 4.600000008940697
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.30000000144355,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1309205.7,
+              "cpu": {
+                "workMs": 3.7999999970197678,
+                "physicsMs": 0,
+                "renderMs": 3.5999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000045169145,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.4000000001397,
+            "previous": {
+              "atMs": 1309205.7,
+              "cpu": {
+                "workMs": 3.7999999970197678,
+                "physicsMs": 0,
+                "renderMs": 3.5999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000045169145,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 1310222.1,
+              "cpu": {
+                "workMs": 5.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 5.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.500000001396984,
+                "droppedSeconds": 0
+              }
+            }
+          }
+        ]
+      },
+      "pageVisible": true,
+      "pageFocused": true,
+      "pauseRendering": {
+        "draws": 6444,
+        "skipped": 0
+      },
+      "scenery": {
+        "before": 1441,
+        "after": 1383,
+        "mergedObjects": 117,
+        "batches": 57,
+        "splitObjects": 1,
+        "partsCreated": 3,
+        "cellSize": 128
+      },
+      "surfaces": {
+        "surfaces": 11,
+        "textureBytes": 16384
+      },
+      "presentation": {
+        "parkedCars": 4,
+        "visibleParkedCars": 0
+      },
+      "landmarks": {
+        "signs": 22,
+        "visibleSigns": 0
+      },
+      "lighting": {
+        "ambient": 0.25,
+        "sun": 2.2,
+        "exposure": 0.6,
+        "environment": 0.28,
+        "fogNear": 900,
+        "fogFar": 2400
+      },
+      "atmosphere": {
+        "turbidity": 2.4,
+        "rayleigh": 2.2,
+        "mieCoefficient": 0.003,
+        "fog": "#8bbdd8"
+      },
+      "colors": {
+        "version": "namak-vivid-1",
+        "materials": 23,
+        "gradedMaterials": 30
+      },
+      "decoration": {
+        "objects": 901,
+        "hidden": 0,
+        "distance": null
+      },
+      "pixelRatio": 1.25,
+      "width": 1280,
+      "height": 720
+    },
+    "loading": {
+      "measured": true,
+      "files": [
+        {
+          "name": "index-D3BPixPC.js",
+          "encodedBytes": 98102,
+          "transferBytes": 98402,
+          "durationMs": 256
+        },
+        {
+          "name": "react-34UxNz19.js",
+          "encodedBytes": 60590,
+          "transferBytes": 60890,
+          "durationMs": 264.5
+        },
+        {
+          "name": "three-C-xonFcE.js",
+          "encodedBytes": 152003,
+          "transferBytes": 152303,
+          "durationMs": 276
+        },
+        {
+          "name": "index-Bb1ACK0u.css",
+          "encodedBytes": 7448,
+          "transferBytes": 7748,
+          "durationMs": 262
+        },
+        {
+          "name": "physics-iRel_T-y.js",
+          "encodedBytes": 1092884,
+          "transferBytes": 1093184,
+          "durationMs": 367.79999999701977
+        },
+        {
+          "name": "supra.glb",
+          "encodedBytes": 438924,
+          "transferBytes": 439224,
+          "durationMs": 243.10000000149012
+        },
+        {
+          "name": "draco_wasm_wrapper.js",
+          "encodedBytes": 11787,
+          "transferBytes": 12087,
+          "durationMs": 229.89999999850988
+        },
+        {
+          "name": "draco_decoder.wasm",
+          "encodedBytes": 64272,
+          "transferBytes": 64572,
+          "durationMs": 224.60000000149012
+        },
+        {
+          "name": "slk.glb",
+          "encodedBytes": 449107,
+          "transferBytes": 449407,
+          "durationMs": 244.5
+        },
+        {
+          "name": "mustang.glb",
+          "encodedBytes": 402732,
+          "transferBytes": 403032,
+          "durationMs": 231.30000000447035
+        },
+        {
+          "name": "porsche911.glb",
+          "encodedBytes": 472690,
+          "transferBytes": 472990,
+          "durationMs": 237.39999999850988
+        },
+        {
+          "name": "gtr.glb",
+          "encodedBytes": 411163,
+          "transferBytes": 411463,
+          "durationMs": 248.5
+        },
+        {
+          "name": "rx7.glb",
+          "encodedBytes": 397373,
+          "transferBytes": 397673,
+          "durationMs": 227.10000000149012
+        },
+        {
+          "name": "m3.glb",
+          "encodedBytes": 490187,
+          "transferBytes": 490487,
+          "durationMs": 240.20000000298023
+        },
+        {
+          "name": "huracan.glb",
+          "encodedBytes": 420247,
+          "transferBytes": 420547,
+          "durationMs": 249.79999999701977
+        },
+        {
+          "name": "garage.glb",
+          "encodedBytes": 27975,
+          "transferBytes": 28275,
+          "durationMs": 208.29999999701977
+        },
+        {
+          "name": "namak.glb",
+          "encodedBytes": 3493036,
+          "transferBytes": 3493336,
+          "durationMs": 529.5999999940395
+        },
+        {
+          "name": "cockpit.glb",
+          "encodedBytes": 259616,
+          "transferBytes": 259916,
+          "durationMs": 242.89999999850988
+        },
+        {
+          "name": "namak-route.json",
+          "encodedBytes": 50599,
+          "transferBytes": 50899,
+          "durationMs": 215.89999999850988
+        },
+        {
+          "name": "namak-landmarks.glb",
+          "encodedBytes": 140744,
+          "transferBytes": 141044,
+          "durationMs": 231.39999999850988
+        }
+      ],
+      "encodedBytes": 8941479,
+      "transferBytes": 8947479,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "unknownSizes": 0
+    },
+    "preparation": {
+      "phase": "idle",
+      "busy": false,
+      "error": null,
+      "frameBoundary": {
+        "pending": false,
+        "readyAtMs": null,
+        "firstFrameWaitMs": 0,
+        "skippedFrames": 0
+      }
+    },
+    "finishOrder": [],
+    "vfx": {
+      "rain": {
+        "drops": 0,
+        "spray": 0,
+        "budget": 220,
+        "sprayBudget": 160,
+        "drawCalls": 0
+      },
+      "tireSmoke": {
+        "live": 0,
+        "budget": 160
+      },
+      "exhaust": {
+        "live": 0,
+        "budget": 96
+      },
+      "trails": {
+        "allocated": 512,
+        "used": 0,
+        "live": 0
+      },
+      "feedback": {}
+    }
+  },
+  "guest": {
+    "mode": "garage",
+    "selected": "supra",
+    "paused": false,
+    "countdown": 3,
+    "elapsed": 0,
+    "result": null,
+    "kmh": 0,
+    "gear": "N",
+    "place": 1,
+    "progress": 0,
+    "region": "GARAGE",
+    "nitro": 1,
+    "standings": [],
+    "fps": 1,
+    "colliderCount": 48,
+    "contacts": 0,
+    "ai": [],
+    "cameraDistance": 0,
+    "laps": 1,
+    "lapOptions": [
+      1,
+      3
+    ],
+    "best": null,
+    "medals": null,
+    "ghost": null,
+    "raceSetup": {
+      "mode": "online",
+      "opponent": "NOVA"
+    },
+    "participants": 2,
+    "duel": null,
+    "online": {
+      "phase": "lobby",
+      "role": "guest",
+      "room": "mumu-6e61fe2ff934435097f8fc36",
+      "vehicle": "supra",
+      "remoteVehicle": "supra",
+      "error": "",
+      "errorCode": "",
+      "errorDetails": "",
+      "signallingDown": false,
+      "readyLocal": false,
+      "readyRemote": false,
+      "connected": true,
+      "runId": null,
+      "config": null,
+      "rtt": 2.1000000089406967,
+      "txBytes": 7508,
+      "rxBytes": 7510,
+      "shareUrl": "https://reinhardt7177-lab.github.io/three-rapier-idiom-racer/?track=namak&room=mumu-6e61fe2ff934435097f8fc36"
+    },
+    "timing": {
+      "rawSeconds": 0,
+      "steps": 0,
+      "simulatedSeconds": 0,
+      "pendingSeconds": 0,
+      "droppedSeconds": 0
+    },
+    "camera": {
+      "position": [
+        5.799999999999993,
+        2.799999999999998,
+        7.59999999999999
+      ],
+      "quaternion": [
+        -0.09514659818512664,
+        0.31857528024720877,
+        0.03215847933086423,
+        0.9425618005607572
+      ],
+      "fov": 40
+    },
+    "input": {
+      "throttle": 0,
+      "brake": 0,
+      "reverse": 0,
+      "steer": 0,
+      "handbrake": false,
+      "boost": false
+    },
+    "pauseReason": "",
+    "track": {
+      "id": "namak",
+      "name": "남악 시티",
+      "length": 2927.3350238627413
+    },
+    "audio": {
+      "enabled": false,
+      "paused": true,
+      "volume": 0.35,
+      "failed": false,
+      "state": "uninitialized",
+      "vehicle": "supra",
+      "voice": "부드러운 터보 톤",
+      "shiftCount": 0,
+      "audible": false,
+      "mix": {
+        "gear": 0,
+        "rpm": 850,
+        "hz": 42.5,
+        "load": 0,
+        "boost": 0,
+        "engine": 0.075,
+        "intake": 0,
+        "bass": 0.055,
+        "brightness": 0.92,
+        "wind": 0,
+        "brake": 0,
+        "tire": 0,
+        "squeal": 0
+      },
+      "wanted": true
+    },
+    "difficulty": "normal",
+    "assist": true,
+    "nitroBonus": {
+      "amount": 0,
+      "age": 100
+    },
+    "music": {
+      "wanted": true,
+      "enabled": true,
+      "playing": false,
+      "paused": true,
+      "blocked": false,
+      "failed": false,
+      "volume": 0.24,
+      "time": 0,
+      "duration": 0,
+      "trackId": "seven-mile-horizon",
+      "title": "Seven Mile Horizon",
+      "genre": "해변 힙합"
+    },
+    "cameraMode": "chase",
+    "cockpit": {
+      "visible": false,
+      "rig": 1,
+      "meshes": 18,
+      "steeringAngle": 0,
+      "speedNeedle": 2.2689280275926285,
+      "rpmNeedle": 2.2689280275926285,
+      "redline": 8000,
+      "grainBytes": 65536,
+      "display": {
+        "readout": null,
+        "uploads": 0
+      }
+    },
+    "quality": "high",
+    "progression": {
+      "count": 0,
+      "medals": [],
+      "cars": [
+        {
+          "id": "supra",
+          "name": "GR Supra",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "slk",
+          "name": "SLK Roadster",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "mustang",
+          "name": "Mustang GT",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "porsche911",
+          "name": "Porsche 911",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "gtr",
+          "name": "Nissan GT-R",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "rx7",
+          "name": "Mazda RX-7",
+          "required": 1,
+          "unlocked": false
+        },
+        {
+          "id": "m3",
+          "name": "BMW M3",
+          "required": 2,
+          "unlocked": false
+        },
+        {
+          "id": "huracan",
+          "name": "Lamborghini Huracán",
+          "required": 4,
+          "unlocked": false
+        }
+      ],
+      "tracks": [
+        {
+          "id": "coastal",
+          "name": "해안 월드",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "namak",
+          "name": "남악 시티",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "yeosu",
+          "name": "여수 밤바다",
+          "required": 0,
+          "unlocked": true
+        },
+        {
+          "id": "seongsamjae",
+          "name": "지리산 성삼재",
+          "required": 1,
+          "unlocked": false
+        }
+      ]
+    },
+    "weather": "clear",
+    "traffic": {
+      "count": 0,
+      "vehicles": []
+    },
+    "rendering": {
+      "samples": 172,
+      "meanMs": 935.3841860465116,
+      "p95Ms": 1016.8000000000029,
+      "maxMs": 3216.880000000001,
+      "over50Ms": 164,
+      "calls": 151,
+      "triangles": 297184,
+      "cpu": {
+        "workMs": {
+          "samples": 172,
+          "missing": 0,
+          "mean": 5.70406976801365,
+          "p95": 9.300000011920929,
+          "max": 47.1000000089407
+        },
+        "physicsMs": {
+          "samples": 172,
+          "missing": 0,
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "renderMs": {
+          "samples": 172,
+          "missing": 0,
+          "mean": 5.5046511631199095,
+          "p95": 9.099999994039536,
+          "max": 47
+        }
+      },
+      "evidence": {
+        "totalIntervals": 172,
+        "slowIntervals": 164,
+        "retained": 24,
+        "evicted": 140,
+        "spikes": [
+          {
+            "gapMs": 1000.3000000000175,
+            "previous": {
+              "atMs": 147130.3,
+              "cpu": {
+                "workMs": 6.200000002980232,
+                "physicsMs": 0,
+                "renderMs": 6.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4999999970314093,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 148130.6,
+              "cpu": {
+                "workMs": 5.5,
+                "physicsMs": 0,
+                "renderMs": 5.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000029744115,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.3999999999942,
+            "previous": {
+              "atMs": 148130.6,
+              "cpu": {
+                "workMs": 5.5,
+                "physicsMs": 0,
+                "renderMs": 5.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.1000000029744115,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 149147,
+              "cpu": {
+                "workMs": 4.199999988079071,
+                "physicsMs": 0,
+                "renderMs": 4.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000059604645,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.7999999999884,
+            "previous": {
+              "atMs": 149147,
+              "cpu": {
+                "workMs": 4.199999988079071,
+                "physicsMs": 0,
+                "renderMs": 4.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000059604645,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 150163.8,
+              "cpu": {
+                "workMs": 3,
+                "physicsMs": 0,
+                "renderMs": 3
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.9000000029918738,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000,
+            "previous": {
+              "atMs": 150163.8,
+              "cpu": {
+                "workMs": 3,
+                "physicsMs": 0,
+                "renderMs": 3
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.9000000029918738,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 151163.8,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.4000000000233,
+            "previous": {
+              "atMs": 151163.8,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.299999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 152180.2,
+              "cpu": {
+                "workMs": 5.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 5.200000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.200000005948823,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.5,
+            "previous": {
+              "atMs": 152180.2,
+              "cpu": {
+                "workMs": 5.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 5.200000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.200000005948823,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 153180.7,
+              "cpu": {
+                "workMs": 4.5,
+                "physicsMs": 0,
+                "renderMs": 4.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.700000005948823,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.5,
+            "previous": {
+              "atMs": 153180.7,
+              "cpu": {
+                "workMs": 4.5,
+                "physicsMs": 0,
+                "renderMs": 4.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.700000005948823,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 154197.2,
+              "cpu": {
+                "workMs": 5.5,
+                "physicsMs": 0,
+                "renderMs": 5.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.2999999999883585,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.5999999999767,
+            "previous": {
+              "atMs": 154197.2,
+              "cpu": {
+                "workMs": 5.5,
+                "physicsMs": 0,
+                "renderMs": 5.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.2999999999883585,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 155213.8,
+              "cpu": {
+                "workMs": 3.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.1000000000058,
+            "previous": {
+              "atMs": 155213.8,
+              "cpu": {
+                "workMs": 3.0999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 156213.9,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999970255885,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 849.7000000000116,
+            "previous": {
+              "atMs": 156213.9,
+              "cpu": {
+                "workMs": 4.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999970255885,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 157063.6,
+              "cpu": {
+                "workMs": 3.5999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 10.300000005954644,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8999999999942,
+            "previous": {
+              "atMs": 157063.6,
+              "cpu": {
+                "workMs": 3.5999999940395355,
+                "physicsMs": 0,
+                "renderMs": 3.4000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 10.300000005954644,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 158080.5,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.7999999970197678,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1017,
+            "previous": {
+              "atMs": 158080.5,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.7999999970197678,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 159097.5,
+              "cpu": {
+                "workMs": 3.7999999970197678,
+                "physicsMs": 0,
+                "renderMs": 3.7000000029802322
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000059604645,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.2999999999884,
+            "previous": {
+              "atMs": 159097.5,
+              "cpu": {
+                "workMs": 3.7999999970197678,
+                "physicsMs": 0,
+                "renderMs": 3.7000000029802322
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000059604645,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 160113.8,
+              "cpu": {
+                "workMs": 4.200000002980232,
+                "physicsMs": 0,
+                "renderMs": 4.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4999999970314093,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8000000000175,
+            "previous": {
+              "atMs": 160113.8,
+              "cpu": {
+                "workMs": 4.200000002980232,
+                "physicsMs": 0,
+                "renderMs": 4.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4999999970314093,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 161130.6,
+              "cpu": {
+                "workMs": 4.799999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.8000000059546437,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.3999999999942,
+            "previous": {
+              "atMs": 161130.6,
+              "cpu": {
+                "workMs": 4.799999997019768,
+                "physicsMs": 0,
+                "renderMs": 4.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.8000000059546437,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 162147,
+              "cpu": {
+                "workMs": 5.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7999999970197678,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.7999999999884,
+            "previous": {
+              "atMs": 162147,
+              "cpu": {
+                "workMs": 5.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.9000000059604645
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7999999970197678,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 163163.8,
+              "cpu": {
+                "workMs": 3.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.7999999970197678
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000,
+            "previous": {
+              "atMs": 163163.8,
+              "cpu": {
+                "workMs": 3.8999999910593033,
+                "physicsMs": 0,
+                "renderMs": 3.7999999970197678
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.4000000029918738,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 164163.8,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.799999994051177,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.1000000000058,
+            "previous": {
+              "atMs": 164163.8,
+              "cpu": {
+                "workMs": 5,
+                "physicsMs": 0,
+                "renderMs": 4.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.799999994051177,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 165163.9,
+              "cpu": {
+                "workMs": 4.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.300000002986053,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000,
+            "previous": {
+              "atMs": 165163.9,
+              "cpu": {
+                "workMs": 4.399999991059303,
+                "physicsMs": 0,
+                "renderMs": 4.199999988079071
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.300000002986053,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 166163.9,
+              "cpu": {
+                "workMs": 6.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 6.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999970255885,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.3000000000175,
+            "previous": {
+              "atMs": 166163.9,
+              "cpu": {
+                "workMs": 6.299999997019768,
+                "physicsMs": 0,
+                "renderMs": 6.0999999940395355
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 0.8999999970255885,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 167164.2,
+              "cpu": {
+                "workMs": 4.9000000059604645,
+                "physicsMs": 0,
+                "renderMs": 4.799999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.5999999970081262,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1000.2999999999884,
+            "previous": {
+              "atMs": 167164.2,
+              "cpu": {
+                "workMs": 4.9000000059604645,
+                "physicsMs": 0,
+                "renderMs": 4.799999997019768
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.5999999970081262,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 168164.5,
+              "cpu": {
+                "workMs": 4.600000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.300000011920929
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7999999970197678,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.1000000000058,
+            "previous": {
+              "atMs": 168164.5,
+              "cpu": {
+                "workMs": 4.600000008940697,
+                "physicsMs": 0,
+                "renderMs": 4.300000011920929
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.7999999970197678,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 169180.6,
+              "cpu": {
+                "workMs": 7,
+                "physicsMs": 0,
+                "renderMs": 6.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.6000000029744115,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.8999999999942,
+            "previous": {
+              "atMs": 169180.6,
+              "cpu": {
+                "workMs": 7,
+                "physicsMs": 0,
+                "renderMs": 6.5
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.6000000029744115,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 170197.5,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.5999999940395355,
+                "droppedSeconds": 0
+              }
+            }
+          },
+          {
+            "gapMs": 1016.3999999999942,
+            "previous": {
+              "atMs": 170197.5,
+              "cpu": {
+                "workMs": 4.100000008940697,
+                "physicsMs": 0,
+                "renderMs": 4
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 1.5999999940395355,
+                "droppedSeconds": 0
+              }
+            },
+            "current": {
+              "atMs": 171213.9,
+              "cpu": {
+                "workMs": 5.799999997019768,
+                "physicsMs": 0,
+                "renderMs": 5.700000002980232
+              },
+              "context": {
+                "visible": true,
+                "focused": true,
+                "callbackDelayMs": 2.6000000000058208,
+                "droppedSeconds": 0
+              }
+            }
+          }
+        ]
+      },
+      "pageVisible": true,
+      "pageFocused": true,
+      "pauseRendering": {
+        "draws": 173,
+        "skipped": 0
+      },
+      "scenery": {
+        "before": 1441,
+        "after": 1383,
+        "mergedObjects": 117,
+        "batches": 57,
+        "splitObjects": 1,
+        "partsCreated": 3,
+        "cellSize": 128
+      },
+      "surfaces": {
+        "surfaces": 11,
+        "textureBytes": 16384
+      },
+      "presentation": {
+        "parkedCars": 4,
+        "visibleParkedCars": 0
+      },
+      "landmarks": {
+        "signs": 22,
+        "visibleSigns": 0
+      },
+      "lighting": {
+        "ambient": 0.25,
+        "sun": 2.2,
+        "exposure": 0.6,
+        "environment": 0.28,
+        "fogNear": 900,
+        "fogFar": 2400
+      },
+      "atmosphere": {
+        "turbidity": 2.4,
+        "rayleigh": 2.2,
+        "mieCoefficient": 0.003,
+        "fog": "#8bbdd8"
+      },
+      "colors": {
+        "version": "namak-vivid-1",
+        "materials": 23,
+        "gradedMaterials": 30
+      },
+      "decoration": {
+        "objects": 901,
+        "hidden": 0,
+        "distance": null
+      },
+      "pixelRatio": 1.25,
+      "width": 1280,
+      "height": 720
+    },
+    "loading": {
+      "measured": true,
+      "files": [
+        {
+          "name": "index-D3BPixPC.js",
+          "encodedBytes": 98102,
+          "transferBytes": 300,
+          "durationMs": 448.09999999403954
+        },
+        {
+          "name": "react-34UxNz19.js",
+          "encodedBytes": 60590,
+          "transferBytes": 300,
+          "durationMs": 440.40000000596046
+        },
+        {
+          "name": "three-C-xonFcE.js",
+          "encodedBytes": 152003,
+          "transferBytes": 300,
+          "durationMs": 454
+        },
+        {
+          "name": "physics-iRel_T-y.js",
+          "encodedBytes": 1092884,
+          "transferBytes": 300,
+          "durationMs": 487.1000000089407
+        },
+        {
+          "name": "index-Bb1ACK0u.css",
+          "encodedBytes": 7448,
+          "transferBytes": 300,
+          "durationMs": 416.3999999910593
+        },
+        {
+          "name": "supra.glb",
+          "encodedBytes": 438924,
+          "transferBytes": 300,
+          "durationMs": 283.90000000596046
+        },
+        {
+          "name": "draco_wasm_wrapper.js",
+          "encodedBytes": 11787,
+          "transferBytes": 300,
+          "durationMs": 247.90000000596046
+        },
+        {
+          "name": "draco_decoder.wasm",
+          "encodedBytes": 64272,
+          "transferBytes": 300,
+          "durationMs": 245.09999999403954
+        },
+        {
+          "name": "slk.glb",
+          "encodedBytes": 449107,
+          "transferBytes": 300,
+          "durationMs": 244.79999999701977
+        },
+        {
+          "name": "mustang.glb",
+          "encodedBytes": 402732,
+          "transferBytes": 300,
+          "durationMs": 282.6000000089407
+        },
+        {
+          "name": "porsche911.glb",
+          "encodedBytes": 472690,
+          "transferBytes": 300,
+          "durationMs": 246.70000000298023
+        },
+        {
+          "name": "gtr.glb",
+          "encodedBytes": 411163,
+          "transferBytes": 300,
+          "durationMs": 268.40000000596046
+        },
+        {
+          "name": "rx7.glb",
+          "encodedBytes": 397373,
+          "transferBytes": 300,
+          "durationMs": 267.8999999910593
+        },
+        {
+          "name": "m3.glb",
+          "encodedBytes": 490187,
+          "transferBytes": 300,
+          "durationMs": 239.30000001192093
+        },
+        {
+          "name": "huracan.glb",
+          "encodedBytes": 420247,
+          "transferBytes": 300,
+          "durationMs": 264.70000000298023
+        },
+        {
+          "name": "garage.glb",
+          "encodedBytes": 27975,
+          "transferBytes": 300,
+          "durationMs": 231.59999999403954
+        },
+        {
+          "name": "namak.glb",
+          "encodedBytes": 3493036,
+          "transferBytes": 300,
+          "durationMs": 294.3999999910593
+        },
+        {
+          "name": "cockpit.glb",
+          "encodedBytes": 259616,
+          "transferBytes": 300,
+          "durationMs": 238.5
+        },
+        {
+          "name": "namak-route.json",
+          "encodedBytes": 50599,
+          "transferBytes": 300,
+          "durationMs": 236.69999998807907
+        },
+        {
+          "name": "namak-landmarks.glb",
+          "encodedBytes": 140744,
+          "transferBytes": 300,
+          "durationMs": 230.20000000298023
+        }
+      ],
+      "encodedBytes": 8941479,
+      "transferBytes": 6000,
+      "cacheHits": 20,
+      "revalidated": 20,
+      "unknownSizes": 0
+    },
+    "preparation": {
+      "phase": "idle",
+      "busy": false,
+      "error": null,
+      "frameBoundary": {
+        "pending": false,
+        "readyAtMs": null,
+        "firstFrameWaitMs": 0,
+        "skippedFrames": 0
+      }
+    },
+    "finishOrder": [],
+    "vfx": {
+      "rain": {
+        "drops": 0,
+        "spray": 0,
+        "budget": 220,
+        "sprayBudget": 160,
+        "drawCalls": 0
+      },
+      "tireSmoke": {
+        "live": 0,
+        "budget": 160
+      },
+      "exhaust": {
+        "live": 0,
+        "budget": 96
+      },
+      "trails": {
+        "allocated": 512,
+        "used": 0,
+        "live": 0
+      },
+      "feedback": {}
+    }
+  }
+}

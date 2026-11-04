@@ -1,0 +1,27 @@
+✖ pass 1: actual transmission shift is audible promptly and does not advance on pause (13.2252ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 181.1776
+
+✖ failing tests:
+
+test at scripts\driving-five-pass.test.mjs:5:1
+✖ pass 1: actual transmission shift is audible promptly and does not advance on pause (13.2252ms)
+  AssertionError [ERR_ASSERTION]: gear change needs a clear RPM drop within 117 ms
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/driving-five-pass.test.mjs:10:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

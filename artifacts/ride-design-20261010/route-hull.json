@@ -1,0 +1,2845 @@
+{
+  "label": "hull",
+  "scope": "Single Supra, automatic route following, recovered 160 collider world. Simulated 120 Hz, no browser or camera.",
+  "progress": 6842.211776361137,
+  "completed": true,
+  "finalIndex": 26,
+  "summaries": {
+    "Harbor": {
+      "samples": 1338,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.0455032036833425,
+      "maxVerticalAcceleration": 1.2764596939086914,
+      "maxVerticalJerk": 57.025909423828125,
+      "rmsTiltRate": 0.020069004865353634,
+      "rmsVerticalAcceleration": 0.5121236568046824
+    },
+    "Beach": {
+      "samples": 2416,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.008457326342136542,
+      "maxVerticalAcceleration": 0.2929115295410156,
+      "maxVerticalJerk": 3.9209604263305664,
+      "rmsTiltRate": 0.0018436178401272586,
+      "rmsVerticalAcceleration": 0.06759685167743669
+    },
+    "City": {
+      "samples": 2933,
+      "contactChanges": 13,
+      "under3": 76,
+      "maxTiltRate": 2.785505895425761,
+      "maxVerticalAcceleration": 88.01234006881714,
+      "maxVerticalJerk": 8858.679342269897,
+      "rmsTiltRate": 0.1656722784384887,
+      "rmsVerticalAcceleration": 3.579907962349286
+    },
+    "Mountain": {
+      "samples": 14627,
+      "contactChanges": 54,
+      "under3": 146,
+      "maxTiltRate": 1.7147113797718518,
+      "maxVerticalAcceleration": 351.4009666442871,
+      "maxVerticalJerk": 45519.816398620605,
+      "rmsTiltRate": 0.0920980894785995,
+      "rmsVerticalAcceleration": 3.178417565620184
+    },
+    "Lighthouse": {
+      "samples": 2260,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.031169771263284404,
+      "maxVerticalAcceleration": 1.153167486190796,
+      "maxVerticalJerk": 12.687492370605469,
+      "rmsTiltRate": 0.01040135674640663,
+      "rmsVerticalAcceleration": 0.36067756292795655
+    },
+    "Bridge": {
+      "samples": 3576,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.041805341442828804,
+      "maxVerticalAcceleration": 1.5437793731689453,
+      "maxVerticalJerk": 52.97813415527344,
+      "rmsTiltRate": 0.009178569913170481,
+      "rmsVerticalAcceleration": 0.3179567560666647
+    }
+  },
+  "worst": [
+    {
+      "tick": 13458,
+      "index": 1312,
+      "region": "Mountain",
+      "kmh": 29.788589563422622,
+      "contacts": 3,
+      "previousContacts": 2,
+      "tiltRate": 1.7147113797718518,
+      "verticalAcceleration": 351.4009666442871,
+      "position": {
+        "x": -586.4533081054688,
+        "y": 106.35350799560547,
+        "z": 753.8645629882812
+      },
+      "normal": [
+        {
+          "x": 0.11561620980501175,
+          "y": 0.9226465225219727,
+          "z": -0.3679080605506897
+        },
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        },
+        null,
+        {
+          "x": 0.0451585054397583,
+          "y": 0.9973645210266113,
+          "z": -0.05678528547286987
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 5,
+        "ground": 105.85689752431134,
+        "filteredGround": 105.85689752431134,
+        "target": 106.39337315991894,
+        "error": -0.017633108649405926,
+        "roadRate": -2.032260514769497,
+        "supportAcceleration": 24,
+        "beforeVertical": -3.795302152633667,
+        "wheelVertical": -3.5264880657196045,
+        "commandVertical": -3.595302152633667,
+        "controlledVertical": -3.595302104949951,
+        "normal": {
+          "x": 0.09974534545663712,
+          "y": 0.9727841589840991,
+          "z": -0.20914551415063928
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5192,
+      "index": 579,
+      "region": "City",
+      "kmh": 83.47936242758166,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.08103172352386871,
+      "verticalAcceleration": 88.01234006881714,
+      "position": {
+        "x": 158.69314575195312,
+        "y": 24.100309371948242,
+        "z": 550.1948852539062
+      },
+      "normal": [
+        {
+          "x": 0.033951450139284134,
+          "y": 0.9990593791007996,
+          "z": -0.02697429433465004
+        },
+        {
+          "x": 0.029534265398979187,
+          "y": 0.9992693066596985,
+          "z": -0.024264343082904816
+        },
+        {
+          "x": 0.033951450139284134,
+          "y": 0.9990593791007996,
+          "z": -0.02697429433465004
+        },
+        {
+          "x": 0.029534265398979187,
+          "y": 0.9992693066596985,
+          "z": -0.024264343082904816
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 3,
+        "ground": 23.63784828976269,
+        "filteredGround": 23.639542990433274,
+        "target": 24.161911487145122,
+        "error": -0.06820726351230988,
+        "roadRate": 1.0154912196345576,
+        "supportAcceleration": 24,
+        "beforeVertical": 0.33478015661239624,
+        "wheelVertical": 0.6408970952033997,
+        "commandVertical": 0.5347801566123962,
+        "controlledVertical": 0.5347801446914673,
+        "normal": {
+          "x": 0.03412098510081571,
+          "y": 0.9990552709151592,
+          "z": -0.026913268705002866
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5114,
+      "index": 573,
+      "region": "City",
+      "kmh": 84.84295895537726,
+      "contacts": 3,
+      "previousContacts": 4,
+      "tiltRate": 2.785505895425761,
+      "verticalAcceleration": 6.629648208618164,
+      "position": {
+        "x": 171.5853271484375,
+        "y": 23.726823806762695,
+        "z": 542.05126953125
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0.028969964012503624,
+          "y": 0.9994266629219055,
+          "z": -0.017525574192404747
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.235689106287428,
+        "filteredGround": 23.19193643297715,
+        "target": 23.71680650337883,
+        "error": -0.010601135336838041,
+        "roadRate": 2.4971985445103098,
+        "supportAcceleration": 16.43976429711799,
+        "beforeVertical": 2.3831443786621094,
+        "wheelVertical": 2.3831443786621094,
+        "commandVertical": 2.520142414471426,
+        "controlledVertical": 2.5201423168182373,
+        "normal": {
+          "x": 0.0986673586180257,
+          "y": 0.9942936917714017,
+          "z": -0.04055621835105785
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5115,
+      "index": 573,
+      "region": "City",
+      "kmh": 84.83520032943127,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 2.1687318081880775,
+      "verticalAcceleration": 7.944631576538086,
+      "position": {
+        "x": 171.41770935058594,
+        "y": 23.74799346923828,
+        "z": 542.15380859375
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0.028969964012503624,
+          "y": 0.9994266629219055,
+          "z": -0.017525574192404747
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.2341497220312,
+        "filteredGround": 23.21903728692523,
+        "target": 23.744239096707606,
+        "error": -0.017415289944910484,
+        "roadRate": 2.534273331993536,
+        "supportAcceleration": 17.75473445519813,
+        "beforeVertical": 2.4383914470672607,
+        "wheelVertical": 2.4383914470672607,
+        "commandVertical": 2.586347567527245,
+        "controlledVertical": 2.5863475799560547,
+        "normal": {
+          "x": 0.10933250083295877,
+          "y": 0.9936656543819715,
+          "z": -0.02598021484243641
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5106,
+      "index": 572,
+      "region": "City",
+      "kmh": 84.90521943559827,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.9628638952546091,
+      "verticalAcceleration": 7.123818397521973,
+      "position": {
+        "x": 172.9267578125,
+        "y": 23.571901321411133,
+        "z": 541.23095703125
+      },
+      "normal": [
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        },
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.084005314194183,
+        "filteredGround": 23.059728826171508,
+        "target": 23.583641216225534,
+        "error": -0.028227016396431992,
+        "roadRate": 1.860017343499494,
+        "supportAcceleration": 16.933827525770102,
+        "beforeVertical": 1.883236050605774,
+        "wheelVertical": 1.883236050605774,
+        "commandVertical": 2.0243512799871914,
+        "controlledVertical": 2.0243513584136963,
+        "normal": {
+          "x": 0.08783578094243197,
+          "y": 0.9961112008559027,
+          "z": -0.0068812146925377096
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 13459,
+      "index": 1312,
+      "region": "Mountain",
+      "kmh": 29.88485369008204,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 1.1560287695058322,
+      "verticalAcceleration": -27.93083667755127,
+      "position": {
+        "x": -586.417724609375,
+        "y": 106.34465026855469,
+        "z": 753.8052368164062
+      },
+      "normal": [
+        {
+          "x": 0.03367340937256813,
+          "y": 0.9975026845932007,
+          "z": -0.06208520755171776
+        },
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        },
+        null,
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 5,
+        "ground": 105.84226944711511,
+        "filteredGround": 105.84106074324546,
+        "target": 106.37698693868178,
+        "error": -0.02347894307631293,
+        "roadRate": -1.9374597671615827,
+        "supportAcceleration": -18.120844841270973,
+        "beforeVertical": -0.8669607639312744,
+        "wheelVertical": -0.8364076614379883,
+        "commandVertical": -1.0179678042751992,
+        "controlledVertical": -1.0179678201675415,
+        "normal": {
+          "x": 0.10568877802293666,
+          "y": 0.973781472978984,
+          "z": -0.2014436027351055
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5116,
+      "index": 573,
+      "region": "City",
+      "kmh": 84.82742739000895,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 1.6650493543507074,
+      "verticalAcceleration": 5.941314697265625,
+      "position": {
+        "x": 171.25010681152344,
+        "y": 23.769575119018555,
+        "z": 542.25634765625
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0.028969964012503624,
+          "y": 0.9994266629219055,
+          "z": -0.017525574192404747
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.23293662441112,
+        "filteredGround": 23.23822163385714,
+        "target": 23.763771204634907,
+        "error": -0.015777735396625303,
+        "roadRate": 2.5524579397729923,
+        "supportAcceleration": 15.751431615666025,
+        "beforeVertical": 2.504596710205078,
+        "wheelVertical": 2.504596710205078,
+        "commandVertical": 2.6358586403356283,
+        "controlledVertical": 2.6358585357666016,
+        "normal": {
+          "x": 0.11714770397422904,
+          "y": 0.9930081366590654,
+          "z": -0.014534647655078408
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 15283,
+      "index": 1460,
+      "region": "Mountain",
+      "kmh": 35.353860503844665,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.33247398563134406,
+      "verticalAcceleration": 24.81616973876953,
+      "position": {
+        "x": -223.97361755371094,
+        "y": 83.06784057617188,
+        "z": 664.9117431640625
+      },
+      "normal": [
+        {
+          "x": 0.06644342094659805,
+          "y": 0.9705176949501038,
+          "z": -0.23169063031673431
+        },
+        {
+          "x": 0.006867509800940752,
+          "y": 0.997495174407959,
+          "z": -0.07040029019117355
+        },
+        {
+          "x": 0.06644342094659805,
+          "y": 0.9705176949501038,
+          "z": -0.23169063031673431
+        },
+        null
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 5,
+        "ground": 82.52293235323359,
+        "filteredGround": 82.52373224855215,
+        "target": 83.05323973635848,
+        "error": 0.028890695770428465,
+        "roadRate": -1.6233168029250127,
+        "supportAcceleration": 9.114129907956094,
+        "beforeVertical": -1.85185968875885,
+        "wheelVertical": -1.7681206464767456,
+        "commandVertical": -1.7759086061925493,
+        "controlledVertical": -1.7759085893630981,
+        "normal": {
+          "x": 0.055218632422684134,
+          "y": 0.9855856848447052,
+          "z": -0.15991172709517554
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4713,
+      "index": 536,
+      "region": "City",
+      "kmh": 134.19639983222888,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.5143481644356619,
+      "verticalAcceleration": -24.54422950744629,
+      "position": {
+        "x": 259.7903137207031,
+        "y": 21.415042877197266,
+        "z": 515.55322265625
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.84986686706543,
+        "filteredGround": 20.858229904391667,
+        "target": 21.380194282575307,
+        "error": 0.026149177507701182,
+        "roadRate": 0.6770409452983379,
+        "supportAcceleration": -14.734240683234692,
+        "beforeVertical": 1.21268892288208,
+        "wheelVertical": 1.21268892288208,
+        "commandVertical": 1.0899035838551243,
+        "controlledVertical": 1.0899035930633545,
+        "normal": {
+          "x": 0.018434711199570068,
+          "y": 0.999828765740777,
+          "z": 0.0016126438736145982
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5091,
+      "index": 572,
+      "region": "City",
+      "kmh": 85.06556723540243,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.621083686567604,
+      "verticalAcceleration": 9.932942390441895,
+      "position": {
+        "x": 173.9147491455078,
+        "y": 23.47994613647461,
+        "z": 540.6271362304688
+      },
+      "normal": [
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0.03341514244675636,
+          "y": 0.999237060546875,
+          "z": -0.020214714109897614
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.001959013812478,
+        "filteredGround": 22.967838102247228,
+        "target": 23.49023094079457,
+        "error": -0.012279890989884024,
+        "roadRate": 1.0138453096691769,
+        "supportAcceleration": 19.742929419615482,
+        "beforeVertical": 0.8117685914039612,
+        "wheelVertical": 0.8827328681945801,
+        "commandVertical": 0.9762930032340902,
+        "controlledVertical": 0.9762930274009705,
+        "normal": {
+          "x": 0.04286237753559608,
+          "y": 0.9990087181348356,
+          "z": -0.012016558683283688
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4714,
+      "index": 537,
+      "region": "City",
+      "kmh": 134.18147639001484,
+      "contacts": 3,
+      "previousContacts": 4,
+      "tiltRate": 0.4176287903141262,
+      "verticalAcceleration": -24.240524768829346,
+      "position": {
+        "x": 259.4814758300781,
+        "y": 21.42205810546875,
+        "z": 515.58642578125
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.84986686706543,
+        "filteredGround": 20.859140807557303,
+        "target": 21.381074727211274,
+        "error": 0.0339681499859914,
+        "roadRate": 0.5496353718489108,
+        "supportAcceleration": -14.430536708997108,
+        "beforeVertical": 1.0081536769866943,
+        "wheelVertical": 1.0081536769866943,
+        "commandVertical": 0.8878992044117184,
+        "controlledVertical": 0.8878992199897766,
+        "normal": {
+          "x": 0.014968203428528256,
+          "y": 0.9998871128092023,
+          "z": 0.0013093984113293875
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5107,
+      "index": 572,
+      "region": "City",
+      "kmh": 84.89742824060951,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.59090657898839,
+      "verticalAcceleration": 11.525516510009766,
+      "position": {
+        "x": 172.759033203125,
+        "y": 23.589187622070312,
+        "z": 541.33349609375
+      },
+      "normal": [
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        },
+        {
+          "x": 0.03341514244675636,
+          "y": 0.999237060546875,
+          "z": -0.020214714109897614
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.089411267875043,
+        "filteredGround": 23.0802093790002,
+        "target": 23.604209385605586,
+        "error": -0.03230806419445287,
+        "roadRate": 2.020715290218185,
+        "supportAcceleration": 21.335611778561532,
+        "beforeVertical": 1.942601203918457,
+        "wheelVertical": 1.942601203918457,
+        "commandVertical": 2.120397968739803,
+        "controlledVertical": 2.1203980445861816,
+        "normal": {
+          "x": 0.08768556911438698,
+          "y": 0.9959446439339715,
+          "z": -0.02013720904993651
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17133,
+      "index": 1618,
+      "region": "Mountain",
+      "kmh": 45.56587646111821,
+      "contacts": 3,
+      "previousContacts": 1,
+      "tiltRate": 1.5896120031742909,
+      "verticalAcceleration": -12.642431259155273,
+      "position": {
+        "x": -601.9686279296875,
+        "y": 60.523170471191406,
+        "z": 574.3146362304688
+      },
+      "normal": [
+        {
+          "x": -0.017585759982466698,
+          "y": 0.9980341792106628,
+          "z": -0.060154058039188385
+        },
+        null,
+        {
+          "x": -0.08174147456884384,
+          "y": 0.9566289782524109,
+          "z": -0.27960583567619324
+        },
+        {
+          "x": 0.005155311431735754,
+          "y": 0.9982101917266846,
+          "z": -0.05957954376935959
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 15,
+        "ground": 59.94473713659904,
+        "filteredGround": 59.94473713659904,
+        "target": 60.4766784370455,
+        "error": 0.06775897140176568,
+        "roadRate": -2.2881970839658194,
+        "supportAcceleration": -2.8323178629538326,
+        "beforeVertical": -2.48236083984375,
+        "wheelVertical": -2.2791409492492676,
+        "commandVertical": -2.5059634887016986,
+        "controlledVertical": -2.5059635639190674,
+        "normal": {
+          "x": -0.08960086373729896,
+          "y": 0.9810762946249585,
+          "z": -0.17164203838946765
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4712,
+      "index": 536,
+      "region": "City",
+      "kmh": 134.2113225418351,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.6334587865008982,
+      "verticalAcceleration": -23.545145988464355,
+      "position": {
+        "x": 260.0991516113281,
+        "y": 21.406343460083008,
+        "z": 515.52001953125
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.84986686706543,
+        "filteredGround": 20.855897667473258,
+        "target": 21.377908252200722,
+        "error": 0.01803252843892622,
+        "roadRate": 0.8339930322044123,
+        "supportAcceleration": -13.735151737366511,
+        "beforeVertical": 1.4088984727859497,
+        "wheelVertical": 1.4088984727859497,
+        "commandVertical": 1.2944388749745621,
+        "controlledVertical": 1.2944388389587402,
+        "normal": {
+          "x": 0.022703725658276223,
+          "y": 0.9997402644095111,
+          "z": 0.0019860915473359623
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4715,
+      "index": 537,
+      "region": "City",
+      "kmh": 134.16655221520264,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.33909402903079644,
+      "verticalAcceleration": -23.0175518989563,
+      "position": {
+        "x": 259.1726379394531,
+        "y": 21.42747688293457,
+        "z": 515.61962890625
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.84986686706543,
+        "filteredGround": 20.859176299011075,
+        "target": 21.381090140338657,
+        "error": 0.040967965130093376,
+        "roadRate": 0.4462098747815947,
+        "supportAcceleration": -13.207563466459083,
+        "beforeVertical": 0.8061493039131165,
+        "wheelVertical": 0.8061493039131165,
+        "commandVertical": 0.6960862750259574,
+        "controlledVertical": 0.6960862874984741,
+        "normal": {
+          "x": 0.01215343789555819,
+          "y": 0.9999255790429292,
+          "z": 0.0010631664881240177
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17149,
+      "index": 1619,
+      "region": "Mountain",
+      "kmh": 44.528417313817215,
+      "contacts": 1,
+      "previousContacts": 1,
+      "tiltRate": 1.448770305465312,
+      "verticalAcceleration": -0.23451805114746094,
+      "position": {
+        "x": -601.9487915039062,
+        "y": 60.16909408569336,
+        "z": 572.6444702148438
+      },
+      "normal": [
+        null,
+        null,
+        null,
+        {
+          "x": 0.015087554231286049,
+          "y": 0.9982643723487854,
+          "z": -0.05692527815699577
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 1,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 13460,
+      "index": 1312,
+      "region": "Mountain",
+      "kmh": 30.030352560362555,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.8971907419945562,
+      "verticalAcceleration": -21.62087917327881,
+      "position": {
+        "x": -586.3817138671875,
+        "y": 106.33428192138672,
+        "z": 753.7459106445312
+      },
+      "normal": [
+        {
+          "x": 0.03367340937256813,
+          "y": 0.9975026845932007,
+          "z": -0.06208520755171776
+        },
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        },
+        null,
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 5,
+        "ground": 105.8308582803858,
+        "filteredGround": 105.82673686070368,
+        "target": 106.36231939904135,
+        "error": -0.017669130486666518,
+        "roadRate": -1.9239988020727117,
+        "supportAcceleration": -11.810888964573465,
+        "beforeVertical": -1.0997177362442017,
+        "wheelVertical": -1.0525845289230347,
+        "commandVertical": -1.1981418109489805,
+        "controlledVertical": -1.1981418132781982,
+        "normal": {
+          "x": 0.11066884843933404,
+          "y": 0.974406300884599,
+          "z": -0.19566493498198367
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17150,
+      "index": 1620,
+      "region": "Mountain",
+      "kmh": 44.52412724775172,
+      "contacts": 1,
+      "previousContacts": 1,
+      "tiltRate": 1.4408902665434244,
+      "verticalAcceleration": -9.810104370117188,
+      "position": {
+        "x": -601.9375610351562,
+        "y": 60.14654541015625,
+        "z": 572.5418701171875
+      },
+      "normal": [
+        null,
+        null,
+        null,
+        {
+          "x": 0.04852253198623657,
+          "y": 0.9819007515907288,
+          "z": -0.18307530879974365
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 1,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3565,
+      "index": 424,
+      "region": "City",
+      "kmh": 97.23219766188743,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 1.4034548145493602,
+      "verticalAcceleration": -11.750922203063965,
+      "position": {
+        "x": 530.7659912109375,
+        "y": 18.506603240966797,
+        "z": 469.4779052734375
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 0.9997571706771851,
+          "z": -0.022031201049685478
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 17.955057296765176,
+        "filteredGround": 17.956813929868872,
+        "target": 18.479122448120403,
+        "error": 0.018626880492877973,
+        "roadRate": 0.92090152017721,
+        "supportAcceleration": -1.9409297912290757,
+        "beforeVertical": 1.1244691610336304,
+        "wheelVertical": 1.1244691610336304,
+        "commandVertical": 1.1082947461067214,
+        "controlledVertical": 1.1082947254180908,
+        "normal": {
+          "x": 0.04014268222720149,
+          "y": 0.999169995823577,
+          "z": -0.0069198634032028965
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4711,
+      "index": 536,
+      "region": "City",
+      "kmh": 134.22624451882493,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.7801389073027252,
+      "verticalAcceleration": -20.794057846069336,
+      "position": {
+        "x": 260.4079895019531,
+        "y": 21.39594078063965,
+        "z": 515.48681640625
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.84986686706543,
+        "filteredGround": 20.851334510119628,
+        "target": 21.373415194835736,
+        "error": 0.010486401233599452,
+        "roadRate": 1.027355799811823,
+        "supportAcceleration": -10.984069284858293,
+        "beforeVertical": 1.5821822881698608,
+        "wheelVertical": 1.5821822881698608,
+        "commandVertical": 1.4906483774627084,
+        "controlledVertical": 1.4906483888626099,
+        "normal": {
+          "x": 0.02796076308300363,
+          "y": 0.9996060288723001,
+          "z": 0.002445970148338783
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17151,
+      "index": 1620,
+      "region": "Mountain",
+      "kmh": 44.545732879158344,
+      "contacts": 2,
+      "previousContacts": 1,
+      "tiltRate": 1.3861687081508391,
+      "verticalAcceleration": -7.466611862182617,
+      "position": {
+        "x": -601.9258422851562,
+        "y": 60.12346267700195,
+        "z": 572.4393310546875
+      },
+      "normal": [
+        {
+          "x": -0.027516214177012444,
+          "y": 0.9592598676681519,
+          "z": -0.2811819911003113
+        },
+        null,
+        null,
+        {
+          "x": 0.04852253198623657,
+          "y": 0.9819007515907288,
+          "z": -0.18307530879974365
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17148,
+      "index": 1619,
+      "region": "Mountain",
+      "kmh": 44.64892353412108,
+      "contacts": 1,
+      "previousContacts": 2,
+      "tiltRate": 1.3369024535450633,
+      "verticalAcceleration": 0.4600238800048828,
+      "position": {
+        "x": -601.9600830078125,
+        "y": 60.19094467163086,
+        "z": 572.7470703125
+      },
+      "normal": [
+        null,
+        null,
+        null,
+        {
+          "x": 0.015087554231286049,
+          "y": 0.9982643723487854,
+          "z": -0.05692527815699577
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 1,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17152,
+      "index": 1620,
+      "region": "Mountain",
+      "kmh": 44.56666956248883,
+      "contacts": 2,
+      "previousContacts": 2,
+      "tiltRate": 1.3310558257413734,
+      "verticalAcceleration": -7.457256317138672,
+      "position": {
+        "x": -601.9141845703125,
+        "y": 60.09984588623047,
+        "z": 572.3367919921875
+      },
+      "normal": [
+        {
+          "x": -0.027516214177012444,
+          "y": 0.9592598676681519,
+          "z": -0.2811819911003113
+        },
+        null,
+        null,
+        {
+          "x": 0.04852253198623657,
+          "y": 0.9819007515907288,
+          "z": -0.18307530879974365
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5092,
+      "index": 572,
+      "region": "City",
+      "kmh": 85.0409650675032,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.2995029847816448,
+      "verticalAcceleration": 14.190022945404053,
+      "position": {
+        "x": 173.8785400390625,
+        "y": 23.48273277282715,
+        "z": 540.6492309570312
+      },
+      "normal": [
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.0287577323615551,
+          "y": 0.9994486570358276,
+          "z": -0.016592340543866158
+        },
+        {
+          "x": 0.028969964012503624,
+          "y": 0.9994266629219055,
+          "z": -0.017525574192404747
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.002801505225317,
+        "filteredGround": 22.979521235959144,
+        "target": 23.50213385572978,
+        "error": -0.0221877192551716,
+        "roadRate": 1.1525647782343273,
+        "supportAcceleration": 24,
+        "beforeVertical": 0.8945431113243103,
+        "wheelVertical": 0.941063642501831,
+        "commandVertical": 1.0945431113243103,
+        "controlledVertical": 1.0945430994033813,
+        "normal": {
+          "x": 0.05260582275380413,
+          "y": 0.9985885917355724,
+          "z": -0.007311078440413911
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5108,
+      "index": 572,
+      "region": "City",
+      "kmh": 84.88963704562109,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.291290613390135,
+      "verticalAcceleration": 12.50401496887207,
+      "position": {
+        "x": 172.59130859375,
+        "y": 23.607341766357422,
+        "z": 541.43603515625
+      },
+      "normal": [
+        {
+          "x": 0.03341514244675636,
+          "y": 0.999237060546875,
+          "z": -0.020214714109897614
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        },
+        {
+          "x": 0.03341514244675636,
+          "y": 0.999237060546875,
+          "z": -0.020214714109897614
+        },
+        {
+          "x": 0,
+          "y": 0.9987879991531372,
+          "z": -0.04921853542327881
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.095225173095283,
+        "filteredGround": 23.097293054643718,
+        "target": 23.62142430268102,
+        "error": -0.03223668061070839,
+        "roadRate": 2.147760327362205,
+        "supportAcceleration": 22.31411638630055,
+        "beforeVertical": 2.038647174835205,
+        "wheelVertical": 2.038647174835205,
+        "commandVertical": 2.224598144721043,
+        "controlledVertical": 2.2245981693267822,
+        "normal": {
+          "x": 0.08738807663851446,
+          "y": 0.9956952613572403,
+          "z": -0.0308912701609732
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3359,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.0539484091242,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.4817670305911257,
+      "verticalAcceleration": -19.157652854919434,
+      "position": {
+        "x": 565.5326538085938,
+        "y": 17.383825302124023,
+        "z": 430.28173828125
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.83965184957362,
+        "filteredGround": 16.847946381074355,
+        "target": 17.369970986963683,
+        "error": 0.0028183959708876216,
+        "roadRate": 0.8778067020591741,
+        "supportAcceleration": -9.347660728529519,
+        "beforeVertical": 1.4482183456420898,
+        "wheelVertical": 1.4482183456420898,
+        "commandVertical": 1.3703211729043439,
+        "controlledVertical": 1.3703211545944214,
+        "normal": {
+          "x": 0.016401392075129296,
+          "y": 0.9997134121885441,
+          "z": -0.017438114242532773
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3360,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.03929239391113,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.38525768369417746,
+      "verticalAcceleration": -18.924622535705566,
+      "position": {
+        "x": 565.3519897460938,
+        "y": 17.3935489654541,
+        "z": 430.53125
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.842874437892647,
+        "filteredGround": 16.851243013370865,
+        "target": 17.373245369388652,
+        "error": 0.0105799327353715,
+        "roadRate": 0.7925975337844252,
+        "supportAcceleration": -9.114634472872769,
+        "beforeVertical": 1.2885712385177612,
+        "wheelVertical": 1.2885712385177612,
+        "commandVertical": 1.2126159512438215,
+        "controlledVertical": 1.212615966796875,
+        "normal": {
+          "x": 0.016866951653701952,
+          "y": 0.9997560240556034,
+          "z": -0.014261777814969017
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5117,
+      "index": 573,
+      "region": "City",
+      "kmh": 84.81965445066388,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 1.255790533928369,
+      "verticalAcceleration": 2.2650146484375,
+      "position": {
+        "x": 171.08250427246094,
+        "y": 23.79131507873535,
+        "z": 542.35888671875
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0.028969964012503624,
+          "y": 0.9994266629219055,
+          "z": -0.017525574192404747
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 23.232006856767303,
+        "filteredGround": 23.251719385978408,
+        "target": 23.777572800719415,
+        "error": -0.007997681700860682,
+        "roadRate": 2.5551880167419028,
+        "supportAcceleration": 12.075104277674065,
+        "beforeVertical": 2.554107666015625,
+        "wheelVertical": 2.554107666015625,
+        "commandVertical": 2.654733534996242,
+        "controlledVertical": 2.654733657836914,
+        "normal": {
+          "x": 0.12264627947792235,
+          "y": 0.9924343654914406,
+          "z": -0.005649807237879506
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3358,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.0686044244347,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.5935512749357746,
+      "verticalAcceleration": -18.594932556152344,
+      "position": {
+        "x": 565.7133178710938,
+        "y": 17.37278938293457,
+        "z": 430.0322265625
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.83715982126289,
+        "filteredGround": 16.84390888646024,
+        "target": 17.36596642309341,
+        "error": -0.005544288693997146,
+        "roadRate": 0.9778279249732458,
+        "supportAcceleration": -8.784948620685169,
+        "beforeVertical": 1.6031761169433594,
+        "wheelVertical": 1.6031761169433594,
+        "commandVertical": 1.529968211770983,
+        "controlledVertical": 1.52996826171875,
+        "normal": {
+          "x": 0.015576733430044818,
+          "y": 0.9996503515027317,
+          "z": -0.021366799388642513
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17147,
+      "index": 1619,
+      "region": "Mountain",
+      "kmh": 44.77791306249382,
+      "contacts": 2,
+      "previousContacts": 2,
+      "tiltRate": 1.2233827973457614,
+      "verticalAcceleration": 1.188211441040039,
+      "position": {
+        "x": -601.9697875976562,
+        "y": 60.21278381347656,
+        "z": 572.8502197265625
+      },
+      "normal": [
+        null,
+        null,
+        {
+          "x": -0.027516214177012444,
+          "y": 0.9592598676681519,
+          "z": -0.2811819911003113
+        },
+        {
+          "x": 0.015087554231286049,
+          "y": 0.9982643723487854,
+          "z": -0.05692527815699577
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3361,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.02463637879552,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.3067393655998648,
+      "verticalAcceleration": -18.183674812316895,
+      "position": {
+        "x": 565.1715087890625,
+        "y": 17.402008056640625,
+        "z": 430.78076171875
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.846632155028427,
+        "filteredGround": 16.854216540656175,
+        "target": 17.376201797191257,
+        "error": 0.017347168262844548,
+        "roadRate": 0.7164914119907507,
+        "supportAcceleration": -8.373683989578753,
+        "beforeVertical": 1.1308660507202148,
+        "wheelVertical": 1.1308660507202148,
+        "commandVertical": 1.0610853508070586,
+        "controlledVertical": 1.0610853433609009,
+        "normal": {
+          "x": 0.016893132007043662,
+          "y": 0.9997887746182461,
+          "z": -0.011705906130595968
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3343,
+      "index": 400,
+      "region": "City",
+      "kmh": 133.586554421616,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.2062391155526737,
+      "verticalAcceleration": 9.496285915374756,
+      "position": {
+        "x": 568.3547973632812,
+        "y": 17.171850204467773,
+        "z": 426.378662109375
+      },
+      "normal": [
+        {
+          "x": 0.01265689730644226,
+          "y": 0.9997491240501404,
+          "z": -0.01847802847623825
+        },
+        {
+          "x": 0.012772336602210999,
+          "y": 0.9997485876083374,
+          "z": -0.018425166606903076
+        },
+        {
+          "x": 0.01265689730644226,
+          "y": 0.9997491240501404,
+          "z": -0.01847802847623825
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.672696318510685,
+        "filteredGround": 16.648363122610487,
+        "target": 17.170455958904707,
+        "error": -0.007059123577558779,
+        "roadRate": 1.01930430085717,
+        "supportAcceleration": 19.306272314760907,
+        "beforeVertical": 0.7855813503265381,
+        "wheelVertical": 0.8603377938270569,
+        "commandVertical": 0.9464669529495456,
+        "controlledVertical": 0.9464669227600098,
+        "normal": {
+          "x": 0.008777231887889139,
+          "y": 0.9995827632959535,
+          "z": -0.027518348824232295
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4401,
+      "index": 501,
+      "region": "City",
+      "kmh": 115.22896461342667,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.44739841047122547,
+      "verticalAcceleration": -17.69782304763794,
+      "position": {
+        "x": 350.0285339355469,
+        "y": 20.175077438354492,
+        "z": 507.3108825683594
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 19.626834869384766,
+        "filteredGround": 19.63133509865149,
+        "target": 20.153277718991742,
+        "error": 0.015019094973101943,
+        "roadRate": 0.5060294596950051,
+        "supportAcceleration": -7.887835774355008,
+        "beforeVertical": 0.9254767894744873,
+        "wheelVertical": 0.9254767894744873,
+        "commandVertical": 0.8597448246881956,
+        "controlledVertical": 0.8597448468208313,
+        "normal": {
+          "x": 0.01603621889792708,
+          "y": 0.9998704448772388,
+          "z": 0.0013903756507381022
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4402,
+      "index": 501,
+      "region": "City",
+      "kmh": 115.21719908731988,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.363264392859952,
+      "verticalAcceleration": -17.583296298980713,
+      "position": {
+        "x": 349.7631530761719,
+        "y": 20.18063735961914,
+        "z": 507.3384704589844
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 19.626834869384766,
+        "filteredGround": 19.632513242190818,
+        "target": 20.154432819078167,
+        "error": 0.020644619276325216,
+        "roadRate": 0.4108117642733969,
+        "supportAcceleration": -7.7733092650424584,
+        "beforeVertical": 0.7779949307441711,
+        "wheelVertical": 0.7779949307441711,
+        "commandVertical": 0.713217353535484,
+        "controlledVertical": 0.7132173776626587,
+        "normal": {
+          "x": 0.013020646561702313,
+          "y": 0.9999145905052719,
+          "z": 0.001128918858709134
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4716,
+      "index": 537,
+      "region": "City",
+      "kmh": 134.1517365439503,
+      "contacts": 2,
+      "previousContacts": 3,
+      "tiltRate": 0.0000035762786865234375,
+      "verticalAcceleration": -17.18461275100708,
+      "position": {
+        "x": 258.8638000488281,
+        "y": 21.431699752807617,
+        "z": 515.65283203125
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        null
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 2,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 20.864549893584556,
+        "filteredGround": 20.863363908033147,
+        "target": 21.38527774936073,
+        "error": 0.04219913357384186,
+        "roadRate": 0.4461602912049784,
+        "supportAcceleration": -7.374625670329347,
+        "beforeVertical": 0.614336371421814,
+        "wheelVertical": 0.614336371421814,
+        "commandVertical": 0.5528811575024027,
+        "controlledVertical": 0.5528811812400818,
+        "normal": {
+          "x": 0.01215343789555819,
+          "y": 0.9999255790429292,
+          "z": 0.0010631664881240177
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3362,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.0099481795964,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.2493382558286966,
+      "verticalAcceleration": -17.10193634033203,
+      "position": {
+        "x": 564.9913330078125,
+        "y": 17.409278869628906,
+        "z": 431.0303039550781
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.850387189336537,
+        "filteredGround": 16.856999808123895,
+        "target": 17.378970744365702,
+        "error": 0.023037312274922783,
+        "roadRate": 0.6478148655445274,
+        "supportAcceleration": -7.2919445327166965,
+        "beforeVertical": 0.9793354272842407,
+        "wheelVertical": 0.9793354272842407,
+        "commandVertical": 0.9185692228449349,
+        "controlledVertical": 0.9185692071914673,
+        "normal": {
+          "x": 0.01656347044256075,
+          "y": 0.9998162038628094,
+          "z": -0.009654529520351358
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3567,
+      "index": 424,
+      "region": "City",
+      "kmh": 97.21368751726031,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.8555490166370358,
+      "verticalAcceleration": -17.093024253845215,
+      "position": {
+        "x": 530.4368896484375,
+        "y": 18.520977020263672,
+        "z": 469.7850341796875
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 0.9997571706771851,
+          "z": -0.022031201049685478
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 0.999765157699585,
+          "z": -0.021671926602721214
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 17.958883275905148,
+        "filteredGround": 17.964220188029195,
+        "target": 18.486258536009704,
+        "error": 0.028124780030335472,
+        "roadRate": 0.6107294969712947,
+        "supportAcceleration": -7.283031816342165,
+        "beforeVertical": 0.8979237675666809,
+        "wheelVertical": 0.8979237675666809,
+        "commandVertical": 0.8372318357638295,
+        "controlledVertical": 0.8372318148612976,
+        "normal": {
+          "x": 0.023831033641813503,
+          "y": 0.9996870958213332,
+          "z": -0.007602123642184695
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3568,
+      "index": 424,
+      "region": "City",
+      "kmh": 97.20443244528792,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.6395159586440123,
+      "verticalAcceleration": -17.06138849258423,
+      "position": {
+        "x": 530.2723388671875,
+        "y": 18.526386260986328,
+        "z": 469.9385986328125
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 0.9997571706771851,
+          "z": -0.022031201049685478
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 0.999765157699585,
+          "z": -0.021671926602721214
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 17.962185696425312,
+        "filteredGround": 17.966663951627822,
+        "target": 18.488643462012732,
+        "error": 0.032333558250940087,
+        "roadRate": 0.5057113051102804,
+        "supportAcceleration": -7.251397414888272,
+        "beforeVertical": 0.7554818987846375,
+        "wheelVertical": 0.7554818987846375,
+        "commandVertical": 0.6950535869939019,
+        "controlledVertical": 0.6950535774230957,
+        "normal": {
+          "x": 0.018503003281643986,
+          "y": 0.9997997806756178,
+          "z": -0.007618230145262139
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5176,
+      "index": 577,
+      "region": "City",
+      "kmh": 84.22909202133616,
+      "contacts": 1,
+      "previousContacts": 1,
+      "tiltRate": 1.1359498778211155,
+      "verticalAcceleration": 0.1547098159790039,
+      "position": {
+        "x": 161.2269744873047,
+        "y": 24.145944595336914,
+        "z": 548.3865966796875
+      },
+      "normal": [
+        null,
+        null,
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 1,
+        "reason": "unsupported",
+        "transitions": 2,
+        "ground": 23.36649178544173,
+        "filteredGround": 23.372094771447586,
+        "target": 23.897948186188593,
+        "error": -0.03811732986535077,
+        "roadRate": 2.5542567772750124,
+        "supportAcceleration": 13.598189640909943,
+        "beforeVertical": 2.766676425933838,
+        "wheelVertical": 2.766676425933838,
+        "commandVertical": 2.8799946729414208,
+        "controlledVertical": 2.8799946308135986,
+        "normal": {
+          "x": 0.12264627947792235,
+          "y": 0.9924343654914406,
+          "z": -0.005649807237879506
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4400,
+      "index": 501,
+      "region": "City",
+      "kmh": 115.24073013953591,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.5510088075902368,
+      "verticalAcceleration": -16.889748573303223,
+      "position": {
+        "x": 350.2939147949219,
+        "y": 20.168296813964844,
+        "z": 507.2832946777344
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 19.626834869384766,
+        "filteredGround": 19.62889755079443,
+        "target": 20.15087512802002,
+        "error": 0.009412729035645384,
+        "roadRate": 0.623324501961341,
+        "supportAcceleration": -7.079756743207897,
+        "beforeVertical": 1.0662246942520142,
+        "wheelVertical": 1.0662246942520142,
+        "commandVertical": 1.0072267213919484,
+        "controlledVertical": 1.0072267055511475,
+        "normal": {
+          "x": 0.019749993659196816,
+          "y": 0.9998034834635372,
+          "z": 0.0017123681374497054
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3357,
+      "index": 402,
+      "region": "City",
+      "kmh": 133.08330495558408,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.7312166840551072,
+      "verticalAcceleration": -16.85654640197754,
+      "position": {
+        "x": 565.8939819335938,
+        "y": 17.360422134399414,
+        "z": 429.7825622558594
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.83466752649779,
+        "filteredGround": 16.838425410369098,
+        "target": 17.36053508141909,
+        "error": -0.01377147057924688,
+        "roadRate": 1.1010389181196043,
+        "supportAcceleration": -7.046553173642263,
+        "beforeVertical": 1.7436473369598389,
+        "wheelVertical": 1.7436473369598389,
+        "commandVertical": 1.68492606051282,
+        "controlledVertical": 1.6849260330200195,
+        "normal": {
+          "x": 0.014558980681610116,
+          "y": 0.9995505330335661,
+          "z": -0.0262062586766299
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 4403,
+      "index": 501,
+      "region": "City",
+      "kmh": 115.2054335612155,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.29495199553745144,
+      "verticalAcceleration": -16.801586151123047,
+      "position": {
+        "x": 349.4979248046875,
+        "y": 20.185029983520508,
+        "z": 507.3660583496094
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 19.626834869384766,
+        "filteredGround": 19.632895913011318,
+        "target": 20.154800299390185,
+        "error": 0.025837060228955266,
+        "roadRate": 0.33351359704819356,
+        "supportAcceleration": -6.991599507237289,
+        "beforeVertical": 0.6314674615859985,
+        "wheelVertical": 0.6314674615859985,
+        "commandVertical": 0.5732041323590211,
+        "controlledVertical": 0.5732041597366333,
+        "normal": {
+          "x": 0.01057207407216376,
+          "y": 0.9999436939415846,
+          "z": 0.0009166222075975896
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5177,
+      "index": 577,
+      "region": "City",
+      "kmh": 84.21495650117664,
+      "contacts": 2,
+      "previousContacts": 1,
+      "tiltRate": 1.1147656776784303,
+      "verticalAcceleration": 11.14870548248291,
+      "position": {
+        "x": 161.06117248535156,
+        "y": 24.136962890625,
+        "z": 548.489990234375
+      },
+      "normal": [
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null,
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 2,
+        "ground": 23.36649178544173,
+        "filteredGround": 23.372094771447586,
+        "target": 23.897948186188593,
+        "error": -0.03811732986535077,
+        "roadRate": 2.5542567772750124,
+        "supportAcceleration": 13.598189640909943,
+        "beforeVertical": 2.766676425933838,
+        "wheelVertical": 2.766676425933838,
+        "commandVertical": 2.8799946729414208,
+        "controlledVertical": 2.8799946308135986,
+        "normal": {
+          "x": 0.12264627947792235,
+          "y": 0.9924343654914406,
+          "z": -0.005649807237879506
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 17146,
+      "index": 1619,
+      "region": "Mountain",
+      "kmh": 44.916946068403306,
+      "contacts": 2,
+      "previousContacts": 2,
+      "tiltRate": 1.1093475308557281,
+      "verticalAcceleration": 1.9500160217285156,
+      "position": {
+        "x": -601.9778442382812,
+        "y": 60.234657287597656,
+        "z": 572.9539184570312
+      },
+      "normal": [
+        null,
+        null,
+        {
+          "x": -0.027516214177012444,
+          "y": 0.9592598676681519,
+          "z": -0.2811819911003113
+        },
+        {
+          "x": 0.015087554231286049,
+          "y": 0.9982643723487854,
+          "z": -0.05692527815699577
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 16,
+        "ground": 59.82342938092606,
+        "filteredGround": 59.83400558284857,
+        "target": 60.36566767790252,
+        "error": 0.047307633376775016,
+        "roadRate": -2.2649609710031346,
+        "supportAcceleration": 10.06078461412475,
+        "beforeVertical": -2.6823580265045166,
+        "wheelVertical": -2.6823580265045166,
+        "commandVertical": -2.5985181547201437,
+        "controlledVertical": -2.598518133163452,
+        "normal": {
+          "x": -0.07671308539673437,
+          "y": 0.9815915124568706,
+          "z": -0.17490913412840065
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 13461,
+      "index": 1312,
+      "region": "Mountain",
+      "kmh": 30.161832597604327,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 0.6983254650984655,
+      "verticalAcceleration": -16.578969955444336,
+      "position": {
+        "x": -586.3447265625,
+        "y": 106.32276153564453,
+        "z": 753.6865234375
+      },
+      "normal": [
+        {
+          "x": 0.03367340937256813,
+          "y": 0.9975026845932007,
+          "z": -0.06208520755171776
+        },
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        },
+        null,
+        {
+          "x": 0.12995322048664093,
+          "y": 0.9779615998268127,
+          "z": -0.16341175138950348
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 5,
+        "ground": 105.81948225722623,
+        "filteredGround": 105.81328955620144,
+        "target": 106.34868160632705,
+        "error": -0.014399684940329394,
+        "roadRate": -1.9193214878307263,
+        "supportAcceleration": -6.768985807451564,
+        "beforeVertical": -1.2798917293548584,
+        "wheelVertical": -1.2156449556350708,
+        "commandVertical": -1.3362999444169548,
+        "controlledVertical": -1.3362998962402344,
+        "normal": {
+          "x": 0.1148858015625787,
+          "y": 0.9747529868580771,
+          "z": -0.19146244334224172
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3355,
+      "index": 401,
+      "region": "City",
+      "kmh": 133.11270601803304,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 1.1050279291521226,
+      "verticalAcceleration": -8.503375053405762,
+      "position": {
+        "x": 566.2553100585938,
+        "y": 17.33193588256836,
+        "z": 429.2830505371094
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.829265655202402,
+        "filteredGround": 16.819717660067894,
+        "target": 17.342036561672497,
+        "error": -0.025874452297497186,
+        "roadRate": 1.439855319661153,
+        "supportAcceleration": 1.3066207757611181,
+        "beforeVertical": 1.9279041290283203,
+        "wheelVertical": 1.9279041290283203,
+        "commandVertical": 1.9387926354929963,
+        "controlledVertical": 1.9387925863265991,
+        "normal": {
+          "x": 0.01175434651811913,
+          "y": 0.9991501329872632,
+          "z": -0.03950755737155078
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3566,
+      "index": 424,
+      "region": "City",
+      "kmh": 97.22294258946016,
+      "contacts": 3,
+      "previousContacts": 3,
+      "tiltRate": 1.104796506181706,
+      "verticalAcceleration": -15.43452501296997,
+      "position": {
+        "x": 530.6014404296875,
+        "y": 18.51438331604004,
+        "z": 469.6314697265625
+      },
+      "normal": [
+        {
+          "x": 0,
+          "y": 0.9997571706771851,
+          "z": -0.022031201049685478
+        },
+        null,
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 3,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 17.956665349002673,
+        "filteredGround": 17.961241112798668,
+        "target": 18.48338075129727,
+        "error": 0.023222489669528557,
+        "roadRate": 0.7483980021636891,
+        "supportAcceleration": -5.624534352202226,
+        "beforeVertical": 1.0265448093414307,
+        "wheelVertical": 1.0265448093414307,
+        "commandVertical": 0.9796736897397454,
+        "controlledVertical": 0.9796736836433411,
+        "normal": {
+          "x": 0.030955752283636118,
+          "y": 0.9994931652778549,
+          "z": -0.007426571443725644
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5178,
+      "index": 577,
+      "region": "City",
+      "kmh": 84.2097837044298,
+      "contacts": 2,
+      "previousContacts": 2,
+      "tiltRate": 1.0939814813185536,
+      "verticalAcceleration": 10.0288724899292,
+      "position": {
+        "x": 160.8953399658203,
+        "y": 24.128673553466797,
+        "z": 548.5935668945312
+      },
+      "normal": [
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null,
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 2,
+        "ground": 23.36649178544173,
+        "filteredGround": 23.372094771447586,
+        "target": 23.897948186188593,
+        "error": -0.03811732986535077,
+        "roadRate": 2.5542567772750124,
+        "supportAcceleration": 13.598189640909943,
+        "beforeVertical": 2.766676425933838,
+        "wheelVertical": 2.766676425933838,
+        "commandVertical": 2.8799946729414208,
+        "controlledVertical": 2.8799946308135986,
+        "normal": {
+          "x": 0.12264627947792235,
+          "y": 0.9924343654914406,
+          "z": -0.005649807237879506
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 5179,
+      "index": 577,
+      "region": "City",
+      "kmh": 84.21349834538235,
+      "contacts": 2,
+      "previousContacts": 2,
+      "tiltRate": 1.0771004671606461,
+      "verticalAcceleration": 9.082574844360352,
+      "position": {
+        "x": 160.7295684814453,
+        "y": 24.121013641357422,
+        "z": 548.69775390625
+      },
+      "normal": [
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null,
+        {
+          "x": 0.03433701768517494,
+          "y": 0.9990659356117249,
+          "z": -0.02623399719595909
+        },
+        null
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 2,
+        "ground": 23.36649178544173,
+        "filteredGround": 23.372094771447586,
+        "target": 23.897948186188593,
+        "error": -0.03811732986535077,
+        "roadRate": 2.5542567772750124,
+        "supportAcceleration": 13.598189640909943,
+        "beforeVertical": 2.766676425933838,
+        "wheelVertical": 2.766676425933838,
+        "commandVertical": 2.8799946729414208,
+        "controlledVertical": 2.8799946308135986,
+        "normal": {
+          "x": 0.12264627947792235,
+          "y": 0.9924343654914406,
+          "z": -0.005649807237879506
+        }
+      },
+      "solverContacts": []
+    },
+    {
+      "tick": 3363,
+      "index": 402,
+      "region": "City",
+      "kmh": 132.99507858532826,
+      "contacts": 4,
+      "previousContacts": 4,
+      "tiltRate": 0.23077358841709333,
+      "verticalAcceleration": -16.023731231689453,
+      "position": {
+        "x": 564.8111572265625,
+        "y": 17.415437698364258,
+        "z": 431.2798156738281
+      },
+      "normal": [
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        {
+          "x": 0.027619311586022377,
+          "y": 0.9996185302734375,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      ],
+      "ride": {
+        "locked": true,
+        "contacts": 4,
+        "reason": "supported",
+        "transitions": 1,
+        "ground": 16.853360509531893,
+        "filteredGround": 16.859433656159094,
+        "target": 17.381391584034454,
+        "error": 0.02788728559445275,
+        "roadRate": 0.5807684794919219,
+        "supportAcceleration": -6.2137400147301225,
+        "beforeVertical": 0.8368192911148071,
+        "wheelVertical": 0.8370112776756287,
+        "commandVertical": 0.7850381243253894,
+        "controlledVertical": 0.7850381135940552,
+        "normal": {
+          "x": 0.01602352598417337,
+          "y": 0.9998411215331151,
+          "z": -0.0078088607643631265
+        }
+      },
+      "solverContacts": []
+    }
+  ]
+}

@@ -1,0 +1,1705 @@
+{
+  "mode": "race",
+  "selected": "supra",
+  "paused": true,
+  "countdown": 0,
+  "elapsed": 82.23333333334485,
+  "result": null,
+  "kmh": 0,
+  "gear": "N",
+  "place": 6,
+  "progress": 0.08580413297394429,
+  "region": "남산로",
+  "nitro": 1,
+  "standings": [
+    {
+      "name": "MIST",
+      "progress": 2395.539563047619,
+      "finished": false,
+      "personality": "수비형"
+    },
+    {
+      "name": "NOVA",
+      "progress": 2267.564160681135,
+      "finished": false,
+      "personality": "코너 강자"
+    },
+    {
+      "name": "BLAZE",
+      "progress": 2027.6102812439776,
+      "finished": false,
+      "personality": "직선 강자"
+    },
+    {
+      "name": "LUNA",
+      "progress": 1995.6164306523567,
+      "finished": false,
+      "personality": "균형형"
+    },
+    {
+      "name": "RAVEN",
+      "progress": 1915.6318041733043,
+      "finished": false,
+      "personality": "공격형"
+    },
+    {
+      "name": "YOU",
+      "progress": 763.8531828749502,
+      "finished": false
+    }
+  ],
+  "fps": 60,
+  "colliderCount": 142,
+  "contacts": 4,
+  "position": {
+    "x": -538.0679931640625,
+    "y": 8.550999641418457,
+    "z": 317.8143310546875
+  },
+  "ai": [
+    {
+      "position": {
+        "x": 243.7169189453125,
+        "y": 8.541010856628418,
+        "z": 1098.2305908203125
+      },
+      "kmh": 149.98782298338082,
+      "progress": 2267.564160681135,
+      "contacts": 4,
+      "waitingForTraffic": false,
+      "name": "NOVA",
+      "vehicle": "slk",
+      "maneuver": {
+        "personality": "NOVA",
+        "style": "코너 강자",
+        "mode": "changing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": 2.2,
+        "passes": 1,
+        "attempts": 2,
+        "aborts": 0,
+        "age": 1.5999999999999968,
+        "tactic": "pace",
+        "boosts": 7,
+        "draftSetups": 0
+      },
+      "recovery": {
+        "count": 0,
+        "reason": "",
+        "age": 185.23333333330356
+      }
+    },
+    {
+      "position": {
+        "x": -41.29266357421875,
+        "y": 8.566010475158691,
+        "z": 944.1578979492188
+      },
+      "kmh": 84.71725631459043,
+      "progress": 1915.6318041733043,
+      "contacts": 4,
+      "waitingForTraffic": false,
+      "name": "RAVEN",
+      "vehicle": "mustang",
+      "maneuver": {
+        "personality": "RAVEN",
+        "style": "공격형",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": 2.2,
+        "targetLane": 2.2,
+        "passes": 0,
+        "attempts": 7,
+        "aborts": 1,
+        "age": 8.47500000000016,
+        "tactic": "pace",
+        "boosts": 9,
+        "draftSetups": 1
+      },
+      "recovery": {
+        "count": 0,
+        "reason": "",
+        "age": 185.23333333330356
+      }
+    },
+    {
+      "position": {
+        "x": 15.93032455444336,
+        "y": 8.551011085510254,
+        "z": 1036.805419921875
+      },
+      "kmh": 93.19351859818852,
+      "progress": 2027.6102812439776,
+      "contacts": 4,
+      "waitingForTraffic": false,
+      "name": "BLAZE",
+      "vehicle": "porsche911",
+      "maneuver": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 1,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 43.89166666666482,
+        "tactic": "pace",
+        "boosts": 8,
+        "draftSetups": 3
+      },
+      "recovery": {
+        "count": 0,
+        "reason": "",
+        "age": 185.23333333330356
+      }
+    },
+    {
+      "position": {
+        "x": 368.2960205078125,
+        "y": 8.561010360717773,
+        "z": 1127.9534912109375
+      },
+      "kmh": 188.0364548147474,
+      "progress": 2395.539563047619,
+      "contacts": 4,
+      "waitingForTraffic": false,
+      "name": "MIST",
+      "vehicle": "gtr",
+      "maneuver": {
+        "personality": "MIST",
+        "style": "수비형",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": 2.2,
+        "targetLane": 2.2,
+        "passes": 0,
+        "attempts": 1,
+        "aborts": 1,
+        "age": 76.18333333334003,
+        "tactic": "pace",
+        "boosts": 6,
+        "draftSetups": 5
+      },
+      "recovery": {
+        "count": 0,
+        "reason": "",
+        "age": 185.23333333330356
+      }
+    },
+    {
+      "position": {
+        "x": -5.243895530700684,
+        "y": 8.5360107421875,
+        "z": 1012.5289306640625
+      },
+      "kmh": 81.92227536429849,
+      "progress": 1995.6164306523567,
+      "contacts": 4,
+      "waitingForTraffic": false,
+      "name": "LUNA",
+      "vehicle": "rx7",
+      "maneuver": {
+        "personality": "LUNA",
+        "style": "균형형",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": 2.2,
+        "passes": 0,
+        "attempts": 6,
+        "aborts": 0,
+        "age": 19.099999999999557,
+        "tactic": "pace",
+        "boosts": 6,
+        "draftSetups": 1
+      },
+      "recovery": {
+        "count": 0,
+        "reason": "",
+        "age": 185.23333333330356
+      }
+    }
+  ],
+  "cameraDistance": 0.7094736147313655,
+  "redline": 6500,
+  "rpm": 850,
+  "shifting": false,
+  "mass": 1480,
+  "steeringSensitivity": 1.6900000000000002,
+  "steeringLimit": 0.56,
+  "steer": 0,
+  "wheels": [
+    {
+      "y": 0.4239995896816253,
+      "suspensionLength": 0.27600041031837463,
+      "load": 3590.48046875,
+      "radius": 0.35,
+      "steering": 0,
+      "rotation": 2235.68701171875,
+      "launchAngle": 0,
+      "contact": true,
+      "point": {
+        "x": -539.3463745117188,
+        "y": 8.024999618530273,
+        "z": 318.5374755859375
+      },
+      "normal": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "y": 0.4239995896816253,
+      "suspensionLength": 0.27600041031837463,
+      "load": 3969.357666015625,
+      "radius": 0.35,
+      "steering": 0,
+      "rotation": 2232.041015625,
+      "launchAngle": 0,
+      "contact": true,
+      "point": {
+        "x": -536.8804321289062,
+        "y": 8.024999618530273,
+        "z": 318.6785888671875
+      },
+      "normal": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "y": 0.4239995896816253,
+      "suspensionLength": 0.27600041031837463,
+      "load": 3590.48046875,
+      "radius": 0.35,
+      "steering": 0,
+      "rotation": 2228.9990234375,
+      "launchAngle": 0,
+      "contact": true,
+      "point": {
+        "x": -539.2555541992188,
+        "y": 8.024999618530273,
+        "z": 316.9500732421875
+      },
+      "normal": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "y": 0.4239995896816253,
+      "suspensionLength": 0.27600041031837463,
+      "load": 3969.357666015625,
+      "radius": 0.35,
+      "steering": 0,
+      "rotation": 2232.817626953125,
+      "launchAngle": 0,
+      "contact": true,
+      "point": {
+        "x": -536.7896118164062,
+        "y": 8.024999618530273,
+        "z": 317.0911865234375
+      },
+      "normal": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    }
+  ],
+  "impact": {
+    "deltaV": 0.782671558277027,
+    "kind": "impact",
+    "intensity": 5.953715098299258e-29,
+    "tangentSpeed": 0.2994965070239541,
+    "point": {
+      "x": -535.9094848632812,
+      "y": 8.550819396972656,
+      "z": 317.97271728515625
+    },
+    "pointSource": "collider-projection",
+    "normal": {
+      "x": -0.9973880052566528,
+      "y": 0,
+      "z": -0.0722300186753273
+    },
+    "velocity": {
+      "x": -0.9313271641731262,
+      "z": 0.23283490538597107
+    },
+    "otherVehicle": false,
+    "count": 2,
+    "age": 7.85000000000018
+  },
+  "rotation": {
+    "x": 0,
+    "y": 0.686613917350769,
+    "z": 0,
+    "w": 0.7270222306251526
+  },
+  "angularVelocity": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "recovery": {
+    "count": 1,
+    "reason": "manual",
+    "age": 23.149999999999327
+  },
+  "ride": {
+    "locked": true,
+    "contacts": 4,
+    "reason": "supported",
+    "transitions": 1,
+    "ground": 8.024999618530273,
+    "planeResidual": 0,
+    "uneven": 0,
+    "filteredGround": 8.024999618530273,
+    "target": 8.546874618530273,
+    "error": 0.004125022888183949,
+    "roadRate": 0,
+    "supportAcceleration": 9.810000454990366,
+    "beforeVertical": -0.03571630269289017,
+    "wheelVertical": 0.04941701516509056,
+    "commandVertical": 0.046033701098696214,
+    "controlledVertical": 0.04603370279073715,
+    "normal": {
+      "x": 0,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "velocity": {
+    "x": -1.401298464324817e-45,
+    "y": -0.03571630269289017,
+    "z": -1.401298464324817e-45
+  },
+  "guidance": {
+    "direction": "left",
+    "sharp": false,
+    "distance": 10,
+    "remaining": 8138.43574424358
+  },
+  "lap": 1,
+  "lapTimes": [],
+  "laps": 1,
+  "lapOptions": [
+    1,
+    3
+  ],
+  "best": {
+    "time": 303.9499999998879,
+    "vehicle": "supra",
+    "difficulty": "normal",
+    "place": 6,
+    "date": "2026-10-16",
+    "medal": null
+  },
+  "medals": {
+    "gold": 287,
+    "silver": 289,
+    "bronze": 294
+  },
+  "ghost": null,
+  "raceSetup": {
+    "mode": "grid",
+    "opponent": "RAVEN"
+  },
+  "participants": 6,
+  "duel": null,
+  "online": {
+    "phase": "idle",
+    "role": null,
+    "room": "",
+    "vehicle": null,
+    "remoteVehicle": null,
+    "error": "",
+    "errorCode": "",
+    "errorDetails": "",
+    "signallingDown": false,
+    "readyLocal": false,
+    "readyRemote": false,
+    "connected": false,
+    "runId": null,
+    "config": null,
+    "rtt": null,
+    "txBytes": 0,
+    "rxBytes": 0,
+    "shareUrl": ""
+  },
+  "timing": {
+    "rawSeconds": 0,
+    "steps": 0,
+    "simulatedSeconds": 0,
+    "pendingSeconds": 0,
+    "droppedSeconds": 0
+  },
+  "camera": {
+    "position": [
+      -537.9687018484225,
+      9.150999641418451,
+      318.1796994231028
+    ],
+    "quaternion": [
+      0,
+      -0.7270222323253152,
+      0,
+      0.6866139189564362
+    ],
+    "fov": 78
+  },
+  "input": {
+    "throttle": 0,
+    "brake": 0,
+    "reverse": 0,
+    "steer": 0,
+    "handbrake": false,
+    "boost": false
+  },
+  "pauseReason": "manual",
+  "track": {
+    "id": "yeosu",
+    "name": "여수 밤바다",
+    "length": 8902.28892711853
+  },
+  "audio": {
+    "enabled": true,
+    "paused": true,
+    "volume": 0.35,
+    "failed": false,
+    "state": "running",
+    "vehicle": "supra",
+    "voice": "부드러운 터보 톤",
+    "shiftCount": 2,
+    "audible": false,
+    "mix": {
+      "gear": 0,
+      "rpm": 850.0000000000013,
+      "hz": 42.500000000000064,
+      "load": 9.324863799945363e-37,
+      "boost": 0,
+      "engine": 0.075,
+      "intake": 5.128675089969949e-38,
+      "bass": 0.055,
+      "brightness": 0.92,
+      "shifting": false,
+      "wind": 2.8276378360114906e-94,
+      "brake": 0,
+      "tire": 0,
+      "scrape": 0,
+      "squeal": 0
+    },
+    "wanted": true
+  },
+  "difficulty": "normal",
+  "assist": true,
+  "nitroBonus": {
+    "amount": 12,
+    "age": 80.82500000001039
+  },
+  "surface": {
+    "grip": 1,
+    "drag": 0,
+    "scrape": 1
+  },
+  "draft": 0,
+  "music": {
+    "wanted": true,
+    "enabled": true,
+    "playing": false,
+    "paused": true,
+    "blocked": false,
+    "failed": false,
+    "volume": 0.24,
+    "time": 20.682926,
+    "duration": 68.847166,
+    "trackId": "seven-mile-horizon",
+    "title": "Seven Mile Horizon",
+    "genre": "해변 힙합"
+  },
+  "cameraMode": "first-person",
+  "cockpit": {
+    "visible": true,
+    "rig": 1,
+    "meshes": 18,
+    "steeringAngle": 0,
+    "speedNeedle": 2.2689280275926285,
+    "rpmNeedle": 1.786780821729195,
+    "redline": 6500,
+    "grainBytes": 65536,
+    "display": {
+      "readout": {
+        "kmh": 0,
+        "gear": "N",
+        "rpm": 850,
+        "redline": 6500,
+        "musicTitle": "Seven Mile Horizon",
+        "musicState": "PLAYING"
+      },
+      "uploads": 160
+    }
+  },
+  "quality": "low",
+  "progression": {
+    "count": 1,
+    "medals": [
+      {
+        "track": "namak",
+        "laps": 1,
+        "medal": "silver",
+        "time": 83.45000000001248
+      }
+    ],
+    "cars": [
+      {
+        "id": "supra",
+        "name": "GR Supra",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "slk",
+        "name": "SLK Roadster",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "mustang",
+        "name": "Mustang GT",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "porsche911",
+        "name": "Porsche 911",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "gtr",
+        "name": "Nissan GT-R",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "rx7",
+        "name": "Mazda RX-7",
+        "required": 1,
+        "unlocked": true
+      },
+      {
+        "id": "m3",
+        "name": "BMW M3",
+        "required": 2,
+        "unlocked": false
+      },
+      {
+        "id": "huracan",
+        "name": "Lamborghini Huracán",
+        "required": 4,
+        "unlocked": false
+      }
+    ],
+    "tracks": [
+      {
+        "id": "coastal",
+        "name": "해안 월드",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "namak",
+        "name": "남악 시티",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "yeosu",
+        "name": "여수 밤바다",
+        "required": 0,
+        "unlocked": true
+      },
+      {
+        "id": "seongsamjae",
+        "name": "지리산 성삼재",
+        "required": 1,
+        "unlocked": true
+      }
+    ]
+  },
+  "weather": "clear",
+  "traffic": {
+    "count": 2,
+    "vehicles": [
+      {
+        "name": "TRAFFIC 1",
+        "kmh": 59.34125388596937,
+        "position": {
+          "x": -510.2829895019531,
+          "y": 8.550999641418457,
+          "z": 881.512451171875
+        },
+        "contacts": 4,
+        "lane": -3.2
+      },
+      {
+        "name": "TRAFFIC 2",
+        "kmh": 62.01267950208968,
+        "position": {
+          "x": 704.7262573242188,
+          "y": 8.550999641418457,
+          "z": 1234.370849609375
+        },
+        "contacts": 4,
+        "lane": 3.2
+      }
+    ]
+  },
+  "rendering": {
+    "samples": 0,
+    "pageVisible": true,
+    "pageFocused": true,
+    "pauseRendering": {
+      "draws": 26406,
+      "skipped": 11586
+    },
+    "scenery": {
+      "before": 548,
+      "after": 544,
+      "mergedObjects": 12,
+      "batches": 6,
+      "splitObjects": 1,
+      "partsCreated": 3,
+      "cellSize": 128
+    },
+    "surfaces": {
+      "surfaces": 2,
+      "textureBytes": 16384
+    },
+    "landmarks": {
+      "signs": 17,
+      "visibleSigns": 2
+    },
+    "night": {
+      "lights": 6,
+      "shadowMaps": 0,
+      "reflectionPasses": 0,
+      "skyDraws": 1,
+      "skyTriangles": 528
+    },
+    "mapVisuals": {
+      "lights": 0,
+      "shadowMaps": 0,
+      "reflectionPasses": 0,
+      "skyDraws": 0,
+      "seaReplacements": 1,
+      "sourceLights": 61,
+      "reflectionSources": 4,
+      "addedDraws": 1,
+      "addedTriangles": 16,
+      "haloInstances": 8,
+      "quality": "low",
+      "waterShaderSources": 12,
+      "roadMaskBytes": 85593,
+      "layoutMode": "baked",
+      "seaTriangles": 2
+    },
+    "roadscape": {
+      "meshes": 451,
+      "visible": 13,
+      "calls": 13,
+      "foundations": 13,
+      "quality": "low",
+      "distance": 0
+    },
+    "staticWorld": {
+      "frozenObjects": 963
+    },
+    "lighting": {
+      "ambient": 0.38,
+      "sun": 0.12,
+      "exposure": 0.88,
+      "environment": 0.26,
+      "fogNear": 900,
+      "fogFar": 2500
+    },
+    "atmosphere": {
+      "fog": "#09182d",
+      "turbidity": 2.4,
+      "rayleigh": 2.2,
+      "mieCoefficient": 0.003
+    },
+    "colors": {
+      "version": "yeosu-photo-palette-1",
+      "materials": 3,
+      "emissiveMaterials": 3
+    },
+    "decoration": {
+      "objects": 368,
+      "hidden": 350,
+      "distance": 140
+    },
+    "pixelRatio": 0.75,
+    "width": 667,
+    "height": 375
+  },
+  "loading": {
+    "measured": true,
+    "files": [
+      {
+        "name": "client",
+        "encodedBytes": 179008,
+        "transferBytes": 300,
+        "durationMs": 18.299999997019768
+      },
+      {
+        "name": "main.jsx?t=1792148713034",
+        "encodedBytes": 157012,
+        "transferBytes": 300,
+        "durationMs": 18.700000002980232
+      },
+      {
+        "name": "env.mjs",
+        "encodedBytes": 3478,
+        "transferBytes": 300,
+        "durationMs": 6.800000004470348
+      },
+      {
+        "name": "@react-refresh",
+        "encodedBytes": 111894,
+        "transferBytes": 300,
+        "durationMs": 7.399999998509884
+      },
+      {
+        "name": "react_jsx-dev-runtime.js?v=f86a295e",
+        "encodedBytes": 12375,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "react.js?v=f86a295e",
+        "encodedBytes": 1024,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "react-dom_client.js?v=4a9aadb7",
+        "encodedBytes": 1005279,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "runtime.js?t=1792148713034",
+        "encodedBytes": 263623,
+        "transferBytes": 300,
+        "durationMs": 16.899999998509884
+      },
+      {
+        "name": "musicTracks.js",
+        "encodedBytes": 1583,
+        "transferBytes": 300,
+        "durationMs": 11.899999998509884
+      },
+      {
+        "name": "assets.js",
+        "encodedBytes": 44296,
+        "transferBytes": 300,
+        "durationMs": 12.799999997019768
+      },
+      {
+        "name": "landscape.js",
+        "encodedBytes": 8965,
+        "transferBytes": 300,
+        "durationMs": 11.900000005960464
+      },
+      {
+        "name": "tracks.js",
+        "encodedBytes": 7925,
+        "transferBytes": 300,
+        "durationMs": 12.100000001490116
+      },
+      {
+        "name": "raceDifficulty.js",
+        "encodedBytes": 9910,
+        "transferBytes": 300,
+        "durationMs": 12.200000002980232
+      },
+      {
+        "name": "championship.js",
+        "encodedBytes": 19014,
+        "transferBytes": 300,
+        "durationMs": 14.900000005960464
+      },
+      {
+        "name": "raceRecords.js",
+        "encodedBytes": 21561,
+        "transferBytes": 300,
+        "durationMs": 12.900000005960464
+      },
+      {
+        "name": "ChampionshipTable.jsx",
+        "encodedBytes": 5826,
+        "transferBytes": 300,
+        "durationMs": 20
+      },
+      {
+        "name": "GraphicsSettings.jsx",
+        "encodedBytes": 11556,
+        "transferBytes": 300,
+        "durationMs": 20.100000001490116
+      },
+      {
+        "name": "UnlockGarage.jsx",
+        "encodedBytes": 13441,
+        "transferBytes": 300,
+        "durationMs": 20.200000002980232
+      },
+      {
+        "name": "progression.js",
+        "encodedBytes": 7680,
+        "transferBytes": 300,
+        "durationMs": 20.200000002980232
+      },
+      {
+        "name": "RaceSetup.jsx",
+        "encodedBytes": 17510,
+        "transferBytes": 300,
+        "durationMs": 21.799999997019768
+      },
+      {
+        "name": "weather.js",
+        "encodedBytes": 8241,
+        "transferBytes": 300,
+        "durationMs": 20.299999997019768
+      },
+      {
+        "name": "OnlineLobby.jsx",
+        "encodedBytes": 37032,
+        "transferBytes": 300,
+        "durationMs": 22.700000002980232
+      },
+      {
+        "name": "raceMode.js",
+        "encodedBytes": 12326,
+        "transferBytes": 300,
+        "durationMs": 21.899999998509884
+      },
+      {
+        "name": "rebuild.css",
+        "encodedBytes": 39431,
+        "transferBytes": 300,
+        "durationMs": 23.899999998509884
+      },
+      {
+        "name": "chunk-42LCURWG.js?v=d609077d",
+        "encodedBytes": 45564,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "chunk-G3PMV62Z.js?v=d609077d",
+        "encodedBytes": 7968,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "chunk-UEHR66ST.js?v=d609077d",
+        "encodedBytes": 16214,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "rivalSpeed.js",
+        "encodedBytes": 1641,
+        "transferBytes": 300,
+        "durationMs": 19.399999998509884
+      },
+      {
+        "name": "three.js?v=eade94f2",
+        "encodedBytes": 66288,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "three_addons_loaders_GLTFLoader__js.js?v=321d9468",
+        "encodedBytes": 101064,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "three_addons_loaders_DRACOLoader__js.js?v=f71db231",
+        "encodedBytes": 15161,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "batchStatic.js",
+        "encodedBytes": 10666,
+        "transferBytes": 300,
+        "durationMs": 19.200000002980232
+      },
+      {
+        "name": "sceneResources.js",
+        "encodedBytes": 13332,
+        "transferBytes": 300,
+        "durationMs": 19.19999999552965
+      },
+      {
+        "name": "vehiclePose.js",
+        "encodedBytes": 13354,
+        "transferBytes": 300,
+        "durationMs": 19.299999997019768
+      },
+      {
+        "name": "bodyMotion.js",
+        "encodedBytes": 13994,
+        "transferBytes": 300,
+        "durationMs": 22
+      },
+      {
+        "name": "surfacePolish.js",
+        "encodedBytes": 42573,
+        "transferBytes": 300,
+        "durationMs": 23.5
+      },
+      {
+        "name": "fleet.js",
+        "encodedBytes": 7183,
+        "transferBytes": 300,
+        "durationMs": 28.899999998509884
+      },
+      {
+        "name": "loadingMetrics.js",
+        "encodedBytes": 4692,
+        "transferBytes": 300,
+        "durationMs": 29.69999999552965
+      },
+      {
+        "name": "chunk-CFTTJ4F6.js?v=d609077d",
+        "encodedBytes": 1669587,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "chunk-7RMMTDIU.js?v=d609077d",
+        "encodedBytes": 28468,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "@dimforge_rapier3d-compat.js?v=9452a5a9",
+        "encodedBytes": 2905853,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "three_addons_controls_OrbitControls__js.js?v=eed499c7",
+        "encodedBytes": 32097,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "vehicleStudio.js",
+        "encodedBytes": 9196,
+        "transferBytes": 300,
+        "durationMs": 29.5
+      },
+      {
+        "name": "three_addons_objects_Sky__js.js?v=b247dd25",
+        "encodedBytes": 9017,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "physics.js?t=1792148431267",
+        "encodedBytes": 109873,
+        "transferBytes": 300,
+        "durationMs": 46.399999998509884
+      },
+      {
+        "name": "steering.js",
+        "encodedBytes": 18468,
+        "transferBytes": 300,
+        "durationMs": 38.900000005960464
+      },
+      {
+        "name": "chaseCamera.js",
+        "encodedBytes": 24693,
+        "transferBytes": 300,
+        "durationMs": 39.5
+      },
+      {
+        "name": "drivingSignals.js",
+        "encodedBytes": 25747,
+        "transferBytes": 300,
+        "durationMs": 40.80000000447035
+      },
+      {
+        "name": "tireSmoke.js",
+        "encodedBytes": 27740,
+        "transferBytes": 300,
+        "durationMs": 41.80000000447035
+      },
+      {
+        "name": "tireFeedback.js",
+        "encodedBytes": 19333,
+        "transferBytes": 300,
+        "durationMs": 42.80000000447035
+      },
+      {
+        "name": "drivingAudio.js",
+        "encodedBytes": 53813,
+        "transferBytes": 300,
+        "durationMs": 43.5
+      },
+      {
+        "name": "course.js",
+        "encodedBytes": 31047,
+        "transferBytes": 300,
+        "durationMs": 44
+      },
+      {
+        "name": "raceContacts.js",
+        "encodedBytes": 15183,
+        "transferBytes": 300,
+        "durationMs": 44.899999998509884
+      },
+      {
+        "name": "impactSparks.js",
+        "encodedBytes": 10812,
+        "transferBytes": 300,
+        "durationMs": 45.100000001490116
+      },
+      {
+        "name": "vehicleDynamics.js",
+        "encodedBytes": 22241,
+        "transferBytes": 300,
+        "durationMs": 45.20000000298023
+      },
+      {
+        "name": "worldCollision.js",
+        "encodedBytes": 2017,
+        "transferBytes": 300,
+        "durationMs": 48.29999999701977
+      },
+      {
+        "name": "raceInput.js",
+        "encodedBytes": 11414,
+        "transferBytes": 300,
+        "durationMs": 49.19999999552965
+      },
+      {
+        "name": "namakBarriers.js",
+        "encodedBytes": 10872,
+        "transferBytes": 300,
+        "durationMs": 48.399999998509884
+      },
+      {
+        "name": "worldRendering.js",
+        "encodedBytes": 41628,
+        "transferBytes": 300,
+        "durationMs": 50.19999999552965
+      },
+      {
+        "name": "exhaustVfx.js",
+        "encodedBytes": 16416,
+        "transferBytes": 300,
+        "durationMs": 54.29999999701977
+      },
+      {
+        "name": "duelRecords.js",
+        "encodedBytes": 10067,
+        "transferBytes": 300,
+        "durationMs": 54.399999998509884
+      },
+      {
+        "name": "onlineRace.js",
+        "encodedBytes": 61121,
+        "transferBytes": 300,
+        "durationMs": 55.69999999552965
+      },
+      {
+        "name": "garageBackdrop.js",
+        "encodedBytes": 4313,
+        "transferBytes": 300,
+        "durationMs": 67.30000000447035
+      },
+      {
+        "name": "raceClock.js",
+        "encodedBytes": 4540,
+        "transferBytes": 300,
+        "durationMs": 67.5
+      },
+      {
+        "name": "routeGuidance.js",
+        "encodedBytes": 14011,
+        "transferBytes": 300,
+        "durationMs": 67.60000000149012
+      },
+      {
+        "name": "onlineProtocol.js",
+        "encodedBytes": 22334,
+        "transferBytes": 300,
+        "durationMs": 67.80000000447035
+      },
+      {
+        "name": "rivalPlanner.js",
+        "encodedBytes": 89691,
+        "transferBytes": 300,
+        "durationMs": 96.60000000149012
+      },
+      {
+        "name": "overtakeRoad.js",
+        "encodedBytes": 10010,
+        "transferBytes": 300,
+        "durationMs": 67.80000000447035
+      },
+      {
+        "name": "raceMusic.js",
+        "encodedBytes": 14760,
+        "transferBytes": 300,
+        "durationMs": 67.89999999850988
+      },
+      {
+        "name": "firstPersonCamera.js",
+        "encodedBytes": 12643,
+        "transferBytes": 300,
+        "durationMs": 67.89999999850988
+      },
+      {
+        "name": "raceSurface.js",
+        "encodedBytes": 8387,
+        "transferBytes": 300,
+        "durationMs": 68
+      },
+      {
+        "name": "raceGhost.js",
+        "encodedBytes": 18957,
+        "transferBytes": 300,
+        "durationMs": 77.5
+      },
+      {
+        "name": "raceRules.js",
+        "encodedBytes": 10765,
+        "transferBytes": 300,
+        "durationMs": 68.39999999850988
+      },
+      {
+        "name": "cockpit.js",
+        "encodedBytes": 15432,
+        "transferBytes": 300,
+        "durationMs": 68.39999999850988
+      },
+      {
+        "name": "namakPresentation.js",
+        "encodedBytes": 8628,
+        "transferBytes": 300,
+        "durationMs": 68.59999999403954
+      },
+      {
+        "name": "namakColors.js",
+        "encodedBytes": 12760,
+        "transferBytes": 300,
+        "durationMs": 68.89999999850988
+      },
+      {
+        "name": "namakLandmarks.js",
+        "encodedBytes": 6749,
+        "transferBytes": 300,
+        "durationMs": 74.59999999403954
+      },
+      {
+        "name": "nightPresentation.js",
+        "encodedBytes": 10391,
+        "transferBytes": 300,
+        "durationMs": 74.79999999701977
+      },
+      {
+        "name": "renderTiming.js",
+        "encodedBytes": 11317,
+        "transferBytes": 300,
+        "durationMs": 75.5
+      },
+      {
+        "name": "racePreparation.js",
+        "encodedBytes": 10116,
+        "transferBytes": 300,
+        "durationMs": 75.80000000447035
+      },
+      {
+        "name": "renderProfile.js",
+        "encodedBytes": 19722,
+        "transferBytes": 300,
+        "durationMs": 81
+      },
+      {
+        "name": "frozenComparison.js",
+        "encodedBytes": 19044,
+        "transferBytes": 300,
+        "durationMs": 81.30000000447035
+      },
+      {
+        "name": "koreaPresentation.js",
+        "encodedBytes": 12245,
+        "transferBytes": 300,
+        "durationMs": 80.60000000149012
+      },
+      {
+        "name": "performanceComparison.js",
+        "encodedBytes": 11702,
+        "transferBytes": 300,
+        "durationMs": 81.10000000149012
+      },
+      {
+        "name": "graphicsQuality.js",
+        "encodedBytes": 9496,
+        "transferBytes": 300,
+        "durationMs": 81.5
+      },
+      {
+        "name": "rainVfx.js",
+        "encodedBytes": 20463,
+        "transferBytes": 300,
+        "durationMs": 83.5
+      },
+      {
+        "name": "roadTraffic.js?t=1792148431286",
+        "encodedBytes": 10014,
+        "transferBytes": 300,
+        "durationMs": 82.29999999701977
+      },
+      {
+        "name": "trafficView.js",
+        "encodedBytes": 17160,
+        "transferBytes": 300,
+        "durationMs": 87.39999999850988
+      },
+      {
+        "name": "coastalVisuals.js",
+        "encodedBytes": 21073,
+        "transferBytes": 300,
+        "durationMs": 87.89999999850988
+      },
+      {
+        "name": "namakVisuals.js",
+        "encodedBytes": 55543,
+        "transferBytes": 300,
+        "durationMs": 88.60000000149012
+      },
+      {
+        "name": "yeosuVisuals.js",
+        "encodedBytes": 85076,
+        "transferBytes": 300,
+        "durationMs": 99
+      },
+      {
+        "name": "staticWorld.js",
+        "encodedBytes": 4125,
+        "transferBytes": 300,
+        "durationMs": 95
+      },
+      {
+        "name": "roadscape.js",
+        "encodedBytes": 15390,
+        "transferBytes": 300,
+        "durationMs": 95.19999999552965
+      },
+      {
+        "name": "daylightSky.js",
+        "encodedBytes": 6806,
+        "transferBytes": 300,
+        "durationMs": 95.29999999701977
+      },
+      {
+        "name": "seongsamjaeVisuals.js",
+        "encodedBytes": 111568,
+        "transferBytes": 300,
+        "durationMs": 100.59999999403954
+      },
+      {
+        "name": "rivalPersonalities.js",
+        "encodedBytes": 5938,
+        "transferBytes": 300,
+        "durationMs": 94.79999999701977
+      },
+      {
+        "name": "react-dom.js?v=f86a295e",
+        "encodedBytes": 1352,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "OnlineInviteQR.jsx",
+        "encodedBytes": 7397,
+        "transferBytes": 300,
+        "durationMs": 94.70000000298023
+      },
+      {
+        "name": "three_addons_utils_BufferGeometryUtils__js.js?v=f01b5056",
+        "encodedBytes": 3366,
+        "transferBytes": 0,
+        "durationMs": 0
+      },
+      {
+        "name": "vehicleSpec.js",
+        "encodedBytes": 1107,
+        "transferBytes": 300,
+        "durationMs": 57.900000005960464
+      },
+      {
+        "name": "smokeCloud.js",
+        "encodedBytes": 8388,
+        "transferBytes": 300,
+        "durationMs": 50.69999999552965
+      },
+      {
+        "name": "engineVoices.js",
+        "encodedBytes": 7632,
+        "transferBytes": 300,
+        "durationMs": 50.79999999701977
+      },
+      {
+        "name": "harborSectorSpec.js",
+        "encodedBytes": 4713,
+        "transferBytes": 300,
+        "durationMs": 40.5
+      },
+      {
+        "name": "harborStage1Colliders.json?import",
+        "encodedBytes": 2757,
+        "transferBytes": 300,
+        "durationMs": 41.5
+      },
+      {
+        "name": "coastRoute.js",
+        "encodedBytes": 69189,
+        "transferBytes": 300,
+        "durationMs": 49
+      },
+      {
+        "name": "beachStage2Colliders.json?import",
+        "encodedBytes": 1418,
+        "transferBytes": 300,
+        "durationMs": 49.20000000298023
+      },
+      {
+        "name": "lighthouseStage4Colliders.json?import",
+        "encodedBytes": 1561,
+        "transferBytes": 300,
+        "durationMs": 52.69999999552965
+      },
+      {
+        "name": "cityStage3Colliders.json?import",
+        "encodedBytes": 3356,
+        "transferBytes": 300,
+        "durationMs": 52.5
+      },
+      {
+        "name": "launch.js",
+        "encodedBytes": 9311,
+        "transferBytes": 300,
+        "durationMs": 52.900000005960464
+      },
+      {
+        "name": "arcadeAction.js",
+        "encodedBytes": 10728,
+        "transferBytes": 300,
+        "durationMs": 52.70000000298023
+      },
+      {
+        "name": "activeRide.js",
+        "encodedBytes": 28341,
+        "transferBytes": 300,
+        "durationMs": 53.600000001490116
+      },
+      {
+        "name": "collisionResponse.js",
+        "encodedBytes": 4064,
+        "transferBytes": 300,
+        "durationMs": 52.899999998509884
+      },
+      {
+        "name": "vehicleWorld.js",
+        "encodedBytes": 7140,
+        "transferBytes": 300,
+        "durationMs": 53.100000001490116
+      },
+      {
+        "name": "cockpitFinish.js",
+        "encodedBytes": 5207,
+        "transferBytes": 300,
+        "durationMs": 25.700000002980232
+      },
+      {
+        "name": "cockpitDisplay.js",
+        "encodedBytes": 14823,
+        "transferBytes": 300,
+        "durationMs": 25.899999998509884
+      },
+      {
+        "name": "namakArchitecture.js",
+        "encodedBytes": 6644,
+        "transferBytes": 300,
+        "durationMs": 16.899999998509884
+      },
+      {
+        "name": "rivalRacecraft.js",
+        "encodedBytes": 11362,
+        "transferBytes": 300,
+        "durationMs": 13.200000002980232
+      },
+      {
+        "name": "yeosuVisualLayout.js",
+        "encodedBytes": 129874,
+        "transferBytes": 300,
+        "durationMs": 11.300000004470348
+      },
+      {
+        "name": "supra.glb",
+        "encodedBytes": 506972,
+        "transferBytes": 300,
+        "durationMs": 10.899999998509884
+      },
+      {
+        "name": "draco_wasm_wrapper.js",
+        "encodedBytes": 58456,
+        "transferBytes": 300,
+        "durationMs": 8.300000004470348
+      },
+      {
+        "name": "draco_decoder.wasm",
+        "encodedBytes": 192420,
+        "transferBytes": 300,
+        "durationMs": 10.5
+      },
+      {
+        "name": "slk.glb",
+        "encodedBytes": 515364,
+        "transferBytes": 300,
+        "durationMs": 16.5
+      },
+      {
+        "name": "mustang.glb",
+        "encodedBytes": 484436,
+        "transferBytes": 300,
+        "durationMs": 6.600000001490116
+      },
+      {
+        "name": "porsche911.glb",
+        "encodedBytes": 541728,
+        "transferBytes": 300,
+        "durationMs": 4.399999998509884
+      },
+      {
+        "name": "gtr.glb",
+        "encodedBytes": 478808,
+        "transferBytes": 300,
+        "durationMs": 7.5
+      },
+      {
+        "name": "rx7.glb",
+        "encodedBytes": 456836,
+        "transferBytes": 300,
+        "durationMs": 4
+      },
+      {
+        "name": "m3.glb",
+        "encodedBytes": 555428,
+        "transferBytes": 300,
+        "durationMs": 4.100000001490116
+      },
+      {
+        "name": "huracan.glb",
+        "encodedBytes": 481244,
+        "transferBytes": 300,
+        "durationMs": 7.9000000059604645
+      },
+      {
+        "name": "garage.glb",
+        "encodedBytes": 132244,
+        "transferBytes": 300,
+        "durationMs": 3.2999999970197678
+      },
+      {
+        "name": "yeosu.glb",
+        "encodedBytes": 9632808,
+        "transferBytes": 300,
+        "durationMs": 37.29999999701977
+      },
+      {
+        "name": "cockpit.glb",
+        "encodedBytes": 736208,
+        "transferBytes": 300,
+        "durationMs": 10
+      },
+      {
+        "name": "yeosu-route.json",
+        "encodedBytes": 882097,
+        "transferBytes": 300,
+        "durationMs": 5.100000001490116
+      },
+      {
+        "name": "yeosu-roadscape.glb",
+        "encodedBytes": 4830744,
+        "transferBytes": 300,
+        "durationMs": 18.599999994039536
+      }
+    ],
+    "encodedBytes": 29063079,
+    "transferBytes": 35100,
+    "cacheHits": 133,
+    "revalidated": 117,
+    "unknownSizes": 0
+  },
+  "preparation": {
+    "phase": "ready",
+    "busy": false,
+    "error": null,
+    "setupMs": 82.20000000298023,
+    "compileMs": 82.69999999552965,
+    "drawMs": 33.5,
+    "totalMs": 204.60000000149012,
+    "frameBoundary": {
+      "pending": false,
+      "readyAtMs": 533380.5,
+      "firstFrameWaitMs": 31.5,
+      "skippedFrames": 2
+    }
+  },
+  "finishOrder": [
+    {
+      "name": "MIST",
+      "time": null,
+      "finished": false
+    },
+    {
+      "name": "NOVA",
+      "time": null,
+      "finished": false
+    },
+    {
+      "name": "BLAZE",
+      "time": null,
+      "finished": false
+    },
+    {
+      "name": "LUNA",
+      "time": null,
+      "finished": false
+    },
+    {
+      "name": "RAVEN",
+      "time": null,
+      "finished": false
+    },
+    {
+      "name": "YOU",
+      "time": null,
+      "finished": false
+    }
+  ],
+  "qaDriver": false,
+  "bodyMotion": {
+    "cars": [
+      {
+        "id": "supra",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      },
+      {
+        "id": "slk",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      },
+      {
+        "id": "mustang",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      },
+      {
+        "id": "porsche911",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      },
+      {
+        "id": "gtr",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      },
+      {
+        "id": "rx7",
+        "pitch": 0,
+        "roll": 0,
+        "forwardAcceleration": 0,
+        "lateralAcceleration": 0
+      }
+    ],
+    "ghost": null,
+    "ghostVisible": false,
+    "reducedMotion": true,
+    "cameraExtraTilt": 0
+  },
+  "performanceTrial": {
+    "kind": null,
+    "status": "idle",
+    "condition": 0,
+    "profile": false,
+    "frozen": false,
+    "results": []
+  },
+  "vfx": {
+    "rain": {
+      "drops": 0,
+      "spray": 0,
+      "budget": 36,
+      "sprayBudget": 36,
+      "drawCalls": 0
+    },
+    "tireSmoke": {
+      "live": 0,
+      "budget": 160
+    },
+    "exhaust": {
+      "live": 27,
+      "budget": 96
+    },
+    "trails": {
+      "allocated": 512,
+      "used": 18,
+      "live": 18
+    },
+    "feedback": {
+      "acceleration": -1.413716633968999e-28,
+      "push": 0,
+      "braking": 0,
+      "scrub": 0,
+      "slipAngle": 6.594822407848952e-46,
+      "sliding": false,
+      "launchSpin": 0,
+      "wheelSlip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "grounded": true
+    }
+  }
+}

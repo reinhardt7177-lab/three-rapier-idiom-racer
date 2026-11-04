@@ -1,0 +1,32 @@
+✔ distant tread LOD preserves continuous tyre, rig, shared geometry and originally hidden objects (9.0254ms)
+✔ tread LOD uses projected size, viewport and field of view with stable hysteresis (2.0991ms)
+✔ player detail override and transformed near-camera tyres remain fully detailed (2.4175ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (2.5964ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (0.953ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (12.2403ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (0.6831ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (1.5595ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (40.9695ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (16.7753ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (9.8846ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (10.2706ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (10.4002ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (8.7173ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (8.623ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (6.9663ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (6.9621ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (5.2075ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (5.3111ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (5.1711ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (5.2396ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (2.9714ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (5.4535ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (4.6405ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 378.7199

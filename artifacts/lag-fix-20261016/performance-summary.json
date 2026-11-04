@@ -1,0 +1,223 @@
+{
+  "environment": "Local Windows / Codex IAB / Vite7.3.5 / heavy check stopped for measurements",
+  "caveat": "Initial A/B/A variable; mixed-camera sample retained; final runs do not prove all devices or every transition.",
+  "runs": [
+    {
+      "file": "browser-before-state.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 981,
+        "mean": 30.58134556574924,
+        "p95": 50,
+        "max": 217,
+        "over50": 47
+      },
+      "cpu": {
+        "samples": 981,
+        "mean": 4.328032619856245,
+        "p95": 5.700000002980232,
+        "max": 79
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 523.899303437793,
+        "elapsed": 30.049999999998935,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-after-cpu-state.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1494,
+        "mean": 20.0805890227577,
+        "p95": 33.400000000001455,
+        "max": 83.40000000000146,
+        "over50": 3
+      },
+      "cpu": {
+        "samples": 1494,
+        "mean": 4.192436412340865,
+        "p95": 5.5,
+        "max": 70
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 523.899303437793,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-before-repeat-state.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1796,
+        "mean": 16.704008908685974,
+        "p95": 16.89999999999418,
+        "max": 33.39999999999418,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1796,
+        "mean": 4.6541759466051325,
+        "p95": 7.299999997019768,
+        "max": 12.200000002980232
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 521.8996877758167,
+        "elapsed": 30.00833333333227,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-final-mixed-camera.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1789,
+        "mean": 16.76936836221354,
+        "p95": 16.900000000023283,
+        "max": 200,
+        "over50": 1
+      },
+      "cpu": {
+        "samples": 1789,
+        "mean": 4.830016769131447,
+        "p95": 7.799999997019768,
+        "max": 203.19999999552965
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 523.899303437793,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-final-yeosu.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1800,
+        "mean": 16.666944444444447,
+        "p95": 16.900000000001455,
+        "max": 17.099999999998545,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1800,
+        "mean": 4.749388888941871,
+        "p95": 7.800000004470348,
+        "max": 11
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 523.899303437793,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-final-namak.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1800,
+        "mean": 16.666722222222223,
+        "p95": 16.900000000001455,
+        "max": 17.400000000001455,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1800,
+        "mean": 5.676777777758738,
+        "p95": 9,
+        "max": 13.299999997019768
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 829.8114992507088,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      }
+    },
+    {
+      "file": "browser-final-yeosu-high.json",
+      "complete": "complete",
+      "frame": {
+        "samples": 1798,
+        "mean": 16.685595105672974,
+        "p95": 16.900000000001455,
+        "max": 33.30000000000291,
+        "over50": 0
+      },
+      "cpu": {
+        "samples": 1798,
+        "mean": 6.356840934330915,
+        "p95": 9.399999998509884,
+        "max": 21.600000001490116
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 1.0000000149011612,
+        "quality": "high",
+        "track": "yeosu",
+        "camera": "chase",
+        "ghost": true,
+        "profile": false,
+        "frozen": false,
+        "progress": 523.899303437793,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      }
+    }
+  ]
+}

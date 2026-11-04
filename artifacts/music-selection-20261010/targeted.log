@@ -1,0 +1,33 @@
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (5.112ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (0.8985ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (0.6654ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (0.7719ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (1.0291ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (9.4961ms)
+✔ driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height (42.0515ms)
+✔ driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery (5.9809ms)
+✔ V switches view once per press without changing pedals or stealing editable/button keys (0.9996ms)
+✔ one local looping track respects pause, mute, volume, restart, garage stop and disposal (1.2325ms)
+✔ blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal (0.718ms)
+✔ packaged music is real audio and sharper bends retain lower target speeds (21.1671ms)
+Rival speed A/B [
+  {
+    profile: 'classic',
+    max: 138.07923431396486,
+    metres: 850.8593139648438
+  },
+  {
+    profile: 'race',
+    max: 185.05221405029297,
+    metres: 1059.82470703125
+  }
+]
+✔ faster rival pedals produce higher real speed while all tyres stay on a flat straight (1031.0793ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3071.4815

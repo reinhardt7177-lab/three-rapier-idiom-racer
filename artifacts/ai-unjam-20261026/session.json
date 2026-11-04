@@ -1,0 +1,179 @@
+{
+  "completedAt": "2026-10-26T05:36:32.483Z",
+  "scope": "AI wall and compressed-queue recovery; current stable physics and prior visual work preserved",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "check": {
+    "exitCode": 0,
+    "signal": null,
+    "command": "npm run check",
+    "npmCommandPass": true,
+    "startedAt": "2026-10-26T04:37:34.516Z",
+    "endedAt": "2026-10-26T05:07:08.322Z",
+    "seconds": 1773.806,
+    "cwd": "D:\\racing\\.work\\ai-unjam-20261026\\validation-final",
+    "nodeHeapMiB": 384,
+    "concurrency": 2,
+    "testSummary": [
+      "ℹ tests 517",
+      "ℹ pass 517",
+      "ℹ fail 0",
+      "ℹ duration_ms 1743239.865",
+      "✓ built in 16.68s"
+    ]
+  },
+  "regression": {
+    "cases": 41,
+    "cars": 246,
+    "allFinished": true,
+    "offroadSeconds": 0,
+    "maxFinishDelta": 0
+  },
+  "performance": {
+    "at": "2026-10-26T05:16:04.908Z",
+    "scope": "Same IAB tab/session,1280x720,DPR.75,Namak low clear normal six cars,chase camera,standard motion,ghost off,30 seconds per condition; CPU race tests finished; no GPU queries/frozen/profiling; static opt-in snapshot button clicked only after capture.",
+    "rows": [
+      {
+        "label": "a1",
+        "durationMs": 30000.5,
+        "frame": {
+          "max": 66.5,
+          "mean": 17.192263610315187,
+          "over50": 2,
+          "p95": 17,
+          "samples": 1745
+        },
+        "cpu": {
+          "max": 43.70000000298023,
+          "mean": 7.570659025794797,
+          "p95": 11.5,
+          "samples": 1745
+        },
+        "draws": {
+          "first": {
+            "calls": 415,
+            "triangles": 815497
+          },
+          "last": {
+            "calls": 503,
+            "triangles": 957059
+          }
+        },
+        "context": {
+          "camera": "chase",
+          "dpr": 0.75,
+          "dropped": 0,
+          "elapsed": 30.016666666665603,
+          "frozen": false,
+          "ghost": false,
+          "height": 720,
+          "profile": false,
+          "progress": 829.8114992507088,
+          "quality": "low",
+          "track": "namak",
+          "width": 1280
+        },
+        "unfocused": 0
+      },
+      {
+        "label": "b",
+        "durationMs": 30000.5,
+        "frame": {
+          "max": 65.89999999999418,
+          "mean": 16.949435028248587,
+          "over50": 1,
+          "p95": 16.89999999999418,
+          "samples": 1770
+        },
+        "cpu": {
+          "max": 30.5,
+          "mean": 6.729830508514986,
+          "p95": 9.799999997019768,
+          "samples": 1770
+        },
+        "draws": {
+          "first": {
+            "calls": 415,
+            "triangles": 815497
+          },
+          "last": {
+            "calls": 503,
+            "triangles": 957059
+          }
+        },
+        "context": {
+          "camera": "chase",
+          "dpr": 0.75,
+          "dropped": 0,
+          "elapsed": 30.016666666665603,
+          "frozen": false,
+          "ghost": false,
+          "height": 720,
+          "profile": false,
+          "progress": 829.8114992507088,
+          "quality": "low",
+          "track": "namak",
+          "width": 1280
+        },
+        "unfocused": 0
+      },
+      {
+        "label": "a2",
+        "durationMs": 30015.300000000003,
+        "frame": {
+          "max": 50.10000000000582,
+          "mean": 17.21060779816514,
+          "over50": 1,
+          "p95": 17,
+          "samples": 1744
+        },
+        "cpu": {
+          "max": 42.400000005960464,
+          "mean": 7.943233945090836,
+          "p95": 12.899999991059303,
+          "samples": 1744
+        },
+        "draws": {
+          "first": {
+            "calls": 415,
+            "triangles": 815497
+          },
+          "last": {
+            "calls": 503,
+            "triangles": 957059
+          }
+        },
+        "context": {
+          "camera": "chase",
+          "dpr": 0.75,
+          "dropped": 0,
+          "elapsed": 30.03333333333227,
+          "frozen": false,
+          "ghost": false,
+          "height": 720,
+          "profile": false,
+          "progress": 829.8114992507088,
+          "quality": "low",
+          "track": "namak",
+          "width": 1280
+        },
+        "unfocused": 0
+      }
+    ],
+    "p95DeltaBvsA1": -0.10000000000582077,
+    "p95DeltaBvsA2": -0.10000000000582077,
+    "passWithin2ms": true
+  },
+  "buildDelta": {
+    "bytes": 4478,
+    "gzip": 1594
+  },
+  "preview": "http://127.0.0.1:5210/?track=yeosu",
+  "githubPushed": false,
+  "deployed": false,
+  "remaining": [
+    "human sustained driving",
+    "real phones/tablets and other-network online",
+    "intermittent long frames",
+    "rejected handling candidate still not product"
+  ]
+}

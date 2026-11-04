@@ -1,0 +1,70 @@
+{
+  "scope": "One Supra, flat default floor, 2 seconds settling and 6 seconds accelerating with sinusoidal steering. Separate temporary physics worlds; not a browser symptom reproduction.",
+  "results": [
+    {
+      "setting": "grip",
+      "override": {
+        "grip": 0.4
+      },
+      "identicalAll720Samples": true
+    },
+    {
+      "setting": "antiRoll",
+      "override": {
+        "antiRoll": 0
+      },
+      "identicalAll720Samples": true
+    },
+    {
+      "setting": "bodyDamping",
+      "override": {
+        "bodyDamping": 50
+      },
+      "identicalAll720Samples": true
+    },
+    {
+      "setting": "aero",
+      "override": {
+        "aero": 50
+      },
+      "identicalAll720Samples": true
+    }
+  ],
+  "steeringDegrees": [
+    {
+      "kmh": 60,
+      "degrees": 9.053661089700961
+    },
+    {
+      "kmh": 120,
+      "degrees": 2.1003561649859788
+    },
+    {
+      "kmh": 180,
+      "degrees": 0.772844160813269
+    },
+    {
+      "kmh": 240,
+      "degrees": 0.40757238240051047
+    }
+  ],
+  "frameClamp": {
+    "wallFrameSeconds": 0.1,
+    "creditedSeconds": 0.05
+  },
+  "forwardAxisSetterVerified": true,
+  "externalSources": [
+    {
+      "repo": "pmndrs/racing-game",
+      "sha": "7816a5d954b75e6ad853ae4e4f0cbbd628072643"
+    },
+    {
+      "repo": "pmndrs/ecctrl",
+      "sha": "e2cab804f9f15661a642e76f52d09f0b2db63f35"
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "sha": "5d8e8a89347650ee210e120cdd70f9e9288f0abc"
+    }
+  ]
+}

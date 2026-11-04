@@ -1,0 +1,557 @@
+{
+  "at": "2026-11-04T02:51:55.277Z",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "previousHead": "29aa2dd35ee558f92f04130bf7323488e6a191bc",
+  "verifiedInputs": 232,
+  "allMatch": true,
+  "buildFiles": 37,
+  "identicalBuild": true,
+  "files": 107,
+  "bytes": 9514587,
+  "credentialSignatures": 0,
+  "over100MiB": 0,
+  "excluded": [
+    "before copies",
+    "QA helpers",
+    "credentials",
+    "private system backups",
+    "unrelated files"
+  ],
+  "rows": [
+    {
+      "path": ".gitignore",
+      "bytes": 2280,
+      "sha256": "c705dda4a59bc8485c3004dbf1565c1ea670aaa64bb7d2fb7aac3fff2ddaf72c"
+    },
+    {
+      "path": "docs/NEXT_STEPS.md",
+      "bytes": 74618,
+      "sha256": "b7be2a6497dd98780f7d917d8549566dfd384eab778602f85f49c3939d1553c7"
+    },
+    {
+      "path": "package.json",
+      "bytes": 6454,
+      "sha256": "92997b64ee5471af03a62eecced1afb39f70bf7122db1fa92462cad76d1bd862"
+    },
+    {
+      "path": "scripts/navigation.test.mjs",
+      "bytes": 6615,
+      "sha256": "6d55e8ebb2dc0e68d07f15027e47301ac10412b05b5757d4e53567daf6b45e82"
+    },
+    {
+      "path": "scripts/seongsamjae-visuals.test.mjs",
+      "bytes": 9654,
+      "sha256": "c38db019983624f546072ac03e5d958622eaf7e5400c4bc7839e5b5377cc43b0"
+    },
+    {
+      "path": "src/rebuild/graphicsQuality.js",
+      "bytes": 2478,
+      "sha256": "be97b1db2da5b0c04acc82057878aab4bcb3225f44081a08ce945186507cf15e"
+    },
+    {
+      "path": "src/rebuild/main.jsx",
+      "bytes": 29442,
+      "sha256": "d146f3d60e5bb9b98fe8d243c94cf6f66bbbc1fb6361c8024492bb6af2563795"
+    },
+    {
+      "path": "src/rebuild/namakVisuals.js",
+      "bytes": 11835,
+      "sha256": "79ec8f23ef5627df78485e5cce7ca4440679fc121b5af30eff6eb39557e0b50a"
+    },
+    {
+      "path": "src/rebuild/rebuild.css",
+      "bytes": 42942,
+      "sha256": "ad59983e480ddb3966366ddfa705afe4ee96bfcfabf7d13de45c4bf5e6638e00"
+    },
+    {
+      "path": "src/rebuild/routeGuidance.js",
+      "bytes": 4155,
+      "sha256": "d9b94a0aa5bcd480a4c4d81123885d2a73025518e67b17ff876c4ec417419f2e"
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "bytes": 58026,
+      "sha256": "0bd442aa8e62687c0a73ca4ab933a3db5ef7f55e88d49cdcf10925dde6751a0b"
+    },
+    {
+      "path": "src/rebuild/seongsamjaeVisuals.js",
+      "bytes": 21815,
+      "sha256": "46c5796607a1c397a03c3fd7e013807dbe7b08731efe72f2634ef1ee6b569828"
+    },
+    {
+      "path": "scripts/scene-update-work.test.mjs",
+      "bytes": 3575,
+      "sha256": "193f0db8c08d48db345dc3eb50662d30e3995a441355a51474d1191822867f71"
+    },
+    {
+      "path": "docs/MAP_POLISH_RESUME_20261104.md",
+      "bytes": 11141,
+      "sha256": "a831c4e4f2d5e2d023a8a81fbc1eac41560e668bdd548a5ea8effa74cdb635de"
+    },
+    {
+      "path": "docs/PC_DNS_FIX_20261104.md",
+      "bytes": 5511,
+      "sha256": "4bc99ac0844e18cca362bf4b10834d56f11eb08b4d6c52d1835003591eca362a"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-04-map-polish-resume.md",
+      "bytes": 3302,
+      "sha256": "d6fefc1c2401914e54e8a0a0af9556845d36db8ecc780f6b440f4845665b1238"
+    },
+    {
+      "path": "docs/DEPLOY_MAP_POLISH_20261104.md",
+      "bytes": 2308,
+      "sha256": "3753e8d7ad6cebc0270a0ddc835d417254238058f3a695f9c37092c141d32084"
+    },
+    {
+      "path": "artifacts/deploy-map-polish-20261104/related-build.log",
+      "bytes": 5962,
+      "sha256": "646a5a1ae194602f4e3b55d81915a0dcda0ff9083ef93e5815ef33f5bbe83a84"
+    },
+    {
+      "path": "artifacts/deploy-map-polish-20261104/related-build-result.json",
+      "bytes": 681,
+      "sha256": "2500b2812f297c826214ac28b33ca966b0c78000865b73bb5ecfd9752510de74"
+    },
+    {
+      "path": "artifacts/deploy-map-polish-20261104/source-verification.json",
+      "bytes": 61327,
+      "sha256": "141782279a057d058142e2e8b1305b08a5281233677b6de8cfb4449709588db9"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/aborted-root-changes.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/browser-input-flow.json",
+      "bytes": 637,
+      "sha256": "42447e3ebbfb0e0d1cfe2a8101380bd6db5667d715add5e5e81245fed8a998a6"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/browser-namak-finish.json",
+      "bytes": 41643,
+      "sha256": "37991ffca0bec7eb9ad825182b72722b62999a2d588a0b736a7160f7af570e0b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/coastal-A1.json",
+      "bytes": 268098,
+      "sha256": "5b55907908c98d673d9c51da5a4857e8ba52e01df78b1c828e3def8adee0f8d3"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/coastal-A2.json",
+      "bytes": 221182,
+      "sha256": "9232641c7482542ade9146b6924a10d5a811ff9cf368652f36372cee203e53a4"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/coastal-B.json",
+      "bytes": 269568,
+      "sha256": "f2616664e4ed2516e98c2afa31b5f6acc8468eb937b42bf82e62e64f5e08a7e2"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/coastal-final-high.json",
+      "bytes": 227469,
+      "sha256": "09f05cc796172717d0093ee70c685580bd6665b48408a6ac3a0d076bf731bdd4"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/final-source-verification.json",
+      "bytes": 61791,
+      "sha256": "2cb65e73aec87fd61276dc4058063bc2f5474a635360bb2387cc4054f70af476"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/footprint.json",
+      "bytes": 15225,
+      "sha256": "1e47085ef0223466ce8d555bdf982f494ed61ee073b648652ec86ae07269b206"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/green-bounds.txt",
+      "bytes": 512,
+      "sha256": "7104f2b960a4a753956d3bc9366393b384f772fc90285e73ec2ca91a67b729a5"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/green-navigation.txt",
+      "bytes": 1350,
+      "sha256": "0ae708e5d93124d1bc575c04e9dbddfa26e17605a6e4e8d964b1564312fceea4"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/green-scene.txt",
+      "bytes": 2122,
+      "sha256": "f2ac43190e1d3074b4a705a58d5b89fcd0b2c92b64c04834099cd4d802320767"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ledger.md",
+      "bytes": 3488,
+      "sha256": "b021c81877be27aa1e774dd3df3c589cfb1f0cefd483155bbe6f519d58b99f2b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/loading-after.json",
+      "bytes": 2980,
+      "sha256": "ba37d7aae1610d3bdfbd132b5a254384ba8e18a58eee5b1667d67e829c1afb63"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/loading-before.json",
+      "bytes": 3004,
+      "sha256": "27c4fa534aea3b2a0c984cbb354029067c4c0679e478e1a14db7c03e8ef9124d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-A1.json",
+      "bytes": 273685,
+      "sha256": "b5df9b2e293e3dce43b5f3114061b1877c50543b7c045f7442692c95f8eb6c1b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-A2.json",
+      "bytes": 227868,
+      "sha256": "8165c3270a82ce30d3a02128b9fa8a4fd043da6ab2cae15cad6e8a7029b6640d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-B.json",
+      "bytes": 265487,
+      "sha256": "77af6a39272f449caabeb4e3a2b9375048d88923ed4611612c399918bb4414ae"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-final-high.json",
+      "bytes": 286108,
+      "sha256": "c3416a92e531ffaa9bc4a026e3090ccd9c9d829ebde970fa7d543f2c64ea0b78"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-low-A1.json",
+      "bytes": 293002,
+      "sha256": "42a692fad5a1d18b2d6b29e9567f430f055c167483bab1b52ac00d4b29bc33c8"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-low-A2.json",
+      "bytes": 291311,
+      "sha256": "fe3ef3bd6180cbe34e60a77b041379a75b439cc0c67d0ebaa012f77be577853d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-low-B.json",
+      "bytes": 280694,
+      "sha256": "35a6f826f3f4b5e6dc7063720353e5b1607c119e951ec9dced13cf480695fdc6"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-low-B2.json",
+      "bytes": 288969,
+      "sha256": "dfb2988df20fe2835c0e1b6d8258221bc96ef09cddfdb831ccf24b9b97ef1a3f"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/namak-release-low.json",
+      "bytes": 291642,
+      "sha256": "4cf60102cbcbb33dd52acd9477792e2e01678b5d9c9552a8b826d7a587282292"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/next-font-before.json",
+      "bytes": 142,
+      "sha256": "e5636f303fb2bebfa35285aafc1eeb0c2721f727eb280fa64b03502bd0f699b4"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/npm-check-aborted-root.log",
+      "bytes": 4790,
+      "sha256": "ab5be38801708f870edcb52e70f55dd31f7f60871368e105be5a72e9f8c141d4"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/npm-check-final-result.json",
+      "bytes": 450,
+      "sha256": "b88fdbd1d6e7a88f6adba5ff791090ab840bbaa34d78a1676d7865fb61449151"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/npm-check-final.log",
+      "bytes": 94406,
+      "sha256": "ae34a8e9c7ade0e914abbce72243f766fd34b67c5c6829f3bd7127256eb84088"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/npm-check-release-result.json",
+      "bytes": 450,
+      "sha256": "e4ac01b55e130c338ae35d2c5628a6f9969e45353240dd09a449291036419b5e"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/npm-check-release.log",
+      "bytes": 94393,
+      "sha256": "63dfcd56093226eca0a1a32768c2f006a609da075cbae0fa36711cc937688015"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/performance-summary.json",
+      "bytes": 29288,
+      "sha256": "ef4e7da4721a9ec130aed90c8b3e79da7466338e500d118e751126cafa3e30e0"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/preservation.json",
+      "bytes": 79919,
+      "sha256": "537f6920d202b657ae7303de840c79251a38050dcd32a5b7103f31d23ed84459"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-flow.json",
+      "bytes": 2871,
+      "sha256": "17a05f61a607c2cd01d7346ff1cbeebde49d4c1a35d913dc34892dd45c41521b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-restart.json",
+      "bytes": 717,
+      "sha256": "1da309f9af975011ceaca8dfb059796bb32974e9da690c2e34464550a2085514"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-ui-1024x768.json",
+      "bytes": 2521,
+      "sha256": "abd9258fb8a48a6ee1eac1ef61f5fd5bc521475628ff566e382b3df48fda2b0a"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-ui-1280x720.json",
+      "bytes": 1935,
+      "sha256": "040ae5242ce34cb0deac3ed3d97b65146f24df4d3eac1da016b6db277ade89a7"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-ui-667x375.json",
+      "bytes": 2402,
+      "sha256": "9faca0c072a247351eec7a645de1097f7681a5db454cda4792a06d34a90f16ef"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/production-ui-844x390.json",
+      "bytes": 2391,
+      "sha256": "e5b64275fab2d4097989ae003f2e9dafa2aac3994ed5626f4187d02aec250749"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/red-bounds.txt",
+      "bytes": 1451,
+      "sha256": "89e4e6eec7b089c4c0557aea36eb00f14d968ed76644374636a697c7fbafc631"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/red-navigation.txt",
+      "bytes": 5072,
+      "sha256": "c27a04977256bdc15f419320638157cd3e47158c281520c66351b6a4be44894f"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/red-scene.txt",
+      "bytes": 4055,
+      "sha256": "6188c09de1d4959f5ae2718c08ca9e8c6f8a03b4b66908a0c8982765b2c02838"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/regression-summary.json",
+      "bytes": 198680,
+      "sha256": "3520d8ac6d27ab7047053beca0735da3100f1a227270ef67b312787cdbaaf868"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-A1.json",
+      "bytes": 284832,
+      "sha256": "df587eb09b743b8babc21807e35ebf74c75f01dbffa0815d6076164eb3443e12"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-A2.json",
+      "bytes": 256682,
+      "sha256": "57e7ddd7e5487d4b0ccc12547e7514059777f31f7f45205cc6ef101ec4027c54"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-A3.json",
+      "bytes": 248853,
+      "sha256": "406830d2e6784dc937c349c1a853775b8669443b9b9053de4f4670795c509358"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-B.json",
+      "bytes": 293131,
+      "sha256": "18ba81b7a72a545c81234dc62cb9e87968a058de6d71a3cde88053e1cc844830"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-B2.json",
+      "bytes": 207610,
+      "sha256": "a28fd42e89e17df6b2bffa48c82b51ddad6ecb0ef4acf8dfb9bc291178c09234"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/seongsamjae-final-high.json",
+      "bytes": 275551,
+      "sha256": "58c44aa77298852b809928981d4a45a0df5eec0c13e9c1849960971ddd8917ee"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/session.json",
+      "bytes": 51943,
+      "sha256": "0b7384dd20c3799707ab6be63ddbe94f122fb2c3dfe851f3187ea45b4383a250"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/spacing-controls.txt",
+      "bytes": 940,
+      "sha256": "ae07a33feb743f93bc24465827d87cadadc0523185ec4f8e1fa6e98ad3c154bd"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/style-controls.txt",
+      "bytes": 937,
+      "sha256": "91ff980c08c38538c2e352a882098d7699774fe4335d6ba6ea83f5f0d7037866"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/targeted-final.txt",
+      "bytes": 4107,
+      "sha256": "800fe680cb9140c883d82552b469c4ef40cdf91eb09fdeafe25f29c11902c764"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-1024x768.json",
+      "bytes": 2821,
+      "sha256": "79e1736e4abb1d9a041eb7147098e6828bc1a49a8007215efe6b644813a1e284"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-1280x720.json",
+      "bytes": 2235,
+      "sha256": "d7a419677f1b69ed8178578eb14afb281fd29d106c3ca7f50ee3d9a3af90b4b6"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-667x375.json",
+      "bytes": 2716,
+      "sha256": "e1615bf3d4057345f35ba2d913a4db5ac8f148202b676d2b582302fb75c929c1"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-844x390.json",
+      "bytes": 2706,
+      "sha256": "75a83355320f74f41e68f77374c61265583702f4e3eeb7f71b4a720709d1511e"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-before-spacing-1024x768.json",
+      "bytes": 2821,
+      "sha256": "79e1736e4abb1d9a041eb7147098e6828bc1a49a8007215efe6b644813a1e284"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-before-spacing-1280x720.json",
+      "bytes": 2235,
+      "sha256": "d7a419677f1b69ed8178578eb14afb281fd29d106c3ca7f50ee3d9a3af90b4b6"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-before-spacing-667x375.json",
+      "bytes": 2845,
+      "sha256": "e5654fb7ca49c561e5651ef390752b3d7da6af31d9b67ad9ace17f7100e95a2a"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/ui-before-spacing-844x390.json",
+      "bytes": 2836,
+      "sha256": "88a687d6c16c5753bf5883ccf71c139880ad71ce271982fd10138030c568350d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/validation-release-inputs.json",
+      "bytes": 38111,
+      "sha256": "4bb07c90e7f2c09728325fdb0210670e7600abcdc063bc70e1691d28912787d3"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-A1.json",
+      "bytes": 248509,
+      "sha256": "1a8eb7ab67e349a50af0ffa2a28c35a1c96a86ee72322099e1c2073fae59b0ae"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-A2.json",
+      "bytes": 293911,
+      "sha256": "3db472bf8b28fd8231161c918c9123f0cff33e5ca4e7e6cdfd27d49114e24e73"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-A3.json",
+      "bytes": 295085,
+      "sha256": "e433092b6102b9fea863fe4a413a15634f3b6ff29dc46a332030265b8f7c4774"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-common-B.json",
+      "bytes": 270961,
+      "sha256": "6bb9a381b7fbcfe59af8abcd27d9e333b2400733a27a3b728856deee462f1bb1"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-final-high.json",
+      "bytes": 292047,
+      "sha256": "6282d96f70fc6b3fbd5e1faec69bd247e27cf068d33e059bc290e67198bb0a2e"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-final-low.json",
+      "bytes": 284665,
+      "sha256": "05f2f7a0b2bcdf234cf01107a8d412d7254f6680fd420e62e01b012944dd367d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-guide-B.json",
+      "bytes": 275395,
+      "sha256": "8d4a1c3045087dc92c27af2bc0d776c2e84f5882f865f3de3ec627b582460613"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-guide-B2.json",
+      "bytes": 293481,
+      "sha256": "d544499ea1389e3f30db4d396bc58e7831a8143658ec6136e83c4a07e117e8f5"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/yeosu-release-low.json",
+      "bytes": 291247,
+      "sha256": "e44a1fec8629d8da9f8ebfc18b05a4b60994eaf494a4ecec1e55ae46f474f877"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/regression/rain-races.json",
+      "bytes": 71404,
+      "sha256": "e84042a82065019b70390b3b788fd583bda7e5e5d84b149aecc8752b0f27abbf"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/regression/rival-personality-races.json",
+      "bytes": 119744,
+      "sha256": "0f70e5324f1a7c3f4acec52713ae389a8d47dd489b061d06c127427b238da44b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/regression/traffic-races.json",
+      "bytes": 20611,
+      "sha256": "403af1f8f7130346ef02451ab4d5311ce02d47bc0be28a2523568fb00e6152bc"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/before-spacing-1024.png",
+      "bytes": 59252,
+      "sha256": "17ddce0ec42084d5a652917efdc1c6d365e937be994f15e83f66554c0109ddda"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/before-spacing-1280.png",
+      "bytes": 73356,
+      "sha256": "7ac51d2f478089a848766d738675705fafb13d1f06599a91a644842117473fea"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/before-spacing-667.png",
+      "bytes": 32869,
+      "sha256": "4180569147bc5fee15b768d78cede83e0c82f484061dd0bb89d4f14ab0e3084b"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/before-spacing-844.png",
+      "bytes": 34987,
+      "sha256": "825bfe8332607c1e6ada3588b6d83474b2ff62b3825c1ca2f5615b964f00ddb3"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/namak-finish.png",
+      "bytes": 31194,
+      "sha256": "049526b9de4106cb45b557cd57be15cbb717f334a114f18c3c2bd34dc0eab8a2"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/production-1024.png",
+      "bytes": 39929,
+      "sha256": "580ee32a87f4fd4059c111536da6c69f6575f82a70a8254c19b57b7dbff3b425"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/production-1280.png",
+      "bytes": 48401,
+      "sha256": "76d483b410f16cbd80624896e800db61d6fa30baa804684a8476638d3a0f9e1c"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/production-667.png",
+      "bytes": 21620,
+      "sha256": "06becbcc0af7cf9b32677d49f8a599692236c6069a9cc8419c21428cac34e5e6"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/production-844.png",
+      "bytes": 23237,
+      "sha256": "741d6c24bbb2dc38acf0168018de7f7ed4c5638e6d9a826222d2f3653ed7953f"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/seongsamjae-next-1024.png",
+      "bytes": 59226,
+      "sha256": "19eff4b5035ce2d5d57206b9a877e5afe628a087008e3d34a62193f59d4ea97d"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/seongsamjae-next-1280.png",
+      "bytes": 73399,
+      "sha256": "765728814a82b682059fcedba64648cf0e5bb6c2877fcf273316ff0273e520d9"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/seongsamjae-next-667.png",
+      "bytes": 33138,
+      "sha256": "156ed07d5b702695aa8543f70c82062556665321b589b1ac1893d7a97e7bd5bf"
+    },
+    {
+      "path": "artifacts/map-polish-resume-20261104/screens/seongsamjae-next-844.png",
+      "bytes": 35114,
+      "sha256": "9ceb9e2b54ca2749857b01706e8d446b18c53d1e6890e6a74ff6b843adda465e"
+    }
+  ]
+}

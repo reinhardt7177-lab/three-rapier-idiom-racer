@@ -1,0 +1,47 @@
+✖ exported Blender signs contain readable place labels on their outward board face (398.236ms)
+✔ all actual sign geometry stays out of the drivable corridor and adds no hidden colliders (252.7313ms)
+✔ sign groups survive batching, cull outside the current district and release resources once (227.6445ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (1375.3125ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (71.6232ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (12.3401ms)
+✔ player steering is exactly 1.3 times at road speeds with the original low-speed rack stop and mirrored wheel axes (1.8369ms)
+{"target":100,"direction":-1,"kmh":102.46997314057366,"contacts":4,"steer":0.06869446847502983,"sensitivity":1.3}
+{"target":100,"direction":1,"kmh":102.46998078252192,"contacts":4,"steer":-0.0686944558883443,"sensitivity":1.3}
+{"target":180,"direction":-1,"kmh":180.33908367295007,"contacts":4,"steer":0.017446592775604838,"sensitivity":1.3}
+{"target":180,"direction":1,"kmh":180.33908367295007,"contacts":4,"steer":-0.017446592775590748,"sensitivity":1.3}
+✔ enhanced steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (1876.686ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (17.3032ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (1.7574ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (27.6601ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (1.3044ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (51.6391ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (108.2291ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (5.501ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (2.865ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (3.6901ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (0.7565ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (539.7472ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6597.732
+
+✖ failing tests:
+
+test at scripts\namak-landmarks.test.mjs:17:1
+✖ exported Blender signs contain readable place labels on their outward board face (398.236ms)
+  AssertionError [ERR_ASSERTION]: hidden/backwards title: east-entry
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak-landmarks.test.mjs:33:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

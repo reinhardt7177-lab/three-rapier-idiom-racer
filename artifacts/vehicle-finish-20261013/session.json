@@ -1,0 +1,45 @@
+{
+  "task": "8-car visual finish and rendering cost",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "baseHead": "437b2c254a6cff76a6fd0f2f1b6b904138b25293",
+  "candidate": "vertex-colour single-material spokes",
+  "phase": "implementation and validation complete",
+  "checkSession": 55255,
+  "checkLabel": "vertex",
+  "previewServerPort": 5301,
+  "previewServerSession": 44422,
+  "completed": [
+    "eight Blender sources/GLBs and finish shader",
+    "35 vehicle asset/rig/shader tests",
+    "final full check 428/428 and build 5.19s",
+    "244 final input hashes unchanged",
+    "41 core races / 246 cars complete without falling",
+    "8-car front/rear browser captures",
+    "Namak six-car actual finish 86.1417s with all recoveries0",
+    "four-size final garage/HUD/result/menu, clipping0; pre-existing1024garage1px overlap reproduced in baseline",
+    "menu/garage inputs released and restart flow",
+    "console errors/warnings0",
+    "final low/high A/B/A 30s comparisons",
+    "report and NEXT_STEPS"
+  ],
+  "pending": [],
+  "performanceEvidence": "Final low p95 A/B/A16.8/16.8/16.8ms; high33.4/33.3/33.4ms. Low CPU submission +~1.3ms; >50ms spikes retained. All frame samples visible/focused. Previous slower/bad samples preserved.",
+  "foreignChanges": [
+    "src/rebuild/assets.js",
+    "src/rebuild/namakVisuals.js",
+    "namak architecture artifacts/assets/source/module",
+    "package.json Namak test registration",
+    "docs/NEXT_STEPS.md Namak paragraph",
+    "artifacts/namak-20261010/stationary-grid-rivals.json"
+  ],
+  "scope": "No physics/grip/ride/routes/records/online protocol edits. No main/PR/deploy. Private official-reference screenshots stay local. Preserve failures and original data.",
+  "validatedAt": "2026-10-14T01:01:47.796Z",
+  "deployment": "Not requested; Cloudflare production remains c6c5a19.",
+  "preview": "http://127.0.0.1:5301/?track=namak&vehicle-polish=20261014",
+  "knownIssues": [
+    "P3:1024x768 garage medal state1px heading/panel bounds overlap, also before car edits",
+    "High-quality p9533.3ms on Intel Iris Xe",
+    "factory silhouettes remain simplified; no physical mobile or real-network test"
+  ],
+  "gitDelivery": "Own vehicle files staged; commit/push result is recorded in delivery.json after execution."
+}

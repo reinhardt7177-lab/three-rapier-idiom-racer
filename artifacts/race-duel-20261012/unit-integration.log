@@ -1,0 +1,36 @@
+✔ three real course rounds advance once and award 10/6/4/3/2/1 (5.0114ms)
+✔ partial, duplicate, unknown and invalid finishes cannot create championship points (14.1121ms)
+✔ rounds remain immutable and points ties use wins then real total finish time (1.1622ms)
+✔ series checkpoint resumes its next course and corrupted data is rejected (1.4886ms)
+✔ best series uses points before time and tolerates blocked storage (6.4851ms)
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (4.9009ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (2.0173ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (0.9983ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (4.2772ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (1.4085ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (0.8747ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (2.1701ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (0.7522ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (5.7669ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.4682ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (3.454ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.7245ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.7339ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.6701ms)
+✔ fresh garage has five cars and three courses; first genuine medal opens mountain and RX-7 (7.2996ms)
+✔ medal upgrades do not farm unlocks, lap formats count once and existing records migrate (1.6956ms)
+✔ every track has ordered medal targets for every lap option (42.7019ms)
+✔ a personal best only improves, per track and lap count (25.0281ms)
+✔ corrupt or blocked storage never breaks the result screen (0.9323ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (1.7115ms)
+✔ route guidance only announces the finish on the final lap (2.0151ms)
+✔ a ghost replays the recorded run at the same race time (93.0784ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (1.1825ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1030.4795

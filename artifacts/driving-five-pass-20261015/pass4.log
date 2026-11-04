@@ -1,0 +1,29 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (2.4365ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.5247ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (289.3645ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (9.8792ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (12.3041ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (15.7625ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (4.2661ms)
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (7.1804ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (6.9018ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (14.1679ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (708.6356ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (13.4967ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (10.5773ms)
+✔ explicit camera choice is honored while an unset choice respects reduced motion (1.5654ms)
+✔ 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS (24.9249ms)
+✔ reduced motion fixes FOV and reset snaps to the new position (0.4669ms)
+✔ full boost and acceleration stay within nine metres even after prolonged 300 km/h travel (31.0208ms)
+✔ audio defaults to silent, clamps volume and fails safely without Web Audio (2.3411ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2187.0199

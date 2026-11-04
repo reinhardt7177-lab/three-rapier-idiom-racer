@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {createRivalPlanner} from '../../src/rebuild/rivalPlanner.js';
+const route={length:4000,points:Array.from({length:800},(_,i)=>({x:0,y:0,z:i*5,dx:0,dz:1,distance:i*5}))};
+const car=(z,lane,v,player=false)=>({id:'supra',name:player?'YOU':'LUNA',index:Math.round(z/5),lane,pace:1,progress:z,player,finish:null,state:{position:{x:lane,y:.53,z},rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:v},speed:v,kmh:v*3.6,contacts:4,ride:{locked:true},steeringLimit:.52}});
+const own=car(100,-2.2,25),original=car(130,-2.2,10,true);
+const planner=createRivalPlanner(route,{roadClear:()=>true,speedProfile:{maxSpeed:245,lateralAcceleration:7.3,fullBrakingHorizon:true}});
+planner.update([own,original],1/120);
+const first=planner.snapshot(own);
+own.state.position.x=2.2;original.state.position.z=250;
+for(let i=0;i<30;i++)planner.update([own,original],1/120);
+const reached=planner.snapshot(own),newLead=car(125,2.2,16.5,true),before=JSON.stringify([own,original,newLead]);
+for(let i=0;i<30;i++)planner.update([own,original,newLead],1/120);
+const result={execution:'Local small planner diagnostic; no physics/world pose mutation',first,reached,after:planner.snapshot(own),input:planner.update([own,original,newLead],1/120).get(own),snapshotsUnchanged:JSON.stringify([own,original,newLead])===before};
+fs.writeFileSync(new URL('moving-lead-baseline.json',import.meta.url),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

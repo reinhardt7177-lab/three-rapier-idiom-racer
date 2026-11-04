@@ -1,0 +1,57 @@
+{
+  "errors": [],
+  "states": [
+    {
+      "phase": "pointer-held",
+      "input": {
+        "throttle": 1,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "mode": "race",
+      "paused": false
+    },
+    {
+      "phase": "pointer-plus-keyboard",
+      "input": {
+        "throttle": 1,
+        "brake": 0,
+        "reverse": 0,
+        "steer": -1,
+        "handbrake": false,
+        "boost": false
+      },
+      "mode": "race",
+      "paused": false
+    },
+    {
+      "phase": "pause-cancelled",
+      "input": {
+        "throttle": 0,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "mode": "race",
+      "paused": true
+    },
+    {
+      "phase": "garage",
+      "input": {
+        "throttle": 0,
+        "brake": 0,
+        "reverse": 0,
+        "steer": 0,
+        "handbrake": false,
+        "boost": false
+      },
+      "mode": "garage",
+      "paused": false
+    }
+  ]
+}

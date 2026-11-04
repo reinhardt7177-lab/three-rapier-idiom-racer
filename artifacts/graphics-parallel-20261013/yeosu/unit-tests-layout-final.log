@@ -1,0 +1,21 @@
+✔ baked light layout is tied to the exact unchanged GLB and agrees with authored light positions (121.9325ms)
+✔ unchanged emitted surfaces retain their layout identity after runtime scenery batching (177.3018ms)
+✔ changed emitted geometry falls back to its current light surfaces rather than a stale baked layout (87.0896ms)
+✔ a transformed world carries its baked light positions along with the root (22.7442ms)
+✔ interleaved GLTF positions preserve the layout check and changed positions safely fall back (79.8526ms)
+✔ actual batched Blender geometry supplies all eight bridge lamps and independently sampled shore lights (7.5177ms)
+✔ visual replacement leaves every authored vertex, material, collider annotation and transform unchanged (33.5386ms)
+✔ reflection mask covers the complete +/-7m road corridor and the new sea remains far below the asphalt (21.125ms)
+✔ quality budgets bound extra calls, geometry and light sources without adding lights or a render pass (13.414ms)
+✔ pause holds the ripple clock, visibility restores the old sea, and distance removes inactive reflection sources (13.4115ms)
+✔ owned GPU resources dispose once and authored geometry/material resources are retained (11.5077ms)
+✔ a restarted race reselects nearby reflections when the elapsed clock returns to zero (10.419ms)
+✔ an unrelated empty world receives no visual lights, sea geometry or additional draws (2.5533ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1260.4635

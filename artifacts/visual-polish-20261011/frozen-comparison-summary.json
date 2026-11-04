@@ -1,0 +1,2212 @@
+{
+  "posesFixed": true,
+  "setupMs": 12.899999976158142,
+  "transitions": [
+    {
+      "to": "full-before",
+      "cpuMs": 0
+    },
+    {
+      "to": "tread-only",
+      "cpuMs": 1
+    },
+    {
+      "to": "full-after",
+      "cpuMs": 1.5
+    },
+    {
+      "to": "complete",
+      "cpuMs": 1.5999999642372131
+    }
+  ],
+  "phases": [
+    {
+      "phase": "full-before",
+      "elapsed": 9.166666666666787,
+      "frames": {
+        "samples": 359,
+        "meanMs": 24.79164345403903,
+        "p95Ms": 33.5,
+        "maxMs": 66.70000000001164,
+        "over50Ms": 3,
+        "calls": 962,
+        "triangles": 1571343,
+        "cpu": {
+          "workMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 21.627298049774012,
+            "p95": 29.69999998807907,
+            "max": 68.89999997615814
+          },
+          "physicsMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 0,
+            "p95": 0,
+            "max": 0
+          },
+          "renderMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 21.45013927500228,
+            "p95": 29.5,
+            "max": 68.69999998807907
+          }
+        },
+        "evidence": {
+          "totalIntervals": 359,
+          "slowIntervals": 3,
+          "retained": 3,
+          "evicted": 0,
+          "spikes": [
+            {
+              "gapMs": 50.100000000034925,
+              "previous": {
+                "atMs": 379803.6,
+                "cpu": {
+                  "workMs": 19,
+                  "physicsMs": 0,
+                  "renderMs": 18.799999952316284
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 42.799999976181425,
+                  "droppedSeconds": 0
+                }
+              },
+              "current": {
+                "atMs": 379853.7,
+                "cpu": {
+                  "workMs": 19.100000023841858,
+                  "physicsMs": 0,
+                  "renderMs": 18.899999976158142
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 16.1999999761465,
+                  "droppedSeconds": 0
+                }
+              }
+            },
+            {
+              "gapMs": 66.70000000001164,
+              "previous": {
+                "atMs": 385737.2,
+                "cpu": {
+                  "workMs": 68.89999997615814,
+                  "physicsMs": 0,
+                  "renderMs": 68.69999998807907
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 5.900000023830216,
+                  "droppedSeconds": 0
+                }
+              },
+              "current": {
+                "atMs": 385803.9,
+                "cpu": {
+                  "workMs": 26.5,
+                  "physicsMs": 0,
+                  "renderMs": 26.30000001192093
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 22.900000011897646,
+                  "droppedSeconds": 0
+                }
+              }
+            },
+            {
+              "gapMs": 50.100000000034925,
+              "previous": {
+                "atMs": 386637.1,
+                "cpu": {
+                  "workMs": 35.80000001192093,
+                  "physicsMs": 0,
+                  "renderMs": 35.69999998807907
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 20.299999976181425,
+                  "droppedSeconds": 0
+                }
+              },
+              "current": {
+                "atMs": 386687.2,
+                "cpu": {
+                  "workMs": 37.40000003576279,
+                  "physicsMs": 0,
+                  "renderMs": 37.10000002384186
+                },
+                "context": {
+                  "visible": true,
+                  "focused": true,
+                  "callbackDelayMs": 9.1999999761465,
+                  "droppedSeconds": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "cpu": {
+        "workMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 21.627298049774012,
+          "p95": 29.69999998807907,
+          "max": 68.89999997615814
+        },
+        "physicsMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "renderMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 21.45013927500228,
+          "p95": 29.5,
+          "max": 68.69999998807907
+        }
+      },
+      "gpu": [
+        {
+          "frame": 16381,
+          "label": "full-before",
+          "ms": 14.064427
+        },
+        {
+          "frame": 16441,
+          "label": "full-before",
+          "ms": 17.332863
+        },
+        {
+          "frame": 16501,
+          "label": "full-before",
+          "ms": 10.865572
+        },
+        {
+          "frame": 16561,
+          "label": "full-before",
+          "ms": 18.306301
+        },
+        {
+          "frame": 16621,
+          "label": "full-before",
+          "ms": 19.099895
+        },
+        {
+          "frame": 16681,
+          "label": "full-before",
+          "ms": 11.595364
+        }
+      ],
+      "gpuMean": 15.210737000000002,
+      "gpuStatus": {
+        "pending": 0,
+        "invalid": 0
+      },
+      "profiles": [
+        {
+          "frame": 16381,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 42.69999998807907,
+          "drawCpuMs": 32.39999979734421,
+          "otherCpuMs": 10.300000190734863,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 1.399999976158142
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.699999988079071
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.2999999523162842
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 9.699999988079071
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 8.199999928474426
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 8.799999952316284
+            }
+          ]
+        },
+        {
+          "frame": 16441,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 18.69999998807907,
+          "drawCpuMs": 12.199999928474426,
+          "otherCpuMs": 6.500000059604645,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.5000000596046448
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.20000004768371582
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.0999999046325684
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.5999999642372131
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 3.199999988079071
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.199999988079071
+            }
+          ]
+        },
+        {
+          "frame": 16501,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 23.30000001192093,
+          "drawCpuMs": 15.50000011920929,
+          "otherCpuMs": 7.799999892711639,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.30000007152557373
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.300000011920929
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.3999999761581421
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.399999976158142
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 6.300000011920929
+            }
+          ]
+        },
+        {
+          "frame": 16561,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 19.600000023841858,
+          "drawCpuMs": 13.600000083446503,
+          "otherCpuMs": 5.999999940395355,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.2999999523162842
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.3000001311302185
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.20000004768371582
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.8999999761581421
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.199999988079071
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 4.5
+            }
+          ]
+        },
+        {
+          "frame": 16621,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 23.100000023841858,
+          "drawCpuMs": 15.499999761581421,
+          "otherCpuMs": 7.600000262260437,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.3999999761581421
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.299999952316284
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.6000000238418579
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.7999999523162842
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 3.6999999284744263
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 6.300000011920929
+            }
+          ]
+        },
+        {
+          "frame": 16681,
+          "label": "full-before",
+          "completed": true,
+          "cpuMs": 25.899999976158142,
+          "drawCpuMs": 16.80000013113022,
+          "otherCpuMs": 9.099999845027924,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 5.200000047683716
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.49999988079071045
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.9000000357627869
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.300000071525574
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.500000059604645
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "tread-only",
+      "elapsed": 9.166666666666787,
+      "frames": {
+        "samples": 359,
+        "meanMs": 21.31002785515317,
+        "p95Ms": 33.40000000002328,
+        "maxMs": 50,
+        "over50Ms": 0,
+        "calls": 942,
+        "triangles": 1392143,
+        "cpu": {
+          "workMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 19.264066851404717,
+            "p95": 22.400000035762787,
+            "max": 31.80000001192093
+          },
+          "physicsMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 0,
+            "p95": 0,
+            "max": 0
+          },
+          "renderMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 19.132311978546024,
+            "p95": 22.200000047683716,
+            "max": 31.600000023841858
+          }
+        },
+        "evidence": {
+          "totalIntervals": 359,
+          "slowIntervals": 0,
+          "retained": 0,
+          "evicted": 0,
+          "spikes": []
+        }
+      },
+      "cpu": {
+        "workMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 19.264066851404717,
+          "p95": 22.400000035762787,
+          "max": 31.80000001192093
+        },
+        "physicsMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "renderMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 19.132311978546024,
+          "p95": 22.200000047683716,
+          "max": 31.600000023841858
+        }
+      },
+      "gpu": [
+        {
+          "frame": 16741,
+          "label": "tread-only",
+          "ms": 14.251927
+        },
+        {
+          "frame": 16801,
+          "label": "tread-only",
+          "ms": 13.646041
+        },
+        {
+          "frame": 16861,
+          "label": "tread-only",
+          "ms": 13.822291
+        },
+        {
+          "frame": 16921,
+          "label": "tread-only",
+          "ms": 14.364114
+        },
+        {
+          "frame": 16981,
+          "label": "tread-only",
+          "ms": 11.772187
+        },
+        {
+          "frame": 17041,
+          "label": "tread-only",
+          "ms": 11.454635
+        }
+      ],
+      "gpuMean": 13.2185325,
+      "gpuStatus": {
+        "pending": 0,
+        "invalid": 0
+      },
+      "profiles": [
+        {
+          "frame": 16741,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 22.19999998807907,
+          "drawCpuMs": 15.50000011920929,
+          "otherCpuMs": 6.6999998688697815,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.40000003576278687
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.7000001072883606
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.100000023841858
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.20000004768371582
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.9000000357627869
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 3.7999998331069946
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.800000011920929
+            }
+          ]
+        },
+        {
+          "frame": 16801,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 22.19999998807907,
+          "drawCpuMs": 14.000000357627869,
+          "otherCpuMs": 8.199999630451202,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.40000009536743164
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.700000047683716
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.800000011920929
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.7000000476837158
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 3.200000047683716
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.700000047683716
+            }
+          ]
+        },
+        {
+          "frame": 16861,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 22.80000001192093,
+          "drawCpuMs": 16.19999998807907,
+          "otherCpuMs": 6.600000023841858,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.699999988079071
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.30000007152557373
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.5000000596046448
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.5999999642372131
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.1999999284744263
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 3.899999976158142
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.600000023841858
+            }
+          ]
+        },
+        {
+          "frame": 16921,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 21.600000023841858,
+          "drawCpuMs": 15.099999904632568,
+          "otherCpuMs": 6.5000001192092896,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.5000000596046448
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.19999992847442627
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.900000035762787
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.3999999761581421
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.1999999284744263
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 3.399999976158142
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 6.399999976158142
+            }
+          ]
+        },
+        {
+          "frame": 16981,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 20.19999998807907,
+          "drawCpuMs": 12.899999797344208,
+          "otherCpuMs": 7.300000190734863,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.5999999642372131
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 1.699999988079071
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.699999988079071
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 4
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 4.9999998807907104
+            }
+          ]
+        },
+        {
+          "frame": 17041,
+          "label": "tread-only",
+          "completed": true,
+          "cpuMs": 17.19999998807907,
+          "drawCpuMs": 12.00000011920929,
+          "otherCpuMs": 5.1999998688697815,
+          "calls": 942,
+          "triangles": 1392143,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.40000003576278687
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.2999999523162842
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.1999999284744263
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.1000000834465027
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 264,
+              "triangles": 688876,
+              "cpuMs": 3.4000001549720764
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 4.399999976158142
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "full-after",
+      "elapsed": 9.166666666666787,
+      "frames": {
+        "samples": 359,
+        "meanMs": 22.42367688022294,
+        "p95Ms": 33.40000000002328,
+        "maxMs": 33.5,
+        "over50Ms": 0,
+        "calls": 962,
+        "triangles": 1571343,
+        "cpu": {
+          "workMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 20.203899721747323,
+            "p95": 24.900000035762787,
+            "max": 38.10000002384186
+          },
+          "physicsMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 0,
+            "p95": 0,
+            "max": 0
+          },
+          "renderMs": {
+            "samples": 359,
+            "missing": 0,
+            "mean": 20.057938720024396,
+            "p95": 24.80000001192093,
+            "max": 38
+          }
+        },
+        "evidence": {
+          "totalIntervals": 359,
+          "slowIntervals": 0,
+          "retained": 0,
+          "evicted": 0,
+          "spikes": []
+        }
+      },
+      "cpu": {
+        "workMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 20.203899721747323,
+          "p95": 24.900000035762787,
+          "max": 38.10000002384186
+        },
+        "physicsMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "renderMs": {
+          "samples": 359,
+          "missing": 0,
+          "mean": 20.057938720024396,
+          "p95": 24.80000001192093,
+          "max": 38
+        }
+      },
+      "gpu": [
+        {
+          "frame": 17101,
+          "label": "full-after",
+          "ms": 12.552031
+        },
+        {
+          "frame": 17161,
+          "label": "full-after",
+          "ms": 13.080468
+        },
+        {
+          "frame": 17221,
+          "label": "full-after",
+          "ms": 12.999531
+        },
+        {
+          "frame": 17281,
+          "label": "full-after",
+          "ms": 11.021301
+        },
+        {
+          "frame": 17341,
+          "label": "full-after",
+          "ms": 21.481197
+        },
+        {
+          "frame": 17401,
+          "label": "full-after",
+          "ms": 13.378281
+        }
+      ],
+      "gpuMean": 14.085468166666667,
+      "gpuStatus": {
+        "pending": 0,
+        "invalid": 0
+      },
+      "profiles": [
+        {
+          "frame": 17101,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 22.600000023841858,
+          "drawCpuMs": 16.29999977350235,
+          "otherCpuMs": 6.300000250339508,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.19999992847442627
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.40000003576278687
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.099999964237213
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.1000000834465027
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.999999821186066
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 6.299999952316284
+            }
+          ]
+        },
+        {
+          "frame": 17161,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 23,
+          "drawCpuMs": 16.600000262260437,
+          "otherCpuMs": 6.399999737739563,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.20000004768371582
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.3000001907348633
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.3999999761581421
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.699999988079071
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.300000011920929
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 7.300000071525574
+            }
+          ]
+        },
+        {
+          "frame": 17221,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 21.69999998807907,
+          "drawCpuMs": 15.800000011920929,
+          "otherCpuMs": 5.899999976158142,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.3999999761581421
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 3.9000000953674316
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.2999999523162842
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.2000000476837158
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.099999904632568
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.300000011920929
+            }
+          ]
+        },
+        {
+          "frame": 17281,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 20.30000001192093,
+          "drawCpuMs": 14.100000202655792,
+          "otherCpuMs": 6.199999809265137,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.10000002384185791
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.5
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.0000000596046448
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.5999999642372131
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 0.9999999403953552
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 3.9000001549720764
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 5.700000047683716
+            }
+          ]
+        },
+        {
+          "frame": 17341,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 34.40000003576279,
+          "drawCpuMs": 21.40000021457672,
+          "otherCpuMs": 12.999999821186066,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.2999999523162842
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.30000001192092896
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 5.300000190734863
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.100000023841858
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.20000004768371582
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 5.199999988079071
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 8.500000059604645
+            }
+          ]
+        },
+        {
+          "frame": 17401,
+          "label": "full-after",
+          "completed": true,
+          "cpuMs": 21.399999976158142,
+          "drawCpuMs": 13.200000047683716,
+          "otherCpuMs": 8.199999928474426,
+          "calls": 962,
+          "triangles": 1571343,
+          "unattributedCalls": 0,
+          "unattributedTriangles": 0,
+          "buckets": [
+            {
+              "pass": "shadow",
+              "category": "world",
+              "calls": 37,
+              "triangles": 28887,
+              "cpuMs": 0.5000000596046448
+            },
+            {
+              "pass": "shadow",
+              "category": "ground",
+              "calls": 9,
+              "triangles": 1252,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vegetation",
+              "calls": 10,
+              "triangles": 7056,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "shadow",
+              "category": "road",
+              "calls": 2,
+              "triangles": 240,
+              "cpuMs": 0
+            },
+            {
+              "pass": "shadow",
+              "category": "vehicle",
+              "calls": 47,
+              "triangles": 146010,
+              "cpuMs": 0.19999998807907104
+            },
+            {
+              "pass": "main",
+              "category": "world",
+              "calls": 308,
+              "triangles": 116634,
+              "cpuMs": 2.0999999046325684
+            },
+            {
+              "pass": "main",
+              "category": "ground",
+              "calls": 31,
+              "triangles": 6380,
+              "cpuMs": 0.30000007152557373
+            },
+            {
+              "pass": "main",
+              "category": "vegetation",
+              "calls": 127,
+              "triangles": 103176,
+              "cpuMs": 1.300000011920929
+            },
+            {
+              "pass": "main",
+              "category": "road",
+              "calls": 11,
+              "triangles": 1408,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "sky",
+              "calls": 1,
+              "triangles": 12,
+              "cpuMs": 0.09999996423721313
+            },
+            {
+              "pass": "main",
+              "category": "vehicle",
+              "calls": 284,
+              "triangles": 868076,
+              "cpuMs": 4.300000071525574
+            },
+            {
+              "pass": "main",
+              "category": "other",
+              "calls": 95,
+              "triangles": 292212,
+              "cpuMs": 4.100000023841858
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "allGaps": 1079,
+  "slowGaps": [
+    {
+      "phase": "full-before",
+      "gapMs": 50.100000000034925
+    },
+    {
+      "phase": "full-before",
+      "gapMs": 66.70000000001164
+    },
+    {
+      "phase": "full-before",
+      "gapMs": 50.100000000034925
+    }
+  ]
+}

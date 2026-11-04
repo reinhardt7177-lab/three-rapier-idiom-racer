@@ -1,0 +1,85 @@
+{
+  "status": "stage1-criteria-passed",
+  "staticAttempts": 3,
+  "staticLatestPassed": 6,
+  "colabExecuted": true,
+  "colabDevice": "CPU / Rapier WASM",
+  "races": 12,
+  "starts": 72,
+  "finished": 72,
+  "garageFourViewports": true,
+  "fullHudFourViewports": true,
+  "performanceGate": "short stationary browser samples recorded; previous large delay not reproduced, whole-course visual/flow audit remains",
+  "stage2Started": false,
+  "committed": true,
+  "pushed": true,
+  "browserTimeouts": 3,
+  "stopReason": null,
+  "browserPipeClosures": 1,
+  "browserConnectionFailures": 4,
+  "browserRecovered": "Codex in-app browser",
+  "basicKeyboardAndPointerRelease": true,
+  "performanceWarning": {
+    "track": "namak",
+    "beforeMeanMs": 17.50041666666669,
+    "afterMeanMs": 18.473333333333358,
+    "beforeP95Ms": 17,
+    "afterP95Ms": 33.30000000000291,
+    "causality": "unconfirmed short sample",
+    "sameDrawCalls": 868,
+    "sameTriangles": 1279323
+  },
+  "fullCheckBeforePerformanceInstrumentation": {
+    "tests": 226,
+    "pass": 226,
+    "fail": 0,
+    "build": true
+  },
+  "currentFullCheck": {
+    "executed": true,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "build": true,
+    "seconds": 166.40990710258484,
+    "buildSeconds": 3.21,
+    "code": 0,
+    "compute": "CPU / Rapier WASM",
+    "sourceFilesMatched": 119,
+    "sourceMismatches": 0,
+    "log": "full-check-5.log"
+  },
+  "currentTargetedCheck": {
+    "tests": 10,
+    "pass": 10,
+    "fail": 0,
+    "build": true,
+    "buildSeconds": 2.18
+  },
+  "pauseRenderVerified": {
+    "before": {
+      "draws": 1678,
+      "skipped": 0
+    },
+    "after": {
+      "draws": 1681,
+      "skipped": 647
+    },
+    "elapsedUnchanged": 21.183333333332772,
+    "resumeThrottle": 0
+  },
+  "colabConnected": true,
+  "stage1Complete": true,
+  "remainingStage1": [],
+  "nightCurveScreenshot": true,
+  "latestImplementationCommit": "1706de4",
+  "mapImageReferencesVerified": true,
+  "criticalViews": {
+    "static": true,
+    "runtimeDrive": false,
+    "gradeUp": 9.9121903257,
+    "gradeDown": 17.5871128487,
+    "hairpin": true,
+    "summitRoadOverlapFixed": true
+  }
+}

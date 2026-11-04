@@ -1,0 +1,9 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const root=process.cwd(),artifact=path.join(root,'artifacts'),out=[];
+const candidate=/^(before(?:-.+)?|backup(?:-.+)?|validation-source|baseline(?:-.+)?|(?:quality|rain)-baseline|validated-bundle|qa-(?:source|dist|build)(?:-.+)?|verified-source|build-source|pages-publish|pass[12]|rejected-hero-candidate)$/;
+async function size(dir){let bytes=0,files=0,links=[];for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isSymbolicLink()){links.push(p);continue;}if(e.isDirectory()){const s=await size(p);bytes+=s.bytes;files+=s.files;links.push(...s.links);}else if(e.isFile()){bytes+=(await fs.stat(p)).size;files++;}}return {bytes,files,links};}
+async function scan(dir){for(const e of await fs.readdir(dir,{withFileTypes:true})){if(e.isSymbolicLink())continue;const p=path.join(dir,e.name);if(e.isDirectory()){if(candidate.test(e.name))out.push({path:p,...await size(p)});else await scan(p);}else if(e.isFile()&&(/\.tar$|\.blend[12]$/.test(e.name)))out.push({path:p,bytes:(await fs.stat(p)).size,files:1,links:[]});}}
+await scan(artifact);out.sort((a,b)=>b.bytes-a.bytes);
+const summary={at:new Date().toISOString(),deletedFiles:0,deletedBytes:0,status:'blocked_by_automatic_approval_policy',reason:'exec_command CreateProcess rejected: blocked by policy; no detailed reason provided. No alternative deletion tool used.',candidateBytes:out.reduce((n,p)=>n+p.bytes,0),candidates:out,note:'Inventory only. Candidates are not approved as dispensable merely by their names. Retain test fixtures, current sources and evidence. Junction targets excluded.'};
+await fs.writeFile(path.join(artifact,'online-review-20261015/cleanup-inventory.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify({status:summary.status,deletedBytes:0,candidateBytes:summary.candidateBytes,largest:out.slice(0,12)},null,2));

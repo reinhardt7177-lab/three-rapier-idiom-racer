@@ -1,0 +1,34 @@
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ navigation follows the actual driver-camera side at yaw 0 (266.679ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (5.2732ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (2.139ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (1.1561ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (255.7425ms)
+✔ every track has ordered medal targets for every lap option (5.4966ms)
+✔ a personal best only improves, per track and lap count (1.9555ms)
+✔ corrupt or blocked storage never breaks the result screen (1.3146ms)
+✔ new-course saved badges are recalculated without deleting times or legacy medals (1.3983ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (1.8854ms)
+✔ route guidance only announces the finish on the final lap (2.4477ms)
+✔ a ghost replays the recorded run at the same race time (52.2166ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (1.4525ms)
+✔ right/left bends follow world heading, including the circular route seam (8.1948ms)
+✔ bend detection uses metres and survives a fourfold change in point density (2.5966ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (27.1944ms)
+✔ actual city approach previews its geometrically verified right bend and cached guidance stays pure (17.2836ms)
+✔ isolated heading errors never become a persistent corner warning (6.3056ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (9.9211ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (4.4428ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3437.9626

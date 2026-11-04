@@ -1,0 +1,2 @@
+import fs from 'node:fs';
+for(const p of ['artifacts/content-resume-20261011/rival-personality-races.json','artifacts/content-resume-20261011/rain-races.json']){if(!fs.existsSync(p))continue;const r=JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));console.log(JSON.stringify({path:p,time:fs.statSync(p).mtime.toISOString(),races:r.results?.length,last:r.results?.at(-1)?.trackId,laps:r.results?.at(-1)?.laps,allFinished:r.results?.every(row=>row.cars?.every(c=>Number.isFinite(c.finish)))}));}

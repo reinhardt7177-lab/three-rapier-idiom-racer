@@ -1,0 +1,2792 @@
+
+
+
+
+
+
+
+<!-- header -->
+
+
+
+
+
+
+
+
+<!-- 현재 선택된 카테고리 탭(tab_c.jsp)의 이름을 title에 포함 -->
+
+
+	
+		
+			
+		
+	
+	
+
+
+
+
+
+
+<!-- 페이지 종류(seo.type)에 따른 title 구분 라벨: 목록/상세와 title이 겹치는 액션형 페이지만 표시 -->
+
+
+	
+	
+	
+	
+		
+	
+	
+	
+	
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+	<title>목록 | 택지개발(개발사업) | 사업내역 | 개발사업 | 사업안내 | 전남개발공사</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="subject" content="">
+	<meta name="author" content="">
+
+ 	<!-- SEO -->
+	
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="전남개발공사">
+<meta property="og:title" content="택지개발(개발사업) | 사업내역 | 개발사업 | 사업안내 | 전남개발공사">
+<meta property="og:url" content="https://www.jndc.co.kr/web/main/bbs/bdctydevlop">
+
+<meta property="og:image" content="https://www.jndc.co.kr/design/theme/demo/images/logo-200x200.gif">
+<meta property="og:image:height" content="200">
+<meta property="og:image:width" content="200">
+<meta name="name" content="택지개발(개발사업) | 사업내역 | 개발사업 | 사업안내 | ">
+<meta name="keywords" content="전남개발공사,택지개발" >
+
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="image_src" href="https://www.jndc.co.kr/design/theme/demo/images/logo-200x200.gif" >
+	<!-- //SEO -->
+		
+	<link rel="stylesheet" href="/design/theme/demo/css/fonts.css" />
+	<link rel="stylesheet" href="/design/theme/demo/css/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="/design/theme/demo/css/slick.min.css" />
+	<link rel="stylesheet" href="/design/theme/demo/css/common.css" />
+	<link rel="stylesheet" href="/design/theme/demo/css/sub.css" />
+	<link rel="stylesheet" href="/design/theme/demo/css/sub2.css" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+	
+	<script>
+		const tabName = 'all';
+		const pageUrlPre = '/web/main';
+	</script>
+	<script type="text/javascript" src="/design/theme/demo/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/design/theme/demo/js/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="/design/theme/demo/js/slick.min.js"></script>
+	<script type="text/javascript" src="/design/theme/demo/js/common.js"></script>
+	<script type="text/javascript" src="/design/theme/demo/js/sub.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+	
+	<script src="/design/common/js/common.js"></script>
+	<script src="/design/common/js/jquery.cookie.js"></script>
+	<script src="/design/common/js/jquery.drags.js"></script>
+	<script src="/design/common/js/clipboard/clipboard.min.js"></script>
+	<script src="/design/common/js/printThis.js"></script>
+
+	
+	<!-- Global -->
+	<script>
+var GLOBAL = {
+		APP_PATH:'/web/main',
+		CONTEXT_PATH:'',
+		
+		API_PATH:'/api',
+		siteId:'tb',
+		menuId:'M03010301',
+		SECURITY_TOKEN_NAME:'_sToken',
+		SECURITY_TOKEN:'1791857056191_02a19b7dceb0f06b1d84199c09fd4c3e016aa270f106d8165f3c717e4a3b708c',
+		SECURITY_ASYNC_TOKEN_NAME:'',
+		SECURITY_ASYNC_COOKIE_NAME:'',
+		
+		SITE_LOCALE:'ko_KR',
+		MOBILE:false
+		};
+</script>
+
+	<script src="/design/common/js/recommend.js"></script>
+	<!-- Sweet-Alert  -->
+	<script src="/assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+	
+	<!-- media player -->
+	<script src="/design/common/js/mediaelement/mediaelement-and-player.js"></script>
+	<link type="text/css" rel="stylesheet" href="/design/common/js/mediaelement/mediaelementplayer.css">
+	
+	<!-- url 공유하기 -->
+	<script src="/design/common/js/clipboard/clipboard.min.js"></script>
+	
+	<script>
+	$(function(){
+		//로그인 상태 체크
+		var isLogin = false;
+		var loginId = '';
+		if(loginId != null && loginId != '' ){
+			isLogin = true;
+		}
+
+		$('.new-btn').on('click', function(e){
+			//e.preventDefault();
+			if(!isLogin){
+				alert('로그인 후 작성해 주세요.');
+				return false;
+			}
+		});
+		
+	});
+	
+	window.onload = function() {
+		// 1depth 메뉴 hover 시 슬라이드 공간에 1depth 메뉴 이름 추가
+		const depth2 = document.querySelectorAll(".nav .depth2");
+		for(let i = 0; i < depth2.length; i++) {
+			depth2[i].querySelector(".nav-tit").innerText = depth2[i].previousElementSibling.innerText;
+		}
+		
+		/* sub page 상단 배경 설정 */
+		/* if('searchResult' == 'M03010301') {  // 통합검색은 지정 헤더 이미지
+			document.querySelector('.sub-head-bg').style.background = 'url(' + '/design/theme/demo' + '/images/sub_headerbg10.jpg)';
+		} else {
+			let bgClass = 'M03010301'.substr(1, 2);
+			if(bgClass.startsWith('0')) {
+				bgClass = bgClass.substr(1);
+			}
+			const bgNum = parseInt(bgClass, 10);
+			if (bgNum >= 1 && bgNum <= 10) {
+				document.querySelector('.sub-head-bg').style.background = 'url(' + '/design/theme/demo' + '/images/sub_headerbg' + bgClass + '.jpg)';
+			} else {
+				document.querySelector('.sub-head-bg').style.background = 'url(' + '/design/theme/demo' + '/images/sub_headerbg1.jpg)';
+			}
+		} */
+	}
+
+	</script>
+	
+</head>
+<body>
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
+
+
+
+
+
+
+<script>
+//cookie 유틸
+$.cookie = function (name, value, opts) {
+  if (value !== undefined) {
+    opts = opts || {};
+    var path = opts.path || '/';
+    var expires = '';
+    if (opts.expires) {
+      if (typeof opts.expires === 'number') {
+        var d = new Date(); d.setTime(d.getTime() + opts.expires * 864e5);
+        expires = '; expires=' + d.toUTCString();
+      } else if (opts.expires instanceof Date) {
+        expires = '; expires=' + opts.expires.toUTCString();
+      }
+    }
+    document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=' + path;
+    return true;
+  }
+  var pairs = document.cookie ? document.cookie.split('; ') : [];
+  for (var i = 0; i < pairs.length; i++) {
+    var idx = pairs[i].indexOf('='), k = pairs[i].substring(0, idx);
+    if (k === name) return decodeURIComponent(pairs[i].substring(idx + 1));
+  }
+  return null;
+};
+$.removeCookie = function (name, path) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + (path || '/');
+};
+
+$(document).ready(function () {	
+	
+	
+	if(GLOBAL.menuId == 'home' && !$.cookie(GLOBAL.siteId + '_popupzone_not_today')) {
+		$(".poup-zone").css({display:"flex"});
+		// 접근성: 페이지 접속 시 자동으로 열리는 경우에도 포커스를 레이어 내부로 이동
+		$(".poup-zone .close-btn").trigger('focus');
+		if (window.pz_swiper) {
+			pz_swiper.autoplay.start();
+			$(".pz-slide-play").addClass("pz-slide-stop").removeClass("pz-slide-play").find('.blind').text('일시정지');
+		}
+	}
+	
+	if($.cookie(GLOBAL.siteId + '_popupzone_not_today')) {
+		$(".todayc").hide();
+	}
+
+	$(".poup-zone .close-btn").on('click', function(e) {
+		e.preventDefault();
+		$(".header .tp-menu .aram").removeClass('on');
+		$(".poup-zone").removeAttr("style");
+		if (window.pz_swiper) {
+			pz_swiper.autoplay.stop();
+		}
+		// 오늘 하루 열지않기
+
+
+		if($("#todayc").is(":checked")) {
+			$.cookie(GLOBAL.siteId + '_popupzone_not_today', '1', {expires:1, path:'/'});
+		}
+
+		// 접근성 포커스 이동
+		$(".header .tp-menu .aram").focus();
+	});
+
+	// 접근성: 레이어가 열려있는 동안 포커스를 레이어 내부로 가두고, Esc로 닫기
+	$(document).on('keydown', function(e) {
+		var $zone = $(".poup-zone");
+		if (!$zone.is(":visible")) return;
+
+		if (e.key === "Escape") {
+			$zone.find(".close-btn").trigger('click');
+			return;
+		}
+		if (e.key === "Tab") {
+			// Swiper 배너 슬라이드 중 화면 밖에 있는 것들은 tabindex="-1"이라
+			// 실제 키보드 Tab으로 도달할 수 없으므로 후보에서 제외
+			var $focusable = $zone.find('a, button, input, [tabindex]').filter(':visible').filter(function() {
+				var tabindex = this.getAttribute('tabindex');
+				return tabindex === null || parseInt(tabindex, 10) >= 0;
+			});
+			var first = $focusable.first()[0], last = $focusable.last()[0];
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault(); last.focus();
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault(); first.focus();
+			}
+		}
+	});
+	
+	
+	
+		$(".notice .num").show();
+		$(".notice .num").text('1');
+	
+	
+});
+</script>
+
+<div class="poup-zone" role="dialog" aria-modal="true" aria-labelledby="popupZoneTitle">
+	<div>
+		<div class="top-part">
+			<p class="tit" id="popupZoneTitle">POPUP ZONE</p>
+			<div class="daies">
+				<span class="todayc">
+					<input type="checkbox" id="todayc" title="오늘하루열지않기">
+					<label for="todayc">오늘하루열지않기</label>
+				</span>
+				<a href="#" class="close-btn">닫기</a>
+			</div>
+		</div>
+		<div class="pz-slide">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					
+						<div class="swiper-slide">
+							<a href="https://www.jndc.co.kr/web/main/bbs/emboard/7752?cp=1&sortOrder=REG_DT&sortDirection=DESC&bbsId=emboard&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" target="_blank" title="새창 열기" ><img src="/web/main/file/image/uu/2fe5cf66a7f9480ba6fb6bebf24f5d49" alt="환경분야 부정수급 집중신고기간(2026.10.1 ~ 10.31)
+신고대상 : 신재생에너지 지원사업, 친환경자동차 구매지원금, 각종 주변지역 지원금 등 환경분야 부정수급 행위
+신고방법 : 청렴포털 - www.clean.go.kr
+                방문 우편 - 세종특별자치시 도움5로 20, 국민권익위원회
+신고상담 : 국번없이 1398
+신고자 보호 등 : 변호사를 통한 비실명 대리신고 가능
+                         자진신고 및 부정이익 반환 시 제재부가금 감면 가능
+                         신고자의 범죄 발견 시 형 감면 가능"></a>
+						</div>
+					
+				</div>
+						
+			</div>
+			<div class="ctrl">
+				<div class="swiper-button-prev button_arrow"></div>
+				<div class="swiper-pagination pz-slide-page"></div>
+				<a href="#" class="pz-slide-stop"><span class="blind">일시정지</span></a>
+				<div class="swiper-button-next button_arrow"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- skip navigation -->    
+<div class="skipnav" style="display: none;">
+	<a href="#snb" class="skip_main">본문 바로가기</a>
+	<a href="#gnb">주메뉴 바로가기</a>
+</div>
+
+<!-- wrap -->
+<div id="wrap">
+	<!-- header -->
+    <div id="header" class="header">
+		<h1 class="logo"><a href="/web/main/main" title="메인 페이지 바로가기"><span class="blind">전남개발공사</span></a></h1>
+		
+		<!-- gnb start -->
+		
+
+
+
+
+
+
+
+
+
+
+<div class="nav" id="gnb"><ul class="depth1"><li><a href="/web/main/bbs/parcelout">공고안내</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/bbs/parcelout">분양공고</a></li><li><a href="/web/main/bbs/reward">보상공고</a></li><li><a href="/web/main/bbs/breakdown">입찰공고</a><div class="depth3"><ul><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=BK+BUK&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="link">입찰공고</a></li><li><a href="/web/main/bbs/breakdown">입찰공고내역</a></li><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=BKOB&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="link">개찰결과</a></li><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=DD&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="link">발주계획</a></li><li><a href="/web/main/bbs/tenderfree">입찰자료실</a></li></ul></div></li><li><a href="/web/main/bbs/sale">매각공고</a></li><li><a href="/web/main/contents/M010501">채용공고</a><div class="depth3"><ul><li><a href="/web/main/contents/M010501">인재상</a></li><li><a href="/web/main/bbs/jobs">채용공고</a></li></ul></div></li><li><a href="/web/main/bbs/etc">기타공고</a></li></ul></div></div></li><li><a href="/web/main/contents/M020101">분양안내</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M020101">분양가이드</a><div class="depth3"><ul><li><a href="/web/main/contents/M020101">분양절차</a></li><li><a href="/web/main/contents/M020102">공급방법</a></li><li><a href="/web/main/contents/M020103">대금납부</a></li><li><a href="/web/main/contents/M020104">토지사용 및 소유권 이전</a></li><li><a href="/web/main/contents/M020105">세금안내</a></li></ul></div></li><li><a href="/web/main/contents/M0202">분양관심고객등록</a></li><li><a href="/web/main/parcel/M0203">분양대금납부조회</a></li><li><a href="/web/main/bbs/parcelinfo">분양정보</a></li></ul></div></div></li><li><a href="/web/main/contents/M03010101">사업안내</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M03010101">개발사업</a><div class="depth3"><ul><li><a href="/web/main/contents/M03010101">사업소개</a><ul class="depth4"><li><a href="/web/main/contents/M03010101">택지개발(개발사업)</a></li><li><a href="/web/main/contents/M03010102">관광단지(개발사업)</a></li><li><a href="/web/main/contents/M03010103">산단조성(개발사업)</a></li></ul></li><li><a href="/web/main/contents/M03010201">사업절차</a><ul class="depth4"><li><a href="/web/main/contents/M03010201">도시개발(개발사업)</a></li><li><a href="/web/main/contents/M03010202">택지개발(개발사업)</a></li><li><a href="/web/main/contents/M03010203">산단조성(개발사업)</a></li></ul></li><li><a href="/web/main/bbs/bdctydevlop">사업내역</a><ul class="depth4"><li><a href="/web/main/bbs/bdctydevlop">택지개발(개발사업)</a></li><li><a href="/web/main/bbs/bdbldinddevlop">관광단지(개발사업)</a></li><li><a href="/web/main/bbs/bdirsttdevlop">산단조성(개발사업)</a></li></ul></li></ul></div></li><li><a href="/web/main/contents/M03020101">신재생에너지사업</a><div class="depth3"><ul><li><a href="/web/main/contents/M03020101">사업소개</a><ul class="depth4"><li><a href="/web/main/contents/M03020101">태양광발전사업(신재생에너지사업)</a></li><li><a href="/web/main/contents/M03020102">풍력발전사업(신재생에너지사업)</a></li><li><a href="/web/main/contents/M03020103">사회공헌 실현(신재생에너지사업)</a></li></ul></li><li><a href="/web/main/contents/M03020201">사업절차</a><ul class="depth4"><li><a href="/web/main/contents/M03020201">태양광발전사업(신재생에너지사업)</a></li><li><a href="/web/main/contents/M03020202">풍력발전사업(신재생에너지사업)</a></li></ul></li><li><a href="/web/main/bbs/bdsundevlop">사업내역</a><ul class="depth4"><li><a href="/web/main/bbs/bdsundevlop">태양광발전사업(신재생에너지사업)</a></li><li><a href="/web/main/bbs/bdwinddevlop">풍력발전사업(신재생에너지사업)</a></li></ul></li></ul></div></li><li><a href="/web/main/contents/M030301">운영사업</a><div class="depth3"><ul><li><a href="/web/main/contents/M030301">사업소개</a></li><li><a href="/web/main/bbs/bsnsdtls">사업내역</a></li></ul></div></li><li><a href="/web/main/contents/M03040101">주택사업</a><div class="depth3"><ul><li><a href="/web/main/contents/M03040101">사업소개</a><ul class="depth4"><li><a href="/web/main/contents/M03040101">전남형 만원주택사업(주택사업)</a></li><li><a href="/web/main/contents/M03040102">분양주택사업(주택사업)</a></li></ul></li><li><a href="/web/main/contents/M03040201">사업절차</a><ul class="depth4"><li><a href="/web/main/contents/M03040201">전남형 만원주택사업(주택사업)</a></li><li><a href="/web/main/contents/M03040202">분양주택사업(주택사업)</a></li></ul></li><li><a href="/web/main/bbs/bdjeonnamhouse">사업내역</a><ul class="depth4"><li><a href="/web/main/bbs/bdjeonnamhouse">전남형 만원주택사업(주택사업)</a></li><li><a href="/web/main/bbs/bdforsalehousing">분양주택사업(주택사업)</a></li></ul></li></ul></div></li><li><a href="/web/main/contents/M030501">수탁사업</a><div class="depth3"><ul><li><a href="/web/main/contents/M030501">사업소개</a></li><li><a href="/web/main/bbs/tbbsnsdtls">사업내역</a></li></ul></div></li><li><a href="/web/main/bbs/realname">사업실명제</a></li><li><a href="/web/main/bbs/scstatus">하도급현황</a></li><li><a href="/web/main/contents/M03070101">보상안내</a><div class="depth3"><ul><li><a href="/web/main/contents/M03070101">보상업무안내</a><ul class="depth4"><li><a href="/web/main/contents/M03070101">손실보상 절차</a></li><li><a href="/web/main/contents/M03070102">보상의 종류</a></li><li><a href="/web/main/contents/M03070103">소유자권리구제</a></li></ul></li></ul></div></li></ul></div></div></li><li><a href="/web/main/contents/M04010101">정보공개</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M04010101">정보공개</a><div class="depth3"><ul><li><a href="/web/main/contents/M04010101">정보공개제도 안내</a><ul class="depth4"><li><a href="/web/main/contents/M04010101">정보공개제도 개요</a></li><li><a href="/web/main/contents/M04010102">정보공개 청구 및 처리절차</a></li><li><a href="/web/main/contents/M04010103">불복구제 절차</a></li></ul></li><li><a href="https://www.open.go.kr/com/main/mainView.do" title="새창" target="_blank" class="link">정보공개청구</a></li><li><a href="/web/main/bbs/infolistopen">정보목록공개</a></li><li><a href="/web/main/bbs/infoopen">사전정보공표</a></li><li><a href="/web/main/contents/M040105">비공개대상 정보</a></li><li><a href="/web/main/contents/M040106">정보공개 상시 수요조사</a></li><li><a href="/web/main/bbs/jndc_faq/list">FAQ</a></li></ul></div></li><li><a href="/web/main/contents/M040201">경영공시</a><div class="depth3"><ul><li><a href="/web/main/contents/M040201">경영공시제도 안내</a></li><li><a href="https://www.cleaneye.go.kr/user/itemGongsi.do?inputEntId=2007100243&inputItemNo=1_1" title="새창" target="_blank" class="link">전남개발공사 경영공시</a></li><li><a href="/web/main/bbs/infoopen_110">결산서</a></li><li><a href="/web/main/bbs/infoopen_111">재무제표</a></li><li><a href="/web/main/contents/M040205">연도별 경영목표</a></li><li><a href="/web/main/contents/M020406">연도별 경영평가 등급</a></li><li><a href="/web/main/bbs/infoopen_112">예산 및 운영계획</a></li><li><a href="/web/main/contents/M040207">외부감사결과</a></li></ul></div></li><li><a href="/web/main/contents/M040301">공공데이터개방</a><div class="depth3"><ul><li><a href="/web/main/contents/M040301">공공데이터개방 안내</a></li><li><a href="/web/main/bbs/current">공공데이터개방 현황</a></li><li><a href="/web/main/contents/M040303">공공데이터 상시 수요조사</a></li><li><a href="/web/main/bbs/reference">공공데이터 자료실</a></li></ul></div></li><li><a href="/web/main/bbs/open">사규</a><div class="depth3"><ul><li><a href="/web/main/bbs/open">사규공개</a></li><li><a href="/web/main/bbs/trailer">입안 예고</a></li></ul></div></li><li><a href="/web/main/bbs/audiovisual">미니아카이브</a><div class="depth3"><ul><li><a href="/web/main/bbs/audiovisual">시청각 자료</a></li></ul></div></li></ul></div></div></li><li><a href="/web/main/bbs/notice">소식/공지</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/bbs/notice">공지사항</a><div class="depth3"><ul><li><a href="/web/main/bbs/notice">공지사항</a></li><li><a href="/web/main/bbs/dataroom">자료실</a></li></ul></div></li><li><a href="/web/main/contents/M050201">홍보자료</a><div class="depth3"><ul><li><a href="/web/main/contents/M050201">CI</a></li><li><a href="/web/main/bbs/newsletter">사보</a></li><li><a href="/web/main/bbs/prdata">홍보물</a></li><li><a href="/web/main/bbs/video">동영상</a></li><li><a href="/web/main/bbs/mediareport">언론보도</a></li></ul></div></li><li><a href="/web/main/bbs/tdata">행사자료</a></li></ul></div></div></li><li><a href="/web/main/contents/M06010101">ESG경영</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M06010101">ESG경영</a><div class="depth3"><ul><li><a href="/web/main/contents/M060104">ESG대시보드</a></li><li><a href="/web/main/contents/M06010101">ESG경영</a><ul class="depth4"><li><a href="/web/main/contents/M06010101">ESG경영 추진체계</a></li><li><a href="/web/main/contents/M06010102">ESG경영 확산 선언문</a></li><li><a href="/web/main/bbs/codeofconduct">행동강령</a></li><li><a href="/web/main/contents/M06010104">에너지경영방침</a></li></ul></li><li><a href="/web/main/contents/M06010201">ESG위원회</a><ul class="depth4"><li><a href="/web/main/contents/M06010201">ESG위원회 소개</a></li><li><a href="/web/main/bbs/esgcommitteeactivity">ESG위원회 활동</a></li></ul></li><li><a href="/web/main/contents/M06010301">ESG경영 추진활동</a><ul class="depth4"><li><a href="/web/main/contents/M06010301">ESG관련 대외인증</a></li><li><a href="/web/main/bbs/activityboard">ESG경영 활동</a></li><li><a href="/web/main/bbs/gongsi">ESG경영 공시</a></li><li><a href="/web/main/contents/M06010304">ESG확산 홍보영상</a></li></ul></li><li><a href="/web/main/bbs/sustainablemanagereoort">지속가능경영보고서</a></li></ul></div></li><li><a href="/web/main/contents/M06020101">윤리경영</a><div class="depth3"><ul><li><a href="/web/main/contents/M06020101">윤리경영 체계</a><ul class="depth4"><li><a href="/web/main/contents/M06020101">윤리규범</a></li><li><a href="/web/main/contents/M06020102">목표 및 추진전략</a></li><li><a href="/web/main/contents/M06020103">계획 및 과제</a></li><li><a href="/web/main/contents/M06020104">갑질, 청렴옴부즈만제도</a></li></ul></li><li><a href="/web/main/contents/M06020201">윤리경영 실적</a><ul class="depth4"><li><a href="/web/main/contents/M06020201">추진실적</a></li><li><a href="/web/main/bbs/infoopen_37" title="새창" target="_blank" class="link">외부감사</a></li><li><a href="/web/main/bbs/infoopen_71" title="새창" target="_blank" class="link">내부감사</a></li></ul></li><li><a href="/web/main/contents/M060203">사전컨설팅감사</a></li><li><a href="/web/main/bbs/emboard">게시판</a><ul class="depth4"><li><a href="/web/main/bbs/emboard">윤리경영 게시판</a></li><li><a href="https://www.clean.go.kr/menu.es?mid=a10421010000" title="새창" target="_blank" class="link">부패공직자 제재 공개</a></li></ul></li><li><a href="/web/main/contents/M06020501">신고센터</a><ul class="depth4"><li><a href="/web/main/contents/M06020501">사이버신고센터</a></li><li><a href="/web/main/contents/M06020502">동행변호사</a></li></ul></li></ul></div></li><li><a href="/web/main/contents/M06030101">인권경영</a><div class="depth3"><ul><li><a href="/web/main/contents/M06030101">인권경영선언</a><ul class="depth4"><li><a href="/web/main/contents/M06030101">인권경영선언문</a></li><li><a href="/web/main/bbs/rule">인권경영규정 및 설명자료</a></li></ul></li><li><a href="/web/main/contents/M060302">인권경영체계</a></li><li><a href="/web/main/bbs/managementnews">인권경영소식</a></li><li><a href="https://www.jndc.co.kr/resources/img/upload/file/download/jndc_humanlight_declaration.hwp" title="새창" target="_blank" class="link">인권침해신고서</a></li></ul></div></li><li><a href="/web/main/contents/M060401">안전보건경영</a><div class="depth3"><ul><li><a href="/web/main/contents/M060401">안전보건경영방침</a></li><li><a href="/web/main/contents/M060402">안전보건관리조직</a></li><li><a href="/web/main/contents/M060403">재난안전대책본부</a></li><li><a href="/web/main/bbs/shmboard">안전보건경영 게시판</a></li></ul></div></li><li><a href="/web/main/contents/M060501">사회공헌</a><div class="depth3"><ul><li><a href="/web/main/contents/M060501">사회공헌활동 추진방향</a></li><li><a href="/web/main/bbs/cultural">사회공헌활동</a></li><li><a href="/web/main/bbs/localdevel">지역발전공헌</a></li></ul></div></li><li><a href="/web/main/contents/M060601">적극행정</a><div class="depth3"><ul><li><a href="/web/main/contents/M060601">적극행정 소개 및 추진전략</a></li><li><a href="/web/main/contents/M060602">적극행정 실행과제</a></li><li><a href="/web/main/contents/M060603">적극행정 추진성과</a></li></ul></div></li><li><a href="/web/main/contents/M060701">품질점검</a><div class="depth3"><ul><li><a href="/web/main/contents/M060701">품질점검단 소개</a></li><li><a href="/web/main/bbs/qualitycheckboard">품질점검결과</a></li></ul></div></li></ul></div></div></li><li><a href="/web/main/contents/M0701">고객센터</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M0701">고객만족센터안내</a></li><li><a href="/web/main/contents/M07020101">고객서비스헌장</a><div class="depth3"><ul><li><a href="/web/main/contents/M07020101">고객서비스헌장</a><ul class="depth4"><li><a href="/web/main/contents/M07020101">고객서비스헌장</a></li><li><a href="/web/main/contents/M07020102">공통이행기준</a></li><li><a href="/web/main/contents/M07020103">사업별이행기준</a></li></ul></li></ul></div></li><li><a href="/web/main/voc/myinquire">고객의소리(민원)</a><div class="depth3"><ul><li><a href="/web/main/voc/myinquire">나의 문의내역</a></li><li><a href="/web/main/voc/B01">일반문의</a></li><li><a href="/web/main/voc/B02">불편불만</a></li><li><a href="/web/main/voc/B04">고객칭찬</a></li><li><a href="/web/main/voc/B06/new">불법하도급신고</a></li><li><a href="/web/main/survey/19/evaluation">직원서비스평가</a></li><li><a href="/web/main/survey/88/survey">설문조사</a></li></ul></div></li><li><a href="/web/main/contents/M070401">고객참여</a><div class="depth3"><ul><li><a href="/web/main/contents/M070401">고객제안센터</a></li><li><a href="/web/main/voc/B03">고객제안</a></li></ul></div></li></ul></div></div></li><li><a href="/web/main/contents/M0801">공사소개</a><div class="depth2"><div><div class="nav-tit"></div><ul><li><a href="/web/main/contents/M0801">CEO인사말</a></li><li><a href="/web/main/contents/M080201">일반현황</a><div class="depth3"><ul><li><a href="/web/main/contents/M080201">공사소개</a></li><li><a href="/web/main/contents/M080202">전략목표 및 중점추진방향</a></li><li><a href="/web/main/bbs/history_management">연혁</a></li></ul></div></li><li><a href="/web/main/contents/M080301">조직안내</a><div class="depth3"><ul><li><a href="/web/main/contents/M080301">조직도 및 담당업무</a></li></ul></div></li><li><a href="/web/main/contents/M0804">오시는길</a></li></ul></div></div></li></ul></div>
+		<!-- gnb end -->
+		
+		<!-- tnb (로그인,검색,전체메뉴)-->
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+<script>
+
+jQuery(function($){
+	// 검색
+	$(".icon-search.pc").click(function(e){
+		e.preventDefault();
+		$(".tp").submit();
+
+        //$(this).closest("form").submit();
+	});
+
+	const keywords = document.querySelectorAll(".bt-key .keyword-item");
+	keywords.forEach(function(keyword) {
+		keyword.addEventListener("click", function(e){
+			e.preventDefault();
+			const sv = document.querySelector('.tp input[name=sv]');
+			sv.value = keyword.dataset.keyword; 
+			document.querySelector('.tp').submit();
+		})
+	});
+	
+});
+</script>
+
+<div class="tp-right">
+	<div class="tp-search">
+		<form action="/web/main/searchResult" method="get" class="tp">
+			<input type="text" name="sv" placeholder="검색어를 입력해주세요" value="" title="검색어를 입력해주세요">
+			<a href="#" class="icon-search pc"><img src="/design/theme/demo/images/icon_search.png" alt="검색"></a>
+		</form>
+
+		<div class="bt-key">
+			<div class="tit">인기검색어</div>
+			<div class="bt-key-slide">
+				<div class="control-btn">
+					<a href="#" class="swiper-button-prev" title="이전"></a>
+					<a href="#" class="swiper-button-next" title="다음"></a>
+				</div>
+				<div class="bt-key-slide-box">
+					<div class="swiper bt-key-Swiper">
+						<div class="swiper-wrapper">
+							
+							<div class="swiper-slide"><a href="#" data-keyword="전남개발공사" class="keyword-item" title="'전남개발공사' 검색결과로 이동">01. 전남개발공사</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="사" class="keyword-item" title="'사' 검색결과로 이동">02. 사</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="공" class="keyword-item" title="'공' 검색결과로 이동">03. 공</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="채용" class="keyword-item" title="'채용' 검색결과로 이동">04. 채용</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="2026" class="keyword-item" title="'2026' 검색결과로 이동">05. 2026</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="1" class="keyword-item" title="'1' 검색결과로 이동">06. 1</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="공사" class="keyword-item" title="'공사' 검색결과로 이동">07. 공사</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="2027" class="keyword-item" title="'2027' 검색결과로 이동">08. 2027</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="만원주택" class="keyword-item" title="'만원주택' 검색결과로 이동">09. 만원주택</a></div>
+							
+							<div class="swiper-slide"><a href="#" data-keyword="&lt;span" class="keyword-item" title="'&lt;span' 검색결과로 이동">10. &lt;span</a></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tp-menu">
+		<ul>
+			<li><a href="#" class="aram">알림창 <i class="count">1</i></a></li>
+			<li><a href="/web/en/main" class="lang">Eng</a></li>
+			<li><a href="#" class="all-nav">전체메뉴</a></li>
+		</ul>
+	</div>
+	
+	<!-- all menu -->
+	<!-- mobile menu -->
+	
+
+
+
+<script>
+jQuery(function($){
+	// 검색
+	$(".icon-search.mbl").click(function(){
+		$(".m-all-menu-search").submit();
+	});
+});
+</script>
+
+		<div class="all-menu">
+			<div class="m-all-menu-tp">
+				
+				<ul>
+					<li><a href="/web/main/main" class="home">HOME</a></li>
+					<li><a href="/web/en/main" class="lang">ENGLISH</a></li>
+				</ul>
+				<form action="/web/main/searchResult" method="get" class="m-all-menu-search">
+					<a href="#" class="icon-search mbl"><img src="/design/theme/demo/images/icon_search.png" alt="검색"></a>
+					<input type="text" name="sv" placeholder="검색어를 입력해주세요" value="" title="검색어를 입력해주세요">
+				</form>
+			</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="/web/main/bbs/parcelout" class="public">공고안내</a><div class="all-depth2"><ul><li><a href="/web/main/bbs/parcelout" class="public">분양공고</a></li><li><a href="/web/main/bbs/reward" class="public">보상공고</a></li><li><a href="/web/main/bbs/breakdown" class="public">입찰공고</a><div class="all-depth3"><ul><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=BK+BUK&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="public">입찰공고</a></li><li><a href="/web/main/bbs/breakdown" class="public">입찰공고내역</a></li><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=BKOB&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="public">개찰결과</a></li><li><a href="https://www.g2b.go.kr/link/FIUA006_01/single/?untySrchSeCd=DD&rowCnt=&instCd=Z009448&urlSrchSeCd=instCd&demaInstCd=IN0100000015524" title="새창" target="_blank" class="public">발주계획</a></li><li><a href="/web/main/bbs/tenderfree" class="public">입찰자료실</a></li></ul></div></li><li><a href="/web/main/bbs/sale" class="public">매각공고</a></li><li><a href="/web/main/contents/M010501" class="public">채용공고</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M010501" class="public">인재상</a></li><li><a href="/web/main/bbs/jobs" class="public">채용공고</a></li></ul></div></li><li><a href="/web/main/bbs/etc" class="public">기타공고</a></li></ul></div></li><li><a href="/web/main/contents/M020101" class="public">분양안내</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M020101" class="public">분양가이드</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M020101" class="public">분양절차</a></li><li><a href="/web/main/contents/M020102" class="public">공급방법</a></li><li><a href="/web/main/contents/M020103" class="public">대금납부</a></li><li><a href="/web/main/contents/M020104" class="public">토지사용 및 소유권 이전</a></li><li><a href="/web/main/contents/M020105" class="public">세금안내</a></li></ul></div></li><li><a href="/web/main/contents/M0202" class="public">분양관심고객등록</a></li><li><a href="/web/main/parcel/M0203" class="public">분양대금납부조회</a></li><li><a href="/web/main/bbs/parcelinfo" class="public">분양정보</a></li></ul></div></li><li><a href="/web/main/contents/M03010101" class="public">사업안내</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M03010101" class="public">개발사업</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M03010101" class="public">사업소개</a></li><li><a href="/web/main/contents/M03010201" class="public">사업절차</a></li><li><a href="/web/main/bbs/bdctydevlop" class="public">사업내역</a></li></ul></div></li><li><a href="/web/main/contents/M03020101" class="public">신재생에너지사업</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M03020101" class="public">사업소개</a></li><li><a href="/web/main/contents/M03020201" class="public">사업절차</a></li><li><a href="/web/main/bbs/bdsundevlop" class="public">사업내역</a></li></ul></div></li><li><a href="/web/main/contents/M030301" class="public">운영사업</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M030301" class="public">사업소개</a></li><li><a href="/web/main/bbs/bsnsdtls" class="public">사업내역</a></li></ul></div></li><li><a href="/web/main/contents/M03040101" class="public">주택사업</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M03040101" class="public">사업소개</a></li><li><a href="/web/main/contents/M03040201" class="public">사업절차</a></li><li><a href="/web/main/bbs/bdjeonnamhouse" class="public">사업내역</a></li></ul></div></li><li><a href="/web/main/contents/M030501" class="public">수탁사업</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M030501" class="public">사업소개</a></li><li><a href="/web/main/bbs/tbbsnsdtls" class="public">사업내역</a></li></ul></div></li><li><a href="/web/main/bbs/realname" class="public">사업실명제</a></li><li><a href="/web/main/bbs/scstatus" class="public">하도급현황</a></li><li><a href="/web/main/contents/M03070101" class="public">보상안내</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M03070101" class="public">보상업무안내</a></li></ul></div></li></ul></div></li><li><a href="/web/main/contents/M04010101" class="public">정보공개</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M04010101" class="public">정보공개</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M04010101" class="public">정보공개제도 안내</a></li><li><a href="https://www.open.go.kr/com/main/mainView.do" title="새창" target="_blank" class="public">정보공개청구</a></li><li><a href="/web/main/bbs/infolistopen" class="public">정보목록공개</a></li><li><a href="/web/main/bbs/infoopen" class="public">사전정보공표</a></li><li><a href="/web/main/contents/M040105" class="public">비공개대상 정보</a></li><li><a href="/web/main/contents/M040106" class="public">정보공개 상시 수요조사</a></li><li><a href="/web/main/bbs/jndc_faq/list" class="public">FAQ</a></li></ul></div></li><li><a href="/web/main/contents/M040201" class="public">경영공시</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M040201" class="public">경영공시제도 안내</a></li><li><a href="https://www.cleaneye.go.kr/user/itemGongsi.do?inputEntId=2007100243&inputItemNo=1_1" title="새창" target="_blank" class="public">전남개발공사 경영공시</a></li><li><a href="/web/main/bbs/infoopen_110" class="public">결산서</a></li><li><a href="/web/main/bbs/infoopen_111" class="public">재무제표</a></li><li><a href="/web/main/contents/M040205" class="public">연도별 경영목표</a></li><li><a href="/web/main/contents/M020406" class="public">연도별 경영평가 등급</a></li><li><a href="/web/main/bbs/infoopen_112" class="public">예산 및 운영계획</a></li><li><a href="/web/main/contents/M040207" class="public">외부감사결과</a></li></ul></div></li><li><a href="/web/main/contents/M040301" class="public">공공데이터개방</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M040301" class="public">공공데이터개방 안내</a></li><li><a href="/web/main/bbs/current" class="public">공공데이터개방 현황</a></li><li><a href="/web/main/contents/M040303" class="public">공공데이터 상시 수요조사</a></li><li><a href="/web/main/bbs/reference" class="public">공공데이터 자료실</a></li></ul></div></li><li><a href="/web/main/bbs/open" class="public">사규</a><div class="all-depth3"><ul><li><a href="/web/main/bbs/open" class="public">사규공개</a></li><li><a href="/web/main/bbs/trailer" class="public">입안 예고</a></li></ul></div></li><li><a href="/web/main/bbs/audiovisual" class="public">미니아카이브</a><div class="all-depth3"><ul><li><a href="/web/main/bbs/audiovisual" class="public">시청각 자료</a></li></ul></div></li></ul></div></li><li><a href="/web/main/bbs/notice" class="public">소식/공지</a><div class="all-depth2"><ul><li><a href="/web/main/bbs/notice" class="public">공지사항</a><div class="all-depth3"><ul><li><a href="/web/main/bbs/notice" class="public">공지사항</a></li><li><a href="/web/main/bbs/dataroom" class="public">자료실</a></li></ul></div></li><li><a href="/web/main/contents/M050201" class="public">홍보자료</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M050201" class="public">CI</a></li><li><a href="/web/main/bbs/newsletter" class="public">사보</a></li><li><a href="/web/main/bbs/prdata" class="public">홍보물</a></li><li><a href="/web/main/bbs/video" class="public">동영상</a></li><li><a href="/web/main/bbs/mediareport" class="public">언론보도</a></li></ul></div></li><li><a href="/web/main/bbs/tdata" class="public">행사자료</a></li></ul></div></li><li><a href="/web/main/contents/M06010101" class="public">ESG경영</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M06010101" class="public">ESG경영</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M060104" class="public">ESG대시보드</a></li><li><a href="/web/main/contents/M06010101" class="public">ESG경영</a></li><li><a href="/web/main/contents/M06010201" class="public">ESG위원회</a></li><li><a href="/web/main/contents/M06010301" class="public">ESG경영 추진활동</a></li><li><a href="/web/main/bbs/sustainablemanagereoort" class="public">지속가능경영보고서</a></li></ul></div></li><li><a href="/web/main/contents/M06020101" class="public">윤리경영</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M06020101" class="public">윤리경영 체계</a></li><li><a href="/web/main/contents/M06020201" class="public">윤리경영 실적</a></li><li><a href="/web/main/contents/M060203" class="public">사전컨설팅감사</a></li><li><a href="/web/main/bbs/emboard" class="public">게시판</a></li><li><a href="/web/main/contents/M06020501" class="public">신고센터</a></li></ul></div></li><li><a href="/web/main/contents/M06030101" class="public">인권경영</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M06030101" class="public">인권경영선언</a></li><li><a href="/web/main/contents/M060302" class="public">인권경영체계</a></li><li><a href="/web/main/bbs/managementnews" class="public">인권경영소식</a></li><li><a href="https://www.jndc.co.kr/resources/img/upload/file/download/jndc_humanlight_declaration.hwp" title="새창" target="_blank" class="public">인권침해신고서</a></li></ul></div></li><li><a href="/web/main/contents/M060401" class="public">안전보건경영</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M060401" class="public">안전보건경영방침</a></li><li><a href="/web/main/contents/M060402" class="public">안전보건관리조직</a></li><li><a href="/web/main/contents/M060403" class="public">재난안전대책본부</a></li><li><a href="/web/main/bbs/shmboard" class="public">안전보건경영 게시판</a></li></ul></div></li><li><a href="/web/main/contents/M060501" class="public">사회공헌</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M060501" class="public">사회공헌활동 추진방향</a></li><li><a href="/web/main/bbs/cultural" class="public">사회공헌활동</a></li><li><a href="/web/main/bbs/localdevel" class="public">지역발전공헌</a></li></ul></div></li><li><a href="/web/main/contents/M060601" class="public">적극행정</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M060601" class="public">적극행정 소개 및 추진전략</a></li><li><a href="/web/main/contents/M060602" class="public">적극행정 실행과제</a></li><li><a href="/web/main/contents/M060603" class="public">적극행정 추진성과</a></li></ul></div></li><li><a href="/web/main/contents/M060701" class="public">품질점검</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M060701" class="public">품질점검단 소개</a></li><li><a href="/web/main/bbs/qualitycheckboard" class="public">품질점검결과</a></li></ul></div></li></ul></div></li><li><a href="/web/main/contents/M0701" class="public">고객센터</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M0701" class="public">고객만족센터안내</a></li><li><a href="/web/main/contents/M07020101" class="public">고객서비스헌장</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M07020101" class="public">고객서비스헌장</a></li></ul></div></li><li><a href="/web/main/voc/myinquire" class="public">고객의소리(민원)</a><div class="all-depth3"><ul><li><a href="/web/main/voc/myinquire" class="public">나의 문의내역</a></li><li><a href="/web/main/voc/B01" class="public">일반문의</a></li><li><a href="/web/main/voc/B02" class="public">불편불만</a></li><li><a href="/web/main/voc/B04" class="public">고객칭찬</a></li><li><a href="/web/main/voc/B06/new" class="public">불법하도급신고</a></li><li><a href="/web/main/survey/19/evaluation" class="public">직원서비스평가</a></li><li><a href="/web/main/survey/88/survey" class="public">설문조사</a></li></ul></div></li><li><a href="/web/main/contents/M070401" class="public">고객참여</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M070401" class="public">고객제안센터</a></li><li><a href="/web/main/voc/B03" class="public">고객제안</a></li></ul></div></li></ul></div></li><li><a href="/web/main/contents/M0801" class="public">공사소개</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M0801" class="public">CEO인사말</a></li><li><a href="/web/main/contents/M080201" class="public">일반현황</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M080201" class="public">공사소개</a></li><li><a href="/web/main/contents/M080202" class="public">전략목표 및 중점추진방향</a></li><li><a href="/web/main/bbs/history_management" class="public">연혁</a></li></ul></div></li><li><a href="/web/main/contents/M080301" class="public">조직안내</a><div class="all-depth3"><ul><li><a href="/web/main/contents/M080301" class="public">조직도 및 담당업무</a></li></ul></div></li><li><a href="/web/main/contents/M0804" class="public">오시는길</a></li></ul></div></li><li><a href="/web/main/contents/M090101" class="public">이용안내</a><div class="all-depth2"><ul><li><a href="/web/main/contents/M090101" class="public">개인정보처리방침</a></li><li><a href="/web/main/contents/M0902" class="public">이메일무단수집거부</a></li><li><a href="/web/main/contents/M0903" class="public">저작권보호정책</a></li></ul></div></li></ul><a class="close-all-menu" href="#n"><img src="/design/theme/demo/images/all_menu_close.png" alt="전체메뉴닫기" ></a></div>
+	<!-- all menu end -->
+</div>
+
+<div class="tp-info">
+	
+		
+	
+	
+	<div class="fullpage-set">
+		<a href="#">글자·화면설정</a>
+		<div class="fullpage-set-menu">
+			<div class="tit">글자·화면크기 설정</div>
+			<ul>
+				<li><a href="#" onclick="plus(90)">작게</a></li>
+				<li><a href="#" onclick="plus(100)" class="on">보통</a></li>
+				<li><a href="#" onclick="plus(110)">조금크게</a></li>
+				<li><a href="#" onclick="plus(130)">크게</a></li>
+				<li><a href="#" onclick="plus(150)">가장크게</a></li>
+			</ul>
+			<a class="close-fullpage" href="#n"><img src="/design/theme/demo/images/icon_close.png" alt="글자·화면크기 설정 닫기" ></a>
+		</div>
+	</div>
+</div>
+	</div>
+	<!-- header -->
+	
+	<!-- quick menu -->
+	<a href="#"  class="quick-wbtn" aria-expanded="false"><img src="/design/theme/demo/images/quick_menu_text.png" alt="QUICK 메뉴 열기"></a>
+	<div class="quick-wrap">
+		<a href="#" class="quick-btn"><img src="/design/theme/demo/images/quick_btn.png" alt="QUICK 메뉴 닫기"></a>
+		<div class="quick-box">
+			<ul>
+				<li><a href="/web/main/main">홈</a></li>
+				<li><a href="/web/main/contents/M080301">조직도</a></li>
+				<li><a href="/web/main/bbs/parcelout">분양공고</a></li>
+				<li><a href="/web/main/contents/M0701">고객센터</a></li>
+			</ul>
+		</div>
+	</div>
+	
+
+<script>
+jQuery(function($){
+	
+	//폼검색
+	$('.sub-search-btn').on('click', function(e){
+		e.preventDefault();
+		checkTab();
+		$('#boardArticleSearch').submit();
+	});
+
+	//초기화
+	$('.sub-initialize-btn').on('click', function(e){
+		e.preventDefault();
+		location.href = location.pathname;
+	});
+	
+	// 탭 확인
+	function checkTab() {
+		const tab = document.querySelector('.tab-menu')
+		if(tab) {
+		    const tabName = $('.sub-search-category').val();
+		    $('input[name="tabName"]').val(tabName);
+		}
+	}
+});
+
+/* 탭 이동 */
+function moveCategoryTab(e, categoryName, id) {
+	e.preventDefault();
+	
+	// 해당 탭의 정보를 검색 조건으로 지정
+	const category = document.querySelector('.sub-search-box select[name="' + categoryName + '"]');
+	category.value = id;
+	document.querySelector('#container #tabName').value = id;
+	
+	$('#boardArticleSearch').submit();
+}
+
+</script>
+
+
+
+<!-- sub -->
+<div id="content">
+
+	<!-- sub top visual -->
+	
+
+
+
+
+	
+	
+	    
+	    
+	        
+	        
+	            
+	        
+	        
+	        
+	    
+	
+	<div class="sub-head-bg" style="background: url('/design/theme/demo/images/sub_headerbg3.jpg')"></div>
+	
+	<div class="sub-body">
+	
+		<!-- sidebar -->
+		<div class="left-container">
+			
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="sub-title">사업안내</h2><ul class="sub-menu-step1"><li class="on"><h3><a href="javascript:void(0)" aria-expanded="true">개발사업</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M03010101" class="">사업소개</a></h3></li><li class="nostep2"><h3><a href="/web/main/contents/M03010201" class="">사업절차</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/bdctydevlop" class=" on">사업내역</a></h3></li></ul></li><li><h3><a href="javascript:void(0)" aria-expanded="false">신재생에너지사업</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M03020101" class="">사업소개</a></h3></li><li class="nostep2"><h3><a href="/web/main/contents/M03020201" class="">사업절차</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/bdsundevlop" class="">사업내역</a></h3></li></ul></li><li><h3><a href="javascript:void(0)" aria-expanded="false">운영사업</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M030301" class="">사업소개</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/bsnsdtls" class="">사업내역</a></h3></li></ul></li><li><h3><a href="javascript:void(0)" aria-expanded="false">주택사업</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M03040101" class="">사업소개</a></h3></li><li class="nostep2"><h3><a href="/web/main/contents/M03040201" class="">사업절차</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/bdjeonnamhouse" class="">사업내역</a></h3></li></ul></li><li><h3><a href="javascript:void(0)" aria-expanded="false">수탁사업</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M030501" class="">사업소개</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/tbbsnsdtls" class="">사업내역</a></h3></li></ul></li><li class="nostep2"><h3><a href="/web/main/bbs/realname" class="">사업실명제</a></h3></li><li class="nostep2"><h3><a href="/web/main/bbs/scstatus" class="">하도급현황</a></h3></li><li><h3><a href="javascript:void(0)" aria-expanded="false">보상안내</a></h3><ul class="sub-menu-step2"><li class="nostep2"><h3><a href="/web/main/contents/M03070101" class="">보상업무안내</a></h3></li></ul></li></ul>
+		</div>
+		
+		<div class="right-container">
+			<div class="sub-head">
+				<div class="sub-head-left subtitbox subtitbox4">
+					<h3 class="sub-head-title">택지개발(개발사업)</h3>
+					<!-- snb -->
+					
+
+
+
+
+
+
+
+
+
+
+
+<p><a href="/" title="" id="snb"><img src="/design/theme/demo/images/sub_header_icon3.png" alt="홈"></a><span>사업안내</span><span>개발사업</span><span>사업내역</span><span>택지개발(개발사업)</span></p>
+				</div>					
+				<!-- etc -->
+				
+
+
+
+	
+
+<script>
+
+jQuery(function($){
+	
+	//프린트
+	$('.prt').on('click', function(e){
+		e.preventDefault();
+		//window.print();
+		
+		$('#container').printThis({
+			//canvas: false,  
+			//importStyle: true, 
+			importCSS: true,
+			//loadCSS: "/design/theme/demo/css/print.css"
+		});
+		
+	});
+	
+	const lanValue = "/web/main";  // 영문/국문 홈페이지 확인
+
+	var clipboard = new ClipboardJS('.urlClipboard');
+	
+	//url클립보드 복사
+	$('.urlClipboard').on('click', function(e) {
+		e.preventDefault();
+		
+		
+		clipboard.on('success', function(e) {
+		    /* console.info('Action:', e.action);
+		    console.info('Text:', e.text);
+		    console.info('Trigger:', e.trigger); */
+		    if (lanValue.includes("en")) {
+			    alert("Link copied.")
+			} else {
+			    alert("링크 복사가 완료되었습니다.")
+			}
+		    e.clearSelection();
+		});
+
+		clipboard.on('error', function(e) {
+		    /* console.error('Action:', e.action);
+		    console.error('Trigger:', e.trigger); */
+		    if (lanValue.includes("en")) {
+			    alert("Press Ctrl + C to copy.")
+			} else {
+			    alert("Ctrl + C 를 누르면 복사가 완료됩니다.")
+			}
+		});
+	});
+});
+
+// 공유하기 열기/닫기
+function shareToggle() {
+	$("#shareBox").toggle(0);
+}
+
+function gF(){
+	// 익스플로러 체크
+	var agent = navigator.userAgent.toLowerCase();
+	if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
+	 alert("이 브라우저는 페이스북 공유 기능이 지원되지 않습니다. \n크롬, 파이어폭스 등 타 브라우저 사용을 권장합니다.");
+	} else {
+	 var msg = "택지개발(개발사업)";
+		var url = "https://www.jndc.co.kr" + "/web/main/bbs/bdctydevlop";
+		goFaceBookList(msg,url);
+	} 
+}
+
+function gX(){
+		var msg = "택지개발(개발사업)";
+		var url = "https://www.jndc.co.kr" + "/web/main/bbs/bdctydevlop";
+		goX(msg,url);
+	}
+	
+function gY(){
+	var msg = "택지개발(개발사업)";
+	var url = "https://www.jndc.co.kr" + "/web/main/bbs/bdctydevlop";
+	
+	goYoutube(msg,url);
+}
+
+function goFaceBookList(msg,url){
+	var agent = navigator.userAgent.toLowerCase(); 
+	 
+	if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)){ 
+		alert("IE브라우저에서는 지원하지 않습니다.\nChrom, Edge에서 사용해 주세요."); 
+	} else { 
+		
+		var href = "http://www.facebook.com/sharer.php?u="+encodeURIComponent(url);
+		//var href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+		var a = window.open(href);
+	 
+		if(a){
+			a.focus();
+		}
+	} 
+}
+
+function goX(msg,url){
+	var agent = navigator.userAgent.toLowerCase(); 
+	 
+	if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)){ 
+		alert("IE브라우저에서는 지원하지 않습니다.\nChrom, Edge에서 사용해 주세요."); 
+	} else { 
+		var href = "http://twitter.com/intent/tweet?text=" + encodeURIComponent(msg)+"&url=" + encodeURIComponent(url);
+		var a = window.open(href);
+			
+		if(a){
+			a.focus();
+		}
+	} 
+}
+
+function goYoutube(msg,url){
+	var agent = navigator.userAgent.toLowerCase(); 
+	 
+	if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)){ 
+		alert("IE브라우저에서는 지원하지 않습니다.\nChrom, Edge에서 사용해 주세요."); 
+	} else { 
+		var href = "https://www.youtube.com/";
+		var a = window.open(href);
+			
+		if(a){
+			a.focus();
+		}
+	} 
+}
+</script>
+
+<div class="sub-head-right">
+	<a href="#n" class="prt"><img src="/design/theme/demo/images/sub_header_icon.png" alt="인쇄"></a>
+	<a href="#n" onclick="shareToggle()"><img src="/design/theme/demo/images/sub_header_icon2.png" alt="공유"></a>
+	<div class="share_box" id="shareBox">
+		<h3 class="tit">공유하기</h3>
+		<ul>
+			<li><a href="#" class="ico" title="새창열림" style="background-image: url(/design/theme/demo/images/main_sns_f.png)" onclick="gF();">페이스북으로 공유하기</a></li>
+			<li><a href="#" class="ico" title="새창열림" style="background-image: url(/design/theme/demo/images/main_sns_x.png)" onclick="gX();">엑스로 공유하기</a></li>
+			<li><a href="#" class="ico" title="새창열림" style="background-image: url(/design/theme/demo/images/main_sns_y.png)" onclick="gY();">유튜브로 공유하기</a></li>
+			<li><a href="#" class="ico sns-link urlClipboard" data-clipboard-text="https://www.jndc.co.kr/web/main/bbs/bdctydevlop" title="URL복사하기" style="background-image: url(/design/theme/demo/images/url_copy.png)">URL복사하기</a></li>
+		</ul>
+		<button type="button" class="close_sharebox" onclick="shareToggle()" style="background: url(/design/theme/demo/images/icon_close.png) no-repeat center center"><span class="blind">닫기</span></button>
+	</div>
+</div>
+
+			</div>
+			<!-- sub navigation mobile -->
+			
+			<!-- sub navigation end -->
+		
+			<!-- area -->
+			<div class="area" id="container">
+				
+
+
+
+
+
+
+	
+		<ul class="tab-menu tab2">
+		
+			
+				<li>
+					<a href="/web/main/bbs/bdctydevlop" title="선택됨" class="on">
+						택지개발(개발사업)
+						
+					</a>
+				</li>
+			
+		
+			
+				<li>
+					<a href="/web/main/bbs/bdbldinddevlop" title="">
+						관광단지(개발사업)
+						
+					</a>
+				</li>
+			
+		
+			
+				<li>
+					<a href="/web/main/bbs/bdirsttdevlop" title="">
+						산단조성(개발사업)
+						
+					</a>
+				</li>
+			
+		
+		</ul>
+	
+  <!-- 메뉴 탭 -->
+				
+
+
+
+
+
+	
+	
+	
+  <!-- 카테고리 탭 -->
+	
+				<!-- alert maeeage -->
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+				<!-- content -->
+				<form id="boardArticleSearch" action="/web/main/bbs/bdctydevlop/list" method="get">
+				
+				<input type="hidden" name="tabName" id="tabName">
+				
+				<div class="sub-search-box">
+					
+
+
+
+
+
+	
+	
+		
+	
+	
+		
+	
+  <!-- 카테고리 검색영역 -->
+					
+					<select id="sc" name="sc" title="검색어 구분을 선택하세요" class="sub-search-category">
+						<option value="userTotalSearch3">전체</option>
+						<option value="pstTtl">제목</option>
+						<option value="pstSmryCn">내용</option>
+					</select>
+					
+					<div class="sub-searcharea">
+						<input id="sv" name="sv" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요" type="text" value=""/>
+						<a href="#n" class="sub-search-btn">검색</a>
+						<a href="#n" class="sub-initialize-btn">초기화</a>
+					</div>
+				</div>
+				
+				<div class="gi-list">
+					<!-- 게시물이 없을 때 -->
+					
+					
+					<ul>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2350?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/lzf3eh0323he6wv" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    	<span class="state c2">진행</span>
+										    
+										    
+										    
+										
+										<span class="ellipsis">남악신도시(오룡지구)</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">무안군 일로읍 오룡리 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">남악신도시(오룡지구)</p>
+									<p class="nmtxt">무안군 일로읍 오룡리 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 2,802천㎡(85만평)</li>
+										<li>사업비 : 5,949억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2351?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/91r42uot4d75fe4" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    
+										    
+										    	<span class="state c1">완료</span>
+										    
+										
+										<span class="ellipsis">광주·전남공동혁신도시</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">나주시 빛가람동 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">광주·전남공동혁신도시</p>
+									<p class="nmtxt">나주시 빛가람동 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 2,461천㎡(74만평)</li>
+										<li>사업비 : 4,093억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2349?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/oo7x164t6w9pfc2" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    
+										    
+										    	<span class="state c1">완료</span>
+										    
+										
+										<span class="ellipsis">남악신도시(남악지구)</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">무안군 삼향읍 남악리 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">남악신도시(남악지구)</p>
+									<p class="nmtxt">무안군 삼향읍 남악리 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 3,633천㎡(110만평)</li>
+										<li>사업비 : 5,410억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2346?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/1n2z95d8mk2t0yy" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    	<span class="state c2">진행</span>
+										    
+										    
+										    
+										
+										<span class="ellipsis">광양 덕례·도월지구</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">광양시 광양읍 덕례리, 도월리 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">광양 덕례·도월지구</p>
+									<p class="nmtxt">광양시 광양읍 덕례리, 도월리 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 913천㎡(28.7만평)</li>
+										<li>사업비 : 4,484억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2347?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/6r082002cmvt61m" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    	<span class="state c2">진행</span>
+										    
+										    
+										    
+										
+										<span class="ellipsis">여수 죽림1지구</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">여수시 소라면 죽림리 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">여수 죽림1지구</p>
+									<p class="nmtxt">여수시 소라면 죽림리 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 986천㎡(30만평)</li>
+										<li>사업비 : 4,155억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+						<li>
+							<a href="/web/main/bbs/bdctydevlop/2345?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false">
+								<span class="img-part">
+								
+									<img src="/web/main/file/thumbnail/uu/w04i7n5tqm30q1k" alt=""
+										onerror="this.src='/design/common/images/asset/noImage330x240.jpg'">
+								
+									
+								</span>
+								<span class="bm-part" style="opacity: 1;">
+									<span class="text-truncate">
+										
+										    
+										    	<span class="state c2">진행</span>
+										    
+										    
+										    
+										
+										<span class="ellipsis">담양 보촌지구</span>
+									</span>
+									<span class="text-truncate small"><i class="nail"></i><span class="ellipsis">담양군 고서면 보촌리 일원</span></span>
+								</span>
+								<div class="hover-part">
+									<p class="tit">담양 보촌지구</p>
+									<p class="nmtxt">담양군 고서면 보촌리 일원</p>
+									<ul class="cir">
+										<li>개발면적 : 885,731㎡(27만평)</li>
+										<li>사업비 : 2,577억원</li>
+									</ul>
+									<span class="jump-btn">상세보기</span>
+								</div>
+							</a>
+						</li>
+						
+					</ul>
+				</div>
+				</form>
+				
+				<!-- paging -->
+				<div class="sub-page-btns"><a href="/web/main/bbs/bdctydevlop?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="sub-pagebegin-btns"><img src="/design/theme/demo/images/subicon_pagebegin.png" alt="첫 페이지 이동"></a> <a href="/web/main/bbs/bdctydevlop?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="sub-pageprev-btns"><img src="/design/theme/demo/images/subicon_pageprev.png" alt="이전 페이지 이동"></a> <a href="/web/main/bbs/bdctydevlop?cp=1&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="on txt" title="현재 페이지">1</a> <a href="/web/main/bbs/bdctydevlop?cp=2&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="txt">2</a> <a href="/web/main/bbs/bdctydevlop?cp=2&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="sub-pagenext-btns"><img src="/design/theme/demo/images/subicon_pagenext.png" alt="다음 페이지 이동"></a> <a href="/web/main/bbs/bdctydevlop?cp=2&pageSize=6&sortOrder=REG_DT&sortDirection=DESC&bbsId=bdctydevlop&pstNtcYn=false&baOpenDay=false&pstRlsYn=true&delYn=false" class="sub-pageend-btns"><img src="/design/theme/demo/images/subicon_pageend.png" alt="마지막 페이지 이동"></a> </div>
+				
+				<!-- satisfaction -->
+				
+
+<script>
+jQuery(function($){
+	$('.satisfactionBtn').on('click', function(e){
+		e.preventDefault();
+		
+		var menuId = $('#satisfactionForm [name=menuId]').val(); 
+		if( !menuId || ( menuId != GLOBAL.menuId ) ){
+			alert('페이지정보가 없어 평가를 처리할 수 없습니다.');
+			return;
+		}
+		
+		if( !$('#satisfactionForm [name=satisScore]:checked').size() ){
+			alert('평가점수를 선택해 주세요.');
+			return;
+		} 
+		
+		var params = $('#satisfactionForm').serialize();
+			
+		$.ajax({
+			url : '/web/main/satisfaction/api/evaluate'
+			, type : 'post'
+			, data : params
+			, context : this
+		}).done(function(data){
+			if( data.success ){
+				alert('평가해주셔서 감사합니다.');
+				location.reload();
+			} else {
+				alert(data.text);
+			}
+		}).fail(function(){
+			alert('서버오류로 평가를 처리하지 못하였습니다.[failure]');
+		});
+		
+	});
+});
+</script>
+
+			
+			</div><!-- .area -->
+		</div><!-- #right-container -->	
+	</div><!-- sub-body -->	
+</div><!-- content end -->
+
+<!-- footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- banner -->
+	
+
+
+<div class="footer-banner">
+	<div class="inner">
+		<div class="footer-banner-control">
+			<h3>배너모음</h3>
+			<div class="ctrl">
+				<a href="#" class="swiper-button-prev"><span class="blind">이전</span></a>
+				<a href="#" class="ft-banner-stop"><span class="blind">정지</span></a>
+				<a href="#" class="swiper-button-next"><span class="blind">다음</span></a>
+			</div>
+		</div>
+		<div class="footer-banner-wrap">
+			<div class="swiper footer-banner-Swiper">
+				<div class="swiper-wrapper">
+				
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.jndc.co.kr/web/main/bbs/infoopen_20"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/ee00908163e5467689d8fa4f97be1fd5" alt="2025년 공공기관 청렴도 평가결과" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.law.go.kr/ais/main.do"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/b910de7a289a4a9ab33e3c7337ef58b5" alt="지능형법령검색 서비스" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.clean.go.kr/index.es?sid=a1"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/5782fc0778314fcf8704be93dd569e47" alt="부패공익신고" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://job.cleaneye.go.kr/"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/78dcee91a753428ea549c37d3970e7c6" alt="클린아이 잡플러스" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.namdokorea.com/"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/e931fb8c66194be4afe840d328f9f63f" alt="남도여행길잡이" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.ss21.kr:451"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/9d655cd2a43a496a9ad3eb895c8362e7" alt="전자책 도서관" />
+							</a>
+						
+						
+					</div>
+					
+					<div class="swiper-slide">					
+						
+							<a href="https://www.jndc.co.kr/web/main/contents/M06020501"  title="새창 열림" target="_blank">
+								<img src="/web/main/file/image/uu/cc46e457c06a4488b5d443594226e85c" alt="부패비리 익명신고" />
+							</a>
+						
+						
+					</div>
+					
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<!-- footer -->
+	<footer class="footer">
+		<div class="footer-tp-wrap">
+			<div class="inner">
+				<div class="ft-logo"><img src="/design/theme/demo/images/ft_logo.png" alt=""></div>
+				<div class="ft-relative-site">
+					
+					
+					
+						<ul>
+						
+							
+							
+								<li>
+									<a href="#" aria-expanded="false">전남광주통합특별시 시/군</a> <!-- 20260616 aria-expanded="false" 추가-->
+									
+										
+									
+										
+										
+										
+											<ul>
+		  									
+										
+		 									<li>
+		 										<a href="http://www.gwangyang.go.kr/"  target="_blank" title="새창으로 연결">광양시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.naju.go.kr/"  target="_blank" title="새창으로 연결">나주시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.mokpo.go.kr/"  target="_blank" title="새창으로 연결">목포시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.suncheon.go.kr/kr/"  target="_blank" title="새창으로 연결">순천시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.yeosu.go.kr/"  target="_blank" title="새창으로 연결">여수시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gangjin.go.kr/www/index.do"  target="_blank" title="새창으로 연결">강진군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.goheung.go.kr/"  target="_blank" title="새창으로 연결">고흥군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gokseong.go.kr"  target="_blank" title="새창으로 연결">곡성군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gurye.go.kr/kr/"  target="_blank" title="새창으로 연결">구례군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.damyang.go.kr/"  target="_blank" title="새창으로 연결">담양군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.muan.go.kr/"  target="_blank" title="새창으로 연결">무안군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.boseong.go.kr/"  target="_blank" title="새창으로 연결">보성군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.shinan.go.kr/"  target="_blank" title="새창으로 연결">신안군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.yeonggwang.go.kr/"  target="_blank" title="새창으로 연결">영광군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.yeongam.go.kr/"  target="_blank" title="새창으로 연결">영암군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.wando.go.kr/"  target="_blank" title="새창으로 연결">완도군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jangseong.go.kr/"  target="_blank" title="새창으로 연결">장성군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jangheung.go.kr/"  target="_blank" title="새창으로 연결">장흥군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jindo.go.kr/"  target="_blank" title="새창으로 연결">진도군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.hampyeong.go.kr/"  target="_blank" title="새창으로 연결">함평군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.haenam.go.kr/"  target="_blank" title="새창으로 연결">해남군</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.hwasun.go.kr/index.do?S=S01"  target="_blank" title="새창으로 연결">화순군</a>
+											</li>
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+									
+										</ul>
+										
+									
+								</li>
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+							
+								<li>
+									<a href="#" aria-expanded="false">유관기관</a> <!-- 20260616 aria-expanded="false" 추가-->
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+										
+										
+											<ul>
+		  									
+										
+		 									<li>
+		 										<a href="http://www.jeonnam.go.kr/"  target="_blank" title="새창으로 연결">전라남도청</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jnassembly.go.kr/"  target="_blank" title="새창으로 연결">전라남도의회</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gfez.go.kr"  target="_blank" title="새창으로 연결">광양만권경제자유구역청</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://innocity.bitgaram.go.kr"  target="_blank" title="새창으로 연결">광주전남공동혁신도시</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.gjeri.kr/main/"  target="_blank" title="새창으로 연결">광주전남연구원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://namdogallery.or.kr/main/main.html"  target="_blank" title="새창으로 연결">남도사이버갤러리</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.ndhs.or.kr"  target="_blank" title="새창으로 연결">남도학숙</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gei.re.kr/"  target="_blank" title="새창으로 연결">녹색에너지연구원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://jnhs.kr/"  target="_blank" title="새창으로 연결">도립전남학숙</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://sjfish.jeonnam.go.kr"  target="_blank" title="새창으로 연결">섬진강어류생태관</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://wando-arboretum.go.kr"  target="_blank" title="새창으로 연결">완도수목원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.dorip.ac.kr"  target="_blank" title="새창으로 연결">전남도립대학</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://artmuseum.jeonnam.go.kr/sites/museumofart/index.do"  target="_blank" title="새창으로 연결">전남도립미술관</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jbf.kr/main/main.action"  target="_blank" title="새창으로 연결">전남바이오산업진흥원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jnsobang.go.kr/jnsobang/"  target="_blank" title="새창으로 연결">전남소방본부</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jnsinbo.or.kr"  target="_blank" title="새창으로 연결">전남신용보증재단</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jwomen.or.kr/"  target="_blank" title="새창으로 연결">전남여성가족재단</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jntle.kr/main"  target="_blank" title="새창으로 연결">전남인재평생교육진흥원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://jcia.or.kr/cf/index.do"  target="_blank" title="새창으로 연결">전남정보문화산업진흥원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jepa.kr/"  target="_blank" title="새창으로 연결">전남중소기업일자리경제진흥원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jntp.or.kr/home/main.do"  target="_blank" title="새창으로 연결">전남테크노파크</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.gjmed.or.kr/"  target="_blank" title="새창으로 연결">전라남도 강진의료원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jtei.or.kr/"  target="_blank" title="새창으로 연결">전라남도 교통연수원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jares.go.kr/"  target="_blank" title="새창으로 연결">전라남도 농업기술원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jam.go.kr"  target="_blank" title="새창으로 연결">전라남도 농업박물관</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://road.jeonnam.go.kr"  target="_blank" title="새창으로 연결">전라남도 도로관리사업소</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jnvsl.go.kr/sites/jnvsl/index.do"  target="_blank" title="새창으로 연결">전라남도 동물위생시험소</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://dongbu.jeonnam.go.kr/"  target="_blank" title="새창으로 연결">전라남도 동부지역본부</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://jncf.or.kr/jact/index.do"  target="_blank" title="새창으로 연결">전라남도 문화재단</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://jihe.go.kr/"  target="_blank" title="새창으로 연결">전라남도 보건환경연구원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jncsw.or.kr/"  target="_blank" title="새창으로 연결">전라남도 사회복지협의회</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://jn.pass.or.kr/"  target="_blank" title="새창으로 연결">전라남도 사회서비스원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://jnforest.jeonnam.go.kr/"  target="_blank" title="새창으로 연결">전라남도 산림자원연구소</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://jsmc.or.kr/"  target="_blank" title="새창으로 연결">전라남도 순천의료원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://loti.jeonnam.go.kr/"  target="_blank" title="새창으로 연결">전라남도 인재개발원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jeonnam.go.kr/jnapc/web/index.do"  target="_blank" title="새창으로 연결">전라남도 자치경찰위원회</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jnsad.or.kr/wp_main/index.html"  target="_blank" title="새창으로 연결">전라남도 장애인체육회</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jnyouth.or.kr/"  target="_blank" title="새창으로 연결">전라남도 청소년미래재단</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.jnsports.or.kr/"  target="_blank" title="새창으로 연결">전라남도 체육회</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jmfsm.or.kr/"  target="_blank" title="새창으로 연결">전라남도 해양수산과학관</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://ofsi.jeonnam.go.kr/sites/ofsi/index.do"  target="_blank" title="새창으로 연결">전라남도 해양수산과학원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jeipi.or.kr/"  target="_blank" title="새창으로 연결">전라남도 환경산업진흥원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jpg.or.kr"  target="_blank" title="새창으로 연결">전라남도립국악단</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://lib.jeonnam.go.kr/main.php"  target="_blank" title="새창으로 연결">전라남도립도서관</a>
+											</li>
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+									
+										</ul>
+										
+									
+								</li>
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+							
+								<li>
+									<a href="#" aria-expanded="false">사업별 홈페이지</a> <!-- 20260616 aria-expanded="false" 추가-->
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+										
+										
+											<ul>
+		  									
+										
+		 									<li>
+		 										<a href="http://www.youngsanjae.com/"  target="_blank" title="새창으로 연결">한옥호텔 영산재</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.odongjae.com/"  target="_blank" title="새창으로 연결">한옥호텔 오동재</a>
+											</li>
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+									
+										</ul>
+										
+									
+								</li>
+							
+						
+							
+						
+							
+						
+							
+							
+								<li>
+									<a href="#" aria-expanded="false">공기업</a> <!-- 20260616 aria-expanded="false" 추가-->
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+									
+										
+										
+										
+											<ul>
+		  									
+										
+		 									<li>
+		 										<a href="http://www.gdco.co.kr/"  target="_blank" title="새창으로 연결">강원도개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.gh.or.kr/"  target="_blank" title="새창으로 연결">경기주택도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gndc.co.kr"  target="_blank" title="새창으로 연결">경남개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gbdc.co.kr"  target="_blank" title="새창으로 연결">경상북도개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.gmcc.co.kr"  target="_blank" title="새창으로 연결">광주광역시도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://dudc.or.kr/"  target="_blank" title="새창으로 연결">대구도시개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.dcco.kr/"  target="_blank" title="새창으로 연결">대전도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.bmc.busan.kr/bmc/main.do"  target="_blank" title="새창으로 연결">부산도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.i-sh.co.kr/"  target="_blank" title="새창으로 연결">서울주택도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.umca.co.kr"  target="_blank" title="새창으로 연결">울산도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.ih.co.kr/"  target="_blank" title="새창으로 연결">인천도시공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jbdc.co.kr/"  target="_blank" title="새창으로 연결">전북개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.jpdc.co.kr/"  target="_blank" title="새창으로 연결">제주특별자치도개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.cbdc.co.kr/"  target="_blank" title="새창으로 연결">충북개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.cndc.kr/"  target="_blank" title="새창으로 연결">충청남도개발공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.lh.or.kr/"  target="_blank" title="새창으로 연결">한국토지주택공사</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="https://www.reb.or.kr/reb/main.do"  target="_blank" title="새창으로 연결">한국부동산원</a>
+											</li>
+										
+									
+										
+										
+										
+		 									<li>
+		 										<a href="http://www.kamco.or.kr/"  target="_blank" title="새창으로 연결">한국자산관리공사</a>
+											</li>
+										
+									
+									
+										</ul>
+										
+									
+								</li>
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+							
+						
+						</ul>
+					
+				</div>
+			</div>
+		</div>
+		<div class="footer-bt-wrap">
+			<div class="inner">
+				<div class="ft-link-wrap">
+					<div class="ft-link">
+						<ul>
+							<li><a href="/web/main/contents/M090101">전남개발공사 개인정보처리방침</a></li>
+							<li><a href="/web/main/contents/M090103">영상정보처리기기 운영ㆍ관리방침</a></li>
+							<li><a href="/web/main/contents/M0902">이메일무단수집거부</a></li>
+							<li><a href="/web/main/contents/M0903">저작권보호정책</a></li>
+							<li><a href="/web/main/contents/M080301">조직도</a></li>
+							<li><a href="/web/main/contents/M0804">찾아오시는길</a></li>
+						</ul>
+					</div>
+					<div class="ft-txt">
+						<p><span>(58566) 전남광주통합특별시 무안군 삼향읍 후광대로 242</span>    <i class="pc">|</i>    <span>대표전화 061-280-0600 <i class="m">|</i> 팩스 061-285-9859</span></p>
+						<p>Copyright ⓒ 2026 Jeonnam Development Corporation. All Rights Reserved</p>
+					</div>
+				</div>
+				<div class="ft-mark-wrap txc">
+					<a title="새창" href="http://www.wa.or.kr/board/list.asp?BoardID=0006" target="_blank">
+						<img class="wa" alt="(사)한국장애인단체총연합회한국정보접근성인증평가원웹접근성우수사이트인증마크(WA인증마크)" src="/design/theme/demo/images/wa-mark.png" width="123px" height="86px" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+			
+	<div class="top"><a href="#"><img src="/design/theme/demo/images/icon_top.png" alt="TOP"></a></div>
+		
+</div><!-- wrap -->
+</body>
+</html>

@@ -1,0 +1,125 @@
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (5.3028ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (3.7986ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (1.9088ms)
+✖ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (12.1157ms)
+✖ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (3.655ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (2.6507ms)
+✖ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.9197ms)
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (3.6596ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (5.308ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (2.3548ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (0.7843ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (43.1524ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (27.0559ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (15.6348ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (21.5081ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (14.8417ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (13.7822ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (15.4539ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (20.9998ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (13.2072ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (12.5166ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (10.5009ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (10.3759ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (7.0895ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (8.6911ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (10.8235ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (10.5219ms)
+✔ right/left bends follow world heading, including the circular route seam (2.0343ms)
+✔ bend detection uses metres and survives a fourfold change in point density (1.0244ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (3.5136ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (8.2321ms)
+✔ isolated heading errors never become a persistent corner warning (0.6668ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (5.5502ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (2.547ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 30
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 816.1405
+
+✖ failing tests:
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (12.1157ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(names.includes('Finish_LampPolymer'))
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:23:25)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (3.655ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(names.includes('Finish_LampPolymer'))
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:23:25)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ m3: polished export preserves mechanical transforms, paint and tyre dimensions (2.9197ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(names.includes('Finish_LampPolymer'))
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:23:25)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\vehicle-finish.test.mjs:11:25
+✖ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (3.6596ms)
+  AssertionError [ERR_ASSERTION]: Finish_MirrorSilver
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/vehicle-finish.test.mjs:22:118)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

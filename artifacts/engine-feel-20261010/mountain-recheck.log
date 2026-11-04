@@ -1,0 +1,85 @@
+✔ eight original voices have distinct spectra and pitch follows actual RPM, not road speed (2.2887ms)
+✔ voice changes reset response, pause holds RPM, and recovery clears stale shift history (0.9155ms)
+✔ vehicle pedal response, shift interruption and engine braking really reach the drivetrain (1.4183ms)
+✔ Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources (4.9826ms)
+[
+  {
+    id: 'supra',
+    time100: 4.025,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6687438964843864
+  },
+  {
+    id: 'slk',
+    time100: 4.916666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6158447265625
+  },
+  {
+    id: 'mustang',
+    time100: 4.183333333333334,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6285339355468835
+  },
+  {
+    id: 'porsche911',
+    time100: 3.8833333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.941973876953128
+  },
+  {
+    id: 'gtr',
+    time100: 4,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 2.8290344238281193
+  },
+  {
+    id: 'rx7',
+    time100: 3.6416666666666666,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.9134094238281136
+  },
+  {
+    id: 'm3',
+    time100: 4.233333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.583599853515622
+  },
+  {
+    id: 'huracan',
+    time100: 3.125,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 3.776660156250003
+  }
+]
+✔ eight tuned vehicles accelerate, change gears and coast with stable supported chassis (487.8093ms)
+{
+  progress: 6842.211776361137,
+  maximumAcceleration: 38.64541053771973,
+  maximumTilt: 1.920026862985041,
+  rmsTilt: 0.07945146228788715,
+  releaseSteps: 78
+}
+✔ real-map mountain seams do not restore the previous large vertical and orientation impulses (4458.5644ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (38.7568ms)
+✔ grip changes the actual constant-input corner trajectory (60.7446ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (27.996ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (23.8175ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (85.2452ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.4803ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5944.1846

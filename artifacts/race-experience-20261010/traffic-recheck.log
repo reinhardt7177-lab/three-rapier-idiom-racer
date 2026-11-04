@@ -1,0 +1,254 @@
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (3.8204ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (0.925ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (10.6682ms)
+✔ a committed passing lane is reserved against a second closing rival (2.8915ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (6.2009ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (1.4733ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.9117ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (0.8033ms)
+✔ a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward (3.0289ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 263.1,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 263.09166666666664,
+      index: 26,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 218.69166666666666,
+      index: 50,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 209.09166666666667,
+      index: 53,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6842,
+      finish: 232.29166666666666,
+      index: 48,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 209.13333333333333,
+      index: 55,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 214.45833333333334,
+      index: 48,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (57.3007ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (376.3065ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (226.0238ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (192.6523ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (201.9433ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (211.51ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (217.3756ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (206.0842ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (179.331ms)
+✔ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (38241.0032ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42177.3723

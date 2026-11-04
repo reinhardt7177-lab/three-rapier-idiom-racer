@@ -1,0 +1,46 @@
+✔ recovery avoids a civilian occupying the preferred lane without moving forward (2.6039ms)
+✔ recovery also respects the next second of civilian travel and fails safely when all candidates are occupied (0.6337ms)
+✔ touch drift can combine gas and steering, with independent pointer and keyboard release (0.5824ms)
+✔ touch detection includes tablets with a mouse and desktop-mode touch browsers (2.0682ms)
+✔ phones, large tablets and manual fallback show pedals regardless of primary pointer (0.7605ms)
+✔ layout guard matches the compact HUD at widths above 1000 and the 550px boundary (1.9061ms)
+✔ changing control visibility releases every owner and pauses once, not on address-bar resize (2.4115ms)
+✔ a hybrid tablet rotated to portrait blocks driving and clears simultaneous pedals (0.5785ms)
+{ id: 'supra', side: -1, maxOffset: 10.645526885986328 }
+{ id: 'supra', side: 1, maxOffset: 10.645530700683594 }
+{ id: 'slk', side: -1, maxOffset: 10.677094459533691 }
+{ id: 'slk', side: 1, maxOffset: 10.67708969116211 }
+{ id: 'mustang', side: -1, maxOffset: 10.603816032409668 }
+{ id: 'mustang', side: 1, maxOffset: 10.60382080078125 }
+{ id: 'porsche911', side: -1, maxOffset: 10.604891777038574 }
+{ id: 'porsche911', side: 1, maxOffset: 10.604896545410156 }
+{ id: 'gtr', side: -1, maxOffset: 10.598703384399414 }
+{ id: 'gtr', side: 1, maxOffset: 10.598709106445312 }
+{ id: 'rx7', side: -1, maxOffset: 10.616415023803711 }
+{ id: 'rx7', side: 1, maxOffset: 10.61641788482666 }
+{ id: 'm3', side: -1, maxOffset: 10.604217529296875 }
+{ id: 'm3', side: 1, maxOffset: 10.604223251342773 }
+{ id: 'huracan', side: -1, maxOffset: 10.604528427124023 }
+{ id: 'huracan', side: 1, maxOffset: 10.604534149169922 }
+{
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  maxDeviation: 4.9411869344638495,
+  seconds: 109.94166666666666,
+  contacts: 4
+}
+✔ sealed Namak wall shells block both directions and every route seam without filling the asphalt (195.3389ms)
+✔ eight physical cars remain inside either wall after a 230km/h lateral impact (1199.0422ms)
+✔ an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not (2.4344ms)
+✔ sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward (123.2189ms)
+✔ C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields (0.6537ms)
+✔ recovery finds a clear point behind a six-car queue beyond the former 64m search window (0.8705ms)
+✔ a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery (1402.5369ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5611.0773

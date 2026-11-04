@@ -1,0 +1,174 @@
+✔ track selection pairs each world with its own route and rejects unknown locations (81.2819ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (9.0914ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (1377.8555ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4892409831296014,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    finish: 91.35833333333333,
+    plan: {
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.2,
+      targetLane: 2.2,
+      passes: 0,
+      attempts: 0,
+      aborts: 0,
+      age: 91.3583333333521
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.943746666123691,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    finish: 99.275,
+    plan: {
+      mode: 'changing',
+      reason: 'occupied',
+      homeLane: -2.2,
+      targetLane: 2.2,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 3.0166666666666586
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2915.337749174779,
+    maxDeviation: 4.965481552883048,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    finish: null,
+    plan: {
+      mode: 'passing',
+      reason: 'stopped-ahead',
+      homeLane: 2.2,
+      targetLane: -2.2,
+      passes: 0,
+      attempts: 1,
+      aborts: 0,
+      age: 234.78333333328413
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 6.33717231484022,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    finish: 92.4,
+    plan: {
+      mode: 'returning',
+      reason: 'return',
+      homeLane: -2.2,
+      targetLane: -2.2,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0.30833333333333346
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2919.3368407374332,
+    maxDeviation: 4.729463844757984,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    finish: null,
+    plan: {
+      mode: 'passing',
+      reason: 'stopped-ahead',
+      homeLane: 2.2,
+      targetLane: -2.2,
+      passes: 0,
+      attempts: 1,
+      aborts: 0,
+      age: 232.2833333332864
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (13222.2643ms)
+✖ five planned rivals finish Namak while the player stays stopped on the starting grid (25752.0433ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43783.3578
+
+✖ failing tests:
+
+test at scripts\namak.test.mjs:86:1
+✖ five planned rivals finish Namak while the player stays stopped on the starting grid (25752.0433ms)
+  AssertionError [ERR_ASSERTION]: porsche911 stalled at 2915.3m
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/namak.test.mjs:118:40)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

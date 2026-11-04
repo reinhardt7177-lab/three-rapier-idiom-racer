@@ -1,0 +1,26 @@
+✔ frozen renderer comparison captures all three A/B/A phases and always restores full geometry (5.6336ms)
+✔ cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set (0.6362ms)
+✔ frozen tread A/B changes only distant rival accents and restores authored visibility and resources (18.6965ms)
+✔ frozen tyre projection leaves close and behind-camera accents intact (1.8399ms)
+✔ slow frame intervals remain visible when CPU submission is short (1.5518ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (2.7962ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (0.7836ms)
+✔ frame and CPU measurements reset together after a pause (0.6316ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (0.7617ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.6935ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (1.2282ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (1.7457ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.841ms)
+✔ preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps (0.8527ms)
+✔ draw profile counts main/shadow deltas while leaving render results and hooks intact (20.8066ms)
+✔ GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries (1.0884ms)
+✔ render failure preserves the original exception, restores the hook and deletes the GPU query (8.8336ms)
+✔ draw categories use actual scene ancestry and keep parked cars separate from world meshes (0.9216ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 964.9631

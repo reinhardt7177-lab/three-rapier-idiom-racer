@@ -1,0 +1,80 @@
+{
+  "status": "render_motion_local_implementation_verified_global_release_validation_failed",
+  "retained": "Visual chassis motion for player, five rivals and ghost; disabled at low quality",
+  "physics": "Restored to start bytes; original probe/weave logs identical",
+  "candidate1": {
+    "lateralMaximum": 16.9,
+    "handbrakeSpeedAtProbe1point5Seconds": 60,
+    "yawMaximumDegreesPerSecond": 91.4,
+    "coastalFinished": 5,
+    "coastalCars": 6,
+    "rx7LowestRelativeRoadMetres": -7.1
+  },
+  "checks": {
+    "bodyMotionUnits": 6,
+    "buildPassed": true,
+    "buildSeconds": 5.26,
+    "fullNpmCheck": {
+      "tests": 303,
+      "pass": 300,
+      "fail": 3,
+      "seconds": 1673.22,
+      "beforeFinalGhostVisibilityFix": true
+    },
+    "fourCoursesByThreeDifficulties": "not run",
+    "fleetRigScenarios": 48,
+    "tyreCentreDeltaMetres": 0,
+    "tyreBoundsDeltaMetres": 0,
+    "finalBuildPassed": true,
+    "finalBuildSeconds": 33.48,
+    "browserFinishedCars": 6,
+    "browserPlayerSeconds": 83.45,
+    "browserRecoveryCount": 0,
+    "browserConsoleErrors": 0,
+    "uiSizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        667,
+        375
+      ]
+    ],
+    "uiClipped": 0,
+    "uiOverlaps": 0,
+    "lowMotionDisabled": true,
+    "lowFinalP95Milliseconds": 66.8,
+    "finalRenderChecks": 54,
+    "finalRenderChecksPassed": 54,
+    "finalRenderSeconds": 104.45,
+    "oneLapCases": 12,
+    "oneLapFinishedCars": 72,
+    "oneLapStrictPassedCases": 10,
+    "firstPersonGhostOverlapFixed": true,
+    "finalAfterGhostBrowserTime": 83.45,
+    "finalAfterGhostBrowserFinished": 6
+  },
+  "pending": [
+    "Preserved coastal road-relative height failures and easy 3-lap SLK stall: future scope decision/investigation",
+    "Namak low frame variance and real-device/manual driving review",
+    "Earlier Yeosu traffic and medal calibration gate"
+  ],
+  "branch": "codex/korea-circuits-progression-20261011",
+  "commit": false,
+  "push": false,
+  "deploy": false,
+  "scope": "Keep physics at start-of-task bytes; complete visual chassis motion only",
+  "userDecision": "물리는 유지하고 차체 기울기부터 완성",
+  "bundleDeltaBytes": 2636,
+  "bundleDeltaGzipBytes": 1094,
+  "finalBrowserConsoleErrors": 0
+}

@@ -1,0 +1,57 @@
+- main:
+  - generic "MUMU CIRCUIT · Blender 차량과 남악 시티 레이스" [active]
+  - generic: ONLINE 1:1
+  - strong:
+    - text: "1"
+    - generic: / 2
+  - generic "코스 안내":
+    - generic: NAMAK CITY CIRCUIT / LAP 1/1
+    - generic: 영산강 수변
+    - generic "남은 거리 1414 미터": 1.41 KM 남음
+    - strong: 직선 구간
+    - generic: 다음 커브를 준비하세요
+  - generic: RACE TIME
+  - strong: 00:40.79
+  - button "메뉴 ESC"
+  - complementary "레이스 순위":
+    - generic: "1"
+    - strong: YOU
+    - generic: "2"
+    - strong: GUEST
+    - generic "라이벌과 거리":
+      - generic: GUEST
+      - strong: 96 m 앞
+  - generic: 4 GEAR
+  - strong:
+    - text: "164"
+    - generic: KM/H
+  - generic "엔진 4893 RPM"
+  - generic: 4,893 RPM
+  - generic: NITRO SPACE
+  - generic: WASD 주행 · SHIFT 드리프트 · SPACE 니트로 · C 도로 복귀 · V 시점
+  - button "카메라 시점 전환": 3인칭 V
+  - region "일시정지 메뉴":
+    - text: PIT STOP
+    - heading "잠시 숨 고르기." [level=2]
+    - paragraph: 상대의 응답이 없어 대결을 중단했습니다.
+    - button "전체 화면"
+    - button "주행 재개 →" [disabled]
+    - button "대기실로 돌아가기"
+    - button "차고로 돌아가기"
+    - button "시점 전환 · 3인칭"
+    - button "미끄러짐 보정 · 켜짐" [disabled] [pressed]
+    - button "사운드 끄기 부드러운 터보 톤" [pressed]:
+      - text: 사운드 끄기
+      - generic: 부드러운 터보 톤
+    - button "배경음악 끄기 Seven Mile Horizon · 해변 힙합" [pressed]:
+      - text: 배경음악 끄기
+      - generic: Seven Mile Horizon · 해변 힙합
+    - text: 배경음악 선택
+    - combobox "배경음악 선택":
+      - option "Seven Mile Horizon · 해변 힙합" [selected]
+      - option "Slipstream Pursuit · 신스웨이브"
+    - text: 음악 볼륨
+    - slider "배경음악 볼륨": "24"
+    - text: WASD 주행 · SHIFT 드리프트 · SPACE 니트로 · C 복귀 · M 음소거 · V 시점
+    - text: "니트로 충전: 드리프트 · 앞차 뒤 슬립스트림 · 추월"
+  - button "검수용 자동 페달 · 켜짐" [pressed]

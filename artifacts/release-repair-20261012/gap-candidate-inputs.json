@@ -1,0 +1,26 @@
+{
+  "execution": "Isolated local candidate; game source remains frozen",
+  "cause": "The old following controller clamps negative headway error to zero, matching the lead speed without restoring the clearance needed to pass. Only races with civilian traffic opt into restoring their existing 12m gap.",
+  "inputs": [
+    {
+      "path": "../../src/rebuild/course.js",
+      "sha256": "be0ecae8d5f75172234491046a46e455f1d03035803e1cb071c69348fd817e24"
+    },
+    {
+      "path": "planner-moving-lead.mjs",
+      "sha256": "6420272a2424c21ab9d81fdad1a4ded9ff18c8b559d9da25fa6a8aab2b87f7a7"
+    },
+    {
+      "path": "course-gap.mjs",
+      "sha256": "0255526adb48c563d0767b0fffd1cada58bdf4d1dfa7374826038dcf404af72a"
+    },
+    {
+      "path": "planner-gap.mjs",
+      "sha256": "c372b8f2e8492b1a36d0e9aef297b7d4e5a0fa948e8b28b4c9c92762e447eed5"
+    },
+    {
+      "path": "sim-gap.mjs",
+      "sha256": "8c58eafb1e8a9f22a361de2bf22e527d58598b3c87147daa9b7c5247af2eb07b"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+✔ releasing one pedal source preserves another finger or keyboard owner (2.8935ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.7434ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.9445ms)
+✔ typing and Space on menu buttons remain native UI actions (0.3768ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.3959ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.3647ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (758.1542ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (1253.3935ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (1192.9009ms)
+✔ slow frame intervals remain visible when CPU submission is short (4.7518ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (3.0171ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (0.7155ms)
+✔ frame and CPU measurements reset together after a pause (1.0535ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (1.3901ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.668ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (5.81ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (3.6386ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.9181ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5146.5838

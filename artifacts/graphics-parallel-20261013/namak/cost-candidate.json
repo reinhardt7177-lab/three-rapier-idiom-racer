@@ -1,0 +1,55 @@
+{
+  "created": "2026-10-13T02:12:19.309Z",
+  "runtime": "local win32 Node v24.12.0",
+  "scope": "CPU update only; no renderer, browser frame, GPU or race benchmark",
+  "concurrentJobs": "parent full regression and map workers were active",
+  "createMs": 29.70840000000001,
+  "stats": {
+    "version": "namak-detail-v1",
+    "materials": 0,
+    "textureBytes": 0,
+    "geometryBytes": 3064,
+    "instanceBytes": 42408,
+    "instances": 558,
+    "triangles": 55800,
+    "maximumDrawCalls": 37,
+    "visibleDrawCalls": 0,
+    "visibleInstances": 0,
+    "visibleTriangles": 0,
+    "shadowDrawCalls": 0,
+    "quality": "low",
+    "updateInterval": 0.2
+  },
+  "samples": [
+    {
+      "quality": "high",
+      "samples": 3600,
+      "meanMs": 0.003131611111110912,
+      "p95Ms": 0.012599999999991951,
+      "maxMs": 2.169399999999996,
+      "over50": 0,
+      "maxCalls": 10,
+      "maxTriangles": 14400
+    },
+    {
+      "quality": "medium",
+      "samples": 3600,
+      "meanMs": 0.001335888888888669,
+      "p95Ms": 0.008900000000011232,
+      "maxMs": 0.3452000000000055,
+      "over50": 0,
+      "maxCalls": 8,
+      "maxTriangles": 6000
+    },
+    {
+      "quality": "low",
+      "samples": 3600,
+      "meanMs": 0.00033391666666673816,
+      "p95Ms": 0.00030000000000995897,
+      "maxMs": 0.31759999999999877,
+      "over50": 0,
+      "maxCalls": 0,
+      "maxTriangles": 0
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+{
+  "date": "2026-10-25",
+  "purpose": "Static REA analysis of user-supplied Stock Car Racing package, separate from independently designed MUMU product changes.",
+  "target": {
+    "name": "Stock Car Racing",
+    "xapkDeclaration": {
+      "package": "com.minicades.stockcars",
+      "version": "3.26.3",
+      "versionCode": 243
+    },
+    "bytes": 739219238,
+    "sha256": "71e9b5860bb597b5088c8b67a47d1431913d79585b11d486603b2f19208202db",
+    "executed": false
+  },
+  "tools": {
+    "rea": "6.5.0 CLI",
+    "rizin": "0.9.1 official Windows shared64 archive",
+    "rizinPublishedArchiveSha256": "45ffa004e26653eaee8d262b8e6eeae09402a7d319c1f20a2ba794bd6af1cc28",
+    "doctorHealthy": false,
+    "codexMcpRegistration": "stale/config_drift; no MCP configuration repair performed",
+    "python": "standard-library static parsers, not REA Evidence"
+  },
+  "localEvidenceRoot": "D:/racing/.work/stock-car-rea-20261025",
+  "archiveEvidence": [
+    {
+      "record": "rea-xapk.json",
+      "evidenceId": "ev_189213349ee8175046c4f24bccc4e00786893443799b3588dee36e1a84f6e504",
+      "operation": "inspect_artifact",
+      "provider": "rea-artifact-graph",
+      "subject": "Stock+Car+Racing_3.26.3_APKPure.xapk",
+      "sha256": "71e9b5860bb597b5088c8b67a47d1431913d79585b11d486603b2f19208202db",
+      "coverage": {
+        "status": "complete-within-substeps",
+        "substeps_completed": 1,
+        "observations_retained": 1,
+        "observations_omitted": 0,
+        "hypotheses_retained": 0,
+        "hypotheses_omitted": 0,
+        "unexplored_branches_retained": 0,
+        "unexplored_branches_omitted": 0,
+        "next_probes_retained": 0,
+        "next_probes_omitted": 0
+      },
+      "limitations": [
+        "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+        "ZIP inventory lists central-directory entries only. Non-entry bytes, including an APK Signing Block before the central directory or a ZIP comment after it, are not occurrences."
+      ]
+    },
+    {
+      "record": "rea-base-apk.json",
+      "evidenceId": "ev_0d11b9ee837145a6c4249d5723d1daa4433709067ad6e040eb291ac5aba84a21",
+      "operation": "inspect_artifact",
+      "provider": "rea-artifact-graph",
+      "subject": "com.minicades.stockcars.apk",
+      "sha256": "d0b0b5a353d699fe2f5d6cfd53403630911e685dbe8c84bdc60d0e20d81730cf",
+      "coverage": {
+        "status": "complete-within-substeps",
+        "substeps_completed": 1,
+        "observations_retained": 1,
+        "observations_omitted": 0,
+        "hypotheses_retained": 0,
+        "hypotheses_omitted": 0,
+        "unexplored_branches_retained": 0,
+        "unexplored_branches_omitted": 0,
+        "next_probes_retained": 0,
+        "next_probes_omitted": 0
+      },
+      "limitations": [
+        "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+        "ZIP inventory lists central-directory entries only. Non-entry bytes, including an APK Signing Block before the central directory or a ZIP comment after it, are not occurrences."
+      ]
+    }
+  ],
+  "nativeEvidence": [
+    {
+      "record": "rea-camera-sample.json",
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "sourceVA": "0x511ebbc",
+      "sourceFileOffset": 85044156,
+      "sliceBytes": 768,
+      "sliceSha256": "2dc324f64c6ec7a9e15f55ffcacb6eebdad167310f29d83d9a94840048d3e30b",
+      "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+      "sliceMatchesOriginalELFBytes": true,
+      "readSpan": {
+        "firstVA": "0x511ebbc",
+        "endVAExclusive": "0x511ecbc"
+      },
+      "stats": {
+        "jsonDocuments": 1,
+        "returnedRows": 64,
+        "validAlignedFourByteRows": 64,
+        "invalidOpcodeRows": 0,
+        "unknownOpcodeRows": 0,
+        "misalignedOffsetRows": 0,
+        "nonFourByteRows": 0,
+        "sourceByteMatches": 64,
+        "branchTargetsCrossCheckedFromRawOpcode": 21,
+        "branchTargetMismatches": 0
+      }
+    },
+    {
+      "record": "rea-vehicle-dynamics-fixed-update.json",
+      "evidenceId": "ev_b04999d906acb942fc0233fa327140b036cbee0c5973392ef4667178bf552403",
+      "sample": "vehicle-dynamics-fixed-update",
+      "sourceVA": "0x51adb70",
+      "sourceFileOffset": 85629808,
+      "sliceBytes": 768,
+      "sliceSha256": "6db7475d7ac5df1dfc33e5345aa3841de097cff5d439cbc48d9098524ff07f09",
+      "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+      "sliceMatchesOriginalELFBytes": true,
+      "readSpan": {
+        "firstVA": "0x51adb70",
+        "endVAExclusive": "0x51adc70"
+      },
+      "stats": {
+        "jsonDocuments": 1,
+        "returnedRows": 64,
+        "validAlignedFourByteRows": 64,
+        "invalidOpcodeRows": 0,
+        "unknownOpcodeRows": 0,
+        "misalignedOffsetRows": 0,
+        "nonFourByteRows": 0,
+        "sourceByteMatches": 64,
+        "branchTargetsCrossCheckedFromRawOpcode": 18,
+        "branchTargetMismatches": 0
+      }
+    },
+    {
+      "record": "rea-suspension-visuals-late-update.json",
+      "evidenceId": "ev_8a2615d58095f0caa486ae938e468372cdf97de645655422ed6ab7c3c8f2efde",
+      "sample": "suspension-visuals-late-update",
+      "sourceVA": "0x519ecf4",
+      "sourceFileOffset": 85568756,
+      "sliceBytes": 768,
+      "sliceSha256": "4898993091bef0b96269f775ee975c8f207f4232f9dd1672edea6ac1f60c4bb3",
+      "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+      "sliceMatchesOriginalELFBytes": true,
+      "readSpan": {
+        "firstVA": "0x519ecf4",
+        "endVAExclusive": "0x519edef"
+      },
+      "stats": {
+        "jsonDocuments": 1,
+        "returnedRows": 64,
+        "validAlignedFourByteRows": 5,
+        "invalidOpcodeRows": 59,
+        "unknownOpcodeRows": 59,
+        "misalignedOffsetRows": 59,
+        "nonFourByteRows": 59,
+        "sourceByteMatches": 5,
+        "branchTargetsCrossCheckedFromRawOpcode": 2,
+        "branchTargetMismatches": 0
+      }
+    },
+    {
+      "record": "rea-vehicle-collision-enter.json",
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "sourceVA": "0x51aaea0",
+      "sourceFileOffset": 85618336,
+      "sliceBytes": 768,
+      "sliceSha256": "f32d0f031a1e83e4326f6bcae72295ce7d7c605d02ecd80448fa47fd76d70563",
+      "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+      "sliceMatchesOriginalELFBytes": true,
+      "readSpan": {
+        "firstVA": "0x51aaea0",
+        "endVAExclusive": "0x51aafa0"
+      },
+      "stats": {
+        "jsonDocuments": 1,
+        "returnedRows": 64,
+        "validAlignedFourByteRows": 64,
+        "invalidOpcodeRows": 0,
+        "unknownOpcodeRows": 0,
+        "misalignedOffsetRows": 0,
+        "nonFourByteRows": 0,
+        "sourceByteMatches": 64,
+        "branchTargetsCrossCheckedFromRawOpcode": 17,
+        "branchTargetMismatches": 0
+      }
+    },
+    {
+      "record": "rea-suspension-fixed-offsets.json",
+      "evidenceId": "ev_7b6fa935690d7268138b97dfb36994a58562c15426449d1945c50f0fbbb25f9c",
+      "sample": "suspension-visuals-late-update",
+      "sourceVA": "0x519ecf4",
+      "sourceFileOffset": 85568756,
+      "sliceBytes": 768,
+      "sliceSha256": "4898993091bef0b96269f775ee975c8f207f4232f9dd1672edea6ac1f60c4bb3",
+      "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+      "sliceMatchesOriginalELFBytes": true,
+      "readSpan": {
+        "firstVA": "0x519ecf4",
+        "endVAExclusive": "0x519edf4"
+      },
+      "stats": {
+        "jsonDocuments": 64,
+        "returnedRows": 64,
+        "validAlignedFourByteRows": 64,
+        "invalidOpcodeRows": 0,
+        "unknownOpcodeRows": 0,
+        "misalignedOffsetRows": 0,
+        "nonFourByteRows": 0,
+        "sourceByteMatches": 64,
+        "branchTargetsCrossCheckedFromRawOpcode": 25,
+        "branchTargetMismatches": 0
+      }
+    }
+  ],
+  "independentStaticAnalysis": {
+    "metadata": {
+      "record": "unity-metadata-audit.json",
+      "sha256": "9dfde71164cf5ed1b761609c4dfb4d506b2c78123a7eab2430fe602e1e6a7a1b",
+      "version": 39,
+      "allMethodDeclarationsValidated": 122995,
+      "selectedTypes": 17,
+      "selectedFields": 531,
+      "selectedMethods": 225,
+      "indexWidths": {
+        "typeDefinition": 2,
+        "runtimeType": 4,
+        "parameterDefinition": 4,
+        "genericContainer": 2
+      },
+      "recordBytes": {
+        "method": 32,
+        "type": 82,
+        "field": 12
+      },
+      "validation": {
+        "allMethodNamesDecoded": 122995,
+        "allMethodDeclaringTypeRangesValid": 122995,
+        "usymIndicesValid": 2650507,
+        "usymIndicesUnknown": 26891,
+        "usymIndicesInvalid": 0,
+        "usymParentIndicesValid": 193205,
+        "usymParentIndicesUnknown": 2484193,
+        "usymParentIndicesInvalid": 0
+      }
+    },
+    "debugMap": {
+      "record": "unity-symbol-audit.json",
+      "sha256": "8c02df685acd0ae5674845c95c66783bddebfd96357bf55e4987640aab3fdf66",
+      "header": {
+        "magic": "sym-",
+        "version": 2,
+        "count": 2677398,
+        "recordBytes": 24,
+        "tableOffset": 64257576,
+        "tableBytes": 276638,
+        "strings": 2241,
+        "id": "d4359f7f36b6186a906e536e69b76e351299aef0",
+        "os": "Linux",
+        "arch": "arm64"
+      },
+      "validation": {
+        "records": 2677398,
+        "nonzero": 2677378,
+        "zero": 20,
+        "addressDecreases": 0,
+        "addressOutsideExecutable": 1,
+        "validFileOffsets": 2650507,
+        "invalidFileOffsets": 0,
+        "unknownFileOffsets": 26891,
+        "positiveLine": 2650507,
+        "fieldAMax": 122990,
+        "fieldBNotSentinel": 193205
+      },
+      "addressOutliers": [
+        {
+          "record": 20,
+          "address": "0x28",
+          "unknownA": 4294967295,
+          "filenameOffset": 4294967295,
+          "line": 4294967295,
+          "unknownB": 4294967295
+        }
+      ],
+      "elfBuildIds": [
+        "d4359f7f36b6186a906e536e69b76e351299aef0"
+      ],
+      "buildIdMatch": true,
+      "recordFormat": "24-byte observed record layout; old Sentry v2 example is 16 bytes and was not applied unchanged."
+    },
+    "correction": "Earlier conversation arithmetic stated 631 selected fields. Recalculation of the JSON gives 531; selected types=17 and methods=225 remain unchanged."
+  },
+  "preservation": {
+    "record": "preserved-inputs-verification.json",
+    "fileCount": 12,
+    "allFileHashesMatch": true,
+    "allSlicesMatchOriginalRanges": true,
+    "evidenceRecords": 5,
+    "allEvidenceInputsUnchanged": true,
+    "files": [
+      {
+        "name": "Stock+Car+Racing_3.26.3_APKPure.xapk",
+        "kind": "operator-original-XAPK",
+        "bytes": 739219238,
+        "expectedSha256": "71e9b5860bb597b5088c8b67a47d1431913d79585b11d486603b2f19208202db",
+        "actualSha256": "71e9b5860bb597b5088c8b67a47d1431913d79585b11d486603b2f19208202db",
+        "matches": true
+      },
+      {
+        "name": "com.minicades.stockcars.apk",
+        "kind": "selected-APK-copy",
+        "bytes": 117918122,
+        "expectedSha256": "d0b0b5a353d699fe2f5d6cfd53403630911e685dbe8c84bdc60d0e20d81730cf",
+        "actualSha256": "d0b0b5a353d699fe2f5d6cfd53403630911e685dbe8c84bdc60d0e20d81730cf",
+        "matches": true
+      },
+      {
+        "name": "config.arm64_v8a.apk",
+        "kind": "selected-APK-copy",
+        "bytes": 46049355,
+        "expectedSha256": "2ebc3a9d5aa96e7bf6ee23894738c602e23769e4ec8d69b95a93a5a16dfba930",
+        "actualSha256": "2ebc3a9d5aa96e7bf6ee23894738c602e23769e4ec8d69b95a93a5a16dfba930",
+        "matches": true
+      },
+      {
+        "name": "global-metadata.dat",
+        "kind": "selected-static-analysis-input",
+        "bytes": 14784604,
+        "expectedSha256": "9dfde71164cf5ed1b761609c4dfb4d506b2c78123a7eab2430fe602e1e6a7a1b",
+        "actualSha256": "9dfde71164cf5ed1b761609c4dfb4d506b2c78123a7eab2430fe602e1e6a7a1b",
+        "matches": true
+      },
+      {
+        "name": "globalgamemanagers",
+        "kind": "selected-static-analysis-input",
+        "bytes": 928644,
+        "expectedSha256": "4e83a4bfe53b09136f9aeacbda49d9c3bf81aa82cc995988beeea4ba1c797ad9",
+        "actualSha256": "4e83a4bfe53b09136f9aeacbda49d9c3bf81aa82cc995988beeea4ba1c797ad9",
+        "matches": true
+      },
+      {
+        "name": "boot.config",
+        "kind": "selected-static-analysis-input",
+        "bytes": 195,
+        "expectedSha256": "8d4192e5fb0622aeb84774f38dc0812ec89b887e4bc40a0f378765c733acfe31",
+        "actualSha256": "8d4192e5fb0622aeb84774f38dc0812ec89b887e4bc40a0f378765c733acfe31",
+        "matches": true
+      },
+      {
+        "name": "libil2cpp.so",
+        "kind": "selected-static-analysis-input",
+        "bytes": 107635520,
+        "expectedSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+        "actualSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+        "matches": true
+      },
+      {
+        "name": "libil2cpp.usym.so",
+        "kind": "selected-static-analysis-input",
+        "bytes": 64534214,
+        "expectedSha256": "8c02df685acd0ae5674845c95c66783bddebfd96357bf55e4987640aab3fdf66",
+        "actualSha256": "8c02df685acd0ae5674845c95c66783bddebfd96357bf55e4987640aab3fdf66",
+        "matches": true
+      },
+      {
+        "name": "race-camera-late-update.arm64",
+        "kind": "derived-native-instruction-slice",
+        "bytes": 768,
+        "expectedSha256": "2dc324f64c6ec7a9e15f55ffcacb6eebdad167310f29d83d9a94840048d3e30b",
+        "actualSha256": "2dc324f64c6ec7a9e15f55ffcacb6eebdad167310f29d83d9a94840048d3e30b",
+        "matches": true
+      },
+      {
+        "name": "vehicle-dynamics-fixed-update.arm64",
+        "kind": "derived-native-instruction-slice",
+        "bytes": 768,
+        "expectedSha256": "6db7475d7ac5df1dfc33e5345aa3841de097cff5d439cbc48d9098524ff07f09",
+        "actualSha256": "6db7475d7ac5df1dfc33e5345aa3841de097cff5d439cbc48d9098524ff07f09",
+        "matches": true
+      },
+      {
+        "name": "suspension-visuals-late-update.arm64",
+        "kind": "derived-native-instruction-slice",
+        "bytes": 768,
+        "expectedSha256": "4898993091bef0b96269f775ee975c8f207f4232f9dd1672edea6ac1f60c4bb3",
+        "actualSha256": "4898993091bef0b96269f775ee975c8f207f4232f9dd1672edea6ac1f60c4bb3",
+        "matches": true
+      },
+      {
+        "name": "vehicle-collision-enter.arm64",
+        "kind": "derived-native-instruction-slice",
+        "bytes": 768,
+        "expectedSha256": "f32d0f031a1e83e4326f6bcae72295ce7d7c605d02ecd80448fa47fd76d70563",
+        "actualSha256": "f32d0f031a1e83e4326f6bcae72295ce7d7c605d02ecd80448fa47fd76d70563",
+        "matches": true
+      }
+    ]
+  },
+  "failures": [
+    {
+      "record": "rea-rizin-initial.json",
+      "code": "capability_unavailable",
+      "reason": "Unable to run configured command (ERR_REA_WINDOWS_NATIVE)",
+      "timeoutMs": null,
+      "partialEvidenceId": null,
+      "command": null,
+      "completionStatus": null,
+      "successfulAnalysis": false
+    },
+    {
+      "record": "rea-native-identity.json",
+      "code": "provider_timeout",
+      "reason": null,
+      "timeoutMs": 120000,
+      "partialEvidenceId": "ev_3deebd8c9c355f7241e5bbe620d7c3beaa78f8444f7275866986c22de2a074ef",
+      "command": "iIj",
+      "completionStatus": "unknown",
+      "successfulAnalysis": false
+    },
+    {
+      "record": "rea-native-identity-batch.json",
+      "code": "provider_timeout",
+      "reason": null,
+      "timeoutMs": 120000,
+      "partialEvidenceId": "ev_f820c290e4136070bea1a4fdd1468db61e470e98d331a321a4ecb6b8d81260b1",
+      "command": "iIj; q",
+      "completionStatus": "unknown",
+      "successfulAnalysis": false
+    }
+  ],
+  "claims": [
+    {
+      "category": "observed",
+      "claim": "Archive identity and container inventory are REA observations, not Android runtime or code-semantic validation.",
+      "evidenceIds": [
+        "ev_189213349ee8175046c4f24bccc4e00786893443799b3588dee36e1a84f6e504",
+        "ev_0d11b9ee837145a6c4249d5723d1daa4433709067ad6e040eb291ac5aba84a21"
+      ]
+    },
+    {
+      "category": "observed",
+      "claim": "Four selected code regions have 64 valid aligned source-matching decoded rows each after fixed-offset suspension resampling. The first suspension attempt retains 59 invalid/misaligned rows.",
+      "records": [
+        "native-evidence-crosswalk.json"
+      ]
+    },
+    {
+      "category": "observed",
+      "claim": "OnCollisionEnter-mapped instructions compute the magnitude of three returned float values, multiply a loaded scalar, compare to 1.0 and conditionally branch.",
+      "evidenceIds": [
+        "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0"
+      ]
+    },
+    {
+      "category": "inference",
+      "claim": "Camera declarations and selected scalar arithmetic are consistent with dynamic FOV, but unresolved calls do not establish a speed query, FOV setter or delta-time API.",
+      "status": "superseded-by-exact-CodeGenModule-association",
+      "supersededBy": "call-target-summary.json; FOV setter and smoothDeltaTime calls now statically associated. Speed field meaning and coefficients remain unconfirmed."
+    },
+    {
+      "category": "inference",
+      "claim": "DriftModule, SuspensionVisuals and physical wheel/dynamics declarations suggest distinct visual and physics responsibilities; activation and runtime effects remain unobserved."
+    },
+    {
+      "category": "unknown",
+      "claim": "No original C# source, complete native function/CFG, tuning coefficients, Android execution, practical driving feel or device performance is established."
+    },
+    {
+      "category": "independent-design",
+      "claim": "MUMU changes to physics-step visual sampling, camera heading/distance separation, directional contact cues and event consumption are original design choices, not recovered proprietary code or coefficients."
+    },
+    {
+      "category": "observed-static-pointer-association",
+      "claim": "Existing camera code calls pointers associated with AnimationCurve.Evaluate, Camera.set_fieldOfView, Time.get_smoothDeltaTime and Transform.get_eulerAngles; collision initial vector getter is Collision.get_impulse; suspension calls Transform.LookAt. No target app execution or coefficients recovered.",
+      "records": [
+        "call-target-summary.json"
+      ]
+    }
+  ],
+  "sources": [
+    "https://play.google.com/store/apps/details?id=com.minicades.stockcars",
+    "https://github.com/SamboyCoding/Cpp2IL/tree/development/LibCpp2IL/Metadata",
+    "https://raw.githubusercontent.com/getsentry/symbolic/9.1.0/symbolic-il2cpp/src/usymlite.rs",
+    "https://github.com/rizinorg/rizin/releases/tag/v0.9.1",
+    "https://github.com/morluto/rea/blob/main/docs/reverse-engineering-tools.md"
+  ],
+  "publicationBoundary": "Sanitized static findings and summaries only. Commercial APK/native/media bytes, recovered code and developer personal paths remain outside Git.",
+  "followupStaticIdentity": {
+    "report": "call-target-summary.json",
+    "analysisKind": "Independent Python static CodeGenModule/relocation/unwind audit; not a new REA Evidence",
+    "coverage": {
+      "metadataImageDeclarations": 120,
+      "metadataMethodDeclarations": 122995,
+      "imageNamesLocatedInELFRodata": 120,
+      "missingImageNameStrings": [],
+      "moduleCandidatesPassingCountAndTokenSequence": 120,
+      "methodPointerTableRanges": 120,
+      "rejectedCandidates": [],
+      "relaEntriesReadPerPass": 730065,
+      "callObservations": 18,
+      "uniqueCallTargets": 14,
+      "resolvedUniqueTargets": 9,
+      "allMetadataTokenRIDSequencesValid": true,
+      "unresolvedUniqueTargets": 5,
+      "resolvedCallObservations": 12,
+      "unresolvedCallObservations": 6
+    },
+    "rootLabelsCorroborated": true,
+    "samplesAreMethodEntries": false,
+    "sourceMapConflict": {
+      "status": "observed-static-identity-disagreement",
+      "description": "Earlier USYM +8 values were only candidate method indices. Being in range does not prove identity. Exact CodeGenModule pointer/token matching disagrees with some guessed USYM method names. Source files/lines remain independent observations; do not label callees from the guessed index.",
+      "examples": [
+        {
+          "targetVA": "0x51a905c",
+          "usymGuessedName": "VehicleDamage.get_playerVehicle",
+          "exactCodegenName": "VehicleDamage.get_settings"
+        },
+        {
+          "targetVA": "0x51aacc8",
+          "usymGuessedName": "VehicleDamage.Refresh",
+          "exactCodegenName": "VehicleDamage.CheckIntercarCollision"
+        }
+      ]
+    }
+  }
+}

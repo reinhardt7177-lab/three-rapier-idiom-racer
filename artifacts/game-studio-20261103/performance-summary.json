@@ -1,0 +1,273 @@
+{
+  "at": "2026-11-03T12:09:18.703Z",
+  "device": "Local Windows / Intel Core i5-1135G7 / 16GB RAM / Codex in-app Chromium; no phone or tablet hardware",
+  "conditions": "Same IAB tab, viewport1280x720, DPR0.75, low, standard motion, clear, normal, 6 racers, chase, forced touch controls, ghost off, 30s since countdown. No owned CPU race checks during measurement. Other user apps left running.",
+  "expensiveInstrumentation": "GPU queries/render profile/frozen comparison off. Full rAF timestamps and CPU submission timing retained.",
+  "limitations": "Baseline frame time is unstable, especially Yeosu: stalls drop simulation time and change the reached segment. Do not infer a causal GPU improvement or exact added-shader cost from this A/B/A. No bad intervals discarded.",
+  "rows": [
+    {
+      "track": "namak",
+      "condition": "A1",
+      "durationMs": 30000.5,
+      "frame": {
+        "max": 116.70000000001164,
+        "mean": 19.867880794701986,
+        "over50": 4,
+        "p95": 33.40000000002328,
+        "samples": 1510
+      },
+      "cpu": {
+        "max": 43.5,
+        "mean": 7.579867549901767,
+        "p95": 11.099999994039536,
+        "samples": 1510
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 0,
+        "elapsed": 30.016666666665603,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 829.8114992507088,
+        "quality": "low",
+        "track": "namak",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 815497
+        },
+        "last": {
+          "calls": 503,
+          "triangles": 957059
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    },
+    {
+      "track": "namak",
+      "condition": "B",
+      "durationMs": 30000.4,
+      "frame": {
+        "max": 83.40000000000146,
+        "mean": 20.590528483184627,
+        "over50": 5,
+        "p95": 33.400000000001455,
+        "samples": 1457
+      },
+      "cpu": {
+        "max": 35,
+        "mean": 7.948181194152911,
+        "p95": 11.200000017881392,
+        "samples": 1457
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 0,
+        "elapsed": 30.016666666665603,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 829.8114992507088,
+        "quality": "low",
+        "track": "namak",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 815497
+        },
+        "last": {
+          "calls": 503,
+          "triangles": 957059
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    },
+    {
+      "track": "namak",
+      "condition": "A2",
+      "durationMs": 30017.199999999997,
+      "frame": {
+        "max": 249.8000000000029,
+        "mean": 21.03517869656622,
+        "over50": 15,
+        "p95": 33.400000000001455,
+        "samples": 1427
+      },
+      "cpu": {
+        "max": 37.80000001192093,
+        "mean": 7.856482130084409,
+        "p95": 11.900000005960464,
+        "samples": 1427
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 0.05033333333333434,
+        "elapsed": 29.999999999998938,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 827.8119534693818,
+        "quality": "low",
+        "track": "namak",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 815497
+        },
+        "last": {
+          "calls": 504,
+          "triangles": 957251
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    },
+    {
+      "track": "yeosu",
+      "condition": "A1",
+      "durationMs": 30033.800000000003,
+      "frame": {
+        "max": 1383.2999999999884,
+        "mean": 31.81546610169492,
+        "over50": 52,
+        "p95": 50.099999999998545,
+        "samples": 944
+      },
+      "cpu": {
+        "max": 122,
+        "mean": 8.675741525651034,
+        "p95": 13.699999988079073,
+        "samples": 944
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 2.508833333333345,
+        "elapsed": 27.541666666665744,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 463.91083357850385,
+        "quality": "low",
+        "track": "yeosu",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 366,
+          "triangles": 806284
+        },
+        "last": {
+          "calls": 397,
+          "triangles": 854756
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    },
+    {
+      "track": "yeosu",
+      "condition": "B",
+      "durationMs": 30000.5,
+      "frame": {
+        "max": 99.90000000000146,
+        "mean": 25.929559204840103,
+        "over50": 16,
+        "p95": 33.599999999998545,
+        "samples": 1157
+      },
+      "cpu": {
+        "max": 53.400000005960464,
+        "mean": 8.905963698979999,
+        "p95": 15.900000005960464,
+        "samples": 1157
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 0,
+        "elapsed": 30.03333333333227,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 523.899303437793,
+        "quality": "low",
+        "track": "yeosu",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 366,
+          "triangles": 806284
+        },
+        "last": {
+          "calls": 396,
+          "triangles": 833654
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    },
+    {
+      "track": "yeosu",
+      "condition": "A2",
+      "durationMs": 30000.5,
+      "frame": {
+        "max": 1300.1000000000022,
+        "mean": 34.24714611872146,
+        "over50": 63,
+        "p95": 66.60000000000218,
+        "samples": 876
+      },
+      "cpu": {
+        "max": 47.20000001788139,
+        "mean": 7.992009132318029,
+        "p95": 14.300000011920927,
+        "samples": 876
+      },
+      "context": {
+        "camera": "chase",
+        "dpr": 0.75,
+        "dropped": 3.7503,
+        "elapsed": 26.266666666665817,
+        "frozen": false,
+        "ghost": false,
+        "height": 720,
+        "profile": false,
+        "progress": 437.91582997281176,
+        "quality": "low",
+        "track": "yeosu",
+        "width": 1280
+      },
+      "draws": {
+        "first": {
+          "calls": 366,
+          "triangles": 806284
+        },
+        "last": {
+          "calls": 396,
+          "triangles": 855812
+        }
+      },
+      "notVisible": 0,
+      "notFocused": 0
+    }
+  ]
+}

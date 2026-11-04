@@ -1,0 +1,29 @@
+✔ yeosu: visual buildings and roofs do not occupy the racing corridor (100.1847ms)
+✖ seongsamjae: visual buildings and roofs do not occupy the racing corridor (143.3831ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2090.9035
+
+✖ failing tests:
+
+test at scripts\korea-courses.test.mjs:35:2
+✖ seongsamjae: visual buildings and roofs do not occupy the racing corridor (143.3831ms)
+  AssertionError [ERR_ASSERTION]: visual building occupies route 1985 lane 7
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/korea-courses.test.mjs:42:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

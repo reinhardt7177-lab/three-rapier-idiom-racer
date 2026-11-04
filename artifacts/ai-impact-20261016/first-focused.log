@@ -1,0 +1,82 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (3.0381ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.9165ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (361.1089ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (18.4444ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (10.6499ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (27.5506ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (3.7363ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (2.9779ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (204.6904ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 4,
+  peakFront: 20.165983200073242,
+  front: {
+    x: 0.0116855688393116,
+    y: 0.5410051345825195,
+    z: 57.46251678466797
+  },
+  rear: {
+    x: -0.006788182072341442,
+    y: 0.5260053873062134,
+    z: 52.9525032043457
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.387452125549316
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (627.2902ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (28.5661ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (257.9918ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (75.7151ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (13.8154ms)
+✔ a new moving lead can be passed before the original lead is behind (10.3374ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (3.2971ms)
+✔ a lead with no passing speed advantage does not start another crossing (1.6999ms)
+✔ after a partial crossing yield, the next pass points away from the new lead on either side (4.5162ms)
+✔ a race without civilians keeps the validated original passing sequence (0.9972ms)
+✔ restoring short moving headway briefly slows below the lead without stopping (0.5642ms)
+✔ the existing gap remains the target and ordinary non-traffic-race behavior is preserved (1.9756ms)
+✔ restoring headway keeps stopped-car hold and never requests a negative speed (0.3309ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2816.8405

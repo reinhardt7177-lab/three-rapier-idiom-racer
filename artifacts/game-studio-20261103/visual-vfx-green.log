@@ -1,0 +1,22 @@
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (6.1199ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (10.8637ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (17.1674ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (882.2868ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (20.361ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (15.7231ms)
+✔ night exhaust scatters dim blue ambient instead of glowing like rear headlights (5.4869ms)
+✔ night reflection is a separate blue-hour/warm-harbor bake with no live lights (9.1145ms)
+✔ asphalt has lit aggregate without geometry or texture growth {} (9.4767ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"night":true} (1.6307ms)
+✔ asphalt has lit aggregate without geometry or texture growth {"namak":true} (1.8462ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3660.4064

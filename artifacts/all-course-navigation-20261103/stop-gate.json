@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-03T14:58:39.3123577Z",
+  "status": "awaiting-user-scope-decision",
+  "reason": "Yeosu high p95 16.8ms baseline vs 33.3-33.4ms modified, repeated four times, including isolated source",
+  "productionCommit": "f8853324fdbc8827555b692cb6a55de8f5294faf",
+  "newPushOrDeploy": false,
+  "fullCheckExecuted": false,
+  "preservedCandidates": [
+    {
+      "path": "src/rebuild/routeGuidance.js",
+      "sha256": "d9b94a0aa5bcd480a4c4d81123885d2a73025518e67b17ff876c4ec417419f2e"
+    },
+    {
+      "path": "src/rebuild/graphicsQuality.js",
+      "sha256": "1d42890889df168265b1088671666c896ea52f149e2caee3348e13aba36d337e"
+    },
+    {
+      "path": "src/rebuild/namakVisuals.js",
+      "sha256": "eeb207e052f1a4d7ce9b429df3047ac252ba2e7c2e7b494b547f5a17dc51d112"
+    },
+    {
+      "path": "src/rebuild/seongsamjaeVisuals.js",
+      "sha256": "b78afaa8560daaa37f19932980f3d299492ea6b14deca26f2841b419f56bc95c"
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "sha256": "0bd442aa8e62687c0a73ca4ab933a3db5ef7f55e88d49cdcf10925dde6751a0b"
+    },
+    {
+      "path": "src/rebuild/main.jsx",
+      "sha256": "841a63d1e94a8004e025a2504cd57e8d1178fe92343ee024400d35650af851b7"
+    },
+    {
+      "path": "src/rebuild/rebuild.css",
+      "sha256": "aece33ea4de99d82702b184ef7bb9608c8c6efb1194a98a7b1f3c0a415ae11e2"
+    },
+    {
+      "path": "scripts/navigation.test.mjs",
+      "sha256": "4a71d07b0b3ea11ed1419293af3cc7e3d15f1fca03ffaf5e3f4b199b67ac4c40"
+    },
+    {
+      "path": "scripts/scene-update-work.test.mjs",
+      "sha256": "89a7e07a9607d23c639eca8e6f781dfd7c5ccc883b6ceeded95c857aedaaa352"
+    },
+    {
+      "path": "scripts/seongsamjae-visuals.test.mjs",
+      "sha256": "a32980681a129abda3389c0fd1b27ce900ac87b57c53c0c9dbdc25a65efb6426"
+    },
+    {
+      "path": "scripts/visual-polish.test.mjs",
+      "sha256": "38de4a0da7b13d4f7e910d53616429e6e821ddca71ec4c986ddedad81d2e2258"
+    },
+    {
+      "path": "package.json",
+      "sha256": "d6dbf7cdbe914878347131f2fd56445a80c1f6a50de711f0288e8735ecd8a94d"
+    }
+  ],
+  "currentStatus": "navigation-only-complete-verified",
+  "userDecision": {
+    "text": "좌우 오류 수정만 먼저 완료",
+    "appliedAt": "2026-11-03T15:04:01.666Z",
+    "candidateFeaturesApplied": false,
+    "productionUnchanged": true
+  },
+  "minimumVerification": {
+    "completedAt": "2026-11-03T15:22:37.845Z",
+    "tests": 539,
+    "passed": 539,
+    "buildSeconds": 13.23,
+    "races": 41,
+    "finishers": 246,
+    "exactStableResults": true,
+    "inputsShaMatched": 231
+  },
+  "nextCornerAndSceneCandidateOnHold": true
+}

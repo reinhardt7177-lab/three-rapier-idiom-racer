@@ -1,0 +1,77 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (12.0004ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.7331ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (428.4703ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (13.1544ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (10.4355ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.7561ms)
+✔ typing and Space on menu buttons remain native UI actions (0.5087ms)
+✔ focus or layout clearing releases every control and requires a fresh press (4.6924ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.4207ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (739.7494ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (1037.6258ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (2275.1759ms)
+{"id":"supra","previous":{"radius":24.806963803757508,"turn":-1.5708344554064682,"minUp":1,"minContacts":4,"kmh":89.5388988357885,"endKmh":85.40439740387554,"samples":188,"steer":-0.10247714074250636},"left":{"radius":19.429867156384425,"turn":-1.8031494017636325,"minUp":1,"minContacts":4,"kmh":89.55007770176564,"endKmh":83.13315836587175,"samples":169,"steer":-0.1401381392275757},"right":{"radius":19.429830881213423,"turn":1.8031512121622835,"minUp":1,"minContacts":4,"kmh":89.54997159966804,"endKmh":83.13303450017898,"samples":169,"steer":0.14013851922364307}}
+{"id":"supra","previousRadius":24.806963803757508,"currentRadius":19.429867156384425,"reduction":0.2167575479978172}
+{"id":"slk","previous":{"radius":25.299618840281184,"turn":-1.2854312829327585,"minUp":1,"minContacts":4,"kmh":89.47908100696782,"endKmh":81.85987458995366,"samples":157,"steer":-0.10653049912284741},"left":{"radius":19.886936709239226,"turn":-1.4378311398026766,"minUp":1,"minContacts":4,"kmh":89.51072615143836,"endKmh":77.90531849376829,"samples":138,"steer":-0.15212328017941823},"right":{"radius":19.886936008293862,"turn":1.4378311700591924,"minUp":1,"minContacts":4,"kmh":89.51072568324462,"endKmh":77.9052754060171,"samples":138,"steer":0.1521235859165848}}
+{"id":"slk","previousRadius":25.299618840281184,"currentRadius":19.886936709239226,"reduction":0.21394322836295354}
+{"id":"mustang","previous":{"radius":26.1098038337537,"turn":-1.6613718113814442,"minUp":1,"minContacts":4,"kmh":89.65717747164146,"endKmh":87.53062113231184,"samples":209,"steer":-0.10289826698801052},"left":{"radius":20.37166711484791,"turn":-2.025278761789457,"minUp":1,"minContacts":4,"kmh":89.5631535870292,"endKmh":86.29143308238635,"samples":199,"steer":-0.13736259281752028},"right":{"radius":20.37155422580387,"turn":2.0252905111708115,"minUp":1,"minContacts":4,"kmh":89.56319413838266,"endKmh":86.2894958343885,"samples":199,"steer":0.1373688328932389}}
+{"id":"mustang","previousRadius":26.1098038337537,"currentRadius":20.37166711484791,"reduction":0.2197694304959794}
+{"id":"porsche911","previous":{"radius":26.07426673257208,"turn":-1.670270112625636,"minUp":1,"minContacts":4,"kmh":90.01504142887336,"endKmh":90.04454882409827,"samples":209,"steer":-0.0934552061527366},"left":{"radius":19.98313447966392,"turn":-2.179369792357616,"minUp":1,"minContacts":4,"kmh":90.01309282910593,"endKmh":89.99305910144811,"samples":209,"steer":-0.12153998518006555},"right":{"radius":19.98313744756494,"turn":2.179369643531994,"minUp":1,"minContacts":4,"kmh":90.01309195987476,"endKmh":89.99310125133795,"samples":209,"steer":0.1215398600432328}}
+{"id":"porsche911","previousRadius":26.07426673257208,"currentRadius":19.98313447966392,"reduction":0.2336070392844104}
+{"id":"gtr","previous":{"radius":26.190700202627873,"turn":-1.6628336591081452,"minUp":1,"minContacts":4,"kmh":90.01471952612383,"endKmh":90.0409735080453,"samples":209,"steer":-0.10603700962567823},"left":{"radius":20.074580530701873,"turn":-2.169468863493735,"minUp":1,"minContacts":4,"kmh":90.01491692657589,"endKmh":90.01422702954693,"samples":209,"steer":-0.13789811754300307},"right":{"radius":20.074579381445314,"turn":2.169468878643617,"minUp":1,"minContacts":4,"kmh":90.01492642408851,"endKmh":90.01421817242851,"samples":209,"steer":0.1378981467522661}}
+{"id":"gtr","previousRadius":26.190700202627873,"currentRadius":20.074580530701873,"reduction":0.233522571928502}
+{"id":"rx7","previous":{"radius":25.786122356353726,"turn":-1.519417697146432,"minUp":1,"minContacts":4,"kmh":89.54985639826343,"endKmh":85.50539539417696,"samples":189,"steer":-0.09796524900104134},"left":{"radius":20.21010899850666,"turn":-1.7441127717371592,"minUp":1,"minContacts":4,"kmh":89.56791530384072,"endKmh":83.1574556135978,"samples":170,"steer":-0.1342282840665543},"right":{"radius":20.210159036400302,"turn":1.7441104210335776,"minUp":1,"minContacts":4,"kmh":89.56804541195078,"endKmh":83.15767067380236,"samples":170,"steer":0.13422769445549482}}
+{"id":"rx7","previousRadius":25.786122356353726,"currentRadius":20.21010899850666,"reduction":0.21624086323600078}
+{"id":"m3","previous":{"radius":26.13856487207187,"turn":-1.6661329108308327,"minUp":1,"minContacts":4,"kmh":90.01318182381792,"endKmh":90.00264038706557,"samples":209,"steer":-0.10626208257355149},"left":{"radius":20.071106829329203,"turn":-2.169733000727033,"minUp":1,"minContacts":4,"kmh":90.01020517211192,"endKmh":90.02491776503634,"samples":209,"steer":-0.13853950246157315},"right":{"radius":20.071113258740912,"turn":2.1697329553006406,"minUp":1,"minContacts":4,"kmh":90.01022171003846,"endKmh":90.02489317345062,"samples":209,"steer":0.1385395919223404}}
+{"id":"m3","previousRadius":26.13856487207187,"currentRadius":20.071106829329203,"reduction":0.23212667078082516}
+{"id":"huracan","previous":{"radius":25.432011405321013,"turn":-1.712444583018188,"minUp":1,"minContacts":4,"kmh":90.01777005435889,"endKmh":90.02063636635407,"samples":209,"steer":-0.10283218296215545},"left":{"radius":19.46735667053948,"turn":-2.237175767024681,"minUp":1,"minContacts":4,"kmh":90.01857519976535,"endKmh":90.03468726980563,"samples":209,"steer":-0.1338376160490185},"right":{"radius":19.467321322269243,"turn":2.2371781385344276,"minUp":1,"minContacts":4,"kmh":90.01852522596629,"endKmh":90.03461975912354,"samples":209,"steer":0.13383772497774712}}
+{"id":"huracan","previousRadius":25.432011405321013,"currentRadius":19.46735667053948,"reduction":0.23453334617228028}
+Namak player steering lap {
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  seconds: 109.90833333333333,
+  maxDeviation: 4.928398937032917,
+  minContacts: 4,
+  sensitivity: 1.6900000000000002
+}
+✔ another 30 percent steering reaches the physical rack, with a bounded low-speed stop and speed taper (2.018ms)
+✔ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (5287.1562ms)
+✔ additional steering stays upright at highway speed and releasing input recentres the wheels (1030.1404ms)
+✔ the player GT-R completes actual Namak road corners with the new grip and rack without recovery teleports (2484.8702ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11311.6091

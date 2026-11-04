@@ -1,0 +1,67 @@
+
+> mumu-open-circuit@0.1.0 check
+> npm run check:rebuild
+
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=2 scripts/studio-visuals.test.mjs scripts/physics-sampling.test.mjs scripts/corner-queue.test.mjs scripts/rival-recovery.test.mjs scripts/collision-feel.test.mjs scripts/steering-final.test.mjs scripts/driving-five-pass.test.mjs scripts/vehicle-finish.test.mjs scripts/namak-architecture.test.mjs scripts/online-race.test.mjs scripts/online-qr.test.mjs scripts/online-physics.test.mjs scripts/duel-mode.test.mjs scripts/duel-race.test.mjs scripts/body-motion.test.mjs scripts/body-motion-sampling.test.mjs scripts/renewal-presentation.test.mjs scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/traffic-planner.test.mjs scripts/traffic-race.test.mjs scripts/weather.test.mjs scripts/rain-vfx.test.mjs scripts/rain-race.test.mjs scripts/rival-personalities.test.mjs scripts/rival-personality-race.test.mjs scripts/progression.test.mjs scripts/progression-race.test.mjs scripts/performance-comparison.test.mjs scripts/graphics-quality.test.mjs scripts/map-materials.test.mjs scripts/roadscape.test.mjs scripts/yeosu-roadscape.test.mjs scripts/seongsamjae-roadscape.test.mjs scripts/namak-visuals.test.mjs scripts/yeosu-visuals.test.mjs scripts/seongsamjae-visuals.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/touch-controls.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-racecraft.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+{"bodyMotionSampling":[{"fps":30,"phase":1,"peakPitchDegrees":0.07750697291292614},{"fps":60,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":1,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":2,"peakPitchDegrees":0.07841361034287299},{"fps":60,"phase":2,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":2,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":60,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":120,"phase":3,"peakPitchDegrees":0.07879231960289464},{"fps":30,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":60,"phase":4,"peakPitchDegrees":0.07851687337534506},{"fps":120,"phase":4,"peakPitchDegrees":0.07879231960289464}]}
+✔ one-step collision impulses survive four phases at 30/60/120fps and match at common physical times (74.2736ms)
+✔ render interpolation never integrates a sample again and clamps only its presentation alpha (2.7377ms)
+✔ paused samples preserve the spring and both interpolation endpoints; recovery clears every visible history (1.7037ms)
+✔ fixed samples keep the existing full and reduced-motion pitch and roll limits (7.0329ms)
+✔ a remote 250ms sample measures acceleration over the packet interval and integrates its whole duration (0.9441ms)
+✔ sampling and presenting preserve all wheel transforms and physical snapshots, with low quality clearing both endpoints (19.3731ms)
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (10.9854ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (7.7957ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (27.5108ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (1.2425ms)
+✔ the low-quality fallback clears visual lean without changing physical state (1.5273ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (3.8319ms)
+✔ six physical cars finish all three championship rounds and earn only finish-based points (89951.9674ms)
+✔ three real course rounds advance once and award 10/6/4/3/2/1 (5.6685ms)
+✔ partial, duplicate, unknown and invalid finishes cannot create championship points (2.8762ms)
+✔ rounds remain immutable and points ties use wins then real total finish time (0.5271ms)
+✔ series checkpoint resumes its next course and corrupted data is rejected (1.2709ms)
+✔ best series uses points before time and tolerates blocked storage (1.9211ms)
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (178.6219ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (34.8713ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (18.7268ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (16.198ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (23.1581ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (1.635ms)
+✔ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (47.8577ms)
+✔ a drained CCD contact still locates sparks on real collider geometry with a bounded buffer (109.1569ms)
+✔ solver collision recovery ignores vertical support, stays bounded, expires and resets (1.7681ms)
+✔ floor contact and tiny touches cannot look like crashes; grazing and car impacts differ (1.3976ms)
+✔ stable chase has a brief contact-only kick and no steady wobble, pause/reduced motion respected (44.4115ms)
+✔ cockpit impact never shifts the driver eye, freezes and rolls less than one degree (23.9463ms)
+{"side":-1,"index":211,"clearAt":{"slk":8.158333333333333,"gtr":15.049999999999999,"rx7":18.508333333333333,"porsche911":20.35,"mustang":22.45},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+{"side":1,"index":211,"clearAt":{"slk":9,"gtr":16.05,"rx7":19.53333333333333,"porsche911":21.525,"mustang":24.375},"contacts":0,"lowest":0.05078659057617152,"offroad":0,"touches":[]}
+✔ an abandoned queue crossing releases its walking-speed cap after returning home (32.5389ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane -1 without contact or recovery (5009.0499ms)
+✔ Yeosu bend: five queued rivals clear a stopped player on lane 1 without contact or recovery (4153.0665ms)
+coastal easy median rival finish 207.64 YOU:4/207.86s scrape 0s off 0s nitro 0s | slk:5/215.77s scrape 0s off 0s nitro 0s | mustang:1/207.08s scrape 0.28s off 0s nitro 0s | porsche911:3/207.64s scrape 0s off 0s nitro 0s | gtr:2/207.22s scrape 0.31s off 0s nitro 0s | rx7:6/216.03s scrape 0s off 0s nitro 0s
+coastal normal median rival finish 203.47 YOU:3/202.6s scrape 0s off 0s nitro 0s | slk:6/211.69s scrape 0s off 0s nitro 13.59s | mustang:2/200.72s scrape 0s off 0s nitro 12.1s | porsche911:1/195.67s scrape 0s off 0s nitro 12.62s | gtr:4/203.47s scrape 0s off 0s nitro 13.32s | rx7:5/206.82s scrape 0s off 0s nitro 14.47s
+coastal hard median rival finish 193.48 YOU:6/202.97s scrape 0s off 0s nitro 0s | slk:4/197.45s scrape 0s off 0s nitro 25.4s | mustang:1/190.13s scrape 0s off 0s nitro 24.48s | porsche911:3/193.48s scrape 0s off 0s nitro 25.84s | gtr:2/193.07s scrape 0s off 0s nitro 24.91s | rx7:5/200.71s scrape 0s off 0s nitro 23.69s
+namak easy median rival finish 91.88 YOU:3/89.32s scrape 0s off 0s nitro 0s | slk:4/91.88s scrape 0s off 0s nitro 0s | mustang:2/89.19s scrape 0s off 0s nitro 0s | porsche911:5/92s scrape 0s off 0s nitro 0s | gtr:1/88.69s scrape 0s off 0s nitro 0s | rx7:6/92.45s scrape 0s off 0s nitro 0s
+namak normal median rival finish 81.87 YOU:4/82.22s scrape 0s off 0s nitro 0s | slk:5/83.23s scrape 0s off 0s nitro 5.79s | mustang:2/80.17s scrape 0s off 0s nitro 5.63s | porsche911:3/81.87s scrape 0s off 0s nitro 7.66s | gtr:1/79.82s scrape 0s off 0s nitro 5.65s | rx7:6/85.11s scrape 0s off 0s nitro 5.73s
+✖ scripts\difficulty.test.mjs (197761.1224ms)
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (33.5653ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (1.4728ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (1560.1479ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (76.5331ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (56.7ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (98.4255ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (5.746ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (16.4509ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (900.107ms)
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (20.7501ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (34.7118ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (1.0321ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (0.5417ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (1.5562ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (74.1442ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (5.4282ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (0.8075ms)

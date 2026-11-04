@@ -1,0 +1,401 @@
+{
+  "label": "soft",
+  "scope": "Single Supra, automatic route following, recovered 160 collider world. Simulated 120 Hz, no browser or camera.",
+  "progress": 6842.211776361137,
+  "completed": true,
+  "finalIndex": 26,
+  "summaries": {
+    "Harbor": {
+      "samples": 1338,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.04333687131777724,
+      "maxVerticalAcceleration": 1.3212919235229492,
+      "maxVerticalJerk": 19.421768188476562,
+      "rmsTiltRate": 0.01968168833785376,
+      "rmsVerticalAcceleration": 0.5048480956324352
+    },
+    "Beach": {
+      "samples": 2415,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.007970355477056509,
+      "maxVerticalAcceleration": 0.2887612581253052,
+      "maxVerticalJerk": 2.4214982986450195,
+      "rmsTiltRate": 0.0018219465027719184,
+      "rmsVerticalAcceleration": 0.06966820208014689
+    },
+    "City": {
+      "samples": 2882,
+      "contactChanges": 14,
+      "under3": 32,
+      "maxTiltRate": 0.7605625757806938,
+      "maxVerticalAcceleration": 14.189999252557755,
+      "maxVerticalJerk": 1258.6053371429443,
+      "rmsTiltRate": 0.0712361289366852,
+      "rmsVerticalAcceleration": 1.8608147036501277
+    },
+    "Mountain": {
+      "samples": 14673,
+      "contactChanges": 107,
+      "under3": 224,
+      "maxTiltRate": 1.6063978216695902,
+      "maxVerticalAcceleration": 162.59302139282227,
+      "maxVerticalJerk": 20352.4715423584,
+      "rmsTiltRate": 0.07149446665277948,
+      "rmsVerticalAcceleration": 1.881943446258523
+    },
+    "Lighthouse": {
+      "samples": 2259,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.029042863172317208,
+      "maxVerticalAcceleration": 1.1136120557785034,
+      "maxVerticalJerk": 3.58428955078125,
+      "rmsTiltRate": 0.010342546365450662,
+      "rmsVerticalAcceleration": 0.3650647956724255
+    },
+    "Bridge": {
+      "samples": 3576,
+      "contactChanges": 0,
+      "under3": 0,
+      "maxTiltRate": 0.03285117710281601,
+      "maxVerticalAcceleration": 1.3830757141113281,
+      "maxVerticalJerk": 18.069076538085938,
+      "rmsTiltRate": 0.008567740056527488,
+      "rmsVerticalAcceleration": 0.31381236046521777
+    }
+  },
+  "worst": [
+    {
+      "tick": 13390,
+      "index": 1310,
+      "region": "Mountain",
+      "kmh": 33.04510808592577,
+      "contacts": 2,
+      "previousContacts": 1,
+      "tiltRate": 0.7998722746697602,
+      "verticalAcceleration": 162.59302139282227,
+      "position": {
+        "x": -588.0858764648438,
+        "y": 106.94688415527344,
+        "z": 755.5879516601562
+      },
+      "preWorldVelocity": {
+        "x": -1.0973060131072998,
+        "y": -3.9001502990722656,
+        "z": -9.312644958496094
+      },
+      "postWorldVelocity": {
+        "x": -0.9824303984642029,
+        "y": -2.6699180603027344,
+        "z": -9.126471519470215
+      },
+      "userForce": {
+        "x": 31.79323387145996,
+        "y": 0,
+        "z": 184.39114379882812
+      },
+      "normal": [
+        {
+          "x": 0.007124574389308691,
+          "y": 0.9976350665092468,
+          "z": -0.06836264580488205
+        },
+        null,
+        null,
+        {
+          "x": 0.11561620980501175,
+          "y": 0.9226465225219727,
+          "z": -0.3679080605506897
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 10,
+        "ground": 107.27789862072221,
+        "filteredGround": 107.3143019265283,
+        "target": 107.8419517727548,
+        "error": 0.024518564159265566,
+        "roadRate": -1.3129065298732927,
+        "supportAcceleration": 9.26679419520494,
+        "beforeVertical": -1.4319267272949219,
+        "wheelVertical": -1.4319267272949219,
+        "commandVertical": -1.3547034423348807,
+        "controlledVertical": -1.354703426361084,
+        "normal": {
+          "x": -0.08110506766952887,
+          "y": 0.9890555331953644,
+          "z": -0.12325226267275796
+        }
+      },
+      "solverContacts": [
+        {
+          "collider": "Terrain_552_708_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_708_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_708_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_708_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 5,
+          "solverContacts": 0,
+          "distances": [
+            0.013809340074658394,
+            0.008953982964158058,
+            0.1492772400379181,
+            0.2780683934688568,
+            0.1297479122877121
+          ]
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 4,
+          "solverContacts": 0,
+          "distances": [
+            0.1406494677066803,
+            0.008965635672211647,
+            0.14891794323921204,
+            0.008965997025370598
+          ]
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_708_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        }
+      ]
+    },
+    {
+      "tick": 17103,
+      "index": 1618,
+      "region": "Mountain",
+      "kmh": 50.420882877483386,
+      "contacts": 2,
+      "previousContacts": 1,
+      "tiltRate": 1.6063978216695902,
+      "verticalAcceleration": 107.85149574279785,
+      "position": {
+        "x": -603.1634521484375,
+        "y": 60.50874710083008,
+        "z": 574.478271484375
+      },
+      "preWorldVelocity": {
+        "x": -5.587291717529297,
+        "y": -3.6556484699249268,
+        "z": -12.981231689453125
+      },
+      "postWorldVelocity": {
+        "x": -5.474971294403076,
+        "y": -2.8499672412872314,
+        "z": -12.891359329223633
+      },
+      "userForce": {
+        "x": 106.95427703857422,
+        "y": 0,
+        "z": 209.71762084960938
+      },
+      "normal": [
+        null,
+        {
+          "x": 0.005155311431735754,
+          "y": 0.9982101917266846,
+          "z": -0.05957954376935959
+        },
+        null,
+        {
+          "x": -0.027516214177012444,
+          "y": 0.9592598676681519,
+          "z": -0.2811819911003113
+        }
+      ],
+      "ride": {
+        "locked": false,
+        "contacts": 2,
+        "reason": "unsupported",
+        "transitions": 22,
+        "ground": 60.726891391088046,
+        "filteredGround": 60.74732772620155,
+        "target": 61.273491652529344,
+        "error": 0.034972397763624485,
+        "roadRate": -1.76988381287189,
+        "supportAcceleration": 9.513613675462125,
+        "beforeVertical": -1.9611254930496216,
+        "wheelVertical": -1.8954817056655884,
+        "commandVertical": -1.8818453790874372,
+        "controlledVertical": -1.8818453550338745,
+        "normal": {
+          "x": -0.09276855994738928,
+          "y": 0.9918486879978023,
+          "z": -0.08735086949954234
+        }
+      },
+      "solverContacts": [
+        {
+          "collider": "Terrain_552_504_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_504_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Terrain_552_504_Terrain_Terrain",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 4,
+          "solverContacts": 0,
+          "distances": [
+            0.118343286216259,
+            -0.0026685930788517,
+            0.11950597912073135,
+            -0.002668200060725212
+          ]
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 5,
+          "solverContacts": 0,
+          "distances": [
+            0.0015016775578260422,
+            -0.0026661716401576996,
+            0.11988843232393265,
+            0.21325893700122833,
+            0.1287173479795456
+          ]
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        },
+        {
+          "collider": "Mountain_Road_Asphalt",
+          "contacts": 0,
+          "solverContacts": 0,
+          "distances": []
+        }
+      ]
+    }
+  ]
+}

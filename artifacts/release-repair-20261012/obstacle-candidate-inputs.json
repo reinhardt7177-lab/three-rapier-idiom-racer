@@ -1,0 +1,17 @@
+{
+  "cause": "A held partial crossing is not a lane-centred car. Choosing the opposite side of its own lane sign can point into the slow lead. Choose the side away from the obstruction, with all crossing and road checks retained.",
+  "inputs": [
+    {
+      "path": "planner-final.mjs",
+      "sha256": "7fbd16716466310aea8fa2f681d91f33cba433a76428c27cfa1d7d44efb3b910"
+    },
+    {
+      "path": "planner-obstacle.mjs",
+      "sha256": "5893137b10a836aa36598709800805b7d468cd2adecd1f3cf1f59f91eaa30863"
+    },
+    {
+      "path": "sim-obstacle.mjs",
+      "sha256": "09a19fd10290b875e06c72be0939edea416e8620ac463af8c0fb669eb96e7540"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "status": "stop-requested-condition-observed",
+  "reason": "Existing Namak frame interval worsened in observed sample",
+  "device": "i5-1135G7 / Iris Xe / 16GB",
+  "browser": "desktop Codex IAB",
+  "viewport": "1280x720 DPR1",
+  "vehicle": "supra",
+  "camera": "chase",
+  "difficulty": "normal",
+  "laps": 1,
+  "before": {
+    "elapsed": 25.999999999999165,
+    "frames": 240,
+    "mean": 16.667083333333327,
+    "p95": 16.900000000001455,
+    "max": 17,
+    "over50": 0,
+    "cpu": {
+      "physicsMs": {
+        "max": 2.799999952316284,
+        "mean": 1.6391666648288568,
+        "missing": 0,
+        "p95": 2.199999988079071,
+        "samples": 240
+      },
+      "renderMs": {
+        "max": 13,
+        "mean": 7.979166666915019,
+        "missing": 0,
+        "p95": 11,
+        "samples": 240
+      },
+      "workMs": {
+        "max": 15.400000035762789,
+        "mean": 9.744999998807907,
+        "missing": 0,
+        "p95": 12.800000011920927,
+        "samples": 240
+      }
+    },
+    "bytes": 27749624,
+    "calls": 868,
+    "triangles": 1279323
+  },
+  "after": {
+    "difficulty": "normal",
+    "elapsed": 18.866666666666237,
+    "laps": 1,
+    "loading": {
+      "cacheHits": 11,
+      "encodedBytes": 27751898,
+      "files": [
+        {
+          "durationMs": 79,
+          "encodedBytes": 79439,
+          "name": "index-CDZ1DIo0.js",
+          "transferBytes": 79739
+        },
+        {
+          "durationMs": 78.40000003576279,
+          "encodedBytes": 60092,
+          "name": "react--MMj_Dji.js",
+          "transferBytes": 60392
+        },
+        {
+          "durationMs": 110.30000001192091,
+          "encodedBytes": 141339,
+          "name": "three-CZ4asi8Y.js",
+          "transferBytes": 141639
+        },
+        {
+          "durationMs": 402.5,
+          "encodedBytes": 1077800,
+          "name": "physics-iRel_T-y.js",
+          "transferBytes": 1078100
+        },
+        {
+          "durationMs": 71.69999998807907,
+          "encodedBytes": 5959,
+          "name": "index-BpoUVlGI.css",
+          "transferBytes": 6259
+        },
+        {
+          "durationMs": 45.30000001192093,
+          "encodedBytes": 582932,
+          "name": "supra.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 27.900000035762787,
+          "encodedBytes": 11748,
+          "name": "draco_wasm_wrapper.js",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 26.600000023841854,
+          "encodedBytes": 192420,
+          "name": "draco_decoder.wasm",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 39.10000002384186,
+          "encodedBytes": 587308,
+          "name": "slk.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 49.40000003576279,
+          "encodedBytes": 555360,
+          "name": "mustang.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 38.5,
+          "encodedBytes": 617652,
+          "name": "porsche911.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 46.89999997615814,
+          "encodedBytes": 551712,
+          "name": "gtr.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 52.30000001192093,
+          "encodedBytes": 531020,
+          "name": "rx7.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 39.39999997615814,
+          "encodedBytes": 628356,
+          "name": "m3.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 46.19999998807907,
+          "encodedBytes": 559472,
+          "name": "huracan.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 35.40000003576279,
+          "encodedBytes": 132244,
+          "name": "garage.glb",
+          "transferBytes": 300
+        },
+        {
+          "durationMs": 359.5,
+          "encodedBytes": 19885452,
+          "name": "namak.glb",
+          "transferBytes": 19885752
+        },
+        {
+          "durationMs": 19,
+          "encodedBytes": 736208,
+          "name": "cockpit.glb",
+          "transferBytes": 736508
+        },
+        {
+          "durationMs": 30,
+          "encodedBytes": 48973,
+          "name": "namak-route.json",
+          "transferBytes": 49273
+        },
+        {
+          "durationMs": 27.600000023841854,
+          "encodedBytes": 766412,
+          "name": "namak-landmarks.glb",
+          "transferBytes": 766712
+        }
+      ],
+      "measured": true,
+      "revalidated": 11,
+      "transferBytes": 22807674,
+      "unknownSizes": 0
+    },
+    "mode": "race",
+    "rendering": {
+      "atmosphere": {
+        "fog": "#8bbdd8",
+        "mieCoefficient": 0.003,
+        "rayleigh": 2.2,
+        "turbidity": 2.4
+      },
+      "calls": 868,
+      "colors": {
+        "gradedMaterials": 30,
+        "materials": 23,
+        "version": "namak-vivid-1"
+      },
+      "cpu": {
+        "physicsMs": {
+          "max": 29.69999998807907,
+          "mean": 3.4720833321412403,
+          "missing": 0,
+          "p95": 9.400000035762789,
+          "samples": 240
+        },
+        "renderMs": {
+          "max": 160,
+          "mean": 15.899583333730698,
+          "missing": 0,
+          "p95": 22.30000001192093,
+          "samples": 240
+        },
+        "workMs": {
+          "max": 173.39999997615814,
+          "mean": 19.661249999701976,
+          "missing": 0,
+          "p95": 32.200000047683716,
+          "samples": 240
+        }
+      },
+      "height": 720,
+      "landmarks": {
+        "signs": 22,
+        "visibleSigns": 1
+      },
+      "lighting": {
+        "ambient": 0.25,
+        "environment": 0.28,
+        "exposure": 0.6,
+        "fogFar": 2400,
+        "fogNear": 900,
+        "sun": 2.2
+      },
+      "maxMs": 182.40000000000143,
+      "meanMs": 21.457916666666673,
+      "over50Ms": 8,
+      "p95Ms": 33.60000000000582,
+      "pageVisible": true,
+      "pauseRendering": {
+        "draws": 1793,
+        "skipped": 0
+      },
+      "pixelRatio": 1.0000000149011612,
+      "presentation": {
+        "parkedCars": 4,
+        "visibleParkedCars": 1
+      },
+      "samples": 240,
+      "scenery": {
+        "after": 1383,
+        "batches": 57,
+        "before": 1441,
+        "cellSize": 128,
+        "mergedObjects": 117,
+        "partsCreated": 3,
+        "splitObjects": 1
+      },
+      "surfaces": {
+        "surfaces": 11,
+        "textureBytes": 16384
+      },
+      "triangles": 1279323,
+      "width": 1280
+    },
+    "selected": "supra",
+    "timing": {
+      "droppedSeconds": 1.516699999999997,
+      "pendingSeconds": 0.00033333333333503135,
+      "rawSeconds": 0.01669999999999709,
+      "simulatedSeconds": 21.866666666666067,
+      "steps": 2
+    }
+  },
+  "strictPaired": false,
+  "caveat": "Different elapsed times and partly cold model transfers; cause not established; keep raw sample without replacing it",
+  "next": "Profile matched before/after conditions before adding unlocks or rival personalities"
+}

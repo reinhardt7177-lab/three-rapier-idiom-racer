@@ -1,0 +1,77 @@
+✔ RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart (2.5435ms)
+✔ launch smoke uses only the rear contact patches below drift speed and stops in the air (4.4323ms)
+✔ smoke follows actual wheel contacts, stays bounded and clears on reset or quality change (24.4928ms)
+✔ same-speed acceleration and braking produce distinct bounded camera response at every frame rate (9.8088ms)
+✔ audio load and boost are distinct at identical road speed (0.4495ms)
+✔ stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration (0.4814ms)
+✔ actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis (1.4185ms)
+{"push":1,"braking":1,"scrub":0.9999999028585778}
+✔ real Rapier drive/brake/corner signals do not change the simulation trajectory (399.7829ms)
+✔ tire trails have a bounded pool, fade, and never bridge reset/airborne gaps (16.3527ms)
+✔ load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag (0.4443ms)
+✔ pending audio resume cannot undo mute or reopen a disposed graph (1.4049ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.016666666666667,
+  stopping: 44.619415283203125,
+  stopTime: 2.916666666666659,
+  rolling: 83.4607566833496,
+  distance: 83.45510864257812,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 4,
+  peakFront: 20.582582473754883,
+  front: {
+    x: 0.02341809868812561,
+    y: 0.5410052537918091,
+    z: 60.16099548339844
+  },
+  rear: {
+    x: 0.005400537513196468,
+    y: 0.5260055065155029,
+    z: 55.650970458984375
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.441370010375977
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (421.6307ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (19.1899ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (164.1803ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (37.5822ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (8.1777ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1895.1964

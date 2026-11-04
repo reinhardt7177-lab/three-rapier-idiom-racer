@@ -1,0 +1,45 @@
+{
+  "wranglerVersion": "4.149.0",
+  "domain": [
+    {
+      "id": "39004e31b753cfffec0d4a5f34022ee71f53d40b",
+      "hostname": "racing.mumuworld.com",
+      "service": "mumu-circuit",
+      "enabled": true,
+      "previews_enabled": false,
+      "zone_id": "2dba40a9aeee39a9421657bc9f6a4c27",
+      "zone_name": "mumuworld.com",
+      "cert_id": "969e55eb-6c21-4b89-8397-51007de22648"
+    }
+  ],
+  "zone": {
+    "id": "2dba40a9aeee39a9421657bc9f6a4c27",
+    "name": "mumuworld.com",
+    "status": "active",
+    "name_servers": [
+      "chelsea.ns.cloudflare.com",
+      "jermaine.ns.cloudflare.com"
+    ]
+  },
+  "records": [
+    {
+      "type": "A",
+      "readable": false,
+      "errorName": "APIError",
+      "code": 10000
+    },
+    {
+      "type": "AAAA",
+      "readable": false,
+      "errorName": "APIError",
+      "code": 10000
+    },
+    {
+      "type": "CNAME",
+      "readable": false,
+      "errorName": "APIError",
+      "code": 10000
+    }
+  ],
+  "time": "2026-10-14T02:41:01.868Z"
+}

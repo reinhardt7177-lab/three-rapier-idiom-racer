@@ -1,0 +1,1355 @@
+{
+  "date": "2026-10-25",
+  "analysisKind": "Ordinary Python read-only ELF relocation and IL2CPP CodeGenModule/metadata association of existing REA call observations; not a new REA Evidence record.",
+  "sourceELFSha256": "35035d65700ba3e7a24a329ef2af539b3a60365883d2a6cbec077dba5f75ec2b",
+  "metadataSha256": "9dfde71164cf5ed1b761609c4dfb4d506b2c78123a7eab2430fe602e1e6a7a1b",
+  "coverage": {
+    "metadataImageDeclarations": 120,
+    "metadataMethodDeclarations": 122995,
+    "imageNamesLocatedInELFRodata": 120,
+    "missingImageNameStrings": [],
+    "moduleCandidatesPassingCountAndTokenSequence": 120,
+    "methodPointerTableRanges": 120,
+    "rejectedCandidates": [],
+    "relaEntriesReadPerPass": 730065,
+    "callObservations": 18,
+    "uniqueCallTargets": 14,
+    "resolvedUniqueTargets": 9,
+    "allMetadataTokenRIDSequencesValid": true,
+    "unresolvedUniqueTargets": 5,
+    "resolvedCallObservations": 12,
+    "unresolvedCallObservations": 6
+  },
+  "rootLabelAudit": {
+    "method": "Exact CodeGenModule method pointer from metadata token RID independently agrees with ELF unwind FDE initial PC; original sample and decoded span lie inside that FDE code range. USYM source-file/line is retained separately, not used as the method-identity key.",
+    "ehFrameHeader": {
+      "sectionVA": "0x1838a4c",
+      "encodingBytes": "01 1b 03 3b",
+      "entries": 368389,
+      "tableSortedValidated": true
+    },
+    "roots": [
+      {
+        "sample": "race-camera-late-update",
+        "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+        "sampleVA": "0x511ebbc",
+        "decodedReadSpan": {
+          "firstVA": "0x511ebbc",
+          "endVAExclusive": "0x511ecbc"
+        },
+        "exactCodegenMethod": {
+          "type": "RaceCamera",
+          "method": "LateUpdate",
+          "metadataMethodGlobalIndex": 43843,
+          "metadataToken": "0x600001c",
+          "tokenRID": 28,
+          "module": "StockCarRacing.Runtime.dll",
+          "methodPointerEntryVA": "0x65da330",
+          "methodPointerVA": "0x511eb74",
+          "pointerRelativeRelocationFileOffset": 15598592,
+          "status": "exact-relative-relocation-pointer"
+        },
+        "sourceFileLineMappingsAtSample": [
+          {
+            "record": 1883420,
+            "address": "0x511ebbc",
+            "file": "Assets/Scripts/Cameras/RaceCamera.cs",
+            "line": 92,
+            "rawMethodIdentifierCandidate": 43843,
+            "methodIdentity": "not-established-by-this-USYM-field"
+          }
+        ],
+        "unwindRange": {
+          "fdeVA": "0x236740c",
+          "fdeFileOffset": 37123084,
+          "fdeBytes": 84,
+          "fdeSha256": "a8616e314f62dcae2b693c8d0439e4dbebce5611ba4723b70e652c3fdacbd161",
+          "cieVA": "0x1b08288",
+          "cieAugmentation": "zR",
+          "fdePointerEncoding": "0x1b",
+          "initialPC": "0x511eb74",
+          "endPCExclusive": "0x511ee98",
+          "codeRangeBytes": 804,
+          "sampleAddressWithinUnwindRange": true
+        },
+        "methodPointerEqualsUnwindInitialPC": true,
+        "decodedReadSpanWithinUnwindRange": true,
+        "sampleIsFunctionEntry": false,
+        "rootLabelCorroborated": true
+      },
+      {
+        "sample": "vehicle-dynamics-fixed-update",
+        "evidenceId": "ev_b04999d906acb942fc0233fa327140b036cbee0c5973392ef4667178bf552403",
+        "sampleVA": "0x51adb70",
+        "decodedReadSpan": {
+          "firstVA": "0x51adb70",
+          "endVAExclusive": "0x51adc70"
+        },
+        "exactCodegenMethod": {
+          "type": "VehicleDynamics",
+          "method": "FixedUpdate",
+          "metadataMethodGlobalIndex": 45399,
+          "metadataToken": "0x6000630",
+          "tokenRID": 1584,
+          "module": "StockCarRacing.Runtime.dll",
+          "methodPointerEntryVA": "0x65dd3d0",
+          "methodPointerVA": "0x51adb40",
+          "pointerRelativeRelocationFileOffset": 15635936,
+          "status": "exact-relative-relocation-pointer"
+        },
+        "sourceFileLineMappingsAtSample": [
+          {
+            "record": 1959306,
+            "address": "0x51adb70",
+            "file": "Assets/Scripts/Vehicle/VehicleDynamics.cs",
+            "line": 147,
+            "rawMethodIdentifierCandidate": 45399,
+            "methodIdentity": "not-established-by-this-USYM-field"
+          }
+        ],
+        "unwindRange": {
+          "fdeVA": "0x237c888",
+          "fdeFileOffset": 37210248,
+          "fdeBytes": 44,
+          "fdeSha256": "2145c27771c4e6eaf9a925b82c757f9b1507b4a8bce1c352200667376a51a0dd",
+          "cieVA": "0x1b08288",
+          "cieAugmentation": "zR",
+          "fdePointerEncoding": "0x1b",
+          "initialPC": "0x51adb40",
+          "endPCExclusive": "0x51addc4",
+          "codeRangeBytes": 644,
+          "sampleAddressWithinUnwindRange": true
+        },
+        "methodPointerEqualsUnwindInitialPC": true,
+        "decodedReadSpanWithinUnwindRange": true,
+        "sampleIsFunctionEntry": false,
+        "rootLabelCorroborated": true
+      },
+      {
+        "sample": "suspension-visuals-late-update",
+        "evidenceId": "ev_7b6fa935690d7268138b97dfb36994a58562c15426449d1945c50f0fbbb25f9c",
+        "sampleVA": "0x519ecf4",
+        "decodedReadSpan": {
+          "firstVA": "0x519ecf4",
+          "endVAExclusive": "0x519edf4"
+        },
+        "exactCodegenMethod": {
+          "type": "SuspensionVisuals",
+          "method": "LateUpdate",
+          "metadataMethodGlobalIndex": 45173,
+          "metadataToken": "0x600054e",
+          "tokenRID": 1358,
+          "module": "StockCarRacing.Runtime.dll",
+          "methodPointerEntryVA": "0x65dccc0",
+          "methodPointerVA": "0x519ecf0",
+          "pointerRelativeRelocationFileOffset": 15630512,
+          "status": "exact-relative-relocation-pointer"
+        },
+        "sourceFileLineMappingsAtSample": [
+          {
+            "record": 1951660,
+            "address": "0x519ecf4",
+            "file": "Assets/Scripts/Vehicle/SuspensionVisuals.cs",
+            "line": 24,
+            "rawMethodIdentifierCandidate": 45173,
+            "methodIdentity": "not-established-by-this-USYM-field"
+          }
+        ],
+        "unwindRange": {
+          "fdeVA": "0x237a380",
+          "fdeFileOffset": 37200768,
+          "fdeBytes": 44,
+          "fdeSha256": "77c0a6c26749ebc5ed28312c9d949dc4ac19f766cdd5c9787df63bb2ca57ad50",
+          "cieVA": "0x1b08288",
+          "cieAugmentation": "zR",
+          "fdePointerEncoding": "0x1b",
+          "initialPC": "0x519ecf0",
+          "endPCExclusive": "0x519edfc",
+          "codeRangeBytes": 268,
+          "sampleAddressWithinUnwindRange": true
+        },
+        "methodPointerEqualsUnwindInitialPC": true,
+        "decodedReadSpanWithinUnwindRange": true,
+        "sampleIsFunctionEntry": false,
+        "rootLabelCorroborated": true
+      },
+      {
+        "sample": "vehicle-collision-enter",
+        "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+        "sampleVA": "0x51aaea0",
+        "decodedReadSpan": {
+          "firstVA": "0x51aaea0",
+          "endVAExclusive": "0x51aafa0"
+        },
+        "exactCodegenMethod": {
+          "type": "VehicleDamage",
+          "method": "OnCollisionEnter",
+          "metadataMethodGlobalIndex": 45350,
+          "metadataToken": "0x60005ff",
+          "tokenRID": 1535,
+          "module": "StockCarRacing.Runtime.dll",
+          "methodPointerEntryVA": "0x65dd248",
+          "methodPointerVA": "0x51aadf4",
+          "pointerRelativeRelocationFileOffset": 15634760,
+          "status": "exact-relative-relocation-pointer"
+        },
+        "sourceFileLineMappingsAtSample": [
+          {
+            "record": 1957926,
+            "address": "0x51aaea0",
+            "file": "Assets/Scripts/Vehicle/VehicleDamage.cs",
+            "line": 411,
+            "rawMethodIdentifierCandidate": 45350,
+            "methodIdentity": "not-established-by-this-USYM-field"
+          }
+        ],
+        "unwindRange": {
+          "fdeVA": "0x237c0a4",
+          "fdeFileOffset": 37208228,
+          "fdeBytes": 80,
+          "fdeSha256": "b99f48d7317c2dbc40ecde94ceac9b687549621c7de14a3c1e72e7795e0d09d2",
+          "cieVA": "0x1b08288",
+          "cieAugmentation": "zR",
+          "fdePointerEncoding": "0x1b",
+          "initialPC": "0x51aadf4",
+          "endPCExclusive": "0x51ab060",
+          "codeRangeBytes": 620,
+          "sampleAddressWithinUnwindRange": true
+        },
+        "methodPointerEqualsUnwindInitialPC": true,
+        "decodedReadSpanWithinUnwindRange": true,
+        "sampleIsFunctionEntry": false,
+        "rootLabelCorroborated": true
+      }
+    ],
+    "completeMethodsForSelectedTypes": [
+      {
+        "type": "RaceCamera",
+        "method": "Init",
+        "metadataMethodGlobalIndex": 43841,
+        "metadataToken": "0x600001a",
+        "tokenRID": 26,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da320",
+        "methodPointerVA": "0x511e2f0",
+        "pointerRelativeRelocationFileOffset": 15598544,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "Awake",
+        "metadataMethodGlobalIndex": 43842,
+        "metadataToken": "0x600001b",
+        "tokenRID": 27,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da328",
+        "methodPointerVA": "0x511ea04",
+        "pointerRelativeRelocationFileOffset": 15598568,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "LateUpdate",
+        "metadataMethodGlobalIndex": 43843,
+        "metadataToken": "0x600001c",
+        "tokenRID": 28,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da330",
+        "methodPointerVA": "0x511eb74",
+        "pointerRelativeRelocationFileOffset": 15598592,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "ChangeCamTo",
+        "metadataMethodGlobalIndex": 43844,
+        "metadataToken": "0x600001d",
+        "tokenRID": 29,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da338",
+        "methodPointerVA": "0x511e618",
+        "pointerRelativeRelocationFileOffset": 15598616,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "ChangeToNextCam",
+        "metadataMethodGlobalIndex": 43845,
+        "metadataToken": "0x600001e",
+        "tokenRID": 30,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da340",
+        "methodPointerVA": "0x511ee98",
+        "pointerRelativeRelocationFileOffset": 15598640,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "PeekRight",
+        "metadataMethodGlobalIndex": 43846,
+        "metadataToken": "0x600001f",
+        "tokenRID": 31,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da348",
+        "methodPointerVA": "0x511ef20",
+        "pointerRelativeRelocationFileOffset": 15598664,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "PeekLeft",
+        "metadataMethodGlobalIndex": 43847,
+        "metadataToken": "0x6000020",
+        "tokenRID": 32,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da350",
+        "methodPointerVA": "0x511ef2c",
+        "pointerRelativeRelocationFileOffset": 15598688,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "PeekBack",
+        "metadataMethodGlobalIndex": 43848,
+        "metadataToken": "0x6000021",
+        "tokenRID": 33,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da358",
+        "methodPointerVA": "0x511ef38",
+        "pointerRelativeRelocationFileOffset": 15598712,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": "ResetPeek",
+        "metadataMethodGlobalIndex": 43849,
+        "metadataToken": "0x6000022",
+        "tokenRID": 34,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da360",
+        "methodPointerVA": "0x511ef44",
+        "pointerRelativeRelocationFileOffset": 15598736,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "RaceCamera",
+        "method": ".ctor",
+        "metadataMethodGlobalIndex": 43850,
+        "metadataToken": "0x6000023",
+        "tokenRID": 35,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65da368",
+        "methodPointerVA": "0x511ef4c",
+        "pointerRelativeRelocationFileOffset": 15598760,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "SuspensionVisuals",
+        "method": "Init",
+        "metadataMethodGlobalIndex": 45172,
+        "metadataToken": "0x600054d",
+        "tokenRID": 1357,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dccb8",
+        "methodPointerVA": "0x519ebe0",
+        "pointerRelativeRelocationFileOffset": 15630488,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "SuspensionVisuals",
+        "method": "LateUpdate",
+        "metadataMethodGlobalIndex": 45173,
+        "metadataToken": "0x600054e",
+        "tokenRID": 1358,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dccc0",
+        "methodPointerVA": "0x519ecf0",
+        "pointerRelativeRelocationFileOffset": 15630512,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "SuspensionVisuals",
+        "method": ".ctor",
+        "metadataMethodGlobalIndex": 45174,
+        "metadataToken": "0x600054f",
+        "tokenRID": 1359,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dccc8",
+        "methodPointerVA": "0x519edfc",
+        "pointerRelativeRelocationFileOffset": 15630536,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_healthNormalized",
+        "metadataMethodGlobalIndex": 45332,
+        "metadataToken": "0x60005ed",
+        "tokenRID": 1517,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1b8",
+        "methodPointerVA": "0x51a8e74",
+        "pointerRelativeRelocationFileOffset": 15634328,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_IsWrecked",
+        "metadataMethodGlobalIndex": 45333,
+        "metadataToken": "0x60005ee",
+        "tokenRID": 1518,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1c0",
+        "methodPointerVA": "0x51a8eb0",
+        "pointerRelativeRelocationFileOffset": 15634352,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_percentDamage",
+        "metadataMethodGlobalIndex": 45334,
+        "metadataToken": "0x60005ef",
+        "tokenRID": 1519,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1c8",
+        "methodPointerVA": "0x51a8ed4",
+        "pointerRelativeRelocationFileOffset": 15634376,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_playerVehicle",
+        "metadataMethodGlobalIndex": 45335,
+        "metadataToken": "0x60005f0",
+        "tokenRID": 1520,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1d0",
+        "methodPointerVA": "0x51a8ff8",
+        "pointerRelativeRelocationFileOffset": 15634400,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_settings",
+        "metadataMethodGlobalIndex": 45336,
+        "metadataToken": "0x60005f1",
+        "tokenRID": 1521,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1d8",
+        "methodPointerVA": "0x51a905c",
+        "pointerRelativeRelocationFileOffset": 15634424,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_persistentDamageLevelMultiplier",
+        "metadataMethodGlobalIndex": 45337,
+        "metadataToken": "0x60005f2",
+        "tokenRID": 1522,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1e0",
+        "methodPointerVA": "0x51a910c",
+        "pointerRelativeRelocationFileOffset": 15634448,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_cap",
+        "metadataMethodGlobalIndex": 45338,
+        "metadataToken": "0x60005f3",
+        "tokenRID": 1523,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1e8",
+        "methodPointerVA": "0x51a94c0",
+        "pointerRelativeRelocationFileOffset": 15634472,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "add_OnReceiveDamage",
+        "metadataMethodGlobalIndex": 45339,
+        "metadataToken": "0x60005f4",
+        "tokenRID": 1524,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1f0",
+        "methodPointerVA": "0x51a9524",
+        "pointerRelativeRelocationFileOffset": 15634496,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "remove_OnReceiveDamage",
+        "metadataMethodGlobalIndex": 45340,
+        "metadataToken": "0x60005f5",
+        "tokenRID": 1525,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd1f8",
+        "methodPointerVA": "0x51a95c0",
+        "pointerRelativeRelocationFileOffset": 15634520,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "get_damageLevel",
+        "metadataMethodGlobalIndex": 45341,
+        "metadataToken": "0x60005f6",
+        "tokenRID": 1526,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd200",
+        "methodPointerVA": "0x51a9170",
+        "pointerRelativeRelocationFileOffset": 15634544,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "Setup",
+        "metadataMethodGlobalIndex": 45342,
+        "metadataToken": "0x60005f7",
+        "tokenRID": 1527,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd208",
+        "methodPointerVA": "0x51a965c",
+        "pointerRelativeRelocationFileOffset": 15634568,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "OnDestroy",
+        "metadataMethodGlobalIndex": 45343,
+        "metadataToken": "0x60005f8",
+        "tokenRID": 1528,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd210",
+        "methodPointerVA": "0x51aa44c",
+        "pointerRelativeRelocationFileOffset": 15634592,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "HealthRegenLoop",
+        "metadataMethodGlobalIndex": 45344,
+        "metadataToken": "0x60005f9",
+        "tokenRID": 1529,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd218",
+        "methodPointerVA": "0x51a9fd4",
+        "pointerRelativeRelocationFileOffset": 15634616,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "RepairPercent",
+        "metadataMethodGlobalIndex": 45345,
+        "metadataToken": "0x60005fa",
+        "tokenRID": 1530,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd220",
+        "methodPointerVA": "0x51aa494",
+        "pointerRelativeRelocationFileOffset": 15634640,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ResetAllDamage",
+        "metadataMethodGlobalIndex": 45346,
+        "metadataToken": "0x60005fb",
+        "tokenRID": 1531,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd228",
+        "methodPointerVA": "0x51a7280",
+        "pointerRelativeRelocationFileOffset": 15634664,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ApplyVisualFrom",
+        "metadataMethodGlobalIndex": 45347,
+        "metadataToken": "0x60005fc",
+        "tokenRID": 1532,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd230",
+        "methodPointerVA": "0x51aaa70",
+        "pointerRelativeRelocationFileOffset": 15634688,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "Refresh",
+        "metadataMethodGlobalIndex": 45348,
+        "metadataToken": "0x60005fd",
+        "tokenRID": 1533,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd238",
+        "methodPointerVA": "0x51a76ac",
+        "pointerRelativeRelocationFileOffset": 15634712,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "CheckIntercarCollision",
+        "metadataMethodGlobalIndex": 45349,
+        "metadataToken": "0x60005fe",
+        "tokenRID": 1534,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd240",
+        "methodPointerVA": "0x51aacc8",
+        "pointerRelativeRelocationFileOffset": 15634736,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "OnCollisionEnter",
+        "metadataMethodGlobalIndex": 45350,
+        "metadataToken": "0x60005ff",
+        "tokenRID": 1535,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd248",
+        "methodPointerVA": "0x51aadf4",
+        "pointerRelativeRelocationFileOffset": 15634760,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ApplyDamage",
+        "metadataMethodGlobalIndex": 45351,
+        "metadataToken": "0x6000600",
+        "tokenRID": 1536,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd250",
+        "methodPointerVA": "0x51ab330",
+        "pointerRelativeRelocationFileOffset": 15634784,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ResetPanelDecalsAndMeshes",
+        "metadataMethodGlobalIndex": 45352,
+        "metadataToken": "0x6000601",
+        "tokenRID": 1537,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd258",
+        "methodPointerVA": "0x51aa6b0",
+        "pointerRelativeRelocationFileOffset": 15634808,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ResetDamageDecalsAndMeshes",
+        "metadataMethodGlobalIndex": 45353,
+        "metadataToken": "0x6000602",
+        "tokenRID": 1538,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd260",
+        "methodPointerVA": "0x51a73ec",
+        "pointerRelativeRelocationFileOffset": 15634832,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "SetDamageDecalsAndMeshes",
+        "metadataMethodGlobalIndex": 45354,
+        "metadataToken": "0x6000603",
+        "tokenRID": 1539,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd268",
+        "methodPointerVA": "0x51aa048",
+        "pointerRelativeRelocationFileOffset": 15634856,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "MakeFlappy",
+        "metadataMethodGlobalIndex": 45355,
+        "metadataToken": "0x6000604",
+        "tokenRID": 1540,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd270",
+        "methodPointerVA": "0x51ab65c",
+        "pointerRelativeRelocationFileOffset": 15634880,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "MissingWheelSparks",
+        "metadataMethodGlobalIndex": 45356,
+        "metadataToken": "0x6000605",
+        "tokenRID": 1541,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd278",
+        "methodPointerVA": "0x51abcf8",
+        "pointerRelativeRelocationFileOffset": 15634904,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "FixedUpdate",
+        "metadataMethodGlobalIndex": 45357,
+        "metadataToken": "0x6000606",
+        "tokenRID": 1542,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd280",
+        "methodPointerVA": "0x51ac124",
+        "pointerRelativeRelocationFileOffset": 15634928,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "DetachedWheelCheck",
+        "metadataMethodGlobalIndex": 45358,
+        "metadataToken": "0x6000607",
+        "tokenRID": 1543,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd288",
+        "methodPointerVA": "0x51ab4c4",
+        "pointerRelativeRelocationFileOffset": 15634952,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "WheelIsDetachedForIndex",
+        "metadataMethodGlobalIndex": 45359,
+        "metadataToken": "0x6000608",
+        "tokenRID": 1544,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd290",
+        "methodPointerVA": "0x51ac51c",
+        "pointerRelativeRelocationFileOffset": 15634976,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "GetDetachedWheelIndex",
+        "metadataMethodGlobalIndex": 45360,
+        "metadataToken": "0x6000609",
+        "tokenRID": 1545,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd298",
+        "methodPointerVA": "0x51ab5b0",
+        "pointerRelativeRelocationFileOffset": 15635000,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "DetachWheel",
+        "metadataMethodGlobalIndex": 45361,
+        "metadataToken": "0x600060a",
+        "tokenRID": 1546,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2a0",
+        "methodPointerVA": "0x51ac134",
+        "pointerRelativeRelocationFileOffset": 15635024,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "MakeHoodFlappy",
+        "metadataMethodGlobalIndex": 45362,
+        "metadataToken": "0x600060b",
+        "tokenRID": 1547,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2a8",
+        "methodPointerVA": "0x51ab5d4",
+        "pointerRelativeRelocationFileOffset": 15635048,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "MakeFasciaFlappy",
+        "metadataMethodGlobalIndex": 45363,
+        "metadataToken": "0x600060c",
+        "tokenRID": 1548,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2b0",
+        "methodPointerVA": "0x51aba50",
+        "pointerRelativeRelocationFileOffset": 15635072,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "MakeRearBumperFlappy",
+        "metadataMethodGlobalIndex": 45364,
+        "metadataToken": "0x600060d",
+        "tokenRID": 1549,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2b8",
+        "methodPointerVA": "0x51abb78",
+        "pointerRelativeRelocationFileOffset": 15635096,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "DeactivateFrontDamageDecals",
+        "metadataMethodGlobalIndex": 45365,
+        "metadataToken": "0x600060e",
+        "tokenRID": 1550,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2c0",
+        "methodPointerVA": "0x51ac53c",
+        "pointerRelativeRelocationFileOffset": 15635120,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ActivateDetachedPiece",
+        "metadataMethodGlobalIndex": 45366,
+        "metadataToken": "0x600060f",
+        "tokenRID": 1551,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2c8",
+        "methodPointerVA": "0x51ab698",
+        "pointerRelativeRelocationFileOffset": 15635144,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "ApplyPersistentPlayerDamage",
+        "metadataMethodGlobalIndex": 45367,
+        "metadataToken": "0x6000610",
+        "tokenRID": 1552,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2d0",
+        "methodPointerVA": "0x51ab060",
+        "pointerRelativeRelocationFileOffset": 15635168,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": "CollisionCooldownTimer",
+        "metadataMethodGlobalIndex": 45368,
+        "metadataToken": "0x6000611",
+        "tokenRID": 1553,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2d8",
+        "methodPointerVA": "0x51ac5e8",
+        "pointerRelativeRelocationFileOffset": 15635192,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDamage",
+        "method": ".ctor",
+        "metadataMethodGlobalIndex": 45369,
+        "metadataToken": "0x6000612",
+        "tokenRID": 1554,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd2e0",
+        "methodPointerVA": "0x51ac66c",
+        "pointerRelativeRelocationFileOffset": 15635216,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "RoundTo",
+        "metadataMethodGlobalIndex": 45393,
+        "metadataToken": "0x600062a",
+        "tokenRID": 1578,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3a0",
+        "methodPointerVA": "0x51ad250",
+        "pointerRelativeRelocationFileOffset": 15635792,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "Awake",
+        "metadataMethodGlobalIndex": 45394,
+        "metadataToken": "0x600062b",
+        "tokenRID": 1579,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3a8",
+        "methodPointerVA": "0x51ad364",
+        "pointerRelativeRelocationFileOffset": 15635816,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "Init",
+        "metadataMethodGlobalIndex": 45395,
+        "metadataToken": "0x600062c",
+        "tokenRID": 1580,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3b0",
+        "methodPointerVA": "0x51ad5e4",
+        "pointerRelativeRelocationFileOffset": 15635840,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "SetCenterOfMass",
+        "metadataMethodGlobalIndex": 45396,
+        "metadataToken": "0x600062d",
+        "tokenRID": 1581,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3b8",
+        "methodPointerVA": "0x51ad9cc",
+        "pointerRelativeRelocationFileOffset": 15635864,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "SetBrakes",
+        "metadataMethodGlobalIndex": 45397,
+        "metadataToken": "0x600062e",
+        "tokenRID": 1582,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3c0",
+        "methodPointerVA": "0x51ad884",
+        "pointerRelativeRelocationFileOffset": 15635888,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "SetWheelsParams",
+        "metadataMethodGlobalIndex": 45398,
+        "metadataToken": "0x600062f",
+        "tokenRID": 1583,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3c8",
+        "methodPointerVA": "0x51ad63c",
+        "pointerRelativeRelocationFileOffset": 15635912,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": "FixedUpdate",
+        "metadataMethodGlobalIndex": 45399,
+        "metadataToken": "0x6000630",
+        "tokenRID": 1584,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3d0",
+        "methodPointerVA": "0x51adb40",
+        "pointerRelativeRelocationFileOffset": 15635936,
+        "status": "exact-relative-relocation-pointer"
+      },
+      {
+        "type": "VehicleDynamics",
+        "method": ".ctor",
+        "metadataMethodGlobalIndex": 45400,
+        "metadataToken": "0x6000631",
+        "tokenRID": 1585,
+        "module": "StockCarRacing.Runtime.dll",
+        "methodPointerEntryVA": "0x65dd3d8",
+        "methodPointerVA": "0x51addc4",
+        "pointerRelativeRelocationFileOffset": 15635960,
+        "status": "exact-relative-relocation-pointer"
+      }
+    ],
+    "allFourRootLabelsCorroborated": true,
+    "limitations": [
+      "An unwind code range corroborates static code membership; it does not make the selected instruction sample complete function analysis.",
+      "USYM raw +8 identity remains untrusted when naming global metadata methods. Source-file/line mapping and exact CodeGenModule association are reported separately.",
+      "Shared method pointers, inlining and generic-body aliases remain possible; no target execution or runtime coverage is claimed."
+    ]
+  },
+  "sourceMapConflict": {
+    "status": "observed-static-identity-disagreement",
+    "description": "Earlier USYM +8 values were only candidate method indices. Being in range does not prove identity. Exact CodeGenModule pointer/token matching disagrees with some guessed USYM method names. Source files/lines remain independent observations; do not label callees from the guessed index.",
+    "examples": [
+      {
+        "targetVA": "0x51a905c",
+        "usymGuessedName": "VehicleDamage.get_playerVehicle",
+        "exactCodegenName": "VehicleDamage.get_settings"
+      },
+      {
+        "targetVA": "0x51aacc8",
+        "usymGuessedName": "VehicleDamage.Refresh",
+        "exactCodegenName": "VehicleDamage.CheckIntercarCollision"
+      }
+    ]
+  },
+  "interpretation": [
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5b1754c",
+      "api": "UnityEngine.AnimationCurve.Evaluate",
+      "claim": "The existing camera sample has a direct branch whose exact target equals this declaration method pointer."
+    },
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5b1b178",
+      "api": "UnityEngine.Camera.set_fieldOfView",
+      "claim": "Existing camera sample directly branches to a method pointer associated with the FOV setter."
+    },
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5b6d144",
+      "api": "UnityEngine.Time.get_smoothDeltaTime",
+      "claim": "The existing camera sample directly branches to smoothDeltaTime, not a generic assumption of deltaTime."
+    },
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5b728bc",
+      "api": "UnityEngine.Transform.get_eulerAngles",
+      "claim": "Two observed camera branches share this exact target."
+    },
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5bec754",
+      "api": "UnityEngine.Collision.get_impulse",
+      "claim": "The collision sample initial vector-return call matches the impulse getter, not relativeVelocity. Subsequent vector magnitude arithmetic must be described accordingly."
+    },
+    {
+      "category": "static-observed-pointer-association",
+      "targetVA": "0x5b73ac8",
+      "api": "UnityEngine.Transform.LookAt",
+      "claim": "All three observed calls in corrected suspension sample share this pointer. This does not prove any ground-query API."
+    },
+    {
+      "category": "unknown",
+      "claim": "The camera speed scalar field layout, complete smoothing algorithm and constants are not recovered by identifying API pointers."
+    }
+  ],
+  "callAssociations": [
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ebcc",
+      "targetVA": "0x2b32e54",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ebdc",
+      "targetVA": "0x5b66f60",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51301,
+          "metadataMethodToken": "0x6000d0d",
+          "type": "Object",
+          "namespace": "UnityEngine",
+          "method": "op_Equality",
+          "parameterCount": 2,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667d0c0",
+          "methodPointerEntryFileOffset": 107417792,
+          "methodPointerRelativeRelocationFileOffset": 17162456,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b66f60"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ec4c",
+      "targetVA": "0x5b1754c",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 48440,
+          "metadataMethodToken": "0x60001e0",
+          "type": "AnimationCurve",
+          "namespace": "UnityEngine",
+          "method": "Evaluate",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x6677758",
+          "methodPointerEntryFileOffset": 107394904,
+          "methodPointerRelativeRelocationFileOffset": 17096888,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b1754c"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ec7c",
+      "targetVA": "0x5b1b178",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 48558,
+          "metadataMethodToken": "0x6000256",
+          "type": "Camera",
+          "namespace": "UnityEngine",
+          "method": "set_fieldOfView",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x6677b08",
+          "methodPointerEntryFileOffset": 107395848,
+          "methodPointerRelativeRelocationFileOffset": 17099720,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b1b178"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ec8c",
+      "targetVA": "0x5b6d144",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51544,
+          "metadataMethodToken": "0x6000e00",
+          "type": "Time",
+          "namespace": "UnityEngine",
+          "method": "get_smoothDeltaTime",
+          "parameterCount": 0,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667d858",
+          "methodPointerEntryFileOffset": 107419736,
+          "methodPointerRelativeRelocationFileOffset": 17168144,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b6d144"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511eca0",
+      "targetVA": "0x5b728bc",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51675,
+          "metadataMethodToken": "0x6000e83",
+          "type": "Transform",
+          "namespace": "UnityEngine",
+          "method": "get_eulerAngles",
+          "parameterCount": 0,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667dc70",
+          "methodPointerEntryFileOffset": 107420784,
+          "methodPointerRelativeRelocationFileOffset": 17171288,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b728bc"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_0552b6c61eb320195cc5cd7b2af3e5d17d1fcb7ab0326dcd8241d66c19277297",
+      "sample": "race-camera-late-update",
+      "callsiteVA": "0x511ecb4",
+      "targetVA": "0x5b728bc",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51675,
+          "metadataMethodToken": "0x6000e83",
+          "type": "Transform",
+          "namespace": "UnityEngine",
+          "method": "get_eulerAngles",
+          "parameterCount": 0,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667dc70",
+          "methodPointerEntryFileOffset": 107420784,
+          "methodPointerRelativeRelocationFileOffset": 17171288,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b728bc"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaeb4",
+      "targetVA": "0x5bec754",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.PhysicsModule.dll",
+          "methodGlobalIndex": 117832,
+          "metadataMethodToken": "0x6000005",
+          "type": "Collision",
+          "namespace": "UnityEngine",
+          "method": "get_impulse",
+          "parameterCount": 0,
+          "methodPointerTableVA": "0x668aa18",
+          "methodPointerEntryVA": "0x668aa38",
+          "methodPointerEntryFileOffset": 107473464,
+          "methodPointerRelativeRelocationFileOffset": 17291360,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5bec754"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaed8",
+      "targetVA": "0x2b32cd8",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaef8",
+      "targetVA": "0x2b32e54",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaf30",
+      "targetVA": "0x51aacc8",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "StockCarRacing.Runtime.dll",
+          "methodGlobalIndex": 45349,
+          "metadataMethodToken": "0x60005fe",
+          "type": "VehicleDamage",
+          "namespace": "",
+          "method": "CheckIntercarCollision",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x65da258",
+          "methodPointerEntryVA": "0x65dd240",
+          "methodPointerEntryFileOffset": 106762816,
+          "methodPointerRelativeRelocationFileOffset": 15634736,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x51aacc8"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaf44",
+      "targetVA": "0x2b32f70",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaf60",
+      "targetVA": "0x3809f70",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaf7c",
+      "targetVA": "0x348a23c",
+      "status": "unresolved-in-codegen-module-tables",
+      "exactPointerDeclarations": []
+    },
+    {
+      "evidenceId": "ev_91bd39165ec36065331ad03cad2ae71a09319e05a871f2586531baccd04cfcc0",
+      "sample": "vehicle-collision-enter",
+      "callsiteVA": "0x51aaf88",
+      "targetVA": "0x51a905c",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "StockCarRacing.Runtime.dll",
+          "methodGlobalIndex": 45336,
+          "metadataMethodToken": "0x60005f1",
+          "type": "VehicleDamage",
+          "namespace": "",
+          "method": "get_settings",
+          "parameterCount": 0,
+          "methodPointerTableVA": "0x65da258",
+          "methodPointerEntryVA": "0x65dd1d8",
+          "methodPointerEntryFileOffset": 106762712,
+          "methodPointerRelativeRelocationFileOffset": 15634424,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x51a905c"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_7b6fa935690d7268138b97dfb36994a58562c15426449d1945c50f0fbbb25f9c",
+      "sample": "suspension-visuals-late-update",
+      "callsiteVA": "0x519ed30",
+      "targetVA": "0x5b73ac8",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51706,
+          "metadataMethodToken": "0x6000ea2",
+          "type": "Transform",
+          "namespace": "UnityEngine",
+          "method": "LookAt",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667dd68",
+          "methodPointerEntryFileOffset": 107421032,
+          "methodPointerRelativeRelocationFileOffset": 17172032,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b73ac8"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_7b6fa935690d7268138b97dfb36994a58562c15426449d1945c50f0fbbb25f9c",
+      "sample": "suspension-visuals-late-update",
+      "callsiteVA": "0x519ed6c",
+      "targetVA": "0x5b73ac8",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51706,
+          "metadataMethodToken": "0x6000ea2",
+          "type": "Transform",
+          "namespace": "UnityEngine",
+          "method": "LookAt",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667dd68",
+          "methodPointerEntryFileOffset": 107421032,
+          "methodPointerRelativeRelocationFileOffset": 17172032,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b73ac8"
+        }
+      ]
+    },
+    {
+      "evidenceId": "ev_7b6fa935690d7268138b97dfb36994a58562c15426449d1945c50f0fbbb25f9c",
+      "sample": "suspension-visuals-late-update",
+      "callsiteVA": "0x519eda8",
+      "targetVA": "0x5b73ac8",
+      "status": "exact-codegen-method-pointer-match",
+      "exactPointerDeclarations": [
+        {
+          "module": "UnityEngine.CoreModule.dll",
+          "methodGlobalIndex": 51706,
+          "metadataMethodToken": "0x6000ea2",
+          "type": "Transform",
+          "namespace": "UnityEngine",
+          "method": "LookAt",
+          "parameterCount": 1,
+          "methodPointerTableVA": "0x6676860",
+          "methodPointerEntryVA": "0x667dd68",
+          "methodPointerEntryFileOffset": 107421032,
+          "methodPointerRelativeRelocationFileOffset": 17172032,
+          "relativeRelocationType": 1027,
+          "exactMethodPointerVA": "0x5b73ac8"
+        }
+      ]
+    }
+  ],
+  "formatSources": [
+    "https://github.com/SamboyCoding/Cpp2IL/blob/development/LibCpp2IL/BinaryStructures/Il2CppCodeGenModule.cs",
+    "https://github.com/SamboyCoding/Cpp2IL/blob/development/LibCpp2IL/Metadata/Il2CppImageDefinition.cs",
+    "https://github.com/SamboyCoding/Cpp2IL/blob/development/LibCpp2IL/Metadata/Il2CppMethodDefinition.cs",
+    "https://github.com/SamboyCoding/Cpp2IL/blob/development/LibCpp2IL/Il2CppBinary.cs",
+    "https://refspecs.linuxfoundation.org/LSB_2.0.1/LSB-Core/LSB-Core/ehframehdr.html"
+  ],
+  "limitations": [
+    "Associations use exact static ELF VA equality, relative relocation addends, metadata image identity and method token RID, never nearest-symbol naming.",
+    "R_AARCH64_RELATIVE entries are evaluated at image base zero; actual runtime ASLR base is not observed. Both static branch and table association use this same VA space.",
+    "A method pointer shared by several declarations remains ambiguous. Generic-instantiation tables, import trampolines and runtime helper names are not recovered by module tables.",
+    "Even one matching declaration does not establish every runtime call path or original source. No native target was executed and no tuning coefficient was recovered.",
+    "Existing USYM exact frames may represent inlining or shared code; they do not override codegen-pointer ambiguity.",
+    "No large ELF analysis tool, new package installation, product-file modification or document update was performed.",
+    "USYM candidate method identifiers are not trusted as global metadata method identity after the observed disagreement with exact CodeGenModule token-pointer association."
+  ],
+  "publicationBoundary": "This summary contains addresses, digests, public declaration names and Assets-relative source names only. No commercial code/media, APK payloads, developer personal path prefixes or private credentials."
+}

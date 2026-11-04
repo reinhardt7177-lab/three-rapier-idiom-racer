@@ -1,0 +1,128 @@
+{
+  "rows": [
+    {
+      "condition": "a1",
+      "frame": {
+        "samples": 1109,
+        "mean": 27.05175834084762,
+        "p95": 50,
+        "max": 83.30000000000291,
+        "over50": 46
+      },
+      "cpu": {
+        "samples": 1109,
+        "mean": 5.697745717195265,
+        "p95": 7.700000047683716,
+        "max": 59.80000001192093
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 803361
+        },
+        "last": {
+          "calls": 472,
+          "triangles": 926820
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.016666666665603,
+        "dropped": 0
+      },
+      "durationMs": 30000.40000000001
+    },
+    {
+      "condition": "b",
+      "frame": {
+        "samples": 949,
+        "mean": 31.63034773445732,
+        "p95": 66.60000000000218,
+        "max": 83.40000000000146,
+        "over50": 86
+      },
+      "cpu": {
+        "samples": 949,
+        "mean": 6.595890409953979,
+        "p95": 8.699999988079071,
+        "max": 83
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 815497
+        },
+        "last": {
+          "calls": 472,
+          "triangles": 941052
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 773.8242173735525,
+        "elapsed": 30.049999999998935,
+        "dropped": 0
+      },
+      "durationMs": 30017.199999999997
+    },
+    {
+      "condition": "a2",
+      "frame": {
+        "samples": 906,
+        "mean": 33.13156732891832,
+        "p95": 66.69999999999709,
+        "max": 116.69999999999709,
+        "over50": 143
+      },
+      "cpu": {
+        "samples": 906,
+        "mean": 7.648675497004528,
+        "p95": 9.900000035762787,
+        "max": 72.69999998807907
+      },
+      "draws": {
+        "first": {
+          "calls": 415,
+          "triangles": 803361
+        },
+        "last": {
+          "calls": 472,
+          "triangles": 926820
+        }
+      },
+      "context": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 0.75,
+        "quality": "low",
+        "track": "namak",
+        "camera": "chase",
+        "ghost": false,
+        "profile": false,
+        "frozen": false,
+        "progress": 771.8246715922255,
+        "elapsed": 30.03333333333227,
+        "dropped": 0
+      },
+      "durationMs": 30017.199999999997
+    }
+  ],
+  "judgement": "Inconclusive: original A1/A2 p95 differs by 16.7ms; do not assert a passed 2ms regression gate or an improvement. High quality comparison incomplete."
+}

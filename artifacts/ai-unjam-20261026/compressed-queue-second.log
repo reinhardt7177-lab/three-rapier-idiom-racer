@@ -1,0 +1,19 @@
+{"passed":{"slk":20.525,"mustang":25.258333333333333,"rx7":34.291666666666664,"gtr":36.00833333333333,"porsche911":37.775},"contacts":0,"maxLane":2.200711965560913,"lowest":-101.96467590332031,"last":{"t":37,"cars":[{"id":"supra","x":-2.200000047683716,"z":160,"kmh":0,"plan":null},{"id":"slk","x":-2.1999950408935547,"z":546.4638671875,"kmh":134.3254531861615,"plan":{"personality":null,"style":null,"mode":"follow","reason":"airborne","homeLane":-2.2,"targetLane":-2.2,"passes":1,"attempts":1,"aborts":0,"age":11.091666666666677,"tactic":"pace","boosts":0,"draftSetups":0,"recovery":"idle","reverseAttempts":2}},{"id":"mustang","x":-2.1991095542907715,"z":375.234375,"kmh":144.00354315494656,"plan":{"personality":null,"style":null,"mode":"follow","reason":"following","homeLane":-2.2,"targetLane":-2.2,"passes":1,"attempts":1,"aborts":0,"age":6.275000000000102,"tactic":"pace","boosts":0,"draftSetups":0,"recovery":"idle","reverseAttempts":3}},{"id":"porsche911","x":2.0461928844451904,"z":165.00001525878906,"kmh":14.013797824785149,"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":-2.2,"targetLane":2.2,"passes":0,"attempts":1,"aborts":0,"age":1.2916666666666645,"tactic":"pace","boosts":0,"draftSetups":0,"recovery":"idle","reverseAttempts":3}},{"id":"gtr","x":2.194939613342285,"z":171.86354064941406,"kmh":13.999299475416446,"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":-2.2,"targetLane":2.2,"passes":0,"attempts":1,"aborts":0,"age":5.950000000000085,"tactic":"pace","boosts":0,"draftSetups":0,"recovery":"idle","reverseAttempts":4}},{"id":"rx7","x":2.2004659175872803,"z":178.57447814941406,"kmh":14.000933720572661,"plan":{"personality":null,"style":null,"mode":"passing","reason":"overtake","homeLane":-2.2,"targetLane":2.2,"passes":0,"attempts":1,"aborts":0,"age":10.883333333333356,"tactic":"pace","boosts":0,"draftSetups":0,"recovery":"idle","reverseAttempts":4}}]}}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(lowest>.2)
+
+    at file:///D:/racing/three-rapier-idiom-racer/artifacts/ai-unjam-20261026/compressed-queue.mjs:7:386 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.12.0

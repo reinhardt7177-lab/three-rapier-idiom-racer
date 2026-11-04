@@ -1,0 +1,18 @@
+{"roadscape":"yeosu","triangleSegmentPairs":1637698,"minimumAsphaltEdgeClearance":1.2002791916411475}
+{"existingBuildings":360,"supported":360,"unsupported":[]}
+✔ Yeosu corrected scene is within separate 3 MB decoration + 2 MB ground budgets, without textures/lights (32.7774ms)
+✔ ground fix preserves all already-validated decorative geometry byte for byte (57.3519ms)
+✔ source world, route, original Blender and map bytes are preserved (57.0157ms)
+✔ all new scene nodes are visual-only, identity-aligned and spatially grouped (6.951ms)
+✔ every triangle clears every road segment by full asphalt half-width + 1 m, including flyovers (2607.866ms)
+✔ both bridge structures and real OSM quay foundation, walkway and mooring details exist (0.3316ms)
+✔ Hamel red lighthouse uses official coordinates and 10 m above its platform, with supported base (15.6922ms)
+✔ OSM coastline ground supports all original building centers without new colliders (544.7888ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3723.2387

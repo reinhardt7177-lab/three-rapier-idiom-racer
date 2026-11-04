@@ -1,0 +1,1452 @@
+
+> mumu-open-circuit@0.1.0 check
+> npm run check:rebuild
+
+
+> mumu-open-circuit@0.1.0 check:rebuild
+> node --test --test-concurrency=2 scripts/steering-final.test.mjs scripts/driving-five-pass.test.mjs scripts/vehicle-finish.test.mjs scripts/namak-architecture.test.mjs scripts/online-race.test.mjs scripts/online-physics.test.mjs scripts/duel-mode.test.mjs scripts/duel-race.test.mjs scripts/body-motion.test.mjs scripts/yeosu-map.test.mjs scripts/traffic-controls.test.mjs scripts/traffic-collision.test.mjs scripts/traffic-planner.test.mjs scripts/traffic-race.test.mjs scripts/weather.test.mjs scripts/rain-vfx.test.mjs scripts/rain-race.test.mjs scripts/rival-personalities.test.mjs scripts/rival-personality-race.test.mjs scripts/progression.test.mjs scripts/progression-race.test.mjs scripts/performance-comparison.test.mjs scripts/graphics-quality.test.mjs scripts/map-materials.test.mjs scripts/roadscape.test.mjs scripts/yeosu-roadscape.test.mjs scripts/seongsamjae-roadscape.test.mjs scripts/namak-visuals.test.mjs scripts/yeosu-visuals.test.mjs scripts/seongsamjae-visuals.test.mjs scripts/championship.test.mjs scripts/championship-race.test.mjs scripts/render-timing.test.mjs scripts/korea-courses.test.mjs scripts/night-presentation.test.mjs scripts/korea-presentation.test.mjs scripts/korea-medals.test.mjs scripts/loading-metrics.test.mjs scripts/wall-recovery.test.mjs scripts/steering-turn.test.mjs scripts/namak-landmarks.test.mjs scripts/namak-polish.test.mjs scripts/namak.test.mjs scripts/landscape.test.mjs scripts/music-selection.test.mjs scripts/cockpit.test.mjs scripts/race-experience.test.mjs scripts/engine-feel.test.mjs scripts/rival-racecraft.test.mjs scripts/rival-ai.test.mjs scripts/visual-polish.test.mjs scripts/garage-backdrop.test.mjs scripts/fleet-eight.test.mjs scripts/ride-repair.test.mjs scripts/race-vfx.test.mjs scripts/feedback.test.mjs scripts/world-rendering.test.mjs scripts/render-resources.test.mjs scripts/ride-quality.test.mjs scripts/ride-design.test.mjs scripts/race-controls.test.mjs scripts/race-dynamics.test.mjs scripts/vehicle-rig.test.mjs scripts/rebuild-race.test.mjs scripts/difficulty.test.mjs scripts/race-rules.test.mjs scripts/race-records.test.mjs scripts/steering.test.mjs scripts/speed-feel.test.mjs && npm run build
+
+✔ chassis acceleration/braking and left/right corner lean have the correct driver-relative signs (4.9452ms)
+✔ visual springs obey limits, settle at rest, freeze in pause, and preserve physics snapshots (6.4134ms)
+✔ the chassis pivot leaves all tyre/steering/suspension world positions and the first-person camera unchanged (15.3342ms)
+✔ existing seven-value ghost recordings provide smooth render motion without data mutation (0.9228ms)
+✔ the low-quality fallback clears visual lean without changing physical state (1.3295ms)
+✔ a matching replay does not put its roof inside the cockpit, without changing replay positions (0.3281ms)
+✔ six physical cars finish all three championship rounds and earn only finish-based points (58048.9346ms)
+✔ three real course rounds advance once and award 10/6/4/3/2/1 (3.4347ms)
+✔ partial, duplicate, unknown and invalid finishes cannot create championship points (1.7971ms)
+✔ rounds remain immutable and points ties use wins then real total finish time (0.7231ms)
+✔ series checkpoint resumes its next course and corrupted data is rejected (1.6943ms)
+✔ best series uses points before time and tolerates blocked storage (2.5794ms)
+✔ opaque Blender interior covers the bottom of a landscape camera while the upper windscreen stays open (128.4841ms)
+✔ Blender GLB retains editable independent steering/gauge pivots and stays inside a small web asset budget (10.9215ms)
+✔ actual cockpit needles point at their labeled values and steering leaves the asset geometry unchanged (11.15ms)
+✔ camera-mounted hidden interior and its fill light release through scene disposal exactly once (7.9847ms)
+✔ digital instruments show real over-range speed and reverse gear; hidden cockpit skips texture uploads (9.4953ms)
+✔ display draws telemetry onto one atlas at most ten times a second and retains the latest value (1.3646ms)
+✔ first-person Blender wheel stripe turns toward keyboard and touch steering, including reverse and compact views (27.5516ms)
+coastal easy median rival finish 207.75 YOU:4/207.96s scrape 0s off 0s nitro 0s | slk:5/215.02s scrape 0s off 0s nitro 0s | mustang:1/207.18s scrape 0.15s off 0s nitro 0s | porsche911:3/207.75s scrape 0s off 0s nitro 0s | gtr:2/207.31s scrape 0.31s off 0s nitro 0s | rx7:6/215.13s scrape 0s off 0s nitro 0s
+coastal normal median rival finish 203.47 YOU:3/202.6s scrape 0s off 0s nitro 0s | slk:6/211.69s scrape 0s off 0s nitro 13.59s | mustang:2/200.72s scrape 0s off 0s nitro 12.1s | porsche911:1/195.67s scrape 0s off 0s nitro 12.62s | gtr:4/203.47s scrape 0s off 0s nitro 13.32s | rx7:5/206.82s scrape 0s off 0s nitro 14.47s
+coastal hard median rival finish 193.48 YOU:6/202.97s scrape 0s off 0s nitro 0s | slk:4/197.45s scrape 0s off 0s nitro 25.4s | mustang:1/190.13s scrape 0s off 0s nitro 24.48s | porsche911:3/193.48s scrape 0s off 0s nitro 25.84s | gtr:2/193.07s scrape 0s off 0s nitro 24.91s | rx7:5/200.71s scrape 0s off 0s nitro 23.69s
+namak easy median rival finish 91.88 YOU:3/89.32s scrape 0s off 0s nitro 0s | slk:4/91.88s scrape 0s off 0s nitro 0s | mustang:2/89.19s scrape 0s off 0s nitro 0s | porsche911:5/92s scrape 0s off 0s nitro 0s | gtr:1/88.69s scrape 0s off 0s nitro 0s | rx7:6/92.45s scrape 0s off 0s nitro 0s
+namak normal median rival finish 81.87 YOU:4/82.22s scrape 0s off 0s nitro 0s | slk:5/83.23s scrape 0s off 0s nitro 5.79s | mustang:2/80.17s scrape 0s off 0s nitro 5.63s | porsche911:3/81.87s scrape 0s off 0s nitro 7.66s | gtr:1/79.82s scrape 0s off 0s nitro 5.65s | rx7:6/85.11s scrape 0s off 0s nitro 5.73s
+namak hard median rival finish 78.30 YOU:6/81.53s scrape 0s off 0s nitro 0s | slk:2/78.09s scrape 0s off 0s nitro 11.73s | mustang:1/75.87s scrape 0s off 0s nitro 11.74s | porsche911:3/78.3s scrape 0s off 0s nitro 12.38s | gtr:4/79.62s scrape 0s off 0s nitro 12.07s | rx7:5/81.28s scrape 0s off 0s nitro 10.93s
+✔ the player starts from the back of a full grid; rivals keep their order ahead (2.9234ms)
+✔ easy keeps the previous rival calibration; harder levels are strictly quicker (0.5063ms)
+✔ difficulty preference survives reloads and blocked storage never breaks the garage (0.5114ms)
+✔ every exported racing road is asphalt and the open ground around it is slower (51.4845ms)
+✔ grass and paving slow a coasting car; asphalt behaves exactly as before (417.0531ms)
+✔ wall scraping costs speed, and a parked car pressed to a wall never creeps (124.9751ms)
+✔ wall contact is reported for barriers, not for the road a car is resting on (32.5786ms)
+✔ fast rivals see a hairpin early enough to brake; the previous profile is unchanged (3.3236ms)
+✔ only nitro-enabled rivals boost, and never while merging or held behind traffic (4.7619ms)
+✔ coastal: every difficulty finishes from a back-of-grid start without falls, and harder is faster (76524.1086ms)
+✔ namak: every difficulty finishes from a back-of-grid start without falls, and harder is faster (14416.0844ms)
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (3.1555ms)
+✔ pass 2: focused touch pedal accepts keyboard steering, menu buttons retain normal keyboard semantics (0.9063ms)
+✔ pass 2: short steering taps physically mirror, rear wheels stay straight and rack recentres (218.4266ms)
+✔ pass 3: small scrub stays translucent, full drift grows dense, airborne tyres stop emitting (8.4985ms)
+✔ pass 3: exhaust thins at speed without moving old particles with the car (12.7371ms)
+✔ pass 4: race camera communicates sustained acceleration/braking, freezes and respects reduced motion (15.7919ms)
+✔ pass 4: gear cuts cannot cause large camera pumping and high-speed tracking stays bounded (4.0177ms)
+✔ pass 5: driver camera adds a small pedal lens cue without moving the eyes or cockpit (2.7437ms)
+✔ pass 5: real race physics, signal reader, smoke, audio and chase camera share one acceleration/brake timeline (195.2129ms)
+✔ the default six-car mode retains every original vehicle, grid slot and rival pace index (5.5643ms)
+✔ all eight player cars can duel each of the five actual rivals on two distinct front-row slots (2.8675ms)
+✔ mode and opponent persist, while malformed or blocked storage falls back safely (0.6891ms)
+✔ duel wins use actual finish times, never the progress ranking; ties and unfinished rivals are explicit (0.2707ms)
+✔ duel records count wins and runs, but only replace the personal best with a faster real finish (1.1083ms)
+✔ duel records are separated by course revision, lap count, player, opponent, difficulty and weather (0.7794ms)
+✔ duels preserve the old six-car medal progress, personal best, replay ghost and championship contract (1.4484ms)
+✔ corrupt, missing and blocked duel storage never prevent racing or showing the real result (0.3058ms)
+{"config":{"trackId":"coastal","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":212.89,"lowest":0.27}],"minUpright":0.96253714788797,"wallSeconds":9.05}
+{"config":{"trackId":"coastal","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":207.54,"lowest":0.26}],"minUpright":0.962471076270875,"wallSeconds":6.71}
+{"config":{"trackId":"coastal","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.43,"lowest":0.28},{"name":"NOVA","time":195,"lowest":0.27}],"minUpright":0.9656079452050637,"wallSeconds":6.62}
+{"config":{"trackId":"namak","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":91.63,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":1.52}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":82.18,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":2.2}
+{"config":{"trackId":"namak","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"NOVA","time":76.53,"lowest":0.52}],"minUpright":0.9999999999999997,"wallSeconds":1.59}
+{"config":{"trackId":"yeosu","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":281.32,"lowest":0.37},{"name":"NOVA","time":299.05,"lowest":0.38}],"minUpright":0.9923440522502938,"wallSeconds":11.24}
+{"config":{"trackId":"yeosu","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":281.32,"lowest":0.37},{"name":"NOVA","time":288.34,"lowest":0.36}],"minUpright":0.9923545415354699,"wallSeconds":9.05}
+{"config":{"trackId":"yeosu","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":281.32,"lowest":0.37},{"name":"NOVA","time":277.05,"lowest":0.36}],"minUpright":0.9923755983164384,"wallSeconds":11.82}
+{"config":{"trackId":"seongsamjae","difficultyId":"easy","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":161.75,"lowest":0.36},{"name":"NOVA","time":176.75,"lowest":0.35}],"minUpright":0.9849338257835405,"wallSeconds":5.63}
+{"config":{"trackId":"seongsamjae","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":161.75,"lowest":0.36},{"name":"NOVA","time":172.78,"lowest":0.35}],"minUpright":0.9849338257835405,"wallSeconds":5.35}
+{"config":{"trackId":"seongsamjae","difficultyId":"hard","opponent":"NOVA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":161.75,"lowest":0.36},{"name":"NOVA","time":155.94,"lowest":0.35}],"minUpright":0.984563392290652,"wallSeconds":4.43}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"RAVEN","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"RAVEN","time":79.36,"lowest":0.54}],"minUpright":0.9999999999999999,"wallSeconds":1.59}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"BLAZE","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"BLAZE","time":78.24,"lowest":0.53}],"minUpright":0.9999999999999998,"wallSeconds":1.08}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"MIST","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"MIST","time":77.05,"lowest":0.54}],"minUpright":0.9999999999999998,"wallSeconds":0.98}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"LUNA","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":80.1,"lowest":0.53},{"name":"LUNA","time":76.15,"lowest":0.51}],"minUpright":0.9999999999999999,"wallSeconds":1}
+{"config":{"trackId":"namak","difficultyId":"normal","opponent":"RAVEN","laps":3,"weather":"clear"},"finish":[{"name":"YOU","time":231.84,"lowest":0.53},{"name":"RAVEN","time":229.81,"lowest":0.54}],"minUpright":0.9999999999999999,"wallSeconds":3.21}
+{"config":{"trackId":"seongsamjae","difficultyId":"normal","opponent":"NOVA","laps":1,"weather":"rain"},"finish":[{"name":"YOU","time":163.36,"lowest":0.36},{"name":"NOVA","time":166.72,"lowest":0.35}],"minUpright":0.984552908358948,"wallSeconds":2.06}
+✔ 1:1 coastal/easy/NOVA/1lap/clear: two real finishes without falls (9050.9671ms)
+✔ 1:1 coastal/normal/NOVA/1lap/clear: two real finishes without falls (6714.3754ms)
+✔ 1:1 coastal/hard/NOVA/1lap/clear: two real finishes without falls (6626.6232ms)
+✔ 1:1 namak/easy/NOVA/1lap/clear: two real finishes without falls (1522.2426ms)
+✔ 1:1 namak/normal/NOVA/1lap/clear: two real finishes without falls (2199.5406ms)
+✔ 1:1 namak/hard/NOVA/1lap/clear: two real finishes without falls (1590.8215ms)
+✔ 1:1 yeosu/easy/NOVA/1lap/clear: two real finishes without falls (11240.9941ms)
+✔ 1:1 yeosu/normal/NOVA/1lap/clear: two real finishes without falls (9053.0541ms)
+✔ 1:1 yeosu/hard/NOVA/1lap/clear: two real finishes without falls (11825.0458ms)
+✔ 1:1 seongsamjae/easy/NOVA/1lap/clear: two real finishes without falls (5637.5053ms)
+✔ 1:1 seongsamjae/normal/NOVA/1lap/clear: two real finishes without falls (5357.191ms)
+✔ 1:1 seongsamjae/hard/NOVA/1lap/clear: two real finishes without falls (4428.3446ms)
+✔ 1:1 namak/normal/RAVEN/1lap/clear: two real finishes without falls (1591.682ms)
+✔ 1:1 namak/normal/BLAZE/1lap/clear: two real finishes without falls (1085.1832ms)
+✔ 1:1 namak/normal/MIST/1lap/clear: two real finishes without falls (981.6961ms)
+✔ 1:1 namak/normal/LUNA/1lap/clear: two real finishes without falls (1005.1368ms)
+✔ 1:1 namak/normal/RAVEN/3lap/clear: two real finishes without falls (3207.1555ms)
+✔ 1:1 seongsamjae/normal/NOVA/1lap/rain: two real finishes without falls (2061.6879ms)
+✔ the same duel opponent becomes faster at each difficulty on all four courses (0.3125ms)
+✔ eight original voices have distinct spectra and pitch follows actual RPM, not road speed (2.696ms)
+✔ voice changes reset response, pause holds RPM, and recovery clears stale shift history (1.1249ms)
+✔ vehicle pedal response, shift interruption and engine braking really reach the drivetrain (2.9154ms)
+✔ Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources (4.4031ms)
+[
+  {
+    id: 'supra',
+    time100: 4.025,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6687438964843864
+  },
+  {
+    id: 'slk',
+    time100: 4.916666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6158447265625
+  },
+  {
+    id: 'mustang',
+    time100: 4.183333333333334,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6285339355468835
+  },
+  {
+    id: 'porsche911',
+    time100: 3.8833333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.941973876953128
+  },
+  {
+    id: 'gtr',
+    time100: 4,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 2.8290344238281193
+  },
+  {
+    id: 'rx7',
+    time100: 3.6416666666666666,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.9134094238281136
+  },
+  {
+    id: 'm3',
+    time100: 4.233333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.583599853515622
+  },
+  {
+    id: 'huracan',
+    time100: 3.125,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 3.776660156250003
+  }
+]
+✔ eight tuned vehicles accelerate, change gears and coast with stable supported chassis (1073.8758ms)
+✔ RPM builds over time, freezes on pause, drops smoothly at shifts and resets at restart (2.8565ms)
+✔ launch smoke uses only the rear contact patches below drift speed and stops in the air (7.7395ms)
+✔ smoke follows actual wheel contacts, stays bounded and clears on reset or quality change (32.8078ms)
+✔ same-speed acceleration and braking produce distinct bounded camera response at every frame rate (13.4824ms)
+✔ audio load and boost are distinct at identical road speed (0.5355ms)
+✔ stationary pedals cannot create acceleration, brake scrub or drift; yaw is not deceleration (0.9109ms)
+✔ actual velocity changes create acceleration/braking and grounded slip has entry/exit hysteresis (2.4315ms)
+{"push":1,"braking":1,"scrub":0.9999999028585778}
+✔ real Rapier drive/brake/corner signals do not change the simulation trajectory (510.7341ms)
+✔ tire trails have a bounded pool, fade, and never bridge reset/airborne gaps (17.7093ms)
+✔ load/brake/tire audio layers and bounded camera response follow signals, not handbrake flag (0.7769ms)
+✔ pending audio resume cannot undo mute or reopen a disposed graph (2.4749ms)
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 844.8607788085938,
+  distance: 844.7932281494141
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 765.2173974609376,
+  distance: 765.1571350097656
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 840.7089739372468,
+  distance: 840.6544036865234
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 854.0896362304687,
+  distance: 854.0217132568359
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 861.81134765625,
+  distance: 861.7566528320312
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 876.3626989746094,
+  distance: 876.2820434570312
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 816.6609045410156,
+  distance: 816.5952758789062
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 974.0006103515624,
+  distance: 973.9185791015625
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (15.5862ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (935.0847ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (384.3477ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (256.0724ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (187.9222ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (152.0917ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (123.672ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (125.2829ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (125.0319ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (143.0713ms)
+✔ actual showroom wall occlusion is removed for rear and diagonal vehicle views (27.1044ms)
+✔ front and in-room rear views restore the real backdrop (25.9002ms)
+✔ quality choices save, reject unknown values and tolerate blocked storage (2.258ms)
+✔ quality culls distant decoration and preserves road, barriers, colliders and near bounds (5.1923ms)
+✔ yeosu: editable Blender course and exported GLB respect the 25MB budget (127.4716ms)
+✔ yeosu: visual buildings and roofs do not occupy the racing corridor (201.6511ms)
+✔ yeosu: all route points form a closed, finite circuit without gaps (30.6674ms)
+✔ yeosu: every route sample at -7,0,+7m has upward asphalt support and clear car space (368.9703ms)
+✔ seongsamjae: editable Blender course and exported GLB respect the 25MB budget (87.2351ms)
+✔ seongsamjae: visual buildings and roofs do not occupy the racing corridor (116.8378ms)
+✔ seongsamjae: all route points form a closed, finite circuit without gaps (13.5349ms)
+✔ seongsamjae: every route sample at -7,0,+7m has upward asphalt support and clear car space (125.4184ms)
+✔ Yeosu medal evidence belongs to the current geographic route, independent of checkout line endings (26.3286ms)
+✔ yeosu 1 laps: medal targets are backed by complete six-car races (0.7584ms)
+✔ yeosu 3 laps: medal targets are backed by complete six-car races (0.2501ms)
+✔ seongsamjae 1 laps: medal targets are backed by complete six-car races (0.208ms)
+✔ seongsamjae 3 laps: medal targets are backed by complete six-car races (0.1824ms)
+✔ course colours preserve collision geometry and leave existing courses untouched (5.1304ms)
+✔ night lamps retain authored emission and shared materials are graded once (0.9205ms)
+✔ night sky follows camera, has no extra lights or render pass, and disposes on course exit (157.219ms)
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (2.8162ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.5091ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (8.6563ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.4546ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (0.599ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.8171ms)
+✔ loading metrics distinguish cached bytes, transferred bytes and unavailable sizes (0.9797ms)
+✔ coastal material detail retains geometry/colliders, composes existing hooks and restores shared owners (4.5447ms)
+✔ static world avoids repeated transform composition while moving children keep updating (3.7019ms)
+✔ static disposal restores pre-existing manual flags without turning the world into a movable shortcut (0.4242ms)
+✔ daylight cloud quality skips the expensive default branch at low quality and pauses/reset time correctly (1.1854ms)
+✔ paused track selection changes one media source without autoplay; resume, restart and garage keep the choice (3.4724ms)
+✔ changing tracks while music or master sound is disabled never re-enables sound (0.6612ms)
+✔ active switching resets time and gain on the same element; same or unknown choices leave the playhead alone (0.3675ms)
+✔ a rejected play promise from the old track cannot mark the newly selected track failed (0.4302ms)
+✔ track choice survives a new runtime, while invalid preferences and blocked storage safely use defaults (0.5815ms)
+✔ both published catalog entries resolve to distinct packaged MP3 files containing their actual titles (2.9149ms)
+✔ separate architecture export preserves original Blender, world, route and physical fixtures byte for byte (43.6508ms)
+✔ actual visual asset matches its output report, remains bounded and contains no hidden physics (35.1459ms)
+✔ exported crown and basin use Y up and reservoir walkway faces point outward from the closed solid (15.7399ms)
+✔ architecture occupies none of the sampled vehicle height space across every route point and eight lanes (611.996ms)
+✔ real architecture keeps its bounded layer through batching, hides by world/quality/distance and restores visibility (14.5327ms)
+✔ quality uses the object boundary distance, including switching back after low mode (1.6641ms)
+✔ controller owns no asset resources; terminal scene cleanup releases every shared material and geometry exactly once (9.8035ms)
+✔ exported Blender signs contain readable place labels on their outward board face (87.4233ms)
+✔ all actual sign geometry stays out of the drivable corridor and adds no hidden colliders (88.8329ms)
+✔ sign groups survive batching, cull outside the current district and release resources once (47.1175ms)
+✔ Blender corridor has dense street furniture and improved facades within the existing download budget (291.8749ms)
+✔ parked display placements remain outside the race corridor, share buffers, cull by distance and survive batching (13.1166ms)
+✔ world relief adds only one shared texture and preserves all physics vertices and coastal lighting (5.125ms)
+✔ current player steering retains city lock, the calibrated highway envelope and mirrored wheel axes (0.9516ms)
+{"target":100,"direction":-1,"kmh":101.92262506493653,"contacts":4,"steer":0.10599078676988365,"sensitivity":1.6900000000000002}
+{"target":100,"direction":1,"kmh":101.92263323208242,"contacts":4,"steer":-0.10599076816399536,"sensitivity":1.6900000000000002}
+{"target":180,"direction":-1,"kmh":180.3234393269464,"contacts":4,"steer":0.022687679882019144,"sensitivity":1.6900000000000002}
+{"target":180,"direction":1,"kmh":180.3234393269464,"contacts":4,"steer":-0.02268767989090806,"sensitivity":1.6900000000000002}
+✔ current player steering actually turns the Rapier front wheels and stays upright at 100 and 180km/h (674.289ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (328.1972ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (54.4264ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (6.7314ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (11.9679ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (29.3917ms)
+✔ track selection pairs each world with its own route and rejects unknown locations (58.4155ms)
+✔ Namak is a continuous 2.93km race circuit with usable city sectors and no occupied road frontage (8.2109ms)
+✔ actual Blender road faces up, every route sample has paved support, and both assets remain editable (3206.4841ms)
+Namak physical laps [
+  {
+    id: 'supra',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4161526340562087,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.883160340646321,
+    minY: 0.5408369302749634,
+    contacts: 4
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163269289877087,
+    minY: 0.5657898187637329,
+    contacts: 4
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.917660605298897,
+    minY: 0.5508187413215637,
+    contacts: 4
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 2.4163879984360577,
+    minY: 0.5607996582984924,
+    contacts: 4
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.7328752600144925,
+    minY: 0.5358662605285645,
+    contacts: 4
+  }
+]
+Namak stationary-grid rivals [
+  {
+    id: 'supra',
+    progress: 0,
+    maxDeviation: 2.200000047687541,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 150.47105407714844,
+      y: 0.5510051250457764,
+      z: 2.200000047683716
+    },
+    finish: null,
+    plan: null
+  },
+  {
+    id: 'slk',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.748233519603263,
+    minY: 0.5408369302749634,
+    contacts: 4,
+    position: {
+      x: 209.39755249023438,
+      y: 0.5410054922103882,
+      z: -1.5463483333587646
+    },
+    finish: 94.175,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.5458813905715942,
+      targetLane: 1.5458813905715942,
+      passes: 0,
+      attempts: 5,
+      aborts: 1,
+      age: 0,
+      tactic: 'pace',
+      boosts: 0,
+      draftSetups: 0
+    }
+  },
+  {
+    id: 'mustang',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.900168504437077,
+    minY: 0.5657898187637329,
+    contacts: 4,
+    position: {
+      x: 149.49554443359375,
+      y: 0.5660055875778198,
+      z: -1.6251873970031738
+    },
+    finish: 100.51666666666667,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.6251873970031738,
+      targetLane: 1.6251873970031738,
+      passes: 1,
+      attempts: 2,
+      aborts: 0,
+      age: 0,
+      tactic: 'pace',
+      boosts: 0,
+      draftSetups: 0
+    }
+  },
+  {
+    id: 'porsche911',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.955463807464995,
+    minY: 0.5508187413215637,
+    contacts: 4,
+    position: {
+      x: 221.38380432128906,
+      y: 0.551005482673645,
+      z: -1.9177477359771729
+    },
+    finish: 91.225,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 1.9174301624298096,
+      targetLane: 1.9174301624298096,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0,
+      tactic: 'pace',
+      boosts: 0,
+      draftSetups: 0
+    }
+  },
+  {
+    id: 'gtr',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.966067844719954,
+    minY: 0.5607996582984924,
+    contacts: 4,
+    position: {
+      x: 215.62814331054688,
+      y: 0.5610054731369019,
+      z: -0.8650961518287659
+    },
+    finish: 93.60833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 0.872882068157196,
+      targetLane: 0.872882068157196,
+      passes: 1,
+      attempts: 3,
+      aborts: 0,
+      age: 0,
+      tactic: 'pace',
+      boosts: 0,
+      draftSetups: 0
+    }
+  },
+  {
+    id: 'rx7',
+    progress: 2927.3350238627413,
+    maxDeviation: 4.974983492645963,
+    minY: 0.5358662605285645,
+    contacts: 4,
+    position: {
+      x: 232.5238037109375,
+      y: 0.5360054969787598,
+      z: -2.1215479373931885
+    },
+    finish: 88.70833333333333,
+    plan: {
+      personality: null,
+      style: null,
+      mode: 'follow',
+      reason: 'following',
+      homeLane: 2.122314453125,
+      targetLane: 2.122314453125,
+      passes: 1,
+      attempts: 1,
+      aborts: 0,
+      age: 0,
+      tactic: 'pace',
+      boosts: 0,
+      draftSetups: 0
+    }
+  }
+]
+✔ six real physical vehicles complete the new circuit on its exported road and barriers (8318.3114ms)
+✔ five planned rivals finish Namak while the player stays stopped on the starting grid (7004.7637ms)
+✔ night headlights follow vehicle yaw, illuminate ahead and hide outside a race (8.1907ms)
+{"config":{"trackId":"coastal","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":200.03,"lowest":0.27},{"name":"GUEST","time":198.82,"lowest":0.28}],"upright":0.9617552792406967,"wallSeconds":4.69}
+{"config":{"trackId":"namak","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":79.28,"lowest":0.53},{"name":"GUEST","time":79.94,"lowest":0.54}],"upright":0.9999999999999998,"wallSeconds":1.17}
+{"config":{"trackId":"yeosu","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":284.4,"lowest":0.38},{"name":"GUEST","time":279.99,"lowest":0.38}],"upright":0.9923793231398805,"wallSeconds":4.04}
+{"config":{"trackId":"seongsamjae","laps":1,"weather":"clear"},"finish":[{"name":"YOU","time":160.44,"lowest":0.36},{"name":"GUEST","time":160.69,"lowest":0.37}],"upright":0.984513792593845,"wallSeconds":2.13}
+{"config":{"trackId":"namak","laps":3,"weather":"rain"},"finish":[{"name":"YOU","time":239.39,"lowest":0.53},{"name":"GUEST","time":241.6,"lowest":0.54}],"upright":0.9999999999999998,"wallSeconds":5.14}
+✔ online host physics coastal/1lap/clear: both human-tuned bodies finish without a fall (4694.101ms)
+✔ online host physics namak/1lap/clear: both human-tuned bodies finish without a fall (1176.7853ms)
+✔ online host physics yeosu/1lap/clear: both human-tuned bodies finish without a fall (4040.3584ms)
+✔ online host physics seongsamjae/1lap/clear: both human-tuned bodies finish without a fall (2134.5927ms)
+✔ online host physics namak/3lap/rain: both human-tuned bodies finish without a fall (5141.1863ms)
+✔ online is a real selectable mode; host and guest each see themselves first on distinct grid slots (1.791ms)
+✔ online pedals clamp unsafe values and stale or reordered packets cannot leave throttle held (0.3561ms)
+✔ invites preserve the chosen course and discard developer QA flags (0.3112ms)
+✔ a room requires two real peers ready and prepared before either race starts (94.8392ms)
+✔ the guest sends pedals, while shared pause/resume clears them and a rematch resets both ready flags (151.5663ms)
+✔ a third player is rejected without replacing either participant, and disconnect never invents a finish (90.1979ms)
+✔ a different track revision cannot join the room (45.8468ms)
+✔ online personal bests are isolated from AI practice and medals (0.8558ms)
+✔ losing the broker socket preserves an established real data channel and its ready/start flow (107.8204ms)
+✔ a compact actual Rapier snapshot is valid, preserves exact finish times and never mutates physics (134.3817ms)
+✔ malformed frame transforms, incomplete wheels and impossible quaternions are rejected (0.467ms)
+✔ an open data channel without hello cannot occupy a room indefinitely (50.2011ms)
+✔ preparation times out even while the remote peer keeps answering pings (96.0882ms)
+✔ successful ready barrier cancels the preparation deadline and starts each side once (90.6935ms)
+✔ a preparation exception or rejected async task aborts both clients without starting (291.0438ms)
+✔ a congested control channel cannot silently start only one player (123.0865ms)
+✔ previous-race pause, lobby and recovery controls cannot affect a rematch (193.2805ms)
+✔ guest ignores old host controls and go before its renderer is prepared (162.7573ms)
+✔ pause rejects held guest pedals; resume requires a newer sequence instead of replaying a queued input (187.5798ms)
+✔ invalid race config and missing room values never strand players in preparation (61.1524ms)
+✔ the unchanged eight-second response watchdog aborts instead of assigning a fictitious victory (96.1436ms)
+✔ a late peer factory result cannot resurrect a timed-out connection or leak its room (26.0869ms)
+✔ performance runs preserve every slow sample for at least thirty seconds (1.9304ms)
+✔ front-side ghost trial restores all materials and does not change geometry or transform (3.7643ms)
+✔ a complete real six-car Rapier race earns a medal and unlocks the next course (4541.8365ms)
+✔ fresh garage has five cars and three courses; first genuine medal opens mountain and RX-7 (4.2554ms)
+✔ medal upgrades do not farm unlocks, lap formats count once and existing records migrate (1.308ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (1.6673ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (0.8849ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (0.4529ms)
+✔ typing and Space on menu buttons remain native UI actions (0.1809ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.1845ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.1584ms)
+{ touchBrakeMinimumSpeed: 0, stoppedKmh: 0 }
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✔ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (220.4526ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (296.5147ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (194.8417ms)
+{
+  id: 'supra',
+  mass: 1480,
+  time100: 4.025,
+  stopping: 44.61981201171875,
+  stopTime: 2.916666666666659,
+  rolling: 83.11804656982422,
+  distance: 83.11306762695312,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'slk',
+  mass: 1450,
+  time100: 4.916666666666667,
+  stopping: 44.6231689453125,
+  stopTime: 2.916666666666659,
+  rolling: 101.79407836914064,
+  distance: 101.78851318359375,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  id: 'mustang',
+  mass: 1680,
+  time100: 4.183333333333334,
+  stopping: 44.74658203125,
+  stopTime: 2.9249999999999923,
+  rolling: 84.80808749526784,
+  distance: 84.80499267578125,
+  shifts: 2,
+  peakPitch: 0
+}
+{
+  rearEndHits: 2,
+  peakFront: 20.53059196472168,
+  front: {
+    x: 0.016820084303617477,
+    y: 0.5410052537918091,
+    z: 59.547950744628906
+  },
+  rear: {
+    x: 0.004478541202843189,
+    y: 0.5260055065155029,
+    z: 55.037933349609375
+  }
+}
+{
+  wallHits: 1,
+  maxZ: 27.354999542236328,
+  reverseDistance: 17.38477325439453
+}
+✔ three cars accelerate with real gear cuts, roll their tyres by travelled distance and physically brake (411.7734ms)
+✔ a wheel on a raised kerb compresses independently of the opposite wheel (24.5959ms)
+✔ a rear-end collision transfers momentum to another car and reports real solver contact (206.0012ms)
+✔ CCD stops a 230 km/h wall strike and controls remain usable after impact (58.8836ms)
+✔ airborne throttle cannot propel or glue the chassis to the road (11.4839ms)
+✔ driver view follows 230 km/h without horizontal lag at 30/60/120 Hz and respects each cabin height (36.2547ms)
+✔ driver view filters heave and roll, follows hill pitch, freezes while paused and snaps after recovery (3.4386ms)
+✔ V switches view once per press without changing pedals or stealing editable/button keys (0.6842ms)
+✔ one local looping track respects pause, mute, volume, restart, garage stop and disposal (1.3405ms)
+✔ blocked or failed media is silent, retries only on a gesture and ignores a late play after disposal (0.614ms)
+✔ packaged music is real audio and sharper bends retain lower target speeds (10.9846ms)
+Rival speed A/B [
+  {
+    profile: 'classic',
+    max: 138.07923431396486,
+    metres: 850.8593139648438
+  },
+  {
+    profile: 'race',
+    max: 185.05221405029297,
+    metres: 1059.82470703125
+  }
+]
+✔ faster rival pedals produce higher real speed while all tyres stay on a flat straight (693.4109ms)
+✔ every track has ordered medal targets for every lap option (4.2393ms)
+✔ a personal best only improves, per track and lap count (0.8606ms)
+✔ corrupt or blocked storage never breaks the result screen (0.8062ms)
+✔ new-course saved badges are recalculated without deleting times or legacy medals (0.5898ms)
+✔ lap number and in-lap distance follow race progress, including the grid offset (1.6761ms)
+✔ route guidance only announces the finish on the final lap (1.5905ms)
+✔ a ghost replays the recorded run at the same race time (3.1066ms)
+✔ ghosts persist per track and lap count, and full storage only drops the ghost (0.4174ms)
+✔ race nitro is earned: slow trickle, faster from drifting and drafting (3.7146ms)
+✔ overtake charge is clamped and the slide assist can be switched off live (0.2908ms)
+✔ slipstream only exists close behind a moving car in the same lane (0.5047ms)
+✔ passing a nearby rival counts once; recovery setbacks and finishers do not (0.2674ms)
+✔ assist preference defaults on and survives blocked storage (0.3149ms)
+✔ drafting halves aero drag on a real chassis and starts with a partial nitro tank (172.9941ms)
+{ id: 'supra', brakingParticles: 160, skidSegments: 512 }
+{ id: 'slk', brakingParticles: 160, skidSegments: 512 }
+{ id: 'mustang', brakingParticles: 160, skidSegments: 512 }
+✔ dual exhaust emits at each authored car outlet under translation and heading, not body centre (6.1908ms)
+✔ exhaust remains in world space, freezes with pause, fades when disabled and clears at recovery (7.8768ms)
+✔ straight handbrake creates rear scrub in either direction, never stationary or airborne smoke (9.4181ms)
+✔ all three real race cars produce braking smoke and marks without VFX changing physics (560.4491ms)
+✔ stable race camera does not surge or pump FOV on repeated transmission torque cuts (15.4417ms)
+✔ another car is a body collision, never a road surface for wheel suspension rays (14.0852ms)
+✔ coastal rain normal 1 laps: six real cars finish on wet contacts (19315.7844ms)
+✔ namak rain normal 1 laps: six real cars finish on wet contacts (5785.7198ms)
+✔ yeosu rain easy 1 laps: six real cars finish on wet contacts (15848.2698ms)
+✔ yeosu rain normal 1 laps: six real cars finish on wet contacts (15065.1129ms)
+✔ yeosu rain hard 1 laps: six real cars finish on wet contacts (14103.335ms)
+✔ yeosu rain easy 3 laps: six real cars finish on wet contacts (49920.9197ms)
+✔ yeosu rain normal 3 laps: six real cars finish on wet contacts (68118.2062ms)
+✔ yeosu rain hard 3 laps: six real cars finish on wet contacts (66397.9656ms)
+✔ seongsamjae rain easy 1 laps: six real cars finish on wet contacts (10642.2437ms)
+✔ seongsamjae rain normal 1 laps: six real cars finish on wet contacts (9680.4929ms)
+✔ seongsamjae rain hard 1 laps: six real cars finish on wet contacts (11205.3608ms)
+✔ seongsamjae rain easy 3 laps: six real cars finish on wet contacts (37734.9728ms)
+✔ seongsamjae rain normal 3 laps: six real cars finish on wet contacts (49740.2466ms)
+✔ seongsamjae rain hard 3 laps: six real cars finish on wet contacts (30524.8059ms)
+✔ rain and contact spray use fixed buffers, respect quality and stop when dry or paused (35.5805ms)
+✔ recovered route is a continuous 6.8 km loop covering the original districts (7.8995ms)
+✔ finish crossing advances progress; recovery jumps cannot award a lap (0.9513ms)
+Recovered-map traffic: [
+  {
+    metres: 6910,
+    kmh: 0,
+    contacts: 4,
+    index: 52,
+    position: {
+      x: 679.1719970703125,
+      y: 7.99200963973999,
+      z: -409.8380432128906
+    },
+    rotation: {
+      x: -0.005234833341091871,
+      y: 0.3240702152252197,
+      z: 0.0009476847480982542,
+      w: 0.9460180997848511
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6842,
+    kmh: 128,
+    contacts: 4,
+    index: 26,
+    position: {
+      x: 640.3065185546875,
+      y: 7.4957733154296875,
+      z: -467.20709228515625
+    },
+    rotation: {
+      x: 0.0011318387696519494,
+      y: 0.3267305791378021,
+      z: -0.0003993492864537984,
+      w: 0.9451168179512024
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6904,
+    kmh: 0,
+    contacts: 4,
+    index: 46,
+    position: {
+      x: 671.016845703125,
+      y: 7.842749118804932,
+      z: -423.3453063964844
+    },
+    rotation: {
+      x: -0.004911739379167557,
+      y: 0.3389388918876648,
+      z: 0.0009827256435528398,
+      w: 0.9407950639724731
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6847,
+    kmh: 123,
+    contacts: 4,
+    index: 24,
+    position: { x: 637.52880859375, y: 7.513299942016602, z: -470.7549133300781 },
+    rotation: {
+      x: 0.0019881748594343662,
+      y: 0.3410642147064209,
+      z: -0.0006883933092467487,
+      w: 0.9400376677513123
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6902,
+    kmh: 0,
+    contacts: 4,
+    index: 42,
+    position: {
+      x: 665.1519165039062,
+      y: 7.731919288635254,
+      z: -432.7767028808594
+    },
+    rotation: {
+      x: -0.004381480161100626,
+      y: 0.3510478436946869,
+      z: 0.0009182185749523342,
+      w: 0.9363468289375305
+    },
+    region: 'Harbor'
+  },
+  {
+    metres: 6852,
+    kmh: 116,
+    contacts: 4,
+    index: 22,
+    position: {
+      x: 634.4554443359375,
+      y: 7.516513824462891,
+      z: -474.6608581542969
+    },
+    rotation: {
+      x: 0.0030004149302840233,
+      y: 0.3508366048336029,
+      z: -0.0010397109435871243,
+      w: 0.9364314079284668
+    },
+    region: 'Harbor'
+  }
+]
+Additional full-course cars [
+  { id: 'm3', progress: 6842.211776361137, contacts: 4 },
+  { id: 'huracan', progress: 6904.557115109743, contacts: 4 }
+]
+✔ six shared-world vehicles remain grounded and drive along recovered geometry (17578.364ms)
+✔ M3 and Huracán complete the recovered full course with physical road support (6233.3462ms)
+✔ shared geometry, material arrays and maps are disposed once, including hidden scenery (3.5799ms)
+✔ shader uniforms, arrays and scene textures share a single disposal without following cycles forever (1.6124ms)
+✔ instanced GPU-buffer owners and lights release once along with both shadow targets (12.8827ms)
+✔ environment and reflection owners dispose once without separately disposing their attachment textures (3.0489ms)
+✔ a fresh runtime receives its own cleanup after an earlier scene was disposed (4.0181ms)
+✔ ghost single-pass comparison preserves opacity, geometry and authored policies through complete and cancelled trials (10.8543ms)
+✔ missing or hidden ghost is reported rather than treated as a successful cost reduction (0.4579ms)
+✔ frozen renderer comparison captures all three A/B/A phases and always restores full geometry (0.8398ms)
+✔ cancelled frozen comparisons retain partial evidence and cannot continue a half-finished draw set (0.4733ms)
+✔ frozen tread A/B changes only distant rival accents and restores authored visibility and resources (6.6303ms)
+✔ frozen tyre projection leaves close and behind-camera accents intact (1.5425ms)
+✔ slow frame intervals remain visible when CPU submission is short (0.7075ms)
+✔ missing CPU observations are explicit and sessions cannot reuse old cost samples (0.2736ms)
+✔ pause draws once, remains idle, and redraws after resize or camera changes (0.384ms)
+✔ frame and CPU measurements reset together after a pause (0.3623ms)
+✔ slow gaps preserve previous callback work and both focus endpoints without filtering (0.3727ms)
+✔ rolling frame averages cannot erase session slow gap evidence (0.4769ms)
+✔ race waits for asynchronous shaders and warm draw; duplicate starts cannot move the clock (1.0161ms)
+✔ garage/disposal cancellation prevents a pending preparation from drawing stale objects (1.9075ms)
+✔ preparation errors keep driving blocked, expose the cause, and permit a clean retry (0.8366ms)
+✔ preparation timestamp boundary retains wait costs and cannot admit stale animation timestamps (0.5411ms)
+✔ draw profile counts main/shadow deltas while leaving render results and hooks intact (1.6293ms)
+✔ GPU profile polls after a browser turn, rejects disjoint data and frees bounded queries (1.11ms)
+✔ render failure preserves the original exception, restores the hook and deletes the GPU query (1.2291ms)
+✔ draw categories use actual scene ancestry and keep parked cars separate from world meshes (0.6879ms)
+{
+  progress: 6842.211776361137,
+  maximumAcceleration: 38.64541053771973,
+  maximumTilt: 1.920026862985041,
+  rmsTilt: 0.07945146228788715,
+  releaseSteps: 78
+}
+✔ real-map mountain seams do not restore the previous large vertical and orientation impulses (2932.304ms)
+✔ unsupported inverted chassis still lands on its physical roof collider (27.444ms)
+✔ grip changes the actual constant-input corner trajectory (50.5453ms)
+✔ AWD allocates measured forward impulses to front tyres; RWD does not (23.7645ms)
+✔ brake balance redistributes real tyre impulses while physically slowing the car (19.3186ms)
+✔ fixed physics produces identical motion at 30/60/120 FPS and a normal 100 ms frame (67.1839ms)
+✔ excessive stalls bound work, expose discarded time, catch up and clear debt on pause (0.4333ms)
+{
+  id: 'supra',
+  kick: 0.35,
+  before: {
+    peak: 0.011359874107432439,
+    settled: 0.00023280453977908856,
+    lost: 0,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'supra',
+  kick: 1,
+  before: {
+    peak: 0.041774566338973175,
+    settled: 0.0004438312869355933,
+    lost: 10,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 0.35,
+  before: { peak: 0.010584552719215016, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'slk',
+  kick: 1,
+  before: { peak: 0.038400968317986096, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 0.35,
+  before: { peak: 0.011309360099982676, settled: 0, lost: 0, contacts: 4 },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{
+  id: 'mustang',
+  kick: 1,
+  before: {
+    peak: 0.046202623687088044,
+    settled: 0.0004894078214374062,
+    lost: 18,
+    contacts: 4
+  },
+  after: { peak: 0, settled: 0, lost: 0, contacts: 4 }
+}
+{ id: 'supra', heaveMetres: 0, kmh: 224.31796875 }
+{ id: 'slk', heaveMetres: 0, kmh: 218.3609619140625 }
+{ id: 'mustang', heaveMetres: 0, kmh: 225.369580078125 }
+{ fps: 30, cameraHeave: 0.0056117077319504105, roadHeave: 0.03 }
+{ fps: 60, cameraHeave: 0.005628560567466856, roadHeave: 0.03 }
+{ fps: 120, cameraHeave: 0.005606701048515461, roadHeave: 0.03 }
+✔ all three cars reduce real rebound and retain contact recovery under a strong impact (589.0371ms)
+✔ flat-road acceleration to over 200 km/h has no repeated loss of contact or centimetre heave (333.1105ms)
+✔ chase isolates rapid suspension heave at 30/60/120 FPS without horizontal speed lag (9.5622ms)
+✔ stabilized chase follows steep grades, holds its paused frame and snaps after road recovery (3.2057ms)
+{
+  id: 'supra',
+  recoveryBefore: { heave: 0.6583273086775079, peak: 1.3886636802683698 },
+  recoveryAfter: { heave: 0.01581240236991921, peak: 9.37159729026961e-17 }
+}
+{
+  id: 'slk',
+  recoveryBefore: { heave: 0.6801563138101903, peak: 1.4947622368962967 },
+  recoveryAfter: { heave: 0.015812050218980356, peak: 9.230771168041783e-17 }
+}
+{
+  id: 'mustang',
+  recoveryBefore: { heave: 0.6647903742551168, peak: 1.286174545260427 },
+  recoveryAfter: { heave: 0.015812187956967705, peak: 6.799389629111574e-17 }
+}
+✔ stable chase cannot zoom or shake from chassis pitch, roll or repeated impacts (11.2921ms)
+✔ road recovery aligns to the slope and avoids a half-metre suspension drop in all cars (161.0797ms)
+✔ sustained inversion/fall recovers, ordinary bank and jumps do not; pause cannot advance watch (3.8189ms)
+✔ recovery preserves spent boost and resets velocities; a new race refills it (45.6393ms)
+✔ recovery rejects an empty-looking point in approaching traffic and never awards progress (0.5387ms)
+✔ recovering behind fast traffic stays on its tyres instead of being launched by a rear-end hit (44.0934ms)
+✔ side-by-side solver separation protects the authored wide shoulders in all cars (96.3676ms)
+✔ empty paved lane permits overtaking without moving snapshots or giving input to the player (5.0429ms)
+✔ adjacent traffic, oncoming vehicles and fast rear traffic reject the crossing (1.0318ms)
+✔ tight bends, missing road proof, airborne cars and insufficient approach room never start a pass (6.8634ms)
+✔ a committed passing lane is reserved against a second closing rival (0.6189ms)
+✔ cut-in aborts safely; pause freezes the plan and recovery clears a stale target (5.2135ms)
+✔ return waits for rear clearance and only counts a pass after physically reaching home (1.1888ms)
+✔ the original lead loses its committed exemption when it moves into the crossing (0.6231ms)
+✔ a committed crossing yields to closing rear traffic without braking across its path (1.6577ms)
+✔ a blocked return holds its current track and moves forward instead of parking across traffic (0.7707ms)
+✔ a faster rival clears a stopped rear-car merge buffer by holding its track and driving forward (0.6682ms)
+✔ a passing rival re-plans when a stationary car occupies its lane again on a closed circuit (0.6149ms)
+✔ a re-blocked passing rival holds its approach gap if the alternate lane is occupied (0.9918ms)
+✔ a lane-centred rival can leave a stopped rear bumper behind but yields to a moving rear car (0.3575ms)
+physical overtake {
+  id: 'supra',
+  contacts: 0,
+  maxLane: 2.0166172981262207,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.7535984516143799,
+    y: 0.5260055065155029,
+    z: 174.5360870361328
+  }
+}
+physical overtake {
+  id: 'slk',
+  contacts: 0,
+  maxLane: 2.0303285121917725,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.7592816352844238,
+    y: 0.5160055160522461,
+    z: 177.4198455810547
+  }
+}
+physical overtake {
+  id: 'mustang',
+  contacts: 0,
+  maxLane: 2.0350022315979004,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: { x: -1.78122878074646, y: 0.5410054922103882, z: 179.8800506591797 }
+}
+physical overtake {
+  id: 'porsche911',
+  contacts: 0,
+  maxLane: 2.019705057144165,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.7753400802612305,
+    y: 0.5260055065155029,
+    z: 176.91458129882812
+  }
+}
+physical overtake {
+  id: 'gtr',
+  contacts: 0,
+  maxLane: 2.0197913646698,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.8165252208709717,
+    y: 0.5360054969787598,
+    z: 176.792236328125
+  }
+}
+physical overtake {
+  id: 'rx7',
+  contacts: 0,
+  maxLane: 2.0059328079223633,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.8053041696548462,
+    y: 0.5110055208206177,
+    z: 180.03262329101562
+  }
+}
+physical overtake {
+  id: 'm3',
+  contacts: 0,
+  maxLane: 2.017366409301758,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.8131320476531982,
+    y: 0.5210055112838745,
+    z: 176.23280334472656
+  }
+}
+physical overtake {
+  id: 'huracan',
+  contacts: 0,
+  maxLane: 2.011688232421875,
+  plan: {
+    personality: null,
+    style: null,
+    mode: 'follow',
+    reason: 'following',
+    homeLane: -2.2,
+    targetLane: -2.2,
+    passes: 1,
+    attempts: 1,
+    aborts: 0,
+    age: 0,
+    tactic: 'pace',
+    boosts: 0,
+    draftSetups: 0
+  },
+  position: {
+    x: -1.7570438385009766,
+    y: 0.5260055065155029,
+    z: 179.2174835205078
+  }
+}
+Planner recovered-map race {
+  seconds: 264.23333333333335,
+  results: [
+    {
+      id: 'supra',
+      metres: 6842,
+      finish: 264.225,
+      index: 26,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: null
+    },
+    {
+      id: 'slk',
+      metres: 6842,
+      finish: 219.35,
+      index: 48,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'mustang',
+      metres: 6842,
+      finish: 212.92499999999998,
+      index: 53,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'porsche911',
+      metres: 6842,
+      finish: 218.75,
+      index: 54,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'gtr',
+      metres: 6842,
+      finish: 219.225,
+      index: 52,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    },
+    {
+      id: 'rx7',
+      metres: 6842,
+      finish: 227.03333333333333,
+      index: 50,
+      position: [Object],
+      velocity: [Object],
+      contacts: 4,
+      region: 'Harbor',
+      plan: [Object]
+    }
+  ]
+}
+✔ road proof rejects narrow asphalt, grass and an obstacle on the paved crossing (48.6038ms)
+✔ supra: Rapier AI passes a stopped player and returns without contact (256.7319ms)
+✔ slk: Rapier AI passes a stopped player and returns without contact (145.7631ms)
+✔ mustang: Rapier AI passes a stopped player and returns without contact (130.9664ms)
+✔ porsche911: Rapier AI passes a stopped player and returns without contact (102.2139ms)
+✔ gtr: Rapier AI passes a stopped player and returns without contact (127.5529ms)
+✔ rx7: Rapier AI passes a stopped player and returns without contact (119.2479ms)
+✔ m3: Rapier AI passes a stopped player and returns without contact (111.7838ms)
+✔ huracan: Rapier AI passes a stopped player and returns without contact (93.4254ms)
+✔ five faster planned rivals and a slower driven player complete the recovered 6.84 km course (13982.5835ms)
+✔ five fixed personalities differ in corner, passing and nitro decisions without modifying snapshots (6.6667ms)
+✔ aggressive rival accepts a smaller speed advantage; defensive rival keeps following (1.5359ms)
+✔ coastal 1 laps: five pedal-only personalities finish at all difficulties (39333.123ms)
+✔ coastal 3 laps: five pedal-only personalities finish at all difficulties (146440.1125ms)
+✔ namak 1 laps: five pedal-only personalities finish at all difficulties (14839.035ms)
+✔ namak 3 laps: five pedal-only personalities finish at all difficulties (39681.7561ms)
+✔ yeosu 1 laps: five pedal-only personalities finish at all difficulties (86385.4696ms)
+✔ yeosu 3 laps: five pedal-only personalities finish at all difficulties (211234.1621ms)
+✔ seongsamjae 1 laps: five pedal-only personalities finish at all difficulties (46326.0967ms)
+✔ seongsamjae 3 laps: five pedal-only personalities finish at all difficulties (109229.7575ms)
+✔ wet braking sees a corner earlier and lowers approach speed without changing car snapshots (5.3654ms)
+✔ oncoming speed and lateral cut-ins are predicted before the old forward guard (1.3593ms)
+✔ a low-charge rival builds a draft briefly, then commits instead of following forever (6.7749ms)
+✔ a stopped or rapidly closing lead never triggers draft waiting (1.8268ms)
+✔ boost has bounded bursts, cooldown and a charge reserve; pausing freezes each timer (8.84ms)
+✔ boost yields to airborne, off-road, wall, merging, braking and a steering correction (3.0932ms)
+✔ final attack uses total race distance and skips draft patience without inventing speed or charge (1.8006ms)
+✔ difficulty and personality change patience and resource timing with fixed speed ceilings (1.2671ms)
+✔ a moving second lead cannot trigger immediate lane weaving; a stopped blocker remains urgent (6.9076ms)
+✔ a lead on the lane edge never creates fake repeat passes toward the current lane (2.8522ms)
+✔ easy can retain the proven brake envelope while advanced profiles predict cut-ins (1.4489ms)
+✔ roadside cells retain near bounds, respect tiers, and low quality adds no draws (5.9078ms)
+✔ garage hides the extension and visibility changes do not alter transforms or shared resources (5.6065ms)
+✔ absent extensions and originally hidden art stay hidden (1.1603ms)
+✔ ground supporting distant buildings survives decoration culling and low quality (0.7966ms)
+✔ mountain roadscape is an editable <=3MB visual-only spatial asset with shared opaque material (31.8569ms)
+✔ every mountain scenery triangle keeps all route segments and +/-7m driving lanes clear (837.3977ms)
+✔ rock skirts, rail posts and deck piers use actual original terrain elevations (252.3794ms)
+✔ mountain asset contains rock cuts, readable hairpin furniture and supported summit viewing deck (0.6124ms)
+✔ every bedding seam stays on an actual exported rock edge, including tapered cutting ends (152.108ms)
+✔ all exported chevrons point into the real turn when viewed by an approaching driver (82.0338ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (304.8317ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (595.7602ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (685.931ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (220.8292ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (143.8809ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (159.2642ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (146.4271ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (183.0582ms)
+✔ explicit camera choice is honored while an unset choice respects reduced motion (7.7101ms)
+✔ 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS (164.7347ms)
+✔ reduced motion fixes FOV and reset snaps to the new position (1.2173ms)
+✔ full boost and acceleration stay within nine metres even after prolonged 300 km/h travel (24.4306ms)
+✔ audio defaults to silent, clamps volume and fails safely without Web Audio (4.4309ms)
+✔ pass 1: all eight player racks reach useful low-speed lock through actual front tyres only (281.8543ms)
+✔ pass 2: useful-speed player lock is stronger, monotone and continuous; AI and highway limits retain their calibration (12.2895ms)
+✔ pass 3: short player taps engage promptly, opposite input crosses centre, and release is frame independent (0.7029ms)
+✔ pass 4: actual Blender steering wheel has a readable symmetric rack ratio, bounded full lock and no input-only fakery (34.6767ms)
+✔ pass 5: all eight cars support quick turn/countersteer/drift/release sequences without spinning or leaving the ground (657.6999ms)
+✔ pass 5: physical 60/90 kmh turning radius improves against the original baseline at matched road speeds (752.3933ms)
+{"id":"supra","previous":{"radius":23.682463613779582,"turn":-1.601745109998893,"minUp":1,"minContacts":4,"kmh":89.54404311185124,"endKmh":84.94514869257371,"samples":183,"steer":-0.11162324711583836},"left":{"radius":17.52836162671877,"turn":-1.916105263202937,"minUp":1,"minContacts":4,"kmh":89.56017820942206,"endKmh":82.26884876545112,"samples":162,"steer":-0.16844444713432355},"right":{"radius":17.528434175272647,"turn":1.9161009640033695,"minUp":1,"minContacts":4,"kmh":89.56035217058582,"endKmh":82.2692678804867,"samples":162,"steer":0.16844284089688116}}
+{"id":"supra","previousRadius":23.682463613779582,"currentRadius":17.52836162671877,"reduction":0.2598590284956699}
+{"id":"slk","previous":{"radius":24.17409399646137,"turn":-1.30258878703838,"minUp":1,"minContacts":4,"kmh":89.49504298520058,"endKmh":81.10906244126153,"samples":152,"steer":-0.1169098800635268},"left":{"radius":17.95451920090166,"turn":-1.5115010404344622,"minUp":1,"minContacts":4,"kmh":89.48832231272743,"endKmh":76.12978356559817,"samples":131,"steer":-0.18685402616779107},"right":{"radius":17.954563669688326,"turn":1.511499646375389,"minUp":1,"minContacts":4,"kmh":89.48846569234627,"endKmh":76.12992930229483,"samples":131,"steer":0.18685351184419227}}
+{"id":"slk","previousRadius":24.17409399646137,"currentRadius":17.95451920090166,"reduction":0.2572826430008147}
+{"id":"mustang","previous":{"radius":24.867016260741043,"turn":-1.743115668141782,"minUp":1,"minContacts":4,"kmh":89.59348474714744,"endKmh":87.22302476305846,"samples":209,"steer":-0.1116864673292576},"left":{"radius":18.37701546823231,"turn":-2.2114839231910293,"minUp":0.9999999999999998,"minContacts":4,"kmh":89.57249425982617,"endKmh":86.06426491962335,"samples":196,"steer":-0.16279722725241955},"right":{"radius":18.37701272206875,"turn":2.2114869139410707,"minUp":1,"minContacts":4,"kmh":89.57265923645438,"endKmh":86.0641984046714,"samples":196,"steer":0.16279748341597133}}
+{"id":"mustang","previousRadius":24.867016260741043,"currentRadius":18.37701546823231,"reduction":0.26098831980718407}
+{"id":"porsche911","previous":{"radius":24.09360020984435,"turn":-1.8075355941959552,"minUp":1,"minContacts":4,"kmh":90.01449129056054,"endKmh":89.9945689853306,"samples":209,"steer":-0.10070613039808264},"left":{"radius":16.41012032871783,"turn":-2.6427234560384174,"minUp":1,"minContacts":4,"kmh":89.63585338027079,"endKmh":87.22653317393646,"samples":209,"steer":-0.152103561079542},"right":{"radius":16.410067948949287,"turn":2.642730621835841,"minUp":1,"minContacts":4,"kmh":89.63576871736394,"endKmh":87.22613496359963,"samples":209,"steer":0.15210488826061824}}
+{"id":"porsche911","previousRadius":24.09360020984435,"currentRadius":16.41012032871783,"reduction":0.31890127727723916}
+{"id":"gtr","previous":{"radius":24.304471220095145,"turn":-1.7918762915732165,"minUp":1,"minContacts":4,"kmh":90.01445868280031,"endKmh":89.98647452998814,"samples":209,"steer":-0.11430698772669817},"left":{"radius":16.565336535315478,"turn":-2.241353463333166,"minUp":1,"minContacts":4,"kmh":89.60380684313567,"endKmh":84.02984862986439,"samples":179,"steer":-0.18567297195371607},"right":{"radius":16.5651622657574,"turn":2.2413696638717506,"minUp":1,"minContacts":4,"kmh":89.60377883010725,"endKmh":84.02638942795976,"samples":179,"steer":0.18568811860830756}}
+{"id":"gtr","previousRadius":24.304471220095145,"currentRadius":16.565336535315478,"reduction":0.31842431850074093}
+{"id":"rx7","previous":{"radius":24.61724264597815,"turn":-1.5495186224418476,"minUp":1,"minContacts":4,"kmh":89.55107441407714,"endKmh":85.02659412930966,"samples":184,"steer":-0.10676229265343683},"left":{"radius":18.239660772517286,"turn":-1.8415175997125584,"minUp":1,"minContacts":4,"kmh":89.56490752788365,"endKmh":82.18258130155498,"samples":162,"steer":-0.16171261483310417},"right":{"radius":18.239684332704943,"turn":1.8415162329172339,"minUp":1,"minContacts":4,"kmh":89.56494109389196,"endKmh":82.18278103871558,"samples":162,"steer":0.16171192069228188}}
+{"id":"rx7","previousRadius":24.61724264597815,"currentRadius":18.239660772517286,"reduction":0.25906970838193377}
+{"id":"m3","previous":{"radius":22.858616145347337,"turn":-1.6961041597142976,"minUp":1,"minContacts":4,"kmh":89.56361893980137,"endKmh":85.29835124237228,"samples":187,"steer":-0.12755563768515613},"left":{"radius":16.963177374867506,"turn":-2.1757320500005624,"minUp":1,"minContacts":4,"kmh":89.56932815682752,"endKmh":84.2212601409147,"samples":178,"steer":-0.18539638396243802},"right":{"radius":16.963050476841026,"turn":2.1757417007506867,"minUp":1,"minContacts":4,"kmh":89.56911848598298,"endKmh":84.22050547481236,"samples":178,"steer":0.1853996815234347}}
+{"id":"m3","previousRadius":22.858616145347337,"currentRadius":16.963177374867506,"reduction":0.25790882234486423}
+{"id":"huracan","previous":{"radius":23.528648469756405,"turn":-1.8510090850480612,"minUp":1,"minContacts":4,"kmh":90.01969797115166,"endKmh":90.02329987614964,"samples":209,"steer":-0.11090885432392486},"left":{"radius":16.476626600235587,"turn":-2.6433703239970097,"minUp":1,"minContacts":4,"kmh":90.02054450801167,"endKmh":90.01823293650122,"samples":209,"steer":-0.15821580079083788},"right":{"radius":16.47660469155075,"turn":2.6433720815887103,"minUp":1,"minContacts":4,"kmh":90.02051195139232,"endKmh":90.01821337709185,"samples":209,"steer":0.158215733297039}}
+{"id":"huracan","previousRadius":23.528648469756405,"currentRadius":16.476626600235587,"reduction":0.2997206524031947}
+Namak player steering lap {
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  seconds: 109.90833333333333,
+  maxDeviation: 4.932326386931878,
+  minContacts: 4,
+  sensitivity: 1.6900000000000002
+}
+✔ player steering reaches the physical rack with useful-speed lock, bounded stop and highway taper (1.7321ms)
+✔ all eight cars actually turn tighter at 90km/h in both directions and keep four-wheel support (1228.1067ms)
+✔ additional steering stays upright at highway speed and releasing input recentres the wheels (437.7066ms)
+✔ the player GT-R completes actual Namak road corners with the new grip and rack without recovery teleports (1163.7601ms)
+{"kmh":20,"oldRadius":6.418,"newRadius":5.18}
+{"kmh":40,"oldRadius":13.989,"newRadius":9.627}
+{"kmh":60,"oldRadius":23.014,"newRadius":20.444}
+✔ Ackermann inside/outside angles share a turning centre, mirror correctly and never steer the rear (1.7007ms)
+✔ rack responds within 0.2 seconds, centres and reverses smoothly; speed limit remains bounded (0.6181ms)
+✔ measured 20/40/60 km/h turns improve over baseline without yaw or position writes (508.8766ms)
+✔ 230 km/h full steering remains grounded and upright without rotating the body directly (203.7007ms)
+✔ reversing changes yaw response but not the actual front-wheel steering direction (38.0911ms)
+✔ wheel roll follows forward/reverse distance with the correct +X axle sign (218.9019ms)
+✔ wheel suspension, steering and unwrapped spin interpolate on the same clock as the body (44.668ms)
+✔ reset clears steering, handbrake state and rear grip immediately (25.3671ms)
+✔ responsive road steering improves brief input while retaining high-speed and full-lock limits (0.3388ms)
+✔ road rear drive and front-biased braking produce physical axle pitch (33.6563ms)
+✔ civilian cars move through pedals and collide as dynamic chassis, with shared crash feedback (377.6869ms)
+✔ rival steering keeps its physical direction and brakes for civilian traffic on the same road level (2.9179ms)
+✔ civilian visual wheels turn/rotate with physics and budgets stay bounded (14.9086ms)
+✔ a new moving lead can be passed before the original lead is behind (10.9685ms)
+✔ re-planning a moving lead still respects road proof and closing rear traffic (3.3145ms)
+✔ a lead with no passing speed advantage does not start another crossing (2.2139ms)
+✔ after a partial crossing yield, the next pass points away from the new lead on either side (5.4518ms)
+✔ a race without civilians keeps the validated original passing sequence (1.0134ms)
+✔ restoring short moving headway briefly slows below the lead without stopping (0.7166ms)
+✔ the existing gap remains the target and ordinary non-traffic-race behavior is preserved (2.7824ms)
+✔ restoring headway keeps stopped-car hold and never requests a negative speed (0.4483ms)
+{"config":{"difficultyId":"easy","weather":"clear","laps":1},"minimumUp":0.9920328611234865,"cars":[{"id":"supra","finish":304.84,"lowest":0.38},{"id":"slk","finish":308.77,"lowest":0.37},{"id":"mustang","finish":289.26,"lowest":0.39},{"id":"porsche911","finish":301.33,"lowest":0.37},{"id":"gtr","finish":292.25,"lowest":0.39},{"id":"rx7","finish":294.2,"lowest":0.35}]}
+{"config":{"difficultyId":"normal","weather":"clear","laps":1},"minimumUp":0.9920328611234865,"cars":[{"id":"supra","finish":304.38,"lowest":0.37},{"id":"slk","finish":294.13,"lowest":0.36},{"id":"mustang","finish":300.59,"lowest":0.38},{"id":"porsche911","finish":294.52,"lowest":0.38},{"id":"gtr","finish":281.13,"lowest":0.37},{"id":"rx7","finish":297.49,"lowest":0.36}]}
+{"config":{"difficultyId":"normal","weather":"rain","laps":3},"minimumUp":0.9920326766041394,"cars":[{"id":"supra","finish":893.52,"lowest":0.38},{"id":"slk","finish":916.33,"lowest":0.36},{"id":"mustang","finish":863.68,"lowest":0.38},{"id":"porsche911","finish":878.22,"lowest":0.37},{"id":"gtr","finish":881.42,"lowest":0.38},{"id":"rx7","finish":845.94,"lowest":0.35}]}
+✔ Yeosu civilian traffic: easy/clear/1 laps finishes without leaving asphalt (52425.7865ms)
+✔ Yeosu civilian traffic: normal/clear/1 laps finishes without leaving asphalt (51665.0353ms)
+✔ Yeosu civilian traffic: normal/rain/3 laps finishes without leaving asphalt (156906.872ms)
+✔ supra: polished export preserves mechanical transforms, paint and tyre dimensions (8.9439ms)
+✔ slk: polished export preserves mechanical transforms, paint and tyre dimensions (8.1999ms)
+✔ mustang: polished export preserves mechanical transforms, paint and tyre dimensions (5.0512ms)
+✔ porsche911: polished export preserves mechanical transforms, paint and tyre dimensions (6.2108ms)
+✔ gtr: polished export preserves mechanical transforms, paint and tyre dimensions (4.0322ms)
+✔ rx7: polished export preserves mechanical transforms, paint and tyre dimensions (17.2764ms)
+✔ m3: polished export preserves mechanical transforms, paint and tyre dimensions (5.25ms)
+✔ huracan: polished export preserves mechanical transforms, paint and tyre dimensions (3.412ms)
+✔ reflection studio adds no racing lights and disposes baking resources once (7.2502ms)
+✔ windows, lens and mirrors keep independent opaque finishes without transmission passes (2.4129ms)
+✔ carbon shader composes existing hooks once and fades weave below a pixel (1.0506ms)
+✔ one-draw alloy retains cut-face and graphite shading through vertex colours without extra textures (0.6432ms)
+✔ reference polish completes three authored passes with unchanged rig and mechanical geometry (22.6223ms)
+✔ paint clearcoat, opaque glazing and matte tyres retain different optical responses (5.5156ms)
+✔ supra: authored pivots survive batching, wheel roll leaves calipers fixed (55.6158ms)
+✔ slk: authored pivots survive batching, wheel roll leaves calipers fixed (19.8851ms)
+✔ mustang: authored pivots survive batching, wheel roll leaves calipers fixed (19.8563ms)
+✔ porsche911: authored pivots survive batching, wheel roll leaves calipers fixed (20.9345ms)
+✔ gtr: authored pivots survive batching, wheel roll leaves calipers fixed (17.8278ms)
+✔ rx7: authored pivots survive batching, wheel roll leaves calipers fixed (19.7545ms)
+✔ m3: authored pivots survive batching, wheel roll leaves calipers fixed (13.0334ms)
+✔ huracan: authored pivots survive batching, wheel roll leaves calipers fixed (15.578ms)
+✔ supra: visible hubs match physical suspension centres at pitch/roll and full inversion (11.5522ms)
+✔ slk: visible hubs match physical suspension centres at pitch/roll and full inversion (11.4848ms)
+✔ mustang: visible hubs match physical suspension centres at pitch/roll and full inversion (9.7735ms)
+✔ porsche911: visible hubs match physical suspension centres at pitch/roll and full inversion (8.2778ms)
+✔ gtr: visible hubs match physical suspension centres at pitch/roll and full inversion (7.7615ms)
+✔ rx7: visible hubs match physical suspension centres at pitch/roll and full inversion (11.0075ms)
+✔ m3: visible hubs match physical suspension centres at pitch/roll and full inversion (9.1289ms)
+✔ huracan: visible hubs match physical suspension centres at pitch/roll and full inversion (10.7379ms)
+✔ right/left bends follow world heading, including the circular route seam (4.0526ms)
+✔ bend detection uses metres and survives a fourfold change in point density (2.3365ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (6.5374ms)
+✔ actual city approach previews its left bend and cached guidance stays pure (13.4579ms)
+✔ isolated heading errors never become a persistent corner warning (0.871ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (11.5502ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (2.4814ms)
+{ id: 'supra', side: -1, maxOffset: 10.645526885986328 }
+{ id: 'supra', side: 1, maxOffset: 10.645530700683594 }
+{ id: 'slk', side: -1, maxOffset: 10.677094459533691 }
+{ id: 'slk', side: 1, maxOffset: 10.67708969116211 }
+{ id: 'mustang', side: -1, maxOffset: 10.603816032409668 }
+{ id: 'mustang', side: 1, maxOffset: 10.60382080078125 }
+{ id: 'porsche911', side: -1, maxOffset: 10.604891777038574 }
+{ id: 'porsche911', side: 1, maxOffset: 10.604896545410156 }
+{ id: 'gtr', side: -1, maxOffset: 10.598703384399414 }
+{ id: 'gtr', side: 1, maxOffset: 10.598709106445312 }
+{ id: 'rx7', side: -1, maxOffset: 10.616415023803711 }
+{ id: 'rx7', side: 1, maxOffset: 10.61641788482666 }
+{ id: 'm3', side: -1, maxOffset: 10.604217529296875 }
+{ id: 'm3', side: 1, maxOffset: 10.604223251342773 }
+{ id: 'huracan', side: -1, maxOffset: 10.604528427124023 }
+{ id: 'huracan', side: 1, maxOffset: 10.604534149169922 }
+{
+  progress: 2927.3350238627413,
+  length: 2927.3350238627413,
+  maxDeviation: 4.9411869344638495,
+  seconds: 109.94166666666666,
+  contacts: 4
+}
+✔ sealed Namak wall shells block both directions and every route seam without filling the asphalt (281.3877ms)
+✔ eight physical cars remain inside either wall after a 230km/h lateral impact (1383.1381ms)
+✔ an upright car stranded on the sidewalk triggers recovery; brief edge contact and pause do not (2.1645ms)
+✔ sidewalk recovery settles onto real asphalt with spent nitro preserved and no forward progress reward (144.9466ms)
+✔ C recovery works after a pedal button gains focus, but stays disabled on pause and in text fields (0.7316ms)
+✔ recovery finds a clear point behind a six-car queue beyond the former 64m search window (0.9915ms)
+✔ a player Supra can complete the real Namak circuit alongside sealed barriers without automatic recovery (1774.3093ms)
+✔ rain changes actual road contact grip/drag without altering dry surfaces or collision geometry (2.2836ms)
+✔ rain preserves visible fog range and selection tolerates blocked storage (0.7946ms)
+✔ wet contacts use exported collider kinds, cache results and preserve solid barriers (0.4394ms)
+✔ spatial batches preserve world-space vertices, normals, vertex colours, UVs and triangle count (52.6919ms)
+✔ separate regions and incompatible appearance stay separate; large terrain stays individually culled (6.8285ms)
+✔ collision, spawn-road and moving geometry are untouched; shared retained geometry is not freed (2.8885ms)
+✔ index layout, shadow settings, layers and allocation limits prevent invalid merging (3.3699ms)
+✔ frame metrics expose stutters and bounded samples without mixing resumed or new sessions (1.795ms)
+✔ whole-district forest splits into bounded cells with every rendered triangle and attribute intact (273.0168ms)
+✔ Yeosu uses verifiable OSM road coordinates and a single connected motor-road loop (28.8744ms)
+✔ new geographic course isolates times and ghosts while preserving legacy earned medals (2.7141ms)
+{"roadscape":"yeosu","triangleSegmentPairs":1637698,"minimumAsphaltEdgeClearance":1.2002791916411475}
+{"existingBuildings":360,"supported":360,"unsupported":[]}
+✔ Yeosu corrected scene is within separate 3 MB decoration + 2 MB ground budgets, without textures/lights (29.9532ms)
+✔ ground fix preserves all already-validated decorative geometry byte for byte (58.3127ms)
+✔ source world, route, original Blender and map bytes are preserved (68.4188ms)
+✔ all new scene nodes are visual-only, identity-aligned and spatially grouped (5.6899ms)
+✔ every triangle clears every road segment by full asphalt half-width + 1 m, including flyovers (2948.2032ms)
+✔ both bridge structures and real OSM quay foundation, walkway and mooring details exist (0.5402ms)
+✔ Hamel red lighthouse uses official coordinates and 10 m above its platform, with supported base (15.6546ms)
+✔ OSM coastline ground supports all original building centers without new colliders (673.7884ms)
+✔ baked light layout is tied to the exact unchanged GLB and agrees with authored light positions (119.4871ms)
+✔ unchanged emitted surfaces retain their layout identity after runtime scenery batching (192.7097ms)
+✔ changed emitted geometry falls back to its current light surfaces rather than a stale baked layout (75.3002ms)
+✔ a transformed world carries its baked light positions along with the root (25.3956ms)
+✔ interleaved GLTF positions preserve the layout check and changed positions safely fall back (67.9246ms)
+✔ actual batched Blender geometry supplies all eight bridge lamps and independently sampled shore lights (5.866ms)
+✔ visual replacement leaves every authored vertex, material, collider annotation and transform unchanged (30.8187ms)
+✔ reflection mask covers the complete +/-7m road corridor and the new sea remains far below the asphalt (17.5022ms)
+✔ quality budgets bound extra calls, geometry and light sources without adding lights or a render pass (11.3954ms)
+✔ pause holds the ripple clock, visibility restores the old sea, and distance removes inactive reflection sources (8.6699ms)
+✔ owned GPU resources dispose once and authored geometry/material resources are retained (17.3832ms)
+✔ a restarted race reselects nearby reflections when the elapsed clock returns to zero (11.5882ms)
+✔ an unrelated empty world receives no visual lights, sea geometry or additional draws (1.993ms)
+ℹ tests 467
+ℹ suites 0
+ℹ pass 467
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 907443.1829
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 164 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      1.95 kB │ gzip:     0.81 kB
+dist/assets/index-Bb1ACK0u.css      35.21 kB │ gzip:     7.26 kB
+dist/assets/bundler-hUWv2h5-.js    117.07 kB │ gzip:    31.66 kB
+dist/assets/react-34UxNz19.js      191.92 kB │ gzip:    60.15 kB
+dist/assets/index-DQePPAJ-.js      349.16 kB │ gzip:   121.86 kB
+dist/assets/three-C-m27Z9i.js      590.68 kB │ gzip:   151.99 kB
+dist/assets/physics-iRel_T-y.js  2,853.14 kB │ gzip: 1,077.80 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.41s

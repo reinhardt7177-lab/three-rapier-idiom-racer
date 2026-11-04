@@ -1,0 +1,27 @@
+✖ pass 5: physical 60/90 kmh turning radius improves against the original baseline at matched road speeds (1782.2367ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13156.1719
+
+✖ failing tests:
+
+test at scripts\steering-final.test.mjs:92:1
+✖ pass 5: physical 60/90 kmh turning radius improves against the original baseline at matched road speeds (1782.2367ms)
+  AssertionError [ERR_ASSERTION]: supra 60km/h side -1: radius 9.615879112838991 -> 9.732322169762192 must actually tighten
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/steering-final.test.mjs:111:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

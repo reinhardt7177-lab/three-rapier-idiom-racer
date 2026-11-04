@@ -1,0 +1,77 @@
+✔ pass 1: actual transmission shift is audible promptly and does not advance on pause (8.3142ms)
+✔ eight original voices have distinct spectra and pitch follows actual RPM, not road speed (1.9546ms)
+✔ voice changes reset response, pause holds RPM, and recovery clears stale shift history (1.1332ms)
+✔ vehicle pedal response, shift interruption and engine braking really reach the drivetrain (1.6042ms)
+✔ Web Audio changes voices on one graph, ducks real shifts, silences pause/mute and releases sources (6.8418ms)
+[
+  {
+    id: 'supra',
+    time100: 4.025,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6687438964843864
+  },
+  {
+    id: 'slk',
+    time100: 4.916666666666667,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6158447265625
+  },
+  {
+    id: 'mustang',
+    time100: 4.183333333333334,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.6285339355468835
+  },
+  {
+    id: 'porsche911',
+    time100: 3.8833333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.941973876953128
+  },
+  {
+    id: 'gtr',
+    time100: 4,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 2.8290344238281193
+  },
+  {
+    id: 'rx7',
+    time100: 3.6416666666666666,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.9134094238281136
+  },
+  {
+    id: 'm3',
+    time100: 4.233333333333333,
+    shifts: 2,
+    peakTilt: 0,
+    coastLoss: 2.583599853515622
+  },
+  {
+    id: 'huracan',
+    time100: 3.125,
+    shifts: 1,
+    peakTilt: 0,
+    coastLoss: 3.776660156250003
+  }
+]
+✔ eight tuned vehicles accelerate, change gears and coast with stable supported chassis (460.565ms)
+✔ explicit camera choice is honored while an unset choice respects reduced motion (1.4433ms)
+✔ 230 km/h camera translation does not accumulate trailing lag at 30/60/120 FPS (27.9733ms)
+✔ reduced motion fixes FOV and reset snaps to the new position (0.6666ms)
+✔ full boost and acceleration stay within nine metres even after prolonged 300 km/h travel (19.1326ms)
+✔ audio defaults to silent, clamps volume and fails safely without Web Audio (1.5518ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1969.3878

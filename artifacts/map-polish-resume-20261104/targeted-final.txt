@@ -1,0 +1,52 @@
+✔ quality choices save, reject unknown values and tolerate blocked storage (1.313ms)
+✔ quality culls distant decoration and preserves road, barriers, colliders and near bounds (2.3573ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (226.3453ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (32.2491ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (4.7005ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (5.9135ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (12.9201ms)
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ left and right arrow paths point to their screen side without a CSS mirror transform (0.9835ms)
+✔ navigation follows the actual driver-camera side at yaw 0 (4.2007ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.3608ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.5977ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (0.4819ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (48.8218ms)
+✔ a continuing bend previews the next independent corner rather than the next point of the same bend (1.4098ms)
+✔ high speed previews a bend earlier without changing low-speed finish or lap rules (1.1797ms)
+✔ static corner lookup does not rescan the road on every HUD update (2.9566ms)
+✔ invalid speeds cannot create a false urgent warning or extend the lookahead (3.3866ms)
+✔ cached announcement retains the original first corner at low speed on all four routes (37.3562ms)
+✔ unlimited decoration performs no distance work and restores exact visibility each frame (9.9662ms)
+✔ finite culling, invalid camera coordinates and disposal retain original visibility policy (0.8754ms)
+✔ unlimited culling does not expose decorations with malformed cached bounds (0.3542ms)
+✔ Namak reuses one scratch sphere through moving world and quality changes (13.6246ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (167.9314ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (332.5335ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (393.4293ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (95.1621ms)
+✔ static mountain ridge bounds are not rebuilt during camera/quality updates (78.1194ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (82.6902ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (86.9088ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (87.0603ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (92.9753ms)
+✔ right/left bends follow world heading, including the circular route seam (3.148ms)
+✔ bend detection uses metres and survives a fourfold change in point density (1.7741ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (4.138ms)
+✔ actual city approach previews its geometrically verified right bend and cached guidance stays pure (7.3482ms)
+✔ isolated heading errors never become a persistent corner warning (0.3791ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (3.2345ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (2.6823ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2719.0157

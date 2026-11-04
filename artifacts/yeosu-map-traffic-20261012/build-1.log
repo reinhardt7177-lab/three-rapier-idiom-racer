@@ -1,0 +1,21 @@
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 115 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      1.95 kB │ gzip:     0.80 kB
+dist/assets/index-BHytacZT.css      29.87 kB │ gzip:     6.42 kB
+dist/assets/react--MMj_Dji.js      191.81 kB │ gzip:    60.09 kB
+dist/assets/index-NwfNGxUQ.js      248.21 kB │ gzip:    87.09 kB
+dist/assets/three-C-xonFcE.js      589.92 kB │ gzip:   151.21 kB
+dist/assets/physics-iRel_T-y.js  2,853.14 kB │ gzip: 1,077.80 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.33s

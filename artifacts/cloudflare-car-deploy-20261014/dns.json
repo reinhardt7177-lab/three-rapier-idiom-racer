@@ -1,0 +1,31 @@
+{
+  "time": "2026-10-14T01:38:40.934Z",
+  "local": "127.0.0.1",
+  "results": [
+    {
+      "url": "https://cloudflare-dns.com/dns-query?name=racing.mumuworld.com&type=A",
+      "error": "TypeError: fetch failed",
+      "cause": "AggregateError"
+    },
+    {
+      "url": "https://dns.google/resolve?name=racing.mumuworld.com&type=A",
+      "error": "TypeError: fetch failed",
+      "cause": "AggregateError"
+    }
+  ],
+  "observedReadOnlyQueries": [
+    {
+      "command": "Resolve-DnsName racing.mumuworld.com -Type A",
+      "answer": "127.0.0.1"
+    },
+    {
+      "command": "Resolve-DnsName racing.mumuworld.com -Type A -Server 1.1.1.1 -DnsOnly -NoHostsFile -QuickTimeout",
+      "answer": "127.0.0.1"
+    },
+    {
+      "command": "Select-String matching racing.mumuworld.com in Windows hosts",
+      "answer": "No matching line"
+    }
+  ],
+  "conclusion": "Official hostname inaccessible from this environment; cause and other-device impact unconfirmed. No DNS/hosts/network-protection edits."
+}

@@ -1,0 +1,738 @@
+{
+  "runtime": "win32",
+  "physics": "Node / Rapier WASM",
+  "results": [
+    {
+      "track": "yeosu",
+      "raceMode": "grid",
+      "difficulty": "easy",
+      "weather": "clear",
+      "traffic": {
+        "count": 6,
+        "vehicles": [
+          {
+            "name": "TRAFFIC 1",
+            "kmh": 59.28775580761626,
+            "position": {
+              "x": 845.651611328125,
+              "y": 8.55099868774414,
+              "z": -884.172607421875
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 2",
+            "kmh": 61.99068861282196,
+            "position": {
+              "x": 1384.2127685546875,
+              "y": 8.55099868774414,
+              "z": -288.3338623046875
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 3",
+            "kmh": 31.596812842794854,
+            "position": {
+              "x": 606.0999755859375,
+              "y": 8.55099868774414,
+              "z": -16.371755599975586
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 4",
+            "kmh": 67.47045760203778,
+            "position": {
+              "x": -531.5597534179688,
+              "y": 8.55099868774414,
+              "z": 133.0980987548828
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 5",
+            "kmh": 70.19841754195701,
+            "position": {
+              "x": -42.20390319824219,
+              "y": 8.550999641418457,
+              "z": 955.661376953125
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 6",
+            "kmh": 72.9529255554741,
+            "position": {
+              "x": 972.3728637695312,
+              "y": 26.551008224487305,
+              "z": 496.6281433105469
+            },
+            "contacts": 4,
+            "lane": 3.2
+          }
+        ]
+      },
+      "seconds": 308.77,
+      "cars": [
+        {
+          "id": "supra",
+          "name": "YOU",
+          "player": true,
+          "place": 5,
+          "finish": 304.84,
+          "metres": 8902,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 3,
+          "plan": null
+        },
+        {
+          "id": "slk",
+          "name": "NOVA",
+          "player": false,
+          "place": 6,
+          "finish": 308.77,
+          "metres": 8902,
+          "lowest": 0.37,
+          "scrapeSeconds": 0.02,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 10.48,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "changing",
+            "reason": "occupied",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 1,
+            "attempts": 20,
+            "aborts": 1,
+            "age": 1.2666666666666646,
+            "tactic": "pace",
+            "boosts": 0,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "mustang",
+          "name": "RAVEN",
+          "player": false,
+          "place": 1,
+          "finish": 289.26,
+          "metres": 8902,
+          "lowest": 0.39,
+          "scrapeSeconds": 0.02,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 0,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 1,
+            "attempts": 1,
+            "aborts": 0,
+            "age": 183.21666666666437,
+            "tactic": "pace",
+            "boosts": 0,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "porsche911",
+          "name": "BLAZE",
+          "player": false,
+          "place": 4,
+          "finish": 301.33,
+          "metres": 8902,
+          "lowest": 0.37,
+          "scrapeSeconds": 0.12,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 17.35,
+          "plan": {
+            "personality": "BLAZE",
+            "style": "직선 강자",
+            "mode": "changing",
+            "reason": "occupied",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 2,
+            "attempts": 15,
+            "aborts": 0,
+            "age": 1.333333333333331,
+            "tactic": "pace",
+            "boosts": 0,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "gtr",
+          "name": "MIST",
+          "player": false,
+          "place": 2,
+          "finish": 292.25,
+          "metres": 8902,
+          "lowest": 0.39,
+          "scrapeSeconds": 0.03,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 9.1,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "passing",
+            "reason": "slow-ahead",
+            "homeLane": 2.2,
+            "targetLane": -2.2,
+            "passes": 1,
+            "attempts": 7,
+            "aborts": 0,
+            "age": 49.74999999999782,
+            "tactic": "pace",
+            "boosts": 0,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "rx7",
+          "name": "LUNA",
+          "player": false,
+          "place": 3,
+          "finish": 294.2,
+          "metres": 8902,
+          "lowest": 0.35,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 0,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "changing",
+            "reason": "overtake",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 0,
+            "attempts": 22,
+            "aborts": 1,
+            "age": 1.6999999999999964,
+            "tactic": "pace",
+            "boosts": 0,
+            "draftSetups": 0
+          }
+        }
+      ],
+      "difficultyId": "easy",
+      "laps": 1,
+      "trafficCount": 6,
+      "minimumUp": 0.9920328611234865
+    },
+    {
+      "track": "yeosu",
+      "raceMode": "grid",
+      "difficulty": "normal",
+      "weather": "clear",
+      "traffic": {
+        "count": 6,
+        "vehicles": [
+          {
+            "name": "TRAFFIC 1",
+            "kmh": 59.32208116110768,
+            "position": {
+              "x": 884.373291015625,
+              "y": 9.303736686706543,
+              "z": -823.1514892578125
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 2",
+            "kmh": 62.0163848830141,
+            "position": {
+              "x": 1327.8585205078125,
+              "y": 8.55099868774414,
+              "z": -326.75384521484375
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 3",
+            "kmh": 64.73981574064838,
+            "position": {
+              "x": 664.109130859375,
+              "y": 8.55099868774414,
+              "z": -18.32732582092285
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 4",
+            "kmh": 67.49174484668939,
+            "position": {
+              "x": -527.0709838867188,
+              "y": 8.55099868774414,
+              "z": 50.89292526245117
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 5",
+            "kmh": 45.30534361066476,
+            "position": {
+              "x": -79.37999725341797,
+              "y": 8.550999641418457,
+              "z": 903.3258666992188
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 6",
+            "kmh": 72.96192194364549,
+            "position": {
+              "x": 949.7935791015625,
+              "y": 26.551008224487305,
+              "z": 582.6856079101562
+            },
+            "contacts": 4,
+            "lane": 3.2
+          }
+        ]
+      },
+      "seconds": 304.38,
+      "cars": [
+        {
+          "id": "supra",
+          "name": "YOU",
+          "player": true,
+          "place": 6,
+          "finish": 304.38,
+          "metres": 8902,
+          "lowest": 0.37,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 13.13,
+          "plan": null
+        },
+        {
+          "id": "slk",
+          "name": "NOVA",
+          "player": false,
+          "place": 2,
+          "finish": 294.13,
+          "metres": 8902,
+          "lowest": 0.36,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 17.39,
+          "draftSeconds": 0,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 3,
+            "attempts": 6,
+            "aborts": 0,
+            "age": 94.33333333335447,
+            "tactic": "finish-attack",
+            "boosts": 24,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "mustang",
+          "name": "RAVEN",
+          "player": false,
+          "place": 5,
+          "finish": 300.59,
+          "metres": 8902,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 18.1,
+          "draftSeconds": 5.46,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "passing",
+            "reason": "slow-ahead",
+            "homeLane": 2.2,
+            "targetLane": -2.2,
+            "passes": 2,
+            "attempts": 18,
+            "aborts": 0,
+            "age": 51.841666666664366,
+            "tactic": "finish-attack",
+            "boosts": 29,
+            "draftSetups": 1
+          }
+        },
+        {
+          "id": "porsche911",
+          "name": "BLAZE",
+          "player": false,
+          "place": 3,
+          "finish": 294.52,
+          "metres": 8902,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 18.79,
+          "draftSeconds": 11.57,
+          "plan": {
+            "personality": "BLAZE",
+            "style": "직선 강자",
+            "mode": "passing",
+            "reason": "stopped-ahead",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 1,
+            "attempts": 17,
+            "aborts": 1,
+            "age": 50.149999999997796,
+            "tactic": "finish-attack",
+            "boosts": 29,
+            "draftSetups": 9
+          }
+        },
+        {
+          "id": "gtr",
+          "name": "MIST",
+          "player": false,
+          "place": 1,
+          "finish": 281.13,
+          "metres": 8902,
+          "lowest": 0.37,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 16.97,
+          "draftSeconds": 3.2,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 1,
+            "attempts": 2,
+            "aborts": 1,
+            "age": 169.2500000000104,
+            "tactic": "finish-attack",
+            "boosts": 19,
+            "draftSetups": 5
+          }
+        },
+        {
+          "id": "rx7",
+          "name": "LUNA",
+          "player": false,
+          "place": 4,
+          "finish": 297.49,
+          "metres": 8902,
+          "lowest": 0.36,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 15.98,
+          "draftSeconds": 3.92,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "changing",
+            "reason": "overtake",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 3,
+            "attempts": 23,
+            "aborts": 1,
+            "age": 0.40833333333333377,
+            "tactic": "finish-attack",
+            "boosts": 30,
+            "draftSetups": 4
+          }
+        }
+      ],
+      "difficultyId": "normal",
+      "laps": 1,
+      "trafficCount": 6,
+      "minimumUp": 0.9920328611234865
+    },
+    {
+      "track": "yeosu",
+      "raceMode": "grid",
+      "difficulty": "normal",
+      "weather": "rain",
+      "traffic": {
+        "count": 6,
+        "vehicles": [
+          {
+            "name": "TRAFFIC 1",
+            "kmh": 59.31798325198427,
+            "position": {
+              "x": 725.63037109375,
+              "y": 8.55099868774414,
+              "z": -972.1180419921875
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 2",
+            "kmh": 61.98958759287427,
+            "position": {
+              "x": 811.0678100585938,
+              "y": 8.55099868774414,
+              "z": 93.46326446533203
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 3",
+            "kmh": 5.0446744715693416e-45,
+            "position": {
+              "x": -186.9351043701172,
+              "y": 8.55099868774414,
+              "z": -45.15144348144531
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 4",
+            "kmh": 67.49807695339099,
+            "position": {
+              "x": 544.8282470703125,
+              "y": 8.55099868774414,
+              "z": 1208.95166015625
+            },
+            "contacts": 4,
+            "lane": 3.2
+          },
+          {
+            "name": "TRAFFIC 5",
+            "kmh": 70.18598283565754,
+            "position": {
+              "x": 1135.0731201171875,
+              "y": 8.55099868774414,
+              "z": -216.63241577148438
+            },
+            "contacts": 4,
+            "lane": -3.2
+          },
+          {
+            "name": "TRAFFIC 6",
+            "kmh": 72.91270143927409,
+            "position": {
+              "x": 1255.52978515625,
+              "y": 8.55101203918457,
+              "z": -403.5933837890625
+            },
+            "contacts": 4,
+            "lane": 3.2
+          }
+        ]
+      },
+      "seconds": 916.34,
+      "cars": [
+        {
+          "id": "supra",
+          "name": "YOU",
+          "player": true,
+          "place": 5,
+          "finish": 893.52,
+          "metres": 26709,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 0,
+          "draftSeconds": 6.62,
+          "plan": null
+        },
+        {
+          "id": "slk",
+          "name": "NOVA",
+          "player": false,
+          "place": 6,
+          "finish": 916.33,
+          "metres": 26709,
+          "lowest": 0.36,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 54.39,
+          "draftSeconds": 0.68,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "follow",
+            "reason": "occupied",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 5,
+            "attempts": 22,
+            "aborts": 1,
+            "age": 98.00000000002406,
+            "tactic": "finish-attack",
+            "boosts": 60,
+            "draftSetups": 1
+          }
+        },
+        {
+          "id": "mustang",
+          "name": "RAVEN",
+          "player": false,
+          "place": 2,
+          "finish": 863.68,
+          "metres": 26709,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 51.05,
+          "draftSeconds": 0.46,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "changing",
+            "reason": "overtake",
+            "homeLane": 2.2,
+            "targetLane": -2.2,
+            "passes": 3,
+            "attempts": 10,
+            "aborts": 0,
+            "age": 0.7666666666666664,
+            "tactic": "finish-attack",
+            "boosts": 73,
+            "draftSetups": 0
+          }
+        },
+        {
+          "id": "porsche911",
+          "name": "BLAZE",
+          "player": false,
+          "place": 3,
+          "finish": 878.22,
+          "metres": 26709,
+          "lowest": 0.37,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 52.44,
+          "draftSeconds": 15.94,
+          "plan": {
+            "personality": "BLAZE",
+            "style": "직선 강자",
+            "mode": "follow",
+            "reason": "cooldown",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 4,
+            "attempts": 23,
+            "aborts": 0,
+            "age": 1.1333333333333317,
+            "tactic": "boost-attack",
+            "boosts": 78,
+            "draftSetups": 13
+          }
+        },
+        {
+          "id": "gtr",
+          "name": "MIST",
+          "player": false,
+          "place": 4,
+          "finish": 881.42,
+          "metres": 26709,
+          "lowest": 0.38,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 52.99,
+          "draftSeconds": 7.95,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "follow",
+            "reason": "cooldown",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 6,
+            "attempts": 17,
+            "aborts": 1,
+            "age": 2.674999999999993,
+            "tactic": "finish-attack",
+            "boosts": 57,
+            "draftSetups": 5
+          }
+        },
+        {
+          "id": "rx7",
+          "name": "LUNA",
+          "player": false,
+          "place": 1,
+          "finish": 845.94,
+          "metres": 26709,
+          "lowest": 0.35,
+          "scrapeSeconds": 0,
+          "offroadSeconds": 0,
+          "offroadAt": null,
+          "boostSeconds": 51.1,
+          "draftSeconds": 11.23,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 6,
+            "attempts": 26,
+            "aborts": 1,
+            "age": 57.81666666666403,
+            "tactic": "finish-attack",
+            "boosts": 78,
+            "draftSetups": 16
+          }
+        }
+      ],
+      "difficultyId": "normal",
+      "laps": 3,
+      "trafficCount": 6,
+      "minimumUp": 0.9920326766041394
+    }
+  ]
+}

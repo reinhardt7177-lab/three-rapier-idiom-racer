@@ -1,0 +1,67 @@
+✔ landscape stage fits tall desktop panes, portrait phones and wide displays without cropping or stretching (5.2715ms)
+✔ touch portrait requires rotation; landscape touch and narrow desktop remain usable (0.6044ms)
+✔ physical viewport rotation clears simultaneous pedals even though the game stage stays landscape (3.6872ms)
+✔ initial portrait or switching from fine pointer to portrait touch blocks controls (0.8939ms)
+✔ fullscreen is requested before the orientation lock, on an explicit user action (1.8279ms)
+✔ denied fullscreen, missing API, denied lock and already fullscreen are handled without a false success (0.7365ms)
+✔ releasing one pedal source preserves another finger or keyboard owner (3.635ms)
+✔ cancelled steering and pedal pointers release independently during simultaneous driving (1.9048ms)
+✔ menu click focus cannot disable ESC; resume rejects a stale held key repeat (1.7905ms)
+✔ typing and Space on menu buttons remain native UI actions (2.0548ms)
+✔ focus or layout clearing releases every control and requires a fresh press (0.6401ms)
+✔ layout detection changes on rotation or touch controls disappearing, not tiny address-bar resize (0.3644ms)
+{ stationaryLeadHits: 0, minimumGap: 6.1914520263671875, rearKmh: 0 }
+{
+  id: 'supra',
+  impacts: 1,
+  maxZ: 27.262197494506836,
+  penetration: 0.005001296137265854,
+  retreat: 20.563620931173496,
+  escapeReverse: false,
+  restartKmh: 7.308076977197555
+}
+{
+  id: 'slk',
+  impacts: 1,
+  maxZ: 27.39307403564453,
+  penetration: 0.005315589619733885,
+  retreat: 31.80414800499261,
+  escapeReverse: false,
+  restartKmh: 7.285221181160444
+}
+{
+  id: 'mustang',
+  impacts: 1,
+  maxZ: 27.050600051879883,
+  penetration: 0.005000290262767493,
+  retreat: 18.324362906897758,
+  escapeReverse: false,
+  restartKmh: 7.219919077910355
+}
+✖ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (679.5227ms)
+✔ AI stops behind a stationary car without impact and follows when it moves (923.7673ms)
+✔ all three cars can drive away and change direction after an oblique wall impact (386.4047ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4517.3903
+
+✖ failing tests:
+
+test at scripts\race-controls.test.mjs:54:1
+✖ holding the touch brake physically stops and stays stopped, while keyboard reverse remains available (679.5227ms)
+  AssertionError [ERR_ASSERTION]: a held brake must never turn into reverse drive
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/race-controls.test.mjs:60:43)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

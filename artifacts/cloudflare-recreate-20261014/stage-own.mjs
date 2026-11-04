@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const target='docs/NEXT_STEPS.md',header='# 현재 우선순위 · 2026-10-14\n\n';
+const section=fs.readFileSync('artifacts/cloudflare-recreate-20261014/next-section.md','utf8').trimEnd()+'\n\n';
+const base=execFileSync('git',['show','HEAD:'+target],{encoding:'utf8'}),current=fs.readFileSync(target,'utf8').replace(/\r\n/g,'\n');
+if(!base.startsWith(header)||!current.startsWith(header)||current.includes(section.trimEnd()))throw Error('Unexpected priority state; stop');
+fs.writeFileSync(target,header+section+current.slice(header.length));
+const blob=execFileSync('git',['hash-object','-w','--stdin'],{input:header+section+base.slice(header.length),encoding:'utf8'}).trim();
+execFileSync('git',['update-index','--cacheinfo','100644',blob,target]);
+console.log('Staged own recreation status; preserved unrelated working-tree paragraph.');

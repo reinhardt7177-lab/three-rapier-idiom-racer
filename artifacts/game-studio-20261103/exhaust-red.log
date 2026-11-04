@@ -1,0 +1,30 @@
+✖ night exhaust scatters dim blue ambient instead of glowing like rear headlights (22.0757ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 245.6451
+
+✖ failing tests:
+
+test at scripts\studio-visuals.test.mjs:9:1
+✖ night exhaust scatters dim blue ambient instead of glowing like rear headlights (22.0757ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(luma(n)<luma(d)*.4&&luma(n)>luma(d)*.2)
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/studio-visuals.test.mjs:14:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

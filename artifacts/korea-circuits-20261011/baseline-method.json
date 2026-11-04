@@ -1,0 +1,13 @@
+{
+  "source": "before/src, missing unchanged dependencies filled from current/src",
+  "diagnosticOnlyAdditions": [
+    "loadingMetrics helper in assets.js",
+    "state.loading",
+    "rendering.pageVisible",
+    "CPU work/physics/render submission timing (same timers as current)"
+  ],
+  "unchangedAssets": true,
+  "baselinePort": 5193,
+  "currentPort": 5192,
+  "excluded": "baseline-app/.gitignore"
+}

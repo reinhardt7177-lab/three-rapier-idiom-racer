@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-04T00:09:37.159Z",
+  "status": "Production deployed; same-deployment UI and server-side official-host route verified. Normal custom-domain browser access on this PC remains unverified due to its 127.0.0.1 DNS result.",
+  "source": "0e477c6a6f396a78d05ac791a413278e02064d50",
+  "production": "dpl_6qAVo9w56dkjFceDaUAGhuAKP1Lv",
+  "readyAtKst": "2026-11-04 08:58:10 KST",
+  "durationSeconds": 17,
+  "verifiedInputs": 231,
+  "allInputHashesMatch": true,
+  "officialServerRoute": {
+    "files": 37,
+    "http200": 37,
+    "exact": 35,
+    "crOnly": 2,
+    "unexplained": 0,
+    "tlsVerified": 37,
+    "remoteBytes": 80127107
+  },
+  "uiSizes": [
+    [
+      1280,
+      720
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      667,
+      375
+    ]
+  ],
+  "console": {
+    "errors": 0,
+    "warnings": 2
+  },
+  "normalOfficialLocalAccess": false,
+  "networkSettingsChanged": false,
+  "mainPrMergeChanged": false,
+  "previousFullCheck": "artifacts/all-course-navigation-20261103/npm-check-minimum-result.json",
+  "releaseRelatedCheck": "artifacts/deploy-navigation-20261104/related-build-result.json"
+}

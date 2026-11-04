@@ -1,0 +1,129 @@
+{
+  "checks": [
+    {
+      "test": "native GAS pointer + keyboard A, then release",
+      "during": {
+        "input": {
+          "boost": false,
+          "brake": 0,
+          "handbrake": false,
+          "reverse": 0,
+          "steer": 0,
+          "throttle": 0
+        },
+        "kmh": 0,
+        "paused": false,
+        "steer": 0
+      },
+      "after": {
+        "input": {
+          "boost": false,
+          "brake": 0,
+          "handbrake": false,
+          "reverse": 0,
+          "steer": 0,
+          "throttle": 0
+        },
+        "kmh": 0,
+        "paused": false,
+        "steer": 0.001980079080844243
+      }
+    },
+    {
+      "test": "native GAS hold 1600ms + release after road recovery",
+      "after": {
+        "input": {
+          "boost": false,
+          "brake": 0,
+          "handbrake": false,
+          "reverse": 0,
+          "steer": 0,
+          "throttle": 0
+        },
+        "kmh": 48,
+        "paused": false,
+        "position": {
+          "x": -126.88055419921876,
+          "y": 8.551011085510254,
+          "z": -29.307764053344727
+        }
+      }
+    },
+    {
+      "test": "menu clears driving input",
+      "after": {
+        "input": {
+          "boost": false,
+          "brake": 0,
+          "handbrake": false,
+          "reverse": 0,
+          "steer": 0,
+          "throttle": 0
+        },
+        "kmh": 47,
+        "paused": true
+      }
+    },
+    {
+      "test": "viewport rotation to portrait clears controls",
+      "after": {
+        "input": {
+          "boost": false,
+          "brake": 0,
+          "handbrake": false,
+          "reverse": 0,
+          "steer": 0,
+          "throttle": 0
+        },
+        "paused": true,
+        "reason": "layout"
+      }
+    }
+  ],
+  "firstPerson": {
+    "buttons": [
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "왼쪽 조향",
+        "width": 57.60000228881836
+      },
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "오른쪽 조향",
+        "width": 57.60000228881836
+      },
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "브레이크",
+        "width": 57.60000228881836
+      },
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "가속",
+        "width": 57.60000228881836
+      },
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "니트로",
+        "width": 57.60000228881836
+      },
+      {
+        "height": 57.60000228881836,
+        "hit": true,
+        "name": "도로로 복귀",
+        "width": 57.60000228881836
+      }
+    ],
+    "camera": "first-person"
+  },
+  "errors": [],
+  "limitations": [
+    "Desktop browser viewport resizing only. No iOS/Android hardware or multi-finger event emulation.",
+    "Native held-input observation resolved after release; simultaneous pointer ownership covered by unit tests."
+  ]
+}

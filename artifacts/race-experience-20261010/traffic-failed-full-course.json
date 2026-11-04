@@ -1,0 +1,161 @@
+[
+  {
+    "id": "supra",
+    "metres": 6842,
+    "finish": 264.2083333333333,
+    "index": 41,
+    "position": {
+      "x": 660.73193359375,
+      "y": 7.691551685333252,
+      "z": -434.05950927734375
+    },
+    "velocity": {
+      "x": -0.00037381271249614656,
+      "y": -0.035760052502155304,
+      "z": -0.0005692992126569152
+    },
+    "contacts": 4,
+    "region": "Harbor",
+    "plan": null
+  },
+  {
+    "id": "slk",
+    "metres": 6842,
+    "finish": 213.39166666666665,
+    "index": 53,
+    "position": {
+      "x": 683.9998779296875,
+      "y": 7.9957990646362305,
+      "z": -411.0247497558594
+    },
+    "velocity": {
+      "x": -0.0004117467615287751,
+      "y": -0.03574788197875023,
+      "z": -0.0007355191046372056
+    },
+    "contacts": 4,
+    "region": "Harbor",
+    "plan": {
+      "mode": "follow",
+      "reason": "following",
+      "homeLane": 2.2,
+      "targetLane": 2.2,
+      "passes": 0,
+      "attempts": 0,
+      "aborts": 0,
+      "age": 213.39999999997025
+    }
+  },
+  {
+    "id": "mustang",
+    "metres": 6842,
+    "finish": 209.09166666666667,
+    "index": 53,
+    "position": {
+      "x": 681.2296142578125,
+      "y": 8.041116714477539,
+      "z": -407.29779052734375
+    },
+    "velocity": {
+      "x": -0.00035536105860956013,
+      "y": -0.03586031496524811,
+      "z": -0.0006383224972523749
+    },
+    "contacts": 4,
+    "region": "Harbor",
+    "plan": {
+      "mode": "follow",
+      "reason": "following",
+      "homeLane": -2.2,
+      "targetLane": -2.2,
+      "passes": 1,
+      "attempts": 1,
+      "aborts": 0,
+      "age": 190.75833333332417
+    }
+  },
+  {
+    "id": "porsche911",
+    "metres": 159,
+    "finish": null,
+    "index": 86,
+    "position": {
+      "x": 712.8404541015625,
+      "y": 8.614876747131348,
+      "z": -327.2137756347656
+    },
+    "velocity": {
+      "x": -0.00009920822049025446,
+      "y": -0.0358164943754673,
+      "z": -0.00030046599567867815
+    },
+    "contacts": 4,
+    "region": "Beach",
+    "plan": {
+      "mode": "changing",
+      "reason": "occupied",
+      "homeLane": 2.2,
+      "targetLane": -2.2,
+      "passes": 0,
+      "attempts": 1,
+      "aborts": 0,
+      "age": 443.94999999976056
+    }
+  },
+  {
+    "id": "gtr",
+    "metres": 6842,
+    "finish": 213.50833333333333,
+    "index": 51,
+    "position": {
+      "x": 681.2691650390625,
+      "y": 7.970717906951904,
+      "z": -414.40521240234375
+    },
+    "velocity": {
+      "x": -0.0003905768389813602,
+      "y": -0.035762667655944824,
+      "z": -0.0006636505131609738
+    },
+    "contacts": 4,
+    "region": "Harbor",
+    "plan": {
+      "mode": "passing",
+      "reason": "airborne",
+      "homeLane": -2.2,
+      "targetLane": 2.2,
+      "passes": 1,
+      "attempts": 2,
+      "aborts": 0,
+      "age": 175.5916666666713
+    }
+  },
+  {
+    "id": "rx7",
+    "metres": 156,
+    "finish": null,
+    "index": 85,
+    "position": {
+      "x": 712.6514282226562,
+      "y": 8.581957817077637,
+      "z": -331.75421142578125
+    },
+    "velocity": {
+      "x": -0.00009874216630123556,
+      "y": -0.03581242635846138,
+      "z": -0.0002899729588534683
+    },
+    "contacts": 4,
+    "region": "Beach",
+    "plan": {
+      "mode": "aborting",
+      "reason": "occupied",
+      "homeLane": 2.2,
+      "targetLane": 2.2,
+      "passes": 0,
+      "attempts": 1,
+      "aborts": 1,
+      "age": 445.40833333309257
+    }
+  }
+]

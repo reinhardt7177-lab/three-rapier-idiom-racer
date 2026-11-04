@@ -1,0 +1,11 @@
+import fs from 'node:fs';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';import * as T from 'three';
+const root=new URL('../../../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root));
+const bytes=read('public/assets/rebuild/yeosu-roadscape.glb'),{scene}=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');scene.updateMatrixWorld(true);
+const route=JSON.parse(read('public/assets/rebuild/yeosu-route.json')).points;
+const groups=new Map();let ground=0;scene.traverse(m=>{if(!m.isMesh||!m.userData.roadscapeFoundation)return;ground++;const p=m.geometry.attributes.position,ix=m.geometry.index,seen=new Set();for(let i=0;i<ix.count;i+=3){let a=[0,1,2].map(k=>new T.Vector3().fromBufferAttribute(p,ix.getX(i+k)).applyMatrix4(m.matrixWorld));if(Math.max(...a.map(v=>v.y))-Math.min(...a.map(v=>v.y))<7)continue;let vertical=Math.max(...a.map(v=>v.x))-Math.min(...a.map(v=>v.x))<.01,constant=a[0][vertical?'x':'z'],vary=a.map(v=>v[vertical?'z':'x']),lo=Math.min(...vary),hi=Math.max(...vary),key=[vertical,constant,lo,hi].join(',');if(seen.has(key))continue;seen.add(key);const norm=new T.Vector3().subVectors(a[1],a[0]).cross(new T.Vector3().subVectors(a[2],a[0]));const sign=Math.sign(norm[vertical?'x':'z']);const g=[m.name,vertical,constant,sign].join('|');if(!groups.has(g))groups.set(g,[]);const cx=vertical?constant:(lo+hi)/2,cz=vertical?(lo+hi)/2:constant;const clear=Math.min(...route.map(r=>Math.hypot(r.x-cx,r.z-cz)-r.roadWidth/2));groups.get(g).push({lo,hi,clear});}});
+let original=0,merged=0,roadEdges=0;
+for(const list of groups.values()){list.sort((a,b)=>a.lo-b.lo);let start=-Infinity,end=-Infinity;for(const p of list){original++;if(p.clear<12)roadEdges++;if(Math.abs(p.lo-end)<.001&&p.hi-start<=32){end=p.hi;}else{merged++;start=p.lo;end=p.hi;}}}
+const result={bytes:bytes.length,groundMeshes:ground,originalQuads:original,merged32mQuads:merged,removedByMerge:original-merged,roadCutQuadsUnder12mClearance:roadEdges,
+ lowerBoundBytesSavedPerRemovedQuad:24,conservativeMergeOutputBytes:bytes.length-(original-merged)*24,
+ conservativeCombinedBytes:bytes.length-roadEdges*24};
+fs.writeFileSync(new URL('artifacts/roadscape-20261013/yeosu/land-budget-analysis.json',root),JSON.stringify(result,null,2));console.log(JSON.stringify(result));

@@ -1,0 +1,123 @@
+{
+  id: 'supra',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 844.8607788085938,
+  distance: 844.7932281494141
+}
+{
+  id: 'slk',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 765.2173974609376,
+  distance: 765.1571350097656
+}
+{
+  id: 'mustang',
+  groundedHeave: 0,
+  rolling: 840.7089739372468,
+  distance: 840.6544036865234
+}
+{
+  id: 'porsche911',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 854.0896362304687,
+  distance: 854.0217132568359
+}
+{
+  id: 'gtr',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 861.81134765625,
+  distance: 861.7566528320312
+}
+{
+  id: 'rx7',
+  groundedHeave: 4.172325134277344e-7,
+  rolling: 876.3626989746094,
+  distance: 876.2820434570312
+}
+{
+  id: 'm3',
+  groundedHeave: 0,
+  rolling: 816.6609045410156,
+  distance: 816.5952758789062
+}
+{
+  id: 'huracan',
+  groundedHeave: 4.76837158203125e-7,
+  rolling: 974.0006103515624,
+  distance: 973.9185791015625
+}
+✔ eight distinct authored cars, editable Blender sources, physical tuning and exhaust hardpoints (30.7301ms)
+✔ GR Supra: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (572.0422ms)
+✔ SLK Roadster: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (435.9035ms)
+✔ Mustang GT: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (235.5112ms)
+✔ Porsche 911: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (238.3048ms)
+✔ Nissan GT-R: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (192.2191ms)
+✔ Mazda RX-7: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (157.5401ms)
+✔ BMW M3: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (178.957ms)
+✔ Lamborghini Huracán: no grounded pitch/roll/heave at high speed, tyre distance and braking remain physical (219.6578ms)
+✔ banked uphill support follows real road grade without releasing stability as vertical speed rises (99.2947ms)
+✔ separate architecture export preserves original Blender, world, route and physical fixtures byte for byte (94.3977ms)
+✔ actual visual asset matches its output report, remains bounded and contains no hidden physics (144.7313ms)
+✔ exported crown and basin use Y up and reservoir walkway faces point outward from the closed solid (30.119ms)
+✔ architecture occupies none of the sampled vehicle height space across every route point and eight lanes (1095.8478ms)
+✔ real architecture keeps its bounded layer through batching, hides by world/quality/distance and restores visibility (17.6003ms)
+✔ quality uses the object boundary distance, including switching back after low mode (1.3342ms)
+✔ controller owns no asset resources; terminal scene cleanup releases every shared material and geometry exactly once (12.4685ms)
+✔ QR decodes to the exact coastal room invitation (180.9529ms)
+✔ QR decodes to the exact namak room invitation (38.2008ms)
+✔ QR decodes to the exact yeosu room invitation (41.2308ms)
+✔ QR decodes to the exact seongsamjae room invitation (25.3066ms)
+✔ QR supports local/subdirectory invitations and canonical Unicode URL paths (48.0355ms)
+✔ QR has a clear four-module border on every side (5.0218ms)
+✔ a new room produces a new readable QR without reusing the previous token (19.9104ms)
+✔ invalid, missing and unsafe invitation URLs show a fallback instead of a broken QR (0.6177ms)
+✔ online is a real selectable mode; host and guest each see themselves first on distinct grid slots (5.959ms)
+✔ online pedals clamp unsafe values and stale or reordered packets cannot leave throttle held (0.8263ms)
+✔ invites preserve the chosen course and discard developer QA flags (0.676ms)
+✔ a room requires two real peers ready and prepared before either race starts (119.6098ms)
+✔ the guest sends pedals, while shared pause/resume clears them and a rematch resets both ready flags (166.2495ms)
+✔ a third player is rejected without replacing either participant, and disconnect never invents a finish (91.0441ms)
+✔ a different track revision cannot join the room (46.1378ms)
+✔ online personal bests are isolated from AI practice and medals (1.7194ms)
+✔ losing the broker socket preserves an established real data channel and its ready/start flow (135.0058ms)
+✔ a compact actual Rapier snapshot is valid, preserves exact finish times and never mutates physics (272.0732ms)
+✔ malformed frame transforms, incomplete wheels and impossible quaternions are rejected (0.9488ms)
+✔ an open data channel without hello cannot occupy a room indefinitely (51.8638ms)
+✔ preparation times out even while the remote peer keeps answering pings (98.2438ms)
+✔ successful ready barrier cancels the preparation deadline and starts each side once (90.7206ms)
+✔ a preparation exception or rejected async task aborts both clients without starting (227.8803ms)
+✔ a congested control channel cannot silently start only one player (96.3622ms)
+✔ previous-race pause, lobby and recovery controls cannot affect a rematch (203.5997ms)
+✔ guest ignores old host controls and go before its renderer is prepared (122.0694ms)
+✔ pause rejects held guest pedals; resume requires a newer sequence instead of replaying a queued input (212.4948ms)
+✔ invalid race config and missing room values never strand players in preparation (62.7059ms)
+✔ the unchanged eight-second response watchdog aborts instead of assigning a fictitious victory (99.3669ms)
+✔ a late peer factory result cannot resurrect a timed-out connection or leak its room (14.0756ms)
+✔ roadside cells retain near bounds, respect tiers, and low quality adds no draws (6.5466ms)
+✔ garage hides the extension and visibility changes do not alter transforms or shared resources (5.7768ms)
+✔ absent extensions and originally hidden art stay hidden (0.9295ms)
+✔ ground supporting distant buildings survives decoration culling and low quality (0.5473ms)
+✔ mountain roadscape is an editable <=3MB visual-only spatial asset with shared opaque material (26.3991ms)
+✔ every mountain scenery triangle keeps all route segments and +/-7m driving lanes clear (1065.0209ms)
+✔ rock skirts, rail posts and deck piers use actual original terrain elevations (304.8941ms)
+✔ mountain asset contains rock cuts, readable hairpin furniture and supported summit viewing deck (0.6246ms)
+✔ every bedding seam stays on an actual exported rock edge, including tapered cutting ends (191.1821ms)
+✔ all exported chevrons point into the real turn when viewed by an approaching driver (97.7868ms)
+{"roadscape":"yeosu","triangleSegmentPairs":1637698,"minimumAsphaltEdgeClearance":1.2002791916411475}
+{"existingBuildings":360,"supported":360,"unsupported":[]}
+✔ Yeosu corrected scene is within separate 3 MB decoration + 2 MB ground budgets, without textures/lights (25.1909ms)
+✔ ground fix preserves all already-validated decorative geometry byte for byte (41.8793ms)
+✔ source world, route, original Blender and map bytes are preserved (48.3899ms)
+✔ all new scene nodes are visual-only, identity-aligned and spatially grouped (4.5537ms)
+✔ every triangle clears every road segment by full asphalt half-width + 1 m, including flyovers (2850.0559ms)
+✔ both bridge structures and real OSM quay foundation, walkway and mooring details exist (0.5102ms)
+✔ Hamel red lighthouse uses official coordinates and 10 m above its platform, with supported base (17.5645ms)
+✔ OSM coastline ground supports all original building centers without new colliders (791.3873ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11076.7856

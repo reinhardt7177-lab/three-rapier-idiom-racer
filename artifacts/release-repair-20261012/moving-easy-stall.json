@@ -1,0 +1,2984 @@
+{
+  "execution": "Local CPU diagnostic",
+  "wallSeconds": 106.19307509999999,
+  "result": {
+    "track": "yeosu",
+    "raceMode": "grid",
+    "difficulty": "easy",
+    "weather": "clear",
+    "traffic": {
+      "count": 6,
+      "vehicles": [
+        {
+          "name": "TRAFFIC 1",
+          "kmh": 59.253238768191494,
+          "position": {
+            "x": 1474.749267578125,
+            "y": 8.55099868774414,
+            "z": -204.84912109375
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 2",
+          "kmh": 62.0759114735855,
+          "position": {
+            "x": 238.27952575683594,
+            "y": 8.550999641418457,
+            "z": 166.08316040039062
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 3",
+          "kmh": 7.13424705545069e-45,
+          "position": {
+            "x": -181.8778839111328,
+            "y": 8.55099868774414,
+            "z": -44.33513259887695
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 4",
+          "kmh": 67.47061105203537,
+          "position": {
+            "x": 544.6754760742188,
+            "y": 8.55099868774414,
+            "z": 1208.8509521484375
+          },
+          "contacts": 4,
+          "lane": 3.2
+        },
+        {
+          "name": "TRAFFIC 5",
+          "kmh": 73.32746232912196,
+          "position": {
+            "x": 1100.9364013671875,
+            "y": 9.060812950134277,
+            "z": 72.65779876708984
+          },
+          "contacts": 4,
+          "lane": -3.2
+        },
+        {
+          "name": "TRAFFIC 6",
+          "kmh": 72.93823364424163,
+          "position": {
+            "x": 872.0252685546875,
+            "y": 8.551011085510254,
+            "z": -806.2889404296875
+          },
+          "contacts": 4,
+          "lane": 3.2
+        }
+      ]
+    },
+    "seconds": 420,
+    "cars": [
+      {
+        "id": "supra",
+        "name": "YOU",
+        "player": true,
+        "place": 5,
+        "finish": 378.98,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0,
+        "plan": null
+      },
+      {
+        "id": "slk",
+        "name": "NOVA",
+        "player": false,
+        "place": 4,
+        "finish": 307.61,
+        "metres": 8902,
+        "lowest": 0.38,
+        "scrapeSeconds": 0.02,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0.01,
+        "plan": {
+          "personality": "NOVA",
+          "style": "코너 강자",
+          "mode": "changing",
+          "reason": "occupied",
+          "homeLane": -2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 10,
+          "aborts": 0,
+          "age": 0.9416666666666658
+        }
+      },
+      {
+        "id": "mustang",
+        "name": "RAVEN",
+        "player": false,
+        "place": 1,
+        "finish": 289.26,
+        "metres": 8902,
+        "lowest": 0.39,
+        "scrapeSeconds": 0.02,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "RAVEN",
+          "style": "공격형",
+          "mode": "follow",
+          "reason": "following",
+          "homeLane": 2.2,
+          "targetLane": 2.2,
+          "passes": 1,
+          "attempts": 1,
+          "aborts": 0,
+          "age": 183.21666666666437
+        }
+      },
+      {
+        "id": "porsche911",
+        "name": "BLAZE",
+        "player": false,
+        "place": 6,
+        "finish": null,
+        "metres": 7133,
+        "lowest": 0.41,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 8.53,
+        "plan": {
+          "personality": "BLAZE",
+          "style": "직선 강자",
+          "mode": "follow",
+          "reason": "following",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 1,
+          "attempts": 6,
+          "aborts": 0,
+          "age": 26.033333333332497
+        }
+      },
+      {
+        "id": "gtr",
+        "name": "MIST",
+        "player": false,
+        "place": 3,
+        "finish": 294.1,
+        "metres": 8902,
+        "lowest": 0.39,
+        "scrapeSeconds": 0.03,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 10.34,
+        "plan": {
+          "personality": "MIST",
+          "style": "수비형",
+          "mode": "changing",
+          "reason": "overtake",
+          "homeLane": 2.2,
+          "targetLane": -2.2,
+          "passes": 2,
+          "attempts": 11,
+          "aborts": 0,
+          "age": 2.2249999999999948
+        }
+      },
+      {
+        "id": "rx7",
+        "name": "LUNA",
+        "player": false,
+        "place": 2,
+        "finish": 291.73,
+        "metres": 8902,
+        "lowest": 0.36,
+        "scrapeSeconds": 0,
+        "offroadSeconds": 0,
+        "offroadAt": null,
+        "boostSeconds": 0,
+        "draftSeconds": 0,
+        "plan": {
+          "personality": "LUNA",
+          "style": "균형형",
+          "mode": "passing",
+          "reason": "overtake",
+          "homeLane": -2.2,
+          "targetLane": -2.2,
+          "passes": 1,
+          "attempts": 15,
+          "aborts": 0,
+          "age": 0.6833333333333333
+        }
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "time": 0,
+      "metres": -11.997693971857856,
+      "index": 19,
+      "position": {
+        "x": -122.60778045654297,
+        "y": 8.530617713928223,
+        "z": -32.95330047607422
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0.24865864217281342,
+        "z": 0
+      },
+      "kmh": 0,
+      "drive": 0,
+      "brake": 1,
+      "steer": 0.00018054852449681113,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "follow",
+        "reason": "occupied",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 0,
+        "aborts": 0,
+        "age": 0.008333333333333333
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "YOU",
+          "finish": null,
+          "index": 13,
+          "position": {
+            "x": -111.5881576538086,
+            "y": 8.530617713928223,
+            "z": -26.48969268798828
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0.24865864217281342,
+            "z": 0
+          },
+          "kmh": 0,
+          "lane": 2.244161761753938,
+          "along": -11.977468315152535,
+          "plan": null
+        },
+        {
+          "name": "NOVA",
+          "finish": null,
+          "index": 25,
+          "position": {
+            "x": -134.42544555664062,
+            "y": 8.521627426147461,
+            "z": -35.035396575927734
+          },
+          "velocity": {
+            "x": -0.0034990825224667788,
+            "y": 0.23480305075645447,
+            "z": -0.0006160644697956741
+          },
+          "kmh": 0.012790447862858564,
+          "lane": -2.1906193173001602,
+          "along": 11.999676854321779,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 0.008333333333333333
+          }
+        },
+        {
+          "name": "RAVEN",
+          "finish": null,
+          "index": 25,
+          "position": {
+            "x": -135.18838500976562,
+            "y": 8.54399299621582,
+            "z": -30.70204734802246
+          },
+          "velocity": {
+            "x": -0.0035008974373340607,
+            "y": 0.2708614766597748,
+            "z": -0.000616384029854089
+          },
+          "kmh": 0.012797082062772278,
+          "lane": 2.209378004638314,
+          "along": 11.995713641463384,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 0.008333333333333333
+          }
+        },
+        {
+          "name": "MIST",
+          "finish": null,
+          "index": 19,
+          "position": {
+            "x": -123.37462615966797,
+            "y": 8.539533615112305,
+            "z": -28.620641708374023
+          },
+          "velocity": {
+            "x": 2.802596928649634e-45,
+            "y": 0.2634769380092621,
+            "z": -1.401298464324817e-45
+          },
+          "kmh": 1.128023504278688e-44,
+          "lane": 2.19999919273942,
+          "along": 0.000003589827910044363,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "follow",
+            "reason": "occupied",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 0.008333333333333333
+          }
+        },
+        {
+          "name": "LUNA",
+          "finish": null,
+          "index": 13,
+          "position": {
+            "x": -110.78176879882812,
+            "y": 8.50639820098877,
+            "z": -30.815168380737305
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0.3732281029224396,
+            "z": 0
+          },
+          "kmh": 0,
+          "lane": -2.155654989082796,
+          "along": -12.017661760586318,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "follow",
+            "reason": "occupied",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 0.008333333333333333
+          }
+        }
+      ]
+    },
+    {
+      "time": 10,
+      "metres": 235.9546481132045,
+      "index": 143,
+      "position": {
+        "x": -369.7185974121094,
+        "y": 8.550999641418457,
+        "z": -54.93284225463867
+      },
+      "velocity": {
+        "x": -39.154563903808594,
+        "y": -0.03571631759405136,
+        "z": -3.8195719718933105
+      },
+      "kmh": 141.62552841530697,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.00392135548735408,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "changing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 2,
+        "aborts": 0,
+        "age": 1.0416666666666654
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "NOVA",
+          "finish": null,
+          "index": 154,
+          "position": {
+            "x": -391.5833435058594,
+            "y": 8.541000366210938,
+            "z": -57.3833122253418
+          },
+          "velocity": {
+            "x": -41.87138366699219,
+            "y": -0.03572259470820427,
+            "z": -2.1765050888061523
+          },
+          "kmh": 150.94048920646566,
+          "lane": -2.197974930687396,
+          "along": 21.962388230217783,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "follow",
+            "reason": "curve",
+            "homeLane": -2.2,
+            "targetLane": -2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 10.008333333333406
+          }
+        },
+        {
+          "name": "RAVEN",
+          "finish": null,
+          "index": 166,
+          "position": {
+            "x": -416.3494567871094,
+            "y": 8.565999984741211,
+            "z": -54.26416015625
+          },
+          "velocity": {
+            "x": -43.2506103515625,
+            "y": -0.035719264298677444,
+            "z": -2.2471773624420166
+          },
+          "kmh": 155.91221799582357,
+          "lane": 2.2010275428816652,
+          "along": 46.53347395973655,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 10.008333333333406
+          }
+        },
+        {
+          "name": "MIST",
+          "finish": null,
+          "index": 156,
+          "position": {
+            "x": -395.286865234375,
+            "y": 8.560999870300293,
+            "z": -53.169212341308594
+          },
+          "velocity": {
+            "x": -44.78412628173828,
+            "y": -0.03571828454732895,
+            "z": -2.329225540161133
+          },
+          "kmh": 161.4407650791015,
+          "lane": 2.2024732038427146,
+          "along": 25.44244099440204,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "follow",
+            "reason": "curve",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 10.008333333333406
+          }
+        },
+        {
+          "name": "LUNA",
+          "finish": null,
+          "index": 96,
+          "position": {
+            "x": -275.81573486328125,
+            "y": 8.53600025177002,
+            "z": -50.07320022583008
+          },
+          "velocity": {
+            "x": -28.400100708007812,
+            "y": -0.035721588879823685,
+            "z": 2.0756373405456543
+          },
+          "kmh": 102.51305730541898,
+          "lane": -0.8998831441883355,
+          "along": -94.02852480171053,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "changing",
+            "reason": "overtake",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 4,
+            "aborts": 0,
+            "age": 0.41666666666666713
+          }
+        },
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 200,
+          "position": {
+            "x": -482.5422668457031,
+            "y": 8.550999641418457,
+            "z": -63.17252731323242
+          },
+          "velocity": {
+            "x": -16.394838333129883,
+            "y": -0.03571630269289017,
+            "z": -0.9107425212860107
+          },
+          "kmh": 59.112413922861265,
+          "lane": -3.2634680865508994,
+          "along": 113.09912874035585,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 20,
+      "metres": 455.9123709305985,
+      "index": 253,
+      "position": {
+        "x": -529.7849731445312,
+        "y": 8.550999641418457,
+        "z": 9.04659366607666
+      },
+      "velocity": {
+        "x": -1.3231524229049683,
+        "y": -0.03571631759405136,
+        "z": 17.226009368896484
+      },
+      "kmh": 62.19630422465368,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.002533464616141261,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "changing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 2.7083333333333264
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "YOU",
+          "finish": null,
+          "index": 208,
+          "position": {
+            "x": -498.33575439453125,
+            "y": 8.550999641418457,
+            "z": -62.39076614379883
+          },
+          "velocity": {
+            "x": -12.528024673461914,
+            "y": -0.03571630269289017,
+            "z": 0.735694944858551
+          },
+          "kmh": 45.17858712431214,
+          "lane": 25.723877234796923,
+          "along": -73.05884741256392,
+          "plan": null
+        },
+        {
+          "name": "NOVA",
+          "finish": null,
+          "index": 281,
+          "position": {
+            "x": -528.9767456054688,
+            "y": 8.541000366210938,
+            "z": 65.41671752929688
+          },
+          "velocity": {
+            "x": -1.5818132162094116,
+            "y": -0.03572259470820427,
+            "z": 29.514423370361328
+          },
+          "kmh": 106.40441262640068,
+          "lane": 2.1582602993432634,
+          "along": 56.24035955982563,
+          "plan": {
+            "personality": "NOVA",
+            "style": "코너 강자",
+            "mode": "passing",
+            "reason": "slow-ahead",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 1,
+            "aborts": 0,
+            "age": 2.291666666666661
+          }
+        },
+        {
+          "name": "RAVEN",
+          "finish": null,
+          "index": 320,
+          "position": {
+            "x": -532.9764404296875,
+            "y": 8.565999984741211,
+            "z": 143.0989227294922
+          },
+          "velocity": {
+            "x": -1.7752429246902466,
+            "y": -0.035719264298677444,
+            "z": 41.97282028198242
+          },
+          "kmh": 151.23724383581495,
+          "lane": 2.4368900641107665,
+          "along": 134.02496554909783,
+          "plan": {
+            "personality": "RAVEN",
+            "style": "공격형",
+            "mode": "follow",
+            "reason": "following",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 0,
+            "aborts": 0,
+            "age": 20.00833333333284
+          }
+        },
+        {
+          "name": "MIST",
+          "finish": null,
+          "index": 291,
+          "position": {
+            "x": -533.4745483398438,
+            "y": 8.560999870300293,
+            "z": 85.5137710571289
+          },
+          "velocity": {
+            "x": -1.8409327268600464,
+            "y": -0.03571828454732895,
+            "z": 33.46200942993164
+          },
+          "kmh": 120.64540026367277,
+          "lane": -1.2274619146029861,
+          "along": 76.55436150498375,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "passing",
+            "reason": "yield-rear",
+            "homeLane": 2.2,
+            "targetLane": -1.2267830185910142,
+            "passes": 0,
+            "attempts": 1,
+            "aborts": 0,
+            "age": 2.499999999999994
+          }
+        },
+        {
+          "name": "LUNA",
+          "finish": null,
+          "index": 231,
+          "position": {
+            "x": -520.4304809570312,
+            "y": 8.53600025177002,
+            "z": -33.58572769165039
+          },
+          "velocity": {
+            "x": -3.501819610595703,
+            "y": -0.03572159260511398,
+            "z": 17.859477996826172
+          },
+          "kmh": 65.51838738826949,
+          "lane": 5.24677471202355,
+          "along": -43.08226564657164,
+          "plan": {
+            "personality": "LUNA",
+            "style": "균형형",
+            "mode": "passing",
+            "reason": "slow-ahead",
+            "homeLane": -2.2,
+            "targetLane": 2.2,
+            "passes": 0,
+            "attempts": 4,
+            "aborts": 0,
+            "age": 8.12500000000018
+          }
+        },
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 257,
+          "position": {
+            "x": -531.4359130859375,
+            "y": 8.550999641418457,
+            "z": 17.17256736755371
+          },
+          "velocity": {
+            "x": -1.0971513986587524,
+            "y": -0.03571630269289017,
+            "z": 16.43549919128418
+          },
+          "kmh": 59.29948311885469,
+          "lane": -2.9504582398412817,
+          "along": 8.204471679895585,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 30,
+      "metres": 619.8808552126559,
+      "index": 335,
+      "position": {
+        "x": -538.6105346679688,
+        "y": 8.550999641418457,
+        "z": 173.8314208984375
+      },
+      "velocity": {
+        "x": -0.593710720539093,
+        "y": -0.03571631759405136,
+        "z": 16.452640533447266
+      },
+      "kmh": 59.268057782712894,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.0002655406148459081,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 9.791666666666751
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "YOU",
+          "finish": null,
+          "index": 316,
+          "position": {
+            "x": -532.71044921875,
+            "y": 8.550999641418457,
+            "z": 136.2837371826172
+          },
+          "velocity": {
+            "x": -1.6041377782821655,
+            "y": -0.03571630269289017,
+            "z": 37.47038650512695
+          },
+          "kmh": 135.01694883311816,
+          "lane": 2.5042725513098287,
+          "along": -37.72353407931207,
+          "plan": null
+        },
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 339,
+          "position": {
+            "x": -539.8911743164062,
+            "y": 8.550999641418457,
+            "z": 181.68846130371094
+          },
+          "velocity": {
+            "x": -0.581180214881897,
+            "y": -0.03571630269289017,
+            "z": 16.479459762573242
+          },
+          "kmh": 59.362937292804105,
+          "lane": -3.158514955301696,
+          "along": 7.895372342211313,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 40,
+      "metres": 785.8489551566896,
+      "index": 418,
+      "position": {
+        "x": -550.0606689453125,
+        "y": 8.550999641418457,
+        "z": 338.1545104980469
+      },
+      "velocity": {
+        "x": -2.6723010540008545,
+        "y": -0.03571631759405136,
+        "z": 16.254974365234375
+      },
+      "kmh": 59.30341797576109,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.011926405997705291,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 19.791666666666185
+      },
+      "pace": 0.99,
+      "availableSpeed": 104.05611246203927,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 422,
+          "position": {
+            "x": -552.502197265625,
+            "y": 8.550999641418457,
+            "z": 345.820556640625
+          },
+          "velocity": {
+            "x": -3.3432791233062744,
+            "y": -0.03571630269289017,
+            "z": 16.128999710083008
+          },
+          "kmh": 59.29869327731216,
+          "lane": -4.372893268590723,
+          "along": 7.902910634521641,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 50,
+      "metres": 949.817439438747,
+      "index": 500,
+      "position": {
+        "x": -599.53564453125,
+        "y": 8.550999641418457,
+        "z": 495.2323303222656
+      },
+      "velocity": {
+        "x": -5.298387050628662,
+        "y": -0.03571631759405136,
+        "z": 15.58749008178711
+      },
+      "kmh": 59.26815393573121,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 29.791666666665616
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 504,
+          "position": {
+            "x": -603.0803833007812,
+            "y": 8.550999641418457,
+            "z": 502.54779052734375
+          },
+          "velocity": {
+            "x": -5.30799674987793,
+            "y": -0.03571630269289017,
+            "z": 15.60654354095459
+          },
+          "kmh": 59.34423172533151,
+          "lane": -3.210795896311973,
+          "along": 8.06777394659446,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 60,
+      "metres": 1113.7859237208045,
+      "index": 582,
+      "position": {
+        "x": -644.5302734375,
+        "y": 8.550999641418457,
+        "z": 652.3302612304688
+      },
+      "velocity": {
+        "x": -0.15206919610500336,
+        "y": -0.03571631759405136,
+        "z": 15.349349021911621
+      },
+      "kmh": 55.260368258470265,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.020020424816098514,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 39.79166666666505
+      },
+      "pace": 0.99,
+      "availableSpeed": 89.87386516145386,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 586,
+          "position": {
+            "x": -645.3414916992188,
+            "y": 8.550999641418457,
+            "z": 659.9398193359375
+          },
+          "velocity": {
+            "x": 0.8705238699913025,
+            "y": -0.03571630269289017,
+            "z": 15.193568229675293
+          },
+          "kmh": 54.78655092775944,
+          "lane": -1.1115348561736424,
+          "along": 7.637399072947146,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 70,
+      "metres": 1273.755176678909,
+      "index": 662,
+      "position": {
+        "x": -586.1383056640625,
+        "y": 8.550999641418457,
+        "z": 797.677734375
+      },
+      "velocity": {
+        "x": 3.2903473377227783,
+        "y": -0.03571631759405136,
+        "z": 11.89450740814209
+      },
+      "kmh": 44.428389228333224,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.034121637152157984,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 49.79166666666448
+      },
+      "pace": 0.99,
+      "availableSpeed": 62.51781430380308,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 665,
+          "position": {
+            "x": -585.6082763671875,
+            "y": 8.550999641418457,
+            "z": 804.8223266601562
+          },
+          "velocity": {
+            "x": 1.988935947418213,
+            "y": -0.03571630269289017,
+            "z": 12.008487701416016
+          },
+          "kmh": 43.81950449618044,
+          "lane": -5.630977020971235,
+          "along": 6.931289227906097,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 80,
+      "metres": 1377.7351911016772,
+      "index": 714,
+      "position": {
+        "x": -554.372802734375,
+        "y": 8.550999641418457,
+        "z": 876.1275634765625
+      },
+      "velocity": {
+        "x": 16.187772750854492,
+        "y": -0.03571631759405136,
+        "z": 2.8958637714385986
+      },
+      "kmh": 59.201123101372396,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.016277054638119882,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 59.791666666663914
+      },
+      "pace": 0.99,
+      "availableSpeed": 125.02441369323627,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 718,
+          "position": {
+            "x": -546.7998657226562,
+            "y": 8.550999641418457,
+            "z": 878.427490234375
+          },
+          "velocity": {
+            "x": 16.3443660736084,
+            "y": -0.03571630269289017,
+            "z": 2.1671364307403564
+          },
+          "kmh": 59.35468627869261,
+          "lane": -1.2477500096627474,
+          "along": 7.711468260847938,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 90,
+      "metres": 1541.7036753837347,
+      "index": 796,
+      "position": {
+        "x": -389.9073486328125,
+        "y": 8.550999641418457,
+        "z": 885.8099365234375
+      },
+      "velocity": {
+        "x": 16.46795082092285,
+        "y": -0.03571631759405136,
+        "z": 0.6743382215499878
+      },
+      "kmh": 59.33430581168709,
+      "drive": 1,
+      "brake": 0,
+      "steer": -0.00008374282343540824,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 69.79166666666828
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 800,
+          "position": {
+            "x": -382.3280944824219,
+            "y": 8.550999641418457,
+            "z": 887.1228637695312
+          },
+          "velocity": {
+            "x": 16.45778465270996,
+            "y": -0.03571630269289017,
+            "z": 0.6735311150550842
+          },
+          "kmh": 59.29761938812959,
+          "lane": -3.2022439750949614,
+          "along": 7.626736038050103,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 100,
+      "metres": 1707.6717753277683,
+      "index": 879,
+      "position": {
+        "x": -225.20904541015625,
+        "y": 8.550999641418457,
+        "z": 892.5753784179688
+      },
+      "velocity": {
+        "x": 16.47092628479004,
+        "y": -0.03571631759405136,
+        "z": 0.6737379431724548
+      },
+      "kmh": 59.34492015342128,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 79.79166666667624
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 882,
+          "position": {
+            "x": -217.73147583007812,
+            "y": 8.550999641418457,
+            "z": 893.8812255859375
+          },
+          "velocity": {
+            "x": 16.475126266479492,
+            "y": -0.03571630269289017,
+            "z": 0.6749463081359863
+          },
+          "kmh": 59.36020536250194,
+          "lane": -3.2023615840746675,
+          "along": 7.524846614091521,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 110,
+      "metres": 1859.642565637968,
+      "index": 955,
+      "position": {
+        "x": -74.46273803710938,
+        "y": 8.550999641418457,
+        "z": 903.9639282226562
+      },
+      "velocity": {
+        "x": 8.498786926269531,
+        "y": -0.03571631759405136,
+        "z": 4.177835941314697
+      },
+      "kmh": 34.09253075270144,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.06919146931621671,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 89.7916666666842
+      },
+      "pace": 0.99,
+      "availableSpeed": 48.05880106603845,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 959,
+          "position": {
+            "x": -68.50098419189453,
+            "y": 8.550999641418457,
+            "z": 908.8427734375
+          },
+          "velocity": {
+            "x": 7.595062255859375,
+            "y": -0.03571630269289017,
+            "z": 5.754638195037842
+          },
+          "kmh": 34.30420929395019,
+          "lane": -6.968536063662032,
+          "along": 7.309072519620841,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 120,
+      "metres": 2013.6129716101436,
+      "index": 1032,
+      "position": {
+        "x": 3.9645471572875977,
+        "y": 8.550999641418457,
+        "z": 1028.4039306640625
+      },
+      "velocity": {
+        "x": 12.546897888183594,
+        "y": -0.03571631759405136,
+        "z": 10.642217636108398
+      },
+      "kmh": 59.228637491396015,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.019146241882379608,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 99.79166666669215
+      },
+      "pace": 0.99,
+      "availableSpeed": 78.45321889259219,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1036,
+          "position": {
+            "x": 10.05341625213623,
+            "y": 8.550999641418457,
+            "z": 1034.517822265625
+          },
+          "velocity": {
+            "x": 13.151559829711914,
+            "y": -0.03571630269289017,
+            "z": 9.897428512573242
+          },
+          "kmh": 59.255017659462645,
+          "lane": -1.053897158980332,
+          "along": 8.58903052322985,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 130,
+      "metres": 2177.581455892201,
+      "index": 1114,
+      "position": {
+        "x": 153.03395080566406,
+        "y": 8.550999641418457,
+        "z": 1094.6064453125
+      },
+      "velocity": {
+        "x": 16.28070640563965,
+        "y": -0.03571631759405136,
+        "z": 2.4314286708831787
+      },
+      "kmh": 59.260554114596694,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.00869343095435819,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 109.79166666670011
+      },
+      "pace": 0.99,
+      "availableSpeed": 133.48423200461556,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1118,
+          "position": {
+            "x": 160.85093688964844,
+            "y": 8.550999641418457,
+            "z": 1096.6826171875
+          },
+          "velocity": {
+            "x": 16.35584831237793,
+            "y": -0.03571630269289017,
+            "z": 2.043071746826172
+          },
+          "kmh": 59.338650083190565,
+          "lane": -2.2704242664893144,
+          "along": 8.029439139950187,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 140,
+      "metres": 2341.5499401742586,
+      "index": 1196,
+      "position": {
+        "x": 316.2992858886719,
+        "y": 8.550999641418457,
+        "z": 1114.5906982421875
+      },
+      "velocity": {
+        "x": 15.8836088180542,
+        "y": -0.03571631759405136,
+        "z": 4.443414688110352
+      },
+      "kmh": 59.37631853486936,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.004579858286667709,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 119.79166666670807
+      },
+      "pace": 0.99,
+      "availableSpeed": 161.9582263728437,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1201,
+          "position": {
+            "x": 323.8069763183594,
+            "y": 8.550999641418457,
+            "z": 1117.803466796875
+          },
+          "velocity": {
+            "x": 15.781075477600098,
+            "y": -0.03571630269289017,
+            "z": 4.693075656890869
+          },
+          "kmh": 59.27083801051852,
+          "lane": -3.861892568872601,
+          "along": 8.099550247817422,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 150,
+      "metres": 2507.5180401182924,
+      "index": 1279,
+      "position": {
+        "x": 469.14471435546875,
+        "y": 8.550999641418457,
+        "z": 1175.902587890625
+      },
+      "velocity": {
+        "x": 14.96667194366455,
+        "y": -0.03571631759405136,
+        "z": 6.891157150268555
+      },
+      "kmh": 59.31695823766666,
+      "drive": 1,
+      "brake": 0,
+      "steer": -0.0010289821331244478,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 129.79166666671296
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1283,
+          "position": {
+            "x": 476.1431579589844,
+            "y": 8.550999641418457,
+            "z": 1180.2406005859375
+          },
+          "velocity": {
+            "x": 14.942293167114258,
+            "y": -0.03571630269289017,
+            "z": 6.9443888664245605
+          },
+          "kmh": 59.317760722979386,
+          "lane": -3.346988877207376,
+          "along": 8.172107786604476,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 160,
+      "metres": 2673.486140062326,
+      "index": 1362,
+      "position": {
+        "x": 601.5265502929688,
+        "y": 8.550999641418457,
+        "z": 1270.000732421875
+      },
+      "velocity": {
+        "x": 9.372281074523926,
+        "y": -0.03571631759405136,
+        "z": 12.061199188232422
+      },
+      "kmh": 54.98841543488361,
+      "drive": 0,
+      "brake": 0.65,
+      "steer": -0.0022400470191214755,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 3,
+        "aborts": 0,
+        "age": 139.79166666670386
+      },
+      "pace": 0.99,
+      "availableSpeed": 175.15957709197244,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1367,
+          "position": {
+            "x": 606.0403442382812,
+            "y": 8.550999641418457,
+            "z": 1277.3585205078125
+          },
+          "velocity": {
+            "x": 9.455028533935547,
+            "y": -0.03571630269289017,
+            "z": 11.703292846679688
+          },
+          "kmh": 54.163507819412175,
+          "lane": -3.6522434758742914,
+          "along": 8.601098504253683,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 170,
+      "metres": 2787.4642327949755,
+      "index": 1419,
+      "position": {
+        "x": 691.229248046875,
+        "y": 8.550999641418457,
+        "z": 1256.3909912109375
+      },
+      "velocity": {
+        "x": 12.63107681274414,
+        "y": -0.03571631759405136,
+        "z": -12.11528491973877
+      },
+      "kmh": 63.00763463709113,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.010725521183078957,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "changing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 2.7083333333333264
+      },
+      "pace": 0.99,
+      "availableSpeed": 119.68251220605246,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1424,
+          "position": {
+            "x": 698.2503051757812,
+            "y": 8.550999641418457,
+            "z": 1250.817138671875
+          },
+          "velocity": {
+            "x": 11.495379447937012,
+            "y": -0.03571630269289017,
+            "z": -11.79183578491211
+          },
+          "kmh": 59.28437544751406,
+          "lane": -1.9960617572365638,
+          "along": 8.921423246691436,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 180,
+      "metres": 2951.432717077033,
+      "index": 1501,
+      "position": {
+        "x": 781.8394165039062,
+        "y": 8.550999641418457,
+        "z": 1119.488525390625
+      },
+      "velocity": {
+        "x": 7.704922199249268,
+        "y": -0.03571631759405136,
+        "z": -14.576072692871094
+      },
+      "kmh": 59.35391534959368,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.0003412901302319561,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 2.916666666666659
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1506,
+          "position": {
+            "x": 786.6173095703125,
+            "y": 8.550999641418457,
+            "z": 1112.594482421875
+          },
+          "velocity": {
+            "x": 7.691888809204102,
+            "y": -0.03571630269289017,
+            "z": -14.57551383972168
+          },
+          "kmh": 59.33022343291996,
+          "lane": -3.184502642511478,
+          "along": 8.326365925810347,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 190,
+      "metres": 3117.4008170210664,
+      "index": 1584,
+      "position": {
+        "x": 847.9024658203125,
+        "y": 10.507062911987305,
+        "z": 968.717529296875
+      },
+      "velocity": {
+        "x": 5.743408203125,
+        "y": 0.9362930059432983,
+        "z": -15.44455337524414
+      },
+      "kmh": 59.320415786307606,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.0019009675872182392,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 12.916666666666574
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1588,
+          "position": {
+            "x": 851.650634765625,
+            "y": 11.017498016357422,
+            "z": 961.4239501953125
+          },
+          "velocity": {
+            "x": 5.641833782196045,
+            "y": 1.0541731119155884,
+            "z": -15.493115425109863
+          },
+          "kmh": 59.35819408861851,
+          "lane": -3.045740828436495,
+          "along": 8.147455811590383,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 200,
+      "metres": 3281.3693013031243,
+      "index": 1666,
+      "position": {
+        "x": 898.8386840820312,
+        "y": 25.291593551635742,
+        "z": 812.1055908203125
+      },
+      "velocity": {
+        "x": 4.617777347564697,
+        "y": 0.7480275630950928,
+        "z": -15.83715534210205
+      },
+      "kmh": 59.38792862376771,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.000420126471938747,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 22.916666666666007
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1670,
+          "position": {
+            "x": 902.048828125,
+            "y": 25.64545249938965,
+            "z": 804.6359252929688
+          },
+          "velocity": {
+            "x": 4.587669849395752,
+            "y": 0.6283949613571167,
+            "z": -15.820449829101562
+          },
+          "kmh": 59.29991722465203,
+          "lane": -3.1530868884746908,
+          "along": 8.066774588521175,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 210,
+      "metres": 3447.3374012471577,
+      "index": 1749,
+      "position": {
+        "x": 938.842529296875,
+        "y": 26.551008224487305,
+        "z": 652.2247314453125
+      },
+      "velocity": {
+        "x": 3.777162790298462,
+        "y": -0.03579063341021538,
+        "z": -16.04182243347168
+      },
+      "kmh": 59.32981588948004,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.00005928832922718288,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 32.91666666666544
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1753,
+          "position": {
+            "x": 941.6253051757812,
+            "y": 26.551008224487305,
+            "z": 644.7308349609375
+          },
+          "velocity": {
+            "x": 3.77585768699646,
+            "y": -0.03579062223434448,
+            "z": -16.027862548828125
+          },
+          "kmh": 59.279821607940455,
+          "lane": -3.1806279287958255,
+          "along": 7.931440699160744,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 220,
+      "metres": 3611.305885529215,
+      "index": 1831,
+      "position": {
+        "x": 979.1002807617188,
+        "y": 26.551008224487305,
+        "z": 492.3706359863281
+      },
+      "velocity": {
+        "x": 4.250792980194092,
+        "y": -0.03579063341021538,
+        "z": -15.931788444519043
+      },
+      "kmh": 59.36083698077258,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 42.916666666664874
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1835,
+          "position": {
+            "x": 982.1001586914062,
+            "y": 26.551008224487305,
+            "z": 485.0133972167969
+          },
+          "velocity": {
+            "x": 4.251567840576172,
+            "y": -0.03579062223434448,
+            "z": -15.922355651855469
+          },
+          "kmh": 59.32874693055004,
+          "lane": -3.211507604727319,
+          "along": 7.882563789967567,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 230,
+      "metres": 3777.2739854732486,
+      "index": 1914,
+      "position": {
+        "x": 1021.6979370117188,
+        "y": 26.551008224487305,
+        "z": 333.1271667480469
+      },
+      "velocity": {
+        "x": 4.248966693878174,
+        "y": -0.03579063341021538,
+        "z": -15.91980266571045
+      },
+      "kmh": 59.317451901238854,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.000038525525270998675,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 52.916666666664305
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 1918,
+          "position": {
+            "x": 1024.67236328125,
+            "y": 26.551008224487305,
+            "z": 325.8457336425781
+          },
+          "velocity": {
+            "x": 4.248908996582031,
+            "y": -0.03579062223434448,
+            "z": -15.904431343078613
+          },
+          "kmh": 59.26393477944968,
+          "lane": -3.2051460785289843,
+          "along": 7.802755812567791,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 240,
+      "metres": 3943.242085417283,
+      "index": 1997,
+      "position": {
+        "x": 1065.3436279296875,
+        "y": 17.45172882080078,
+        "z": 173.75880432128906
+      },
+      "velocity": {
+        "x": 5.351895332336426,
+        "y": -2.197848081588745,
+        "z": -16.071760177612305
+      },
+      "kmh": 60.98194482599256,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.004105789985124859,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 62.91666666666374
+      },
+      "pace": 0.99,
+      "availableSpeed": 149.37404514548325,
+      "nearby": [
+        {
+          "name": "MIST",
+          "finish": null,
+          "index": 3778,
+          "position": {
+            "x": 1019.0289306640625,
+            "y": 8.560998916625977,
+            "z": 216.71131896972656
+          },
+          "velocity": {
+            "x": -30.541044235229492,
+            "y": -0.03571002930402756,
+            "z": -15.135448455810547
+          },
+          "kmh": 122.70863820799327,
+          "lane": 27.923809145741345,
+          "along": -55.27823440699807,
+          "plan": {
+            "personality": "MIST",
+            "style": "수비형",
+            "mode": "passing",
+            "reason": "slow-ahead",
+            "homeLane": 2.2,
+            "targetLane": 2.2,
+            "passes": 2,
+            "attempts": 10,
+            "aborts": 0,
+            "age": 34.583333333332014
+          }
+        },
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2000,
+          "position": {
+            "x": 1068.6885986328125,
+            "y": 16.524078369140625,
+            "z": 167.0395050048828
+          },
+          "velocity": {
+            "x": 5.472694396972656,
+            "y": -2.050309419631958,
+            "z": -15.774025917053223
+          },
+          "kmh": 60.10709440344804,
+          "lane": -3.7190983800460597,
+          "along": 7.428209668862329,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 250,
+      "metres": 4109.210185361316,
+      "index": 2080,
+      "position": {
+        "x": 1115.5040283203125,
+        "y": 8.55099868774414,
+        "z": 14.721574783325195
+      },
+      "velocity": {
+        "x": 2.902135133743286,
+        "y": -0.03570807725191116,
+        "z": -16.221712112426758
+      },
+      "kmh": 59.325371176426394,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.006195401026033143,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 72.91666666667076
+      },
+      "pace": 0.99,
+      "availableSpeed": 133.60132818653753,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2083,
+          "position": {
+            "x": 1117.5301513671875,
+            "y": 8.55099868774414,
+            "z": 8.823186874389648
+          },
+          "velocity": {
+            "x": 2.6826717853546143,
+            "y": -0.03570805490016937,
+            "z": -16.256683349609375
+          },
+          "kmh": 59.31555613351998,
+          "lane": -2.4231893608733954,
+          "along": 6.151584332960175,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 260,
+      "metres": 4273.178669643374,
+      "index": 2162,
+      "position": {
+        "x": 1131.8839111328125,
+        "y": 8.55099868774414,
+        "z": -149.21334838867188
+      },
+      "velocity": {
+        "x": 0.8817285895347595,
+        "y": -0.035708069801330566,
+        "z": -16.443912506103516
+      },
+      "kmh": 59.28312543573691,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.001839049187673216,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 82.91666666667872
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2165,
+          "position": {
+            "x": 1133.1810302734375,
+            "y": 8.55099868774414,
+            "z": -155.1098175048828
+          },
+          "velocity": {
+            "x": 0.8027968406677246,
+            "y": -0.03570805490016937,
+            "z": -16.439043045043945
+          },
+          "kmh": 59.25108085338486,
+          "lane": -3.0335234745224486,
+          "along": 5.959694102419651,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 270,
+      "metres": 4439.146769587407,
+      "index": 2245,
+      "position": {
+        "x": 1128.903564453125,
+        "y": 8.708982467651367,
+        "z": -313.7821960449219
+      },
+      "velocity": {
+        "x": -1.8387025594711304,
+        "y": 0.24258802831172943,
+        "z": -16.38099479675293
+      },
+      "kmh": 59.341915342610406,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.002537547946810489,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 92.91666666668668
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2248,
+          "position": {
+            "x": 1129.2474365234375,
+            "y": 8.820001602172852,
+            "z": -319.5674743652344
+          },
+          "velocity": {
+            "x": -1.9293841123580933,
+            "y": 0.32553836703300476,
+            "z": -16.34256935119629
+          },
+          "kmh": 59.24183627158915,
+          "lane": -2.9626486742352625,
+          "along": 5.707633326196786,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 280,
+      "metres": 4603.115253869465,
+      "index": 2327,
+      "position": {
+        "x": 1091.62353515625,
+        "y": 22.032440185546875,
+        "z": -473.83355712890625
+      },
+      "velocity": {
+        "x": -5.538338661193848,
+        "y": 1.4431830644607544,
+        "z": -15.526811599731445
+      },
+      "kmh": 59.34598346638126,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.003492350942742581,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 102.91666666669464
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "YOU",
+          "finish": null,
+          "index": 3097,
+          "position": {
+            "x": 1000.1385498046875,
+            "y": 8.551011085510254,
+            "z": -548.6290893554688
+          },
+          "velocity": {
+            "x": 10.787666320800781,
+            "y": -0.03581540286540985,
+            "z": 5.335721015930176
+          },
+          "kmh": 43.32636469608048,
+          "lane": 59.66558984189255,
+          "along": 100.86973641537759,
+          "plan": null
+        },
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2330,
+          "position": {
+            "x": 1090.702880859375,
+            "y": 22.509380340576172,
+            "z": -479.323974609375
+          },
+          "velocity": {
+            "x": -5.645387172698975,
+            "y": 1.356096863746643,
+            "z": -15.459349632263184
+          },
+          "kmh": 59.24837601549684,
+          "lane": -2.8400066805701263,
+          "along": 5.485527068529403,
+          "plan": null
+        },
+        {
+          "name": "TRAFFIC 2",
+          "finish": null,
+          "index": 3104,
+          "position": {
+            "x": 1010.595458984375,
+            "y": 8.550999641418457,
+            "z": -545.5681762695312
+          },
+          "velocity": {
+            "x": 11.65937614440918,
+            "y": -0.03571630269289017,
+            "z": 3.704855442047119
+          },
+          "kmh": 44.041848244207024,
+          "lane": 50.81220300544258,
+          "along": 94.51885615858872,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 290,
+      "metres": 4769.0833538134975,
+      "index": 2410,
+      "position": {
+        "x": 1022.6016845703125,
+        "y": 26.550918579101562,
+        "z": -623.1799926757812
+      },
+      "velocity": {
+        "x": -8.364643096923828,
+        "y": -0.03866392374038696,
+        "z": -14.180499076843262
+      },
+      "kmh": 59.2693626957992,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.004243232763398008,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 112.9166666667026
+      },
+      "pace": 0.99,
+      "availableSpeed": 164.98761638901712,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2412,
+          "position": {
+            "x": 1020.7731323242188,
+            "y": 26.54144859313965,
+            "z": -628.1782836914062
+          },
+          "velocity": {
+            "x": -8.55578327178955,
+            "y": -0.1027313768863678,
+            "z": -14.088105201721191
+          },
+          "kmh": 59.337363582897964,
+          "lane": -2.751696813241516,
+          "along": 5.246981494413754,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 300,
+      "metres": 4935.051453757532,
+      "index": 2493,
+      "position": {
+        "x": 928.7476196289062,
+        "y": 14.791106224060059,
+        "z": -760.088623046875
+      },
+      "velocity": {
+        "x": -10.00362777709961,
+        "y": -1.8436051607131958,
+        "z": -13.882649421691895
+      },
+      "kmh": 61.60109403851494,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.00033125616548443506,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 122.91666666671055
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2495,
+          "position": {
+            "x": 927.0001831054688,
+            "y": 14.33790397644043,
+            "z": -764.219482421875
+          },
+          "velocity": {
+            "x": -9.857931137084961,
+            "y": -1.7488811016082764,
+            "z": -13.669249534606934
+          },
+          "kmh": 60.67118237921096,
+          "lane": -3.151992194024841,
+          "along": 4.3707276092169005,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 310,
+      "metres": 5109.0180163494715,
+      "index": 2580,
+      "position": {
+        "x": 832.8043212890625,
+        "y": 8.55099868774414,
+        "z": -904.6974487304688
+      },
+      "velocity": {
+        "x": -8.92654037475586,
+        "y": -0.03570805862545967,
+        "z": -14.845691680908203
+      },
+      "kmh": 62.361901764824864,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.006158518472925489,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 132.9166666667101
+      },
+      "pace": 0.99,
+      "availableSpeed": 149.5671418920787,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2582,
+          "position": {
+            "x": 831.3915405273438,
+            "y": 8.55099868774414,
+            "z": -908.9547119140625
+          },
+          "velocity": {
+            "x": -9.11220932006836,
+            "y": -0.03570805862545967,
+            "z": -14.78546142578125
+          },
+          "kmh": 62.524261517649585,
+          "lane": -2.7606090287912046,
+          "along": 4.395721512599763,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 320,
+      "metres": 5286.983810265362,
+      "index": 2669,
+      "position": {
+        "x": 729.7913818359375,
+        "y": 8.55099868774414,
+        "z": -1050.2301025390625
+      },
+      "velocity": {
+        "x": -10.941061019897461,
+        "y": -0.03570805862545967,
+        "z": -14.03856372833252
+      },
+      "kmh": 64.07475023619386,
+      "drive": 1,
+      "brake": 0,
+      "steer": 0.0059208124856498555,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 142.91666666670102
+      },
+      "pace": 0.99,
+      "availableSpeed": 176.2076413940425,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2671,
+          "position": {
+            "x": 727.8895874023438,
+            "y": 8.55099868774414,
+            "z": -1054.295166015625
+          },
+          "velocity": {
+            "x": -11.152181625366211,
+            "y": -0.03570806235074997,
+            "z": -13.94691276550293
+          },
+          "kmh": 64.28672022891203,
+          "lane": -2.816863087628179,
+          "along": 4.3948553844274,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 330,
+      "metres": 5432.955753589634,
+      "index": 2742,
+      "position": {
+        "x": 621.8746948242188,
+        "y": 8.55099868774414,
+        "z": -1044.785400390625
+      },
+      "velocity": {
+        "x": -8.879897117614746,
+        "y": -0.035708047449588776,
+        "z": 13.30246639251709
+      },
+      "kmh": 57.57841676242377,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.018726898559869993,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 152.91666666669192
+      },
+      "pace": 0.99,
+      "availableSpeed": 140.38314019381704,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2744,
+          "position": {
+            "x": 618.6651611328125,
+            "y": 8.55099868774414,
+            "z": -1041.6385498046875
+          },
+          "velocity": {
+            "x": -8.364058494567871,
+            "y": -0.035708069801330566,
+            "z": 13.889404296875
+          },
+          "kmh": 58.368094194045185,
+          "lane": -1.9794946540826692,
+          "along": 4.394180770069438,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 340,
+      "metres": 5564.930387280069,
+      "index": 2808,
+      "position": {
+        "x": 703.5604248046875,
+        "y": 8.55099868774414,
+        "z": -988.48095703125
+      },
+      "velocity": {
+        "x": 14.196453094482422,
+        "y": -0.035708069801330566,
+        "z": 8.173675537109375
+      },
+      "kmh": 58.9728187316593,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.020777950966343807,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 162.91666666668283
+      },
+      "pace": 0.99,
+      "availableSpeed": 72.90199546962245,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2812,
+          "position": {
+            "x": 710.1747436523438,
+            "y": 8.55099868774414,
+            "z": -983.2689819335938
+          },
+          "velocity": {
+            "x": 13.7234468460083,
+            "y": -0.035708047449588776,
+            "z": 8.949836730957031
+          },
+          "kmh": 58.98208302666325,
+          "lane": -5.240896773734233,
+          "along": 8.32914520455322,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 350,
+      "metres": 5730.8984872241035,
+      "index": 2891,
+      "position": {
+        "x": 818.126953125,
+        "y": 8.55099868774414,
+        "z": -871.7328491210938
+      },
+      "velocity": {
+        "x": 9.69857120513916,
+        "y": -0.035708069801330566,
+        "z": 13.346288681030273
+      },
+      "kmh": 59.39298558350157,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.0005923684569038436,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 172.91666666667373
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2895,
+          "position": {
+            "x": 822.4254150390625,
+            "y": 8.55099868774414,
+            "z": -864.0980224609375
+          },
+          "velocity": {
+            "x": 9.663630485534668,
+            "y": -0.035708047449588776,
+            "z": 13.333552360534668
+          },
+          "kmh": 59.28199617378354,
+          "lane": -3.269454461692776,
+          "along": 8.70764993686522,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 360,
+      "metres": 5894.866971506161,
+      "index": 2973,
+      "position": {
+        "x": 915.0341796875,
+        "y": 8.55099868774414,
+        "z": -738.39306640625
+      },
+      "velocity": {
+        "x": 9.767662048339844,
+        "y": -0.035708069801330566,
+        "z": 13.276374816894531
+      },
+      "kmh": 59.33662257150703,
+      "drive": 1,
+      "brake": 0,
+      "steer": -0.00006363318339789154,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 182.91666666666464
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 2978,
+          "position": {
+            "x": 919.3390502929688,
+            "y": 8.55099868774414,
+            "z": -730.8646850585938
+          },
+          "velocity": {
+            "x": 9.763710975646973,
+            "y": -0.035708047449588776,
+            "z": 13.277085304260254
+          },
+          "kmh": 59.33025500245,
+          "lane": -3.1864636064493164,
+          "along": 8.614569820127018,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 370,
+      "metres": 6030.84083652055,
+      "index": 3041,
+      "position": {
+        "x": 953.6898193359375,
+        "y": 8.55099868774414,
+        "z": -630.4742431640625
+      },
+      "velocity": {
+        "x": -6.1348466873168945,
+        "y": -0.035708069801330566,
+        "z": 9.346527099609375
+      },
+      "kmh": 40.248243546768315,
+      "drive": 0,
+      "brake": 0.65,
+      "steer": -0.0016919874861054847,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 192.91666666665554
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 3046,
+          "position": {
+            "x": 947.66796875,
+            "y": 8.55099868774414,
+            "z": -622.44287109375
+          },
+          "velocity": {
+            "x": -5.3927693367004395,
+            "y": -0.035708047449588776,
+            "z": 9.440603256225586
+          },
+          "kmh": 39.1402872299842,
+          "lane": -3.34457011593561,
+          "along": 10.032180627871806,
+          "plan": null
+        },
+        {
+          "name": "TRAFFIC 6",
+          "finish": null,
+          "index": 2455,
+          "position": {
+            "x": 967.9970092773438,
+            "y": 22.937881469726562,
+            "z": -695.125732421875
+          },
+          "velocity": {
+            "x": -11.556279182434082,
+            "y": -1.662170648574829,
+            "z": -16.645729064941406
+          },
+          "kmh": 72.95023910179799,
+          "lane": -33.10268770947931,
+          "along": -59.325750835621676,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 380,
+      "metres": 6134.820850943318,
+      "index": 3093,
+      "position": {
+        "x": 989.7833862304688,
+        "y": 8.55099868774414,
+        "z": -549.7460327148438
+      },
+      "velocity": {
+        "x": 9.015935897827148,
+        "y": -0.035708069801330566,
+        "z": 6.095903396606445
+      },
+      "kmh": 39.18003206755888,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.03393564279297691,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "passing",
+        "reason": "slow-ahead",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 0,
+        "attempts": 4,
+        "aborts": 0,
+        "age": 202.91666666664645
+      },
+      "pace": 0.99,
+      "availableSpeed": 66.06647765096264,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 3099,
+          "position": {
+            "x": 1000.2731323242188,
+            "y": 8.55099868774414,
+            "z": -542.8080444335938
+          },
+          "velocity": {
+            "x": 9.49077320098877,
+            "y": -0.035708047449588776,
+            "z": 4.4095306396484375
+          },
+          "kmh": 37.67443196563527,
+          "lane": 0.7340822464345473,
+          "along": 12.477069706624194,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 390,
+      "metres": 6310.787029197233,
+      "index": 3181,
+      "position": {
+        "x": 1153.9134521484375,
+        "y": 8.55099868774414,
+        "z": -489.3533935546875
+      },
+      "velocity": {
+        "x": 15.628992080688477,
+        "y": -0.035708069801330566,
+        "z": 11.654204368591309
+      },
+      "kmh": 70.1848481731177,
+      "drive": 0,
+      "brake": 0,
+      "steer": -0.0037465955110634096,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "changing",
+        "reason": "overtake",
+        "homeLane": -2.2,
+        "targetLane": 2.2,
+        "passes": 0,
+        "attempts": 6,
+        "aborts": 0,
+        "age": 6.041666666666757
+      },
+      "pace": 0.99,
+      "availableSpeed": 187.72874999999996,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 3179,
+          "position": {
+            "x": 1146.841552734375,
+            "y": 8.55099868774414,
+            "z": -487.9979248046875
+          },
+          "velocity": {
+            "x": 13.238934516906738,
+            "y": -0.035708047449588776,
+            "z": 9.787142753601074
+          },
+          "kmh": 59.26977183584518,
+          "lane": -3.977563792051601,
+          "along": -4.702579618098818,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 400,
+      "metres": 6588.73360621194,
+      "index": 3320,
+      "position": {
+        "x": 1352.9166259765625,
+        "y": 8.55099868774414,
+        "z": -297.5531311035156
+      },
+      "velocity": {
+        "x": 15.478132247924805,
+        "y": -0.035708069801330566,
+        "z": 10.115273475646973
+      },
+      "kmh": 66.56509375350602,
+      "drive": 0,
+      "brake": 0,
+      "steer": 0.02682356889448587,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 1,
+        "attempts": 6,
+        "aborts": 0,
+        "age": 6.041666666666757
+      },
+      "pace": 0.99,
+      "availableSpeed": 67.37379924512027,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 3262,
+          "position": {
+            "x": 1270.1842041015625,
+            "y": 8.55099868774414,
+            "z": -379.16888427734375
+          },
+          "velocity": {
+            "x": 11.303805351257324,
+            "y": -0.035708047449588776,
+            "z": 11.98813533782959
+          },
+          "kmh": 59.317186377070605,
+          "lane": 15.310679121541327,
+          "along": -115.1872128882761,
+          "plan": null
+        }
+      ]
+    },
+    {
+      "time": 410,
+      "metres": 6764.699784465855,
+      "index": 3408,
+      "position": {
+        "x": 1476.5543212890625,
+        "y": 8.55099868774414,
+        "z": -200.77032470703125
+      },
+      "velocity": {
+        "x": 7.2487311363220215,
+        "y": -0.035708069801330566,
+        "z": 27.371522903442383
+      },
+      "kmh": 101.93432701528474,
+      "drive": 1,
+      "brake": 0,
+      "steer": -0.008839888152008856,
+      "plan": {
+        "personality": "BLAZE",
+        "style": "직선 강자",
+        "mode": "follow",
+        "reason": "following",
+        "homeLane": -2.2,
+        "targetLane": -2.2,
+        "passes": 1,
+        "attempts": 6,
+        "aborts": 0,
+        "age": 16.041666666666398
+      },
+      "pace": 0.99,
+      "availableSpeed": 178.69585267388086,
+      "nearby": [
+        {
+          "name": "TRAFFIC 1",
+          "finish": null,
+          "index": 3340,
+          "position": {
+            "x": 1389.66064453125,
+            "y": 8.55099868774414,
+            "z": -279.58209228515625
+          },
+          "velocity": {
+            "x": 15.476895332336426,
+            "y": -0.035708047449588776,
+            "z": 5.652662754058838
+          },
+          "kmh": 59.31669270952576,
+          "lane": -66.74884938196455,
+          "along": -98.60136784061285,
+          "plan": null
+        }
+      ]
+    }
+  ]
+}
