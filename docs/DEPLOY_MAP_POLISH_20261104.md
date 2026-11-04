@@ -9,7 +9,13 @@
 - 전체 정적37파일80,129,012B. 배포 준비의 새 빌드가 검증한 로컬 배포물과 같은지도 확인한다.
 - 원시 프레임의 나쁜 표본·실패와 수정·회귀 기록·화면을 함께 보존한다. 변경 전 사본·개인 PC hosts 백업·QA 전용 실행기·자격 증명은 업로드 대상에서 제외한다. PC DNS 복구 문서는 설명만 포함하며 실제 시스템 설정/인증 파일은 포함하지 않는다.
 
-**상태:** GitHub 업로드와 Vercel 운영 배포를 준비 중이다. 실제 커밋·배포 ID·공식 주소 검사 결과는 확인 후 이 문서에 갱신한다.
+**상태: GitHub 업로드와 Preview 빌드 완료, 운영 배포용 사용자 재인증 대기.**
+
+- 앱 커밋 [a1bf9ce](https://github.com/reinhardt7177-lab/three-rapier-idiom-racer/commit/a1bf9ceffdf01a633f12b12efb472094113d0755),108파일 선택 업로드. 원격 브랜치 SHA 일치 확인.
+- Preview `dpl_BpT9A1LJs5KQ9moKTU2Ni6p5EGpR`,Ready,2026-11-04 11:53:43 KST,12초. Source가 앱 커밋과 같다. 고유 주소 `mumu-racing-5k8kwwy2t-reinhardt7177-labs-projects.vercel.app`.
+- 이 Preview에서 일반 Redeploy→Production을 선택했고 연결 도메인 `mumu-racing.vercel.app`, `racing.mumuworld.com`을 확인한 뒤 실행했다. Vercel이 `Reauthenticate`(인증 앱 코드/패스키)를 요구해 사용자 직접 인증을 요청했다. 인증값은 수집하거나 저장하지 않는다.
+- 운영 도메인은 아직 기존 `0e477c6` 번들을 HTTP200으로 제공한다. 이전 정상 배포가 유지되며 새 운영 배포 완료를 주장하지 않는다.
+- 이번 작업에서 DNS/hosts/인증/승격 요구사항 설정은 수정하지 않았다. 사용자 인증 후 운영 Ready·공식37파일·브라우저 확인을 이어간다.
 
 ## 배포 후 확인할 항목
 
