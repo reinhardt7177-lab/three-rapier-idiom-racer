@@ -1,0 +1,112 @@
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ left and right arrow paths point to their screen side without a CSS mirror transform (2.2527ms)
+✔ navigation follows the actual driver-camera side at yaw 0 (18.9488ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (2.0382ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.6532ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (1.2262ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (182.811ms)
+✖ a continuing bend previews the next independent corner rather than the next point of the same bend (6.8843ms)
+✖ high speed previews a bend earlier without changing low-speed finish or lap rules (2.3394ms)
+✖ static corner lookup does not rescan the road on every HUD update (21.3182ms)
+✖ invalid speeds cannot create a false urgent warning or extend the lookahead (8.6069ms)
+✔ cached announcement retains the original first corner at low speed on all four routes (117.8091ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 7
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1100.4788
+
+✖ failing tests:
+
+test at scripts\navigation.test.mjs:59:1
+✖ a continuing bend previews the next independent corner rather than the next point of the same bend (6.8843ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'right'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:62:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'right',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:66:1
+✖ high speed previews a bend earlier without changing low-speed finish or lap rules (2.3394ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'straight' !== 'left'
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:70:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'straight',
+    expected: 'left',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:75:1
+✖ static corner lookup does not rescan the road on every HUD update (21.3182ms)
+  AssertionError [ERR_ASSERTION]: 5300 point reads for 100 cached announcements
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:80:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at scripts\navigation.test.mjs:83:1
+✖ invalid speeds cannot create a false urgent warning or extend the lookahead (8.6069ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - true
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/navigation.test.mjs:87:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,35 @@
+✔ unlimited decoration performs no distance work and restores exact visibility each frame (12.811ms)
+✔ finite culling, invalid camera coordinates and disposal retain original visibility policy (1.1392ms)
+✖ unlimited culling does not expose decorations with malformed cached bounds (1.7443ms)
+✔ Namak reuses one scratch sphere through moving world and quality changes (17.1371ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.428
+
+✖ failing tests:
+
+test at scripts\scene-update-work.test.mjs:29:1
+✖ unlimited culling does not expose decorations with malformed cached bounds (1.7443ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///D:/racing/three-rapier-idiom-racer/scripts/scene-update-work.test.mjs:33:46)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

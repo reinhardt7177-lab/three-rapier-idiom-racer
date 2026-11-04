@@ -68,6 +68,18 @@ test('seongsamjae high and medium cull cells and canopy replacements within expl
  }finally{v.dispose();}
 });
 
+test('static mountain ridge bounds are not rebuilt during camera/quality updates',()=>{
+ const {v}=fixture(),camera=new THREE.PerspectiveCamera(),original=THREE.Box3.prototype.getBoundingSphere;
+ let calls=0;THREE.Box3.prototype.getBoundingSphere=function(target){calls++;return original.call(this,target);};
+ try{
+  for(const quality of ['high','medium','low','high']){
+   v.setQuality(quality);
+   for(let i=0;i<12;i++){const p=route.points[(i*83)%route.points.length];camera.position.set(p.x,p.y+2,p.z);v.update(camera,1/60,i/60,true);}
+  }
+  assert.equal(calls,0,'immutable world bounds belong to creation, not the frame loop');
+ }finally{THREE.Box3.prototype.getBoundingSphere=original;v.dispose();}
+});
+
 test('seongsamjae low quality restores materials and adds no draws or override of existing visibility culling',()=>{
  const {source,v}=fixture(),camera=new THREE.PerspectiveCamera();camera.position.set(route.points[0].x,2,route.points[0].z);
  try{

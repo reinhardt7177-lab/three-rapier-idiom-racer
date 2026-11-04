@@ -65,10 +65,10 @@ function CourseGuide({guide,region,progress,lap=1,laps=1}){
   const direction=guide?.direction||'straight',bend=direction==='left'||direction==='right';
   const label=bend?`${direction==='left'?'왼쪽':'오른쪽'} 커브`:direction==='finish'?'결승선':'직선 구간';
   const remaining=guide?.remaining??0;
-  return <div className={`race-route ${guide?.sharp&&guide.distance<=120?'corner-warning':''}`} aria-label="코스 안내">
+  return <div className={`race-route ${guide?.urgent?'corner-warning':''}`} aria-label="코스 안내">
     <span>{track.label} / LAP {lap}/{laps}</span>
     <div className="route-summary"><span>{region?.toUpperCase()}</span><b aria-label={`남은 거리 ${Math.ceil(remaining)} 미터`}>{remaining>=1000?`${(remaining/1000).toFixed(2)} KM`:`${Math.ceil(remaining)} M`} <small>남음</small></b></div>
-    <div className="corner-guide"><span className={`corner-icon ${direction}`} aria-hidden="true">{direction==='finish'?'⚑':<svg viewBox="0 0 40 36"><path d={routeArrowPath(direction)}/></svg>}</span><div><strong>{label}</strong><small>{bend?(guide.distance===0?'커브 진행 중':`${guide.distance} M 앞`):direction==='finish'?(remaining===0?'완주':`${Math.ceil(remaining)} M 앞`):'다음 커브를 준비하세요'}{guide?.sharp&&<em>급커브</em>}</small></div></div>
+    <div className="corner-guide"><span className={`corner-icon ${direction}`} aria-hidden="true">{direction==='finish'?'⚑':<svg viewBox="0 0 40 36"><path d={routeArrowPath(direction)}/></svg>}</span><div><strong>{label}</strong><small>{bend?(guide.distance===0?'커브 진행 중':`${guide.distance} M 앞`):direction==='finish'?(remaining===0?'완주':`${Math.ceil(remaining)} M 앞`):'다음 커브를 준비하세요'}{guide?.sharp&&<em>급커브</em>}</small>{guide?.next&&<small className="next-corner" aria-label={`다음 ${guide.next.direction==='left'?'왼쪽':'오른쪽'} 커브 ${guide.next.distance} 미터 앞`}><span>다음</span><span aria-hidden="true">{guide.next.direction==='left'?'↰':'↱'}</span><span>{guide.next.distance} M</span></small>}</div></div>
     <div className="course-meter"><i style={{width:`${progress*100}%`}}/></div>
   </div>;
 }

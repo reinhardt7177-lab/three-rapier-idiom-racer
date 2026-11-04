@@ -17,6 +17,11 @@ export function createDecorationQuality(world){
   for(let p=o.parent;p&&p!==world;p=p.parent)if(p.userData.dynamic)return;
   o.geometry.computeBoundingSphere();const sphere=o.geometry.boundingSphere.clone().applyMatrix4(o.matrixWorld);entries.push({mesh:o,sphere,visible:o.visible});
  });
+ const finiteBounds=entries.every(({sphere:s})=>Number.isFinite(s.center.x)&&Number.isFinite(s.center.y)&&Number.isFinite(s.center.z)&&Number.isFinite(s.radius));
  let limit=Infinity,hidden=0;
- return {set(value){limit=value;},update(camera){hidden=0;for(const e of entries){const near=e.sphere.center.distanceTo(camera.position)-e.sphere.radius;e.mesh.visible=e.visible&&near<=limit;if(e.visible&&!e.mesh.visible)hidden++;}},status:()=>({objects:entries.length,hidden,distance:Number.isFinite(limit)?limit:null}),dispose(){for(const e of entries)e.mesh.visible=e.visible;}};
+ return {set(value){limit=value;},update(camera){hidden=0;
+  // An unlimited view still restores original visibility, but needs no distance.
+  // Keep the old NaN/Infinity coordinate semantics on the fallback path.
+  if(limit===Infinity&&finiteBounds&&Number.isFinite(camera.position.x)&&Number.isFinite(camera.position.y)&&Number.isFinite(camera.position.z)){for(const e of entries)e.mesh.visible=e.visible;return;}
+  for(const e of entries){const near=e.sphere.center.distanceTo(camera.position)-e.sphere.radius;e.mesh.visible=e.visible&&near<=limit;if(e.visible&&!e.mesh.visible)hidden++;}},status:()=>({objects:entries.length,hidden,distance:Number.isFinite(limit)?limit:null}),dispose(){for(const e of entries)e.mesh.visible=e.visible;}};
 }

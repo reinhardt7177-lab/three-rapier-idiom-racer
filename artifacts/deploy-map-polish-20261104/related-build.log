@@ -1,0 +1,83 @@
+✔ quality choices save, reject unknown values and tolerate blocked storage (2.3278ms)
+✔ quality culls distant decoration and preserves road, barriers, colliders and near bounds (5.4297ms)
+✔ Namak visual details preserve every authored road/collider/vertex and own no physics (449.6361ms)
+✔ tree silhouette additions stay behind race walls and retain deterministic medium coverage (74.2328ms)
+✔ quality budgets bound leaf draw submissions, distance visibility and low mode cost (10.0102ms)
+✔ surface shaders compose with original relief/colour, fade sub-pixel joints and restore ownership (13.2909ms)
+✔ terminal cleanup frees only owned instance buffers once, then scene assets once (21.515ms)
+Geometric course guidance [
+  { id: 'world', checked: 993 },
+  { id: 'namak', checked: 485 },
+  { id: 'yeosu', checked: 1431 },
+  { id: 'seongsamjae', checked: 1076 }
+]
+✔ left and right arrow paths point to their screen side without a CSS mirror transform (1.48ms)
+✔ navigation follows the actual driver-camera side at yaw 0 (4.5538ms)
+✔ navigation follows the actual driver-camera side at yaw 1.5707963267948966 (1.7416ms)
+✔ navigation follows the actual driver-camera side at yaw 3.141592653589793 (1.4887ms)
+✔ navigation follows the actual driver-camera side at yaw -1.5707963267948966 (2.1818ms)
+✔ all four authored courses agree with geometric road tangents, not a mirrored heading convention (74.7593ms)
+✔ a continuing bend previews the next independent corner rather than the next point of the same bend (2.7893ms)
+✔ high speed previews a bend earlier without changing low-speed finish or lap rules (2.8858ms)
+✔ static corner lookup does not rescan the road on every HUD update (7.7319ms)
+✔ invalid speeds cannot create a false urgent warning or extend the lookahead (3.1043ms)
+✔ cached announcement retains the original first corner at low speed on all four routes (68.2582ms)
+✔ unlimited decoration performs no distance work and restores exact visibility each frame (15.7141ms)
+✔ finite culling, invalid camera coordinates and disposal retain original visibility policy (0.9659ms)
+✔ unlimited culling does not expose decorations with malformed cached bounds (0.6008ms)
+✔ Namak reuses one scratch sphere through moving world and quality changes (21.7313ms)
+✔ seongsamjae details preserve every recovered geometry, road material, collider and route byte (367.3476ms)
+✔ seongsamjae shrubs, mossy stones and crown lobes keep the whole return-road corridor clear (930.3748ms)
+✔ seongsamjae underside decoration uses real terrain triangles and stays at their surface (809.0556ms)
+✔ seongsamjae high and medium cull cells and canopy replacements within explicit draw budgets (170.973ms)
+✔ static mountain ridge bounds are not rebuilt during camera/quality updates (116.788ms)
+✔ seongsamjae low quality restores materials and adds no draws or override of existing visibility culling (142.1724ms)
+✔ seongsamjae detail shaders retain previous hooks and sample real instance-world coordinates (111.1937ms)
+✔ seongsamjae pause updates never animate instance poses or move any wheel or physics node (120.2936ms)
+✔ seongsamjae cleanup disposes each owned GPU resource once and restores exact original world references (157.0137ms)
+✔ recovery avoids a civilian occupying the preferred lane without moving forward (1.5731ms)
+✔ recovery also respects the next second of civilian travel and fails safely when all candidates are occupied (0.3248ms)
+✔ touch drift can combine gas and steering, with independent pointer and keyboard release (0.3799ms)
+✔ touch detection includes tablets with a mouse and desktop-mode touch browsers (0.7452ms)
+✔ phones, large tablets and manual fallback show pedals regardless of primary pointer (1.1075ms)
+✔ layout guard matches the compact HUD at widths above 1000 and the 550px boundary (0.4873ms)
+✔ changing control visibility releases every owner and pauses once, not on address-bar resize (1.6795ms)
+✔ a hybrid tablet rotated to portrait blocks driving and clears simultaneous pedals (0.2642ms)
+✔ right/left bends follow world heading, including the circular route seam (2.3709ms)
+✔ bend detection uses metres and survives a fourfold change in point density (1.2664ms)
+✔ finish, reverse driving and recovery distances follow actual race progress (4.1797ms)
+✔ actual city approach previews its geometrically verified right bend and cached guidance stays pure (9.2332ms)
+✔ isolated heading errors never become a persistent corner warning (0.3905ms)
+✔ world surface polish preserves collision vertices and shares one releasable grain texture (4.3601ms)
+✔ paint and glass finish preserve authored colours and maps, without changing rubber (1.1317ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5728.5399
+
+> mumu-open-circuit@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 174 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       1.95 kB │ gzip:     0.80 kB
+dist/assets/index-B4-cr3qt.css       41.36 kB │ gzip:     8.15 kB
+dist/assets/inviteQr-fMMwOXG4.js     21.74 kB │ gzip:     8.04 kB
+dist/assets/bundler-DMHVwdtc.js     117.07 kB │ gzip:    31.66 kB
+dist/assets/react-DXdbzrGC.js       191.93 kB │ gzip:    60.15 kB
+dist/assets/index-Bq9WWtxS.js       368.52 kB │ gzip:   128.78 kB
+dist/assets/three-C-m27Z9i.js       590.68 kB │ gzip:   151.99 kB
+dist/assets/physics-iRel_T-y.js   2,853.14 kB │ gzip: 1,077.80 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.68s

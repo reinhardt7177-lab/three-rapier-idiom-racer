@@ -219,6 +219,9 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .corner-guide{display:flex;align-items:center;gap:10px;margin:7px 0 11px;min-height:35px}
 .corner-guide strong{margin:0 0 4px;font-size:15px;letter-spacing:0}
 .corner-guide small{display:flex;gap:8px;align-items:center;font-size:10px;color:#c5eaff;font-variant-numeric:tabular-nums}
+.corner-guide>div{min-width:0}
+.corner-guide .next-corner{font-size:10px;line-height:1.25;margin-top:4px;gap:4px;color:#b8cbd9;flex-wrap:wrap;overflow-wrap:anywhere}
+.corner-guide .next-corner>span{white-space:nowrap}
 .corner-guide em{font-size:8px;font-style:normal;color:#ffce82;white-space:nowrap}
 .corner-icon{display:block;width:32px;height:32px;flex-shrink:0;color:#c5eaff;font-size:30px}
 .corner-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
@@ -350,7 +353,7 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
  .race-clock>span{display:none}
  .race-clock strong{font-size:15px;margin:0 0 3px}
  .race-clock button{padding:0 8px;min-height:44px;font-size:10px}
- .race-standings{left:10px;top:83px;min-width:70px}
+ .race-standings{left:10px;top:100px;min-width:70px}
  .race-standings>div{font-size:9px;padding:4px 7px;gap:6px}
  .race-standings small{font-size:6px}
  .speed-card,.camera-first-person .speed-card{top:auto;height:auto;right:10px;bottom:59px;width:90px;padding:5px 8px;background:#07131b9e}
@@ -569,7 +572,7 @@ kbd{font-size:9px;border:1px solid #a5b5c666;padding:2px 5px;margin-left:6px;col
 .rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="ArrowLeft"]{grid-column:1;grid-row:1}
 .rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="ArrowRight"]{grid-column:2;grid-row:1}
 .rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="TouchDrift"]{grid-column:3;grid-row:1;color:#ffda92}
-.rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="TouchBrake"]{grid-column:5;grid-row:1}
+.rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="TouchBrake"]{grid-column:5;grid-row:1;color:#f2f5fa}
 .rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="ArrowUp"]{grid-column:6;grid-row:1;background:#a3d6f9ef;color:#122638}
 .rebuild-app[data-touch-controls="true"] .touch-controls [data-race-control="Space"]{grid-column:7;grid-row:1;color:#89d4ff}
 .rebuild-app[data-touch-controls="true"] .touch-controls .recover-button{grid-column:8;grid-row:1;color:#89d4ff}

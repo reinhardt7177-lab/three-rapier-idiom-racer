@@ -132,6 +132,8 @@ export function createNamakVisuals(scene,world,route,{quality='high'}={}){
   mesh.instanceMatrix.needsUpdate=true;if(mesh.instanceColor)mesh.instanceColor.needsUpdate=true;mesh.computeBoundingBox();mesh.computeBoundingSphere();
   root.add(mesh);chunks.push({mesh,count:cell.records.length,mediumCount:cell.mediumCount,sphere:mesh.boundingSphere.clone()});instances+=cell.records.length;
  }
+ // World-space scratch and candidate storage are reused by the throttled update.
+ const worldSphere=new THREE.Sphere(),nearby=[];
  const trianglesPerInstance=geometry.index.count/3;
  const geometryBytes=Object.values(geometry.attributes).reduce((n,a)=>n+a.array.byteLength,0)+geometry.index.array.byteLength;
  const stats={version:'namak-detail-v1',materials:originals.length,textureBytes:0,geometryBytes,instanceBytes:instances*(16+3)*4,instances,triangles:instances*trianglesPerInstance,
@@ -149,15 +151,15 @@ export function createNamakVisuals(scene,world,route,{quality='high'}={}){
   if(!shown){stats.visibleDrawCalls=stats.visibleInstances=stats.visibleTriangles=0;previousVisible=shown;return;}
   if(shown===previousVisible&&Number.isFinite(elapsed)&&elapsed>=lastUpdate&&elapsed-lastUpdate<stats.updateInterval)return;
   previousVisible=shown;lastUpdate=Number.isFinite(elapsed)?elapsed:0;world.updateWorldMatrix(true,false);
-  const worldSphere=new THREE.Sphere(),nearby=[];let calls=0,count=0;
+  nearby.length=0;let calls=0,count=0;
   for(const chunk of chunks){
    worldSphere.copy(chunk.sphere).applyMatrix4(world.matrixWorld);
    const near=camera.position.distanceTo(worldSphere.center)-worldSphere.radius;
    chunk.mesh.visible=false;
-   if(near<=budget.distance&&chunk.mesh.count)nearby.push({chunk,near});
+   if(near<=budget.distance&&chunk.mesh.count){chunk.near=near;nearby.push(chunk);}
   }
   nearby.sort((a,b)=>a.near-b.near);
-  for(let i=0;i<Math.min(nearby.length,budget.chunks);i++){const chunk=nearby[i].chunk;chunk.mesh.visible=true;calls++;count+=chunk.mesh.count;}
+  for(let i=0;i<Math.min(nearby.length,budget.chunks);i++){const chunk=nearby[i];chunk.mesh.visible=true;calls++;count+=chunk.mesh.count;}
   stats.visibleDrawCalls=calls;stats.visibleInstances=count;stats.visibleTriangles=count*trianglesPerInstance;
  },dispose(){
   architecture.dispose();

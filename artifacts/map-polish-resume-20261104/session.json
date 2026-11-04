@@ -1,0 +1,1561 @@
+{
+  "started": "2026-11-04T01:29:48.639Z",
+  "branch": "codex/korea-circuits-progression-20261011",
+  "head": "29aa2dd35ee558f92f04130bf7323488e6a191bc",
+  "scope": "User resumes map performance/readability work. Stable physics maintained; no publication.",
+  "rows": [
+    {
+      "path": "src/rebuild/seongsamjaeVisuals.js",
+      "sha256": "6cc696fa7ece554147fee7d2fdd2e8119d75399510ecc8661b638c77975557c3",
+      "mtime": "2026-10-13T02:15:21.889Z",
+      "bytes": 21806
+    },
+    {
+      "path": "src/rebuild/namakVisuals.js",
+      "sha256": "936d8112f4bb644f6d567280088cf1cd74013b35422fb0cef374d81c8cc407e6",
+      "mtime": "2026-10-13T04:01:11.393Z",
+      "bytes": 11730
+    },
+    {
+      "path": "src/rebuild/graphicsQuality.js",
+      "sha256": "b38c13460b4e20ffd3a7c5ea3baabe7a81f12b3e18e15ff07bb3e3b0098648bd",
+      "mtime": "2026-10-11T08:24:03.459Z",
+      "bytes": 1954
+    },
+    {
+      "path": "src/rebuild/routeGuidance.js",
+      "sha256": "dc584ef9297c2471787977cd702efdecbd23350aa1a57150f70506d49c98cff1",
+      "mtime": "2026-11-03T15:00:00.779Z",
+      "bytes": 2826
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "sha256": "654f57a198682f1d48f2d71996473423a6574665ede9df93793689a03e057421",
+      "mtime": "2026-11-03T13:00:59.335Z",
+      "bytes": 57998
+    },
+    {
+      "path": "src/rebuild/main.jsx",
+      "sha256": "977ccd1c8da070acf1e2a67565bcf523b6a3fbe1194a4c1d1e73450f03e0baa7",
+      "mtime": "2026-11-03T15:00:00.802Z",
+      "bytes": 29161
+    },
+    {
+      "path": "src/rebuild/rebuild.css",
+      "sha256": "6cc6287d5b4a8758d192191d6bb80f4d2ccf379c63690e2205c108719f80810d",
+      "mtime": "2026-11-03T15:00:00.807Z",
+      "bytes": 42709
+    },
+    {
+      "path": "scripts/seongsamjae-visuals.test.mjs",
+      "sha256": "af37d4f0969e27f2784fc9defd90e3e09d0d92b04b9bd1e8eb60799bba67ec5c",
+      "mtime": "2026-10-13T02:16:39.794Z",
+      "bytes": 8944
+    },
+    {
+      "path": "scripts/namak-visuals.test.mjs",
+      "sha256": "7679bba6cb455222104479bb4e29a819172c943d00ce6ba5e3bff92762ee2440",
+      "mtime": "2026-10-13T02:14:50.434Z",
+      "bytes": 7375
+    },
+    {
+      "path": "scripts/graphics-quality.test.mjs",
+      "sha256": "7ade6270bf2814380065b1acf69ddff12d1f7d73479ea7224c7b4666b29a7507",
+      "mtime": "2026-10-11T08:14:57.960Z",
+      "bytes": 1683
+    },
+    {
+      "path": "scripts/navigation.test.mjs",
+      "sha256": "8e0ec8feb0b8bde6ddea713a949ddc64cc9410acf8da55243cea724a90b71880",
+      "mtime": "2026-11-03T15:00:00.808Z",
+      "bytes": 3375
+    },
+    {
+      "path": "package.json",
+      "sha256": "39def29bb79b06c34d79a1a7ee62cf74d0362bb17d00d84dbc0f1b7e796d76fa",
+      "mtime": "2026-11-03T15:04:00.976Z",
+      "bytes": 6384
+    },
+    {
+      "path": "docs/NEXT_STEPS.md",
+      "sha256": "cb249a9ca398b3368436566590983cf7ad542ff3213f91ca67347ee9d34e9962",
+      "mtime": "2026-11-04T00:47:49.392Z",
+      "bytes": 72344
+    }
+  ],
+  "product": [
+    {
+      "path": "assets-sources/cockpit-v1/cockpit.blend",
+      "sha256": "95741659070b85cf00273611d33d940a7b3f8c7b3d3419bc0edf43af7784c7ce",
+      "bytes": 324051
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/README.md",
+      "sha256": "94c7faffecf18ff3c8dc0e6e05c40525a9af82fa9550202ed8da7279614a9609",
+      "bytes": 3690
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/coastal-existing-seven-mile-horizon-reference.mp4",
+      "sha256": "6d871081f3da570728546bdfd172bd0a570c65b0647c0669c75f0fda6c062095",
+      "bytes": 4289045
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/coastal-gemini-original.mp4",
+      "sha256": "6ca744d268a6de6302389a8459bb00336f28ab77be24ec31670b450baf33baf0",
+      "bytes": 4701656
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/coastal.mp3",
+      "sha256": "5f3cb1479d19f648785b8df0906785f697ee3507c8501dd3f3f5776f83d1ac75",
+      "bytes": 1500006
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/namak-gemini-original.mp4",
+      "sha256": "c613d7554dcac30b25fb141b353f3ed4d2fb447a44aff1ba6c8cb3b8335aacf8",
+      "bytes": 5186283
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/namak.mp3",
+      "sha256": "352a58438d7b65c4fb9ffe4311ccce2f7e78ce7ae3bf0f08f6bc48e1f5f5d0c7",
+      "bytes": 1872974
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/seongsamjae-gemini-original.mp4",
+      "sha256": "ae569b3ee6e970211cf62b383343292698acf536df346387d7a32cdb3973def1",
+      "bytes": 5369210
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/seongsamjae.mp3",
+      "sha256": "fd0cfa1666673ff6452971db32ad3d11c7b5cd04ef67fc5062a22d84b3207d0a",
+      "bytes": 1697588
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/yeosu-gemini-original.mp4",
+      "sha256": "8fecfaab0d80c333427080096541cd35d1dc97fbfb729932b6e43726baf84bc8",
+      "bytes": 4872635
+    },
+    {
+      "path": "assets-sources/music-maps-20261011/yeosu.mp3",
+      "sha256": "3c250e7aabbdf1fbeba1a978e2030284031b381a3fc208eaff09e5214a31cfdb",
+      "bytes": 1567453
+    },
+    {
+      "path": "assets-sources/namak/namak-highdetail.blend",
+      "sha256": "3ee73454dfa592ef9ee58b4fb5151569ac113a35447d4af5130fef204dabae92",
+      "bytes": 3316900
+    },
+    {
+      "path": "assets-sources/namak/namak-landmarks.blend",
+      "sha256": "ed8fa25d7a813a08e5905bc1bc894b163490d5c04840cd14299ffbf3379a21f0",
+      "bytes": 401240
+    },
+    {
+      "path": "assets-sources/namak/namak.blend",
+      "sha256": "6aa1a71b617a9eaa81fac4ec00a2be313f3fe24cf8141ce17b285196f8af81e5",
+      "bytes": 3153294
+    },
+    {
+      "path": "assets-sources/rebuilt-unity/garage.blend",
+      "sha256": "6c7eb5ca6b7e00209c9da453fdb0ccc3e438af7a37955568d26fe1e4a2274f1f",
+      "bytes": 787538
+    },
+    {
+      "path": "assets-sources/rebuilt-unity/world.blend",
+      "sha256": "d9957b0f91675a69378292cb9dcb3d328614b348e6d9f348c0856d20a64726bc",
+      "bytes": 276618156
+    },
+    {
+      "path": "assets-sources/seongsamjae/roadscape.blend",
+      "sha256": "ea84bb4ed95cb7385865f960dc0ddc893468e3b86ffba22e99ef4d97e14f9385",
+      "bytes": 449557
+    },
+    {
+      "path": "assets-sources/seongsamjae/seongsamjae.blend",
+      "sha256": "04af8b63b207b180b883634a98f77aca20566cb11082675af13e1cc7dd11f201",
+      "bytes": 1878196
+    },
+    {
+      "path": "assets-sources/vehicles-v6/gtr.blend",
+      "sha256": "e6cb7c8bbd95b512fd10a0e850ae85a23404d22e5c7d216c98dec0eaf3ea2f3b",
+      "bytes": 882158
+    },
+    {
+      "path": "assets-sources/vehicles-v6/huracan.blend",
+      "sha256": "025da0624b3f538c38948e4571b062af7180cb62d3d48cc93e623c2a08b34417",
+      "bytes": 821774
+    },
+    {
+      "path": "assets-sources/vehicles-v6/m3.blend",
+      "sha256": "a25db49a53464b489171b7382c2ea6a0a1a2062e7c47fc0a14c96c0f2b4dd52e",
+      "bytes": 1431268
+    },
+    {
+      "path": "assets-sources/vehicles-v6/mustang.blend",
+      "sha256": "e57ad044b9712b5d31ffb3c2242eeddcf4397e25fb3026603bdde4f376e460c4",
+      "bytes": 970709
+    },
+    {
+      "path": "assets-sources/vehicles-v6/porsche911.blend",
+      "sha256": "cf9988debc3012d44d52948dd31c2909cbfbb7af181c8af3bb7dc6e3e8f44276",
+      "bytes": 1072425
+    },
+    {
+      "path": "assets-sources/vehicles-v6/rx7.blend",
+      "sha256": "c0e2cc964a2b56b09e1a63152a177af5cc7e607ac421d9e6b37dd61a77a2863d",
+      "bytes": 872850
+    },
+    {
+      "path": "assets-sources/vehicles-v6/slk.blend",
+      "sha256": "a27426f425bf8c19e4dd5e12b63bad51f65626198dceb38e3cfdffeab00b43ac",
+      "bytes": 873777
+    },
+    {
+      "path": "assets-sources/vehicles-v6/supra.blend",
+      "sha256": "31d2f9d51f393014defe5e537546b7ccef64a65956aa51184275ae3d4ae5346c",
+      "bytes": 944585
+    },
+    {
+      "path": "assets-sources/yeosu/map/README.md",
+      "sha256": "06f4b3e548a8ce58584698c78978e309a8a3c76cf42f9b9a98ded585e6202d8e",
+      "bytes": 961
+    },
+    {
+      "path": "assets-sources/yeosu/map/mapped-scenery.json",
+      "sha256": "6cd45116b43687d4ad82758cf39678b477be4f85e677acadf71235548a9d61df",
+      "bytes": 2802899
+    },
+    {
+      "path": "assets-sources/yeosu/map/selected-roads.json",
+      "sha256": "6cdb14d4878f7798645fb1eeee06c5d87b316e1bfca7881790db73d904631f9d",
+      "bytes": 93506
+    },
+    {
+      "path": "assets-sources/yeosu/map/source.json",
+      "sha256": "37eaad24ea4cfcb84fdf98d98d24507739aa157d8797b89f6673b36767ceadb8",
+      "bytes": 773
+    },
+    {
+      "path": "assets-sources/yeosu/map/yeosu-osm-20261012.osm",
+      "sha256": "ebf89717627c98e96f2df5356ca40d9defa7295525858074e0ffae6d2340821c",
+      "bytes": 9671967
+    },
+    {
+      "path": "assets-sources/yeosu/roadscape.blend",
+      "sha256": "363937b3ec507c30a63606d83b7e1fb603908f998ae3237ad04ec3108f2616da",
+      "bytes": 1150786
+    },
+    {
+      "path": "assets-sources/yeosu/yeosu.blend",
+      "sha256": "f4a7559a6ba771fa702ae2f53f66ccc0fc1470268e59a0b92f0cf728f158a72a",
+      "bytes": 1476808
+    },
+    {
+      "path": "public/assets/audio/seven-mile-horizon.mp3",
+      "sha256": "a7d6918a5c77773f51b6bb7497374f6e829872ac363b038f1a647468f747f266",
+      "bytes": 1309073
+    },
+    {
+      "path": "public/assets/audio/slipstream-pursuit.mp3",
+      "sha256": "c4b22e635a05be7943dd121dbe5cfc8066135c7fc3c8f8c75c7675adc015fb36",
+      "bytes": 1113682
+    },
+    {
+      "path": "public/assets/rebuild/cockpit.glb",
+      "sha256": "48e2b50487e0bec8052a879696c74bd89a1e4f2105c167dc88fafd96da2e32d8",
+      "bytes": 736208
+    },
+    {
+      "path": "public/assets/rebuild/draco/draco_decoder.js",
+      "sha256": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+      "bytes": 512465
+    },
+    {
+      "path": "public/assets/rebuild/draco/draco_decoder.wasm",
+      "sha256": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+      "bytes": 192420
+    },
+    {
+      "path": "public/assets/rebuild/draco/draco_wasm_wrapper.js",
+      "sha256": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+      "bytes": 58456
+    },
+    {
+      "path": "public/assets/rebuild/garage.glb",
+      "sha256": "e7958e0c9f1b24e2f1fed9523887b33a34d7a1b0db3af14b6818dd69f2e74400",
+      "bytes": 132244
+    },
+    {
+      "path": "public/assets/rebuild/gtr.glb",
+      "sha256": "e008020c5bcf6cbc3b4130fb1136f8d5c0b37309ed76da12cac1b04b0d3ff8cc",
+      "bytes": 478808
+    },
+    {
+      "path": "public/assets/rebuild/huracan.glb",
+      "sha256": "0cb5b62f636d191b416ba8a1d92b1153b6be609b31ee8a360de4883f0b29409c",
+      "bytes": 481244
+    },
+    {
+      "path": "public/assets/rebuild/m3.glb",
+      "sha256": "ef48b1c08cc427fc2d41b37042d51547632900b8535d5d13daf6e1851b411785",
+      "bytes": 555428
+    },
+    {
+      "path": "public/assets/rebuild/mustang.glb",
+      "sha256": "b620ad2f4c835aeff7bcff8ed76f458fbb820296f800a5223b7ea765dd4110c3",
+      "bytes": 484436
+    },
+    {
+      "path": "public/assets/rebuild/namak-architecture.glb",
+      "sha256": "4f7f74af4c8139f5ecb4c2e7833d15562b3e203172cf1b728fd8fca36a2830c1",
+      "bytes": 1338284
+    },
+    {
+      "path": "public/assets/rebuild/namak-landmarks.glb",
+      "sha256": "0a01249d6be45c7eec391ee073d8289d7f8c4a414dc298b62906f4b4559a6b92",
+      "bytes": 766412
+    },
+    {
+      "path": "public/assets/rebuild/namak-landmarks.json",
+      "sha256": "853d33e61ba9b670ed53d8cdf6c4c6b206ade74a90b0b0e3e45763e4dae2f47d",
+      "bytes": 8359
+    },
+    {
+      "path": "public/assets/rebuild/namak-route.json",
+      "sha256": "81bbf6bc62696d12b6592aa49c8f9cc902d73b43c651b3c2d974cbbb74fbbe5f",
+      "bytes": 203125
+    },
+    {
+      "path": "public/assets/rebuild/namak.glb",
+      "sha256": "b4bd07b1afc937e4262fde2164c7f5fd27c39d5809e7a9e47880cf40b154cbd3",
+      "bytes": 19885452
+    },
+    {
+      "path": "public/assets/rebuild/porsche911.glb",
+      "sha256": "87b8031cf19e9b858e624be9f339584365e5a477408dba37d600bde30a821dcc",
+      "bytes": 541728
+    },
+    {
+      "path": "public/assets/rebuild/qr-third-party-notice.txt",
+      "sha256": "a02542625d60c7f55d46f962eb09608ac3a4e08b5cc5802016401fea19fe9de9",
+      "bytes": 1145
+    },
+    {
+      "path": "public/assets/rebuild/rx7.glb",
+      "sha256": "55b4b736af8fb4b3dc014f25834f3faf3efbc8fd22f33dc7fb90206aa1b9ec70",
+      "bytes": 456836
+    },
+    {
+      "path": "public/assets/rebuild/seongsamjae-roadscape.glb",
+      "sha256": "8f8f381acd7e0f07553abe3f26bca03a79ec1b7c6b4f444d56ce800b6c75cb0b",
+      "bytes": 2820352
+    },
+    {
+      "path": "public/assets/rebuild/seongsamjae-route.json",
+      "sha256": "3e2cafb215d328a8fc18a7927cca406fecb4f51a6b74fa6deb87bfa9e249ab54",
+      "bytes": 543436
+    },
+    {
+      "path": "public/assets/rebuild/seongsamjae.glb",
+      "sha256": "8a78f4962bdfed2b771c7210d1f8621c4df12b3c7d3069cc0b94cb72a1630b8d",
+      "bytes": 9539680
+    },
+    {
+      "path": "public/assets/rebuild/slk.glb",
+      "sha256": "8163bd40bf1a5c00f7de68a0ad9b4782dd39081b224879ba203bb209917049f8",
+      "bytes": 515364
+    },
+    {
+      "path": "public/assets/rebuild/supra.glb",
+      "sha256": "833aa014e5af469a150d7e46813081e9a73258da39721955133ed4efe4cf5d52",
+      "bytes": 506972
+    },
+    {
+      "path": "public/assets/rebuild/world-route.json",
+      "sha256": "435ec93bbe06f52893576a65a77d038bcc6e2af9b26598cf96a4830a4b13aea4",
+      "bytes": 503773
+    },
+    {
+      "path": "public/assets/rebuild/world.glb",
+      "sha256": "35b14d2966e9a8886ff34f60c1519cc09cd15acbe004b2d930e5c4864279f21e",
+      "bytes": 16911600
+    },
+    {
+      "path": "public/assets/rebuild/yeosu-roadscape.glb",
+      "sha256": "9af89a3de0c5aaadd15ecd25e237cef0126bf44cc4efcc58c83855595797bc14",
+      "bytes": 4830744
+    },
+    {
+      "path": "public/assets/rebuild/yeosu-route.json",
+      "sha256": "c5506e90d432a299f2fe355f17e77840aa2e3880c99b02f04a8ab915794ee8dd",
+      "bytes": 882097
+    },
+    {
+      "path": "public/assets/rebuild/yeosu.glb",
+      "sha256": "f366b3a5d4abe280736a13acb5fd4a2440f247e613aec441f5d75a49db908987",
+      "bytes": 9632808
+    },
+    {
+      "path": "scripts/ai-race-audit.mjs",
+      "sha256": "a8c9e65cc3b4bb2e69cb2117041b6cfa313c71c6c632ae702bd3c59644707a9c",
+      "bytes": 2052
+    },
+    {
+      "path": "scripts/blender/build_cockpit.py",
+      "sha256": "ac8f7b3e607368d4e39e44cb531266199448db11cd641194760504bee3598961",
+      "bytes": 13078
+    },
+    {
+      "path": "scripts/blender/build_namak.py",
+      "sha256": "b58834634f30bf24626316ccb6b682435b49de853ed29634cb8e62d455c0a2c8",
+      "bytes": 23400
+    },
+    {
+      "path": "scripts/blender/build_namak_landmarks.py",
+      "sha256": "d7e95c11329c651aef487c852358df292db8a797fc7c197a7d1920e532952a3b",
+      "bytes": 8073
+    },
+    {
+      "path": "scripts/blender/build_seongsamjae.py",
+      "sha256": "59ae9afcce4e2351bbafd50bab55a2a358097cea7b8c4f0f64641772ae412a89",
+      "bytes": 144
+    },
+    {
+      "path": "scripts/blender/build_seongsamjae_roadscape.py",
+      "sha256": "fab2e9138073e5d41c52133a1016e1fb72bf91c2f3c4d9450810defff011d903",
+      "bytes": 15636
+    },
+    {
+      "path": "scripts/blender/build_yeosu.py",
+      "sha256": "74cbcff21bef2bd9e31627184876618888df0291fb9fec36f1ae008d30c93dfc",
+      "bytes": 138
+    },
+    {
+      "path": "scripts/blender/build_yeosu_roadscape.py",
+      "sha256": "ad92adb2ccc1c31ae37caa508da73c95bf66a3915a456e85f2725eedd93ef839",
+      "bytes": 15079
+    },
+    {
+      "path": "scripts/blender/export_environment.py",
+      "sha256": "a3f885ea2063cee4994afd74f5aae2e5759a77bd8fd5b57601620d58314cbb43",
+      "bytes": 2856
+    },
+    {
+      "path": "scripts/blender/export_fleet_eight.py",
+      "sha256": "c15e3d141f1487d5b1467be4a2fe76c1e9747cc59c64bad65057fc2a80127232",
+      "bytes": 1648
+    },
+    {
+      "path": "scripts/blender/korea_course.py",
+      "sha256": "6c66bc0f282bc75fe7d1b2ba5a5751fd3d6e8c21d5b98c63d04ecdb235c96910",
+      "bytes": 20301
+    },
+    {
+      "path": "scripts/blender/polish_namak_architecture.py",
+      "sha256": "5ee3cf38f76d0af9f9853a7af2dea6c2dec42c7ca3b9bd20e9c015119c8ab22a",
+      "bytes": 7597
+    },
+    {
+      "path": "scripts/blender/polish_vehicle_finish.py",
+      "sha256": "42df2bc4833a68ad9792a37ce1593964b392a887a58599809ab5eb9a21ce7df7",
+      "bytes": 8503
+    },
+    {
+      "path": "scripts/blender/polish_vehicle_reference.py",
+      "sha256": "5d9c48df7241c50b1f13f0696c2edf2876d7b75985ce84feafe2fd5ce69fa406",
+      "bytes": 9649
+    },
+    {
+      "path": "scripts/blender/preview_namak.py",
+      "sha256": "1165c3c626ada9c90bfecffd77e30952bc5f56dfc129c06d2d9d54ae12bf0175",
+      "bytes": 1426
+    },
+    {
+      "path": "scripts/blender/preview_namak_architecture.py",
+      "sha256": "3e45f4ca77452a8a0d8d1d52fd26dd461517703a5b154052d9ce976e877a5116",
+      "bytes": 1695
+    },
+    {
+      "path": "scripts/blender/web_meshes.py",
+      "sha256": "09c813f1851230df2d3ed2cc78cfbd116e6f960fdf492fa35a5caf41ffda0c38",
+      "bytes": 879
+    },
+    {
+      "path": "scripts/blender/yeosu_land_geometry.py",
+      "sha256": "7372662419f3e8020b8d2efa1274d91a5e2c8ef4372ae8f20eb632931dfc4552",
+      "bytes": 6126
+    },
+    {
+      "path": "scripts/blender/yeosu_map_geometry.py",
+      "sha256": "6b9515bae4a9eacdb5924513e5a782655284bf84ce4ac974876ec03f25e240c8",
+      "bytes": 3227
+    },
+    {
+      "path": "scripts/body-motion-sampling.test.mjs",
+      "sha256": "49e1f34b4299bcb2af59222ca3dde2f110e7bfb318609d8af743f7ee7f929e99",
+      "bytes": 6869
+    },
+    {
+      "path": "scripts/body-motion.test.mjs",
+      "sha256": "96117e249a1f293fb17d96fed5b37b10c3fb6616bc674dd3519a24a87acaaf10",
+      "bytes": 5382
+    },
+    {
+      "path": "scripts/build-yeosu-map-route.py",
+      "sha256": "120f84c58b23460ee73ac31a2002313062b118bbb54306505a5d75e83370381a",
+      "bytes": 5232
+    },
+    {
+      "path": "scripts/championship-race.test.mjs",
+      "sha256": "a4051b6419f5e0a35498977b06792fbb4c9adcc8b8eb634a870cdaba905414cc",
+      "bytes": 1345
+    },
+    {
+      "path": "scripts/championship.test.mjs",
+      "sha256": "30b7a611e9161849054a85031720eb909fd7a96a2c94ac36f4e80a66ddd61155",
+      "bytes": 3071
+    },
+    {
+      "path": "scripts/cleanup-current.ps1",
+      "sha256": "a2056810ca8d7d6dfaeb633cf25b14568d89abbb0ac18647c97fcc397648ab78",
+      "bytes": 2764
+    },
+    {
+      "path": "scripts/cockpit.test.mjs",
+      "sha256": "c1920e4f43c6bed33724cab27eef515b551785be33a48f558d05ba6e2c6b9ca3",
+      "bytes": 9164
+    },
+    {
+      "path": "scripts/collision-feel.test.mjs",
+      "sha256": "aafca06b1f38179f55082593eab4c9e31fa99bff140b2a165ba8eb3a01fe7a28",
+      "bytes": 4989
+    },
+    {
+      "path": "scripts/corner-queue.test.mjs",
+      "sha256": "f663b9e12f79a7251b49a621fdabd9b04bd8ca0093549dcb20ee252a7282a579",
+      "bytes": 4543
+    },
+    {
+      "path": "scripts/current-files.mjs",
+      "sha256": "f6e04710b032e3bae0f9b3be5e16235b1a1bf8499535e5bb736326e7dfa7c014",
+      "bytes": 6940
+    },
+    {
+      "path": "scripts/difficulty.test.mjs",
+      "sha256": "4a86e0c2cc311166ca14a6ec864971e6bb83de35b53d36e30b537beba4e05123",
+      "bytes": 9841
+    },
+    {
+      "path": "scripts/driving-feel-matrix.mjs",
+      "sha256": "bbebda7f9463c68364d458bb5bce5ba905046499876ffeccc9afbc81405e4762",
+      "bytes": 1278
+    },
+    {
+      "path": "scripts/driving-five-pass.test.mjs",
+      "sha256": "9d6400e98466ffedf07ab462e7b8fe6e42087f03b9615074fb94132a776b0aae",
+      "bytes": 9058
+    },
+    {
+      "path": "scripts/duel-mode.test.mjs",
+      "sha256": "8d41082eda6acb978a531cdd2956db09c0a0f93c8b110ab6326a33c5f655e3d2",
+      "bytes": 6263
+    },
+    {
+      "path": "scripts/duel-race.test.mjs",
+      "sha256": "b4397466697643374599d912613eff7a801d7d109a7ab52e291e49f63f5184f3",
+      "bytes": 2634
+    },
+    {
+      "path": "scripts/engine-feel.test.mjs",
+      "sha256": "986a706f473e6be97a3b96d842772aaf90d847d5dfc3ed791bf280ef1f8f42a2",
+      "bytes": 7282
+    },
+    {
+      "path": "scripts/feedback.test.mjs",
+      "sha256": "88b4084b0c92e14149356a5c7d0dabafab8406dc232a7a909b020bafdbb85461",
+      "bytes": 12915
+    },
+    {
+      "path": "scripts/fetch-yeosu-map.py",
+      "sha256": "df07c17c72a62c09fcc1b690e5a20ef71435c5fe4110cfa651305a402c50670d",
+      "bytes": 1428
+    },
+    {
+      "path": "scripts/fixtures/steering-baseline-20261015.json",
+      "sha256": "8bc78cb3007b47e791a8e52ac6c8e996381eea81ad4d2f2558ae8ad120c4970f",
+      "bytes": 4687
+    },
+    {
+      "path": "scripts/fleet-eight.test.mjs",
+      "sha256": "faf071fbc3ead71e217cd60efb871f291cf9533a6b0063fd3d9b5a6c3dda2d4d",
+      "bytes": 4098
+    },
+    {
+      "path": "scripts/garage-backdrop.test.mjs",
+      "sha256": "ba80dc1c9d4175b63d273e1c369331f94b35ba066489256c2a084c8a074189ec",
+      "bytes": 1921
+    },
+    {
+      "path": "scripts/graphics-quality.test.mjs",
+      "sha256": "7ade6270bf2814380065b1acf69ddff12d1f7d73479ea7224c7b4666b29a7507",
+      "bytes": 1683
+    },
+    {
+      "path": "scripts/korea-courses.test.mjs",
+      "sha256": "ac7f14da30094b2ff389a0073c894e4632f4f7e2ed1af6e6630612bac769df54",
+      "bytes": 5276
+    },
+    {
+      "path": "scripts/korea-data.mjs",
+      "sha256": "622ca4303a527565cf59a498f990a34e4df21a82e0814e2bb1eeab49e5d0ba32",
+      "bytes": 739
+    },
+    {
+      "path": "scripts/korea-matrix.mjs",
+      "sha256": "8cd7b29cd8871f6c09a63381433f44516a86c805ad4e98c11a9c1e9e4c03672e",
+      "bytes": 1977
+    },
+    {
+      "path": "scripts/korea-medals.test.mjs",
+      "sha256": "ff53b4274a299725e0b90bd6c2a9cfcd6363b07a8f8b472700402fa34cae26c2",
+      "bytes": 2036
+    },
+    {
+      "path": "scripts/korea-presentation.test.mjs",
+      "sha256": "62eea68e9859d9dbfe6815b6610c8cd7319b292984c4e4efd5b86223ba99d48d",
+      "bytes": 2587
+    },
+    {
+      "path": "scripts/landscape.test.mjs",
+      "sha256": "5d3ed2779498b00380fda60567cc73c2034c25e246c23e0b9fe31cffa1e3beac",
+      "bytes": 4073
+    },
+    {
+      "path": "scripts/loading-metrics.test.mjs",
+      "sha256": "ecc57191aadfdf3c9809dd7e4f438256d29429696755a042f1b713ede8462402",
+      "bytes": 851
+    },
+    {
+      "path": "scripts/map-materials.test.mjs",
+      "sha256": "e392c52c973efefc9fc3745e6a40258351db75a7369cf6195a89cb2b8abe09ae",
+      "bytes": 4717
+    },
+    {
+      "path": "scripts/music-selection.test.mjs",
+      "sha256": "be1149275a0b3db15ec97b6eeaa79607083534d4e257d901e0901f18375b66d2",
+      "bytes": 4763
+    },
+    {
+      "path": "scripts/namak-architecture.test.mjs",
+      "sha256": "e43c4b2e46f33412c83efaf5c7f0f9b61f625d155ab8ccf5e0b273b736526724",
+      "bytes": 9503
+    },
+    {
+      "path": "scripts/namak-landmarks.test.mjs",
+      "sha256": "c2eb8d8fff582cef1711205f5a401604a7167d066d84cb031cce90dfd3927682",
+      "bytes": 4890
+    },
+    {
+      "path": "scripts/namak-polish.test.mjs",
+      "sha256": "e5b7fa9ad6cf560765e9e8db7c829f4d32d1cb47d6fd1cd3fe11e049e1386c82",
+      "bytes": 8355
+    },
+    {
+      "path": "scripts/namak-visuals.test.mjs",
+      "sha256": "7679bba6cb455222104479bb4e29a819172c943d00ce6ba5e3bff92762ee2440",
+      "bytes": 7375
+    },
+    {
+      "path": "scripts/namak.test.mjs",
+      "sha256": "cb8b7aabab8c7534090a9dafcb5f9988d75c77fdc6e74dc3b9b80973cb06a37d",
+      "bytes": 10663
+    },
+    {
+      "path": "scripts/navigation.test.mjs",
+      "sha256": "8e0ec8feb0b8bde6ddea713a949ddc64cc9410acf8da55243cea724a90b71880",
+      "bytes": 3375
+    },
+    {
+      "path": "scripts/night-presentation.test.mjs",
+      "sha256": "35625a2d121e4e95bc3c1104b0301ff6d644611dc4b4af80f1dabd741eed0734",
+      "bytes": 2997
+    },
+    {
+      "path": "scripts/online-physics.test.mjs",
+      "sha256": "be207c39e311123baabe1f836ef20a7bf3c747eb71ba2c9251bfd940ed88c63a",
+      "bytes": 1791
+    },
+    {
+      "path": "scripts/online-qr.test.mjs",
+      "sha256": "18ed9755e5964be223c33b0bda949ca46edd61cf3c2db4f244f8f98177aed40d",
+      "bytes": 2786
+    },
+    {
+      "path": "scripts/online-race.test.mjs",
+      "sha256": "022ff052088778e31600d0dd142e9ba0e92d67c2674da466f54e1f645f87505c",
+      "bytes": 16901
+    },
+    {
+      "path": "scripts/package-yeosu-colab.py",
+      "sha256": "2c93db12c6280887956be7679ed2a0efe6574034fe5bd4e1fd7b6ac590428e71",
+      "bytes": 1629
+    },
+    {
+      "path": "scripts/performance-comparison.test.mjs",
+      "sha256": "884be425d54d17a64b7deb229134bfd14030040db91d1020406e920ede8cf170",
+      "bytes": 1544
+    },
+    {
+      "path": "scripts/physics-sampling.test.mjs",
+      "sha256": "3d30b6ffec3deedffacd0a49eb61d9a8229eb81f2896d6a48b155055573d59c7",
+      "bytes": 2741
+    },
+    {
+      "path": "scripts/progression-race.test.mjs",
+      "sha256": "f8b81509dd33db44aff0b2efb6103a507a4feb08f0f7a41d05cb88c76e0363f5",
+      "bytes": 1286
+    },
+    {
+      "path": "scripts/progression.test.mjs",
+      "sha256": "6ca51a16a5679e9c99306d6e3af4d76c92d962b3a301f6bfeab293cd796b2f98",
+      "bytes": 1818
+    },
+    {
+      "path": "scripts/race-controls.test.mjs",
+      "sha256": "14ceaa05dc345705e60c6c3d38279480b23ce675c6f9f02da1808e98b58bfc10",
+      "bytes": 10136
+    },
+    {
+      "path": "scripts/race-dynamics.test.mjs",
+      "sha256": "d199d0c8e4b5d4ed725238e000e560c3b4fd8093cffdeb96e5307bf0731706b8",
+      "bytes": 6292
+    },
+    {
+      "path": "scripts/race-experience.test.mjs",
+      "sha256": "5159bae46f6d04bd809e2fa293d242b5ae343bc423e957d55c9aad8ba14ebae7",
+      "bytes": 7297
+    },
+    {
+      "path": "scripts/race-records.test.mjs",
+      "sha256": "a198c0675332e363ddf5edd18f194fe284384ace74adc271d4964c0ec7197545",
+      "bytes": 6306
+    },
+    {
+      "path": "scripts/race-rules.test.mjs",
+      "sha256": "98b7e0a6aaa6525c99c5f855768adfa8d57ef8b01aeccd26fd3164a18136916b",
+      "bytes": 5111
+    },
+    {
+      "path": "scripts/race-sim.mjs",
+      "sha256": "db4642c7e04ccb806da78927dd02192e39f56df31ea90a38e3e0fb8ab14e8416",
+      "bytes": 8623
+    },
+    {
+      "path": "scripts/race-vfx.test.mjs",
+      "sha256": "8e26a8b12576b0ab5dc83086d1cdfeb125943f03d6dfeac4d9e61287d7af08e5",
+      "bytes": 7291
+    },
+    {
+      "path": "scripts/rain-race.test.mjs",
+      "sha256": "7abe44fe8aad8b7d851cccef4f44130d4a3d298ff1baa69853a4920b67296e4d",
+      "bytes": 2070
+    },
+    {
+      "path": "scripts/rain-vfx.test.mjs",
+      "sha256": "71c82ed0bef1452e73bea5e00d2003933bdf60e698c6158a8311c995d51a9468",
+      "bytes": 1155
+    },
+    {
+      "path": "scripts/rebuild-race.test.mjs",
+      "sha256": "9ab0c644b1a0e5f1c8faea98a1be559ae22b2595148510436f0de4c9a5808973",
+      "bytes": 7449
+    },
+    {
+      "path": "scripts/remove-empty-folders.ps1",
+      "sha256": "b465cbcc6bb1ed026d4f09902494bc6fa126be679024d01aa26e5ee512188933",
+      "bytes": 1207
+    },
+    {
+      "path": "scripts/render-resources.test.mjs",
+      "sha256": "b619b2b5dcee4586803b50f96ed91e293ad6c59aefa4413c1c3e9b99aff3d079",
+      "bytes": 3969
+    },
+    {
+      "path": "scripts/render-timing.test.mjs",
+      "sha256": "1f9b0de92e2d682c03694e7404c580b2d194fb942da1b59a4ed1168652f6a745",
+      "bytes": 16333
+    },
+    {
+      "path": "scripts/render-yeosu-map-evidence.py",
+      "sha256": "83acaf5b1280c58acd33a949488a875bfb3062ab2a33424bd2842376510c5f89",
+      "bytes": 3129
+    },
+    {
+      "path": "scripts/renewal-presentation.test.mjs",
+      "sha256": "71f05688782fd5a5d71b44d2ae3977fceb014b5e2c10a1b24504cff23d4d0e75",
+      "bytes": 8607
+    },
+    {
+      "path": "scripts/ride-design.test.mjs",
+      "sha256": "ef0564d80721b0680f12c4b185ac197f5b49f494e8addaad8d4d789334b4d7bb",
+      "bytes": 7829
+    },
+    {
+      "path": "scripts/ride-quality.test.mjs",
+      "sha256": "293914cb9bb48d628193f0566ec4a831c4d0ba6a531b8bcabb919955d4aedcdb",
+      "bytes": 4621
+    },
+    {
+      "path": "scripts/ride-repair.test.mjs",
+      "sha256": "ced05f50c58b1a2792b564908b1ffc6e6742c8224203e821c627bff6a6653478",
+      "bytes": 7658
+    },
+    {
+      "path": "scripts/rival-ai.test.mjs",
+      "sha256": "5bf565f77a71d2b1cab052a2273f64e881bf660f369716740780b904d4b54a88",
+      "bytes": 17285
+    },
+    {
+      "path": "scripts/rival-personalities.test.mjs",
+      "sha256": "ba9bcc84571a209c10a01a687dd03123ff304e45311640f79d028b12b6464aec",
+      "bytes": 1943
+    },
+    {
+      "path": "scripts/rival-personality-race.test.mjs",
+      "sha256": "c7717b291aadcf5cdad290f35a15408938775e0b360b0ab24b2e8f95d660be9b",
+      "bytes": 1827
+    },
+    {
+      "path": "scripts/rival-racecraft.test.mjs",
+      "sha256": "bbe8ee19726a4a715633f26e4ed85fde3a04b2ad3f79c2c2a591dda29f151588",
+      "bytes": 7798
+    },
+    {
+      "path": "scripts/rival-recovery.test.mjs",
+      "sha256": "b790834365c12d1409e51961e5656226e4b40f2dd6913a95d710a509e5ebed0e",
+      "bytes": 9190
+    },
+    {
+      "path": "scripts/roadscape.test.mjs",
+      "sha256": "292387568a1c533591130af66c5df6dd0b0e6fac87e5a9f04df4620ab60ffee7",
+      "bytes": 3496
+    },
+    {
+      "path": "scripts/route-work.test.mjs",
+      "sha256": "81ba78a8d7a29e03dd01f66b0cebbd2f0e4722c40e0c96061f75e4cb55c71be9",
+      "bytes": 5327
+    },
+    {
+      "path": "scripts/seongsamjae-roadscape.test.mjs",
+      "sha256": "93a4efabfb0ac661a662f3cb7025e731e6fe05cc9dffe4dc2a070a0ded511f71",
+      "bytes": 10128
+    },
+    {
+      "path": "scripts/seongsamjae-visuals.test.mjs",
+      "sha256": "af37d4f0969e27f2784fc9defd90e3e09d0d92b04b9bd1e8eb60799bba67ec5c",
+      "bytes": 8944
+    },
+    {
+      "path": "scripts/speed-feel.test.mjs",
+      "sha256": "7e48a426843e7573b23be33590eda2b5909e298ac0c501446b022c8b155246d3",
+      "bytes": 2727
+    },
+    {
+      "path": "scripts/steering-final.test.mjs",
+      "sha256": "7a27a7c79f2f85bcc88f2ddcd552675cadaf9c36564eb0317906b3ef830f11a4",
+      "bytes": 7028
+    },
+    {
+      "path": "scripts/steering-five-pass-audit.mjs",
+      "sha256": "90dc58eb92462304b9ccb35a927d25b2b63ebe645c5edd7ea7a3eeb2e3614f9b",
+      "bytes": 3494
+    },
+    {
+      "path": "scripts/steering-turn.test.mjs",
+      "sha256": "2fd882e554d6b96a4e76472310236d478bf50d79917428f2cb24946ece6373a2",
+      "bytes": 7793
+    },
+    {
+      "path": "scripts/steering.test.mjs",
+      "sha256": "7cc3039c50c8d19b3527470e88b9e547c9af3977e92bfeaedc9effcc2facc6e2",
+      "bytes": 8346
+    },
+    {
+      "path": "scripts/studio-controls.test.mjs",
+      "sha256": "554f9d70ed0ea6003a32d8f34f07ff309bcb71605fc0634d0c01a7df111610f5",
+      "bytes": 2576
+    },
+    {
+      "path": "scripts/studio-visuals.test.mjs",
+      "sha256": "dac8a566e8b3e228f9e7c74c51fb68d6282d88256b3e5fa5de8866bebefb4226",
+      "bytes": 4535
+    },
+    {
+      "path": "scripts/touch-controls.test.mjs",
+      "sha256": "137741529e4bb2db5e6af2d6bff62fd992f166ec9fd1d353f18e1c136f9e5853",
+      "bytes": 3331
+    },
+    {
+      "path": "scripts/traffic-collision.test.mjs",
+      "sha256": "3ecba70579d43dea8af108de0c58dc45a5c948b1155c295acc8afcb1c9961833",
+      "bytes": 2439
+    },
+    {
+      "path": "scripts/traffic-controls.test.mjs",
+      "sha256": "eacc79983acfce65f6bb6861c5ace77ba56186299300ab6de6781379c9903ebd",
+      "bytes": 2119
+    },
+    {
+      "path": "scripts/traffic-planner.test.mjs",
+      "sha256": "18a41241394670171e0b19bfb10fa6920e24227354e44369dcb1f17d0d18cfd9",
+      "bytes": 5187
+    },
+    {
+      "path": "scripts/traffic-race.test.mjs",
+      "sha256": "a55f89553ada9ae2f711ced28e6e2f4f67c316515508fb6057169cff9b73d040",
+      "bytes": 1681
+    },
+    {
+      "path": "scripts/vehicle-finish.test.mjs",
+      "sha256": "9ae345f1b2b5cf2573725e5aa13699ceb024f31179437cdf0c2d009e3d3c533e",
+      "bytes": 8050
+    },
+    {
+      "path": "scripts/vehicle-rig.test.mjs",
+      "sha256": "92701e9bad0b2377e8a8de1d267ab047774ad9f7b2259e4c51cb84514ce0b14a",
+      "bytes": 7372
+    },
+    {
+      "path": "scripts/visual-polish.test.mjs",
+      "sha256": "38de4a0da7b13d4f7e910d53616429e6e821ddca71ec4c986ddedad81d2e2258",
+      "bytes": 4326
+    },
+    {
+      "path": "scripts/wall-recovery.test.mjs",
+      "sha256": "0a0431b0300c7d63c74dbaeeccc020e4248e1b2c4af2825b70525b0df60eaf7b",
+      "bytes": 8266
+    },
+    {
+      "path": "scripts/weather.test.mjs",
+      "sha256": "975a7573c6bd38d07cb3d52d81a068801b2c7d7995304792a322e357f86dd70e",
+      "bytes": 2340
+    },
+    {
+      "path": "scripts/world-rendering.test.mjs",
+      "sha256": "aa11609a02b7c8a0e1b2af5632bfbf72e3b99d65a3c6e0ce25421a03742731ef",
+      "bytes": 7875
+    },
+    {
+      "path": "scripts/yeosu-colab-transfer.py",
+      "sha256": "2a00db69b2dae417928c5cdbf3599404e59be6138e8602fa190f4654ee8ebded",
+      "bytes": 3525
+    },
+    {
+      "path": "scripts/yeosu-jam-diagnostic.mjs",
+      "sha256": "df6ecdd96d1852f91da26f70f668d0b9feebddd2562640183d94f5c55720584f",
+      "bytes": 1073
+    },
+    {
+      "path": "scripts/yeosu-map-backup.py",
+      "sha256": "3df6d0bd267542879879a1a319497264a7e081d4df7bd886acdeef6e0f3643cc",
+      "bytes": 1376
+    },
+    {
+      "path": "scripts/yeosu-map.test.mjs",
+      "sha256": "bcdcbc04ebf76c25cc3aa130da098abb43c3c54c45d6909cd81cd47f2a5f0cde",
+      "bytes": 2767
+    },
+    {
+      "path": "scripts/yeosu-roadscape.test.mjs",
+      "sha256": "92fba129ac8a9ae80a96874c0483948bc2913a64fe86d33bfce71a393d4eb905",
+      "bytes": 10195
+    },
+    {
+      "path": "scripts/yeosu-smoke.mjs",
+      "sha256": "23b99fce1d8b32356cf46e10920e736ed1031f7821f3ac58e2fbe5ae929ba7a1",
+      "bytes": 1357
+    },
+    {
+      "path": "scripts/yeosu-visuals.test.mjs",
+      "sha256": "91213fa9b702c63cf71bf9a7305019edc7dacb80a0fc18aa096f1db9f909841b",
+      "bytes": 10294
+    },
+    {
+      "path": "src/driving/arcadeAction.js",
+      "sha256": "b31cd46ee2e8b718e337871f12a6d5de5c7bf396d48ab562169f36ee4fe4be3b",
+      "bytes": 2017
+    },
+    {
+      "path": "src/driving/beachStage2Colliders.json",
+      "sha256": "c6c20977766ef5739bc6264bc9247fceb348bd1a9eb0ba5500c9f678ec21e9a8",
+      "bytes": 1944
+    },
+    {
+      "path": "src/driving/chaseCamera.js",
+      "sha256": "f912ca4e49d2a0d85f9709a9789edf46ef2e7d2372ce93a16596d4244267ef1d",
+      "bytes": 5764
+    },
+    {
+      "path": "src/driving/cityStage3Colliders.json",
+      "sha256": "964cb17d52a7bc26ad9a7940a1085ce59838b6d74f99cd21e072bf5ecc2d3ef6",
+      "bytes": 4709
+    },
+    {
+      "path": "src/driving/coastRoute.js",
+      "sha256": "b20a5274739f99345da08d6e7c8d75bd076c565a2c7c2d8f1b74c9c7a7e05089",
+      "bytes": 11525
+    },
+    {
+      "path": "src/driving/collisionResponse.js",
+      "sha256": "ea6da6e8668a8042b4cb718f5cc2dee1bd666fdaa6a5c63592fd2ed5a636f9e3",
+      "bytes": 773
+    },
+    {
+      "path": "src/driving/drivingAudio.js",
+      "sha256": "6f75f725c51bc7b6c80cc03b5e4d0d3bdc4486987b4a2768a65c2742d3ee287c",
+      "bytes": 10391
+    },
+    {
+      "path": "src/driving/drivingSignals.js",
+      "sha256": "5ebe669140fd9a5c3bd7f2391076518cee9d68b33630373d6da6173d9364ebf9",
+      "bytes": 4292
+    },
+    {
+      "path": "src/driving/engineVoices.js",
+      "sha256": "831a5f75ef8252b96aaceb8b645c482b50f351af2942e29cd8b6a6f9b580af91",
+      "bytes": 1337
+    },
+    {
+      "path": "src/driving/harborSectorSpec.js",
+      "sha256": "07a197788a0e3e5a11591df1dbb64671b27b641790571ca0164b8670a1cca1c5",
+      "bytes": 834
+    },
+    {
+      "path": "src/driving/harborStage1Colliders.json",
+      "sha256": "ba14649d9f799cede9afbdb30efc58cff876b61e01d21302cc6651cff62d06e8",
+      "bytes": 3951
+    },
+    {
+      "path": "src/driving/launch.js",
+      "sha256": "8ae46b41b37935b0f7208cfd3a296523ddf265d85aa01efd3840ae2bc9ea74e3",
+      "bytes": 1544
+    },
+    {
+      "path": "src/driving/lighthouseStage4Colliders.json",
+      "sha256": "9c38e3fe2684e41df15f94d5ee65daf2c5dab682dd676c575e4b30d917474b88",
+      "bytes": 2096
+    },
+    {
+      "path": "src/driving/physics.js",
+      "sha256": "04f103ef30ea63e70dc2770cb11f93345484b693629c6e46b1b4d9eebb43a1ed",
+      "bytes": 21157
+    },
+    {
+      "path": "src/driving/smokeCloud.js",
+      "sha256": "2c65e1b94c4b6bb09baac1bd7a55a2f0c76a867128170529824b923b067f0db4",
+      "bytes": 1718
+    },
+    {
+      "path": "src/driving/steering.js",
+      "sha256": "12ace39e3c4834bad038940b502a3bb8f25bd3861f5c1d5ecec27e00421ae9a9",
+      "bytes": 3391
+    },
+    {
+      "path": "src/driving/tireFeedback.js",
+      "sha256": "b9da59e031ca341906bfd81ac89e20343cb41e2af0af9d1886c03dc9463b0b9f",
+      "bytes": 3387
+    },
+    {
+      "path": "src/driving/tireSmoke.js",
+      "sha256": "b4648a1f37f99754a550894146aa16ee873f4df4cf5d27cd0913ebce606d1734",
+      "bytes": 4799
+    },
+    {
+      "path": "src/driving/vehicleWorld.js",
+      "sha256": "db92c41ce18d349a9aac5dcd05266c82ae6bd1fe412428851ca8712cd5efef7f",
+      "bytes": 1486
+    },
+    {
+      "path": "src/garage/batchStatic.js",
+      "sha256": "0d043f37bccf8f94532fb446f2dd3a0cb9eeb3e96ac72c82e3ebe15c1e683868",
+      "bytes": 2048
+    },
+    {
+      "path": "src/garage/gt.js",
+      "sha256": "90c3cb6fd196e1f351066e90d79c317cf6a6e1701f38b2315bc6169890d7b958",
+      "bytes": 8568
+    },
+    {
+      "path": "src/garage/gtBody.js",
+      "sha256": "a4df695381647594124cdf2ec9117843005434728c06f9fd0124a45c48e79f59",
+      "bytes": 3073
+    },
+    {
+      "path": "src/garage/procedural.js",
+      "sha256": "a5e43fbd633a9541108bee18f1cae0ed80f88e389777bf16b37eab144ca0aef8",
+      "bytes": 2871
+    },
+    {
+      "path": "src/rebuild/ChampionshipTable.jsx",
+      "sha256": "1894662a68e50851cb0bcf796468a0f4c54e3e4d8c3059d38faf348944d10000",
+      "bytes": 459
+    },
+    {
+      "path": "src/rebuild/GraphicsSettings.jsx",
+      "sha256": "728d6c8aa3a2fd29eaeeaa7a60b1e3d7bd8c1bf477780139b2ef3b54801bf977",
+      "bytes": 2114
+    },
+    {
+      "path": "src/rebuild/OnlineInviteQR.jsx",
+      "sha256": "4ed820d65f6d9ed22709204907f9f0d87cddf26ec8964281a2d5cdbc07cd7856",
+      "bytes": 960
+    },
+    {
+      "path": "src/rebuild/OnlineLobby.jsx",
+      "sha256": "4f2f6dcb4fd78a96c5125edb660bc8bc7ae0678779e55e653bceb073f9dbd9af",
+      "bytes": 5716
+    },
+    {
+      "path": "src/rebuild/RaceSetup.jsx",
+      "sha256": "9bc058cffa0ff79cf6b1233fa5121df87d17cabbbd03d50fb25a43e0804670a3",
+      "bytes": 2501
+    },
+    {
+      "path": "src/rebuild/UnlockGarage.jsx",
+      "sha256": "a195f32d2e599341377fe84ff6ece2e8a1494f9850296d55475679b8d8dcbc5e",
+      "bytes": 2062
+    },
+    {
+      "path": "src/rebuild/activeRide.js",
+      "sha256": "018c288b28c36f173aadbc78f935e05287457319c941ef94fdc718cd6b23ecc3",
+      "bytes": 5635
+    },
+    {
+      "path": "src/rebuild/assets.js",
+      "sha256": "9ee1dad57ad143053f8ed6c3a4ed14a0011334b2e7622fde18f6eb458312d79c",
+      "bytes": 8492
+    },
+    {
+      "path": "src/rebuild/bodyMotion.js",
+      "sha256": "8b2ac280fd5ab00b18d397d102bd875da311b380d6151e222fb2cb827d742efd",
+      "bytes": 4922
+    },
+    {
+      "path": "src/rebuild/championship.js",
+      "sha256": "d5415a66c22c742278b6fda92a266c74fd8605bffb44f4d4a3899018e7d64e95",
+      "bytes": 3796
+    },
+    {
+      "path": "src/rebuild/coastalVisuals.js",
+      "sha256": "c2be28bc98e3250c0bf175f0fe3000a17fd7cce15a5632e85db59597c1bcc992",
+      "bytes": 4147
+    },
+    {
+      "path": "src/rebuild/cockpit.js",
+      "sha256": "3d941a07a16f3b559ef72b8dbd173d524352e4fd36a07cf589894dc4bc71d5f3",
+      "bytes": 2964
+    },
+    {
+      "path": "src/rebuild/cockpitDisplay.js",
+      "sha256": "84dc58024af3876cdc81cf085232a90e37c5fc148de83d82f18330c483ba26c0",
+      "bytes": 2817
+    },
+    {
+      "path": "src/rebuild/cockpitFinish.js",
+      "sha256": "32bdd3cd67e797e0802223d42a63182fd0dfb3442b65edb8a6b0545169b58272",
+      "bytes": 929
+    },
+    {
+      "path": "src/rebuild/course.js",
+      "sha256": "130e97cdbeac7c43314feb83b0f5d13aae67ec484d764fe55b173aeaccf63f22",
+      "bytes": 6267
+    },
+    {
+      "path": "src/rebuild/daylightSky.js",
+      "sha256": "25fb449af88ba33959326ac82e00d89d27e2b4302db16e629bdd38b5b5ef325e",
+      "bytes": 1399
+    },
+    {
+      "path": "src/rebuild/drivingMotionPreference.js",
+      "sha256": "2f29d33ed9ef1ea935829608b6e25a1fa7d80120acb5896cd006d6f68fade5b4",
+      "bytes": 705
+    },
+    {
+      "path": "src/rebuild/duelRecords.js",
+      "sha256": "f90152856a0d29eef24516832450cb4f701e3e0c616601ea921c70dc5828f925",
+      "bytes": 1999
+    },
+    {
+      "path": "src/rebuild/exhaustVfx.js",
+      "sha256": "94b56a07569751973823b1db738c72d42f0544765f5d05957cf6c96bab109615",
+      "bytes": 3118
+    },
+    {
+      "path": "src/rebuild/firstPersonCamera.js",
+      "sha256": "38393bf2a7b31a5e23933cc4cb6a50ebae4563cc101104b805405a0b9473e47f",
+      "bytes": 2710
+    },
+    {
+      "path": "src/rebuild/fleet.js",
+      "sha256": "5fdf64487335f5cdca2b7699fbd2946926b80915d4f20e30a74f6876db365b1d",
+      "bytes": 1364
+    },
+    {
+      "path": "src/rebuild/frozenComparison.js",
+      "sha256": "b02b09733102e99b3252ac07854103df7102884dfb2cbee1fb7e9b49566ab42b",
+      "bytes": 3822
+    },
+    {
+      "path": "src/rebuild/garageBackdrop.js",
+      "sha256": "18333c0a0c9a956c52c6f1bb7e9b9649b18b9f25f27f66a906d15a6a90d38a4b",
+      "bytes": 743
+    },
+    {
+      "path": "src/rebuild/graphicsQuality.js",
+      "sha256": "b38c13460b4e20ffd3a7c5ea3baabe7a81f12b3e18e15ff07bb3e3b0098648bd",
+      "bytes": 1954
+    },
+    {
+      "path": "src/rebuild/impactPresentation.js",
+      "sha256": "9fe7421fa39eb5acad22f01372d0d3e49be5f0a4a7e9b82565be99130517fffd",
+      "bytes": 2451
+    },
+    {
+      "path": "src/rebuild/impactSparks.js",
+      "sha256": "d946addbd3507b0d32e2f2701b1112effcc654994bcae17389156a5ad29c1c76",
+      "bytes": 2090
+    },
+    {
+      "path": "src/rebuild/inviteQr.js",
+      "sha256": "cc84d019ee5eae86f2a211dc09b38988eae8c3860acf8ebba9befe7f320b3036",
+      "bytes": 898
+    },
+    {
+      "path": "src/rebuild/koreaPresentation.js",
+      "sha256": "680c984bbe080486afb43355e20b6bf172f52aa1fb582f05b5eb94a8b062cf28",
+      "bytes": 2439
+    },
+    {
+      "path": "src/rebuild/landscape.js",
+      "sha256": "0aba94c3f18e5920f8ef955e7f52020038f524b1efb488f80b654a862fd44403",
+      "bytes": 2039
+    },
+    {
+      "path": "src/rebuild/loadingMetrics.js",
+      "sha256": "4703c1de81febab00e736a0c44c8ac0179dc175fc9ee9d7b29b72190fd9b003d",
+      "bytes": 961
+    },
+    {
+      "path": "src/rebuild/main.jsx",
+      "sha256": "977ccd1c8da070acf1e2a67565bcf523b6a3fbe1194a4c1d1e73450f03e0baa7",
+      "bytes": 29161
+    },
+    {
+      "path": "src/rebuild/musicTracks.js",
+      "sha256": "90bb3a21c8d91f97dca0dcc381fc2f77e71979112e799f3ba575dafc58b30328",
+      "bytes": 292
+    },
+    {
+      "path": "src/rebuild/namakArchitecture.js",
+      "sha256": "f0694742a3730ddc329ab30e984256166cae89460dc8df498cf50c1a73167110",
+      "bytes": 1322
+    },
+    {
+      "path": "src/rebuild/namakBarriers.js",
+      "sha256": "79d5cc466fc5e8611a079eba391bdf7945c832d5bc235ab0af080e17be4eff07",
+      "bytes": 1778
+    },
+    {
+      "path": "src/rebuild/namakColors.js",
+      "sha256": "7c983226ff6d070862408752c6d6ae34520905b386cbdab065f4e8498e3c4c99",
+      "bytes": 2553
+    },
+    {
+      "path": "src/rebuild/namakLandmarks.js",
+      "sha256": "2de15f104099df35d805c91ceb385ae176ae8819e20016ad6719810e62c2ad47",
+      "bytes": 1267
+    },
+    {
+      "path": "src/rebuild/namakPresentation.js",
+      "sha256": "5819321db4599055b6698f53329f901cac32e745d1ad0ef8e766ea88435bf8bb",
+      "bytes": 1619
+    },
+    {
+      "path": "src/rebuild/namakVisuals.js",
+      "sha256": "936d8112f4bb644f6d567280088cf1cd74013b35422fb0cef374d81c8cc407e6",
+      "bytes": 11730
+    },
+    {
+      "path": "src/rebuild/nightPresentation.js",
+      "sha256": "9a58c8f8369196be93ec6a00af9b27356747b61eebe4f69fab256fd5d56a565e",
+      "bytes": 1977
+    },
+    {
+      "path": "src/rebuild/onlineProtocol.js",
+      "sha256": "26ba1384b85214aa534a661f43eb4bbe611b997e5b06aed5e19db16944f06e4d",
+      "bytes": 4562
+    },
+    {
+      "path": "src/rebuild/onlineRace.js",
+      "sha256": "1b3699096313ed55bc76424e22387decb0899b6f34622713da7056461a4f6dda",
+      "bytes": 12348
+    },
+    {
+      "path": "src/rebuild/overtakeRoad.js",
+      "sha256": "1467309f4b223c4cfa7c2bab00d1bc3abe10c7cbc90b75b031104ed204e4dd26",
+      "bytes": 2062
+    },
+    {
+      "path": "src/rebuild/performanceComparison.js",
+      "sha256": "9d218b8ebffb565f40d27fea1e8967b58ddecceb20b36c0682150255f2c730b8",
+      "bytes": 2316
+    },
+    {
+      "path": "src/rebuild/progression.js",
+      "sha256": "b516fded745a326e5baa33347696a3018caa4840bd8b1d859bb498e2e3dab571",
+      "bytes": 1480
+    },
+    {
+      "path": "src/rebuild/raceClock.js",
+      "sha256": "270f1f1ea2df8a30b09bd4fb7dd6805fa7f837f69af82ba08dce02e374fff89e",
+      "bytes": 893
+    },
+    {
+      "path": "src/rebuild/raceContacts.js",
+      "sha256": "31013066bac5a65d4907b94424ba91bf43efd9e588515a815443c6cd05ac34d8",
+      "bytes": 2929
+    },
+    {
+      "path": "src/rebuild/raceDifficulty.js",
+      "sha256": "178726f0db3bc6501d8a33ffc2701f07ca7da4ac76e76955c0d781078242e9af",
+      "bytes": 2108
+    },
+    {
+      "path": "src/rebuild/raceGhost.js",
+      "sha256": "28eaa669d666ac10ec6402f4de80be3bbaee4994e103207ebeb561b0d7ffcd0b",
+      "bytes": 3339
+    },
+    {
+      "path": "src/rebuild/raceInput.js",
+      "sha256": "e8bf1e76a36b4ece94c098e78f81b7edab3b1812b50b5d81bd9f9041c21e53e0",
+      "bytes": 2320
+    },
+    {
+      "path": "src/rebuild/raceMode.js",
+      "sha256": "0fcb79491f87556d320ffebc2d7b07a00a5981ce61a26b41e415da321e0a74b4",
+      "bytes": 2487
+    },
+    {
+      "path": "src/rebuild/raceMusic.js",
+      "sha256": "2ef411068d6a0e8c62a1ec2f308437fed4033c2931b4c56b88fe48c59724a040",
+      "bytes": 2933
+    },
+    {
+      "path": "src/rebuild/racePreparation.js",
+      "sha256": "ab1aecc659c1813b5a92bf4b7d8401b66a95498debc008dd954a3d42d7df77f7",
+      "bytes": 2045
+    },
+    {
+      "path": "src/rebuild/raceRecords.js",
+      "sha256": "cba683a23a2e647654e8d8d124b6e933e59238b6b01100596057080cc1f648b7",
+      "bytes": 4427
+    },
+    {
+      "path": "src/rebuild/raceRules.js",
+      "sha256": "ccf13bd64a75a5cb620030788b864f4c08e4d786606cec3d6cfdaf383da2390b",
+      "bytes": 1986
+    },
+    {
+      "path": "src/rebuild/raceSurface.js",
+      "sha256": "f342cfeed010c525fdffe338ed5da245ddd7980f36608ca2d8bf8eaf7ceacd4e",
+      "bytes": 1644
+    },
+    {
+      "path": "src/rebuild/rainVfx.js",
+      "sha256": "4df670b28fe867965a4ea0ecac4275e8a836c5cb5a96575ff6c46351b74fa319",
+      "bytes": 3989
+    },
+    {
+      "path": "src/rebuild/rebuild.css",
+      "sha256": "6cc6287d5b4a8758d192191d6bb80f4d2ccf379c63690e2205c108719f80810d",
+      "bytes": 42709
+    },
+    {
+      "path": "src/rebuild/recoveryRoad.js",
+      "sha256": "4b10dee84cd7acd948dd6dc6ee2927448c7609f12ae6f72dcee2869251e0404a",
+      "bytes": 3229
+    },
+    {
+      "path": "src/rebuild/renderProfile.js",
+      "sha256": "8f4e884ea6fb36b2c4781def4f285c30b870e97d2c2abe2baec110e8c7b54f5b",
+      "bytes": 3999
+    },
+    {
+      "path": "src/rebuild/renderTiming.js",
+      "sha256": "2e8a2a52c49878b9089712f7c8932f5b2ffde1e69f342b213cb2aac4629a1239",
+      "bytes": 2659
+    },
+    {
+      "path": "src/rebuild/rivalPersonalities.js",
+      "sha256": "cf238225b225c56278f9df6339a116ba01d953e314d26c80425188c9b1a02db1",
+      "bytes": 1255
+    },
+    {
+      "path": "src/rebuild/rivalPlanner.js",
+      "sha256": "4c0180fec10f3836c40b22bef9bbc96a047982f418f9e68e2d40852312bd63a3",
+      "bytes": 17226
+    },
+    {
+      "path": "src/rebuild/rivalRacecraft.js",
+      "sha256": "feb8bdf0c57723919c24a8d3a415c0ebb77a6bb7b13d31a71d7a7dbc53512c84",
+      "bytes": 2343
+    },
+    {
+      "path": "src/rebuild/rivalRecovery.js",
+      "sha256": "1ea0205eee362bec021634891c3bb05550d3a5b7df7657fbc3661da8e2ec9a21",
+      "bytes": 3796
+    },
+    {
+      "path": "src/rebuild/rivalSpeed.js",
+      "sha256": "88137365377ed7aee761bd1db2ec7fa24229c927e276a97956d7f8e42a96886b",
+      "bytes": 318
+    },
+    {
+      "path": "src/rebuild/roadTraffic.js",
+      "sha256": "4ea4bd7b2ea689cef401a497c1f3b6f0354070a8a815ee7a5ef718c9a7a7fd57",
+      "bytes": 1924
+    },
+    {
+      "path": "src/rebuild/roadscape.js",
+      "sha256": "c190577a84ccf24142712216a7bb1803acf7aa13957dd51ed2e573a7ac0c3f99",
+      "bytes": 3027
+    },
+    {
+      "path": "src/rebuild/routeGuidance.js",
+      "sha256": "dc584ef9297c2471787977cd702efdecbd23350aa1a57150f70506d49c98cff1",
+      "bytes": 2826
+    },
+    {
+      "path": "src/rebuild/runtime.js",
+      "sha256": "654f57a198682f1d48f2d71996473423a6574665ede9df93793689a03e057421",
+      "bytes": 57998
+    },
+    {
+      "path": "src/rebuild/seongsamjaeVisuals.js",
+      "sha256": "6cc696fa7ece554147fee7d2fdd2e8119d75399510ecc8661b638c77975557c3",
+      "bytes": 21806
+    },
+    {
+      "path": "src/rebuild/staticWorld.js",
+      "sha256": "c1e97548df5b50afc389b3e0c25bbb939f60503be447e7d6859098642cf4fefd",
+      "bytes": 858
+    },
+    {
+      "path": "src/rebuild/surfacePolish.js",
+      "sha256": "ed85202dc1b94af12b16159fee41f17275e3cb2c2c24c81dbabeef0c34be3de2",
+      "bytes": 9211
+    },
+    {
+      "path": "src/rebuild/touchControls.js",
+      "sha256": "17591b4e12343a49a6c4950ba9e3a1c4468731c0e3327b38a404349ab3b45672",
+      "bytes": 487
+    },
+    {
+      "path": "src/rebuild/tracks.js",
+      "sha256": "f6ddf1c5f8e51a21c6abc6ccd207b7bc778fd97bd6e8230f5381dc9795c60c95",
+      "bytes": 1594
+    },
+    {
+      "path": "src/rebuild/trafficView.js",
+      "sha256": "138cb8bac0512f941dfa894276928eaad9b1d3c118424690d84f7f01bd2c8a55",
+      "bytes": 3446
+    },
+    {
+      "path": "src/rebuild/vehicleDynamics.js",
+      "sha256": "1f8d154f1ac0095b25629a1e423c265330e905d2d6077b4aaedff31238241b65",
+      "bytes": 4494
+    },
+    {
+      "path": "src/rebuild/vehiclePose.js",
+      "sha256": "8a1df86a6fbb9db3ba7e1098685a0d5ba5ae5f9c1e1b7814a32072581765439d",
+      "bytes": 2908
+    },
+    {
+      "path": "src/rebuild/vehicleStudio.js",
+      "sha256": "656fdb57764a5200e36187137da6c8e8a7516e2d822e1af121080bf817b695ec",
+      "bytes": 3013
+    },
+    {
+      "path": "src/rebuild/weather.js",
+      "sha256": "f5a11288e1e566d0cfc8ffd53678d1abb2af2116896e093f594b61d3837eab9b",
+      "bytes": 1750
+    },
+    {
+      "path": "src/rebuild/worldCollision.js",
+      "sha256": "ebaf49db559be7f594df7f30946e1674df20f369740c193e12c4fb7ceda03147",
+      "bytes": 391
+    },
+    {
+      "path": "src/rebuild/worldRendering.js",
+      "sha256": "745f74a3754dae577276a6f78ebd8bf946875220a74f292e8b5ac67c8c6ae534",
+      "bytes": 8351
+    },
+    {
+      "path": "src/rebuild/yeosuVisualLayout.js",
+      "sha256": "8fad9b2f0fce10c22aaa06dbf935037d2a676f3eecae506fe5ad64b75c032d06",
+      "bytes": 21343
+    },
+    {
+      "path": "src/rebuild/yeosuVisuals.js",
+      "sha256": "0c1e33259df0d62b64e95497ae9af1634b43ee9e7aacea277ccfa431b04844b9",
+      "bytes": 17571
+    },
+    {
+      "path": "src/rendering/sceneResources.js",
+      "sha256": "f9964d0adfea8b0a9e1c17dcca6276987b757b424a155e39645944867fe7d422",
+      "bytes": 2601
+    },
+    {
+      "path": "src/scenery/beachPalette.js",
+      "sha256": "d59aa005e3d46f0f4c05f2aab2e030fa56686a2bab6c3c6e80825021ac12afa6",
+      "bytes": 496
+    },
+    {
+      "path": "src/scenery/beachScenery.js",
+      "sha256": "f256ed185208125bb2412e803e26d62d806c3fd794a41db7cde3905b84b4d0c3",
+      "bytes": 7434
+    },
+    {
+      "path": "src/vehicleSpec.js",
+      "sha256": "02f759671b473e71957ccbd81f760ff27cd55324a1de0f2b3aa440fb8aa1d9b6",
+      "bytes": 168
+    }
+  ],
+  "steps": [
+    "snapshot",
+    "isolated-scene-optimization",
+    "guidance",
+    "performance28-runs",
+    "full549-twice",
+    "real-browser-race-and-inputs",
+    "responsive4-sizes",
+    "independent-review",
+    "documentation"
+  ],
+  "failures": [],
+  "completed": "2026-11-04T02:34:23.210Z",
+  "status": "complete-local",
+  "preview": "http://127.0.0.1:5231/?track=yeosu",
+  "publication": {
+    "commit": false,
+    "push": false,
+    "pr": false,
+    "merge": false,
+    "deploy": false
+  },
+  "remaining": [
+    "High-quality long-frame variance",
+    "Real-device multitouch and full laps",
+    "200% zoom",
+    "Separate-network online race"
+  ]
+}

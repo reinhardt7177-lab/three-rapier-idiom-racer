@@ -174,7 +174,7 @@ export function createSeongsamjaeVisuals(scene,world,route,{quality='high'}={}){
   });
   if(detailed.some((m,i)=>m!==list[i]))bindings.push({object:o,original,detailed:Array.isArray(original)?detailed:detailed[0]});
   if(!o.userData.unity_collider&&list.some(m=>m.name==='Stone')){
-   const b=new THREE.Box3().setFromObject(o);if(b.max.y-b.min.y>150&&b.max.x-b.min.x>100)originalRidges.push({object:o,bounds:b,visible:o.visible});
+   const b=new THREE.Box3().setFromObject(o);if(b.max.y-b.min.y>150&&b.max.x-b.min.x>100)originalRidges.push({object:o,bounds:b,sphere:b.getBoundingSphere(new THREE.Sphere()),visible:o.visible});
   }
  }
  const fern=fernGeometry(),rock=rockGeometry(),crown=new THREE.IcosahedronGeometry(1,1);for(const g of [fern,rock,crown])geometries.add(g);
@@ -227,7 +227,7 @@ export function createSeongsamjaeVisuals(scene,world,route,{quality='high'}={}){
   const position=camera?.isObject3D?camera.getWorldPosition(cameraPosition):camera?.position;
   const originalDistance=currentQuality==='medium'?500:Infinity;
   for(const m of instances)m.visible=false;for(const c of canopies)c.original.visible=c.visible&&(!position||c.originalSphere.center.distanceTo(position)-c.originalSphere.radius<=originalDistance);
-  for(const r of originalRidges){const sphere=r.bounds.getBoundingSphere(new THREE.Sphere());r.object.visible=r.visible&&(!position||sphere.center.distanceTo(position)-sphere.radius<=originalDistance);}if(ridgeMesh)ridgeMesh.visible=false;
+  for(const r of originalRidges){const sphere=r.sphere;r.object.visible=r.visible&&(!position||sphere.center.distanceTo(position)-sphere.radius<=originalDistance);}if(ridgeMesh)ridgeMesh.visible=false;
   if(!root.visible||!position)return;
   const add=m=>{m.visible=true;stats.visibleDraws++;stats.visibleInstances+=m.count;stats.visibleTriangles+=m.count*(m.geometry.index?.count??m.geometry.attributes.position.count)/3;};
   for(const c of cells)c.distance=Math.max(0,c.center.distanceTo(position)-c.radius);
